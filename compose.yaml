@@ -1,0 +1,22 @@
+services:
+  mssql-sample-databases:
+    # The official SQL Server image with three of Microsoft's sample databases loaded on first start:
+    #   https://hub.docker.com/r/onacit/mssql-sample-databases      (also ghcr.io/jinahya/mssql-sample-databases)
+    #   https://github.com/jinahya/mssql-sample-databases-docker
+    # AdventureWorks and WideWorldImporters are restored from their backups, FutonManufacturing is built from its
+    # scripts. `2025-latest` is rebuilt weekly on mcr.microsoft.com/mssql/server:2025-latest; a SQL Server build tag,
+    # `17.0.5035.5` say, never changes.
+    image: onacit/mssql-sample-databases:2025-latest
+    # SQL Server is linux/amd64 only; on Apple silicon it runs under Rosetta (Docker Desktop: Use Rosetta for
+    # x86_64/amd64 emulation)
+    platform: linux/amd64
+    container_name: mssql-sample-databases
+    ports:
+      - "1433:1433"
+    environment:
+      # required, and must meet SQL Server's password policy; the persistence units read it from pom.xml's
+      # mssql.password. ACCEPT_EULA=Y and MSSQL_PID=developer are preset by the image.
+      MSSQL_SA_PASSWORD: Passw0rd!
+    # The image's own HEALTHCHECK reports healthy only once the three databases are loaded, under a minute.
+    # /var/opt/mssql is not mounted, so it lives in the container's anonymous volume, which `down -v` removes, and
+    # every run loads the databases again.
