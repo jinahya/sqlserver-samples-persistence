@@ -97,11 +97,14 @@ Each entity's `*_PersistenceIT` reads up to eight installed rows, inside a trans
 Each keyless class's `*_PersistenceIT` reads every column its mapped superclass names by a native query, and checks
 that its public constructor takes them all.
 
-| Module | ITs | Skipped |
-|---|---|---|
-| adventureworks | 264 | 39 |
-| futonmanufacturing | 136 | 5 |
-| wideworldimporters | 194 | 36 |
+| Module | Entity and keyless ITs | Exercise ITs | Skipped |
+|---|---|---|---|
+| adventureworks | 264 | 42 | 39 |
+| futonmanufacturing | 194 | 28 | 36 |
+| wideworldimporters | 136 | 31 | 5 |
+
+Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
+Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.
 
 All of them pass with both providers. A test is skipped when an entity maps no association, or a view returns no
 row.
