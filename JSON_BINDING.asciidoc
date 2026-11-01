@@ -1,0 +1,75 @@
+= JSON Binding
+
+The columns of the three databases which hold JSON, and the status of their binding. Only WideWorldImporters has
+them, all `nvarchar(max)`.
+
+[cols="3,3,4",options="header"]
+|===
+| Column | Binding | Status
+
+| `Sales.Invoices.ReturnedDeliveryData`
+| none
+| Not mapped; `String`.
+
+| `Application.SystemParameters.ApplicationSettings`
+| none
+| Not mapped; `String`.
+
+| `Application.People.UserPreferences`
+| none
+| Not mapped; `String`.
+
+| `Application.People.CustomFields`
+| none
+| Not mapped; `String`.
+
+| `Application.People.OtherLanguages`
+| none
+| Not mapped; `String`, read-only (a computed column).
+
+| `Warehouse.StockItems.CustomFields`
+| none
+| Not mapped; `String`.
+
+| `Warehouse.StockItems.Tags`
+| none
+| Not mapped; `String`, read-only (a computed column).
+
+| `Application.People_Archive.UserPreferences`
+| none
+| Not mapped; `String`, read-only (a history table).
+
+| `Application.People_Archive.CustomFields`
+| none
+| Not mapped; `String`, read-only (a history table).
+
+| `Application.People_Archive.OtherLanguages`
+| none
+| Not mapped; `String`, read-only (a history table).
+
+| `Warehouse.StockItems_Archive.CustomFields`
+| none
+| Not mapped; `String`, read-only (a history table).
+
+| `Warehouse.StockItems_Archive.Tags`
+| none
+| Not mapped; `String`, read-only (a history table).
+|===
+
+== Columns read out of JSON
+
+The computed columns which read a value out of a JSON column. Neither holds JSON itself.
+
+[cols="3,3,4",options="header"]
+|===
+| Column | Read out of | Status
+
+| `Sales.Invoices.ConfirmedDeliveryTime`
+| `ReturnedDeliveryData`, `$.DeliveredWhen`
+| `LocalDateTime`, read-only (a computed column).
+
+| `Sales.Invoices.ConfirmedReceivedBy`
+| `ReturnedDeliveryData`, `$.ReceivedBy`
+| `String`, read-only (a computed column).
+|===
+

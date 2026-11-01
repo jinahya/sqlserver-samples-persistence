@@ -204,6 +204,7 @@ public abstract class MappedCountryRegionCurrency {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
     @Id
@@ -216,6 +217,7 @@ public abstract class MappedCountryRegionCurrency {
     private String countryRegionCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_CURRENCY_CODE)
     @NotNull
     @Id

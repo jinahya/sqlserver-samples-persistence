@@ -572,6 +572,7 @@ public abstract class MappedSystemParameter {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SystemParameterID", schema = "Sequences",
                        sequenceName = "SystemParameterID",

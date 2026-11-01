@@ -841,6 +841,7 @@ public abstract class MappedPerson {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PersonID", schema = "Sequences", sequenceName = "PersonID",
                        allocationSize = 1)
@@ -877,6 +878,7 @@ public abstract class MappedPerson {
     private String preferredName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_SEARCH_NAME)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SEARCH_NAME,
@@ -1018,6 +1020,7 @@ public abstract class MappedPerson {
     private String customFields;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_OTHER_LANGUAGES,
             nullable = true,
@@ -1038,6 +1041,8 @@ public abstract class MappedPerson {
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
@@ -1047,6 +1052,8 @@ public abstract class MappedPerson {
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,

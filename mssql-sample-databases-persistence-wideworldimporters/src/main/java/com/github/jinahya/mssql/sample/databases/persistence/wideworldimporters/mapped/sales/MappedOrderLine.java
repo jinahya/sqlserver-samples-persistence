@@ -531,6 +531,7 @@ public abstract class MappedOrderLine {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.OrderLineID", schema = "Sequences",
                        sequenceName = "OrderLineID",

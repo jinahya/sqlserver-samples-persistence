@@ -22,6 +22,7 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.dbo
 
 import com.github.jinahya.mssql.sample.databases.persistence.adventureworks._Entity_PersistenceIT;
 import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.___Persistence_TestUtils;
+import io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
     }
 
     // -------------------------------------------------------------------------------------------------------- xmlEvent
-    @DisplayName("every xmlEvent is an EVENT_INSTANCE document, and a flush with none of them changed writes nothing")
+    @DisplayName("every xmlEvent is bound to the class of its event, and a flush with none of them changed writes nothing")
     @Test
     void xmlEvent() {
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
@@ -45,8 +46,10 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
             for (final var log : logs) {
                 assertThat(log.getXmlEvent())
                         .as("the xmlEvent of %s", log)
-                        .startsWith("<EVENT_INSTANCE>")
-                        .endsWith("</EVENT_INSTANCE>");
+                        .isInstanceOf(EventInstances.typeOf(log.getEvent()));
+                assertThat(log.getXmlEvent().getEventType())
+                        .as("the EventType of the xmlEvent of %s", log)
+                        .isEqualTo(log.getEvent());
             }
             em.flush();
             // the log records the current transaction wrote; an UPDATE writes some, a read none

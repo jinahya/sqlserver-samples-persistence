@@ -35,6 +35,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_Sales_RepPerformance} view.
  * <p>
  * Identifier: the view declares no key; EmployeeCode is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; it contains
+ * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesRepPerformanceView {
@@ -714,6 +718,8 @@ public abstract class MappedSalesRepPerformanceView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_EMPLOYEE_CODE)
     @NotNull
     @Id
@@ -726,170 +732,185 @@ public abstract class MappedSalesRepPerformanceView {
     private String employeeCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_REP_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SALES_REP_NAME
     )
     private String salesRepName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_TERRITORY_NAME
     )
     private String territoryName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REGION,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_REGION
     )
     private String region;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer totalOrders;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer uniqueCustomers;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_SALES,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_GROSS_SALES,
             scale = COLUMN_SCALE_GROSS_SALES
     )
     private BigDecimal grossSales;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_DISCOUNTS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_DISCOUNTS,
             scale = COLUMN_SCALE_TOTAL_DISCOUNTS
     )
     private BigDecimal totalDiscounts;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NET_SALES,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_NET_SALES,
             scale = COLUMN_SCALE_NET_SALES
     )
     private BigDecimal netSales;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
             scale = COLUMN_SCALE_AVG_ORDER_VALUE
     )
     private BigDecimal avgOrderValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DELIVERED_SALES - COLUMN_SCALE_DELIVERED_SALES,
             fraction = COLUMN_SCALE_DELIVERED_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERED_SALES,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_DELIVERED_SALES,
             scale = COLUMN_SCALE_DELIVERED_SALES
     )
     private BigDecimal deliveredSales;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DAYS_TO_SHIP - COLUMN_SCALE_AVG_DAYS_TO_SHIP,
             fraction = COLUMN_SCALE_AVG_DAYS_TO_SHIP)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DAYS_TO_SHIP,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_DAYS_TO_SHIP,
             scale = COLUMN_SCALE_AVG_DAYS_TO_SHIP
     )
     private BigDecimal avgDaysToShip;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_CREATED,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer quotesCreated;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_ACCEPTED,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer quotesAccepted;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUOTE_WIN_RATE - COLUMN_SCALE_QUOTE_WIN_RATE,
             fraction = COLUMN_SCALE_QUOTE_WIN_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTE_WIN_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUOTE_WIN_RATE,
             scale = COLUMN_SCALE_QUOTE_WIN_RATE
     )
     private BigDecimal quoteWinRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_RANK,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long salesRank;
 }

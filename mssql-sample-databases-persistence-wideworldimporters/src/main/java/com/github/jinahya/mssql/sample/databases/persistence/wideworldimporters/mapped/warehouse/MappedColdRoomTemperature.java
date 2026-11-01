@@ -311,6 +311,8 @@ public abstract class MappedColdRoomTemperature {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID,
@@ -354,6 +356,8 @@ public abstract class MappedColdRoomTemperature {
     private BigDecimal temperature;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
@@ -363,6 +367,8 @@ public abstract class MappedColdRoomTemperature {
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,

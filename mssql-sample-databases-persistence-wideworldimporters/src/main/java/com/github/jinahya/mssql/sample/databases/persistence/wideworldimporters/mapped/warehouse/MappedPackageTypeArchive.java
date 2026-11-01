@@ -34,6 +34,9 @@ import java.time.LocalDateTime;
  * Identifier: a history table of a system-versioned temporal table, which has no key.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server rejects an INSERT (error 13559) and an UPDATE (error 13561) of a temporal history table; only
+ * the system versioning of {@code Warehouse.PackageTypes} writes it.
  */
 @MappedSuperclass
 public abstract class MappedPackageTypeArchive {
@@ -236,54 +239,59 @@ public abstract class MappedPackageTypeArchive {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer packageTypeId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PACKAGE_TYPE_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PACKAGE_TYPE_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PACKAGE_TYPE_NAME
     )
     private String packageTypeName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validTo;
 }

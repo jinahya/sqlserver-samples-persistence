@@ -35,6 +35,10 @@ import java.math.BigDecimal;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; it contains aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or
+ * constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedRawMaterialUsageView {
@@ -566,148 +570,161 @@ public abstract class MappedRawMaterialUsageView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer year;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer month;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUARTER,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer quarter;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_CODE
     )
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_UNIT_CODE
     )
     private String unitCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_USAGE - COLUMN_SCALE_TOTAL_USAGE, fraction = COLUMN_SCALE_TOTAL_USAGE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_USAGE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_USAGE,
             scale = COLUMN_SCALE_TOTAL_USAGE
     )
     private BigDecimal totalUsage;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_RECEIPTS - COLUMN_SCALE_TOTAL_RECEIPTS,
             fraction = COLUMN_SCALE_TOTAL_RECEIPTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_RECEIPTS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_RECEIPTS,
             scale = COLUMN_SCALE_TOTAL_RECEIPTS
     )
     private BigDecimal totalReceipts;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_ISSUES,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer numberOfIssues;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ISSUE_QUANTITY - COLUMN_SCALE_AVG_ISSUE_QUANTITY,
             fraction = COLUMN_SCALE_AVG_ISSUE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ISSUE_QUANTITY,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_ISSUE_QUANTITY,
             scale = COLUMN_SCALE_AVG_ISSUE_QUANTITY
     )
     private BigDecimal avgIssueQuantity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_USAGE_VALUE - COLUMN_SCALE_TOTAL_USAGE_VALUE,
             fraction = COLUMN_SCALE_TOTAL_USAGE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_USAGE_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_USAGE_VALUE,
             scale = COLUMN_SCALE_TOTAL_USAGE_VALUE
     )
     private BigDecimal totalUsageValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_UNIT_COST - COLUMN_SCALE_AVG_UNIT_COST,
             fraction = COLUMN_SCALE_AVG_UNIT_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_UNIT_COST,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_UNIT_COST,
             scale = COLUMN_SCALE_AVG_UNIT_COST
     )

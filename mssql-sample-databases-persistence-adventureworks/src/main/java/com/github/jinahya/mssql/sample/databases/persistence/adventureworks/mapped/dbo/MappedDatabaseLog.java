@@ -20,9 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstance;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -31,6 +33,10 @@ import java.time.LocalDateTime;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.DatabaseLog} table.
+ * <p>
+ * Read-only: the database DDL trigger ddlDatabaseTriggerLog, ON DATABASE FOR DDL_DATABASE_LEVEL_EVENTS, inserts every
+ * row of this table, out of EVENTDATA(), and nothing in the database updates one; so no column of it is insertable or
+ * updatable, but for the identifier, of which EclipseLink requires a writable mapping.
  */
 @AttributeOverride(name = _Mapped.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDatabaseLog.COLUMN_NAME_DATABASE_LOG_ID,
@@ -171,6 +177,11 @@ public abstract class MappedDatabaseLog
      * {@code DatabaseName} come first, then the elements of the event type, {@code SchemaName}, {@code ObjectName} and
      * {@code ObjectType} for a {@code CREATE_TABLE}, say, and {@code TSQLCommand}, the statement, last. A new version
      * of SQL Server may add elements and event types; read the value by element names, not by positions.
+     * <p>
+     * The attribute is the document bound to the class of its event type, through
+     * {@link EventInstanceStringAttributeConverter}. It is read-only: the trigger, its one writer, inserts it, and
+     * nothing updates it; and a provider which compares a snapshot of it by {@code equals}, which the bound classes do
+     * not override, would otherwise update every row it loads.
      */
     public static final String COLUMN_NAME_XML_EVENT = "XmlEvent";
 
@@ -329,9 +340,11 @@ public abstract class MappedDatabaseLog
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute.
+     * @return current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute; an instance of the class
+     * {@link io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances#typeOf(String)} names for its event
+     * type.
      */
-    public String getXmlEvent() {
+    public EventInstance getXmlEvent() {
         return xmlEvent;
     }
 
@@ -340,85 +353,99 @@ public abstract class MappedDatabaseLog
      *
      * @param xmlEvent new value for {@value #ATTRIBUTE_NAME_XML_EVENT} attribute.
      */
-    public void setXmlEvent(final String xmlEvent) {
+    public void setXmlEvent(final EventInstance xmlEvent) {
         this.xmlEvent = xmlEvent;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POST_TIME,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime postTime;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // class documentation
     @Size(max = COLUMN_LENGTH_DATABASE_USER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DATABASE_USER,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DATABASE_USER
     )
     private String databaseUser;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // class documentation
     @Size(max = COLUMN_LENGTH_EVENT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EVENT,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_EVENT
     )
     private String event;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // class documentation
     @Size(max = COLUMN_LENGTH_SCHEMA)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCHEMA,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SCHEMA
     )
     private String schema;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // class documentation
     @Size(max = COLUMN_LENGTH_OBJECT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_OBJECT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_OBJECT
     )
     private String object;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TSQL,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String tsql;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // the XML text; a richer type, a DOM Document or a binding, is the application's choice, through a converter
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // documentation of COLUMN_NAME_XML_EVENT
     @NotNull
+    @Convert(converter = EventInstanceStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_XML_EVENT,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
-    private String xmlEvent;
+    private EventInstance xmlEvent;
 }
 

@@ -35,6 +35,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_SupplierPerformance} view.
  * <p>
  * Identifier: the view declares no key; SupplierCode is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; it contains
+ * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSupplierPerformanceView {
@@ -474,6 +478,8 @@ public abstract class MappedSupplierPerformanceView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_CODE)
     @NotNull
     @Id
@@ -486,100 +492,109 @@ public abstract class MappedSupplierPerformanceView {
     private String supplierCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SUPPLIER_NAME
     )
     private String supplierName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SUPPLIER_RATING - COLUMN_SCALE_SUPPLIER_RATING,
             fraction = COLUMN_SCALE_SUPPLIER_RATING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_RATING,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_SUPPLIER_RATING,
             scale = COLUMN_SCALE_SUPPLIER_RATING
     )
     private BigDecimal supplierRating;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer totalOrders;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_PURCHASE_VALUE - COLUMN_SCALE_TOTAL_PURCHASE_VALUE,
             fraction = COLUMN_SCALE_TOTAL_PURCHASE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_PURCHASE_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_PURCHASE_VALUE,
             scale = COLUMN_SCALE_TOTAL_PURCHASE_VALUE
     )
     private BigDecimal totalPurchaseValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DELIVERY_DAYS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer avgDeliveryDays;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer onTimeDeliveries;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_DELIVERIES,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer completedDeliveries;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE - COLUMN_SCALE_ON_TIME_DELIVERY_RATE,
             fraction = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERY_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE,
             scale = COLUMN_SCALE_ON_TIME_DELIVERY_RATE
     )
     private BigDecimal onTimeDeliveryRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PERFORMANCE_GRADE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PERFORMANCE_GRADE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PERFORMANCE_GRADE
     )
     private String performanceGrade;

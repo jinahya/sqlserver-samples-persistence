@@ -233,6 +233,7 @@ public abstract class MappedProductModelProductDescriptionCulture {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
@@ -243,6 +244,7 @@ public abstract class MappedProductModelProductDescriptionCulture {
     private Integer productModelId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
@@ -253,6 +255,7 @@ public abstract class MappedProductModelProductDescriptionCulture {
     private Integer productDescriptionId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_CULTURE_ID)
     @NotNull
     @Id

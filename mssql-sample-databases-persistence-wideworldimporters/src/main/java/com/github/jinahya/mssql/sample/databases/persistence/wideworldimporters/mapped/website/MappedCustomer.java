@@ -33,6 +33,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code Website.Customers} view.
  * <p>
  * Identifier: the view declares no key; CustomerID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405).
  */
 @MappedSuperclass
 public abstract class MappedCustomer {
@@ -617,6 +621,8 @@ public abstract class MappedCustomer {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CUSTOMER_ID,
@@ -627,146 +633,159 @@ public abstract class MappedCustomer {
     private Integer customerId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_NAME
     )
     private String customerName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME
     )
     private String customerCategoryName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRIMARY_CONTACT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIMARY_CONTACT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PRIMARY_CONTACT
     )
     private String primaryContact;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ALTERNATE_CONTACT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ALTERNATE_CONTACT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ALTERNATE_CONTACT
     )
     private String alternateContact;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PHONE_NUMBER,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PHONE_NUMBER
     )
     private String phoneNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FAX_NUMBER,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FAX_NUMBER
     )
     private String faxNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BUYING_GROUP_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUYING_GROUP_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BUYING_GROUP_NAME
     )
     private String buyingGroupName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WEBSITE_URL,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_WEBSITE_URL
     )
     private String websiteUrl;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_METHOD)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_METHOD,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DELIVERY_METHOD
     )
     private String deliveryMethod;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CITY_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CITY_NAME
     )
     private String cityName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private byte[] deliveryLocation;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_RUN,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DELIVERY_RUN
     )
     private String deliveryRun;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RUN_POSITION,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_RUN_POSITION
     )
     private String runPosition;

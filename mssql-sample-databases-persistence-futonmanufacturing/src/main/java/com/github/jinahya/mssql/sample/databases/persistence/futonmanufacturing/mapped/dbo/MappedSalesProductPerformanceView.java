@@ -35,6 +35,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_Sales_ProductPerformance} view.
  * <p>
  * Identifier: the view declares no key; ItemCode is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; it contains
+ * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesProductPerformanceView {
@@ -780,6 +784,8 @@ public abstract class MappedSalesProductPerformanceView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
@@ -792,191 +798,207 @@ public abstract class MappedSalesProductPerformanceView {
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer orderCount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_UNITS_SOLD - COLUMN_SCALE_TOTAL_UNITS_SOLD,
             fraction = COLUMN_SCALE_TOTAL_UNITS_SOLD)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_UNITS_SOLD,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_UNITS_SOLD,
             scale = COLUMN_SCALE_TOTAL_UNITS_SOLD
     )
     private BigDecimal totalUnitsSold;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REVENUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_REVENUE,
             scale = COLUMN_SCALE_TOTAL_REVENUE
     )
     private BigDecimal totalRevenue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_SELLING_PRICE - COLUMN_SCALE_AVG_SELLING_PRICE,
             fraction = COLUMN_SCALE_AVG_SELLING_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_SELLING_PRICE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_SELLING_PRICE,
             scale = COLUMN_SCALE_AVG_SELLING_PRICE
     )
     private BigDecimal avgSellingPrice;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNIT_COST - COLUMN_SCALE_UNIT_COST, fraction = COLUMN_SCALE_UNIT_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_COST,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_UNIT_COST,
             scale = COLUMN_SCALE_UNIT_COST
     )
     private BigDecimal unitCost;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_GROSS_PROFIT_PER_UNIT - COLUMN_SCALE_AVG_GROSS_PROFIT_PER_UNIT,
             fraction = COLUMN_SCALE_AVG_GROSS_PROFIT_PER_UNIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_GROSS_PROFIT_PER_UNIT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_GROSS_PROFIT_PER_UNIT,
             scale = COLUMN_SCALE_AVG_GROSS_PROFIT_PER_UNIT
     )
     private BigDecimal avgGrossProfitPerUnit;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_GROSS_PROFIT - COLUMN_SCALE_TOTAL_GROSS_PROFIT,
             fraction = COLUMN_SCALE_TOTAL_GROSS_PROFIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_GROSS_PROFIT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_GROSS_PROFIT,
             scale = COLUMN_SCALE_TOTAL_GROSS_PROFIT
     )
     private BigDecimal totalGrossProfit;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT,
             scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT
     )
     private BigDecimal grossMarginPercent;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT - COLUMN_SCALE_AVG_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_AVG_DISCOUNT_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DISCOUNT_PERCENT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT,
             scale = COLUMN_SCALE_AVG_DISCOUNT_PERCENT
     )
     private BigDecimal avgDiscountPercent;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RETAIL_UNITS - COLUMN_SCALE_RETAIL_UNITS, fraction = COLUMN_SCALE_RETAIL_UNITS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RETAIL_UNITS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_RETAIL_UNITS,
             scale = COLUMN_SCALE_RETAIL_UNITS
     )
     private BigDecimal retailUnits;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ONLINE_UNITS - COLUMN_SCALE_ONLINE_UNITS, fraction = COLUMN_SCALE_ONLINE_UNITS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ONLINE_UNITS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ONLINE_UNITS,
             scale = COLUMN_SCALE_ONLINE_UNITS
     )
     private BigDecimal onlineUnits;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_WHOLESALE_UNITS - COLUMN_SCALE_WHOLESALE_UNITS,
             fraction = COLUMN_SCALE_WHOLESALE_UNITS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WHOLESALE_UNITS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_WHOLESALE_UNITS,
             scale = COLUMN_SCALE_WHOLESALE_UNITS
     )
     private BigDecimal wholesaleUnits;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_SALES_RANK,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long unitSalesRank;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REVENUE_RANK,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long revenueRank;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PROFIT_RANK,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long profitRank;
 }

@@ -278,6 +278,7 @@ public abstract class MappedTransactionType {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.TransactionTypeID", schema = "Sequences",
                        sequenceName = "TransactionTypeID",
@@ -314,6 +315,8 @@ public abstract class MappedTransactionType {
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
@@ -323,6 +326,8 @@ public abstract class MappedTransactionType {
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,

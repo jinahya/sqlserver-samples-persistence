@@ -38,6 +38,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code Website.VehicleTemperatures} view.
  * <p>
  * Identifier: the view declares no key; VehicleTemperatureID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; some of its columns
+ * are derived or constant (error 4406); one of its columns is an identity column of its base table, which no UPDATE
+ * sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedVehicleTemperature {
@@ -320,6 +325,8 @@ public abstract class MappedVehicleTemperature {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID,
@@ -330,57 +337,62 @@ public abstract class MappedVehicleTemperature {
     private Long vehicleTemperatureId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VEHICLE_REGISTRATION,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_VEHICLE_REGISTRATION
     )
     private String vehicleRegistration;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer chillerSensorNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RECORDED_WHEN,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime recordedWhen;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TEMPERATURE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TEMPERATURE,
             scale = COLUMN_SCALE_TEMPERATURE
     )
     private BigDecimal temperature;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_SENSOR_DATA)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FULL_SENSOR_DATA,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FULL_SENSOR_DATA
     )
     private String fullSensorData;

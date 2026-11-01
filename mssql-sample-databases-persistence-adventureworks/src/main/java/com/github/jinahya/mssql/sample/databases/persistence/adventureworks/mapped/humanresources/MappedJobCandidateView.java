@@ -36,6 +36,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code HumanResources.vJobCandidate} view.
  * <p>
  * Identifier: the view declares no key; JobCandidateID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; some of its columns
+ * are derived or constant (error 4406); one of its columns is an identity column of its base table, which no UPDATE
+ * sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedJobCandidateView {
@@ -676,6 +681,8 @@ public abstract class MappedJobCandidateView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID,
@@ -686,158 +693,173 @@ public abstract class MappedJobCandidateView {
     private Integer jobCandidateId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_PREFIX)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NAME_PREFIX,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME_PREFIX
     )
     private String namePrefix;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_FIRST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NAME_FIRST,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME_FIRST
     )
     private String nameFirst;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_MIDDLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NAME_MIDDLE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME_MIDDLE
     )
     private String nameMiddle;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_LAST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NAME_LAST,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME_LAST
     )
     private String nameLast;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_SUFFIX)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NAME_SUFFIX,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME_SUFFIX
     )
     private String nameSuffix;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SKILLS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String skills;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDR_TYPE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDR_TYPE
     )
     private String addrType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_LOC_COUNTRY_REGION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDR_LOC_COUNTRY_REGION,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDR_LOC_COUNTRY_REGION
     )
     private String addrLocCountryRegion;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_LOC_STATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDR_LOC_STATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDR_LOC_STATE
     )
     private String addrLocState;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_LOC_CITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDR_LOC_CITY,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDR_LOC_CITY
     )
     private String addrLocCity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_POSTAL_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDR_POSTAL_CODE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDR_POSTAL_CODE
     )
     private String addrPostalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_E_MAIL,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String eMail;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WEB_SITE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String webSite;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime modifiedDate;
 }

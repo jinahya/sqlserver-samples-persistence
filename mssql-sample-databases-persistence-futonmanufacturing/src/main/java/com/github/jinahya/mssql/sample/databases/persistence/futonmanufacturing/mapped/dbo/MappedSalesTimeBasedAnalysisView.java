@@ -35,6 +35,10 @@ import java.math.BigDecimal;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; it contains aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or
+ * constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesTimeBasedAnalysisView {
@@ -399,99 +403,108 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DAY_OF_WEEK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAY_OF_WEEK,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DAY_OF_WEEK
     )
     private String dayOfWeek;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAY_NUMBER,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer dayNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOUR_OF_DAY,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer hourOfDay;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TIME_OF_DAY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TIME_OF_DAY,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_TIME_OF_DAY
     )
     private String timeOfDay;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHANNEL_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CHANNEL_NAME
     )
     private String channelName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer orderCount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REVENUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_REVENUE,
             scale = COLUMN_SCALE_TOTAL_REVENUE
     )
     private BigDecimal totalRevenue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
             scale = COLUMN_SCALE_AVG_ORDER_VALUE
     )
     private BigDecimal avgOrderValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer uniqueCustomers;
 }

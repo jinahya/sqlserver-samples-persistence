@@ -36,6 +36,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_InventoryTurnover} view.
  * <p>
  * Identifier: the view declares no key; ItemCode is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); some of its columns are derived or constant
+ * (error 4406); one of its columns is a computed column of its base table (error 271).
  */
 @MappedSuperclass
 public abstract class MappedInventoryTurnoverView {
@@ -683,6 +688,8 @@ public abstract class MappedInventoryTurnoverView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
@@ -695,163 +702,177 @@ public abstract class MappedInventoryTurnoverView {
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUANTITY_ON_HAND,
             scale = COLUMN_SCALE_QUANTITY_ON_HAND
     )
     private BigDecimal quantityOnHand;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUANTITY_AVAILABLE,
             scale = COLUMN_SCALE_QUANTITY_AVAILABLE
     )
     private BigDecimal quantityAvailable;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ANNUAL_USAGE - COLUMN_SCALE_ANNUAL_USAGE, fraction = COLUMN_SCALE_ANNUAL_USAGE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_USAGE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ANNUAL_USAGE,
             scale = COLUMN_SCALE_ANNUAL_USAGE
     )
     private BigDecimal annualUsage;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ANNUAL_RECEIPTS - COLUMN_SCALE_ANNUAL_RECEIPTS,
             fraction = COLUMN_SCALE_ANNUAL_RECEIPTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_RECEIPTS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ANNUAL_RECEIPTS,
             scale = COLUMN_SCALE_ANNUAL_RECEIPTS
     )
     private BigDecimal annualReceipts;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TRANSACTION_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer transactionCount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TURNOVER_RATIO - COLUMN_SCALE_TURNOVER_RATIO,
             fraction = COLUMN_SCALE_TURNOVER_RATIO)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TURNOVER_RATIO,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TURNOVER_RATIO,
             scale = COLUMN_SCALE_TURNOVER_RATIO
     )
     private BigDecimal turnoverRatio;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DAYS_ON_HAND - COLUMN_SCALE_DAYS_ON_HAND, fraction = COLUMN_SCALE_DAYS_ON_HAND)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_ON_HAND,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_DAYS_ON_HAND,
             scale = COLUMN_SCALE_DAYS_ON_HAND
     )
     private BigDecimal daysOnHand;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
             fraction = COLUMN_SCALE_INVENTORY_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVENTORY_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_INVENTORY_VALUE,
             scale = COLUMN_SCALE_INVENTORY_VALUE
     )
     private BigDecimal inventoryValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FIRST_TRANSACTION,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime firstTransaction;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_TRANSACTION,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime lastTransaction;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_ACTIVITY,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysSinceLastActivity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MOVEMENT_CLASS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MOVEMENT_CLASS,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_MOVEMENT_CLASS
     )
     private String movementClass;

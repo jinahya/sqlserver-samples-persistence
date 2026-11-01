@@ -35,6 +35,9 @@ import java.math.BigDecimal;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesPipelineView {
@@ -377,91 +380,99 @@ public abstract class MappedSalesPipelineView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STAGE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STAGE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STAGE
     )
     private String stage;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STAGE_ORDER,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer stageOrder;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer count;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE - COLUMN_SCALE_VALUE, fraction = COLUMN_SCALE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_VALUE,
             scale = COLUMN_SCALE_VALUE
     )
     private BigDecimal value;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_STAGE_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer priorStageCount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRIOR_STAGE_VALUE - COLUMN_SCALE_PRIOR_STAGE_VALUE,
             fraction = COLUMN_SCALE_PRIOR_STAGE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_STAGE_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_PRIOR_STAGE_VALUE,
             scale = COLUMN_SCALE_PRIOR_STAGE_VALUE
     )
     private BigDecimal priorStageValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CONVERSION_RATE - COLUMN_SCALE_CONVERSION_RATE,
             fraction = COLUMN_SCALE_CONVERSION_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONVERSION_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_CONVERSION_RATE,
             scale = COLUMN_SCALE_CONVERSION_RATE
     )
     private BigDecimal conversionRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE_RETENTION_RATE - COLUMN_SCALE_VALUE_RETENTION_RATE,
             fraction = COLUMN_SCALE_VALUE_RETENTION_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_RETENTION_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_VALUE_RETENTION_RATE,
             scale = COLUMN_SCALE_VALUE_RETENTION_RATE
     )

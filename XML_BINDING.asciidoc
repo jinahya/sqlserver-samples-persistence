@@ -1,0 +1,198 @@
+= XML Binding
+
+The `xml` columns of the three databases, and the status of their binding. Only AdventureWorks has them.
+
+[cols="3,3,4",options="header"]
+|===
+| Column | Binding | Status
+
+| `dbo.DatabaseLog.XmlEvent`
+| `sqlserver-xml-schema-binding-b872ce`, `EventInstance`
+| Mapped, through `EventInstanceStringAttributeConverter`; read-only.
+
+| `HumanResources.JobCandidate.Resume`
+| `sqlserver-xml-schema-binding-b3da3e`, `ResumeType`
+| Not mapped; `String`. Waits for `equals` and `hashCode` in the binding.
+
+| `Person.Person.AdditionalContactInfo`
+| `sqlserver-xml-schema-binding-b7fdbe`, `AdditionalContactInfo`; its `content`: `b2e7ae` `PhoneNumberType`
+(`telephoneNumber`, `mobile`, `pager`), `AddressType` (`homePostalAddress`), `EMailType` (`eMail`), and `b80e2e`
+`ContactRecord`
+| Not mapped; `String`. Waits for `equals` and `hashCode` in the binding.
+
+| `Person.Person.Demographics`
+| `sqlserver-xml-schema-binding-b9c1be`, `IndividualSurvey`
+| Not mapped; `String`. Waits for `equals` and `hashCode` in the binding.
+
+| `Production.ProductModel.CatalogDescription`
+| `sqlserver-xml-schema-binding-b0fd0e`, `ProductDescription`; in its `features`, `b4347e` `Warranty` and
+`Maintenance`
+| Not mapped; `String`. Waits for `equals` and `hashCode` in the binding.
+
+| `Production.ProductModel.Instructions`
+| none
+| Not mapped; `String`. No module for `ProductModelManuInstructions`.
+
+| `Production.Illustration.Diagram`
+| none
+| Not mapped; `String`. XAML, not a SQL Server schema.
+
+| `Sales.Store.Demographics`
+| `sqlserver-xml-schema-binding-b95f5e`, `StoreSurvey`
+| Not mapped; `String`. Waits for `equals` and `hashCode` in the binding.
+
+| `HumanResources.vEmployee.AdditionalContactInfo`
+| `sqlserver-xml-schema-binding-b7fdbe`, `AdditionalContactInfo`; its `content`: `b2e7ae` `PhoneNumberType`
+(`telephoneNumber`, `mobile`, `pager`), `AddressType` (`homePostalAddress`), `EMailType` (`eMail`), and `b80e2e`
+`ContactRecord`
+| Mapped, through `AdditionalContactInfoStringAttributeConverter`; read-only (a view). Every row of the view holds
+NULL; the IT converts the values of `Person.Person.AdditionalContactInfo`, the column the view reads.
+
+| `Sales.vIndividualCustomer.Demographics`
+| `sqlserver-xml-schema-binding-b9c1be`, `IndividualSurvey`
+| Not mapped; `String`, read-only (a view).
+|===
+
+== Columns of views read out of XML
+
+The columns the views read out of an `xml` column with `value()`, and the property of the binding each one matches.
+Every one is read-only, as a column of a view.
+
+[cols="3,3,4",options="header"]
+|===
+| Column | Binding | Property
+
+| `HumanResources.vJobCandidate`: `Name.Prefix`, `Name.First`, `Name.Middle`, `Name.Last`, `Name.Suffix`
+| `b3da3e`, `ResumeType`
+| `name` -> `NameType.namePrefix`, `nameFirst`, `nameMiddle`, `nameLast`, `nameSuffix`
+
+| `HumanResources.vJobCandidate`: `Skills`, `EMail`, `WebSite`
+| `b3da3e`, `ResumeType`
+| `skills`, `eMail`, `webSite`
+
+| `HumanResources.vJobCandidate`: `Addr.Type`, `Addr.PostalCode`
+| `b3da3e`, `ResumeType`
+| `address[0]` -> `AddressType.addrType`, `addrPostalCode`
+
+| `HumanResources.vJobCandidate`: `Addr.Loc.CountryRegion`, `Addr.Loc.State`, `Addr.Loc.City`
+| `b3da3e`, `ResumeType`
+| `address[0].addrLocation.location` -> `LocationType.locCountryRegion`, `locState`, `locCity`
+
+| `HumanResources.vJobCandidateEducation`: `Edu.Level`, `Edu.StartDate`, `Edu.EndDate`, `Edu.Degree`, `Edu.Major`,
+`Edu.Minor`, `Edu.GPA`, `Edu.GPAScale`, `Edu.School`
+| `b3da3e`, `ResumeType`, a row per `education[i]`
+| `EducationType.eduLevel`, `eduStartDate`, `eduEndDate`, `eduDegree`, `eduMajor`, `eduMinor`, `eduGPA`,
+`eduGPAScale`, `eduSchool`
+
+| `HumanResources.vJobCandidateEducation`: `Edu.Loc.CountryRegion`, `Edu.Loc.State`, `Edu.Loc.City`
+| `b3da3e`, `ResumeType`, a row per `education[i]`
+| `EducationType.eduLocation.location` -> `locCountryRegion`, `locState`, `locCity`
+
+| `HumanResources.vJobCandidateEmployment`: `Emp.StartDate`, `Emp.EndDate`, `Emp.OrgName`, `Emp.JobTitle`,
+`Emp.Responsibility`, `Emp.FunctionCategory`, `Emp.IndustryCategory`
+| `b3da3e`, `ResumeType`, a row per `employment[i]`
+| `EmploymentType.empStartDate`, `empEndDate`, `empOrgName`, `empJobTitle`, `empResponsibility`,
+`empFunctionCategory`, `empIndustryCategory`
+
+| `HumanResources.vJobCandidateEmployment`: `Emp.Loc.CountryRegion`, `Emp.Loc.State`, `Emp.Loc.City`
+| `b3da3e`, `ResumeType`, a row per `employment[i]`
+| `EmploymentType.empLocation.location` -> `locCountryRegion`, `locState`, `locCity`
+
+| `Person.vAdditionalContactInfo`: `TelephoneNumber`, `TelephoneSpecialInstructions`
+| `b7fdbe`, `AdditionalContactInfo`; `b2e7ae`
+| `content` -> `telephoneNumber` -> `PhoneNumberType.number`, `specialInstructions.content`
+
+| `Person.vAdditionalContactInfo`: `Street`, `City`, `StateProvince`, `PostalCode`, `CountryRegion`,
+`HomeAddressSpecialInstructions`
+| `b7fdbe`, `AdditionalContactInfo`; `b2e7ae`
+| `content` -> `homePostalAddress` -> `AddressType.street[0]`, `city`, `stateProvince`, `postalCode`,
+`countryRegion`, `specialInstructions.content`
+
+| `Person.vAdditionalContactInfo`: `EMailAddress`, `EMailSpecialInstructions`, `EMailTelephoneNumber`
+| `b7fdbe`, `AdditionalContactInfo`; `b2e7ae`
+| `content` -> `eMail` -> `EMailType.eMailAddress`, `specialInstructions.content`,
+`specialInstructions.content` -> `telephoneNumber` -> `PhoneNumberType.number`
+
+| `Production.vProductModelCatalogDescription`: `Summary`
+| `b0fd0e`, `ProductDescription`
+| `summary` -> `Summary.content`, an XHTML `p`
+
+| `Production.vProductModelCatalogDescription`: `Manufacturer`, `Copyright`, `ProductURL`
+| `b0fd0e`, `ProductDescription`
+| `manufacturer` -> `Manufacturer.name`, `copyright`, `productURL`
+
+| `Production.vProductModelCatalogDescription`: `WarrantyPeriod`, `WarrantyDescription`, `NoOfYears`,
+`MaintenanceDescription`
+| `b0fd0e`, `ProductDescription`; `b4347e`
+| `features[0].content` -> `Warranty.warrantyPeriod`, `description`; `Maintenance.noOfYears`, `description`
+
+| `Production.vProductModelCatalogDescription`: `Wheel`, `Saddle`, `Pedal`, `BikeFrame`, `Crankset`
+| `b0fd0e`, `ProductDescription`
+| `features[0].content`, elements of `http://www.adventure-works.com/schemas/OtherFeatures`, which has no class
+
+| `Production.vProductModelCatalogDescription`: `PictureAngle`, `PictureSize`, `ProductPhotoID`
+| `b0fd0e`, `ProductDescription`
+| `picture[0]` -> `Picture.angle`, `size`, `productPhotoID`
+
+| `Production.vProductModelCatalogDescription`: `Material`, `Color`, `ProductLine`, `Style`, `RiderExperience`
+| `b0fd0e`, `ProductDescription`
+| `specifications[0]` -> `Specifications.content`, unqualified elements, which have no class
+
+| `Production.vProductModelInstructions`: `Instructions`, `LocationID`, `SetupHours`, `MachineHours`, `LaborHours`,
+`LotSize`, `Step`
+| none
+| No module for `ProductModelManuInstructions`.
+
+| `Sales.vPersonDemographics`: `TotalPurchaseYTD`, `DateFirstPurchase`, `BirthDate`, `MaritalStatus`, `YearlyIncome`,
+`Gender`, `TotalChildren`, `NumberChildrenAtHome`, `Education`, `Occupation`, `HomeOwnerFlag`, `NumberCarsOwned`
+| `b9c1be`, `IndividualSurvey`
+| The property of the same name: `totalPurchaseYTD`, ...
+
+| `Sales.vStoreWithDemographics`: `AnnualSales`, `AnnualRevenue`, `BankName`, `BusinessType`, `YearOpened`,
+`Specialty`, `SquareFeet`, `Brands`, `Internet`, `NumberEmployees`
+| `b95f5e`, `StoreSurvey`
+| The property of the same name: `annualSales`, ...
+|===
+
+== Wildcard and mixed content
+
+The classes of `b7fdbe`, `b2e7ae`, `b80e2e` and `b0fd0e` hold wildcard or mixed content (`@XmlAnyElement`,
+`@XmlMixed`) in a `List<Object> content`. Those of `b3da3e`, `b4347e`, `b9c1be`, `b95f5e` and `b872ce` do not.
+
+An element of such content which no class of the context binds is read as a DOM `Element`, which has no value
+`equals`. In the data:
+
+[cols="3,5",options="header"]
+|===
+| Column | DOM elements
+
+| `Production.ProductModel.CatalogDescription`
+| In every row (6): the `OtherFeatures` elements of `Features` (`wheel`, `saddle`, `pedal`, `crankset`, `handlebar`,
+`BikeFrame`, of `http://www.adventure-works.com/schemas/OtherFeatures`, which has no schema), the unqualified elements
+of `Specifications` (`Color`, `Material`, `Style`, ...), and the XHTML `p` of `Summary`. `Warranty` and `Maintenance`
+of `Features` bind to `b4347e` when the context knows it.
+
+| `Person.Person.AdditionalContactInfo`
+| None, when the context knows `b7fdbe`, `b80e2e` and `b2e7ae`: every row (10) binds to `ContactRecord` and the
+`ContactTypes` classes.
+|===
+
+== equals and hashCode
+
+[cols="2,5",options="header"]
+|===
+| Item | Status
+
+| `equals` and `hashCode` of the binding's classes
+| Generated since 0.0.4, which this project uses: `-Xequals -XhashCode` of `jaxb-plugins`, with a runtime dependency on
+`jaxb-plugins-runtime` (4.0.16), and with a strategy comparing DOM elements by `isEqualNode` in `b7fdbe`, `b80e2e`,
+`b2e7ae` and `b0fd0e`. Up to 0.0.3 no class overrode either, so Hibernate ORM found every loaded value of a writable
+column changed.
+
+| This module, once the binding has them
+| Move to the binding's new version, and pin `jaxb-plugins-runtime` if dependency convergence asks for it; map the five
+writable columns, `Resume`, `Person.Person.AdditionalContactInfo`, `Person.Person.Demographics`, `CatalogDescription`
+and `Sales.Store.Demographics`, each with a converter, and test under both providers that every value converts and that
+a flush of loaded rows writes nothing.
+|===
+

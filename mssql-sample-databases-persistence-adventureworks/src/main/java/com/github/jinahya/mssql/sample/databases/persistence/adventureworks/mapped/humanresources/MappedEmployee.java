@@ -651,6 +651,7 @@ public abstract class MappedEmployee {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -694,6 +695,7 @@ public abstract class MappedEmployee {
     private byte[] organizationNode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_LEVEL,
             nullable = true,

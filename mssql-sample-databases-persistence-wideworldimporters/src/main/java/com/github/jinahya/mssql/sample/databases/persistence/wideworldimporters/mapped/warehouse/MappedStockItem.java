@@ -1007,6 +1007,7 @@ public abstract class MappedStockItem {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StockItemID", schema = "Sequences",
                        sequenceName = "StockItemID",
@@ -1227,6 +1228,7 @@ public abstract class MappedStockItem {
     private String customFields;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAGS,
             nullable = true,
@@ -1236,6 +1238,7 @@ public abstract class MappedStockItem {
     private String tags;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SEARCH_DETAILS,
             nullable = false,
@@ -1256,6 +1259,8 @@ public abstract class MappedStockItem {
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
@@ -1265,6 +1270,8 @@ public abstract class MappedStockItem {
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,

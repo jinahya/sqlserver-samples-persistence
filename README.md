@@ -1,4 +1,4 @@
-# mssql-sample-databases-persistence
+# sql-server-samples-persistence
 
 Jakarta Persistence mappings of the Microsoft SQL Server
 [sample databases](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases), one Maven module
@@ -52,7 +52,7 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
 | `decimal`, `numeric`, `money`, `smallmoney` | `BigDecimal` | `precision` and `scale`, and `@Digits`, for `decimal` and `numeric` |
 | `float`, `real`, `bit` | `Double`, `Float`, `Boolean` | |
 | `char`, `nchar`, `varchar`, `nvarchar`, `sysname` | `String` | `length`, and `@Size`; `(max)` has no length |
-| `xml` | `String` | the document's text |
+| `xml` | `String` | the document's text; `dbo.DatabaseLog.XmlEvent` and `HumanResources.vEmployee.AdditionalContactInfo` are the exceptions, below |
 | `date`, `time`, `datetime`, `datetime2` | `LocalDate`, `LocalTime`, `LocalDateTime` | |
 | `uniqueidentifier` | `UUID` | `UuidStringAttributeConverter`, through the text; an identifier, to which no converter applies, is a `String` |
 | `varbinary`, `hierarchyid`, `geography` | `byte[]` | the driver's bytes; the CLR types' serialized form |
@@ -62,10 +62,29 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
   `NEXT VALUE FOR [Sequences].[...]`, `@GeneratedValue(strategy = SEQUENCE)` with a `@SequenceGenerator` per
   sequence.
 - A computed column, and the `ValidFrom` / `ValidTo` period columns of a system-versioned table, are read-only.
+- Every column of a view is read-only. SQL Server takes no whole row of any of the views in an INSERT or an UPDATE,
+  which is how a provider writes one: the row spans more than one base table (error 4405), or has derived, constant
+  or aggregated columns (errors 4406, 4403). Each class documents its view's reasons.
+- Every column of a temporal history table, WideWorldImporters' `*_Archive`, is read-only; SQL Server rejects an
+  INSERT (error 13559) and an UPDATE (error 13561) of one.
+- Every column of a table only triggers write is read-only: AdventureWorks' `dbo.DatabaseLog`, which the database DDL
+  trigger `ddlDatabaseTriggerLog` inserts, and `Production.TransactionHistory`, which the order and work-order
+  triggers insert. Nothing updates a row of either. A column a trigger only partly maintains (`SubTotal`,
+  `RevisionNumber`, `SalesYTD`) stays writable.
 - A column name SQL Server reserves, or which is no plain identifier (`Group`, `Database Version`, `2002`), is
   quoted, `"\"Group\""`.
 - `uniqueidentifier` needs the converter for EclipseLink, which reads the driver's text and parses it as hexadecimal
   bytes into a `UUID`; Hibernate ORM maps it either way.
+- AdventureWorks' `dbo.DatabaseLog.XmlEvent`, one `EVENTDATA()` document a row, is an `EventInstance`: the class
+  [`sqlserver-xml-schema-binding-b872ce`](https://central.sonatype.com/artifact/io.github.jinahya/sqlserver-xml-schema-binding-b872ce)
+  generates for the row's event type, `EVENTINSTANCECREATETABLE` for a `CREATE_TABLE`, through
+  `EventInstanceStringAttributeConverter`, a `JaxbAttributeConverter` of `jinahya-persistence-more`. It is read-only:
+  the database DDL trigger `ddlDatabaseTriggerLog` inserts each row and nothing updates one, and the bound classes do
+  not override `equals`, by which Hibernate ORM would find every loaded value changed.
+- AdventureWorks' `HumanResources.vEmployee.AdditionalContactInfo`, typed by `Person.AdditionalContactInfoSchemaCollection`,
+  is an `AdditionalContactInfo` of `sqlserver-xml-schema-binding-b7fdbe`, through
+  `AdditionalContactInfoStringAttributeConverter`, whose context knows the classes of the collection's other two
+  schemas, `b80e2e` (`ContactRecord`) and `b2e7ae` (`ContactTypes`).
 
 What identifies a row:
 

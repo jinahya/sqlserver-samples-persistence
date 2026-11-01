@@ -388,6 +388,8 @@ public abstract class MappedStateProvince {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,

@@ -276,6 +276,7 @@ public abstract class MappedStockGroup {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StockGroupID", schema = "Sequences",
                        sequenceName = "StockGroupID",
@@ -312,6 +313,8 @@ public abstract class MappedStockGroup {
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
@@ -321,6 +324,8 @@ public abstract class MappedStockGroup {
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
+    // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,

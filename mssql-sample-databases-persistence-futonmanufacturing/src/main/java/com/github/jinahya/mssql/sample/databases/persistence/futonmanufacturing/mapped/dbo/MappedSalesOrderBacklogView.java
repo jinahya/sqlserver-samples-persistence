@@ -36,6 +36,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_SalesOrderBacklog} view.
  * <p>
  * Identifier: the view declares no key; OrderNumber is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); it contains aggregates, or a DISTINCT or GROUP
+ * BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesOrderBacklogView {
@@ -827,6 +832,8 @@ public abstract class MappedSalesOrderBacklogView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_ORDER_NUMBER)
     @NotNull
     @Id
@@ -839,205 +846,223 @@ public abstract class MappedSalesOrderBacklogView {
     private String orderNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATUS,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STATUS
     )
     private String status;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_NAME
     )
     private String customerName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_CODE
     )
     private String customerCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_WAREHOUSE_NAME
     )
     private String warehouseName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate orderDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REQUESTED_DELIVERY_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate requestedDeliveryDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHIP_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate shipDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_OPEN,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysOpen;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_DUE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysUntilDue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LINE_ITEMS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer lineItems;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED - COLUMN_SCALE_TOTAL_QUANTITY_ORDERED,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_QUANTITY_ORDERED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED,
             scale = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED
     )
     private BigDecimal totalQuantityOrdered;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED - COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_QUANTITY_SHIPPED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED,
             scale = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED
     )
     private BigDecimal totalQuantityShipped;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_BACKLOG - COLUMN_SCALE_QUANTITY_BACKLOG,
             fraction = COLUMN_SCALE_QUANTITY_BACKLOG)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_BACKLOG,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUANTITY_BACKLOG,
             scale = COLUMN_SCALE_QUANTITY_BACKLOG
     )
     private BigDecimal quantityBacklog;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_AMOUNT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_AMOUNT,
             scale = COLUMN_SCALE_TOTAL_AMOUNT
     )
     private BigDecimal totalAmount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_VALUE - COLUMN_SCALE_ORDER_VALUE, fraction = COLUMN_SCALE_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ORDER_VALUE,
             scale = COLUMN_SCALE_ORDER_VALUE
     )
     private BigDecimal orderValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_BACKLOG_VALUE - COLUMN_SCALE_BACKLOG_VALUE,
             fraction = COLUMN_SCALE_BACKLOG_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BACKLOG_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_BACKLOG_VALUE,
             scale = COLUMN_SCALE_BACKLOG_VALUE
     )
     private BigDecimal backlogValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
             fraction = COLUMN_SCALE_PERCENT_COMPLETE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERCENT_COMPLETE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_PERCENT_COMPLETE,
             scale = COLUMN_SCALE_PERCENT_COMPLETE
     )
     private BigDecimal percentComplete;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULFILLMENT_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FULFILLMENT_STATUS,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FULFILLMENT_STATUS
     )
     private String fulfillmentStatus;

@@ -34,6 +34,9 @@ import java.time.LocalDateTime;
  * Identifier: a history table of a system-versioned temporal table, which has no key.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server rejects an INSERT (error 13559) and an UPDATE (error 13561) of a temporal history table; only
+ * the system versioning of {@code Purchasing.Suppliers} writes it.
  */
 @MappedSuperclass
 public abstract class MappedSupplierArchive {
@@ -1115,313 +1118,342 @@ public abstract class MappedSupplierArchive {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer supplierId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SUPPLIER_NAME
     )
     private String supplierName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer supplierCategoryId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer primaryContactPersonId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer alternateContactPersonId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer deliveryMethodId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer deliveryCityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_CITY_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer postalCityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SUPPLIER_REFERENCE
     )
     private String supplierReference;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BANK_ACCOUNT_NAME
     )
     private String bankAccountName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH
     )
     private String bankAccountBranch;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BANK_ACCOUNT_CODE
     )
     private String bankAccountCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER
     )
     private String bankAccountNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE
     )
     private String bankInternationalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAYMENT_DAYS,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer paymentDays;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String internalComments;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PHONE_NUMBER,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PHONE_NUMBER
     )
     private String phoneNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FAX_NUMBER,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FAX_NUMBER
     )
     private String faxNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WEBSITE_URL,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_WEBSITE_URL
     )
     private String websiteUrl;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
     )
     private String deliveryAddressLine1;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
     )
     private String deliveryAddressLine2;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
     )
     private String deliveryPostalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private byte[] deliveryLocation;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
     )
     private String postalAddressLine1;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
     )
     private String postalAddressLine2;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
     )
     private String postalPostalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validTo;
 }

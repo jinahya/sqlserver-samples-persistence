@@ -36,6 +36,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_Sales_QuoteConversion} view.
  * <p>
  * Identifier: the view declares no key; QuoteNumber is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); some of its columns are derived or constant
+ * (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesQuoteConversionView {
@@ -701,6 +706,8 @@ public abstract class MappedSalesQuoteConversionView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_QUOTE_NUMBER)
     @NotNull
     @Id
@@ -713,167 +720,182 @@ public abstract class MappedSalesQuoteConversionView {
     private String quoteNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_QUOTE_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUOTE_STATUS,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_QUOTE_STATUS
     )
     private String quoteStatus;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_NAME
     )
     private String customerName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_TYPE
     )
     private String customerType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CHANNEL_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CHANNEL_NAME
     )
     private String channelName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REP,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SALES_REP
     )
     private String salesRep;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_TERRITORY_NAME
     )
     private String territoryName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUOTE_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate quoteDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPIRATION_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate expirationDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_EXPIRE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysToExpire;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUOTE_AMOUNT - COLUMN_SCALE_QUOTE_AMOUNT, fraction = COLUMN_SCALE_QUOTE_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTE_AMOUNT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUOTE_AMOUNT,
             scale = COLUMN_SCALE_QUOTE_AMOUNT
     )
     private BigDecimal quoteAmount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CONVERSION_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CONVERSION_STATUS,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CONVERSION_STATUS
     )
     private String conversionStatus;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CONVERTED_ORDER_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONVERTED_ORDER_NUMBER,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CONVERTED_ORDER_NUMBER
     )
     private String convertedOrderNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_AMOUNT - COLUMN_SCALE_ORDER_AMOUNT, fraction = COLUMN_SCALE_ORDER_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_AMOUNT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ORDER_AMOUNT,
             scale = COLUMN_SCALE_ORDER_AMOUNT
     )
     private BigDecimal orderAmount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE_VARIANCE - COLUMN_SCALE_VALUE_VARIANCE,
             fraction = COLUMN_SCALE_VALUE_VARIANCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_VARIANCE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_VALUE_VARIANCE,
             scale = COLUMN_SCALE_VALUE_VARIANCE
     )
     private BigDecimal valueVariance;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_CONVERT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysToConvert;
 }

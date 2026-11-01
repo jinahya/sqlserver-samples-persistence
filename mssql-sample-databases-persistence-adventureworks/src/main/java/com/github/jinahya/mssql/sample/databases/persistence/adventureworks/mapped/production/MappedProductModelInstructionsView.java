@@ -39,6 +39,10 @@ import java.util.UUID;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; some of its columns are derived or constant (error 4406); one of its columns is an identity column of its
+ * base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedProductModelInstructionsView {
@@ -474,119 +478,130 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer productModelId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME
     )
     private String name;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSTRUCTIONS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String instructions;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION_ID,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer locationId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SETUP_HOURS - COLUMN_SCALE_SETUP_HOURS, fraction = COLUMN_SCALE_SETUP_HOURS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SETUP_HOURS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_SETUP_HOURS,
             scale = COLUMN_SCALE_SETUP_HOURS
     )
     private BigDecimal setupHours;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MACHINE_HOURS - COLUMN_SCALE_MACHINE_HOURS,
             fraction = COLUMN_SCALE_MACHINE_HOURS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MACHINE_HOURS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_MACHINE_HOURS,
             scale = COLUMN_SCALE_MACHINE_HOURS
     )
     private BigDecimal machineHours;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LABOR_HOURS - COLUMN_SCALE_LABOR_HOURS, fraction = COLUMN_SCALE_LABOR_HOURS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LABOR_HOURS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_LABOR_HOURS,
             scale = COLUMN_SCALE_LABOR_HOURS
     )
     private BigDecimal laborHours;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOT_SIZE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer lotSize;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STEP)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STEP,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STEP
     )
     private String step;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private UUID rowguid;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime modifiedDate;
 }

@@ -37,6 +37,10 @@ import java.util.UUID;
  * A mapped superclass which holds the mappings of the {@code Person.vAdditionalContactInfo} view.
  * <p>
  * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; some of its columns
+ * are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedAdditionalContactInfoView {
@@ -723,6 +727,8 @@ public abstract class MappedAdditionalContactInfoView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -733,173 +739,189 @@ public abstract class MappedAdditionalContactInfoView {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FIRST_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FIRST_NAME
     )
     private String firstName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MIDDLE_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_MIDDLE_NAME
     )
     private String middleName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_LAST_NAME
     )
     private String lastName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TELEPHONE_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TELEPHONE_NUMBER,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_TELEPHONE_NUMBER
     )
     private String telephoneNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TELEPHONE_SPECIAL_INSTRUCTIONS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String telephoneSpecialInstructions;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STREET)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STREET,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STREET
     )
     private String street;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CITY,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CITY
     )
     private String city;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STATE_PROVINCE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STATE_PROVINCE
     )
     private String stateProvince;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSTAL_CODE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_POSTAL_CODE
     )
     private String postalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNTRY_REGION,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION
     )
     private String countryRegion;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOME_ADDRESS_SPECIAL_INSTRUCTIONS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String homeAddressSpecialInstructions;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_E_MAIL_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_E_MAIL_ADDRESS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_E_MAIL_ADDRESS
     )
     private String eMailAddress;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_E_MAIL_SPECIAL_INSTRUCTIONS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String eMailSpecialInstructions;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_E_MAIL_TELEPHONE_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_E_MAIL_TELEPHONE_NUMBER,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_E_MAIL_TELEPHONE_NUMBER
     )
     private String eMailTelephoneNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private UUID rowguid;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime modifiedDate;
 }

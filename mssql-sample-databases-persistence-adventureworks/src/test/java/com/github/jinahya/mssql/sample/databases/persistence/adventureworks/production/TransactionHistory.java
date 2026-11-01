@@ -73,12 +73,14 @@ public class TransactionHistory extends MappedTransactionHistory {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table; see the documentation of
+    // MappedTransactionHistory
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
                 nullable = false,
-                insertable = true,
-                updatable = true
+                insertable = false,
+                updatable = false
     )
     private Product product;
 }

@@ -35,6 +35,9 @@ import java.time.LocalDateTime;
  * Identifier: a history table of a system-versioned temporal table, which has no key.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server rejects an INSERT (error 13559) and an UPDATE (error 13561) of a temporal history table; only
+ * the system versioning of {@code Warehouse.ColdRoomTemperatures} writes it.
  */
 @MappedSuperclass
 public abstract class MappedColdRoomTemperatureArchive {
@@ -277,65 +280,71 @@ public abstract class MappedColdRoomTemperatureArchive {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long coldRoomTemperatureId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer coldRoomSensorNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RECORDED_WHEN,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime recordedWhen;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TEMPERATURE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TEMPERATURE,
             scale = COLUMN_SCALE_TEMPERATURE
     )
     private BigDecimal temperature;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validTo;
 }

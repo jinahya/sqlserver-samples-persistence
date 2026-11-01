@@ -32,6 +32,37 @@
       <artifactId>jakarta.validation-api</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- dbo.DatabaseLog.XmlEvent: the converter, and the binding of the EVENTDATA() schema it reads the document with -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>jinahya-persistence-more</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b872ce</artifactId>
+    </dependency>
+    <!-- Person.AdditionalContactInfoSchemaCollection: ContactInfo, and the ContactRecord and ContactTypes it holds -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b7fdbe</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b80e2e</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b2e7ae</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk-platform-logging</artifactId>

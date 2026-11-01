@@ -36,6 +36,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_InventoryValuation} view.
  * <p>
  * Identifier: the view declares no key; ItemCode is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); some of its columns are derived or constant
+ * (error 4406); one of its columns is a computed column of its base table (error 271).
  */
 @MappedSuperclass
 public abstract class MappedInventoryValuationView {
@@ -649,42 +654,47 @@ public abstract class MappedInventoryValuationView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_WAREHOUSE_CODE
     )
     private String warehouseCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_WAREHOUSE_NAME
     )
     private String warehouseName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
@@ -697,125 +707,135 @@ public abstract class MappedInventoryValuationView {
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUANTITY_ON_HAND,
             scale = COLUMN_SCALE_QUANTITY_ON_HAND
     )
     private BigDecimal quantityOnHand;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ALLOCATED - COLUMN_SCALE_QUANTITY_ALLOCATED,
             fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUANTITY_ALLOCATED,
             scale = COLUMN_SCALE_QUANTITY_ALLOCATED
     )
     private BigDecimal quantityAllocated;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_QUANTITY_AVAILABLE,
             scale = COLUMN_SCALE_QUANTITY_AVAILABLE
     )
     private BigDecimal quantityAvailable;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_UNIT_CODE
     )
     private String unitCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
             fraction = COLUMN_SCALE_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_COST,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_STANDARD_COST,
             scale = COLUMN_SCALE_STANDARD_COST
     )
     private BigDecimal standardCost;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
             fraction = COLUMN_SCALE_INVENTORY_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVENTORY_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_INVENTORY_VALUE,
             scale = COLUMN_SCALE_INVENTORY_VALUE
     )
     private BigDecimal inventoryValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVAILABLE_VALUE - COLUMN_SCALE_AVAILABLE_VALUE,
             fraction = COLUMN_SCALE_AVAILABLE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVAILABLE_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVAILABLE_VALUE,
             scale = COLUMN_SCALE_AVAILABLE_VALUE
     )
     private BigDecimal availableValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_COUNT_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime lastCountDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysSinceCount;
 }

@@ -593,6 +593,7 @@ public abstract class MappedInvoiceLine {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.InvoiceLineID", schema = "Sequences",
                        sequenceName = "InvoiceLineID",

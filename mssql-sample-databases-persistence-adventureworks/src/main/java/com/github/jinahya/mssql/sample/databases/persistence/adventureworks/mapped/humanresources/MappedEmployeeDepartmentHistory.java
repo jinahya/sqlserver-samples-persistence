@@ -296,6 +296,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -306,6 +307,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_DEPARTMENT_ID,
@@ -316,6 +318,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     private Short departmentId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Max(255)
     @Min(0)
     @NotNull
@@ -328,6 +331,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     private Short shiftId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_START_DATE,

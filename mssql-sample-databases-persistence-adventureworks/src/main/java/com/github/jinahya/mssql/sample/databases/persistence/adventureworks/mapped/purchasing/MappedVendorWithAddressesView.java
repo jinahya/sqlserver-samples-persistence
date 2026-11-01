@@ -33,6 +33,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code Purchasing.vVendorWithAddresses} view.
  * <p>
  * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405).
  */
 @MappedSuperclass
 public abstract class MappedVendorWithAddressesView {
@@ -433,6 +437,8 @@ public abstract class MappedVendorWithAddressesView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -443,96 +449,104 @@ public abstract class MappedVendorWithAddressesView {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME
     )
     private String name;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ADDRESS_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDRESS_TYPE
     )
     private String addressType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ADDRESS_LINE_1,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDRESS_LINE_1
     )
     private String addressLine1;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDRESS_LINE_2,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ADDRESS_LINE_2
     )
     private String addressLine2;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CITY,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CITY
     )
     private String city;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STATE_PROVINCE_NAME
     )
     private String stateProvinceName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_POSTAL_CODE
     )
     private String postalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_NAME
     )
     private String countryRegionName;

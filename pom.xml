@@ -77,11 +77,18 @@
     <version.maven-surefire>3.6.0</version.maven-surefire>
     <!-- https://central.sonatype.com/artifact/com.microsoft.sqlserver/mssql-jdbc/versions -->
     <version.com.microsoft.sqlserver>13.4.0.jre11</version.com.microsoft.sqlserver>
+    <!-- https://central.sonatype.com/artifact/io.github.jinahya/jinahya-persistence-more/versions -->
+    <version.io.github.jinahya.jinahya-persistence>0.6.11-SNAPSHOT</version.io.github.jinahya.jinahya-persistence>
+    <!-- https://central.sonatype.com/artifact/io.github.jinahya/sqlserver-xml-schema-binding/versions -->
+    <version.io.github.jinahya.sqlserver-xml-schema-binding>0.0.4</version.io.github.jinahya.sqlserver-xml-schema-binding>
     <!-- https://jakarta.ee/specifications/platform/11/ -->
     <!-- https://central.sonatype.com/artifact/jakarta.platform/jakarta.jakartaee-bom/versions -->
     <!-- 11.0.0 manages: jakarta.persistence-api 3.2.0, jakarta.validation-api 3.1.1, -->
     <!--                 jakarta.enterprise.cdi-api 4.1.0, jakarta.el-api 6.0.1 -->
     <version.jakarta.jakartaee-bom>11.0.0</version.jakarta.jakartaee-bom>
+    <!-- Jakarta XML Binding 4.0; not in the Jakarta EE 11 platform, so not in its BOM, and versioned here -->
+    <!-- https://central.sonatype.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api/versions -->
+    <version.jakarta.xml.bind-api>4.0.5</version.jakarta.xml.bind-api>
     <!-- https://central.sonatype.com/artifact/org.assertj/assertj-core/versions -->
     <version.org.assertj>4.0.0-M1</version.org.assertj>
     <!-- https://central.sonatype.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa/versions -->
@@ -89,6 +96,8 @@
     <!-- hibernate-validator: 9 / expressly: 6 -->
     <!-- https://central.sonatype.com/artifact/org.glassfish.expressly/expressly/versions -->
     <version.org.glassfish.expressly>6.0.0</version.org.glassfish.expressly>
+    <!-- https://central.sonatype.com/artifact/org.glassfish.jaxb/jaxb-runtime/versions -->
+    <version.org.glassfish.jaxb>4.0.9</version.org.glassfish.jaxb>
     <!-- https://central.sonatype.com/artifact/org.hibernate.orm/hibernate-platform/versions -->
     <version.org.hibernate.orm>7.4.12.Final</version.org.hibernate.orm>
     <!-- https://central.sonatype.com/artifact/org.hibernate.validator/hibernate-validator/versions -->
@@ -107,12 +116,42 @@
         <artifactId>mssql-jdbc</artifactId>
         <version>${version.com.microsoft.sqlserver}</version>
       </dependency>
+      <dependency>
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>jinahya-persistence-more</artifactId>
+        <version>${version.io.github.jinahya.jinahya-persistence}</version>
+      </dependency>
+      <dependency><!-- the EVENTDATA() schema, http://schemas.microsoft.com/sqlserver/2006/11/eventdata -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b872ce</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b7fdbe</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b80e2e</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b2e7ae</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
       <dependency><!-- https://central.sonatype.com/artifact/jakarta.platform/jakarta.jakartaee-bom/versions -->
         <groupId>jakarta.platform</groupId>
         <artifactId>jakarta.jakartaee-bom</artifactId>
         <version>${version.jakarta.jakartaee-bom}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.xml.bind</groupId>
+        <artifactId>jakarta.xml.bind-api</artifactId>
+        <version>${version.jakarta.xml.bind-api}</version>
       </dependency>
       <dependency>
         <groupId>org.assertj</groupId>
@@ -128,6 +167,11 @@
         <groupId>org.glassfish.expressly</groupId>
         <artifactId>expressly</artifactId>
         <version>${version.org.glassfish.expressly}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>${version.org.glassfish.jaxb}</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.orm</groupId>

@@ -536,6 +536,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -652,6 +654,7 @@ public abstract class MappedPurchaseOrderHeader {
     private BigDecimal freight;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_DUE,
             nullable = false,

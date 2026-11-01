@@ -36,8 +36,11 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.TransactionHistory} table.
  * <p>
- * The {@value #COLUMN_NAME_PRODUCT_ID} column is mapped read-only, as a foreign key; the extending entity owns the
- * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * Read-only: the triggers iPurchaseOrderDetail, uPurchaseOrderDetail, Sales.iduSalesOrderDetail, iWorkOrder and
+ * uWorkOrder insert every row of this table, a record of each purchase, sales and work order transaction, and nothing
+ * in the database updates one; so no column of it is insertable or updatable, but for the identifier, of which
+ * EclipseLink requires a writable mapping. The {@value #COLUMN_NAME_PRODUCT_ID} column, a foreign key, is read-only
+ * here and in the association of the extending entity alike.
  */
 @MappedSuperclass
 public abstract class MappedTransactionHistory {
@@ -403,6 +406,8 @@ public abstract class MappedTransactionHistory {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_TRANSACTION_ID,
@@ -413,7 +418,8 @@ public abstract class MappedTransactionHistory {
     private Integer transactionId;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID,
@@ -424,75 +430,87 @@ public abstract class MappedTransactionHistory {
     private Integer productId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer referenceOrderId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer referenceOrderLineId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime transactionDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @Size(max = COLUMN_LENGTH_TRANSACTION_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_TRANSACTION_TYPE
     )
     private String transactionType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer quantity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ACTUAL_COST,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private BigDecimal actualCost;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
-    // which nothing in the database restamps, so an UPDATE writes it
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // class documentation
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = false,
             insertable = false,
-            updatable = true
+            updatable = false
     )
     private LocalDateTime modifiedDate;
 }

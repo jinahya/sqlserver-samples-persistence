@@ -192,6 +192,7 @@ public abstract class MappedSalesOrderHeaderSalesReason {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SALES_ORDER_ID,
@@ -202,6 +203,7 @@ public abstract class MappedSalesOrderHeaderSalesReason {
     private Integer salesOrderId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SALES_REASON_ID,

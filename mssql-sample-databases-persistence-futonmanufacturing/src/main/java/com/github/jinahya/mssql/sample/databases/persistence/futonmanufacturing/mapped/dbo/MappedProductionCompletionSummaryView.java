@@ -36,6 +36,10 @@ import java.time.LocalDate;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; it contains aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or
+ * constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedProductionCompletionSummaryView {
@@ -558,143 +562,156 @@ public abstract class MappedProductionCompletionSummaryView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETION_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate completionDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer year;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer month;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WEEK,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer week;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_WORK_CENTER_NAME
     )
     private String workCenterName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_CODE
     )
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_COMPLETIONS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer numberOfCompletions;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_COMPLETED - COLUMN_SCALE_TOTAL_COMPLETED,
             fraction = COLUMN_SCALE_TOTAL_COMPLETED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_COMPLETED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_COMPLETED,
             scale = COLUMN_SCALE_TOTAL_COMPLETED
     )
     private BigDecimal totalCompleted;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_SCRAPPED - COLUMN_SCALE_TOTAL_SCRAPPED,
             fraction = COLUMN_SCALE_TOTAL_SCRAPPED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_SCRAPPED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_SCRAPPED,
             scale = COLUMN_SCALE_TOTAL_SCRAPPED
     )
     private BigDecimal totalScrapped;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_SCRAP_RATE,
             scale = COLUMN_SCALE_SCRAP_RATE
     )
     private BigDecimal scrapRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRODUCTION_VALUE - COLUMN_SCALE_PRODUCTION_VALUE,
             fraction = COLUMN_SCALE_PRODUCTION_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCTION_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_PRODUCTION_VALUE,
             scale = COLUMN_SCALE_PRODUCTION_VALUE
     )

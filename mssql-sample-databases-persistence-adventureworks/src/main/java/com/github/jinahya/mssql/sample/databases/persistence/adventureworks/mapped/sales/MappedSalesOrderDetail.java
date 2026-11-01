@@ -492,6 +492,7 @@ public abstract class MappedSalesOrderDetail {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SALES_ORDER_ID,
@@ -502,6 +503,8 @@ public abstract class MappedSalesOrderDetail {
     private Integer salesOrderId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
@@ -575,6 +578,7 @@ public abstract class MappedSalesOrderDetail {
     private BigDecimal unitPriceDiscount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_TOTAL,

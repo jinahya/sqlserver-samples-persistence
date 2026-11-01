@@ -34,6 +34,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code HumanResources.vEmployeeDepartment} view.
  * <p>
  * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405).
  */
 @MappedSuperclass
 public abstract class MappedEmployeeDepartmentView {
@@ -465,6 +469,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -475,105 +481,114 @@ public abstract class MappedEmployeeDepartmentView {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TITLE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_TITLE
     )
     private String title;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FIRST_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FIRST_NAME
     )
     private String firstName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MIDDLE_NAME,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_MIDDLE_NAME
     )
     private String middleName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_LAST_NAME
     )
     private String lastName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUFFIX,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SUFFIX
     )
     private String suffix;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_JOB_TITLE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_JOB_TITLE
     )
     private String jobTitle;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DEPARTMENT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DEPARTMENT,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DEPARTMENT
     )
     private String department;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_GROUP_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_GROUP_NAME
     )
     private String groupName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_START_DATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate startDate;
 }

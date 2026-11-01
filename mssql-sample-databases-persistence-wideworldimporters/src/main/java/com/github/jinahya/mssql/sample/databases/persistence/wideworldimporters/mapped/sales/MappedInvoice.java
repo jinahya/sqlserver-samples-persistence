@@ -982,6 +982,7 @@ public abstract class MappedInvoice {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.InvoiceID", schema = "Sequences",
                        sequenceName = "InvoiceID",
@@ -1200,6 +1201,7 @@ public abstract class MappedInvoice {
     private String returnedDeliveryData;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME,
             nullable = true,
@@ -1209,6 +1211,7 @@ public abstract class MappedInvoice {
     private LocalDateTime confirmedDeliveryTime;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY,

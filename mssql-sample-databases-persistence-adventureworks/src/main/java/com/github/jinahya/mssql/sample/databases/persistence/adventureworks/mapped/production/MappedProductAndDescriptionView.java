@@ -33,6 +33,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code Production.vProductAndDescription} view.
  * <p>
  * Identifier: the view declares no key; ProductID, CultureID are unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); one of its columns is an identity column of
+ * its base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedProductAndDescriptionView {
@@ -280,6 +285,8 @@ public abstract class MappedProductAndDescriptionView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID,
@@ -290,30 +297,34 @@ public abstract class MappedProductAndDescriptionView {
     private Integer productId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_NAME
     )
     private String name;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_MODEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PRODUCT_MODEL
     )
     private String productModel;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_CULTURE_ID)
     @NotNull
     @Id
@@ -326,13 +337,14 @@ public abstract class MappedProductAndDescriptionView {
     private String cultureId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DESCRIPTION,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DESCRIPTION
     )
     private String description;

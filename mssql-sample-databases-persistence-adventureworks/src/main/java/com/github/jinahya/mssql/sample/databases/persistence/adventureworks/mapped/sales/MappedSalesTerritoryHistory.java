@@ -295,6 +295,7 @@ public abstract class MappedSalesTerritoryHistory {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -305,6 +306,7 @@ public abstract class MappedSalesTerritoryHistory {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -315,6 +317,7 @@ public abstract class MappedSalesTerritoryHistory {
     private Integer territoryId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_START_DATE,

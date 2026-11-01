@@ -511,6 +511,7 @@ public abstract class MappedPurchaseOrder {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PurchaseOrderID", schema = "Sequences",
                        sequenceName = "PurchaseOrderID",

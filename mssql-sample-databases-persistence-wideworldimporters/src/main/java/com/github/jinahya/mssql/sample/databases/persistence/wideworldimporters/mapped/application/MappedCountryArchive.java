@@ -34,6 +34,9 @@ import java.time.LocalDateTime;
  * Identifier: a history table of a system-versioned temporal table, which has no key.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server rejects an INSERT (error 13559) and an UPDATE (error 13561) of a temporal history table; only
+ * the system versioning of {@code Application.Countries} writes it.
  */
 @MappedSuperclass
 public abstract class MappedCountryArchive {
@@ -565,151 +568,165 @@ public abstract class MappedCountryArchive {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer countryId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_COUNTRY_NAME
     )
     private String countryName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FORMAL_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FORMAL_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_FORMAL_NAME
     )
     private String formalName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_ISO_ALPHA_3_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ISO_ALPHA_3_CODE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ISO_ALPHA_3_CODE
     )
     private String isoAlpha3Code;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer isoNumericCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNTRY_TYPE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_COUNTRY_TYPE
     )
     private String countryType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long latestRecordedPopulation;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_CONTINENT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CONTINENT,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CONTINENT
     )
     private String continent;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REGION,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_REGION
     )
     private String region;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SUBREGION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUBREGION,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SUBREGION
     )
     private String subregion;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BORDER,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private byte[] border;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validTo;
 }

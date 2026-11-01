@@ -433,6 +433,8 @@ public abstract class MappedWorkOrder {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_WORK_ORDER_ID,
@@ -464,6 +466,7 @@ public abstract class MappedWorkOrder {
     private Integer orderQty;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCKED_QTY,
             nullable = false,

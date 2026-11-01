@@ -36,6 +36,9 @@ import java.time.LocalDateTime;
  * Identifier: a history table of a system-versioned temporal table, which has no key.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server rejects an INSERT (error 13559) and an UPDATE (error 13561) of a temporal history table; only
+ * the system versioning of {@code Warehouse.StockItems} writes it.
  */
 @MappedSuperclass
 public abstract class MappedStockItemArchive {
@@ -955,264 +958,289 @@ public abstract class MappedStockItemArchive {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer stockItemId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_STOCK_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCK_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STOCK_ITEM_NAME
     )
     private String stockItemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer supplierId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COLOR_ID,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer colorId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PACKAGE_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer unitPackageId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OUTER_PACKAGE_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer outerPackageId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BRAND)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BRAND,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BRAND
     )
     private String brand;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SIZE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SIZE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SIZE
     )
     private String size;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer leadTimeDays;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_PER_OUTER,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer quantityPerOuter;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_CHILLER_STOCK,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Boolean isChillerStock;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BARCODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BARCODE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_BARCODE
     )
     private String barcode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_RATE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TAX_RATE,
             scale = COLUMN_SCALE_TAX_RATE
     )
     private BigDecimal taxRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_UNIT_PRICE,
             scale = COLUMN_SCALE_UNIT_PRICE
     )
     private BigDecimal unitPrice;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE - COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE,
             fraction = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RECOMMENDED_RETAIL_PRICE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE,
             scale = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE
     )
     private BigDecimal recommendedRetailPrice;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT - COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT,
             fraction = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT,
             scale = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT
     )
     private BigDecimal typicalWeightPerUnit;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MARKETING_COMMENTS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String marketingComments;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String internalComments;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private byte[] photo;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String customFields;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAGS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String tags;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SEARCH_DETAILS,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private String searchDetails;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer lastEditedBy;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_FROM,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validFrom;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VALID_TO,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime validTo;
 }

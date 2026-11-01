@@ -35,6 +35,10 @@ import java.math.BigDecimal;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405); it contains
+ * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesProductMixAnalysisView {
@@ -409,101 +413,110 @@ public abstract class MappedSalesProductMixAnalysisView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHANNEL_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CHANNEL_NAME
     )
     private String channelName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_TYPE
     )
     private String customerType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_MIX)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_MIX,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PRODUCT_MIX
     )
     private String productMix;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_PRODUCTS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer uniqueProducts;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer orderCount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REVENUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_REVENUE,
             scale = COLUMN_SCALE_TOTAL_REVENUE
     )
     private BigDecimal totalRevenue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
             scale = COLUMN_SCALE_AVG_ORDER_VALUE
     )
     private BigDecimal avgOrderValue;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_UNITS - COLUMN_SCALE_AVG_UNITS, fraction = COLUMN_SCALE_AVG_UNITS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_UNITS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_UNITS,
             scale = COLUMN_SCALE_AVG_UNITS
     )
     private BigDecimal avgUnits;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POPULARITY_RANK,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Long popularityRank;
 }

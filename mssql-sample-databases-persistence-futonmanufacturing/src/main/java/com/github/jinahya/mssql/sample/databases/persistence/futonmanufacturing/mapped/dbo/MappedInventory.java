@@ -398,6 +398,8 @@ public abstract class MappedInventory {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_INVENTORY_ID,
@@ -458,6 +460,7 @@ public abstract class MappedInventory {
     private BigDecimal quantityAllocated;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @Basic(optional = true)

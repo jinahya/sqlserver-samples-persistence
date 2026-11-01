@@ -262,6 +262,7 @@ public abstract class MappedBusinessEntityContact {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -272,6 +273,7 @@ public abstract class MappedBusinessEntityContact {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PERSON_ID,
@@ -282,6 +284,7 @@ public abstract class MappedBusinessEntityContact {
     private Integer personId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CONTACT_TYPE_ID,

@@ -32,6 +32,15 @@ module com.github.jinahya.mssql.sample.databases.persistence.adventureworks {
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
     requires java.xml;
+    // dbo.DatabaseLog.XmlEvent; EventInstanceStringAttributeConverter extends JaxbAttributeConverter, and throws a
+    // JAXBException
+    requires transitive com.github.jinahya.persistence.more;
+    requires io.github.jinahya.sqlserver.xml.schema.binding.b872ce;
+    requires transitive jakarta.xml.bind;
+    // Person.AdditionalContactInfoSchemaCollection; MappedEmployeeView returns an AdditionalContactInfo
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b7fdbe;
+    requires io.github.jinahya.sqlserver.xml.schema.binding.b80e2e;
+    requires io.github.jinahya.sqlserver.xml.schema.binding.b2e7ae;
 
     exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
     exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.dbo;

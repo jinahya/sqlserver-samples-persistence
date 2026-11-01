@@ -35,6 +35,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_CostRollUp} view.
  * <p>
  * Identifier: the view declares no key; ItemCode is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); some of its columns are derived or constant
+ * (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedCostRollUpView {
@@ -504,6 +509,8 @@ public abstract class MappedCostRollUpView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
@@ -516,113 +523,122 @@ public abstract class MappedCostRollUpView {
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CURRENT_STANDARD_COST - COLUMN_SCALE_CURRENT_STANDARD_COST,
             fraction = COLUMN_SCALE_CURRENT_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CURRENT_STANDARD_COST,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_CURRENT_STANDARD_COST,
             scale = COLUMN_SCALE_CURRENT_STANDARD_COST
     )
     private BigDecimal currentStandardCost;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CALCULATED_MATERIAL_COST - COLUMN_SCALE_CALCULATED_MATERIAL_COST,
             fraction = COLUMN_SCALE_CALCULATED_MATERIAL_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CALCULATED_MATERIAL_COST,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_CALCULATED_MATERIAL_COST,
             scale = COLUMN_SCALE_CALCULATED_MATERIAL_COST
     )
     private BigDecimal calculatedMaterialCost;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LABOR_AND_OVERHEAD - COLUMN_SCALE_LABOR_AND_OVERHEAD,
             fraction = COLUMN_SCALE_LABOR_AND_OVERHEAD)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LABOR_AND_OVERHEAD,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_LABOR_AND_OVERHEAD,
             scale = COLUMN_SCALE_LABOR_AND_OVERHEAD
     )
     private BigDecimal laborAndOverhead;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMPONENT_COUNT,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer componentCount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LIST_PRICE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_LIST_PRICE,
             scale = COLUMN_SCALE_LIST_PRICE
     )
     private BigDecimal listPrice;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_PROFIT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_GROSS_PROFIT,
             scale = COLUMN_SCALE_GROSS_PROFIT
     )
     private BigDecimal grossProfit;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT,
             scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT
     )

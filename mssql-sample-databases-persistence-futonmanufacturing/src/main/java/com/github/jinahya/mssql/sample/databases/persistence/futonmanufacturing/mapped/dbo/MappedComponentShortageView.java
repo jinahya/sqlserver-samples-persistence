@@ -37,6 +37,10 @@ import java.time.LocalDateTime;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405); it contains
+ * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedComponentShortageView {
@@ -591,157 +595,171 @@ public abstract class MappedComponentShortageView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_CODE
     )
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REQUIRED_QUANTITY,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_REQUIRED_QUANTITY,
             scale = COLUMN_SCALE_REQUIRED_QUANTITY
     )
     private BigDecimal requiredQuantity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVAILABLE_QUANTITY - COLUMN_SCALE_AVAILABLE_QUANTITY,
             fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVAILABLE_QUANTITY,
             scale = COLUMN_SCALE_AVAILABLE_QUANTITY
     )
     private BigDecimal availableQuantity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_SHORTAGE_QUANTITY,
             scale = COLUMN_SCALE_SHORTAGE_QUANTITY
     )
     private BigDecimal shortageQuantity;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EARLIEST_NEED_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate earliestNeedDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_NEEDED,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer daysUntilNeeded;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AFFECTED_ORDERS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer affectedOrders;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_URGENCY_LEVEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_URGENCY_LEVEL,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_URGENCY_LEVEL
     )
     private String urgencyLevel;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PREFERRED_SUPPLIER,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_PREFERRED_SUPPLIER
     )
     private String preferredSupplier;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer leadTimeDays;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSSIBLE_ARRIVAL,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDateTime possibleArrival;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLY_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLY_STATUS,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_SUPPLY_STATUS
     )
     private String supplyStatus;

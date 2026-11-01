@@ -508,6 +508,7 @@ public abstract class MappedWorkOrderRouting {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_WORK_ORDER_ID,
@@ -518,6 +519,7 @@ public abstract class MappedWorkOrderRouting {
     private Integer workOrderId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID,
@@ -528,6 +530,7 @@ public abstract class MappedWorkOrderRouting {
     private Integer productId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_OPERATION_SEQUENCE,

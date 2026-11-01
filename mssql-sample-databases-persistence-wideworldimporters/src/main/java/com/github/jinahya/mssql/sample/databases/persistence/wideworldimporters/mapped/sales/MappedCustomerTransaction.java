@@ -620,6 +620,7 @@ public abstract class MappedCustomerTransaction {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.TransactionID", schema = "Sequences",
                        sequenceName = "TransactionID",
@@ -749,6 +750,7 @@ public abstract class MappedCustomerTransaction {
     private LocalDate finalizationDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_IS_FINALIZED,
             nullable = true,

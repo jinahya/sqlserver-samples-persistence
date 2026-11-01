@@ -335,6 +335,7 @@ public abstract class MappedProductInventory {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID,
@@ -345,6 +346,7 @@ public abstract class MappedProductInventory {
     private Integer productId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_LOCATION_ID,

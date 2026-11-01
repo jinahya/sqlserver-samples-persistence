@@ -33,6 +33,11 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code Person.vStateProvinceCountryRegion} view.
  * <p>
  * Identifier: the view declares no key; StateProvinceID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
+ * of a whole row affects more than one of its base tables (error 4405); one of its columns is an identity column of
+ * its base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedStateProvinceCountryRegionView {
@@ -351,6 +356,8 @@ public abstract class MappedStateProvinceCountryRegionView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
@@ -361,69 +368,75 @@ public abstract class MappedStateProvinceCountryRegionView {
     private Integer stateProvinceId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STATE_PROVINCE_CODE
     )
     private String stateProvinceCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Boolean isOnlyStateProvinceFlag;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_STATE_PROVINCE_NAME
     )
     private String stateProvinceName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TERRITORY_ID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer territoryId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_CODE
     )
     private String countryRegionCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_NAME
     )
     private String countryRegionName;

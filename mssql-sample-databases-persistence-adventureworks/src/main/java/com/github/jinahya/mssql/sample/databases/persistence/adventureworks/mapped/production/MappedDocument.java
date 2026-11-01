@@ -600,6 +600,7 @@ public abstract class MappedDocument {
     private byte[] documentNode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_LEVEL,
             nullable = true,
@@ -718,6 +719,7 @@ public abstract class MappedDocument {
     private byte[] document;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_ROWGUID)
     @NotNull
     @Id

@@ -35,6 +35,10 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code dbo.vw_Sales_ReturnsAnalysis} view.
  * <p>
  * Identifier: the view declares no key; ReturnID is unique, and not null, in every row it returns.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
+ * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; it contains
+ * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesReturnsAnalysisView {
@@ -716,6 +720,8 @@ public abstract class MappedSalesReturnsAnalysisView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
+    // of every identifier column; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_RETURN_ID,
@@ -726,177 +732,192 @@ public abstract class MappedSalesReturnsAnalysisView {
     private Integer returnId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer year;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer month;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REASON_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REASON_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_REASON_CODE
     )
     private String reasonCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REASON_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REASON_DESCRIPTION,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_REASON_DESCRIPTION
     )
     private String reasonDescription;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_NAME
     )
     private String customerName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CUSTOMER_TYPE
     )
     private String customerType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHANNEL_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_CHANNEL_NAME
     )
     private String channelName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REFUNDS - COLUMN_SCALE_TOTAL_REFUNDS,
             fraction = COLUMN_SCALE_TOTAL_REFUNDS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REFUNDS,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_REFUNDS,
             scale = COLUMN_SCALE_TOTAL_REFUNDS
     )
     private BigDecimal totalRefunds;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_REFUND_AMOUNT - COLUMN_SCALE_AVG_REFUND_AMOUNT,
             fraction = COLUMN_SCALE_AVG_REFUND_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_REFUND_AMOUNT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_AVG_REFUND_AMOUNT,
             scale = COLUMN_SCALE_AVG_REFUND_AMOUNT
     )
     private BigDecimal avgRefundAmount;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES - COLUMN_SCALE_TOTAL_RESTOCKING_FEES,
             fraction = COLUMN_SCALE_TOTAL_RESTOCKING_FEES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_RESTOCKING_FEES,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES,
             scale = COLUMN_SCALE_TOTAL_RESTOCKING_FEES
     )
     private BigDecimal totalRestockingFees;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_CODE
     )
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNITS_RETURNED - COLUMN_SCALE_UNITS_RETURNED,
             fraction = COLUMN_SCALE_UNITS_RETURNED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNITS_RETURNED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_UNITS_RETURNED,
             scale = COLUMN_SCALE_UNITS_RETURNED
     )
     private BigDecimal unitsReturned;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DISPOSITION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISPOSITION,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_DISPOSITION
     )
     private String disposition;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RETURN_RATE_PERCENT - COLUMN_SCALE_RETURN_RATE_PERCENT,
             fraction = COLUMN_SCALE_RETURN_RATE_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RETURN_RATE_PERCENT,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_RETURN_RATE_PERCENT,
             scale = COLUMN_SCALE_RETURN_RATE_PERCENT
     )

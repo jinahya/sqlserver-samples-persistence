@@ -1011,6 +1011,8 @@ public abstract class MappedSalesOrderHeader {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_ORDER_ID,
@@ -1084,6 +1086,7 @@ public abstract class MappedSalesOrderHeader {
     private Boolean onlineOrderFlag;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_SALES_ORDER_NUMBER)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_ORDER_NUMBER,
@@ -1242,6 +1245,7 @@ public abstract class MappedSalesOrderHeader {
     private BigDecimal freight;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_DUE,
             nullable = false,

@@ -203,6 +203,7 @@ public abstract class MappedCountryRegion {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
     @Id

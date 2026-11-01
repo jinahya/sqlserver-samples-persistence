@@ -36,6 +36,10 @@ import java.time.LocalDate;
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * <p>
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
+ * updatable; it contains aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or
+ * constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedQualityInspectionSummaryView {
@@ -568,149 +572,162 @@ public abstract class MappedQualityInspectionSummaryView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSPECTION_DATE,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private LocalDate inspectionDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer year;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer month;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_INSPECTION_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_INSPECTION_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_INSPECTION_TYPE
     )
     private String inspectionType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_CODE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_CODE
     )
     private String itemCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_NAME,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_NAME
     )
     private String itemName;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE,
             nullable = false,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             length = COLUMN_LENGTH_ITEM_TYPE
     )
     private String itemType;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_INSPECTIONS,
             nullable = true,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer numberOfInspections;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_INSPECTED - COLUMN_SCALE_TOTAL_INSPECTED,
             fraction = COLUMN_SCALE_TOTAL_INSPECTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_INSPECTED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_INSPECTED,
             scale = COLUMN_SCALE_TOTAL_INSPECTED
     )
     private BigDecimal totalInspected;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_ACCEPTED - COLUMN_SCALE_TOTAL_ACCEPTED,
             fraction = COLUMN_SCALE_TOTAL_ACCEPTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ACCEPTED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_ACCEPTED,
             scale = COLUMN_SCALE_TOTAL_ACCEPTED
     )
     private BigDecimal totalAccepted;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REJECTED - COLUMN_SCALE_TOTAL_REJECTED,
             fraction = COLUMN_SCALE_TOTAL_REJECTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REJECTED,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_TOTAL_REJECTED,
             scale = COLUMN_SCALE_TOTAL_REJECTED
     )
     private BigDecimal totalRejected;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ACCEPTANCE_RATE - COLUMN_SCALE_ACCEPTANCE_RATE,
             fraction = COLUMN_SCALE_ACCEPTANCE_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACCEPTANCE_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_ACCEPTANCE_RATE,
             scale = COLUMN_SCALE_ACCEPTANCE_RATE
     )
     private BigDecimal acceptanceRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REJECTION_RATE - COLUMN_SCALE_REJECTION_RATE,
             fraction = COLUMN_SCALE_REJECTION_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REJECTION_RATE,
             nullable = true,
-            insertable = true,
-            updatable = true,
+            insertable = false,
+            updatable = false,
             precision = COLUMN_PRECISION_REJECTION_RATE,
             scale = COLUMN_SCALE_REJECTION_RATE
     )
