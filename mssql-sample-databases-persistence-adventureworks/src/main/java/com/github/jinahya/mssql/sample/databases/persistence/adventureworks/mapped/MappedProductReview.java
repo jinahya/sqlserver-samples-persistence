@@ -1,0 +1,484 @@
+package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
+
+/*-
+ * #%L
+ * mssql-sample-databases-persistence-adventureworks
+ * %%
+ * Copyright (C) 2026 Jinahya, Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * A mapped superclass which holds the mappings of the {@code Production.ProductReview} table.
+ * <p>
+ * The {@value #COLUMN_NAME_PRODUCT_ID} column is mapped read-only, as a foreign key; the extending entity owns the
+ * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ */
+@MappedSuperclass
+public abstract class MappedProductReview {
+
+    /**
+     * The name of the schema of the table to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_SCHEMA = "Production";
+
+    /**
+     * The name of the table to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_NAME = "ProductReview";
+
+    // ------------------------------------------------------------------------------------------------- ProductReviewID
+
+    /**
+     * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_PRODUCT_REVIEW_ID = "ProductReviewID";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_REVIEW_ID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_PRODUCT_REVIEW_ID = "productReviewId";
+
+    // ------------------------------------------------------------------------------------------------------- ProductID
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
+
+    // ---------------------------------------------------------------------------------------------------- ReviewerName
+
+    /**
+     * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_REVIEWER_NAME = "ReviewerName";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_REVIEWER_NAME} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_REVIEWER_NAME = 50;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REVIEWER_NAME} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_REVIEWER_NAME = "reviewerName";
+
+    // ------------------------------------------------------------------------------------------------------ ReviewDate
+
+    /**
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_REVIEW_DATE = "ReviewDate";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REVIEW_DATE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_REVIEW_DATE = "reviewDate";
+
+    // ---------------------------------------------------------------------------------------------------- EmailAddress
+
+    /**
+     * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_EMAIL_ADDRESS = "EmailAddress";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_EMAIL_ADDRESS} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_EMAIL_ADDRESS = 50;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_ADDRESS} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
+
+    // ---------------------------------------------------------------------------------------------------------- Rating
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_RATING = "Rating";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_RATING} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_RATING = "rating";
+
+    // -------------------------------------------------------------------------------------------------------- Comments
+
+    /**
+     * The name of the {@code nvarchar(3850)} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_COMMENTS = "Comments";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_COMMENTS} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_COMMENTS = 3850;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COMMENTS} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_COMMENTS = "comments";
+
+    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+
+    /**
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
+
+    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+
+    /**
+     * Creates a new instance.
+     */
+    protected MappedProductReview() {
+        super();
+    }
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+
+    @Override
+    public String toString() {
+        return super.toString() + "{"
+               + "productReviewId=" + productReviewId
+               + ",productId=" + productId
+               + ",reviewerName=" + reviewerName
+               + ",reviewDate=" + reviewDate
+               + ",emailAddress=" + emailAddress
+               + ",rating=" + rating
+               + ",comments=" + comments
+               + ",modifiedDate=" + modifiedDate
+               + "}";
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param obj {@inheritDoc}
+     * @return {@inheritDoc}
+     * @implSpec Equality is by the identifier alone.
+     */
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MappedProductReview that)) {
+            return false;
+        }
+        return Objects.equals(productReviewId, that.productReviewId);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     */
+    @Override
+    public final int hashCode() {
+        return Objects.hash(productReviewId);
+    }
+
+    // ------------------------------------------------------------------------------------------------- productReviewId
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute.
+     */
+    @Nullable
+    public Integer getProductReviewId() {
+        return productReviewId;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute with the specified value.
+     *
+     * @param productReviewId new value for {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute.
+     */
+    protected void setProductReviewId(@Nullable final Integer productReviewId) {
+        this.productReviewId = productReviewId;
+    }
+
+    // ------------------------------------------------------------------------------------------------------- productId
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     */
+    @Nonnull
+    public Integer getProductId() {
+        return productId;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value. The attribute
+     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     *
+     * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     */
+    protected void setProductId(@Nonnull final Integer productId) {
+        this.productId = productId;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- reviewerName
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute.
+     */
+    @Nonnull
+    public String getReviewerName() {
+        return reviewerName;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute with the specified value.
+     *
+     * @param reviewerName new value for {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute.
+     */
+    public void setReviewerName(@Nonnull final String reviewerName) {
+        this.reviewerName = reviewerName;
+    }
+
+    // ------------------------------------------------------------------------------------------------------ reviewDate
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute.
+     */
+    @Nonnull
+    public LocalDateTime getReviewDate() {
+        return reviewDate;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute with the specified value.
+     *
+     * @param reviewDate new value for {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute.
+     */
+    public void setReviewDate(@Nonnull final LocalDateTime reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- emailAddress
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
+     */
+    @Nonnull
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute with the specified value.
+     *
+     * @param emailAddress new value for {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
+     */
+    public void setEmailAddress(@Nonnull final String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    // ---------------------------------------------------------------------------------------------------------- rating
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_RATING} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_RATING} attribute.
+     */
+    @Nonnull
+    public Integer getRating() {
+        return rating;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_RATING} attribute with the specified value.
+     *
+     * @param rating new value for {@value #ATTRIBUTE_NAME_RATING} attribute.
+     */
+    public void setRating(@Nonnull final Integer rating) {
+        this.rating = rating;
+    }
+
+    // -------------------------------------------------------------------------------------------------------- comments
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
+     */
+    @Nullable
+    public String getComments() {
+        return comments;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute with the specified value.
+     *
+     * @param comments new value for {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
+     */
+    public void setComments(@Nullable final String comments) {
+        this.comments = comments;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- modifiedDate
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     */
+    @Nonnull
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     *
+     * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     */
+    public void setModifiedDate(@Nonnull final LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID,
+            nullable = false,
+            insertable = true,
+            updatable = false
+    )
+    private Integer productReviewId;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_PRODUCT_ID,
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
+    private Integer productId;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @Size(max = COLUMN_LENGTH_REVIEWER_NAME)
+    @NotNull
+    @Column(name = COLUMN_NAME_REVIEWER_NAME,
+            nullable = false,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_REVIEWER_NAME
+    )
+    private String reviewerName;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_REVIEW_DATE,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime reviewDate;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
+    @NotNull
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
+            nullable = false,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_EMAIL_ADDRESS
+    )
+    private String emailAddress;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_RATING,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private Integer rating;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Size(max = COLUMN_LENGTH_COMMENTS)
+    @Column(name = COLUMN_NAME_COMMENTS,
+            nullable = true,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_COMMENTS
+    )
+    private String comments;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_MODIFIED_DATE,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime modifiedDate;
+}
+

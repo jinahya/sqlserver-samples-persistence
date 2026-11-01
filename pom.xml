@@ -75,6 +75,8 @@
     <mssql.url>jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true</mssql.url>
     <mssql.user>sa</mssql.user>
     <mssql.password>Passw0rd!</mssql.password>
+    <!-- the number of failures after which surefire and failsafe stop; -Dtests.skipAfterFailureCount=0 runs them all -->
+    <tests.skipAfterFailureCount>1</tests.skipAfterFailureCount>
     <version.maven-failsafe>${version.maven-surefire}</version.maven-failsafe>
     <version.maven-surefire>3.6.0</version.maven-surefire>
     <!-- https://central.sonatype.com/artifact/com.microsoft.sqlserver/mssql-jdbc/versions -->
@@ -303,7 +305,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${version.maven-surefire}</version>
         <configuration>
-          <skipAfterFailureCount>1</skipAfterFailureCount>
+          <skipAfterFailureCount>${tests.skipAfterFailureCount}</skipAfterFailureCount>
           <trimStackTrace>false</trimStackTrace>
         </configuration>
       </plugin>
@@ -339,7 +341,7 @@
               <includes>
                 <include>**/*IT.java</include>
               </includes>
-              <skipAfterFailureCount>1</skipAfterFailureCount>
+              <skipAfterFailureCount>${tests.skipAfterFailureCount}</skipAfterFailureCount>
               <trimStackTrace>false</trimStackTrace>
             </configuration>
           </plugin>

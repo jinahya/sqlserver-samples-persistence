@@ -1,0 +1,377 @@
+package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
+
+/*-
+ * #%L
+ * mssql-sample-databases-persistence-adventureworks
+ * %%
+ * Copyright (C) 2026 Jinahya, Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.UUID;
+
+/**
+ * A mapped superclass which holds the mappings of the {@code Production.ProductModel} table.
+ */
+@MappedSuperclass
+public abstract class MappedProductModel {
+
+    /**
+     * The name of the schema of the table to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_SCHEMA = "Production";
+
+    /**
+     * The name of the table to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_NAME = "ProductModel";
+
+    // -------------------------------------------------------------------------------------------------- ProductModelID
+
+    /**
+     * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
+
+    // ------------------------------------------------------------------------------------------------------------ Name
+
+    /**
+     * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_NAME = "Name";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_NAME = 50;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_NAME = "name";
+
+    // ---------------------------------------------------------------------------------------------- CatalogDescription
+
+    /**
+     * The name of the {@code xml} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_CATALOG_DESCRIPTION = "CatalogDescription";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CATALOG_DESCRIPTION} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_CATALOG_DESCRIPTION = "catalogDescription";
+
+    // ---------------------------------------------------------------------------------------------------- Instructions
+
+    /**
+     * The name of the {@code xml} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_INSTRUCTIONS = "Instructions";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_INSTRUCTIONS} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_INSTRUCTIONS = "instructions";
+
+    // --------------------------------------------------------------------------------------------------------- rowguid
+
+    /**
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_ROWGUID = "rowguid";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
+
+    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+
+    /**
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
+
+    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+
+    /**
+     * Creates a new instance.
+     */
+    protected MappedProductModel() {
+        super();
+    }
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+
+    @Override
+    public String toString() {
+        return super.toString() + "{"
+               + "productModelId=" + productModelId
+               + ",name=" + name
+               + ",catalogDescription=" + catalogDescription
+               + ",instructions=" + instructions
+               + ",rowguid=" + rowguid
+               + ",modifiedDate=" + modifiedDate
+               + "}";
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param obj {@inheritDoc}
+     * @return {@inheritDoc}
+     * @implSpec Equality is by the identifier alone.
+     */
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MappedProductModel that)) {
+            return false;
+        }
+        return Objects.equals(productModelId, that.productModelId);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     */
+    @Override
+    public final int hashCode() {
+        return Objects.hash(productModelId);
+    }
+
+    // -------------------------------------------------------------------------------------------------- productModelId
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
+     */
+    @Nullable
+    public Integer getProductModelId() {
+        return productModelId;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute with the specified value.
+     *
+     * @param productModelId new value for {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
+     */
+    protected void setProductModelId(@Nullable final Integer productModelId) {
+        this.productModelId = productModelId;
+    }
+
+    // ------------------------------------------------------------------------------------------------------------ name
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
+     */
+    @Nonnull
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NAME} attribute with the specified value.
+     *
+     * @param name new value for {@value #ATTRIBUTE_NAME_NAME} attribute.
+     */
+    public void setName(@Nonnull final String name) {
+        this.name = name;
+    }
+
+    // ---------------------------------------------------------------------------------------------- catalogDescription
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_CATALOG_DESCRIPTION} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_CATALOG_DESCRIPTION} attribute.
+     */
+    @Nullable
+    public String getCatalogDescription() {
+        return catalogDescription;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CATALOG_DESCRIPTION} attribute with the specified value.
+     *
+     * @param catalogDescription new value for {@value #ATTRIBUTE_NAME_CATALOG_DESCRIPTION} attribute.
+     */
+    public void setCatalogDescription(@Nullable final String catalogDescription) {
+        this.catalogDescription = catalogDescription;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- instructions
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
+     */
+    @Nullable
+    public String getInstructions() {
+        return instructions;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute with the specified value.
+     *
+     * @param instructions new value for {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
+     */
+    public void setInstructions(@Nullable final String instructions) {
+        this.instructions = instructions;
+    }
+
+    // --------------------------------------------------------------------------------------------------------- rowguid
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
+     */
+    @Nonnull
+    public UUID getRowguid() {
+        return rowguid;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
+     *
+     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
+     */
+    public void setRowguid(@Nonnull final UUID rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- modifiedDate
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     */
+    @Nonnull
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     *
+     * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     */
+    public void setModifiedDate(@Nonnull final LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
+            nullable = false,
+            insertable = true,
+            updatable = false
+    )
+    private Integer productModelId;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @Size(max = COLUMN_LENGTH_NAME)
+    @NotNull
+    @Column(name = COLUMN_NAME_NAME,
+            nullable = false,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_NAME
+    )
+    private String name;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_CATALOG_DESCRIPTION,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private String catalogDescription;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_INSTRUCTIONS,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private String instructions;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Convert(converter = UuidStringAttributeConverter.class)
+    @Column(name = COLUMN_NAME_ROWGUID,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private UUID rowguid;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_MODIFIED_DATE,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime modifiedDate;
+}
+

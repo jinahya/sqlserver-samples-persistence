@@ -1,0 +1,606 @@
+package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
+
+/*-
+ * #%L
+ * mssql-sample-databases-persistence-adventureworks
+ * %%
+ * Copyright (C) 2026 Jinahya, Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * A mapped superclass which holds the mappings of the {@code Purchasing.ProductVendor} table.
+ * <p>
+ * The {@value #COLUMN_NAME_UNIT_MEASURE_CODE} column is mapped read-only, as a foreign key; the extending entity owns
+ * the
+ * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ */
+@MappedSuperclass
+public abstract class MappedProductVendor {
+
+    /**
+     * The name of the schema of the table to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_SCHEMA = "Purchasing";
+
+    /**
+     * The name of the table to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_NAME = "ProductVendor";
+
+    // ------------------------------------------------------------------------------------------------------- ProductID
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
+
+    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
+
+    // ------------------------------------------------------------------------------------------------- AverageLeadTime
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_AVERAGE_LEAD_TIME = "AverageLeadTime";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_AVERAGE_LEAD_TIME = "averageLeadTime";
+
+    // --------------------------------------------------------------------------------------------------- StandardPrice
+
+    /**
+     * The name of the {@code money, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_STANDARD_PRICE = "StandardPrice";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_PRICE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_STANDARD_PRICE = "standardPrice";
+
+    // ------------------------------------------------------------------------------------------------- LastReceiptCost
+
+    /**
+     * The name of the {@code money} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_LAST_RECEIPT_COST = "LastReceiptCost";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_RECEIPT_COST} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_LAST_RECEIPT_COST = "lastReceiptCost";
+
+    // ------------------------------------------------------------------------------------------------- LastReceiptDate
+
+    /**
+     * The name of the {@code datetime} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_LAST_RECEIPT_DATE = "LastReceiptDate";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_RECEIPT_DATE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_LAST_RECEIPT_DATE = "lastReceiptDate";
+
+    // ----------------------------------------------------------------------------------------------------- MinOrderQty
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_MIN_ORDER_QTY = "MinOrderQty";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_ORDER_QTY} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_MIN_ORDER_QTY = "minOrderQty";
+
+    // ----------------------------------------------------------------------------------------------------- MaxOrderQty
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_MAX_ORDER_QTY = "MaxOrderQty";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_ORDER_QTY} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_MAX_ORDER_QTY = "maxOrderQty";
+
+    // ------------------------------------------------------------------------------------------------------ OnOrderQty
+
+    /**
+     * The name of the {@code int} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_ON_ORDER_QTY = "OnOrderQty";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ON_ORDER_QTY} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_ON_ORDER_QTY = "onOrderQty";
+
+    // ------------------------------------------------------------------------------------------------- UnitMeasureCode
+
+    /**
+     * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_UNIT_MEASURE_CODE = "UnitMeasureCode";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_UNIT_MEASURE_CODE} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_UNIT_MEASURE_CODE = 3;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_MEASURE_CODE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_UNIT_MEASURE_CODE = "unitMeasureCode";
+
+    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+
+    /**
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
+
+    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+
+    /**
+     * Creates a new instance.
+     */
+    protected MappedProductVendor() {
+        super();
+    }
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+
+    @Override
+    public String toString() {
+        return super.toString() + "{"
+               + "productId=" + productId
+               + ",businessEntityId=" + businessEntityId
+               + ",averageLeadTime=" + averageLeadTime
+               + ",standardPrice=" + standardPrice
+               + ",lastReceiptCost=" + lastReceiptCost
+               + ",lastReceiptDate=" + lastReceiptDate
+               + ",minOrderQty=" + minOrderQty
+               + ",maxOrderQty=" + maxOrderQty
+               + ",onOrderQty=" + onOrderQty
+               + ",unitMeasureCode=" + unitMeasureCode
+               + ",modifiedDate=" + modifiedDate
+               + "}";
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param obj {@inheritDoc}
+     * @return {@inheritDoc}
+     * @implSpec Equality is by the identifier alone.
+     */
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MappedProductVendor that)) {
+            return false;
+        }
+        return Objects.equals(productId, that.productId) &&
+               Objects.equals(businessEntityId, that.businessEntityId);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     */
+    @Override
+    public final int hashCode() {
+        return Objects.hash(productId, businessEntityId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------- productId
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     */
+    @Nonnull
+    public Integer getProductId() {
+        return productId;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
+     *
+     * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     */
+    public void setProductId(@Nonnull final Integer productId) {
+        this.productId = productId;
+    }
+
+    // ------------------------------------------------------------------------------------------------ businessEntityId
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     */
+    @Nonnull
+    public Integer getBusinessEntityId() {
+        return businessEntityId;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     *
+     * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     */
+    public void setBusinessEntityId(@Nonnull final Integer businessEntityId) {
+        this.businessEntityId = businessEntityId;
+    }
+
+    // ------------------------------------------------------------------------------------------------- averageLeadTime
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute.
+     */
+    @Nonnull
+    public Integer getAverageLeadTime() {
+        return averageLeadTime;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute with the specified value.
+     *
+     * @param averageLeadTime new value for {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute.
+     */
+    public void setAverageLeadTime(@Nonnull final Integer averageLeadTime) {
+        this.averageLeadTime = averageLeadTime;
+    }
+
+    // --------------------------------------------------------------------------------------------------- standardPrice
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute.
+     */
+    @Nonnull
+    public BigDecimal getStandardPrice() {
+        return standardPrice;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute with the specified value.
+     *
+     * @param standardPrice new value for {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute.
+     */
+    public void setStandardPrice(@Nonnull final BigDecimal standardPrice) {
+        this.standardPrice = standardPrice;
+    }
+
+    // ------------------------------------------------------------------------------------------------- lastReceiptCost
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute.
+     */
+    @Nullable
+    public BigDecimal getLastReceiptCost() {
+        return lastReceiptCost;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute with the specified value.
+     *
+     * @param lastReceiptCost new value for {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute.
+     */
+    public void setLastReceiptCost(@Nullable final BigDecimal lastReceiptCost) {
+        this.lastReceiptCost = lastReceiptCost;
+    }
+
+    // ------------------------------------------------------------------------------------------------- lastReceiptDate
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_DATE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_DATE} attribute.
+     */
+    @Nullable
+    public LocalDateTime getLastReceiptDate() {
+        return lastReceiptDate;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_DATE} attribute with the specified value.
+     *
+     * @param lastReceiptDate new value for {@value #ATTRIBUTE_NAME_LAST_RECEIPT_DATE} attribute.
+     */
+    public void setLastReceiptDate(@Nullable final LocalDateTime lastReceiptDate) {
+        this.lastReceiptDate = lastReceiptDate;
+    }
+
+    // ----------------------------------------------------------------------------------------------------- minOrderQty
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute.
+     */
+    @Nonnull
+    public Integer getMinOrderQty() {
+        return minOrderQty;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute with the specified value.
+     *
+     * @param minOrderQty new value for {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute.
+     */
+    public void setMinOrderQty(@Nonnull final Integer minOrderQty) {
+        this.minOrderQty = minOrderQty;
+    }
+
+    // ----------------------------------------------------------------------------------------------------- maxOrderQty
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute.
+     */
+    @Nonnull
+    public Integer getMaxOrderQty() {
+        return maxOrderQty;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute with the specified value.
+     *
+     * @param maxOrderQty new value for {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute.
+     */
+    public void setMaxOrderQty(@Nonnull final Integer maxOrderQty) {
+        this.maxOrderQty = maxOrderQty;
+    }
+
+    // ------------------------------------------------------------------------------------------------------ onOrderQty
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute.
+     */
+    @Nullable
+    public Integer getOnOrderQty() {
+        return onOrderQty;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute with the specified value.
+     *
+     * @param onOrderQty new value for {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute.
+     */
+    public void setOnOrderQty(@Nullable final Integer onOrderQty) {
+        this.onOrderQty = onOrderQty;
+    }
+
+    // ------------------------------------------------------------------------------------------------- unitMeasureCode
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
+     */
+    @Nonnull
+    public String getUnitMeasureCode() {
+        return unitMeasureCode;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute with the specified value. The
+     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
+     * column.
+     *
+     * @param unitMeasureCode new value for {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
+     */
+    protected void setUnitMeasureCode(@Nonnull final String unitMeasureCode) {
+        this.unitMeasureCode = unitMeasureCode;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- modifiedDate
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     */
+    @Nonnull
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     *
+     * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
+     */
+    public void setModifiedDate(@Nonnull final LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Id
+    @Column(name = COLUMN_NAME_PRODUCT_ID,
+            nullable = false,
+            insertable = true,
+            updatable = false
+    )
+    private Integer productId;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Id
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+            nullable = false,
+            insertable = true,
+            updatable = false
+    )
+    private Integer businessEntityId;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_AVERAGE_LEAD_TIME,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private Integer averageLeadTime;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_STANDARD_PRICE,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private BigDecimal standardPrice;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_LAST_RECEIPT_COST,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private BigDecimal lastReceiptCost;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime lastReceiptDate;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_MIN_ORDER_QTY,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private Integer minOrderQty;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_MAX_ORDER_QTY,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private Integer maxOrderQty;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_ON_ORDER_QTY,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private Integer onOrderQty;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Nonnull
+    @Size(max = COLUMN_LENGTH_UNIT_MEASURE_CODE)
+    @NotNull
+    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
+            nullable = false,
+            insertable = false,
+            updatable = false,
+            length = COLUMN_LENGTH_UNIT_MEASURE_CODE
+    )
+    private String unitMeasureCode;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Column(name = COLUMN_NAME_MODIFIED_DATE,
+            nullable = false,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime modifiedDate;
+}
+

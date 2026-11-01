@@ -1,0 +1,708 @@
+package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
+
+/*-
+ * #%L
+ * mssql-sample-databases-persistence-adventureworks
+ * %%
+ * Copyright (C) 2026 Jinahya, Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * A mapped superclass which holds the mappings of the {@code Sales.vPersonDemographics} view.
+ * <p>
+ * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ */
+@MappedSuperclass
+public abstract class MappedPersonDemographicsView {
+
+    /**
+     * The name of the schema of the view to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_SCHEMA = "Sales";
+
+    /**
+     * The name of the view to which this class maps. The value is {@value}.
+     */
+    public static final String TABLE_NAME = "vPersonDemographics";
+
+    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+
+    /**
+     * The name of the {@code int, NOT NULL} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
+
+    // ------------------------------------------------------------------------------------------------ TotalPurchaseYTD
+
+    /**
+     * The name of the {@code money} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_TOTAL_PURCHASE_YTD = "TotalPurchaseYTD";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_PURCHASE_YTD} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD = "totalPurchaseYtd";
+
+    // ----------------------------------------------------------------------------------------------- DateFirstPurchase
+
+    /**
+     * The name of the {@code datetime} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_DATE_FIRST_PURCHASE = "DateFirstPurchase";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DATE_FIRST_PURCHASE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_DATE_FIRST_PURCHASE = "dateFirstPurchase";
+
+    // ------------------------------------------------------------------------------------------------------- BirthDate
+
+    /**
+     * The name of the {@code datetime} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_BIRTH_DATE = "BirthDate";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BIRTH_DATE} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_BIRTH_DATE = "birthDate";
+
+    // --------------------------------------------------------------------------------------------------- MaritalStatus
+
+    /**
+     * The name of the {@code nvarchar(1)} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_MARITAL_STATUS = "MaritalStatus";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_MARITAL_STATUS} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_MARITAL_STATUS = 1;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MARITAL_STATUS} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_MARITAL_STATUS = "maritalStatus";
+
+    // ---------------------------------------------------------------------------------------------------- YearlyIncome
+
+    /**
+     * The name of the {@code nvarchar(30)} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_YEARLY_INCOME = "YearlyIncome";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_YEARLY_INCOME} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_YEARLY_INCOME = 30;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_YEARLY_INCOME} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_YEARLY_INCOME = "yearlyIncome";
+
+    // ---------------------------------------------------------------------------------------------------------- Gender
+
+    /**
+     * The name of the {@code nvarchar(1)} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_GENDER = "Gender";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_GENDER} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_GENDER = 1;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_GENDER} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_GENDER = "gender";
+
+    // --------------------------------------------------------------------------------------------------- TotalChildren
+
+    /**
+     * The name of the {@code int} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_TOTAL_CHILDREN = "TotalChildren";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_CHILDREN} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_TOTAL_CHILDREN = "totalChildren";
+
+    // -------------------------------------------------------------------------------------------- NumberChildrenAtHome
+
+    /**
+     * The name of the {@code int} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_NUMBER_CHILDREN_AT_HOME = "NumberChildrenAtHome";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_CHILDREN_AT_HOME} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME = "numberChildrenAtHome";
+
+    // ------------------------------------------------------------------------------------------------------- Education
+
+    /**
+     * The name of the {@code nvarchar(30)} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_EDUCATION = "Education";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_EDUCATION} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_EDUCATION = 30;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDUCATION} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_EDUCATION = "education";
+
+    // ------------------------------------------------------------------------------------------------------ Occupation
+
+    /**
+     * The name of the {@code nvarchar(30)} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_OCCUPATION = "Occupation";
+
+    /**
+     * The length of the {@value #COLUMN_NAME_OCCUPATION} column. The value is {@value}.
+     */
+    public static final int COLUMN_LENGTH_OCCUPATION = 30;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_OCCUPATION} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_OCCUPATION = "occupation";
+
+    // --------------------------------------------------------------------------------------------------- HomeOwnerFlag
+
+    /**
+     * The name of the {@code bit} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_HOME_OWNER_FLAG = "HomeOwnerFlag";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_HOME_OWNER_FLAG} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_HOME_OWNER_FLAG = "homeOwnerFlag";
+
+    // ------------------------------------------------------------------------------------------------- NumberCarsOwned
+
+    /**
+     * The name of the {@code int} column. The value is {@value}.
+     */
+    public static final String COLUMN_NAME_NUMBER_CARS_OWNED = "NumberCarsOwned";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_CARS_OWNED} column. The value is
+     * {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_NUMBER_CARS_OWNED = "numberCarsOwned";
+
+    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+
+    /**
+     * Creates a new instance.
+     */
+    protected MappedPersonDemographicsView() {
+        super();
+    }
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+
+    @Override
+    public String toString() {
+        return super.toString() + "{"
+               + "businessEntityId=" + businessEntityId
+               + ",totalPurchaseYtd=" + totalPurchaseYtd
+               + ",dateFirstPurchase=" + dateFirstPurchase
+               + ",birthDate=" + birthDate
+               + ",maritalStatus=" + maritalStatus
+               + ",yearlyIncome=" + yearlyIncome
+               + ",gender=" + gender
+               + ",totalChildren=" + totalChildren
+               + ",numberChildrenAtHome=" + numberChildrenAtHome
+               + ",education=" + education
+               + ",occupation=" + occupation
+               + ",homeOwnerFlag=" + homeOwnerFlag
+               + ",numberCarsOwned=" + numberCarsOwned
+               + "}";
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param obj {@inheritDoc}
+     * @return {@inheritDoc}
+     * @implSpec Equality is by the identifier alone.
+     */
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MappedPersonDemographicsView that)) {
+            return false;
+        }
+        return Objects.equals(businessEntityId, that.businessEntityId);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     */
+    @Override
+    public final int hashCode() {
+        return Objects.hash(businessEntityId);
+    }
+
+    // ------------------------------------------------------------------------------------------------ businessEntityId
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     */
+    @Nonnull
+    public Integer getBusinessEntityId() {
+        return businessEntityId;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     *
+     * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     */
+    protected void setBusinessEntityId(@Nonnull final Integer businessEntityId) {
+        this.businessEntityId = businessEntityId;
+    }
+
+    // ------------------------------------------------------------------------------------------------ totalPurchaseYtd
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute.
+     */
+    @Nullable
+    public BigDecimal getTotalPurchaseYtd() {
+        return totalPurchaseYtd;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute with the specified value.
+     *
+     * @param totalPurchaseYtd new value for {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute.
+     */
+    protected void setTotalPurchaseYtd(@Nullable final BigDecimal totalPurchaseYtd) {
+        this.totalPurchaseYtd = totalPurchaseYtd;
+    }
+
+    // ----------------------------------------------------------------------------------------------- dateFirstPurchase
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute.
+     */
+    @Nullable
+    public LocalDateTime getDateFirstPurchase() {
+        return dateFirstPurchase;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute with the specified value.
+     *
+     * @param dateFirstPurchase new value for {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute.
+     */
+    protected void setDateFirstPurchase(@Nullable final LocalDateTime dateFirstPurchase) {
+        this.dateFirstPurchase = dateFirstPurchase;
+    }
+
+    // ------------------------------------------------------------------------------------------------------- birthDate
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
+     */
+    @Nullable
+    public LocalDateTime getBirthDate() {
+        return birthDate;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute with the specified value.
+     *
+     * @param birthDate new value for {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
+     */
+    protected void setBirthDate(@Nullable final LocalDateTime birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    // --------------------------------------------------------------------------------------------------- maritalStatus
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
+     */
+    @Nullable
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute with the specified value.
+     *
+     * @param maritalStatus new value for {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
+     */
+    protected void setMaritalStatus(@Nullable final String maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    // ---------------------------------------------------------------------------------------------------- yearlyIncome
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute.
+     */
+    @Nullable
+    public String getYearlyIncome() {
+        return yearlyIncome;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute with the specified value.
+     *
+     * @param yearlyIncome new value for {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute.
+     */
+    protected void setYearlyIncome(@Nullable final String yearlyIncome) {
+        this.yearlyIncome = yearlyIncome;
+    }
+
+    // ---------------------------------------------------------------------------------------------------------- gender
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_GENDER} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_GENDER} attribute.
+     */
+    @Nullable
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_GENDER} attribute with the specified value.
+     *
+     * @param gender new value for {@value #ATTRIBUTE_NAME_GENDER} attribute.
+     */
+    protected void setGender(@Nullable final String gender) {
+        this.gender = gender;
+    }
+
+    // --------------------------------------------------------------------------------------------------- totalChildren
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute.
+     */
+    @Nullable
+    public Integer getTotalChildren() {
+        return totalChildren;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute with the specified value.
+     *
+     * @param totalChildren new value for {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute.
+     */
+    protected void setTotalChildren(@Nullable final Integer totalChildren) {
+        this.totalChildren = totalChildren;
+    }
+
+    // -------------------------------------------------------------------------------------------- numberChildrenAtHome
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute.
+     */
+    @Nullable
+    public Integer getNumberChildrenAtHome() {
+        return numberChildrenAtHome;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute with the specified value.
+     *
+     * @param numberChildrenAtHome new value for {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute.
+     */
+    protected void setNumberChildrenAtHome(@Nullable final Integer numberChildrenAtHome) {
+        this.numberChildrenAtHome = numberChildrenAtHome;
+    }
+
+    // ------------------------------------------------------------------------------------------------------- education
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_EDUCATION} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_EDUCATION} attribute.
+     */
+    @Nullable
+    public String getEducation() {
+        return education;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDUCATION} attribute with the specified value.
+     *
+     * @param education new value for {@value #ATTRIBUTE_NAME_EDUCATION} attribute.
+     */
+    protected void setEducation(@Nullable final String education) {
+        this.education = education;
+    }
+
+    // ------------------------------------------------------------------------------------------------------ occupation
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_OCCUPATION} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_OCCUPATION} attribute.
+     */
+    @Nullable
+    public String getOccupation() {
+        return occupation;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_OCCUPATION} attribute with the specified value.
+     *
+     * @param occupation new value for {@value #ATTRIBUTE_NAME_OCCUPATION} attribute.
+     */
+    protected void setOccupation(@Nullable final String occupation) {
+        this.occupation = occupation;
+    }
+
+    // --------------------------------------------------------------------------------------------------- homeOwnerFlag
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute.
+     */
+    @Nullable
+    public Boolean getHomeOwnerFlag() {
+        return homeOwnerFlag;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute with the specified value.
+     *
+     * @param homeOwnerFlag new value for {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute.
+     */
+    protected void setHomeOwnerFlag(@Nullable final Boolean homeOwnerFlag) {
+        this.homeOwnerFlag = homeOwnerFlag;
+    }
+
+    // ------------------------------------------------------------------------------------------------- numberCarsOwned
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute.
+     */
+    @Nullable
+    public Integer getNumberCarsOwned() {
+        return numberCarsOwned;
+    }
+
+    /**
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute with the specified value.
+     *
+     * @param numberCarsOwned new value for {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute.
+     */
+    protected void setNumberCarsOwned(@Nullable final Integer numberCarsOwned) {
+        this.numberCarsOwned = numberCarsOwned;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nonnull
+    @NotNull
+    @Id
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+            nullable = false,
+            insertable = true,
+            updatable = false
+    )
+    private Integer businessEntityId;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_TOTAL_PURCHASE_YTD,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private BigDecimal totalPurchaseYtd;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_DATE_FIRST_PURCHASE,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime dateFirstPurchase;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_BIRTH_DATE,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private LocalDateTime birthDate;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Size(max = COLUMN_LENGTH_MARITAL_STATUS)
+    @Column(name = COLUMN_NAME_MARITAL_STATUS,
+            nullable = true,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_MARITAL_STATUS
+    )
+    private String maritalStatus;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Size(max = COLUMN_LENGTH_YEARLY_INCOME)
+    @Column(name = COLUMN_NAME_YEARLY_INCOME,
+            nullable = true,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_YEARLY_INCOME
+    )
+    private String yearlyIncome;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Size(max = COLUMN_LENGTH_GENDER)
+    @Column(name = COLUMN_NAME_GENDER,
+            nullable = true,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_GENDER
+    )
+    private String gender;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_TOTAL_CHILDREN,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private Integer totalChildren;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_NUMBER_CHILDREN_AT_HOME,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private Integer numberChildrenAtHome;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Size(max = COLUMN_LENGTH_EDUCATION)
+    @Column(name = COLUMN_NAME_EDUCATION,
+            nullable = true,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_EDUCATION
+    )
+    private String education;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Size(max = COLUMN_LENGTH_OCCUPATION)
+    @Column(name = COLUMN_NAME_OCCUPATION,
+            nullable = true,
+            insertable = true,
+            updatable = true,
+            length = COLUMN_LENGTH_OCCUPATION
+    )
+    private String occupation;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_HOME_OWNER_FLAG,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private Boolean homeOwnerFlag;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Nullable
+    @Column(name = COLUMN_NAME_NUMBER_CARS_OWNED,
+            nullable = true,
+            insertable = true,
+            updatable = true
+    )
+    private Integer numberCarsOwned;
+}
+

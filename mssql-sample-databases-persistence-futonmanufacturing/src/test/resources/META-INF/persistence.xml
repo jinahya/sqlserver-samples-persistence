@@ -29,6 +29,57 @@
   <persistence-unit name="futonmanufacturing-it" transaction-type="RESOURCE_LOCAL">
     <description>Persistence Unit for FutonManufacturing on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped.UuidStringAttributeConverter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.BillOfMaterials</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.CostRollUpView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Customer</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.CustomerFulfillmentRateView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Inventory</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.InventoryTransaction</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.InventoryTurnoverView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.InventoryValuationView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Item</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ItemType</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PriceList</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PriceListDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ProductionCompletion</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ProductionOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ProductionOrderMaterial</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Promotion</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PurchaseOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PurchaseOrderDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PurchaseOrderStatusView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.QualityInspection</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ReturnReason</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesByTerritoryView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesChannel</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesChannelProfitabilityView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesCustomerAnalysisView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesCustomerLifetimeValueView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesCustomerSegmentationView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesOrderBacklogView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesOrderDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesProductPerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesQuote</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesQuoteConversionView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesQuoteDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesRep</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesRepPerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesReturn</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesReturnDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesReturnsAnalysisView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesStorePerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesTerritory</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Store</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Supplier</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SupplierItem</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SupplierPerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.TransactionType</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.UnitOfMeasure</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Warehouse</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.WorkCenter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.WorkCenterCapacityView</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>
