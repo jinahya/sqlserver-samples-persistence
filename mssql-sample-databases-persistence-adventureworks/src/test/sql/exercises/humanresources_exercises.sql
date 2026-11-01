@@ -27,7 +27,7 @@
 --
 
 
--- ---------------------------------------------------------------------------------------------------------- AW-HR-B-01
+-- ---------------------------------------------------------------------------------------------- AW_HUMANRESOURCES_B_01
 -- HR plans next year's budget. Show how many employees each department has now, the largest first.
 SELECT d.Name, d.GroupName, COUNT(*) AS Employees
 FROM HumanResources.EmployeeDepartmentHistory h
@@ -38,7 +38,7 @@ ORDER BY Employees DESC, d.Name
 ;
 GO
 
--- ---------------------------------------------------------------------------------------------------------- AW-HR-B-02
+-- ---------------------------------------------------------------------------------------------- AW_HUMANRESOURCES_B_02
 -- HR draws the organization chart. Show how many employees are at each level of the organization.
 SELECT e.OrganizationLevel, COUNT(*) AS Employees
 FROM HumanResources.Employee e
@@ -47,10 +47,10 @@ ORDER BY e.OrganizationLevel
 ;
 GO
 
--- ---------------------------------------------------------------------------------------------------------- AW-HR-I-03
+-- ---------------------------------------------------------------------------------------------- AW_HUMANRESOURCES_I_01
 -- Payroll reviews the highest pay. Show the ten employees with the highest current hourly rate, the rate of each one's
 -- latest change.
-SELECT TOP (10) p.FirstName, p.LastName, e.JobTitle, ph.Rate, CAST(ph.RateChangeDate AS date) AS RateChangeDate
+SELECT TOP(10) p.FirstName, p.LastName, e.JobTitle, ph.Rate, CAST(ph.RateChangeDate AS date) AS RateChangeDate
 FROM HumanResources.EmployeePayHistory ph
          JOIN HumanResources.Employee e ON e.BusinessEntityID = ph.BusinessEntityID
          JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
@@ -61,9 +61,10 @@ ORDER BY ph.Rate DESC, e.BusinessEntityID
 ;
 GO
 
--- ---------------------------------------------------------------------------------------------------------- AW-HR-I-04
+-- ---------------------------------------------------------------------------------------------- AW_HUMANRESOURCES_I_02
 -- A manager asks who reports to them directly. Show the direct reports of an employee, by the organization chart.
-DECLARE @managerId int = 25;
+DECLARE
+@managerId int = 25;
 SELECT e.OrganizationNode.ToString() AS Node, e.JobTitle, p.FirstName, p.LastName
 FROM HumanResources.Employee e
          JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
@@ -74,9 +75,10 @@ ORDER BY e.OrganizationNode
 ;
 GO
 
--- ---------------------------------------------------------------------------------------------------------- AW-HR-A-05
+-- ---------------------------------------------------------------------------------------------- AW_HUMANRESOURCES_A_01
 -- An employee asks who is above them. Show the chain of managers of an employee, from the top down to the employee.
-DECLARE @employeeId int = 100;
+DECLARE
+@employeeId int = 100;
 SELECT m.OrganizationNode.ToString() AS Node, m.OrganizationLevel, m.JobTitle, p.FirstName, p.LastName
 FROM HumanResources.Employee e
          JOIN HumanResources.Employee m ON e.OrganizationNode.IsDescendantOf(m.OrganizationNode) = 1

@@ -30,49 +30,50 @@
     <description>Persistence Unit for WideWorldImporters on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>
     <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.mapped.UuidStringAttributeConverter</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.BuyingGroup</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.City</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.ColdRoomTemperature</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Color</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Country</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Customer</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.CustomerCategory</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.CustomerTransaction</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.DeliveryMethod</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Invoice</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.InvoiceLine</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Order</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.OrderLine</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.PackageType</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.PaymentMethod</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Person</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.PurchaseOrder</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.PurchaseOrderLine</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.SpecialDeal</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.StateProvince</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.StockGroup</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.StockItem</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.StockItemHolding</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.StockItemStockGroup</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.StockItemTransaction</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.Supplier</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.SupplierCategory</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.SupplierTransaction</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.SystemParameter</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.TransactionType</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.VehicleTemperature</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.WebsiteCustomer</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.WebsiteSupplier</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.WebsiteVehicleTemperature</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.BuyingGroup</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.City</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.ColdRoomTemperature</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.Color</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.Country</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Customer</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.CustomerCategory</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.CustomerTransaction</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.DeliveryMethod</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Invoice</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.InvoiceLine</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Order</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.OrderLine</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.PackageType</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.PaymentMethod</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.Person</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrderLine</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.SpecialDeal</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.StateProvince</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockGroup</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItem</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemHolding</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemStockGroup</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemTransaction</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.Supplier</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.SupplierCategory</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.SupplierTransaction</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.SystemParameter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.TransactionType</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.VehicleTemperature</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website.Customer</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website.Supplier</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website.VehicleTemperature</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <!-- the database from compose.yaml; see compose.sh -->
-      <property name="jakarta.persistence.jdbc.url" value="${mssql.url};databaseName=WideWorldImporters"/>
-      <property name="jakarta.persistence.jdbc.user" value="${mssql.user}"/>
-      <property name="jakarta.persistence.jdbc.password" value="${mssql.password}"/>
+      <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=WideWorldImporters"/>
+      <property name="jakarta.persistence.jdbc.user" value="sa"/>
+      <property name="jakarta.persistence.jdbc.password" value="Passw0rd!"/>
       <!-- /////////////////////////////////////////////////////////////////////////////////////////////// hibernate -->
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.hbm2ddl.auto" value="none"/>

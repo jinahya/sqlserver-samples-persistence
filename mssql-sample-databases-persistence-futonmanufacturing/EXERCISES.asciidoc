@@ -13,8 +13,9 @@ parameters. `FutonManufacturing_Exercises_PersistenceIT` answers each with the q
 API, as a nested class named after the id, or with a native query where the query language cannot, and checks the
 rows the SQL gives; it passes with both providers.
 
-An id is `FUTON-<section>-<level>-<number>`; the level is B (Basic), I (Intermediate) or A (Advanced). An id is never
-reused or renumbered.
+An id is `FUTON_DBO_<TIER>_<NN>`, after `dbo`, the only schema; the tier is B (Basic), I (Intermediate) or A
+(Advanced), and the number is within that tier. `EXERCISES.yaml` registers every id; an id is never reused or
+renumbered.
 
 The outputs were taken on 2026-11-01 from `sqlcmd -W -s '|'`, aligned with `column -t -s '|'`.
 
@@ -22,8 +23,8 @@ The outputs were taken on 2026-11-01 from `sqlcmd -W -s '|'`, aligned with `colu
 
 Reads `BillOfMaterials`, `Items`, `ItemType`, `UnitOfMeasure`, `Inventory`, `vw_WhereUsed`.
 
-[[FUTON-BOM-B-01]]
-=== FUTON-BOM-B-01: the direct components of a finished futon
+[[FUTON_DBO_B_01]]
+=== FUTON_DBO_B_01: the direct components of a finished futon
 
 The direct components of a finished futon, FG-FUT-003, with the quantity, the unit and the scrap rate of each.
 
@@ -40,7 +41,7 @@ ORDER BY c.ItemCode
 ;
 ----
 
-.`bom_exercises.sql`, FUTON-BOM-B-01, run on 2026-11-01
+.`bom_exercises.sql`, FUTON_DBO_B_01, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -54,14 +55,14 @@ COMP-PIL-002  Premium Memory Foam Pillow     2.0000    EA        1.00
 [source,jpaql]
 ----
 SELECT b
-FROM BillOfMaterials b
+FROM DboBillOfMaterials b
 WHERE b.parentItem.itemCode = :itemCode
   AND b.isActive = TRUE
 ORDER BY b.componentItem.itemCode
 ----
 
-[[FUTON-BOM-B-02]]
-=== FUTON-BOM-B-02: the raw materials no item uses
+[[FUTON_DBO_B_02]]
+=== FUTON_DBO_B_02: the raw materials no item uses
 
 The raw materials which no item uses: bought, and stocked, for nothing.
 
@@ -79,7 +80,7 @@ ORDER BY i.ItemCode
 ;
 ----
 
-.`bom_exercises.sql`, FUTON-BOM-B-02, run on 2026-11-01
+.`bom_exercises.sql`, FUTON_DBO_B_02, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -96,17 +97,17 @@ materials are found with `NOT EXISTS`, which both providers run.
 [source,jpaql]
 ----
 SELECT i
-FROM Item i
+FROM DboItem i
 WHERE i.itemType.typeCode = :typeCode
   AND NOT EXISTS (SELECT b
-                  FROM BillOfMaterials b
+                  FROM DboBillOfMaterials b
                   WHERE b.componentItem = i
                     AND b.isActive = TRUE)
 ORDER BY i.itemCode
 ----
 
-[[FUTON-BOM-I-01]]
-=== FUTON-BOM-I-01: the raw materials which four or more items use
+[[FUTON_DBO_I_01]]
+=== FUTON_DBO_I_01: the raw materials which four or more items use
 
 The raw materials which four or more items use directly, with the number of those items, the most used first.
 
@@ -124,7 +125,7 @@ ORDER BY Parents DESC, c.ItemCode
 ;
 ----
 
-.`bom_exercises.sql`, FUTON-BOM-I-01, run on 2026-11-01
+.`bom_exercises.sql`, FUTON_DBO_I_01, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -143,7 +144,7 @@ The Criteria API answer joins `b.componentItem` and groups by it; `HAVING` takes
 [source,jpaql]
 ----
 SELECT c, COUNT(b) AS parents
-FROM BillOfMaterials b
+FROM DboBillOfMaterials b
      JOIN b.componentItem c
 WHERE c.itemType.typeCode = :typeCode
   AND b.isActive = TRUE
@@ -152,8 +153,8 @@ HAVING COUNT(b) >= 4
 ORDER BY parents DESC, c.itemCode
 ----
 
-[[FUTON-BOM-I-02]]
-=== FUTON-BOM-I-02: the material cost and the margin of each finished futon
+[[FUTON_DBO_I_02]]
+=== FUTON_DBO_I_02: the material cost and the margin of each finished futon
 
 The material cost of each finished futon, from the standard costs of its direct components and their scrap rates, and
 what is left of its list price.
@@ -176,7 +177,7 @@ ORDER BY p.ItemCode
 ;
 ----
 
-.`bom_exercises.sql`, FUTON-BOM-I-02, run on 2026-11-01
+.`bom_exercises.sql`, FUTON_DBO_I_02, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -195,7 +196,7 @@ FG-FUT-006  Queen Luxury Futon - Linen Beige      724.5918      899.9900   175.3
 SELECT p,
        SUM(b.quantity * (1 + b.scrapRate / 100) * c.standardCost),
        p.listPrice - SUM(b.quantity * (1 + b.scrapRate / 100) * c.standardCost)
-FROM BillOfMaterials b
+FROM DboBillOfMaterials b
      JOIN b.parentItem p
      JOIN b.componentItem c
 WHERE p.itemType.typeCode = :typeCode
@@ -204,8 +205,8 @@ GROUP BY p
 ORDER BY p.itemCode
 ----
 
-[[FUTON-BOM-A-01]]
-=== FUTON-BOM-A-01: the raw materials ten futons need, through every level
+[[FUTON_DBO_A_01]]
+=== FUTON_DBO_A_01: the raw materials ten futons need, through every level
 
 The raw materials which ten of FG-FUT-003 need, through every level of the bill of materials, with the scrap of each
 level, beside what is available of each.
@@ -241,7 +242,7 @@ ORDER BY i.ItemCode
 ;
 ----
 
-.`bom_exercises.sql`, FUTON-BOM-A-01, run on 2026-11-01
+.`bom_exercises.sql`, FUTON_DBO_A_01, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -266,13 +267,13 @@ query.
 [source,jpaql]
 ----
 SELECT b
-FROM BillOfMaterials b
+FROM DboBillOfMaterials b
 WHERE b.parentItemId IN :parentItemIds
   AND b.isActive = TRUE
 ----
 
-[[FUTON-BOM-A-02]]
-=== FUTON-BOM-A-02: the finished goods which use a raw material, at any level
+[[FUTON_DBO_A_02]]
+=== FUTON_DBO_A_02: the finished goods which use a raw material, at any level
 
 The finished goods which use RM-FILL-001, at any level, a row per path, with the quantity along the path.
 
@@ -305,7 +306,7 @@ ORDER BY i.ItemCode, w.UsagePath
 ;
 ----
 
-.`bom_exercises.sql`, FUTON-BOM-A-02, run on 2026-11-01
+.`bom_exercises.sql`, FUTON_DBO_A_02, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -335,8 +336,8 @@ ORDER BY ParentItemCode, UsagePath
 
 Reads `Inventory`, `Items`, `ItemType`, `Warehouse`, `BillOfMaterials`.
 
-[[FUTON-INVENTORY-B-01]]
-=== FUTON-INVENTORY-B-01: the finished goods in the main warehouse, the fewest first
+[[FUTON_DBO_B_03]]
+=== FUTON_DBO_B_03: the finished goods in the main warehouse, the fewest first
 
 The finished goods in the main warehouse, WH-MAIN, the fewest available first.
 
@@ -353,7 +354,7 @@ ORDER BY v.QuantityAvailable, i.ItemCode
 ;
 ----
 
-.`inventory_exercises.sql`, FUTON-INVENTORY-B-01, run on 2026-11-01
+.`inventory_exercises.sql`, FUTON_DBO_B_03, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -370,14 +371,14 @@ FG-FUT-001  Twin Economy Futon - Natural Canvas   18.00              10.00
 [source,jpaql]
 ----
 SELECT v
-FROM Inventory v
+FROM DboInventory v
 WHERE v.item.itemType.typeCode = :typeCode
   AND v.warehouse.warehouseCode = :warehouseCode
 ORDER BY v.quantityAvailable, v.item.itemCode
 ----
 
-[[FUTON-INVENTORY-I-01]]
-=== FUTON-INVENTORY-I-01: the five stocks nearest to their reorder points
+[[FUTON_DBO_I_03]]
+=== FUTON_DBO_I_03: the five stocks nearest to their reorder points
 
 The five stocks nearest to their reorder points: the ratio of the quantity available to the reorder point, the smallest
 first.
@@ -396,7 +397,7 @@ ORDER BY v.QuantityAvailable / i.ReorderPoint, i.ItemCode
 ;
 ----
 
-.`inventory_exercises.sql`, FUTON-INVENTORY-I-01, run on 2026-11-01
+.`inventory_exercises.sql`, FUTON_DBO_I_03, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -412,14 +413,14 @@ RM-FIN-002    Wood Stain - Natural Oak (Quart)      50.00              30.00    
 [source,jpaql]
 ----
 SELECT v, v.quantityAvailable / i.reorderPoint AS ratio
-FROM Inventory v
+FROM DboInventory v
      JOIN v.item i
 WHERE i.reorderPoint > 0
 ORDER BY ratio, i.itemCode
 ----
 
-[[FUTON-INVENTORY-A-01]]
-=== FUTON-INVENTORY-A-01: how many of each futon the components in stock can build
+[[FUTON_DBO_A_03]]
+=== FUTON_DBO_A_03: how many of each futon the components in stock can build
 
 How many of each finished futon the components available in WH-MAIN can build: for each component, how many times its
 quantity is available, and the smallest of those.
@@ -440,7 +441,7 @@ ORDER BY Buildable DESC, p.ItemCode
 ;
 ----
 
-.`inventory_exercises.sql`, FUTON-INVENTORY-A-01, run on 2026-11-01
+.`inventory_exercises.sql`, FUTON_DBO_A_03, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -460,9 +461,9 @@ takes `Inventory` as a second root and compares the two in `WHERE`, for EclipseL
 [source,jpaql]
 ----
 SELECT p, MIN(FLOOR(v.quantityAvailable / b.quantity)) AS buildable
-FROM BillOfMaterials b
+FROM DboBillOfMaterials b
      JOIN b.parentItem p
-     JOIN Inventory v ON v.item = b.componentItem
+     JOIN DboInventory v ON v.item = b.componentItem
 WHERE p.itemType.typeCode = :typeCode
   AND b.isActive = TRUE
   AND v.warehouse.warehouseCode = :warehouseCode
@@ -474,8 +475,8 @@ ORDER BY buildable DESC, p.itemCode
 
 Reads `Supplier`, `SupplierItem`, `Items`, `PurchaseOrder`, `QualityInspection`.
 
-[[FUTON-PURCHASING-B-01]]
-=== FUTON-PURCHASING-B-01: the items a supplier supplies, its price beside the standard cost
+[[FUTON_DBO_B_04]]
+=== FUTON_DBO_B_04: the items a supplier supplies, its price beside the standard cost
 
 The items a supplier, SUP-002, supplies, with its price beside the item's standard cost.
 
@@ -490,7 +491,7 @@ ORDER BY i.ItemCode
 ;
 ----
 
-.`purchasing_exercises.sql`, FUTON-PURCHASING-B-01, run on 2026-11-01
+.`purchasing_exercises.sql`, FUTON_DBO_B_04, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -506,13 +507,13 @@ RM-FILL-005  Down Alternative Fill         4.5000     5.0000        350.00      
 [source,jpaql]
 ----
 SELECT si
-FROM SupplierItem si
+FROM DboSupplierItem si
 WHERE si.supplier.supplierCode = :supplierCode
 ORDER BY si.item.itemCode
 ----
 
-[[FUTON-PURCHASING-I-01]]
-=== FUTON-PURCHASING-I-01: the share rejected on receipt, for each supplier
+[[FUTON_DBO_I_04]]
+=== FUTON_DBO_I_04: the share rejected on receipt, for each supplier
 
 The share of what was inspected on receipt that was rejected, for each supplier, the worst first; an inspection names
 its purchase order by number, not by a foreign key.
@@ -532,7 +533,7 @@ ORDER BY RejectedPercent DESC, s.SupplierCode
 ;
 ----
 
-.`purchasing_exercises.sql`, FUTON-PURCHASING-I-01, run on 2026-11-01
+.`purchasing_exercises.sql`, FUTON_DBO_I_04, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -554,9 +555,9 @@ SELECT s,
        SUM(q.quantityInspected),
        SUM(q.quantityRejected),
        SUM(q.quantityRejected) * 100 / SUM(q.quantityInspected) AS rejectedPercent
-FROM PurchaseOrder po
+FROM DboPurchaseOrder po
      JOIN po.supplier s
-     JOIN QualityInspection q
+     JOIN DboQualityInspection q
           ON q.referenceType = 'PO' AND q.referenceNumber = po.poNumber
 GROUP BY s
 ORDER BY rejectedPercent DESC, s.supplierCode
@@ -566,8 +567,8 @@ ORDER BY rejectedPercent DESC, s.supplierCode
 
 Reads `SalesOrder`, `SalesOrderDetail`, `Customer`, `SalesChannel`.
 
-[[FUTON-SALES-B-01]]
-=== FUTON-SALES-B-01: the orders not delivered yet
+[[FUTON_DBO_B_05]]
+=== FUTON_DBO_B_05: the orders not delivered yet
 
 The orders not delivered yet, the earliest requested delivery date first.
 
@@ -581,7 +582,7 @@ ORDER BY so.RequestedDeliveryDate, so.OrderNumber
 ;
 ----
 
-.`sales_exercises.sql`, FUTON-SALES-B-01, run on 2026-11-01
+.`sales_exercises.sql`, FUTON_DBO_B_05, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -598,13 +599,13 @@ SO-2024-1107  Budget Furniture Outlet     Confirmed     2024-11-25             8
 [source,jpaql]
 ----
 SELECT so
-FROM SalesOrder so
+FROM DboSalesOrder so
 WHERE so.status <> :status
 ORDER BY so.requestedDeliveryDate, so.orderNumber
 ----
 
-[[FUTON-SALES-I-01]]
-=== FUTON-SALES-I-01: the orders and the net amount of each sales channel
+[[FUTON_DBO_I_05]]
+=== FUTON_DBO_I_05: the orders and the net amount of each sales channel
 
 The number of orders and the net amount of each sales channel, the largest first.
 
@@ -618,7 +619,7 @@ ORDER BY NetAmount DESC
 ;
 ----
 
-.`sales_exercises.sql`, FUTON-SALES-I-01, run on 2026-11-01
+.`sales_exercises.sql`, FUTON_DBO_I_05, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -632,14 +633,14 @@ ONLINE       Online/E-Commerce  4       4913.93
 [source,jpaql]
 ----
 SELECT ch, COUNT(so), SUM(so.netAmount) AS netAmount
-FROM SalesOrder so
+FROM DboSalesOrder so
      JOIN so.salesChannel ch
 GROUP BY ch
 ORDER BY netAmount DESC
 ----
 
-[[FUTON-SALES-I-02]]
-=== FUTON-SALES-I-02: the three futons sold the most
+[[FUTON_DBO_I_06]]
+=== FUTON_DBO_I_06: the three futons sold the most
 
 The three futons sold the most, by quantity, with the net amount of their lines.
 
@@ -653,7 +654,7 @@ ORDER BY Quantity DESC, i.ItemCode
 ;
 ----
 
-.`sales_exercises.sql`, FUTON-SALES-I-02, run on 2026-11-01
+.`sales_exercises.sql`, FUTON_DBO_I_06, run on 2026-11-01
 [%collapsible]
 ====
 ....
@@ -667,14 +668,14 @@ FG-FUT-005  Full Comfort Futon - Chocolate Suede  18.00     8099.838000
 [source,jpaql]
 ----
 SELECT i, SUM(d.quantity) AS quantity, SUM(d.netAmount)
-FROM SalesOrderDetail d
+FROM DboSalesOrderDetail d
      JOIN d.item i
 GROUP BY i
 ORDER BY quantity DESC, i.itemCode
 ----
 
-[[FUTON-SALES-A-01]]
-=== FUTON-SALES-A-01: the running total of each wholesale customer
+[[FUTON_DBO_A_04]]
+=== FUTON_DBO_A_04: the running total of each wholesale customer
 
 The orders of the wholesale customers, each with the running total of its customer's net amount, in the order of their
 dates.
@@ -695,7 +696,7 @@ ORDER BY c.CustomerCode, so.OrderDate, so.SalesOrderID
 ;
 ----
 
-.`sales_exercises.sql`, FUTON-SALES-A-01, run on 2026-11-01
+.`sales_exercises.sql`, FUTON_DBO_A_04, run on 2026-11-01
 [%collapsible]
 ====
 ....

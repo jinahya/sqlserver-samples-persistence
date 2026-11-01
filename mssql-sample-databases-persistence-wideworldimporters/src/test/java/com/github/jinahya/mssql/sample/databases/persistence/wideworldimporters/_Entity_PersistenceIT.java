@@ -34,8 +34,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 /**
- * The integration tests of an entity, against the {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on
- * the database {@code compose.yaml} brings up. Each reads installed rows only, and rolls back.
+ * The integration tests of an entity, against the {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on the
+ * database {@code compose.yaml} brings up. Each reads installed rows only, and rolls back.
  *
  * @param <T> the type of the entity.
  */
@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
         "java:S101", // Class names should comply with a naming convention
         "java:S118"  // Abstract class names should comply with a naming convention
 })
-abstract class _Entity_PersistenceIT<T> {
+public abstract class _Entity_PersistenceIT<T> {
 
     /**
      * The number of installed rows each test reads.

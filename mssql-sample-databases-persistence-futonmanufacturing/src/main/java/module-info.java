@@ -22,19 +22,19 @@
  * Jakarta Persistence mappings for FutonManufacturing, a manufacturing and sales sample database of SQL Server.
  * <p>
  * The module holds mapped superclasses, one per table and view, and an identifier class per composite key, which an
- * application extends with its own entities. The persistence and validation APIs appear in their public signatures,
- * and so do the nullness annotations of {@code jakarta.annotation}, which are not needed at run time.
+ * application extends with its own entities. The persistence and validation APIs appear in their public signatures.
  * <p>
- * The package is opened, not only exported, because a persistence provider and a validation provider reach the mapped
- * superclasses' private fields reflectively.
+ * The packages are opened, not only exported, because a persistence provider and a validation provider reach the
+ * mapped superclasses' private fields reflectively.
  */
 module com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing {
 
-    requires static transitive jakarta.annotation;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
 
     exports com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped;
+    exports com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped.dbo;
 
     opens com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped;
+    opens com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped.dbo;
 }

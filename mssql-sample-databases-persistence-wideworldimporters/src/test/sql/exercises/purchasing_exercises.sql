@@ -26,7 +26,7 @@
 --
 
 
--- ------------------------------------------------------------------------------------------------- WWI-PURCHASING-B-01
+-- ------------------------------------------------------------------------------------------------- WWI_PURCHASING_B_01
 -- The buyer wants the suppliers with their category and payment days, by category and then by name.
 SELECT s.SupplierID, s.SupplierName, sc.SupplierCategoryName, s.PaymentDays
 FROM Purchasing.Suppliers s
@@ -35,7 +35,7 @@ ORDER BY sc.SupplierCategoryName, s.SupplierName
 ;
 
 
--- ------------------------------------------------------------------------------------------------- WWI-PURCHASING-B-02
+-- ------------------------------------------------------------------------------------------------- WWI_PURCHASING_B_02
 -- Accounts payable wants what is still owed to each supplier: the transactions not finalized, their number and the
 -- outstanding balance, the largest first. IsFinalized is a computed column.
 SELECT s.SupplierName, COUNT(*) AS Transactions, SUM(st.OutstandingBalance) AS Outstanding
@@ -47,10 +47,11 @@ ORDER BY Outstanding DESC
 ;
 
 
--- ------------------------------------------------------------------------------------------------- WWI-PURCHASING-I-01
+-- ------------------------------------------------------------------------------------------------- WWI_PURCHASING_I_01
 -- The buyer reviews a year of purchasing: for each supplier, the purchase orders placed in the year and the amount
 -- ordered at the expected prices, the largest amount first.
-DECLARE @from date = '2015-01-01', @to date = '2016-01-01';
+DECLARE
+@from date = '2015-01-01', @to date = '2016-01-01';
 SELECT s.SupplierName,
        COUNT(DISTINCT po.PurchaseOrderID)                     AS Orders,
        SUM(pol.OrderedOuters * pol.ExpectedUnitPricePerOuter) AS Amount

@@ -13,14 +13,25 @@ included. See `README.md` for the type mappings and the identifiers chosen.
 - **Not Hibernate ORM only.** The provider is a property, `persistence-unit.provider`, set by the
   `jakarta-ee-11-hibernate-orm` (default) and `jakarta-ee-11-eclipselink` profiles. Every mapping is plain Jakarta
   Persistence and must work with both; check both before committing.
-- **Main holds mapped superclasses; the entities are test code.** Main is the package `<database>.mapped` alone:
-  `Mapped<Entity>` per table and view, `Mapped<Entity>Id` per composite key (an `@IdClass`), and
-  `UuidStringAttributeConverter`. No association, fetch type, cascade or named query in main.
+- **Main holds mapped superclasses; the entities are test code.** Main is a package per schema,
+  `<database>.mapped.<schema>` (the schema in lower case): `Mapped<Entity>` per table and view and `Mapped<Entity>Id`
+  per composite key (an `@IdClass`). `UuidStringAttributeConverter`, shared by the schemas, is in `<database>.mapped`.
+  No association, fetch type, cascade or named query in main. Each entity, its keyless class and its IT are in
+  `<database>.<schema>`; the test bases and the exercises stay in `<database>`.
+- **Every entity name carries its schema**, with no exception: `@Entity(name = "<Schema><Entity>")`, the schema as
+  the database spells it with its first letter in upper case (`SalesCustomer`, `HumanResourcesEmployee`, `DboItem`).
+  A class is named after its table within its schema, never with a schema prefix; where one class uses two of the
+  same simple name, the second is qualified.
 - **A foreign-key column is read-only in the mapped superclass** unless the column is part of the primary key or of
   another foreign key; then the basic attribute writes it and the association is read-only. A column has exactly one
   writable mapping.
 - **No H2, ITs only.** Each module has one persistence unit, `<database>-it`, on the database `compose.yaml` brings
   up. A test that needs the database is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`).
+- **Exercises are registered.** Each module's `EXERCISES.asciidoc` states every problem, and the `EXERCISES.yaml`
+  beside it registers every id, `<DB>_<SCHEMA>_<TIER>_<NN>` (`AW`, `FUTON`, `WWI`), with its `sql` file and its
+  `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused
+  number of its schema and tier, and a removed one is marked `retired: true`, never reused. The id is the asciidoc
+  anchor and heading prefix, and the marker above the statement in the `.sql` file.
 - **Test bases, one copy per module**: `___Persistence_TestUtils`, `_Entity_PersistenceIT`, `_Keyless_PersistenceIT`.
   A fix to one is carried to the other two.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested

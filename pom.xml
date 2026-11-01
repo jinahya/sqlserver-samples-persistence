@@ -71,10 +71,6 @@
     <metamodel.generator.groupId>org.hibernate.orm</metamodel.generator.groupId>
     <metamodel.generator.artifactId>hibernate-jpamodelgen</metamodel.generator.artifactId>
     <metamodel.generator.version>${version.org.hibernate.orm}</metamodel.generator.version>
-    <!-- the database from compose.yaml; see compose.sh -->
-    <mssql.url>jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true</mssql.url>
-    <mssql.user>sa</mssql.user>
-    <mssql.password>Passw0rd!</mssql.password>
     <!-- the number of failures after which surefire and failsafe stop; -Dtests.skipAfterFailureCount=0 runs them all -->
     <tests.skipAfterFailureCount>1</tests.skipAfterFailureCount>
     <version.maven-failsafe>${version.maven-surefire}</version.maven-failsafe>

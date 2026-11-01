@@ -27,7 +27,7 @@
 --
 
 
--- ------------------------------------------------------------------------------------------------------ FUTON-BOM-B-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_B_01
 -- the direct components of a finished futon, FG-FUT-003, with the quantity, the unit and the scrap rate of each.
 SELECT c.ItemCode, c.ItemName, b.Quantity, u.UnitCode, b.ScrapRate
 FROM BillOfMaterials b
@@ -39,7 +39,7 @@ WHERE p.ItemCode = 'FG-FUT-003'
 ORDER BY c.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------------ FUTON-BOM-B-02
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_B_02
 -- the raw materials which no item uses: bought, and stocked, for nothing.
 SELECT i.ItemCode, i.ItemName
 FROM Items i
@@ -52,7 +52,7 @@ WHERE t.TypeCode = 'RAW'
 ORDER BY i.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------------ FUTON-BOM-I-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_I_01
 -- the raw materials which four or more items use directly, with the number of those items, the most used first.
 SELECT c.ItemCode, c.ItemName, COUNT(*) AS Parents
 FROM BillOfMaterials b
@@ -65,12 +65,12 @@ HAVING COUNT(*) >= 4
 ORDER BY Parents DESC, c.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------------ FUTON-BOM-I-02
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_I_02
 -- the material cost of each finished futon, from the standard costs of its direct components and their scrap rates,
 -- and what is left of its list price.
 SELECT p.ItemCode,
        p.ItemName,
-       CAST(SUM(b.Quantity * (1 + b.ScrapRate / 100) * c.StandardCost) AS DECIMAL(18, 4)) AS MaterialCost,
+       CAST(SUM(b.Quantity * (1 + b.ScrapRate / 100) * c.StandardCost) AS DECIMAL(18, 4))               AS MaterialCost,
        p.ListPrice,
        CAST(p.ListPrice - SUM(b.Quantity * (1 + b.ScrapRate / 100) * c.StandardCost) AS DECIMAL(18, 4)) AS Margin
 FROM BillOfMaterials b
@@ -83,7 +83,7 @@ GROUP BY p.ItemID, p.ItemCode, p.ItemName, p.ListPrice
 ORDER BY p.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------------ FUTON-BOM-A-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_A_01
 -- the raw materials which ten of FG-FUT-003 need, through every level of the bill of materials, with the scrap of
 -- each level, beside what is available of each.
 WITH Explosion AS (SELECT b.ComponentItemID,
@@ -100,7 +100,7 @@ WITH Explosion AS (SELECT b.ComponentItemID,
                    WHERE b.IsActive = 1)
 SELECT i.ItemCode,
        i.ItemName,
-       CAST(SUM(e.Quantity) AS DECIMAL(18, 4)) AS Quantity,
+       CAST(SUM(e.Quantity) AS DECIMAL(18, 4))                                      AS Quantity,
        u.UnitCode,
        (SELECT SUM(v.QuantityAvailable) FROM Inventory v WHERE v.ItemID = i.ItemID) AS Available
 FROM Explosion e
@@ -114,11 +114,11 @@ GROUP BY i.ItemID, i.ItemCode, i.ItemName, u.UnitCode
 ORDER BY i.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------------ FUTON-BOM-A-02
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_A_02
 -- the finished goods which use RM-FILL-001, at any level, a row per path, with the quantity along the path.
 WITH WhereUsed AS (SELECT b.ParentItemID,
-                          CAST(b.Quantity AS DECIMAL(18, 4)) AS Quantity,
-                          1 AS Level,
+                          CAST(b.Quantity AS DECIMAL(18, 4))                           AS Quantity,
+                          1                                                            AS Level,
                           CAST(c.ItemCode + ' used in ' + p.ItemCode AS NVARCHAR(MAX)) AS UsagePath
                    FROM BillOfMaterials b
                             JOIN Items c ON c.ItemID = b.ComponentItemID

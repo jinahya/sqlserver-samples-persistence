@@ -22,19 +22,30 @@
  * Jakarta Persistence mappings for AdventureWorks, the classic OLTP sample database of SQL Server.
  * <p>
  * The module holds mapped superclasses, one per table and view, and an identifier class per composite key, which an
- * application extends with its own entities. The persistence and validation APIs appear in their public signatures,
- * and so do the nullness annotations of {@code jakarta.annotation}, which are not needed at run time.
+ * application extends with its own entities. The persistence and validation APIs appear in their public signatures.
  * <p>
- * The package is opened, not only exported, because a persistence provider and a validation provider reach the mapped
- * superclasses' private fields reflectively.
+ * The packages are opened, not only exported, because a persistence provider and a validation provider reach the
+ * mapped superclasses' private fields reflectively.
  */
 module com.github.jinahya.mssql.sample.databases.persistence.adventureworks {
 
-    requires static transitive jakarta.annotation;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
+    requires java.xml;
 
     exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
+    exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.dbo;
+    exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.humanresources;
+    exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.person;
+    exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production;
+    exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.purchasing;
+    exports com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.sales;
 
     opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped;
+    opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.dbo;
+    opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.humanresources;
+    opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.person;
+    opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production;
+    opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.purchasing;
+    opens com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.sales;
 }

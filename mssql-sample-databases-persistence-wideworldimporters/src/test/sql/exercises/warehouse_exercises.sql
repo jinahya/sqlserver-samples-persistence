@@ -26,7 +26,7 @@
 --
 
 
--- -------------------------------------------------------------------------------------------------- WWI-WAREHOUSE-B-01
+-- -------------------------------------------------------------------------------------------------- WWI_WAREHOUSE_B_01
 -- The warehouse manager wants the stock items whose quantity on hand is below the reorder level, by name.
 SELECT si.StockItemID, si.StockItemName, h.QuantityOnHand, h.ReorderLevel
 FROM Warehouse.StockItemHoldings h
@@ -36,7 +36,7 @@ ORDER BY si.StockItemName
 ;
 
 
--- -------------------------------------------------------------------------------------------------- WWI-WAREHOUSE-B-02
+-- -------------------------------------------------------------------------------------------------- WWI_WAREHOUSE_B_02
 -- The cold room keeps the chiller stock: list those stock items by name, with their supplier and unit price.
 SELECT si.StockItemID, si.StockItemName, s.SupplierName, si.UnitPrice
 FROM Warehouse.StockItems si
@@ -46,7 +46,7 @@ ORDER BY si.StockItemName
 ;
 
 
--- -------------------------------------------------------------------------------------------------- WWI-WAREHOUSE-I-01
+-- -------------------------------------------------------------------------------------------------- WWI_WAREHOUSE_I_01
 -- The catalogue team counts the stock items of each stock group, the largest group first.
 SELECT sg.StockGroupName, COUNT(*) AS StockItems
 FROM Warehouse.StockItemStockGroups sisg
@@ -56,7 +56,7 @@ ORDER BY StockItems DESC, sg.StockGroupName
 ;
 
 
--- -------------------------------------------------------------------------------------------------- WWI-WAREHOUSE-I-02
+-- -------------------------------------------------------------------------------------------------- WWI_WAREHOUSE_I_02
 -- Compliance counts the stock items by country of manufacture, which is in the CustomFields JSON document; JSON_VALUE
 -- is SQL only.
 SELECT JSON_VALUE(CustomFields, '$.CountryOfManufacture') AS CountryOfManufacture, COUNT(*) AS StockItems
@@ -66,11 +66,12 @@ ORDER BY StockItems DESC
 ;
 
 
--- -------------------------------------------------------------------------------------------------- WWI-WAREHOUSE-A-01
+-- -------------------------------------------------------------------------------------------------- WWI_WAREHOUSE_A_01
 -- Quality control checks the cold rooms over a period: for each sensor, the number of readings and the lowest,
 -- highest and average temperature. The readings of the period are former versions of the rows of a system-versioned
 -- table, read with FOR SYSTEM_TIME FROM ... TO, which is SQL only.
-DECLARE @from datetime2 = '2016-05-01', @to datetime2 = '2016-05-02';
+DECLARE
+@from datetime2 = '2016-05-01', @to datetime2 = '2016-05-02';
 SELECT ColdRoomSensorNumber,
        COUNT(*)                                 AS Readings,
        MIN(Temperature)                         AS Lowest,

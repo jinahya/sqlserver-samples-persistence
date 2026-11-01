@@ -20,6 +20,28 @@ package com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.BillOfMaterials;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.BillOfMaterials_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Inventory;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Inventory_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Item;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.ItemType_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Item_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PurchaseOrder;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PurchaseOrder_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.QualityInspection;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.QualityInspection_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesChannel;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrder;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrderDetail;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrderDetail_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrder_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Supplier;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SupplierItem;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SupplierItem_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Supplier_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Warehouse_;
+import com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.WhereUsedView;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -58,9 +80,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
 
     // ------------------------------------------------------------------------------------------------------------ BOM
 
-    @DisplayName("FUTON-BOM-B-01: the direct components of FG-FUT-003")
+    @DisplayName("FUTON_DBO_B_01: the direct components of FG-FUT-003")
     @Nested
-    class FUTON_BOM_B_01_Test {
+    class FUTON_DBO_B_01_Test {
 
         private void verify(final List<BillOfMaterials> list) {
             assertThat(list).extracting(b -> b.getComponentItem().getItemCode())
@@ -73,11 +95,12 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT b
-                                FROM BillOfMaterials b
-                                WHERE b.parentItem.itemCode = :itemCode
-                                  AND b.isActive = TRUE
-                                ORDER BY b.componentItem.itemCode""", BillOfMaterials.class)
+                                                                   SELECT b
+                                                                   FROM DboBillOfMaterials b
+                                                                   WHERE b.parentItem.itemCode = :itemCode
+                                                                     AND b.isActive = TRUE
+                                                                   ORDER BY b.componentItem.itemCode""",
+                                                           BillOfMaterials.class)
                         .setParameter("itemCode", "FG-FUT-003")
                         .getResultList();
                 verify(list);
@@ -103,9 +126,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-BOM-B-02: the raw materials which no item uses")
+    @DisplayName("FUTON_DBO_B_02: the raw materials which no item uses")
     @Nested
-    class FUTON_BOM_B_02_Test {
+    class FUTON_DBO_B_02_Test {
 
         private void verify(final List<Item> list) {
             assertThat(list).extracting(Item::getItemCode)
@@ -116,14 +139,14 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT i
-                                FROM Item i
-                                WHERE i.itemType.typeCode = :typeCode
-                                  AND NOT EXISTS (SELECT b
-                                                  FROM BillOfMaterials b
-                                                  WHERE b.componentItem = i
-                                                    AND b.isActive = TRUE)
-                                ORDER BY i.itemCode""", Item.class)
+                                                                   SELECT i
+                                                                   FROM DboItem i
+                                                                   WHERE i.itemType.typeCode = :typeCode
+                                                                     AND NOT EXISTS (SELECT b
+                                                                                     FROM DboBillOfMaterials b
+                                                                                     WHERE b.componentItem = i
+                                                                                       AND b.isActive = TRUE)
+                                                                   ORDER BY i.itemCode""", Item.class)
                         .setParameter("typeCode", "RAW")
                         .getResultList();
                 verify(list);
@@ -155,9 +178,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-BOM-I-01: the raw materials which four or more items use directly")
+    @DisplayName("FUTON_DBO_I_01: the raw materials which four or more items use directly")
     @Nested
-    class FUTON_BOM_I_01_Test {
+    class FUTON_DBO_I_01_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((Item) r[0]).getItemCode())
@@ -171,14 +194,14 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT c, COUNT(b) AS parents
-                                FROM BillOfMaterials b
-                                     JOIN b.componentItem c
-                                WHERE c.itemType.typeCode = :typeCode
-                                  AND b.isActive = TRUE
-                                GROUP BY c
-                                HAVING COUNT(b) >= 4
-                                ORDER BY parents DESC, c.itemCode""", Object[].class)
+                                                                   SELECT c, COUNT(b) AS parents
+                                                                   FROM DboBillOfMaterials b
+                                                                        JOIN b.componentItem c
+                                                                   WHERE c.itemType.typeCode = :typeCode
+                                                                     AND b.isActive = TRUE
+                                                                   GROUP BY c
+                                                                   HAVING COUNT(b) >= 4
+                                                                   ORDER BY parents DESC, c.itemCode""", Object[].class)
                         .setParameter("typeCode", "RAW")
                         .getResultList();
                 verify(list);
@@ -207,9 +230,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-BOM-I-02: the material cost and the margin of each finished futon")
+    @DisplayName("FUTON_DBO_I_02: the material cost and the margin of each finished futon")
     @Nested
-    class FUTON_BOM_I_02_Test {
+    class FUTON_DBO_I_02_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((Item) r[0]).getItemCode())
@@ -229,16 +252,16 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT p,
-                                       SUM(b.quantity * (1 + b.scrapRate / 100) * c.standardCost),
-                                       p.listPrice - SUM(b.quantity * (1 + b.scrapRate / 100) * c.standardCost)
-                                FROM BillOfMaterials b
-                                     JOIN b.parentItem p
-                                     JOIN b.componentItem c
-                                WHERE p.itemType.typeCode = :typeCode
-                                  AND b.isActive = TRUE
-                                GROUP BY p
-                                ORDER BY p.itemCode""", Object[].class)
+                                                                   SELECT p,
+                                                                          SUM(b.quantity * (1 + b.scrapRate / 100) * c.standardCost),
+                                                                          p.listPrice - SUM(b.quantity * (1 + b.scrapRate / 100) * c.standardCost)
+                                                                   FROM DboBillOfMaterials b
+                                                                        JOIN b.parentItem p
+                                                                        JOIN b.componentItem c
+                                                                   WHERE p.itemType.typeCode = :typeCode
+                                                                     AND b.isActive = TRUE
+                                                                   GROUP BY p
+                                                                   ORDER BY p.itemCode""", Object[].class)
                         .setParameter("typeCode", "FG")
                         .getResultList();
                 verify(list);
@@ -271,9 +294,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-BOM-A-01: the raw materials which ten of FG-FUT-003 need, a query per level")
+    @DisplayName("FUTON_DBO_A_01: the raw materials which ten of FG-FUT-003 need, a query per level")
     @Nested
-    class FUTON_BOM_A_01_Test {
+    class FUTON_DBO_A_01_Test {
 
         /**
          * Explodes the bill of materials of an item, a level at a time, with the specified function, which reads the
@@ -283,7 +306,7 @@ class FutonManufacturing_Exercises_PersistenceIT {
                 final EntityManager entityManager, final String itemCode, final BigDecimal quantity,
                 final BiFunction<EntityManager, Collection<Integer>, List<BillOfMaterials>> children) {
             final var item = entityManager.createQuery(
-                            "SELECT i FROM Item i WHERE i.itemCode = :itemCode", Item.class)
+                            "SELECT i FROM DboItem i WHERE i.itemCode = :itemCode", Item.class)
                     .setParameter("itemCode", itemCode)
                     .getSingleResult();
             final var leaves = new TreeMap<String, BigDecimal>();
@@ -327,10 +350,10 @@ class FutonManufacturing_Exercises_PersistenceIT {
             apply(entityManager -> {
                 final var leaves = explode(entityManager, "FG-FUT-003", BigDecimal.TEN, (em, parentItemIds) ->
                         em.createQuery("""
-                                        SELECT b
-                                        FROM BillOfMaterials b
-                                        WHERE b.parentItemId IN :parentItemIds
-                                          AND b.isActive = TRUE""", BillOfMaterials.class)
+                                               SELECT b
+                                               FROM DboBillOfMaterials b
+                                               WHERE b.parentItemId IN :parentItemIds
+                                                 AND b.isActive = TRUE""", BillOfMaterials.class)
                                 .setParameter("parentItemIds", parentItemIds)
                                 .getResultList());
                 verify(leaves);
@@ -355,22 +378,22 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-BOM-A-02: the finished goods which use RM-FILL-001, from vw_WhereUsed")
+    @DisplayName("FUTON_DBO_A_02: the finished goods which use RM-FILL-001, from vw_WhereUsed")
     @Nested
-    class FUTON_BOM_A_02_Test {
+    class FUTON_DBO_A_02_Test {
 
         @Test
         void nativeQuery() {
             apply(entityManager -> {
                 @SuppressWarnings("unchecked")
                 final List<Object[]> rows = entityManager.createNativeQuery("""
-                                SELECT ComponentItemID, ComponentItemCode, ComponentItemName,
-                                       ParentItemID, ParentItemCode, ParentItemName, ParentType,
-                                       Level, Quantity, UnitCode, UsagePath
-                                FROM dbo.vw_WhereUsed
-                                WHERE ComponentItemCode = ?1
-                                  AND ParentType = 'Finished Goods'
-                                ORDER BY ParentItemCode, UsagePath""")
+                                                                                    SELECT ComponentItemID, ComponentItemCode, ComponentItemName,
+                                                                                           ParentItemID, ParentItemCode, ParentItemName, ParentType,
+                                                                                           Level, Quantity, UnitCode, UsagePath
+                                                                                    FROM dbo.vw_WhereUsed
+                                                                                    WHERE ComponentItemCode = ?1
+                                                                                      AND ParentType = 'Finished Goods'
+                                                                                    ORDER BY ParentItemCode, UsagePath""")
                         .setParameter(1, "RM-FILL-001")
                         .getResultList();
                 // each row through the public constructor of the keyless class
@@ -398,9 +421,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
 
     // ------------------------------------------------------------------------------------------------------ INVENTORY
 
-    @DisplayName("FUTON-INVENTORY-B-01: the finished goods in WH-MAIN, the fewest available first")
+    @DisplayName("FUTON_DBO_B_03: the finished goods in WH-MAIN, the fewest available first")
     @Nested
-    class FUTON_INVENTORY_B_01_Test {
+    class FUTON_DBO_B_03_Test {
 
         private void verify(final List<Inventory> list) {
             assertThat(list).extracting(v -> v.getItem().getItemCode())
@@ -414,11 +437,12 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT v
-                                FROM Inventory v
-                                WHERE v.item.itemType.typeCode = :typeCode
-                                  AND v.warehouse.warehouseCode = :warehouseCode
-                                ORDER BY v.quantityAvailable, v.item.itemCode""", Inventory.class)
+                                                                   SELECT v
+                                                                   FROM DboInventory v
+                                                                   WHERE v.item.itemType.typeCode = :typeCode
+                                                                     AND v.warehouse.warehouseCode = :warehouseCode
+                                                                   ORDER BY v.quantityAvailable, v.item.itemCode""",
+                                                           Inventory.class)
                         .setParameter("typeCode", "FG")
                         .setParameter("warehouseCode", "WH-MAIN")
                         .getResultList();
@@ -447,9 +471,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-INVENTORY-I-01: the five stocks nearest to their reorder points")
+    @DisplayName("FUTON_DBO_I_03: the five stocks nearest to their reorder points")
     @Nested
-    class FUTON_INVENTORY_I_01_Test {
+    class FUTON_DBO_I_03_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((Inventory) r[0]).getItem().getItemCode())
@@ -463,11 +487,11 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT v, v.quantityAvailable / i.reorderPoint AS ratio
-                                FROM Inventory v
-                                     JOIN v.item i
-                                WHERE i.reorderPoint > 0
-                                ORDER BY ratio, i.itemCode""", Object[].class)
+                                                                   SELECT v, v.quantityAvailable / i.reorderPoint AS ratio
+                                                                   FROM DboInventory v
+                                                                        JOIN v.item i
+                                                                   WHERE i.reorderPoint > 0
+                                                                   ORDER BY ratio, i.itemCode""", Object[].class)
                         .setMaxResults(5)
                         .getResultList();
                 verify(list);
@@ -495,9 +519,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-INVENTORY-A-01: how many of each finished futon the components in WH-MAIN can build")
+    @DisplayName("FUTON_DBO_A_03: how many of each finished futon the components in WH-MAIN can build")
     @Nested
-    class FUTON_INVENTORY_A_01_Test {
+    class FUTON_DBO_A_03_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((Item) r[0]).getItemCode())
@@ -511,15 +535,16 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT p, MIN(FLOOR(v.quantityAvailable / b.quantity)) AS buildable
-                                FROM BillOfMaterials b
-                                     JOIN b.parentItem p
-                                     JOIN Inventory v ON v.item = b.componentItem
-                                WHERE p.itemType.typeCode = :typeCode
-                                  AND b.isActive = TRUE
-                                  AND v.warehouse.warehouseCode = :warehouseCode
-                                GROUP BY p
-                                ORDER BY buildable DESC, p.itemCode""", Object[].class)
+                                                                   SELECT p, MIN(FLOOR(v.quantityAvailable / b.quantity)) AS buildable
+                                                                   FROM DboBillOfMaterials b
+                                                                        JOIN b.parentItem p
+                                                                        JOIN DboInventory v ON v.item = b.componentItem
+                                                                   WHERE p.itemType.typeCode = :typeCode
+                                                                     AND b.isActive = TRUE
+                                                                     AND v.warehouse.warehouseCode = :warehouseCode
+                                                                   GROUP BY p
+                                                                   ORDER BY buildable DESC, p.itemCode""",
+                                                           Object[].class)
                         .setParameter("typeCode", "FG")
                         .setParameter("warehouseCode", "WH-MAIN")
                         .getResultList();
@@ -554,9 +579,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
 
     // ----------------------------------------------------------------------------------------------------- PURCHASING
 
-    @DisplayName("FUTON-PURCHASING-B-01: the items SUP-002 supplies, with its price and the standard cost")
+    @DisplayName("FUTON_DBO_B_04: the items SUP-002 supplies, with its price and the standard cost")
     @Nested
-    class FUTON_PURCHASING_B_01_Test {
+    class FUTON_DBO_B_04_Test {
 
         private void verify(final List<SupplierItem> list) {
             assertThat(list).extracting(si -> si.getItem().getItemCode())
@@ -569,10 +594,10 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT si
-                                FROM SupplierItem si
-                                WHERE si.supplier.supplierCode = :supplierCode
-                                ORDER BY si.item.itemCode""", SupplierItem.class)
+                                                                   SELECT si
+                                                                   FROM DboSupplierItem si
+                                                                   WHERE si.supplier.supplierCode = :supplierCode
+                                                                   ORDER BY si.item.itemCode""", SupplierItem.class)
                         .setParameter("supplierCode", "SUP-002")
                         .getResultList();
                 verify(list);
@@ -596,9 +621,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-PURCHASING-I-01: the share rejected on receipt, for each supplier")
+    @DisplayName("FUTON_DBO_I_04: the share rejected on receipt, for each supplier")
     @Nested
-    class FUTON_PURCHASING_I_01_Test {
+    class FUTON_DBO_I_04_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((Supplier) r[0]).getSupplierCode())
@@ -612,16 +637,17 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT s,
-                                       SUM(q.quantityInspected),
-                                       SUM(q.quantityRejected),
-                                       SUM(q.quantityRejected) * 100 / SUM(q.quantityInspected) AS rejectedPercent
-                                FROM PurchaseOrder po
-                                     JOIN po.supplier s
-                                     JOIN QualityInspection q
-                                          ON q.referenceType = 'PO' AND q.referenceNumber = po.poNumber
-                                GROUP BY s
-                                ORDER BY rejectedPercent DESC, s.supplierCode""", Object[].class)
+                                                                   SELECT s,
+                                                                          SUM(q.quantityInspected),
+                                                                          SUM(q.quantityRejected),
+                                                                          SUM(q.quantityRejected) * 100 / SUM(q.quantityInspected) AS rejectedPercent
+                                                                   FROM DboPurchaseOrder po
+                                                                        JOIN po.supplier s
+                                                                        JOIN DboQualityInspection q
+                                                                             ON q.referenceType = 'PO' AND q.referenceNumber = po.poNumber
+                                                                   GROUP BY s
+                                                                   ORDER BY rejectedPercent DESC, s.supplierCode""",
+                                                           Object[].class)
                         .getResultList();
                 verify(list);
                 return null;
@@ -654,9 +680,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
 
     // ---------------------------------------------------------------------------------------------------------- SALES
 
-    @DisplayName("FUTON-SALES-B-01: the orders not delivered yet")
+    @DisplayName("FUTON_DBO_B_05: the orders not delivered yet")
     @Nested
-    class FUTON_SALES_B_01_Test {
+    class FUTON_DBO_B_05_Test {
 
         private void verify(final List<SalesOrder> list) {
             assertThat(list).extracting(SalesOrder::getOrderNumber)
@@ -668,10 +694,11 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT so
-                                FROM SalesOrder so
-                                WHERE so.status <> :status
-                                ORDER BY so.requestedDeliveryDate, so.orderNumber""", SalesOrder.class)
+                                                                   SELECT so
+                                                                   FROM DboSalesOrder so
+                                                                   WHERE so.status <> :status
+                                                                   ORDER BY so.requestedDeliveryDate, so.orderNumber""",
+                                                           SalesOrder.class)
                         .setParameter("status", "Delivered")
                         .getResultList();
                 verify(list);
@@ -696,9 +723,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-SALES-I-01: the number of orders and the net amount of each sales channel")
+    @DisplayName("FUTON_DBO_I_05: the number of orders and the net amount of each sales channel")
     @Nested
-    class FUTON_SALES_I_01_Test {
+    class FUTON_DBO_I_05_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((SalesChannel) r[0]).getChannelCode())
@@ -714,11 +741,11 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT ch, COUNT(so), SUM(so.netAmount) AS netAmount
-                                FROM SalesOrder so
-                                     JOIN so.salesChannel ch
-                                GROUP BY ch
-                                ORDER BY netAmount DESC""", Object[].class)
+                                                                   SELECT ch, COUNT(so), SUM(so.netAmount) AS netAmount
+                                                                   FROM DboSalesOrder so
+                                                                        JOIN so.salesChannel ch
+                                                                   GROUP BY ch
+                                                                   ORDER BY netAmount DESC""", Object[].class)
                         .getResultList();
                 verify(list);
                 return null;
@@ -743,9 +770,9 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-SALES-I-02: the three futons sold the most")
+    @DisplayName("FUTON_DBO_I_06: the three futons sold the most")
     @Nested
-    class FUTON_SALES_I_02_Test {
+    class FUTON_DBO_I_06_Test {
 
         private void verify(final List<Object[]> list) {
             assertThat(list).extracting(r -> ((Item) r[0]).getItemCode())
@@ -761,11 +788,12 @@ class FutonManufacturing_Exercises_PersistenceIT {
         void __QueryLanguage() {
             apply(entityManager -> {
                 final var list = entityManager.createQuery("""
-                                SELECT i, SUM(d.quantity) AS quantity, SUM(d.netAmount)
-                                FROM SalesOrderDetail d
-                                     JOIN d.item i
-                                GROUP BY i
-                                ORDER BY quantity DESC, i.itemCode""", Object[].class)
+                                                                   SELECT i, SUM(d.quantity) AS quantity, SUM(d.netAmount)
+                                                                   FROM DboSalesOrderDetail d
+                                                                        JOIN d.item i
+                                                                   GROUP BY i
+                                                                   ORDER BY quantity DESC, i.itemCode""",
+                                                           Object[].class)
                         .setMaxResults(3)
                         .getResultList();
                 verify(list);
@@ -793,26 +821,26 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("FUTON-SALES-A-01: the running total of each wholesale customer, a window function")
+    @DisplayName("FUTON_DBO_A_04: the running total of each wholesale customer, a window function")
     @Nested
-    class FUTON_SALES_A_01_Test {
+    class FUTON_DBO_A_04_Test {
 
         @Test
         void nativeQuery() {
             apply(entityManager -> {
                 @SuppressWarnings("unchecked")
                 final List<Object[]> rows = entityManager.createNativeQuery("""
-                                SELECT c.CustomerCode,
-                                       so.OrderNumber,
-                                       so.OrderDate,
-                                       so.NetAmount,
-                                       SUM(so.NetAmount) OVER (PARTITION BY so.CustomerID
-                                                               ORDER BY so.OrderDate, so.SalesOrderID
-                                                               ROWS UNBOUNDED PRECEDING) AS RunningTotal
-                                FROM SalesOrder so
-                                         JOIN Customer c ON c.CustomerID = so.CustomerID
-                                WHERE c.CustomerType = ?1
-                                ORDER BY c.CustomerCode, so.OrderDate, so.SalesOrderID""")
+                                                                                    SELECT c.CustomerCode,
+                                                                                           so.OrderNumber,
+                                                                                           so.OrderDate,
+                                                                                           so.NetAmount,
+                                                                                           SUM(so.NetAmount) OVER (PARTITION BY so.CustomerID
+                                                                                                                   ORDER BY so.OrderDate, so.SalesOrderID
+                                                                                                                   ROWS UNBOUNDED PRECEDING) AS RunningTotal
+                                                                                    FROM SalesOrder so
+                                                                                             JOIN Customer c ON c.CustomerID = so.CustomerID
+                                                                                    WHERE c.CustomerType = ?1
+                                                                                    ORDER BY c.CustomerCode, so.OrderDate, so.SalesOrderID""")
                         .setParameter(1, "Wholesale")
                         .getResultList();
                 assertThat(rows).extracting(r -> r[1])

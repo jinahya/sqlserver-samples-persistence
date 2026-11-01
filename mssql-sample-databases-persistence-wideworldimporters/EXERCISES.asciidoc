@@ -16,7 +16,8 @@ the rows the SQL returns, with both providers.
 
 The problems are grouped by the schema of the table they are about; a problem which joins another schema's tables
 stays with the one it asks about. Each section goes from Basic (`B`) through Intermediate (`I`) to Advanced (`A`). An
-identifier is permanent: it is never renumbered or reused.
+id is `WWI_<SCHEMA>_<TIER>_<NN>`, numbered within its schema and tier, and `EXERCISES.yaml` registers every one; an
+id is permanent: it is never renumbered or reused.
 
 A few things about the mappings shape the solutions:
 
@@ -26,7 +27,7 @@ A few things about the mappings shape the solutions:
   read-only attribute, and a query reads it like any other.
 * What the query language has no word for is SQL only: the JSON functions (`JSON_VALUE`), the methods of `geography`
   (`STDistance`), window functions (`RANK() OVER`) and the temporal clauses (`FOR SYSTEM_TIME`). From Jakarta
-  Persistence such SQL is sent as a native query; `WWI-SALES-A-02` shows one.
+  Persistence such SQL is sent as a native query; `WWI_SALES_A_02` shows one.
 * Grouping is by an entity's identifier and the columns selected, not by the entity: `Customer` and `Supplier` have
   `geography` columns, which SQL Server can not group by.
 
@@ -35,7 +36,7 @@ A few things about the mappings shape the solutions:
 === Basic
 
 [[WWI_APPLICATION_B_01]]
-==== WWI-APPLICATION-B-01: The salespeople, by name
+==== WWI_APPLICATION_B_01: The salespeople, by name
 
 The sales manager wants the salespeople, by name, with their phone number and email address.
 
@@ -50,7 +51,7 @@ ORDER BY FullName
 [source,jpaql]
 ----
 SELECT p
-FROM Person AS p
+FROM ApplicationPerson AS p
 WHERE p.isSalesperson = true
 ORDER BY p.fullName
 ----
@@ -58,7 +59,7 @@ ORDER BY p.fullName
 === Intermediate
 
 [[WWI_APPLICATION_I_01]]
-==== WWI-APPLICATION-I-01: The countries and the population of each continent
+==== WWI_APPLICATION_I_01: The countries and the population of each continent
 
 Marketing sizes the markets: for each continent, the number of countries and their total population, the most populous
 continent first.
@@ -74,13 +75,13 @@ ORDER BY Population DESC
 [source,jpaql]
 ----
 SELECT c.continent, COUNT(c) AS countries, SUM(c.latestRecordedPopulation) AS population
-FROM Country AS c
+FROM ApplicationCountry AS c
 GROUP BY c.continent
 ORDER BY population DESC
 ----
 
 [[WWI_APPLICATION_I_02]]
-==== WWI-APPLICATION-I-02: The employees by title, from the CustomFields JSON
+==== WWI_APPLICATION_I_02: The employees by title, from the CustomFields JSON
 
 Human resources counts the employees by title, with the earliest hire date of each title. The title and the hire date
 are in the CustomFields JSON document; JSON_VALUE is SQL only.
@@ -101,7 +102,7 @@ SQL only; from Jakarta Persistence, send it as a native query.
 === Advanced
 
 [[WWI_APPLICATION_A_01]]
-==== WWI-APPLICATION-A-01: The five cities nearest to a city
+==== WWI_APPLICATION_A_01: The five cities nearest to a city
 
 Logistics plans a route from one city: the five cities nearest to it, with their state code and the distance in
 kilometres. Location is a geography; its methods, STDistance among them, are SQL only.
@@ -127,7 +128,7 @@ SQL only; from Jakarta Persistence, send it as a native query.
 === Basic
 
 [[WWI_PURCHASING_B_01]]
-==== WWI-PURCHASING-B-01: The suppliers, by category and then by name
+==== WWI_PURCHASING_B_01: The suppliers, by category and then by name
 
 The buyer wants the suppliers with their category and payment days, by category and then by name.
 
@@ -142,13 +143,13 @@ ORDER BY sc.SupplierCategoryName, s.SupplierName
 [source,jpaql]
 ----
 SELECT s
-FROM Supplier AS s
+FROM PurchasingSupplier AS s
      JOIN s.supplierCategory AS sc
 ORDER BY sc.supplierCategoryName, s.supplierName
 ----
 
 [[WWI_PURCHASING_B_02]]
-==== WWI-PURCHASING-B-02: What is still owed to each supplier
+==== WWI_PURCHASING_B_02: What is still owed to each supplier
 
 Accounts payable wants what is still owed to each supplier: the transactions not finalized, their number and the
 outstanding balance, the largest first. IsFinalized is a computed column.
@@ -166,7 +167,7 @@ ORDER BY Outstanding DESC
 [source,jpaql]
 ----
 SELECT s.supplierName, COUNT(st) AS transactions, SUM(st.outstandingBalance) AS outstanding
-FROM SupplierTransaction AS st
+FROM PurchasingSupplierTransaction AS st
      JOIN st.supplier AS s
 WHERE st.isFinalized = false
 GROUP BY s.supplierId, s.supplierName
@@ -176,7 +177,7 @@ ORDER BY outstanding DESC
 === Intermediate
 
 [[WWI_PURCHASING_I_01]]
-==== WWI-PURCHASING-I-01: The purchase orders and the amount ordered from each supplier in a year
+==== WWI_PURCHASING_I_01: The purchase orders and the amount ordered from each supplier in a year
 
 The buyer reviews a year of purchasing: for each supplier, the purchase orders placed in the year and the amount ordered
 at the expected prices, the largest amount first.
@@ -201,7 +202,7 @@ ORDER BY Amount DESC
 SELECT s.supplierName,
        COUNT(DISTINCT po) AS orders,
        SUM(pol.orderedOuters * pol.expectedUnitPricePerOuter) AS amount
-FROM PurchaseOrderLine AS pol
+FROM PurchasingPurchaseOrderLine AS pol
      JOIN pol.purchaseOrder AS po
      JOIN po.supplier AS s
 WHERE po.orderDate >= :from
@@ -215,7 +216,7 @@ ORDER BY amount DESC
 === Basic
 
 [[WWI_SALES_B_01]]
-==== WWI-SALES-B-01: The customers of each buying group
+==== WWI_SALES_B_01: The customers of each buying group
 
 The sales manager counts the customers of each buying group, and those who belong to none, the most first; a tie by the
 name of the group.
@@ -232,14 +233,14 @@ ORDER BY Customers DESC, bg.BuyingGroupName
 [source,jpaql]
 ----
 SELECT bg.buyingGroupName, COUNT(c) AS customers
-FROM Customer AS c
+FROM SalesCustomer AS c
      LEFT JOIN c.buyingGroup AS bg
 GROUP BY bg.buyingGroupName
 ORDER BY customers DESC, bg.buyingGroupName
 ----
 
 [[WWI_SALES_B_02]]
-==== WWI-SALES-B-02: The customers billed for others
+==== WWI_SALES_B_02: The customers billed for others
 
 Accounts receivable wants the customers who are billed for others: each bill-to customer, with the number of other
 customers it is billed for, the most first; a tie by the identifier.
@@ -257,7 +258,7 @@ ORDER BY Billed DESC, b.CustomerID
 [source,jpaql]
 ----
 SELECT b.customerId, b.customerName, COUNT(c) AS billed
-FROM Customer AS c
+FROM SalesCustomer AS c
      JOIN c.billToCustomer AS b
 WHERE b <> c
 GROUP BY b.customerId, b.customerName
@@ -265,7 +266,7 @@ ORDER BY billed DESC, b.customerId
 ----
 
 [[WWI_SALES_B_03]]
-==== WWI-SALES-B-03: The first five customers of no buying group, from the Website.Customers view
+==== WWI_SALES_B_03: The first five customers of no buying group, from the Website.Customers view
 
 The web team lists, from the Website.Customers view, the first five customers by name who belong to no buying group,
 with their category, city and delivery method.
@@ -289,7 +290,7 @@ ORDER BY c.customerName
 === Intermediate
 
 [[WWI_SALES_I_01]]
-==== WWI-SALES-I-01: The five stock items which earned the most in a year
+==== WWI_SALES_I_01: The five stock items which earned the most in a year
 
 The sales manager wants the five stock items which earned the most in a year, by the invoiced extended price, with the
 quantity sold.
@@ -310,7 +311,7 @@ ORDER BY Revenue DESC
 [source,jpaql]
 ----
 SELECT si.stockItemId, si.stockItemName, SUM(il.quantity), SUM(il.extendedPrice) AS revenue
-FROM InvoiceLine AS il
+FROM SalesInvoiceLine AS il
      JOIN il.invoice AS i
      JOIN il.stockItem AS si
 WHERE i.invoiceDate >= :from
@@ -320,7 +321,7 @@ ORDER BY revenue DESC
 ----
 
 [[WWI_SALES_I_02]]
-==== WWI-SALES-I-02: The sales of a year by month
+==== WWI_SALES_I_02: The sales of a year by month
 
 Finance wants the sales of a year by month: the number of invoices and the invoiced extended price of each month.
 
@@ -341,7 +342,7 @@ ORDER BY InvoiceMonth
 SELECT EXTRACT(MONTH FROM i.invoiceDate) AS invoiceMonth,
        COUNT(DISTINCT i),
        SUM(il.extendedPrice)
-FROM InvoiceLine AS il
+FROM SalesInvoiceLine AS il
      JOIN il.invoice AS i
 WHERE i.invoiceDate >= :from
   AND i.invoiceDate < :to
@@ -350,7 +351,7 @@ ORDER BY invoiceMonth
 ----
 
 [[WWI_SALES_I_03]]
-==== WWI-SALES-I-03: The confirmed deliveries of a customer since a date
+==== WWI_SALES_I_03: The confirmed deliveries of a customer since a date
 
 Customer care checks the deliveries of a customer since a date: each invoice with when the delivery was confirmed and
 who received it. Both are computed columns, derived from the ReturnedDeliveryData JSON document.
@@ -368,14 +369,14 @@ ORDER BY InvoiceID
 [source,jpaql]
 ----
 SELECT i
-FROM Invoice AS i
+FROM SalesInvoice AS i
 WHERE i.customerId = :customerId
   AND i.invoiceDate >= :from
 ORDER BY i.invoiceId
 ----
 
 [[WWI_SALES_I_04]]
-==== WWI-SALES-I-04: The history of a customer's credit limit
+==== WWI_SALES_I_04: The history of a customer's credit limit
 
 Accounts receivable wants the history of a customer's credit limit: every version of the row, with the period it was
 current, the oldest first. FOR SYSTEM_TIME ALL reads the current row and the history together; it is SQL only.
@@ -394,7 +395,7 @@ SQL only; from Jakarta Persistence, send it as a native query.
 === Advanced
 
 [[WWI_SALES_A_01]]
-==== WWI-SALES-A-01: The top three salespeople of each year
+==== WWI_SALES_A_01: The top three salespeople of each year
 
 The sales manager ranks the salespeople of each year by the invoiced extended price, and wants the top three of each
 year. RANK() OVER (...), a window function, is SQL only.
@@ -417,7 +418,7 @@ ORDER BY r.SalesYear, r.SalesRank
 SQL only; from Jakarta Persistence, send it as a native query.
 
 [[WWI_SALES_A_02]]
-==== WWI-SALES-A-02: The customers whose credit limit changed since a moment, by a native query
+==== WWI_SALES_A_02: The customers whose credit limit changed since a moment, by a native query
 
 Accounts receivable wants the customers whose credit limit is not what it was at a past moment, with the limit then and
 now. FOR SYSTEM_TIME AS OF reads the table as it was; it is SQL only.
@@ -448,7 +449,7 @@ ORDER BY c.CustomerID""")
 ----
 
 [[WWI_SALES_A_03]]
-==== WWI-SALES-A-03: The five oldest backorders never invoiced, and the orders which backordered them
+==== WWI_SALES_A_03: The five oldest backorders never invoiced, and the orders which backordered them
 
 The warehouse wants the five oldest backorders which were never invoiced, with the customer and the order which
 backordered them.
@@ -468,10 +469,10 @@ ORDER BY o.OrderDate, o.OrderID
 [source,jpaql]
 ----
 SELECT p
-FROM Order AS p
+FROM SalesOrder AS p
      JOIN p.backorderOrder AS o
 WHERE NOT EXISTS (SELECT i
-                  FROM Invoice AS i
+                  FROM SalesInvoice AS i
                   WHERE i.order = o)
 ORDER BY o.orderDate, o.orderId
 ----
@@ -481,7 +482,7 @@ ORDER BY o.orderDate, o.orderId
 === Basic
 
 [[WWI_WAREHOUSE_B_01]]
-==== WWI-WAREHOUSE-B-01: The stock items below their reorder level
+==== WWI_WAREHOUSE_B_01: The stock items below their reorder level
 
 The warehouse manager wants the stock items whose quantity on hand is below the reorder level, by name.
 
@@ -497,14 +498,14 @@ ORDER BY si.StockItemName
 [source,jpaql]
 ----
 SELECT h
-FROM StockItemHolding AS h
+FROM WarehouseStockItemHolding AS h
      JOIN h.stockItem AS si
 WHERE h.quantityOnHand < h.reorderLevel
 ORDER BY si.stockItemName
 ----
 
 [[WWI_WAREHOUSE_B_02]]
-==== WWI-WAREHOUSE-B-02: The chiller stock items, by name
+==== WWI_WAREHOUSE_B_02: The chiller stock items, by name
 
 The cold room keeps the chiller stock: list those stock items by name, with their supplier and unit price.
 
@@ -520,7 +521,7 @@ ORDER BY si.StockItemName
 [source,jpaql]
 ----
 SELECT si
-FROM StockItem AS si
+FROM WarehouseStockItem AS si
 WHERE si.isChillerStock = true
 ORDER BY si.stockItemName
 ----
@@ -528,7 +529,7 @@ ORDER BY si.stockItemName
 === Intermediate
 
 [[WWI_WAREHOUSE_I_01]]
-==== WWI-WAREHOUSE-I-01: The stock items of each stock group
+==== WWI_WAREHOUSE_I_01: The stock items of each stock group
 
 The catalogue team counts the stock items of each stock group, the largest group first.
 
@@ -544,14 +545,14 @@ ORDER BY StockItems DESC, sg.StockGroupName
 [source,jpaql]
 ----
 SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
-FROM StockItemStockGroup AS sisg
+FROM WarehouseStockItemStockGroup AS sisg
      JOIN sisg.stockGroup AS sg
 GROUP BY sg.stockGroupId, sg.stockGroupName
 ORDER BY stockItems DESC, sg.stockGroupName
 ----
 
 [[WWI_WAREHOUSE_I_02]]
-==== WWI-WAREHOUSE-I-02: The stock items by country of manufacture, from the CustomFields JSON
+==== WWI_WAREHOUSE_I_02: The stock items by country of manufacture, from the CustomFields JSON
 
 Compliance counts the stock items by country of manufacture, which is in the CustomFields JSON document; JSON_VALUE is
 SQL only.
@@ -569,7 +570,7 @@ SQL only; from Jakarta Persistence, send it as a native query.
 === Advanced
 
 [[WWI_WAREHOUSE_A_01]]
-==== WWI-WAREHOUSE-A-01: The cold-room readings of a period, from the history
+==== WWI_WAREHOUSE_A_01: The cold-room readings of a period, from the history
 
 Quality control checks the cold rooms over a period: for each sensor, the number of readings and the lowest, highest and
 average temperature. The readings of the period are former versions of the rows of a system-versioned table, read with

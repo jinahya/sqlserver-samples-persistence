@@ -26,7 +26,7 @@
 --
 
 
--- ------------------------------------------------------------------------------------------------------ AW-PERSON-B-01
+-- ------------------------------------------------------------------------------------------------------ AW_PERSON_B_01
 -- The data steward checks who the database holds. Show how many persons there are of each type, the most first.
 SELECT p.PersonType, COUNT(*) AS Persons
 FROM Person.Person p
@@ -35,9 +35,9 @@ ORDER BY Persons DESC
 ;
 GO
 
--- ------------------------------------------------------------------------------------------------------ AW-PERSON-I-02
+-- ------------------------------------------------------------------------------------------------------ AW_PERSON_I_01
 -- Marketing picks the countries for a mailing. Show the five countries with the most addresses.
-SELECT TOP (5) c.CountryRegionCode, c.Name, COUNT(*) AS Addresses
+SELECT TOP(5) c.CountryRegionCode, c.Name, COUNT(*) AS Addresses
 FROM Person.Address a
          JOIN Person.StateProvince s ON s.StateProvinceID = a.StateProvinceID
          JOIN Person.CountryRegion c ON c.CountryRegionCode = s.CountryRegionCode
@@ -46,7 +46,7 @@ ORDER BY Addresses DESC
 ;
 GO
 
--- ------------------------------------------------------------------------------------------------------ AW-PERSON-A-03
+-- ------------------------------------------------------------------------------------------------------ AW_PERSON_A_01
 -- Marketing segments the individual customers. Show how many of them answered each yearly income band of the survey
 -- stored in their Demographics document.
 WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey')

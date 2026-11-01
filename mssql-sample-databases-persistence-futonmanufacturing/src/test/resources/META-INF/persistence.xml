@@ -30,65 +30,66 @@
     <description>Persistence Unit for FutonManufacturing on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>
     <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped.UuidStringAttributeConverter</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.BillOfMaterials</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.CostRollUpView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Customer</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.CustomerFulfillmentRateView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Inventory</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.InventoryTransaction</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.InventoryTurnoverView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.InventoryValuationView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Item</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ItemType</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PriceList</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PriceListDetail</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ProductionCompletion</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ProductionOrder</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ProductionOrderMaterial</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Promotion</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PurchaseOrder</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PurchaseOrderDetail</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.PurchaseOrderStatusView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.QualityInspection</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.ReturnReason</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesByTerritoryView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesChannel</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesChannelProfitabilityView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesCustomerAnalysisView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesCustomerLifetimeValueView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesCustomerSegmentationView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesOrder</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesOrderBacklogView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesOrderDetail</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesProductPerformanceView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesQuote</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesQuoteConversionView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesQuoteDetail</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesRep</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesRepPerformanceView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesReturn</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesReturnDetail</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesReturnsAnalysisView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesStorePerformanceView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SalesTerritory</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Store</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Supplier</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SupplierItem</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.SupplierPerformanceView</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.TransactionType</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.UnitOfMeasure</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.Warehouse</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.WorkCenter</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.WorkCenterCapacityView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.BillOfMaterials</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.CostRollUpView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Customer</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.CustomerFulfillmentRateView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Inventory</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.InventoryTransaction</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.InventoryTurnoverView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.InventoryValuationView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Item</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.ItemType</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PriceList</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PriceListDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.ProductionCompletion</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.ProductionOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.ProductionOrderMaterial</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Promotion</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PurchaseOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PurchaseOrderDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.PurchaseOrderStatusView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.QualityInspection</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.ReturnReason</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesByTerritoryView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesChannel</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesChannelProfitabilityView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesCustomerAnalysisView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesCustomerLifetimeValueView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesCustomerSegmentationView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrder</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrderBacklogView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesOrderDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesProductPerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesQuote</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesQuoteConversionView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesQuoteDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesRep</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesRepPerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesReturn</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesReturnDetail</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesReturnsAnalysisView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesStorePerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SalesTerritory</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Store</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Supplier</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SupplierItem</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.SupplierPerformanceView</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.TransactionType</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.UnitOfMeasure</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.Warehouse</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.WorkCenter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.dbo.WorkCenterCapacityView</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <!-- the database from compose.yaml; see compose.sh -->
-      <property name="jakarta.persistence.jdbc.url" value="${mssql.url};databaseName=FutonManufacturing"/>
-      <property name="jakarta.persistence.jdbc.user" value="${mssql.user}"/>
-      <property name="jakarta.persistence.jdbc.password" value="${mssql.password}"/>
+      <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=FutonManufacturing"/>
+      <property name="jakarta.persistence.jdbc.user" value="sa"/>
+      <property name="jakarta.persistence.jdbc.password" value="Passw0rd!"/>
       <!-- /////////////////////////////////////////////////////////////////////////////////////////////// hibernate -->
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.hbm2ddl.auto" value="none"/>

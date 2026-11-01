@@ -27,7 +27,7 @@
 --
 
 
--- -------------------------------------------------------------------------------------------------- AW-PRODUCTION-B-01
+-- -------------------------------------------------------------------------------------------------- AW_PRODUCTION_B_01
 -- The catalog manager reviews the range. Show, for each category, how many products are on sale, and their lowest and
 -- highest list prices.
 SELECT c.Name AS Category, COUNT(*) AS Products, MIN(p.ListPrice) AS MinListPrice, MAX(p.ListPrice) AS MaxListPrice
@@ -40,7 +40,7 @@ ORDER BY c.Name
 ;
 GO
 
--- -------------------------------------------------------------------------------------------------- AW-PRODUCTION-I-02
+-- -------------------------------------------------------------------------------------------------- AW_PRODUCTION_I_01
 -- The warehouse refills the shelves. Show the products whose stock, over every location, is less than half their safety
 -- stock level, the lowest stock first.
 SELECT p.ProductID, p.Name, p.SafetyStockLevel, SUM(i.Quantity) AS Quantity
@@ -52,10 +52,10 @@ ORDER BY Quantity, p.ProductID
 ;
 GO
 
--- -------------------------------------------------------------------------------------------------- AW-PRODUCTION-I-03
+-- -------------------------------------------------------------------------------------------------- AW_PRODUCTION_I_02
 -- The plant manager looks for the costliest failures. Show the five scrap reasons with the most scrapped quantity, and
 -- how many work orders each one stopped.
-SELECT TOP (5) r.Name, COUNT(*) AS WorkOrders, SUM(w.ScrappedQty) AS ScrappedQty
+SELECT TOP(5) r.Name, COUNT(*) AS WorkOrders, SUM(w.ScrappedQty) AS ScrappedQty
 FROM Production.WorkOrder w
          JOIN Production.ScrapReason r ON r.ScrapReasonID = w.ScrapReasonID
 GROUP BY r.ScrapReasonID, r.Name
@@ -63,21 +63,21 @@ ORDER BY ScrappedQty DESC
 ;
 GO
 
--- -------------------------------------------------------------------------------------------------- AW-PRODUCTION-A-04
+-- -------------------------------------------------------------------------------------------------- AW_PRODUCTION_A_01
 -- Production plans an assembly. Show every part of a product, down to the raw materials, from its current bill of
 -- materials, with the quantity each assembly takes and the level it is at.
-DECLARE @productId int = 818;
-WITH Parts (AssemblyID, ComponentID, PerAssemblyQty, BomLevel) AS (
-    SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, 1
-    FROM Production.BillOfMaterials b
-    WHERE b.ProductAssemblyID = @productId
-      AND b.EndDate IS NULL
-    UNION ALL
-    SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, p.BomLevel + 1
-    FROM Production.BillOfMaterials b
-             JOIN Parts p ON p.ComponentID = b.ProductAssemblyID
-    WHERE b.EndDate IS NULL
-)
+DECLARE
+@productId int = 818;
+WITH Parts (AssemblyID, ComponentID, PerAssemblyQty, BomLevel)
+         AS (SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, 1
+             FROM Production.BillOfMaterials b
+             WHERE b.ProductAssemblyID = @productId
+               AND b.EndDate IS NULL
+             UNION ALL
+             SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, p.BomLevel + 1
+             FROM Production.BillOfMaterials b
+                      JOIN Parts p ON p.ComponentID = b.ProductAssemblyID
+             WHERE b.EndDate IS NULL)
 SELECT p.AssemblyID, p.ComponentID, c.Name, p.PerAssemblyQty, p.BomLevel
 FROM Parts p
          JOIN Production.Product c ON c.ProductID = p.ComponentID
@@ -85,10 +85,11 @@ ORDER BY p.BomLevel, p.AssemblyID, p.ComponentID
 ;
 GO
 
--- -------------------------------------------------------------------------------------------------- AW-PRODUCTION-A-05
+-- -------------------------------------------------------------------------------------------------- AW_PRODUCTION_A_02
 -- Document control audits a folder. Show the documents under a folder of the document tree, with how many products
 -- each one is attached to.
-DECLARE @folder hierarchyid = hierarchyid::Parse('/3/');
+DECLARE
+@folder hierarchyid = hierarchyid::Parse('/3/');
 SELECT d.DocumentNode.ToString() AS Node, d.Title, COUNT(pd.ProductID) AS Products
 FROM Production.Document d
          LEFT JOIN Production.ProductDocument pd ON pd.DocumentNode = d.DocumentNode

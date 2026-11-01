@@ -14,8 +14,11 @@ services:
     ports:
       - "1433:1433"
     environment:
-      # required, and must meet SQL Server's password policy; the persistence units read it from pom.xml's
-      # mssql.password. ACCEPT_EULA=Y and MSSQL_PID=developer are preset by the image.
+      # required; Y accepts the SQL Server license (https://go.microsoft.com/fwlink/?linkid=857698), and without it
+      # SQL Server exits at start. MSSQL_PID=developer, free for development and testing only, is preset by the image.
+      ACCEPT_EULA: "Y"
+      # required, and must meet SQL Server's password policy; each module's persistence.xml repeats it as
+      # jakarta.persistence.jdbc.password.
       MSSQL_SA_PASSWORD: Passw0rd!
     # The image's own HEALTHCHECK reports healthy only once the three databases are loaded, under a minute.
     # /var/opt/mssql is not mounted, so it lives in the container's anonymous volume, which `down -v` removes, and

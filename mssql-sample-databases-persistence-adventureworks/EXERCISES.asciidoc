@@ -13,8 +13,8 @@ language against this module's entities. `AdventureWorks_Exercises_PersistenceIT
 Criteria API counterpart, with both providers, and checks the rows the SQL returns.
 
 The problems are grouped by the schema whose question they answer, and some of them read the other schemas too. Each
-section goes from Basic through Intermediate to Advanced. An id, `AW-<schema>-<level>-<number>`, is never renumbered
-or reused.
+section goes from Basic through Intermediate to Advanced. An id is `AW_<SCHEMA>_<TIER>_<NN>`, numbered within its
+schema and tier, and `EXERCISES.yaml` registers every one; an id is never renumbered or reused.
 
 A few things about the mappings shape the JPQL below:
 
@@ -36,8 +36,8 @@ A few things about the mappings shape the JPQL below:
 
 === Basic
 
-[[AW-HR-B-01]]
-==== AW-HR-B-01: The current employees of each department
+[[AW_HUMANRESOURCES_B_01]]
+==== AW_HUMANRESOURCES_B_01: The current employees of each department
 
 HR plans next year's budget. Show how many employees each department has now, the largest first.
 
@@ -55,15 +55,15 @@ ORDER BY Employees DESC, d.Name
 [source,jpaql]
 ----
 SELECT d.name, d.groupName, COUNT(h)
-FROM EmployeeDepartmentHistory h
+FROM HumanResourcesEmployeeDepartmentHistory h
          JOIN h.department d
 WHERE h.endDate IS NULL
 GROUP BY d.departmentId, d.name, d.groupName
 ORDER BY COUNT(h) DESC, d.name
 ----
 
-[[AW-HR-B-02]]
-==== AW-HR-B-02: The employees at each level of the organization
+[[AW_HUMANRESOURCES_B_02]]
+==== AW_HUMANRESOURCES_B_02: The employees at each level of the organization
 
 HR draws the organization chart. Show how many employees are at each level of the organization.
 
@@ -79,15 +79,15 @@ ORDER BY e.OrganizationLevel
 [source,jpaql]
 ----
 SELECT e.organizationLevel, COUNT(e)
-FROM Employee e
+FROM HumanResourcesEmployee e
 GROUP BY e.organizationLevel
 ORDER BY e.organizationLevel
 ----
 
 === Intermediate
 
-[[AW-HR-I-03]]
-==== AW-HR-I-03: The ten highest current hourly rates
+[[AW_HUMANRESOURCES_I_01]]
+==== AW_HUMANRESOURCES_I_01: The ten highest current hourly rates
 
 Payroll reviews the highest pay. Show the ten employees with the highest current hourly rate, the rate of each one's latest change.
 
@@ -107,17 +107,17 @@ ORDER BY ph.Rate DESC, e.BusinessEntityID
 [source,jpaql]
 ----
 SELECT p.firstName, p.lastName, e.jobTitle, ph.rate, ph.rateChangeDate
-FROM EmployeePayHistory ph
+FROM HumanResourcesEmployeePayHistory ph
          JOIN ph.businessEntity e
          JOIN e.businessEntity p
 WHERE ph.rateChangeDate = (SELECT MAX(ph2.rateChangeDate)
-                           FROM EmployeePayHistory ph2
+                           FROM HumanResourcesEmployeePayHistory ph2
                            WHERE ph2.businessEntityId = ph.businessEntityId)
 ORDER BY ph.rate DESC, e.businessEntityId
 ----
 
-[[AW-HR-I-04]]
-==== AW-HR-I-04: The direct reports of a manager, by hierarchyid
+[[AW_HUMANRESOURCES_I_02]]
+==== AW_HUMANRESOURCES_I_02: The direct reports of a manager, by hierarchyid
 
 A manager asks who reports to them directly. Show the direct reports of an employee, by the organization chart.
 
@@ -138,8 +138,8 @@ SQL only: answered with a native query, the SQL above, in `AdventureWorks_Exerci
 
 === Advanced
 
-[[AW-HR-A-05]]
-==== AW-HR-A-05: The chain of managers of an employee, by hierarchyid
+[[AW_HUMANRESOURCES_A_01]]
+==== AW_HUMANRESOURCES_A_01: The chain of managers of an employee, by hierarchyid
 
 An employee asks who is above them. Show the chain of managers of an employee, from the top down to the employee.
 
@@ -161,8 +161,8 @@ SQL only: answered with a native query, the SQL above, in `AdventureWorks_Exerci
 
 === Basic
 
-[[AW-PERSON-B-01]]
-==== AW-PERSON-B-01: The persons of each type
+[[AW_PERSON_B_01]]
+==== AW_PERSON_B_01: The persons of each type
 
 The data steward checks who the database holds. Show how many persons there are of each type, the most first.
 
@@ -178,15 +178,15 @@ ORDER BY Persons DESC
 [source,jpaql]
 ----
 SELECT p.personType, COUNT(p)
-FROM Person p
+FROM PersonPerson p
 GROUP BY p.personType
 ORDER BY COUNT(p) DESC
 ----
 
 === Intermediate
 
-[[AW-PERSON-I-02]]
-==== AW-PERSON-I-02: The five countries with the most addresses
+[[AW_PERSON_I_01]]
+==== AW_PERSON_I_01: The five countries with the most addresses
 
 Marketing picks the countries for a mailing. Show the five countries with the most addresses.
 
@@ -204,7 +204,7 @@ ORDER BY Addresses DESC
 [source,jpaql]
 ----
 SELECT c.countryRegionCode, c.name, COUNT(a)
-FROM Address a
+FROM PersonAddress a
          JOIN a.stateProvince s
          JOIN s.countryRegion c
 GROUP BY c.countryRegionCode, c.name
@@ -213,8 +213,8 @@ ORDER BY COUNT(a) DESC
 
 === Advanced
 
-[[AW-PERSON-A-03]]
-==== AW-PERSON-A-03: The individual customers of each yearly income band
+[[AW_PERSON_A_01]]
+==== AW_PERSON_A_01: The individual customers of each yearly income band
 
 Marketing segments the individual customers. Show how many of them answered each yearly income band of the survey stored in their Demographics document.
 
@@ -233,8 +233,8 @@ ORDER BY i.YearlyIncome
 [source,jpaql]
 ----
 SELECT v.yearlyIncome, COUNT(v)
-FROM PersonDemographicsView v
-         JOIN Person p ON p.businessEntityId = v.businessEntityId
+FROM SalesPersonDemographicsView v
+         JOIN PersonPerson p ON p.businessEntityId = v.businessEntityId
 WHERE p.personType = 'IN'
 GROUP BY v.yearlyIncome
 ORDER BY v.yearlyIncome
@@ -244,8 +244,8 @@ ORDER BY v.yearlyIncome
 
 === Basic
 
-[[AW-PRODUCTION-B-01]]
-==== AW-PRODUCTION-B-01: The products on sale of each category, and their list prices
+[[AW_PRODUCTION_B_01]]
+==== AW_PRODUCTION_B_01: The products on sale of each category, and their list prices
 
 The catalog manager reviews the range. Show, for each category, how many products are on sale, and their lowest and highest list prices.
 
@@ -264,7 +264,7 @@ ORDER BY c.Name
 [source,jpaql]
 ----
 SELECT c.name, COUNT(p), MIN(p.listPrice), MAX(p.listPrice)
-FROM Product p
+FROM ProductionProduct p
          JOIN p.productSubcategory s
          JOIN s.productCategory c
 WHERE p.sellEndDate IS NULL
@@ -274,8 +274,8 @@ ORDER BY c.name
 
 === Intermediate
 
-[[AW-PRODUCTION-I-02]]
-==== AW-PRODUCTION-I-02: The products whose stock is less than half their safety stock level
+[[AW_PRODUCTION_I_01]]
+==== AW_PRODUCTION_I_01: The products whose stock is less than half their safety stock level
 
 The warehouse refills the shelves. Show the products whose stock, over every location, is less than half their safety stock level, the lowest stock first.
 
@@ -293,15 +293,15 @@ ORDER BY Quantity, p.ProductID
 [source,jpaql]
 ----
 SELECT p.productId, p.name, p.safetyStockLevel, SUM(i.quantity)
-FROM ProductInventory i
+FROM ProductionProductInventory i
          JOIN i.product p
 GROUP BY p.productId, p.name, p.safetyStockLevel
 HAVING SUM(i.quantity) * 2 < p.safetyStockLevel
 ORDER BY SUM(i.quantity), p.productId
 ----
 
-[[AW-PRODUCTION-I-03]]
-==== AW-PRODUCTION-I-03: The five scrap reasons with the most scrapped quantity
+[[AW_PRODUCTION_I_02]]
+==== AW_PRODUCTION_I_02: The five scrap reasons with the most scrapped quantity
 
 The plant manager looks for the costliest failures. Show the five scrap reasons with the most scrapped quantity, and how many work orders each one stopped.
 
@@ -318,7 +318,7 @@ ORDER BY ScrappedQty DESC
 [source,jpaql]
 ----
 SELECT r.name, COUNT(w), SUM(w.scrappedQty)
-FROM WorkOrder w
+FROM ProductionWorkOrder w
          JOIN w.scrapReason r
 GROUP BY r.scrapReasonId, r.name
 ORDER BY SUM(w.scrappedQty) DESC
@@ -326,8 +326,8 @@ ORDER BY SUM(w.scrappedQty) DESC
 
 === Advanced
 
-[[AW-PRODUCTION-A-04]]
-==== AW-PRODUCTION-A-04: The parts of a product, by its bill of materials
+[[AW_PRODUCTION_A_01]]
+==== AW_PRODUCTION_A_01: The parts of a product, by its bill of materials
 
 Production plans an assembly. Show every part of a product, down to the raw materials, from its current bill of materials, with the quantity each assembly takes and the level it is at.
 
@@ -354,8 +354,8 @@ ORDER BY p.BomLevel, p.AssemblyID, p.ComponentID
 
 SQL only: answered with a native query, the SQL above, in `AdventureWorks_Exercises_PersistenceIT`.
 
-[[AW-PRODUCTION-A-05]]
-==== AW-PRODUCTION-A-05: The documents under a folder, and the products of each
+[[AW_PRODUCTION_A_02]]
+==== AW_PRODUCTION_A_02: The documents under a folder, and the products of each
 
 Document control audits a folder. Show the documents under a folder of the document tree, with how many products each one is attached to.
 
@@ -378,8 +378,8 @@ SQL only: answered with a native query, the SQL above, in `AdventureWorks_Exerci
 
 === Basic
 
-[[AW-PURCHASING-B-01]]
-==== AW-PURCHASING-B-01: The vendors of a product, the cheapest first
+[[AW_PURCHASING_B_01]]
+==== AW_PURCHASING_B_01: The vendors of a product, the cheapest first
 
 A buyer orders a part. Show the vendors who supply a product, the cheapest first.
 
@@ -397,7 +397,7 @@ ORDER BY pv.StandardPrice, v.Name
 [source,jpaql]
 ----
 SELECT pv
-FROM ProductVendor pv
+FROM PurchasingProductVendor pv
          JOIN pv.businessEntity v
 WHERE pv.productId = :productId
 ORDER BY pv.standardPrice, v.name
@@ -405,8 +405,8 @@ ORDER BY pv.standardPrice, v.name
 
 === Intermediate
 
-[[AW-PURCHASING-I-02]]
-==== AW-PURCHASING-I-02: The five vendors the company spent the most with
+[[AW_PURCHASING_I_01]]
+==== AW_PURCHASING_I_01: The five vendors the company spent the most with
 
 The purchasing manager prepares the vendor reviews. Show the five vendors the company spent the most with, and how many purchase orders each one had.
 
@@ -423,14 +423,14 @@ ORDER BY TotalDue DESC
 [source,jpaql]
 ----
 SELECT v.accountNumber, v.name, COUNT(h), SUM(h.totalDue)
-FROM PurchaseOrderHeader h
+FROM PurchasingPurchaseOrderHeader h
          JOIN h.vendor v
 GROUP BY v.businessEntityId, v.accountNumber, v.name
 ORDER BY SUM(h.totalDue) DESC
 ----
 
-[[AW-PURCHASING-I-03]]
-==== AW-PURCHASING-I-03: The five vendors whose goods were rejected the most
+[[AW_PURCHASING_I_02]]
+==== AW_PURCHASING_I_02: The five vendors whose goods were rejected the most
 
 Quality assurance looks for unreliable vendors. Show the five vendors whose received goods were rejected the most, by the share of the quantity received.
 
@@ -452,7 +452,7 @@ ORDER BY SUM(d.RejectedQty) / SUM(d.ReceivedQty) DESC, v.Name
 ----
 SELECT v.name, SUM(d.receivedQty), SUM(d.rejectedQty),
        SUM(d.rejectedQty) / SUM(d.receivedQty) AS rejected
-FROM PurchaseOrderDetail d
+FROM PurchasingPurchaseOrderDetail d
          JOIN d.purchaseOrder h
          JOIN h.vendor v
 GROUP BY v.businessEntityId, v.name
@@ -463,8 +463,8 @@ ORDER BY rejected DESC, v.name
 
 === Basic
 
-[[AW-SALES-B-01]]
-==== AW-SALES-B-01: An order, by its order number
+[[AW_SALES_B_01]]
+==== AW_SALES_B_01: An order, by its order number
 
 A customer calls with an order number. Show the order, with its amounts.
 
@@ -480,12 +480,12 @@ WHERE h.SalesOrderNumber = @salesOrderNumber
 [source,jpaql]
 ----
 SELECT h
-FROM SalesOrderHeader h
+FROM SalesSalesOrderHeader h
 WHERE h.salesOrderNumber = :salesOrderNumber
 ----
 
-[[AW-SALES-B-02]]
-==== AW-SALES-B-02: The customers, the persons and the stores among them
+[[AW_SALES_B_02]]
+==== AW_SALES_B_02: The customers, the persons and the stores among them
 
 Sales counts its customers. Show how many customers there are, how many of them are persons, and how many are stores.
 
@@ -499,13 +499,13 @@ FROM Sales.Customer c
 [source,jpaql]
 ----
 SELECT COUNT(c), COUNT(c.personId), COUNT(c.storeId)
-FROM Customer c
+FROM SalesCustomer c
 ----
 
 === Intermediate
 
-[[AW-SALES-I-03]]
-==== AW-SALES-I-03: The orders of each territory
+[[AW_SALES_I_01]]
+==== AW_SALES_I_01: The orders of each territory
 
 The sales director compares the territories. Show, for each territory, its group, how many orders it had and how much they came to, the largest first.
 
@@ -522,14 +522,14 @@ ORDER BY TotalDue DESC
 [source,jpaql]
 ----
 SELECT t.name, t.group, COUNT(h), SUM(h.totalDue)
-FROM SalesOrderHeader h
+FROM SalesSalesOrderHeader h
          JOIN h.territory t
 GROUP BY t.territoryId, t.name, t.group
 ORDER BY SUM(h.totalDue) DESC
 ----
 
-[[AW-SALES-I-04]]
-==== AW-SALES-I-04: The five products which brought in the most
+[[AW_SALES_I_02]]
+==== AW_SALES_I_02: The five products which brought in the most
 
 The product manager looks for the best sellers. Show the five products that brought in the most, with the quantity sold.
 
@@ -546,15 +546,15 @@ ORDER BY LineTotal DESC
 [source,jpaql]
 ----
 SELECT p.productNumber, p.name, SUM(d.orderQty), SUM(d.lineTotal)
-FROM SalesOrderDetail d
+FROM SalesSalesOrderDetail d
          JOIN d.specialOfferProduct sop
          JOIN sop.product p
 GROUP BY p.productId, p.productNumber, p.name
 ORDER BY SUM(d.lineTotal) DESC
 ----
 
-[[AW-SALES-I-05]]
-==== AW-SALES-I-05: The discount each special offer gave
+[[AW_SALES_I_03]]
+==== AW_SALES_I_03: The discount each special offer gave
 
 Finance weighs the promotions. Show, for each special offer that was applied, how many order lines took it and how much discount it gave, the most first.
 
@@ -574,7 +574,7 @@ ORDER BY Discount DESC
 ----
 SELECT o.specialOfferId, o.description, o.discountPct, COUNT(d),
        SUM(d.unitPrice * d.unitPriceDiscount * d.orderQty) AS discount
-FROM SalesOrderDetail d
+FROM SalesSalesOrderDetail d
          JOIN d.specialOfferProduct sop
          JOIN sop.specialOffer o
 WHERE d.unitPriceDiscount > 0
@@ -582,8 +582,8 @@ GROUP BY o.specialOfferId, o.description, o.discountPct
 ORDER BY discount DESC
 ----
 
-[[AW-SALES-I-06]]
-==== AW-SALES-I-06: The five sales persons with the most sales this year
+[[AW_SALES_I_04]]
+==== AW_SALES_I_04: The five sales persons with the most sales this year
 
 The sales director names the top sellers of the year. Show the five sales persons with the most sales this year, with their names and territories.
 
@@ -601,7 +601,7 @@ ORDER BY sp.SalesYTD DESC
 [source,jpaql]
 ----
 SELECT p.firstName, p.lastName, t.name, sp.salesYtd
-FROM SalesPerson sp
+FROM SalesSalesPerson sp
          JOIN sp.businessEntity e
          JOIN e.businessEntity p
          LEFT JOIN sp.territory t
@@ -610,8 +610,8 @@ ORDER BY sp.salesYtd DESC
 
 === Advanced
 
-[[AW-SALES-A-07]]
-==== AW-SALES-A-07: The sales of each sales person, a column per fiscal year
+[[AW_SALES_A_01]]
+==== AW_SALES_A_01: The sales of each sales person, a column per fiscal year
 
 The sales director compares the sales persons over the years. Show each sales person's sales, a column per fiscal year; Adventure Works' fiscal year starts on the 1st of July.
 
@@ -628,8 +628,8 @@ ORDER BY pvt.[2025] DESC
 
 SQL only: answered with a native query, the SQL above, in `AdventureWorks_Exercises_PersistenceIT`.
 
-[[AW-SALES-A-08]]
-==== AW-SALES-A-08: The sales persons ranked within the group of their territory
+[[AW_SALES_A_02]]
+==== AW_SALES_A_02: The sales persons ranked within the group of their territory
 
 The sales director ranks the sales persons of each territory group. Show every sales person with a territory, ranked by this year's sales within the group of their territory.
 

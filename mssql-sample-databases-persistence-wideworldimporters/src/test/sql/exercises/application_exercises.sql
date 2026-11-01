@@ -26,7 +26,7 @@
 --
 
 
--- ------------------------------------------------------------------------------------------------ WWI-APPLICATION-B-01
+-- ------------------------------------------------------------------------------------------------ WWI_APPLICATION_B_01
 -- The sales manager wants the salespeople, by name, with their phone number and email address.
 SELECT PersonID, FullName, PhoneNumber, EmailAddress
 FROM Application.People
@@ -35,7 +35,7 @@ ORDER BY FullName
 ;
 
 
--- ------------------------------------------------------------------------------------------------ WWI-APPLICATION-I-01
+-- ------------------------------------------------------------------------------------------------ WWI_APPLICATION_I_01
 -- Marketing sizes the markets: for each continent, the number of countries and their total population, the most
 -- populous continent first.
 SELECT Continent, COUNT(*) AS Countries, SUM(LatestRecordedPopulation) AS Population
@@ -45,7 +45,7 @@ ORDER BY Population DESC
 ;
 
 
--- ------------------------------------------------------------------------------------------------ WWI-APPLICATION-I-02
+-- ------------------------------------------------------------------------------------------------ WWI_APPLICATION_I_02
 -- Human resources counts the employees by title, with the earliest hire date of each title. The title and the hire
 -- date are in the CustomFields JSON document; JSON_VALUE is SQL only.
 SELECT JSON_VALUE(CustomFields, '$.Title')                       AS Title,
@@ -58,13 +58,13 @@ ORDER BY Employees DESC, Title
 ;
 
 
--- ------------------------------------------------------------------------------------------------ WWI-APPLICATION-A-01
+-- ------------------------------------------------------------------------------------------------ WWI_APPLICATION_A_01
 -- Logistics plans a route from one city: the five cities nearest to it, with their state code and the distance in
 -- kilometres. Location is a geography; its methods, STDistance among them, are SQL only.
-DECLARE @cityId int = 30378; -- San Francisco
-SELECT TOP (5) c.CityName,
-               sp.StateProvinceCode,
-               CAST(c.Location.STDistance(o.Location) / 1000 AS decimal(10, 1)) AS Kilometres
+DECLARE
+@cityId int = 30378; -- San Francisco
+SELECT TOP(5) c.CityName, sp.StateProvinceCode,
+       CAST(c.Location.STDistance(o.Location) / 1000 AS decimal(10, 1)) AS Kilometres
 FROM Application.Cities c
          JOIN Application.StateProvinces sp ON sp.StateProvinceID = c.StateProvinceID
          JOIN Application.Cities o ON o.CityID = @cityId

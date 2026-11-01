@@ -10,11 +10,16 @@ per database.
 | `mssql-sample-databases-persistence-futonmanufacturing` | `FutonManufacturing`, a bill of materials, inventory, production and sales | 32 + 40 | 50 | 22 |
 | `mssql-sample-databases-persistence-wideworldimporters` | `WideWorldImporters`, the SQL Server 2016+ sample | 48 + 3 | 34 | 17 |
 
-Each module's main sources are the package `<database>.mapped` alone: one `@MappedSuperclass` `Mapped<Entity>` per
-table and view, one `Mapped<Entity>Id` per composite key, and `UuidStringAttributeConverter`. The entities, which add
-`@Entity`, `@Table`, `@IdClass` and the associations, live in `src/test/java`, with the persistence unit,
-`<database>-it`, and an integration test per class. The layout follows
+Each module's main sources are a package per schema, `<database>.mapped.<schema>`: one `@MappedSuperclass`
+`Mapped<Entity>` per table and view, and one `Mapped<Entity>Id` per composite key. `UuidStringAttributeConverter`, which
+the schemas share, is in `<database>.mapped`. The entities, which add `@Entity`, `@Table`, `@IdClass` and the
+associations, live in `src/test/java`, in `<database>.<schema>`, with the persistence unit, `<database>-it`, and an
+integration test per class. The layout follows
 [oracle-sample-schemas-persistence](https://github.com/jinahya/oracle-sample-schemas-persistence).
+
+A table or view is named within its schema, and so is its class: `Website.Customers` is `website.Customer`, next to
+`sales.Customer`. An entity name is unique only across the persistence unit, so every entity takes its schema in its
+name, `@Entity(name = "<Schema><Entity>")`: `SalesCustomer`, `WebsiteCustomer`, `DboItem`. Queries use these names.
 
 ## The database
 

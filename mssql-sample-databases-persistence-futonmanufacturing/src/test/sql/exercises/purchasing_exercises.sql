@@ -27,7 +27,7 @@
 --
 
 
--- ----------------------------------------------------------------------------------------------- FUTON-PURCHASING-B-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_B_04
 -- the items a supplier, SUP-002, supplies, with its price beside the item's standard cost.
 SELECT i.ItemCode, i.ItemName, si.UnitPrice, i.StandardCost, si.MinimumOrderQuantity, si.LeadTimeDays
 FROM SupplierItem si
@@ -37,13 +37,13 @@ WHERE s.SupplierCode = 'SUP-002'
 ORDER BY i.ItemCode
 ;
 
--- ----------------------------------------------------------------------------------------------- FUTON-PURCHASING-I-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_I_04
 -- the share of what was inspected on receipt that was rejected, for each supplier, the worst first; an inspection
 -- names its purchase order by number, not by a foreign key.
 SELECT s.SupplierCode,
        s.SupplierName,
-       SUM(q.QuantityInspected) AS Inspected,
-       SUM(q.QuantityRejected) AS Rejected,
+       SUM(q.QuantityInspected)                                                        AS Inspected,
+       SUM(q.QuantityRejected)                                                         AS Rejected,
        CAST(SUM(q.QuantityRejected) * 100 / SUM(q.QuantityInspected) AS DECIMAL(5, 2)) AS RejectedPercent
 FROM PurchaseOrder po
          JOIN Supplier s ON s.SupplierID = po.SupplierID

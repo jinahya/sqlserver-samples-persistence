@@ -27,7 +27,7 @@
 --
 
 
--- ------------------------------------------------------------------------------------------------ FUTON-INVENTORY-B-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_B_03
 -- the finished goods in the main warehouse, WH-MAIN, the fewest available first.
 SELECT i.ItemCode, i.ItemName, v.QuantityAvailable, i.ReorderPoint
 FROM Inventory v
@@ -39,21 +39,20 @@ WHERE t.TypeCode = 'FG'
 ORDER BY v.QuantityAvailable, i.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------ FUTON-INVENTORY-I-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_I_03
 -- the five stocks nearest to their reorder points: the ratio of the quantity available to the reorder point, the
 -- smallest first.
-SELECT TOP (5) i.ItemCode,
-               i.ItemName,
-               v.QuantityAvailable,
-               i.ReorderPoint,
-               CAST(v.QuantityAvailable / i.ReorderPoint AS DECIMAL(9, 2)) AS Ratio
+SELECT TOP(5) i.ItemCode, i.ItemName,
+       v.QuantityAvailable,
+       i.ReorderPoint,
+       CAST(v.QuantityAvailable / i.ReorderPoint AS DECIMAL(9, 2)) AS Ratio
 FROM Inventory v
          JOIN Items i ON i.ItemID = v.ItemID
 WHERE i.ReorderPoint > 0
 ORDER BY v.QuantityAvailable / i.ReorderPoint, i.ItemCode
 ;
 
--- ------------------------------------------------------------------------------------------------ FUTON-INVENTORY-A-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_A_03
 -- how many of each finished futon the components available in WH-MAIN can build: for each component, how many
 -- times its quantity is available, and the smallest of those.
 SELECT p.ItemCode, p.ItemName, MIN(FLOOR(v.QuantityAvailable / b.Quantity)) AS Buildable

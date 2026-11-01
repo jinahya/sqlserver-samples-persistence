@@ -27,7 +27,7 @@
 --
 
 
--- ---------------------------------------------------------------------------------------------------- FUTON-SALES-B-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_B_05
 -- the orders not delivered yet, the earliest requested delivery date first.
 SELECT so.OrderNumber, c.CustomerName, so.Status, so.RequestedDeliveryDate, so.NetAmount
 FROM SalesOrder so
@@ -36,7 +36,7 @@ WHERE so.Status <> 'Delivered'
 ORDER BY so.RequestedDeliveryDate, so.OrderNumber
 ;
 
--- ---------------------------------------------------------------------------------------------------- FUTON-SALES-I-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_I_05
 -- the number of orders and the net amount of each sales channel, the largest first.
 SELECT ch.ChannelCode, ch.ChannelName, COUNT(*) AS Orders, SUM(so.NetAmount) AS NetAmount
 FROM SalesOrder so
@@ -45,16 +45,16 @@ GROUP BY ch.SalesChannelID, ch.ChannelCode, ch.ChannelName
 ORDER BY NetAmount DESC
 ;
 
--- ---------------------------------------------------------------------------------------------------- FUTON-SALES-I-02
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_I_06
 -- the three futons sold the most, by quantity, with the net amount of their lines.
-SELECT TOP (3) i.ItemCode, i.ItemName, SUM(d.Quantity) AS Quantity, SUM(d.NetAmount) AS NetAmount
+SELECT TOP(3) i.ItemCode, i.ItemName, SUM(d.Quantity) AS Quantity, SUM(d.NetAmount) AS NetAmount
 FROM SalesOrderDetail d
          JOIN Items i ON i.ItemID = d.ItemID
 GROUP BY i.ItemID, i.ItemCode, i.ItemName
 ORDER BY Quantity DESC, i.ItemCode
 ;
 
--- ---------------------------------------------------------------------------------------------------- FUTON-SALES-A-01
+-- ------------------------------------------------------------------------------------------------------ FUTON_DBO_A_04
 -- the orders of the wholesale customers, each with the running total of its customer's net amount, in the order of
 -- their dates.
 SELECT c.CustomerCode,

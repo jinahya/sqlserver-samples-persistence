@@ -30,13 +30,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * Holds the factory of the {@value #PERSISTENCE_UNIT_NAME} unit, created once per JVM and closed when it exits, and
- * the helpers the integration tests share.
+ * Holds the factory of the {@value #PERSISTENCE_UNIT_NAME} unit, created once per JVM and closed when it exits, and the
+ * helpers the integration tests share.
  */
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
 })
-final class ___Persistence_TestUtils {
+public final class ___Persistence_TestUtils {
 
     static final String PERSISTENCE_UNIT_NAME = "wideworldimporters-it";
 
@@ -60,18 +60,18 @@ final class ___Persistence_TestUtils {
         }
     }
 
-    static EntityManagerFactory entityManagerFactory() {
+    public static EntityManagerFactory entityManagerFactory() {
         return Holder.ENTITY_MANAGER_FACTORY;
     }
 
-    static ValidatorFactory validatorFactory() {
+    public static ValidatorFactory validatorFactory() {
         return Holder.VALIDATOR_FACTORY;
     }
 
     /**
      * Applies the specified function to a new entity manager, inside a transaction which is rolled back afterwards.
      */
-    static <R> R applyInTransactionAndRollback(final Function<? super EntityManager, ? extends R> function) {
+    public static <R> R applyInTransactionAndRollback(final Function<? super EntityManager, ? extends R> function) {
         Objects.requireNonNull(function, "function is null");
         try (var entityManager = entityManagerFactory().createEntityManager()) {
             final var transaction = entityManager.getTransaction();

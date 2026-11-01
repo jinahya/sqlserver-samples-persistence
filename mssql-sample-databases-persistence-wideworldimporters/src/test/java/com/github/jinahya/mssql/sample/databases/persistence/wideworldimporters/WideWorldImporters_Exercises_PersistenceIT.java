@@ -20,6 +20,34 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.Country;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.Country_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.Person;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.Person_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrderLine;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrderLine_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrder_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.Supplier;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.SupplierCategory_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.SupplierTransaction;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.SupplierTransaction_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.purchasing.Supplier_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.BuyingGroup_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Customer;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Customer_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Invoice;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.InvoiceLine;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.InvoiceLine_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Invoice_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Order;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.Order_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockGroup_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItem;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemHolding;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemHolding_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemStockGroup;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItemStockGroup_;
+import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.warehouse.StockItem_;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.LocalDateField;
 import org.junit.jupiter.api.DisplayName;
@@ -40,7 +68,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <p>
  * Each nested class is an exercise, named after its identifier; each asserts the rows the exercise's SQL, in
  * {@code src/test/sql/exercises}, returns from the installed database. The exercises which only SQL can answer are not
- * here, but one: {@code WWI-SALES-A-02}, read by a native query.
+ * here, but one: {@code WWI_SALES_A_02}, read by a native query.
  */
 @DisplayName("WideWorldImporters exercises")
 @SuppressWarnings({
@@ -61,20 +89,22 @@ class WideWorldImporters_Exercises_PersistenceIT {
         return new BigDecimal(value.toString());
     }
 
-    // ------------------------------------------------------------------------------------------- WWI-APPLICATION-B-01
-    @DisplayName("WWI-APPLICATION-B-01: the salespeople, by name")
+    // -------------------------------------------------------------------------------------------- WWI_APPLICATION_B_01
+    @DisplayName("WWI_APPLICATION_B_01: the salespeople, by name")
     @Nested
-    class Application_B_01_Test {
+    class WWI_APPLICATION_B_01_Test {
 
         private static final List<Integer> EXPECTED = List.of(7, 8, 16, 13, 3, 20, 2, 14, 6, 15);
 
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT p
-                    FROM Person AS p
-                    WHERE p.isSalesperson = true
-                    ORDER BY p.fullName""", Person.class).getResultList()
+                                                                                                               SELECT p
+                                                                                                               FROM ApplicationPerson AS p
+                                                                                                               WHERE p.isSalesperson = true
+                                                                                                               ORDER BY p.fullName""",
+                                                                                                       Person.class)
+                    .getResultList()
                     .stream().map(Person::getPersonId).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
@@ -95,10 +125,10 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // ------------------------------------------------------------------------------------------- WWI-APPLICATION-I-01
-    @DisplayName("WWI-APPLICATION-I-01: the countries and the population of each continent")
+    // -------------------------------------------------------------------------------------------- WWI_APPLICATION_I_01
+    @DisplayName("WWI_APPLICATION_I_01: the countries and the population of each continent")
     @Nested
-    class Application_I_01_Test {
+    class WWI_APPLICATION_I_01_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "Asia,46,4119330174",
@@ -117,11 +147,13 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT c.continent, COUNT(c) AS countries, SUM(c.latestRecordedPopulation) AS population
-                    FROM Country AS c
-                    GROUP BY c.continent
-                    ORDER BY population DESC""", Object[].class).getResultList()
-                    .stream().map(Application_I_01_Test::row).toList());
+                                                                                                               SELECT c.continent, COUNT(c) AS countries, SUM(c.latestRecordedPopulation) AS population
+                                                                                                               FROM ApplicationCountry AS c
+                                                                                                               GROUP BY c.continent
+                                                                                                               ORDER BY population DESC""",
+                                                                                                       Object[].class)
+                    .getResultList()
+                    .stream().map(WWI_APPLICATION_I_01_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -137,26 +169,28 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(continent);
                 query.orderBy(builder.desc(population));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Application_I_01_Test::row).toList();
+                        .stream().map(WWI_APPLICATION_I_01_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // -------------------------------------------------------------------------------------------- WWI-PURCHASING-B-01
-    @DisplayName("WWI-PURCHASING-B-01: the suppliers, by category and then by name")
+    // --------------------------------------------------------------------------------------------- WWI_PURCHASING_B_01
+    @DisplayName("WWI_PURCHASING_B_01: the suppliers, by category and then by name")
     @Nested
-    class Purchasing_B_01_Test {
+    class WWI_PURCHASING_B_01_Test {
 
         private static final List<Integer> EXPECTED = List.of(4, 3, 13, 6, 11, 1, 2, 5, 8, 9, 12, 7, 10);
 
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT s
-                    FROM Supplier AS s
-                         JOIN s.supplierCategory AS sc
-                    ORDER BY sc.supplierCategoryName, s.supplierName""", Supplier.class).getResultList()
+                                                                                                               SELECT s
+                                                                                                               FROM PurchasingSupplier AS s
+                                                                                                                    JOIN s.supplierCategory AS sc
+                                                                                                               ORDER BY sc.supplierCategoryName, s.supplierName""",
+                                                                                                       Supplier.class)
+                    .getResultList()
                     .stream().map(Supplier::getSupplierId).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
@@ -178,10 +212,10 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------- WWI-PURCHASING-B-02
-    @DisplayName("WWI-PURCHASING-B-02: what is still owed to each supplier")
+    // --------------------------------------------------------------------------------------------- WWI_PURCHASING_B_02
+    @DisplayName("WWI_PURCHASING_B_02: what is still owed to each supplier")
     @Nested
-    class Purchasing_B_02_Test {
+    class WWI_PURCHASING_B_02_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "Fabrikam, Inc.,1,1871894.10",
@@ -195,13 +229,15 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT s.supplierName, COUNT(st) AS transactions, SUM(st.outstandingBalance) AS outstanding
-                    FROM SupplierTransaction AS st
-                         JOIN st.supplier AS s
-                    WHERE st.isFinalized = false
-                    GROUP BY s.supplierId, s.supplierName
-                    ORDER BY outstanding DESC""", Object[].class).getResultList()
-                    .stream().map(Purchasing_B_02_Test::row).toList());
+                                                                                                               SELECT s.supplierName, COUNT(st) AS transactions, SUM(st.outstandingBalance) AS outstanding
+                                                                                                               FROM PurchasingSupplierTransaction AS st
+                                                                                                                    JOIN st.supplier AS s
+                                                                                                               WHERE st.isFinalized = false
+                                                                                                               GROUP BY s.supplierId, s.supplierName
+                                                                                                               ORDER BY outstanding DESC""",
+                                                                                                       Object[].class)
+                    .getResultList()
+                    .stream().map(WWI_PURCHASING_B_02_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -218,16 +254,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(supplier.get(Supplier_.supplierId), supplier.get(Supplier_.supplierName));
                 query.orderBy(builder.desc(outstanding));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Purchasing_B_02_Test::row).toList();
+                        .stream().map(WWI_PURCHASING_B_02_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // -------------------------------------------------------------------------------------------- WWI-PURCHASING-I-01
-    @DisplayName("WWI-PURCHASING-I-01: the purchase orders and the amount ordered from each supplier in a year")
+    // --------------------------------------------------------------------------------------------- WWI_PURCHASING_I_01
+    @DisplayName("WWI_PURCHASING_I_01: the purchase orders and the amount ordered from each supplier in a year")
     @Nested
-    class Purchasing_I_01_Test {
+    class WWI_PURCHASING_I_01_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "Fabrikam, Inc.,309,295332354.00",
@@ -241,20 +277,21 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT s.supplierName,
-                           COUNT(DISTINCT po) AS orders,
-                           SUM(pol.orderedOuters * pol.expectedUnitPricePerOuter) AS amount
-                    FROM PurchaseOrderLine AS pol
-                         JOIN pol.purchaseOrder AS po
-                         JOIN po.supplier AS s
-                    WHERE po.orderDate >= :from
-                      AND po.orderDate < :to
-                    GROUP BY s.supplierId, s.supplierName
-                    ORDER BY amount DESC""", Object[].class)
+                                                                                                               SELECT s.supplierName,
+                                                                                                                      COUNT(DISTINCT po) AS orders,
+                                                                                                                      SUM(pol.orderedOuters * pol.expectedUnitPricePerOuter) AS amount
+                                                                                                               FROM PurchasingPurchaseOrderLine AS pol
+                                                                                                                    JOIN pol.purchaseOrder AS po
+                                                                                                                    JOIN po.supplier AS s
+                                                                                                               WHERE po.orderDate >= :from
+                                                                                                                 AND po.orderDate < :to
+                                                                                                               GROUP BY s.supplierId, s.supplierName
+                                                                                                               ORDER BY amount DESC""",
+                                                                                                       Object[].class)
                     .setParameter("from", FROM_2015)
                     .setParameter("to", TO_2015)
                     .getResultList()
-                    .stream().map(Purchasing_I_01_Test::row).toList());
+                    .stream().map(WWI_PURCHASING_I_01_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -274,16 +311,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(supplier.get(Supplier_.supplierId), supplier.get(Supplier_.supplierName));
                 query.orderBy(builder.desc(amount));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Purchasing_I_01_Test::row).toList();
+                        .stream().map(WWI_PURCHASING_I_01_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-B-01
-    @DisplayName("WWI-SALES-B-01: the customers of each buying group")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_B_01
+    @DisplayName("WWI_SALES_B_01: the customers of each buying group")
     @Nested
-    class Sales_B_01_Test {
+    class WWI_SALES_B_01_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "null,261",
@@ -298,12 +335,14 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT bg.buyingGroupName, COUNT(c) AS customers
-                    FROM Customer AS c
-                         LEFT JOIN c.buyingGroup AS bg
-                    GROUP BY bg.buyingGroupName
-                    ORDER BY customers DESC, bg.buyingGroupName""", Object[].class).getResultList()
-                    .stream().map(Sales_B_01_Test::row).toList());
+                                                                                                               SELECT bg.buyingGroupName, COUNT(c) AS customers
+                                                                                                               FROM SalesCustomer AS c
+                                                                                                                    LEFT JOIN c.buyingGroup AS bg
+                                                                                                               GROUP BY bg.buyingGroupName
+                                                                                                               ORDER BY customers DESC, bg.buyingGroupName""",
+                                                                                                       Object[].class)
+                    .getResultList()
+                    .stream().map(WWI_SALES_B_01_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -320,16 +359,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(name);
                 query.orderBy(builder.desc(customers), builder.asc(name));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Sales_B_01_Test::row).toList();
+                        .stream().map(WWI_SALES_B_01_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-B-02
-    @DisplayName("WWI-SALES-B-02: the customers billed for others")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_B_02
+    @DisplayName("WWI_SALES_B_02: the customers billed for others")
     @Nested
-    class Sales_B_02_Test {
+    class WWI_SALES_B_02_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "1,Tailspin Toys (Head Office),200",
@@ -343,13 +382,15 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT b.customerId, b.customerName, COUNT(c) AS billed
-                    FROM Customer AS c
-                         JOIN c.billToCustomer AS b
-                    WHERE b <> c
-                    GROUP BY b.customerId, b.customerName
-                    ORDER BY billed DESC, b.customerId""", Object[].class).getResultList()
-                    .stream().map(Sales_B_02_Test::row).toList());
+                                                                                                               SELECT b.customerId, b.customerName, COUNT(c) AS billed
+                                                                                                               FROM SalesCustomer AS c
+                                                                                                                    JOIN c.billToCustomer AS b
+                                                                                                               WHERE b <> c
+                                                                                                               GROUP BY b.customerId, b.customerName
+                                                                                                               ORDER BY billed DESC, b.customerId""",
+                                                                                                       Object[].class)
+                    .getResultList()
+                    .stream().map(WWI_SALES_B_02_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -366,29 +407,35 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(billTo.get(Customer_.customerId), billTo.get(Customer_.customerName));
                 query.orderBy(builder.desc(billed), builder.asc(billTo.get(Customer_.customerId)));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Sales_B_02_Test::row).toList();
+                        .stream().map(WWI_SALES_B_02_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-B-03
-    @DisplayName("WWI-SALES-B-03: the first five customers of no buying group, from the Website.Customers view")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_B_03
+    @DisplayName("WWI_SALES_B_03: the first five customers of no buying group, from the Website.Customers view")
     @Nested
-    class Sales_B_03_Test {
+    class WWI_SALES_B_03_Test {
 
+        // Website.Customers is website.Customer, qualified here, for this class imports sales.Customer
         private static final List<Integer> EXPECTED = List.of(832, 836, 869, 1048, 901);
 
         @Test
         void __QueryLanguage() {
-            final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT c
-                    FROM WebsiteCustomer AS c
-                    WHERE c.buyingGroupName IS NULL
-                    ORDER BY c.customerName""", WebsiteCustomer.class)
+            final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery(
+                            """
+                                    SELECT c
+                                    FROM WebsiteCustomer AS c
+                                    WHERE c.buyingGroupName IS NULL
+                                    ORDER BY c.customerName""",
+                            com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website.Customer.class)
                     .setMaxResults(5)
                     .getResultList()
-                    .stream().map(WebsiteCustomer::getCustomerId).toList());
+                    .stream()
+                    .map(com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website
+                                 .Customer::getCustomerId)
+                    .toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -396,22 +443,30 @@ class WideWorldImporters_Exercises_PersistenceIT {
         void __CriteriaApi() {
             final var found = applyInTransactionAndRollback(entityManager -> {
                 final var builder = entityManager.getCriteriaBuilder();
-                final var query = builder.createQuery(WebsiteCustomer.class);
-                final var root = query.from(WebsiteCustomer.class);
+                final var query = builder.createQuery(
+                        com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website.Customer.class);
+                final var root = query.from(query.getResultType());
                 query.select(root);
-                query.where(builder.isNull(root.get(WebsiteCustomer_.buyingGroupName)));
-                query.orderBy(builder.asc(root.get(WebsiteCustomer_.customerName)));
+                query.where(builder.isNull(root.get(
+                        com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website
+                                .Customer_.buyingGroupName)));
+                query.orderBy(builder.asc(root.get(
+                        com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website
+                                .Customer_.customerName)));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList()
-                        .stream().map(WebsiteCustomer::getCustomerId).toList();
+                        .stream()
+                        .map(com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.website
+                                     .Customer::getCustomerId)
+                        .toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-I-01
-    @DisplayName("WWI-SALES-I-01: the five stock items which earned the most in a year")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_I_01
+    @DisplayName("WWI_SALES_I_01: the five stock items which earned the most in a year")
     @Nested
-    class Sales_I_01_Test {
+    class WWI_SALES_I_01_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "215,1747,3815185.95",
@@ -428,19 +483,20 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT si.stockItemId, si.stockItemName, SUM(il.quantity), SUM(il.extendedPrice) AS revenue
-                    FROM InvoiceLine AS il
-                         JOIN il.invoice AS i
-                         JOIN il.stockItem AS si
-                    WHERE i.invoiceDate >= :from
-                      AND i.invoiceDate < :to
-                    GROUP BY si.stockItemId, si.stockItemName
-                    ORDER BY revenue DESC""", Object[].class)
+                                                                                                               SELECT si.stockItemId, si.stockItemName, SUM(il.quantity), SUM(il.extendedPrice) AS revenue
+                                                                                                               FROM SalesInvoiceLine AS il
+                                                                                                                    JOIN il.invoice AS i
+                                                                                                                    JOIN il.stockItem AS si
+                                                                                                               WHERE i.invoiceDate >= :from
+                                                                                                                 AND i.invoiceDate < :to
+                                                                                                               GROUP BY si.stockItemId, si.stockItemName
+                                                                                                               ORDER BY revenue DESC""",
+                                                                                                       Object[].class)
                     .setParameter("from", FROM_2015)
                     .setParameter("to", TO_2015)
                     .setMaxResults(5)
                     .getResultList()
-                    .stream().map(Sales_I_01_Test::row).toList());
+                    .stream().map(WWI_SALES_I_01_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -460,16 +516,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(item.get(StockItem_.stockItemId), item.get(StockItem_.stockItemName));
                 query.orderBy(builder.desc(revenue));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList()
-                        .stream().map(Sales_I_01_Test::row).toList();
+                        .stream().map(WWI_SALES_I_01_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-I-02
-    @DisplayName("WWI-SALES-I-02: the sales of a year by month")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_I_02
+    @DisplayName("WWI_SALES_I_02: the sales of a year by month")
     @Nested
-    class Sales_I_02_Test {
+    class WWI_SALES_I_02_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "1,1749,5061954.63", "2,1661,4824617.67", "3,1821,5207351.93", "4,2020,5834255.09",
@@ -484,19 +540,20 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT EXTRACT(MONTH FROM i.invoiceDate) AS invoiceMonth,
-                           COUNT(DISTINCT i),
-                           SUM(il.extendedPrice)
-                    FROM InvoiceLine AS il
-                         JOIN il.invoice AS i
-                    WHERE i.invoiceDate >= :from
-                      AND i.invoiceDate < :to
-                    GROUP BY EXTRACT(MONTH FROM i.invoiceDate)
-                    ORDER BY invoiceMonth""", Object[].class)
+                                                                                                               SELECT EXTRACT(MONTH FROM i.invoiceDate) AS invoiceMonth,
+                                                                                                                      COUNT(DISTINCT i),
+                                                                                                                      SUM(il.extendedPrice)
+                                                                                                               FROM SalesInvoiceLine AS il
+                                                                                                                    JOIN il.invoice AS i
+                                                                                                               WHERE i.invoiceDate >= :from
+                                                                                                                 AND i.invoiceDate < :to
+                                                                                                               GROUP BY EXTRACT(MONTH FROM i.invoiceDate)
+                                                                                                               ORDER BY invoiceMonth""",
+                                                                                                       Object[].class)
                     .setParameter("from", FROM_2015)
                     .setParameter("to", TO_2015)
                     .getResultList()
-                    .stream().map(Sales_I_02_Test::row).toList());
+                    .stream().map(WWI_SALES_I_02_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -515,16 +572,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(month);
                 query.orderBy(builder.asc(month));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Sales_I_02_Test::row).toList();
+                        .stream().map(WWI_SALES_I_02_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-I-03
-    @DisplayName("WWI-SALES-I-03: the confirmed deliveries of a customer since a date")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_I_03
+    @DisplayName("WWI_SALES_I_03: the confirmed deliveries of a customer since a date")
     @Nested
-    class Sales_I_03_Test {
+    class WWI_SALES_I_03_Test {
 
         private static final int CUSTOMER_ID = 1;
 
@@ -544,15 +601,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT i
-                    FROM Invoice AS i
-                    WHERE i.customerId = :customerId
-                      AND i.invoiceDate >= :from
-                    ORDER BY i.invoiceId""", Invoice.class)
+                                                                                                               SELECT i
+                                                                                                               FROM SalesInvoice AS i
+                                                                                                               WHERE i.customerId = :customerId
+                                                                                                                 AND i.invoiceDate >= :from
+                                                                                                               ORDER BY i.invoiceId""",
+                                                                                                       Invoice.class)
                     .setParameter("customerId", CUSTOMER_ID)
                     .setParameter("from", FROM)
                     .getResultList()
-                    .stream().map(Sales_I_03_Test::row).toList());
+                    .stream().map(WWI_SALES_I_03_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -567,16 +625,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                             builder.greaterThanOrEqualTo(root.get(Invoice_.invoiceDate), FROM));
                 query.orderBy(builder.asc(root.get(Invoice_.invoiceId)));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Sales_I_03_Test::row).toList();
+                        .stream().map(WWI_SALES_I_03_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-A-02
-    @DisplayName("WWI-SALES-A-02: the customers whose credit limit changed since a moment, by a native query")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_A_02
+    @DisplayName("WWI_SALES_A_02: the customers whose credit limit changed since a moment, by a native query")
     @Nested
-    class Sales_A_02_Test {
+    class WWI_SALES_A_02_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "802,2800.00,2940.00", "818,1100.00,1155.00", "835,3000.00,3150.00", "838,1800.00,1890.00",
@@ -589,11 +647,11 @@ class WideWorldImporters_Exercises_PersistenceIT {
         void __NativeQuery() {
             final var found = applyInTransactionAndRollback(entityManager -> {
                 final List<?> rows = entityManager.createNativeQuery("""
-                                SELECT c.CustomerID, c.CustomerName, h.CreditLimit, c.CreditLimit
-                                FROM Sales.Customers c
-                                         JOIN Sales.Customers FOR SYSTEM_TIME AS OF ?1 h ON h.CustomerID = c.CustomerID
-                                WHERE h.CreditLimit <> c.CreditLimit
-                                ORDER BY c.CustomerID""")
+                                                                             SELECT c.CustomerID, c.CustomerName, h.CreditLimit, c.CreditLimit
+                                                                             FROM Sales.Customers c
+                                                                                      JOIN Sales.Customers FOR SYSTEM_TIME AS OF ?1 h ON h.CustomerID = c.CustomerID
+                                                                             WHERE h.CreditLimit <> c.CreditLimit
+                                                                             ORDER BY c.CustomerID""")
                         .setParameter(1, LocalDateTime.of(2015, 1, 1, 0, 0))
                         .getResultList();
                 return rows.stream()
@@ -605,10 +663,10 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // ------------------------------------------------------------------------------------------------- WWI-SALES-A-03
-    @DisplayName("WWI-SALES-A-03: the five oldest backorders never invoiced, and the orders which backordered them")
+    // -------------------------------------------------------------------------------------------------- WWI_SALES_A_03
+    @DisplayName("WWI_SALES_A_03: the five oldest backorders never invoiced, and the orders which backordered them")
     @Nested
-    class Sales_A_03_Test {
+    class WWI_SALES_A_03_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "694,Wingtip Toys (Lost River, ID),684",
@@ -627,16 +685,17 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT p
-                    FROM Order AS p
-                         JOIN p.backorderOrder AS o
-                    WHERE NOT EXISTS (SELECT i
-                                      FROM Invoice AS i
-                                      WHERE i.order = o)
-                    ORDER BY o.orderDate, o.orderId""", Order.class)
+                                                                                                               SELECT p
+                                                                                                               FROM SalesOrder AS p
+                                                                                                                    JOIN p.backorderOrder AS o
+                                                                                                               WHERE NOT EXISTS (SELECT i
+                                                                                                                                 FROM SalesInvoice AS i
+                                                                                                                                 WHERE i.order = o)
+                                                                                                               ORDER BY o.orderDate, o.orderId""",
+                                                                                                       Order.class)
                     .setMaxResults(5)
                     .getResultList()
-                    .stream().map(Sales_A_03_Test::row).toList());
+                    .stream().map(WWI_SALES_A_03_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -655,16 +714,16 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.orderBy(builder.asc(backorder.get(Order_.orderDate)),
                               builder.asc(backorder.get(Order_.orderId)));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList()
-                        .stream().map(Sales_A_03_Test::row).toList();
+                        .stream().map(WWI_SALES_A_03_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // --------------------------------------------------------------------------------------------- WWI-WAREHOUSE-B-01
-    @DisplayName("WWI-WAREHOUSE-B-01: the stock items below their reorder level")
+    // ---------------------------------------------------------------------------------------------- WWI_WAREHOUSE_B_01
+    @DisplayName("WWI_WAREHOUSE_B_01: the stock items below their reorder level")
     @Nested
-    class Warehouse_B_01_Test {
+    class WWI_WAREHOUSE_B_01_Test {
 
         private static final List<String> EXPECTED = List.of("86,3,5", "184,38,50");
 
@@ -675,12 +734,14 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT h
-                    FROM StockItemHolding AS h
-                         JOIN h.stockItem AS si
-                    WHERE h.quantityOnHand < h.reorderLevel
-                    ORDER BY si.stockItemName""", StockItemHolding.class).getResultList()
-                    .stream().map(Warehouse_B_01_Test::row).toList());
+                                                                                                               SELECT h
+                                                                                                               FROM WarehouseStockItemHolding AS h
+                                                                                                                    JOIN h.stockItem AS si
+                                                                                                               WHERE h.quantityOnHand < h.reorderLevel
+                                                                                                               ORDER BY si.stockItemName""",
+                                                                                                       StockItemHolding.class)
+                    .getResultList()
+                    .stream().map(WWI_WAREHOUSE_B_01_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -696,26 +757,28 @@ class WideWorldImporters_Exercises_PersistenceIT {
                                              root.get(StockItemHolding_.reorderLevel)));
                 query.orderBy(builder.asc(item.get(StockItem_.stockItemName)));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Warehouse_B_01_Test::row).toList();
+                        .stream().map(WWI_WAREHOUSE_B_01_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }
     }
 
-    // --------------------------------------------------------------------------------------------- WWI-WAREHOUSE-B-02
-    @DisplayName("WWI-WAREHOUSE-B-02: the chiller stock items, by name")
+    // ---------------------------------------------------------------------------------------------- WWI_WAREHOUSE_B_02
+    @DisplayName("WWI_WAREHOUSE_B_02: the chiller stock items, by name")
     @Nested
-    class Warehouse_B_02_Test {
+    class WWI_WAREHOUSE_B_02_Test {
 
         private static final List<Integer> EXPECTED = List.of(222, 223, 224, 225, 220, 221, 227, 226);
 
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT si
-                    FROM StockItem AS si
-                    WHERE si.isChillerStock = true
-                    ORDER BY si.stockItemName""", StockItem.class).getResultList()
+                                                                                                               SELECT si
+                                                                                                               FROM WarehouseStockItem AS si
+                                                                                                               WHERE si.isChillerStock = true
+                                                                                                               ORDER BY si.stockItemName""",
+                                                                                                       StockItem.class)
+                    .getResultList()
                     .stream().map(StockItem::getStockItemId).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
@@ -736,10 +799,10 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // --------------------------------------------------------------------------------------------- WWI-WAREHOUSE-I-01
-    @DisplayName("WWI-WAREHOUSE-I-01: the stock items of each stock group")
+    // ---------------------------------------------------------------------------------------------- WWI_WAREHOUSE_I_01
+    @DisplayName("WWI_WAREHOUSE_I_01: the stock items of each stock group")
     @Nested
-    class Warehouse_I_01_Test {
+    class WWI_WAREHOUSE_I_01_Test {
 
         private static final List<String> EXPECTED = List.of(
                 "Novelty Items,91", "Computing Novelties,83", "Clothing,74", "Packaging Materials,67", "Mugs,42",
@@ -753,12 +816,14 @@ class WideWorldImporters_Exercises_PersistenceIT {
         @Test
         void __QueryLanguage() {
             final var found = applyInTransactionAndRollback(entityManager -> entityManager.createQuery("""
-                    SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
-                    FROM StockItemStockGroup AS sisg
-                         JOIN sisg.stockGroup AS sg
-                    GROUP BY sg.stockGroupId, sg.stockGroupName
-                    ORDER BY stockItems DESC, sg.stockGroupName""", Object[].class).getResultList()
-                    .stream().map(Warehouse_I_01_Test::row).toList());
+                                                                                                               SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
+                                                                                                               FROM WarehouseStockItemStockGroup AS sisg
+                                                                                                                    JOIN sisg.stockGroup AS sg
+                                                                                                               GROUP BY sg.stockGroupId, sg.stockGroupName
+                                                                                                               ORDER BY stockItems DESC, sg.stockGroupName""",
+                                                                                                       Object[].class)
+                    .getResultList()
+                    .stream().map(WWI_WAREHOUSE_I_01_Test::row).toList());
             assertThat(found).isEqualTo(EXPECTED);
         }
 
@@ -775,7 +840,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
                 query.groupBy(group.get(StockGroup_.stockGroupId), name);
                 query.orderBy(builder.desc(stockItems), builder.asc(name));
                 return entityManager.createQuery(query).getResultList()
-                        .stream().map(Warehouse_I_01_Test::row).toList();
+                        .stream().map(WWI_WAREHOUSE_I_01_Test::row).toList();
             });
             assertThat(found).isEqualTo(EXPECTED);
         }

@@ -20,6 +20,48 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks;
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.Department_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.Employee;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.EmployeeDepartmentHistory;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.EmployeeDepartmentHistory_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.EmployeePayHistory;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.EmployeePayHistory_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.humanresources.Employee_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.Address;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.Address_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.CountryRegion_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.Person;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.Person_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.StateProvince_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.Product;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.ProductCategory_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.ProductInventory;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.ProductInventory_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.ProductSubcategory_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.Product_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.ScrapReason_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.WorkOrder;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.production.WorkOrder_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.ProductVendor;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.ProductVendor_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.PurchaseOrderDetail;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.PurchaseOrderDetail_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.PurchaseOrderHeader;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.PurchaseOrderHeader_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.purchasing.Vendor_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.Customer;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.Customer_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.PersonDemographicsView;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.PersonDemographicsView_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesOrderDetail;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesOrderDetail_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesOrderHeader;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesOrderHeader_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesPerson;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesPerson_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SalesTerritory_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SpecialOfferProduct_;
+import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.sales.SpecialOffer_;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.JoinType;
 import org.junit.jupiter.api.DisplayName;
@@ -74,9 +116,9 @@ class AdventureWorks_Exercises_PersistenceIT {
     }
 
     // -------------------------------------------------------------------------------------------------- HumanResources
-    @DisplayName("AW-HR-B-01: the current employees of each department")
+    @DisplayName("AW_HUMANRESOURCES_B_01: the current employees of each department")
     @Nested
-    class AW_HR_B_01 {
+    class AW_HUMANRESOURCES_B_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -104,7 +146,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT d.name, d.groupName, COUNT(h)
-                            FROM EmployeeDepartmentHistory h
+                            FROM HumanResourcesEmployeeDepartmentHistory h
                                      JOIN h.department d
                             WHERE h.endDate IS NULL
                             GROUP BY d.departmentId, d.name, d.groupName
@@ -130,9 +172,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-HR-B-02: the employees at each level of the organization")
+    @DisplayName("AW_HUMANRESOURCES_B_02: the employees at each level of the organization")
     @Nested
-    class AW_HR_B_02 {
+    class AW_HUMANRESOURCES_B_02_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -149,7 +191,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT e.organizationLevel, COUNT(e)
-                            FROM Employee e
+                            FROM HumanResourcesEmployee e
                             GROUP BY e.organizationLevel
                             ORDER BY e.organizationLevel""",
                     Object[].class
@@ -171,9 +213,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-HR-I-03: the ten highest current hourly rates")
+    @DisplayName("AW_HUMANRESOURCES_I_01: the ten highest current hourly rates")
     @Nested
-    class AW_HR_I_03 {
+    class AW_HUMANRESOURCES_I_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -195,11 +237,11 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT p.firstName, p.lastName, e.jobTitle, ph.rate, ph.rateChangeDate
-                            FROM EmployeePayHistory ph
+                            FROM HumanResourcesEmployeePayHistory ph
                                      JOIN ph.businessEntity e
                                      JOIN e.businessEntity p
                             WHERE ph.rateChangeDate = (SELECT MAX(ph2.rateChangeDate)
-                                                       FROM EmployeePayHistory ph2
+                                                       FROM HumanResourcesEmployeePayHistory ph2
                                                        WHERE ph2.businessEntityId = ph.businessEntityId)
                             ORDER BY ph.rate DESC, e.businessEntityId""",
                     Object[].class
@@ -229,9 +271,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-HR-I-04: the direct reports of a manager, by hierarchyid")
+    @DisplayName("AW_HUMANRESOURCES_I_02: the direct reports of a manager, by hierarchyid")
     @Nested
-    class AW_HR_I_04 {
+    class AW_HUMANRESOURCES_I_02_Test {
 
         @Test
         @SuppressWarnings({"unchecked"})
@@ -255,9 +297,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-HR-A-05: the chain of managers of an employee, by hierarchyid")
+    @DisplayName("AW_HUMANRESOURCES_A_01: the chain of managers of an employee, by hierarchyid")
     @Nested
-    class AW_HR_A_05 {
+    class AW_HUMANRESOURCES_A_01_Test {
 
         @Test
         @SuppressWarnings({"unchecked"})
@@ -283,9 +325,9 @@ class AdventureWorks_Exercises_PersistenceIT {
     }
 
     // ---------------------------------------------------------------------------------------------------------- Person
-    @DisplayName("AW-PERSON-B-01: the persons of each type")
+    @DisplayName("AW_PERSON_B_01: the persons of each type")
     @Nested
-    class AW_PERSON_B_01 {
+    class AW_PERSON_B_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -303,7 +345,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT p.personType, COUNT(p)
-                            FROM Person p
+                            FROM PersonPerson p
                             GROUP BY p.personType
                             ORDER BY COUNT(p) DESC""",
                     Object[].class
@@ -325,9 +367,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PERSON-I-02: the five countries with the most addresses")
+    @DisplayName("AW_PERSON_I_01: the five countries with the most addresses")
     @Nested
-    class AW_PERSON_I_02 {
+    class AW_PERSON_I_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -344,7 +386,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT c.countryRegionCode, c.name, COUNT(a)
-                            FROM Address a
+                            FROM PersonAddress a
                                      JOIN a.stateProvince s
                                      JOIN s.countryRegion c
                             GROUP BY c.countryRegionCode, c.name
@@ -369,9 +411,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PERSON-A-03: the individual customers of each yearly income band")
+    @DisplayName("AW_PERSON_A_01: the individual customers of each yearly income band")
     @Nested
-    class AW_PERSON_A_03 {
+    class AW_PERSON_A_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -388,8 +430,8 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT v.yearlyIncome, COUNT(v)
-                            FROM PersonDemographicsView v
-                                     JOIN Person p ON p.businessEntityId = v.businessEntityId
+                            FROM SalesPersonDemographicsView v
+                                     JOIN PersonPerson p ON p.businessEntityId = v.businessEntityId
                             WHERE p.personType = 'IN'
                             GROUP BY v.yearlyIncome
                             ORDER BY v.yearlyIncome""",
@@ -418,9 +460,9 @@ class AdventureWorks_Exercises_PersistenceIT {
     }
 
     // ------------------------------------------------------------------------------------------------------ Production
-    @DisplayName("AW-PRODUCTION-B-01: the products on sale of each category, and their list prices")
+    @DisplayName("AW_PRODUCTION_B_01: the products on sale of each category, and their list prices")
     @Nested
-    class AW_PRODUCTION_B_01 {
+    class AW_PRODUCTION_B_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -436,7 +478,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT c.name, COUNT(p), MIN(p.listPrice), MAX(p.listPrice)
-                            FROM Product p
+                            FROM ProductionProduct p
                                      JOIN p.productSubcategory s
                                      JOIN s.productCategory c
                             WHERE p.sellEndDate IS NULL
@@ -463,9 +505,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PRODUCTION-I-02: the products whose stock is less than half their safety stock level")
+    @DisplayName("AW_PRODUCTION_I_01: the products whose stock is less than half their safety stock level")
     @Nested
-    class AW_PRODUCTION_I_02 {
+    class AW_PRODUCTION_I_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -481,7 +523,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT p.productId, p.name, p.safetyStockLevel, SUM(i.quantity)
-                            FROM ProductInventory i
+                            FROM ProductionProductInventory i
                                      JOIN i.product p
                             GROUP BY p.productId, p.name, p.safetyStockLevel
                             HAVING SUM(i.quantity) * 2 < p.safetyStockLevel
@@ -508,9 +550,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PRODUCTION-I-03: the five scrap reasons with the most scrapped quantity")
+    @DisplayName("AW_PRODUCTION_I_02: the five scrap reasons with the most scrapped quantity")
     @Nested
-    class AW_PRODUCTION_I_03 {
+    class AW_PRODUCTION_I_02_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -527,7 +569,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT r.name, COUNT(w), SUM(w.scrappedQty)
-                            FROM WorkOrder w
+                            FROM ProductionWorkOrder w
                                      JOIN w.scrapReason r
                             GROUP BY r.scrapReasonId, r.name
                             ORDER BY SUM(w.scrappedQty) DESC""",
@@ -551,9 +593,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PRODUCTION-A-04: the parts of a product, by its bill of materials")
+    @DisplayName("AW_PRODUCTION_A_01: the parts of a product, by its bill of materials")
     @Nested
-    class AW_PRODUCTION_A_04 {
+    class AW_PRODUCTION_A_01_Test {
 
         @Test
         @SuppressWarnings({"unchecked"})
@@ -590,9 +632,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PRODUCTION-A-05: the documents under a folder, and the products of each")
+    @DisplayName("AW_PRODUCTION_A_02: the documents under a folder, and the products of each")
     @Nested
-    class AW_PRODUCTION_A_05 {
+    class AW_PRODUCTION_A_02_Test {
 
         @Test
         @SuppressWarnings({"unchecked"})
@@ -617,9 +659,9 @@ class AdventureWorks_Exercises_PersistenceIT {
     }
 
     // ------------------------------------------------------------------------------------------------------ Purchasing
-    @DisplayName("AW-PURCHASING-B-01: the vendors of a product, the cheapest first")
+    @DisplayName("AW_PURCHASING_B_01: the vendors of a product, the cheapest first")
     @Nested
-    class AW_PURCHASING_B_01 {
+    class AW_PURCHASING_B_01_Test {
 
         private static final int PRODUCT_ID = 322;
 
@@ -640,7 +682,7 @@ class AdventureWorks_Exercises_PersistenceIT {
                 verify(entityManager.createQuery(
                         """
                                 SELECT pv
-                                FROM ProductVendor pv
+                                FROM PurchasingProductVendor pv
                                          JOIN pv.businessEntity v
                                 WHERE pv.productId = :productId
                                 ORDER BY pv.standardPrice, v.name""",
@@ -666,9 +708,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PURCHASING-I-02: the five vendors the company spent the most with")
+    @DisplayName("AW_PURCHASING_I_01: the five vendors the company spent the most with")
     @Nested
-    class AW_PURCHASING_I_02 {
+    class AW_PURCHASING_I_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -685,7 +727,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT v.accountNumber, v.name, COUNT(h), SUM(h.totalDue)
-                            FROM PurchaseOrderHeader h
+                            FROM PurchasingPurchaseOrderHeader h
                                      JOIN h.vendor v
                             GROUP BY v.businessEntityId, v.accountNumber, v.name
                             ORDER BY SUM(h.totalDue) DESC""",
@@ -709,9 +751,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-PURCHASING-I-03: the five vendors whose goods were rejected the most")
+    @DisplayName("AW_PURCHASING_I_02: the five vendors whose goods were rejected the most")
     @Nested
-    class AW_PURCHASING_I_03 {
+    class AW_PURCHASING_I_02_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found.stream().map(r -> Arrays.copyOf(r, 3)).toList())).containsExactly(
@@ -729,7 +771,7 @@ class AdventureWorks_Exercises_PersistenceIT {
                     """
                             SELECT v.name, SUM(d.receivedQty), SUM(d.rejectedQty),
                                    SUM(d.rejectedQty) / SUM(d.receivedQty) AS rejected
-                            FROM PurchaseOrderDetail d
+                            FROM PurchasingPurchaseOrderDetail d
                                      JOIN d.purchaseOrder h
                                      JOIN h.vendor v
                             GROUP BY v.businessEntityId, v.name
@@ -757,9 +799,9 @@ class AdventureWorks_Exercises_PersistenceIT {
     }
 
     // ----------------------------------------------------------------------------------------------------------- Sales
-    @DisplayName("AW-SALES-B-01: an order, by its order number")
+    @DisplayName("AW_SALES_B_01: an order, by its order number")
     @Nested
-    class AW_SALES_B_01 {
+    class AW_SALES_B_01_Test {
 
         private static final String SALES_ORDER_NUMBER = "SO43659";
 
@@ -774,7 +816,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT h
-                            FROM SalesOrderHeader h
+                            FROM SalesSalesOrderHeader h
                             WHERE h.salesOrderNumber = :salesOrderNumber""",
                     SalesOrderHeader.class
             ).setParameter("salesOrderNumber", SALES_ORDER_NUMBER).getSingleResult()));
@@ -793,9 +835,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-B-02: the customers, the persons and the stores among them")
+    @DisplayName("AW_SALES_B_02: the customers, the persons and the stores among them")
     @Nested
-    class AW_SALES_B_02 {
+    class AW_SALES_B_02_Test {
 
         private void verify(final Object[] found) {
             assertThat(row(found)).isEqualTo("19820 | 19119 | 1336");
@@ -806,7 +848,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT COUNT(c), COUNT(c.personId), COUNT(c.storeId)
-                            FROM Customer c""",
+                            FROM SalesCustomer c""",
                     Object[].class
             ).getSingleResult()));
         }
@@ -824,9 +866,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-I-03: the orders of each territory")
+    @DisplayName("AW_SALES_I_01: the orders of each territory")
     @Nested
-    class AW_SALES_I_03 {
+    class AW_SALES_I_01_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -848,7 +890,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT t.name, t.group, COUNT(h), SUM(h.totalDue)
-                            FROM SalesOrderHeader h
+                            FROM SalesSalesOrderHeader h
                                      JOIN h.territory t
                             GROUP BY t.territoryId, t.name, t.group
                             ORDER BY SUM(h.totalDue) DESC""",
@@ -874,9 +916,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-I-04: the five products which brought in the most")
+    @DisplayName("AW_SALES_I_02: the five products which brought in the most")
     @Nested
-    class AW_SALES_I_04 {
+    class AW_SALES_I_02_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -893,7 +935,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT p.productNumber, p.name, SUM(d.orderQty), SUM(d.lineTotal)
-                            FROM SalesOrderDetail d
+                            FROM SalesSalesOrderDetail d
                                      JOIN d.specialOfferProduct sop
                                      JOIN sop.product p
                             GROUP BY p.productId, p.productNumber, p.name
@@ -919,9 +961,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-I-05: the discount each special offer gave")
+    @DisplayName("AW_SALES_I_03: the discount each special offer gave")
     @Nested
-    class AW_SALES_I_05 {
+    class AW_SALES_I_03_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -945,7 +987,7 @@ class AdventureWorks_Exercises_PersistenceIT {
                     """
                             SELECT o.specialOfferId, o.description, o.discountPct, COUNT(d),
                                    SUM(d.unitPrice * d.unitPriceDiscount * d.orderQty) AS discount
-                            FROM SalesOrderDetail d
+                            FROM SalesSalesOrderDetail d
                                      JOIN d.specialOfferProduct sop
                                      JOIN sop.specialOffer o
                             WHERE d.unitPriceDiscount > 0
@@ -976,9 +1018,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-I-06: the five sales persons with the most sales this year")
+    @DisplayName("AW_SALES_I_04: the five sales persons with the most sales this year")
     @Nested
-    class AW_SALES_I_06 {
+    class AW_SALES_I_04_Test {
 
         private void verify(final List<Object[]> found) {
             assertThat(rows(found)).containsExactly(
@@ -995,7 +1037,7 @@ class AdventureWorks_Exercises_PersistenceIT {
             verify(apply(entityManager -> entityManager.createQuery(
                     """
                             SELECT p.firstName, p.lastName, t.name, sp.salesYtd
-                            FROM SalesPerson sp
+                            FROM SalesSalesPerson sp
                                      JOIN sp.businessEntity e
                                      JOIN e.businessEntity p
                                      LEFT JOIN sp.territory t
@@ -1020,9 +1062,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-A-07: the sales of each sales person, a column per fiscal year")
+    @DisplayName("AW_SALES_A_01: the sales of each sales person, a column per fiscal year")
     @Nested
-    class AW_SALES_A_07 {
+    class AW_SALES_A_01_Test {
 
         @Test
         @SuppressWarnings({"unchecked"})
@@ -1045,9 +1087,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    @DisplayName("AW-SALES-A-08: the sales persons ranked within the group of their territory")
+    @DisplayName("AW_SALES_A_02: the sales persons ranked within the group of their territory")
     @Nested
-    class AW_SALES_A_08 {
+    class AW_SALES_A_02_Test {
 
         @Test
         @SuppressWarnings({"unchecked"})

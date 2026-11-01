@@ -19,12 +19,10 @@
  */
 
 /**
- * Mapped superclasses for FutonManufacturing, a manufacturing and sales sample database of SQL Server, one per table and one per view, plus an identifier class per composite key.
+ * What the mapped superclasses of FutonManufacturing, a manufacturing and sales sample database of SQL Server, share
+ * across its schemas.
  * <p>
- * Each holds what the database says about its table or view -- the names, the types, the lengths, the nullability,
- * the identity columns, the sequences and the columns the database computes -- and nothing an application decides:
- * no association, no fetch type, no cascade, no named query. A foreign-key column is mapped read-only here, as a basic
- * attribute; the extending entity owns its writable mapping, through an association's
- * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The mapped superclasses themselves are in a package per schema, {@code mapped.<schema>}, so that each table and view
+ * is named within its schema, as the database names it.
  */
 package com.github.jinahya.mssql.sample.databases.persistence.futonmanufacturing.mapped;
