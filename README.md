@@ -30,7 +30,7 @@ empty data directory, so loading happens every time, under a minute; the contain
 there. The image is `linux/amd64` only; on Apple silicon, turn on Rosetta in Docker Desktop.
 
 ```shell
-$ ./_docker-exec-sqlcmd.sh -d AdventureWorks
+$ ./_docker_exec_sqlcmd.sh -d AdventureWorks
 ```
 
 ## The mappings
@@ -80,9 +80,9 @@ properties.
 
 | runs | Hibernate ORM | EclipseLink |
 |---|---|---|
-| unit tests | `_mvn_jakarta_ee_11_test_hibernate-orm.sh` | `_mvn_jakarta_ee_11_test_eclipselink.sh` |
-| unit tests and ITs, the database up | `_mvn_jakarta_ee_11_verify_hibernate-orm.sh` | `_mvn_jakarta_ee_11_verify_eclipselink.sh` |
-| no test, but still compiles them | `_mvn_jakarta_ee_11_verify_notests_hibernate-orm.sh` | `_mvn_jakarta_ee_11_verify_notests_eclipselink.sh` |
+| unit tests | `_mvn_jakarta_ee_11_test_hibernate_orm.sh` | `_mvn_jakarta_ee_11_test_eclipselink.sh` |
+| unit tests and ITs, the database up | `_mvn_jakarta_ee_11_verify_hibernate_orm.sh` | `_mvn_jakarta_ee_11_verify_eclipselink.sh` |
+| no test, but still compiles them | `_mvn_jakarta_ee_11_verify_notests_hibernate_orm.sh` | `_mvn_jakarta_ee_11_verify_notests_eclipselink.sh` |
 
 `-Dtests.skipAfterFailureCount=0` runs every test instead of stopping at the first failure. Building needs Java 25.
 
