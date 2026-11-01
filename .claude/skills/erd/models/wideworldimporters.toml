@@ -1,0 +1,480 @@
+# The logical model of WideWorldImporters, from the installed database's catalog (sys.tables, sys.views,
+# sys.key_constraints, sys.foreign_keys, sys.sql_expression_dependencies): each table's keys, each view's
+# tables, and the logical groups, which the upstream does not name and are inferred; a group may repeat a
+# table of another, to show how the two meet. The names are qualified by the schema. The 17 history tables
+# of the system-versioned tables, which have no key and are referenced by none, are left out.
+
+schema = "WideWorldImporters"
+title = "WideWorldImporters"
+output = "mssql-sample-databases-persistence-wideworldimporters/docs/erd"
+
+[[group]]
+name = "application"
+title = "사람과 공통 참조 테이블"
+tables = ["Application.People", "Application.DeliveryMethods", "Application.PaymentMethods", "Application.TransactionTypes"]
+
+[[group]]
+name = "locations"
+title = "도시와 주와 나라"
+tables = ["Application.Cities", "Application.StateProvinces", "Application.Countries", "Application.SystemParameters"]
+
+[[group]]
+name = "customers"
+title = "고객"
+tables = ["Sales.Customers", "Sales.CustomerCategories", "Sales.BuyingGroups", "Sales.SpecialDeals"]
+
+[[group]]
+name = "orders"
+title = "주문"
+tables = ["Sales.Customers", "Sales.Orders", "Sales.OrderLines"]
+
+[[group]]
+name = "invoices"
+title = "송장"
+tables = ["Sales.Orders", "Sales.Invoices", "Sales.InvoiceLines"]
+
+[[group]]
+name = "suppliers"
+title = "공급자"
+tables = ["Purchasing.Suppliers", "Purchasing.SupplierCategories"]
+
+[[group]]
+name = "purchasing"
+title = "발주"
+tables = ["Purchasing.Suppliers", "Purchasing.PurchaseOrders", "Purchasing.PurchaseOrderLines"]
+
+[[group]]
+name = "stock"
+title = "재고 품목"
+tables = ["Warehouse.StockItems", "Warehouse.StockGroups", "Warehouse.StockItemStockGroups", "Warehouse.StockItemHoldings", "Warehouse.Colors", "Warehouse.PackageTypes"]
+
+[[group]]
+name = "temperatures"
+title = "온도"
+tables = ["Warehouse.ColdRoomTemperatures", "Warehouse.VehicleTemperatures"]
+
+[[group]]
+name = "transactions"
+title = "고객과 공급자의 거래"
+tables = ["Sales.CustomerTransactions", "Purchasing.SupplierTransactions", "Application.TransactionTypes", "Application.PaymentMethods"]
+
+[[group]]
+name = "stock_transactions"
+title = "재고의 입출고"
+tables = ["Warehouse.StockItemTransactions", "Warehouse.StockItems", "Application.TransactionTypes"]
+
+[table."Application.Cities"]
+pk = ["CityID"]
+[[table."Application.Cities".fk]]
+columns = ["StateProvinceID"]
+references = "Application.StateProvinces"
+[[table."Application.Cities".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.Countries"]
+pk = ["CountryID"]
+[[table."Application.Countries".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.DeliveryMethods"]
+pk = ["DeliveryMethodID"]
+[[table."Application.DeliveryMethods".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.PaymentMethods"]
+pk = ["PaymentMethodID"]
+[[table."Application.PaymentMethods".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.People"]
+pk = ["PersonID"]
+[[table."Application.People".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.StateProvinces"]
+pk = ["StateProvinceID"]
+[[table."Application.StateProvinces".fk]]
+columns = ["CountryID"]
+references = "Application.Countries"
+[[table."Application.StateProvinces".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.SystemParameters"]
+pk = ["SystemParameterID"]
+[[table."Application.SystemParameters".fk]]
+columns = ["DeliveryCityID"]
+references = "Application.Cities"
+[[table."Application.SystemParameters".fk]]
+columns = ["PostalCityID"]
+references = "Application.Cities"
+[[table."Application.SystemParameters".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Application.TransactionTypes"]
+pk = ["TransactionTypeID"]
+[[table."Application.TransactionTypes".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Purchasing.PurchaseOrderLines"]
+pk = ["PurchaseOrderLineID"]
+[[table."Purchasing.PurchaseOrderLines".fk]]
+columns = ["PurchaseOrderID"]
+references = "Purchasing.PurchaseOrders"
+[[table."Purchasing.PurchaseOrderLines".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+[[table."Purchasing.PurchaseOrderLines".fk]]
+columns = ["PackageTypeID"]
+references = "Warehouse.PackageTypes"
+[[table."Purchasing.PurchaseOrderLines".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Purchasing.PurchaseOrders"]
+pk = ["PurchaseOrderID"]
+[[table."Purchasing.PurchaseOrders".fk]]
+columns = ["SupplierID"]
+references = "Purchasing.Suppliers"
+[[table."Purchasing.PurchaseOrders".fk]]
+columns = ["DeliveryMethodID"]
+references = "Application.DeliveryMethods"
+[[table."Purchasing.PurchaseOrders".fk]]
+columns = ["ContactPersonID"]
+references = "Application.People"
+[[table."Purchasing.PurchaseOrders".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Purchasing.SupplierCategories"]
+pk = ["SupplierCategoryID"]
+[[table."Purchasing.SupplierCategories".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Purchasing.SupplierTransactions"]
+pk = ["SupplierTransactionID"]
+[[table."Purchasing.SupplierTransactions".fk]]
+columns = ["SupplierID"]
+references = "Purchasing.Suppliers"
+[[table."Purchasing.SupplierTransactions".fk]]
+columns = ["TransactionTypeID"]
+references = "Application.TransactionTypes"
+[[table."Purchasing.SupplierTransactions".fk]]
+columns = ["PurchaseOrderID"]
+references = "Purchasing.PurchaseOrders"
+nullable = true
+[[table."Purchasing.SupplierTransactions".fk]]
+columns = ["PaymentMethodID"]
+references = "Application.PaymentMethods"
+nullable = true
+[[table."Purchasing.SupplierTransactions".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Purchasing.Suppliers"]
+pk = ["SupplierID"]
+[[table."Purchasing.Suppliers".fk]]
+columns = ["SupplierCategoryID"]
+references = "Purchasing.SupplierCategories"
+[[table."Purchasing.Suppliers".fk]]
+columns = ["PrimaryContactPersonID"]
+references = "Application.People"
+[[table."Purchasing.Suppliers".fk]]
+columns = ["AlternateContactPersonID"]
+references = "Application.People"
+[[table."Purchasing.Suppliers".fk]]
+columns = ["DeliveryMethodID"]
+references = "Application.DeliveryMethods"
+nullable = true
+[[table."Purchasing.Suppliers".fk]]
+columns = ["DeliveryCityID"]
+references = "Application.Cities"
+[[table."Purchasing.Suppliers".fk]]
+columns = ["PostalCityID"]
+references = "Application.Cities"
+[[table."Purchasing.Suppliers".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.BuyingGroups"]
+pk = ["BuyingGroupID"]
+[[table."Sales.BuyingGroups".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.CustomerCategories"]
+pk = ["CustomerCategoryID"]
+[[table."Sales.CustomerCategories".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.CustomerTransactions"]
+pk = ["CustomerTransactionID"]
+[[table."Sales.CustomerTransactions".fk]]
+columns = ["CustomerID"]
+references = "Sales.Customers"
+[[table."Sales.CustomerTransactions".fk]]
+columns = ["TransactionTypeID"]
+references = "Application.TransactionTypes"
+[[table."Sales.CustomerTransactions".fk]]
+columns = ["InvoiceID"]
+references = "Sales.Invoices"
+nullable = true
+[[table."Sales.CustomerTransactions".fk]]
+columns = ["PaymentMethodID"]
+references = "Application.PaymentMethods"
+nullable = true
+[[table."Sales.CustomerTransactions".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.Customers"]
+pk = ["CustomerID"]
+[[table."Sales.Customers".fk]]
+columns = ["BillToCustomerID"]
+references = "Sales.Customers"
+[[table."Sales.Customers".fk]]
+columns = ["CustomerCategoryID"]
+references = "Sales.CustomerCategories"
+[[table."Sales.Customers".fk]]
+columns = ["BuyingGroupID"]
+references = "Sales.BuyingGroups"
+nullable = true
+[[table."Sales.Customers".fk]]
+columns = ["PrimaryContactPersonID"]
+references = "Application.People"
+[[table."Sales.Customers".fk]]
+columns = ["AlternateContactPersonID"]
+references = "Application.People"
+nullable = true
+[[table."Sales.Customers".fk]]
+columns = ["DeliveryMethodID"]
+references = "Application.DeliveryMethods"
+[[table."Sales.Customers".fk]]
+columns = ["DeliveryCityID"]
+references = "Application.Cities"
+[[table."Sales.Customers".fk]]
+columns = ["PostalCityID"]
+references = "Application.Cities"
+[[table."Sales.Customers".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.InvoiceLines"]
+pk = ["InvoiceLineID"]
+[[table."Sales.InvoiceLines".fk]]
+columns = ["InvoiceID"]
+references = "Sales.Invoices"
+[[table."Sales.InvoiceLines".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+[[table."Sales.InvoiceLines".fk]]
+columns = ["PackageTypeID"]
+references = "Warehouse.PackageTypes"
+[[table."Sales.InvoiceLines".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.Invoices"]
+pk = ["InvoiceID"]
+[[table."Sales.Invoices".fk]]
+columns = ["SalespersonPersonID"]
+references = "Application.People"
+[[table."Sales.Invoices".fk]]
+columns = ["PackedByPersonID"]
+references = "Application.People"
+[[table."Sales.Invoices".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+[[table."Sales.Invoices".fk]]
+columns = ["CustomerID"]
+references = "Sales.Customers"
+[[table."Sales.Invoices".fk]]
+columns = ["BillToCustomerID"]
+references = "Sales.Customers"
+[[table."Sales.Invoices".fk]]
+columns = ["OrderID"]
+references = "Sales.Orders"
+nullable = true
+[[table."Sales.Invoices".fk]]
+columns = ["DeliveryMethodID"]
+references = "Application.DeliveryMethods"
+[[table."Sales.Invoices".fk]]
+columns = ["ContactPersonID"]
+references = "Application.People"
+[[table."Sales.Invoices".fk]]
+columns = ["AccountsPersonID"]
+references = "Application.People"
+
+[table."Sales.OrderLines"]
+pk = ["OrderLineID"]
+[[table."Sales.OrderLines".fk]]
+columns = ["OrderID"]
+references = "Sales.Orders"
+[[table."Sales.OrderLines".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+[[table."Sales.OrderLines".fk]]
+columns = ["PackageTypeID"]
+references = "Warehouse.PackageTypes"
+[[table."Sales.OrderLines".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.Orders"]
+pk = ["OrderID"]
+[[table."Sales.Orders".fk]]
+columns = ["CustomerID"]
+references = "Sales.Customers"
+[[table."Sales.Orders".fk]]
+columns = ["SalespersonPersonID"]
+references = "Application.People"
+[[table."Sales.Orders".fk]]
+columns = ["PickedByPersonID"]
+references = "Application.People"
+nullable = true
+[[table."Sales.Orders".fk]]
+columns = ["ContactPersonID"]
+references = "Application.People"
+[[table."Sales.Orders".fk]]
+columns = ["BackorderOrderID"]
+references = "Sales.Orders"
+nullable = true
+[[table."Sales.Orders".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Sales.SpecialDeals"]
+pk = ["SpecialDealID"]
+[[table."Sales.SpecialDeals".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+nullable = true
+[[table."Sales.SpecialDeals".fk]]
+columns = ["CustomerID"]
+references = "Sales.Customers"
+nullable = true
+[[table."Sales.SpecialDeals".fk]]
+columns = ["BuyingGroupID"]
+references = "Sales.BuyingGroups"
+nullable = true
+[[table."Sales.SpecialDeals".fk]]
+columns = ["CustomerCategoryID"]
+references = "Sales.CustomerCategories"
+nullable = true
+[[table."Sales.SpecialDeals".fk]]
+columns = ["StockGroupID"]
+references = "Warehouse.StockGroups"
+nullable = true
+[[table."Sales.SpecialDeals".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.ColdRoomTemperatures"]
+pk = ["ColdRoomTemperatureID"]
+
+[table."Warehouse.Colors"]
+pk = ["ColorID"]
+[[table."Warehouse.Colors".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.PackageTypes"]
+pk = ["PackageTypeID"]
+[[table."Warehouse.PackageTypes".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.StockGroups"]
+pk = ["StockGroupID"]
+[[table."Warehouse.StockGroups".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.StockItemHoldings"]
+pk = ["StockItemID"]
+[[table."Warehouse.StockItemHoldings".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+[[table."Warehouse.StockItemHoldings".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.StockItemStockGroups"]
+pk = ["StockItemStockGroupID"]
+[[table."Warehouse.StockItemStockGroups".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+[[table."Warehouse.StockItemStockGroups".fk]]
+columns = ["StockGroupID"]
+references = "Warehouse.StockGroups"
+[[table."Warehouse.StockItemStockGroups".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.StockItemTransactions"]
+pk = ["StockItemTransactionID"]
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["StockItemID"]
+references = "Warehouse.StockItems"
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["TransactionTypeID"]
+references = "Application.TransactionTypes"
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["CustomerID"]
+references = "Sales.Customers"
+nullable = true
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["InvoiceID"]
+references = "Sales.Invoices"
+nullable = true
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["SupplierID"]
+references = "Purchasing.Suppliers"
+nullable = true
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["PurchaseOrderID"]
+references = "Purchasing.PurchaseOrders"
+nullable = true
+[[table."Warehouse.StockItemTransactions".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.StockItems"]
+pk = ["StockItemID"]
+[[table."Warehouse.StockItems".fk]]
+columns = ["SupplierID"]
+references = "Purchasing.Suppliers"
+[[table."Warehouse.StockItems".fk]]
+columns = ["ColorID"]
+references = "Warehouse.Colors"
+nullable = true
+[[table."Warehouse.StockItems".fk]]
+columns = ["UnitPackageID"]
+references = "Warehouse.PackageTypes"
+[[table."Warehouse.StockItems".fk]]
+columns = ["OuterPackageID"]
+references = "Warehouse.PackageTypes"
+[[table."Warehouse.StockItems".fk]]
+columns = ["LastEditedBy"]
+references = "Application.People"
+
+[table."Warehouse.VehicleTemperatures"]
+pk = ["VehicleTemperatureID"]
+
+[view."Website.Customers"]
+sources = ["Application.Cities", "Application.DeliveryMethods", "Application.People", "Sales.BuyingGroups", "Sales.CustomerCategories", "Sales.Customers"]
+
+[view."Website.Suppliers"]
+sources = ["Application.Cities", "Application.DeliveryMethods", "Application.People", "Purchasing.SupplierCategories", "Purchasing.Suppliers"]
+
+[view."Website.VehicleTemperatures"]
+sources = ["Warehouse.VehicleTemperatures"]

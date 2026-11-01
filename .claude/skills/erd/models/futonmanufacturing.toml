@@ -1,0 +1,422 @@
+# The logical model of FutonManufacturing, from the installed database's catalog (sys.tables, sys.views,
+# sys.key_constraints, sys.foreign_keys, sys.sql_expression_dependencies): each table's keys, each view's
+# tables, and the logical groups, which the upstream does not name and are inferred; a group may repeat a
+# table of another, to show how the two meet. Every object is in dbo, so
+# the names are not qualified.
+
+schema = "FutonManufacturing"
+title = "FutonManufacturing"
+output = "mssql-sample-databases-persistence-futonmanufacturing/docs/erd"
+
+[[group]]
+name = "items"
+title = "품목"
+tables = ["UnitOfMeasure", "ItemType", "Items", "BillOfMaterials"]
+
+[[group]]
+name = "inventory"
+title = "재고"
+tables = ["Warehouse", "Inventory", "TransactionType", "InventoryTransaction", "Items"]
+
+[[group]]
+name = "purchasing"
+title = "구매"
+tables = ["Supplier", "SupplierItem", "PurchaseOrder", "PurchaseOrderDetail", "Items"]
+
+[[group]]
+name = "production"
+title = "생산"
+tables = ["WorkCenter", "ProductionOrder", "ProductionOrderMaterial", "ProductionCompletion", "QualityInspection", "Items"]
+
+[[group]]
+name = "sales"
+title = "판매"
+tables = ["Customer", "SalesOrder", "SalesOrderDetail", "SalesChannel", "Store", "SalesTerritory", "SalesRep", "Items"]
+
+[[group]]
+name = "quotes_and_returns"
+title = "견적과 반품"
+tables = ["SalesQuote", "SalesQuoteDetail", "SalesReturn", "SalesReturnDetail", "ReturnReason", "SalesOrder", "SalesOrderDetail", "Customer"]
+
+[[group]]
+name = "prices"
+title = "가격표와 판촉"
+tables = ["PriceList", "PriceListDetail", "Promotion", "SalesChannel", "Items"]
+
+[table."BillOfMaterials"]
+pk = ["BOMID"]
+[[table."BillOfMaterials".fk]]
+columns = ["ParentItemID"]
+references = "Items"
+[[table."BillOfMaterials".fk]]
+columns = ["ComponentItemID"]
+references = "Items"
+[[table."BillOfMaterials".fk]]
+columns = ["UnitID"]
+references = "UnitOfMeasure"
+
+[table."Customer"]
+pk = ["CustomerID"]
+[[table."Customer".fk]]
+columns = ["SalesRepID"]
+references = "SalesRep"
+nullable = true
+[[table."Customer".fk]]
+columns = ["TerritoryID"]
+references = "SalesTerritory"
+nullable = true
+
+[table."Inventory"]
+pk = ["InventoryID"]
+[[table."Inventory".fk]]
+columns = ["ItemID"]
+references = "Items"
+[[table."Inventory".fk]]
+columns = ["WarehouseID"]
+references = "Warehouse"
+
+[table."InventoryTransaction"]
+pk = ["TransactionID"]
+[[table."InventoryTransaction".fk]]
+columns = ["ItemID"]
+references = "Items"
+[[table."InventoryTransaction".fk]]
+columns = ["WarehouseID"]
+references = "Warehouse"
+[[table."InventoryTransaction".fk]]
+columns = ["TransactionTypeID"]
+references = "TransactionType"
+
+[table."ItemType"]
+pk = ["ItemTypeID"]
+
+[table."Items"]
+pk = ["ItemID"]
+[[table."Items".fk]]
+columns = ["ItemTypeID"]
+references = "ItemType"
+[[table."Items".fk]]
+columns = ["UnitID"]
+references = "UnitOfMeasure"
+
+[table."PriceList"]
+pk = ["PriceListID"]
+[[table."PriceList".fk]]
+columns = ["SalesChannelID"]
+references = "SalesChannel"
+nullable = true
+
+[table."PriceListDetail"]
+pk = ["PriceListDetailID"]
+[[table."PriceListDetail".fk]]
+columns = ["PriceListID"]
+references = "PriceList"
+[[table."PriceListDetail".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."ProductionCompletion"]
+pk = ["CompletionID"]
+[[table."ProductionCompletion".fk]]
+columns = ["ProductionOrderID"]
+references = "ProductionOrder"
+[[table."ProductionCompletion".fk]]
+columns = ["WorkCenterID"]
+references = "WorkCenter"
+nullable = true
+
+[table."ProductionOrder"]
+pk = ["ProductionOrderID"]
+[[table."ProductionOrder".fk]]
+columns = ["ItemID"]
+references = "Items"
+[[table."ProductionOrder".fk]]
+columns = ["WarehouseID"]
+references = "Warehouse"
+[[table."ProductionOrder".fk]]
+columns = ["WorkCenterID"]
+references = "WorkCenter"
+nullable = true
+
+[table."ProductionOrderMaterial"]
+pk = ["ProdOrderMaterialID"]
+[[table."ProductionOrderMaterial".fk]]
+columns = ["ProductionOrderID"]
+references = "ProductionOrder"
+[[table."ProductionOrderMaterial".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."Promotion"]
+pk = ["PromotionID"]
+
+[table."PurchaseOrder"]
+pk = ["PurchaseOrderID"]
+[[table."PurchaseOrder".fk]]
+columns = ["SupplierID"]
+references = "Supplier"
+[[table."PurchaseOrder".fk]]
+columns = ["WarehouseID"]
+references = "Warehouse"
+
+[table."PurchaseOrderDetail"]
+pk = ["PODetailID"]
+[[table."PurchaseOrderDetail".fk]]
+columns = ["PurchaseOrderID"]
+references = "PurchaseOrder"
+[[table."PurchaseOrderDetail".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."QualityInspection"]
+pk = ["InspectionID"]
+[[table."QualityInspection".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."ReturnReason"]
+pk = ["ReturnReasonID"]
+
+[table."SalesChannel"]
+pk = ["SalesChannelID"]
+
+[table."SalesOrder"]
+pk = ["SalesOrderID"]
+[[table."SalesOrder".fk]]
+columns = ["CustomerID"]
+references = "Customer"
+[[table."SalesOrder".fk]]
+columns = ["WarehouseID"]
+references = "Warehouse"
+[[table."SalesOrder".fk]]
+columns = ["SalesChannelID"]
+references = "SalesChannel"
+nullable = true
+[[table."SalesOrder".fk]]
+columns = ["StoreID"]
+references = "Store"
+nullable = true
+[[table."SalesOrder".fk]]
+columns = ["SalesRepID"]
+references = "SalesRep"
+nullable = true
+
+[table."SalesOrderDetail"]
+pk = ["SODetailID"]
+[[table."SalesOrderDetail".fk]]
+columns = ["SalesOrderID"]
+references = "SalesOrder"
+[[table."SalesOrderDetail".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."SalesQuote"]
+pk = ["QuoteID"]
+[[table."SalesQuote".fk]]
+columns = ["CustomerID"]
+references = "Customer"
+[[table."SalesQuote".fk]]
+columns = ["SalesChannelID"]
+references = "SalesChannel"
+nullable = true
+[[table."SalesQuote".fk]]
+columns = ["SalesRepID"]
+references = "SalesRep"
+nullable = true
+[[table."SalesQuote".fk]]
+columns = ["ConvertedToOrderID"]
+references = "SalesOrder"
+nullable = true
+
+[table."SalesQuoteDetail"]
+pk = ["QuoteDetailID"]
+[[table."SalesQuoteDetail".fk]]
+columns = ["QuoteID"]
+references = "SalesQuote"
+[[table."SalesQuoteDetail".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."SalesRep"]
+pk = ["SalesRepID"]
+[[table."SalesRep".fk]]
+columns = ["TerritoryID"]
+references = "SalesTerritory"
+nullable = true
+
+[table."SalesReturn"]
+pk = ["ReturnID"]
+[[table."SalesReturn".fk]]
+columns = ["SalesOrderID"]
+references = "SalesOrder"
+[[table."SalesReturn".fk]]
+columns = ["CustomerID"]
+references = "Customer"
+[[table."SalesReturn".fk]]
+columns = ["ReturnReasonID"]
+references = "ReturnReason"
+
+[table."SalesReturnDetail"]
+pk = ["ReturnDetailID"]
+[[table."SalesReturnDetail".fk]]
+columns = ["ReturnID"]
+references = "SalesReturn"
+[[table."SalesReturnDetail".fk]]
+columns = ["SODetailID"]
+references = "SalesOrderDetail"
+[[table."SalesReturnDetail".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."SalesTerritory"]
+pk = ["TerritoryID"]
+
+[table."Store"]
+pk = ["StoreID"]
+[[table."Store".fk]]
+columns = ["SalesChannelID"]
+references = "SalesChannel"
+
+[table."Supplier"]
+pk = ["SupplierID"]
+
+[table."SupplierItem"]
+pk = ["SupplierItemID"]
+[[table."SupplierItem".fk]]
+columns = ["SupplierID"]
+references = "Supplier"
+[[table."SupplierItem".fk]]
+columns = ["ItemID"]
+references = "Items"
+
+[table."TransactionType"]
+pk = ["TransactionTypeID"]
+
+[table."UnitOfMeasure"]
+pk = ["UnitID"]
+
+[table."Warehouse"]
+pk = ["WarehouseID"]
+
+[table."WorkCenter"]
+pk = ["WorkCenterID"]
+
+[view."vw_BOMExplosion"]
+sources = ["BillOfMaterials", "Items", "ItemType", "UnitOfMeasure"]
+
+[view."vw_ComponentShortage"]
+sources = ["Inventory", "Items", "ItemType", "ProductionOrder", "Supplier", "SupplierItem", "BillOfMaterials", "UnitOfMeasure"]
+
+[view."vw_CostRollUp"]
+sources = ["Items", "ItemType", "BillOfMaterials", "UnitOfMeasure"]
+
+[view."vw_CustomerFulfillmentRate"]
+sources = ["Customer", "SalesOrder"]
+
+[view."vw_DailyProductionSchedule"]
+sources = ["Items", "ProductionOrder", "BillOfMaterials", "ItemType", "UnitOfMeasure", "Inventory", "Supplier", "SupplierItem", "WorkCenter"]
+
+[view."vw_InventoryTurnover"]
+sources = ["Inventory", "InventoryTransaction", "Items", "ItemType"]
+
+[view."vw_InventoryValuation"]
+sources = ["Inventory", "Items", "ItemType", "UnitOfMeasure", "Warehouse"]
+
+[view."vw_ItemsBelowReorderPoint"]
+sources = ["Inventory", "Items", "ItemType", "Supplier", "SupplierItem", "UnitOfMeasure", "Warehouse"]
+
+[view."vw_LateProductionOrders"]
+sources = ["Items", "ItemType", "ProductionOrder", "WorkCenter"]
+
+[view."vw_MaterialRequirements"]
+sources = ["Inventory", "Items", "ItemType", "ProductionOrder", "UnitOfMeasure", "BillOfMaterials"]
+
+[view."vw_ProductionCompletionSummary"]
+sources = ["Items", "ItemType", "ProductionCompletion", "ProductionOrder", "WorkCenter"]
+
+[view."vw_ProductionOrderStatus"]
+sources = ["Items", "ItemType", "ProductionOrder", "Warehouse", "WorkCenter"]
+
+[view."vw_PurchaseOrderStatus"]
+sources = ["PurchaseOrder", "PurchaseOrderDetail", "Supplier", "Warehouse"]
+
+[view."vw_QualityInspectionSummary"]
+sources = ["Items", "ItemType", "QualityInspection"]
+
+[view."vw_RawMaterialUsage"]
+sources = ["InventoryTransaction", "Items", "ItemType", "UnitOfMeasure"]
+
+[view."vw_SalesOrderBacklog"]
+sources = ["Customer", "SalesOrder", "SalesOrderDetail", "Warehouse"]
+
+[view."vw_Sales_ByChannel"]
+sources = ["SalesChannel", "SalesOrder"]
+
+[view."vw_Sales_ByTerritory"]
+sources = ["Customer", "Items", "SalesOrder", "SalesOrderDetail", "SalesRep", "SalesTerritory"]
+
+[view."vw_Sales_ChannelProfitability"]
+sources = ["Items", "SalesChannel", "SalesOrder", "SalesOrderDetail"]
+
+[view."vw_Sales_CustomerAnalysis"]
+sources = ["Customer", "SalesOrder", "SalesRep", "SalesReturn", "SalesTerritory"]
+
+[view."vw_Sales_CustomerLifetimeValue"]
+sources = ["Customer", "Items", "SalesOrder", "SalesOrderDetail", "SalesRep"]
+
+[view."vw_Sales_CustomerSegmentation"]
+sources = ["Customer", "SalesOrder"]
+
+[view."vw_Sales_DiscountAnalysis"]
+sources = ["Customer", "Items", "SalesChannel", "SalesOrder", "SalesOrderDetail"]
+
+[view."vw_Sales_GrowthAnalysis"]
+sources = ["SalesChannel", "SalesOrder"]
+
+[view."vw_Sales_OrderSizeDistribution"]
+sources = ["Customer", "SalesChannel", "SalesOrder", "SalesOrderDetail"]
+
+[view."vw_Sales_OrderValueAnalysis"]
+sources = ["Customer", "SalesChannel", "SalesOrder", "SalesRep", "SalesTerritory"]
+
+[view."vw_Sales_Pipeline"]
+sources = ["SalesOrder", "SalesQuote"]
+
+[view."vw_Sales_ProductMixAnalysis"]
+sources = ["Customer", "Items", "SalesChannel", "SalesOrder", "SalesOrderDetail"]
+
+[view."vw_Sales_ProductPerformance"]
+sources = ["Items", "ItemType", "SalesChannel", "SalesOrder", "SalesOrderDetail"]
+
+[view."vw_Sales_QuoteConversion"]
+sources = ["Customer", "SalesChannel", "SalesOrder", "SalesQuote", "SalesRep", "SalesTerritory"]
+
+[view."vw_Sales_RepPerformance"]
+sources = ["SalesOrder", "SalesQuote", "SalesRep", "SalesTerritory"]
+
+[view."vw_Sales_ReturnsAnalysis"]
+sources = ["Customer", "Items", "ReturnReason", "SalesChannel", "SalesOrder", "SalesReturn", "SalesReturnDetail"]
+
+[view."vw_Sales_StorePerformance"]
+sources = ["SalesChannel", "SalesOrder", "Store"]
+
+[view."vw_Sales_TimeBasedAnalysis"]
+sources = ["SalesChannel", "SalesOrder"]
+
+[view."vw_Sales_TopProducts"]
+sources = ["Items", "ItemType", "SalesChannel", "SalesOrder", "SalesOrderDetail"]
+
+[view."vw_Sales_TrendAnalysis"]
+sources = ["SalesOrder"]
+
+[view."vw_ScrapWasteAnalysis"]
+sources = ["Items", "ItemType", "ProductionCompletion", "ProductionOrder", "WorkCenter"]
+
+[view."vw_SupplierPerformance"]
+sources = ["PurchaseOrder", "Supplier"]
+
+[view."vw_WhereUsed"]
+sources = ["BillOfMaterials", "Items", "ItemType", "UnitOfMeasure"]
+
+[view."vw_WorkCenterCapacity"]
+sources = ["ProductionOrder", "WorkCenter"]

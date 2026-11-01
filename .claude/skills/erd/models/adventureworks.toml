@@ -1,0 +1,697 @@
+# The logical model of AdventureWorks, from the installed database's catalog (sys.tables, sys.views,
+# sys.key_constraints, sys.foreign_keys, sys.sql_expression_dependencies): each table's keys, each view's
+# tables, and the logical groups, which the upstream does not name and are inferred; a group may repeat a table
+# of another, to show how the two meet. The names are qualified by the schema.
+
+schema = "AdventureWorks"
+title = "AdventureWorks"
+output = "mssql-sample-databases-persistence-adventureworks/docs/erd"
+
+[[group]]
+name = "business_entities"
+title = "사업 주체"
+tables = ["Person.BusinessEntity", "Person.Person", "Sales.Store", "Purchasing.Vendor", "HumanResources.Employee", "Sales.SalesPerson"]
+
+[[group]]
+name = "customers"
+title = "고객"
+tables = ["Sales.Customer", "Person.Person", "Sales.Store", "Sales.SalesTerritory"]
+
+[[group]]
+name = "people"
+title = "사람"
+tables = ["Person.Person", "Person.EmailAddress", "Person.Password"]
+
+[[group]]
+name = "phones"
+title = "전화번호"
+tables = ["Person.Person", "Person.PersonPhone", "Person.PhoneNumberType"]
+
+[[group]]
+name = "contacts"
+title = "연락 담당자"
+tables = ["Person.BusinessEntity", "Person.BusinessEntityContact", "Person.ContactType", "Person.Person"]
+
+[[group]]
+name = "addresses"
+title = "주소"
+tables = ["Person.BusinessEntity", "Person.BusinessEntityAddress", "Person.Address", "Person.AddressType", "Person.StateProvince", "Person.CountryRegion"]
+
+[[group]]
+name = "employees"
+title = "직원과 부서"
+tables = ["HumanResources.Employee", "HumanResources.EmployeeDepartmentHistory", "HumanResources.Department", "HumanResources.Shift"]
+
+[[group]]
+name = "pay_and_candidates"
+title = "시급과 입사 지원자"
+tables = ["HumanResources.Employee", "HumanResources.EmployeePayHistory", "HumanResources.JobCandidate"]
+
+[[group]]
+name = "products"
+title = "제품"
+tables = ["Production.Product", "Production.ProductSubcategory", "Production.ProductCategory", "Production.ProductModel", "Production.UnitMeasure"]
+
+[[group]]
+name = "product_descriptions"
+title = "제품 모델의 설명"
+tables = ["Production.ProductModel", "Production.ProductModelProductDescriptionCulture", "Production.ProductDescription", "Production.Culture"]
+
+[[group]]
+name = "photos_and_reviews"
+title = "제품의 사진과 리뷰"
+tables = ["Production.Product", "Production.ProductProductPhoto", "Production.ProductPhoto", "Production.ProductReview"]
+
+[[group]]
+name = "documents_and_illustrations"
+title = "제품의 문서와 그림"
+tables = ["Production.Product", "Production.ProductDocument", "Production.Document", "Production.ProductModel", "Production.ProductModelIllustration", "Production.Illustration"]
+
+[[group]]
+name = "manufacturing"
+title = "생산"
+tables = ["Production.Product", "Production.BillOfMaterials", "Production.WorkOrder", "Production.WorkOrderRouting", "Production.ScrapReason", "Production.Location"]
+
+[[group]]
+name = "inventory"
+title = "재고"
+tables = ["Production.Product", "Production.ProductInventory", "Production.Location"]
+
+[[group]]
+name = "transactions"
+title = "거래의 이력"
+tables = ["Production.Product", "Production.TransactionHistory", "Production.TransactionHistoryArchive"]
+
+[[group]]
+name = "price_history"
+title = "원가와 정가의 이력"
+tables = ["Production.Product", "Production.ProductCostHistory", "Production.ProductListPriceHistory"]
+
+[[group]]
+name = "purchasing"
+title = "구매"
+tables = ["Purchasing.Vendor", "Purchasing.ProductVendor", "Purchasing.PurchaseOrderHeader", "Purchasing.PurchaseOrderDetail", "Purchasing.ShipMethod"]
+
+[[group]]
+name = "sales_orders"
+title = "판매 주문"
+tables = ["Sales.SalesOrderHeader", "Sales.SalesOrderDetail", "Sales.SpecialOfferProduct", "Sales.SalesOrderHeaderSalesReason", "Sales.SalesReason"]
+
+[[group]]
+name = "order_parties"
+title = "판매 주문의 고객과 영업 사원"
+tables = ["Sales.SalesOrderHeader", "Sales.Customer", "Sales.SalesPerson", "Sales.SalesTerritory"]
+
+[[group]]
+name = "order_payments"
+title = "판매 주문의 결제와 배송"
+tables = ["Sales.SalesOrderHeader", "Sales.CreditCard", "Sales.CurrencyRate", "Purchasing.ShipMethod"]
+
+[[group]]
+name = "special_offers"
+title = "특별 할인과 장바구니"
+tables = ["Sales.SpecialOffer", "Sales.SpecialOfferProduct", "Production.Product", "Sales.ShoppingCartItem"]
+
+[[group]]
+name = "currencies"
+title = "통화"
+tables = ["Sales.Currency", "Sales.CurrencyRate", "Sales.CountryRegionCurrency", "Person.CountryRegion"]
+
+[[group]]
+name = "credit_cards"
+title = "신용 카드"
+tables = ["Sales.PersonCreditCard", "Sales.CreditCard", "Person.Person"]
+
+[[group]]
+name = "sales_people"
+title = "영업 사원과 판매 지역"
+tables = ["Sales.SalesPerson", "Sales.SalesPersonQuotaHistory", "Sales.SalesTerritoryHistory", "Sales.SalesTerritory"]
+
+[[group]]
+name = "sales_taxes"
+title = "세율"
+tables = ["Sales.SalesTaxRate", "Person.StateProvince", "Person.CountryRegion", "Sales.SalesTerritory"]
+
+[[group]]
+name = "dbo"
+title = "데이터베이스 관리"
+tables = ["dbo.AWBuildVersion", "dbo.DatabaseLog", "dbo.ErrorLog"]
+
+[table."HumanResources.Department"]
+pk = ["DepartmentID"]
+
+[table."HumanResources.Employee"]
+pk = ["BusinessEntityID"]
+[[table."HumanResources.Employee".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.Person"
+
+[table."HumanResources.EmployeeDepartmentHistory"]
+pk = ["BusinessEntityID", "StartDate", "DepartmentID", "ShiftID"]
+[[table."HumanResources.EmployeeDepartmentHistory".fk]]
+columns = ["DepartmentID"]
+references = "HumanResources.Department"
+[[table."HumanResources.EmployeeDepartmentHistory".fk]]
+columns = ["BusinessEntityID"]
+references = "HumanResources.Employee"
+[[table."HumanResources.EmployeeDepartmentHistory".fk]]
+columns = ["ShiftID"]
+references = "HumanResources.Shift"
+
+[table."HumanResources.EmployeePayHistory"]
+pk = ["BusinessEntityID", "RateChangeDate"]
+[[table."HumanResources.EmployeePayHistory".fk]]
+columns = ["BusinessEntityID"]
+references = "HumanResources.Employee"
+
+[table."HumanResources.JobCandidate"]
+pk = ["JobCandidateID"]
+[[table."HumanResources.JobCandidate".fk]]
+columns = ["BusinessEntityID"]
+references = "HumanResources.Employee"
+nullable = true
+
+[table."HumanResources.Shift"]
+pk = ["ShiftID"]
+
+[table."Person.Address"]
+pk = ["AddressID"]
+[[table."Person.Address".fk]]
+columns = ["StateProvinceID"]
+references = "Person.StateProvince"
+
+[table."Person.AddressType"]
+pk = ["AddressTypeID"]
+
+[table."Person.BusinessEntity"]
+pk = ["BusinessEntityID"]
+
+[table."Person.BusinessEntityAddress"]
+pk = ["BusinessEntityID", "AddressID", "AddressTypeID"]
+[[table."Person.BusinessEntityAddress".fk]]
+columns = ["AddressID"]
+references = "Person.Address"
+[[table."Person.BusinessEntityAddress".fk]]
+columns = ["AddressTypeID"]
+references = "Person.AddressType"
+[[table."Person.BusinessEntityAddress".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.BusinessEntity"
+
+[table."Person.BusinessEntityContact"]
+pk = ["BusinessEntityID", "PersonID", "ContactTypeID"]
+[[table."Person.BusinessEntityContact".fk]]
+columns = ["PersonID"]
+references = "Person.Person"
+[[table."Person.BusinessEntityContact".fk]]
+columns = ["ContactTypeID"]
+references = "Person.ContactType"
+[[table."Person.BusinessEntityContact".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.BusinessEntity"
+
+[table."Person.ContactType"]
+pk = ["ContactTypeID"]
+
+[table."Person.CountryRegion"]
+pk = ["CountryRegionCode"]
+
+[table."Person.EmailAddress"]
+pk = ["BusinessEntityID", "EmailAddressID"]
+[[table."Person.EmailAddress".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.Person"
+
+[table."Person.Password"]
+pk = ["BusinessEntityID"]
+[[table."Person.Password".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.Person"
+
+[table."Person.Person"]
+pk = ["BusinessEntityID"]
+[[table."Person.Person".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.BusinessEntity"
+
+[table."Person.PersonPhone"]
+pk = ["BusinessEntityID", "PhoneNumber", "PhoneNumberTypeID"]
+[[table."Person.PersonPhone".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.Person"
+[[table."Person.PersonPhone".fk]]
+columns = ["PhoneNumberTypeID"]
+references = "Person.PhoneNumberType"
+
+[table."Person.PhoneNumberType"]
+pk = ["PhoneNumberTypeID"]
+
+[table."Person.StateProvince"]
+pk = ["StateProvinceID"]
+[[table."Person.StateProvince".fk]]
+columns = ["CountryRegionCode"]
+references = "Person.CountryRegion"
+[[table."Person.StateProvince".fk]]
+columns = ["TerritoryID"]
+references = "Sales.SalesTerritory"
+
+[table."Production.BillOfMaterials"]
+pk = ["BillOfMaterialsID"]
+[[table."Production.BillOfMaterials".fk]]
+columns = ["ProductAssemblyID"]
+references = "Production.Product"
+nullable = true
+[[table."Production.BillOfMaterials".fk]]
+columns = ["ComponentID"]
+references = "Production.Product"
+[[table."Production.BillOfMaterials".fk]]
+columns = ["UnitMeasureCode"]
+references = "Production.UnitMeasure"
+
+[table."Production.Culture"]
+pk = ["CultureID"]
+
+[table."Production.Document"]
+pk = ["DocumentNode"]
+[[table."Production.Document".fk]]
+columns = ["Owner"]
+references = "HumanResources.Employee"
+
+[table."Production.Illustration"]
+pk = ["IllustrationID"]
+
+[table."Production.Location"]
+pk = ["LocationID"]
+
+[table."Production.Product"]
+pk = ["ProductID"]
+[[table."Production.Product".fk]]
+columns = ["SizeUnitMeasureCode"]
+references = "Production.UnitMeasure"
+nullable = true
+[[table."Production.Product".fk]]
+columns = ["WeightUnitMeasureCode"]
+references = "Production.UnitMeasure"
+nullable = true
+[[table."Production.Product".fk]]
+columns = ["ProductModelID"]
+references = "Production.ProductModel"
+nullable = true
+[[table."Production.Product".fk]]
+columns = ["ProductSubcategoryID"]
+references = "Production.ProductSubcategory"
+nullable = true
+
+[table."Production.ProductCategory"]
+pk = ["ProductCategoryID"]
+
+[table."Production.ProductCostHistory"]
+pk = ["ProductID", "StartDate"]
+[[table."Production.ProductCostHistory".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+
+[table."Production.ProductDescription"]
+pk = ["ProductDescriptionID"]
+
+[table."Production.ProductDocument"]
+pk = ["ProductID", "DocumentNode"]
+[[table."Production.ProductDocument".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+[[table."Production.ProductDocument".fk]]
+columns = ["DocumentNode"]
+references = "Production.Document"
+
+[table."Production.ProductInventory"]
+pk = ["ProductID", "LocationID"]
+[[table."Production.ProductInventory".fk]]
+columns = ["LocationID"]
+references = "Production.Location"
+[[table."Production.ProductInventory".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+
+[table."Production.ProductListPriceHistory"]
+pk = ["ProductID", "StartDate"]
+[[table."Production.ProductListPriceHistory".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+
+[table."Production.ProductModel"]
+pk = ["ProductModelID"]
+
+[table."Production.ProductModelIllustration"]
+pk = ["ProductModelID", "IllustrationID"]
+[[table."Production.ProductModelIllustration".fk]]
+columns = ["ProductModelID"]
+references = "Production.ProductModel"
+[[table."Production.ProductModelIllustration".fk]]
+columns = ["IllustrationID"]
+references = "Production.Illustration"
+
+[table."Production.ProductModelProductDescriptionCulture"]
+pk = ["ProductModelID", "ProductDescriptionID", "CultureID"]
+[[table."Production.ProductModelProductDescriptionCulture".fk]]
+columns = ["ProductDescriptionID"]
+references = "Production.ProductDescription"
+[[table."Production.ProductModelProductDescriptionCulture".fk]]
+columns = ["CultureID"]
+references = "Production.Culture"
+[[table."Production.ProductModelProductDescriptionCulture".fk]]
+columns = ["ProductModelID"]
+references = "Production.ProductModel"
+
+[table."Production.ProductPhoto"]
+pk = ["ProductPhotoID"]
+
+[table."Production.ProductProductPhoto"]
+pk = ["ProductID", "ProductPhotoID"]
+[[table."Production.ProductProductPhoto".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+[[table."Production.ProductProductPhoto".fk]]
+columns = ["ProductPhotoID"]
+references = "Production.ProductPhoto"
+
+[table."Production.ProductReview"]
+pk = ["ProductReviewID"]
+[[table."Production.ProductReview".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+
+[table."Production.ProductSubcategory"]
+pk = ["ProductSubcategoryID"]
+[[table."Production.ProductSubcategory".fk]]
+columns = ["ProductCategoryID"]
+references = "Production.ProductCategory"
+
+[table."Production.ScrapReason"]
+pk = ["ScrapReasonID"]
+
+[table."Production.TransactionHistory"]
+pk = ["TransactionID"]
+[[table."Production.TransactionHistory".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+
+[table."Production.TransactionHistoryArchive"]
+pk = ["TransactionID"]
+
+[table."Production.UnitMeasure"]
+pk = ["UnitMeasureCode"]
+
+[table."Production.WorkOrder"]
+pk = ["WorkOrderID"]
+[[table."Production.WorkOrder".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+[[table."Production.WorkOrder".fk]]
+columns = ["ScrapReasonID"]
+references = "Production.ScrapReason"
+nullable = true
+
+[table."Production.WorkOrderRouting"]
+pk = ["WorkOrderID", "ProductID", "OperationSequence"]
+[[table."Production.WorkOrderRouting".fk]]
+columns = ["LocationID"]
+references = "Production.Location"
+[[table."Production.WorkOrderRouting".fk]]
+columns = ["WorkOrderID"]
+references = "Production.WorkOrder"
+
+[table."Purchasing.ProductVendor"]
+pk = ["ProductID", "BusinessEntityID"]
+[[table."Purchasing.ProductVendor".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+[[table."Purchasing.ProductVendor".fk]]
+columns = ["UnitMeasureCode"]
+references = "Production.UnitMeasure"
+[[table."Purchasing.ProductVendor".fk]]
+columns = ["BusinessEntityID"]
+references = "Purchasing.Vendor"
+
+[table."Purchasing.PurchaseOrderDetail"]
+pk = ["PurchaseOrderID", "PurchaseOrderDetailID"]
+[[table."Purchasing.PurchaseOrderDetail".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+[[table."Purchasing.PurchaseOrderDetail".fk]]
+columns = ["PurchaseOrderID"]
+references = "Purchasing.PurchaseOrderHeader"
+
+[table."Purchasing.PurchaseOrderHeader"]
+pk = ["PurchaseOrderID"]
+[[table."Purchasing.PurchaseOrderHeader".fk]]
+columns = ["EmployeeID"]
+references = "HumanResources.Employee"
+[[table."Purchasing.PurchaseOrderHeader".fk]]
+columns = ["VendorID"]
+references = "Purchasing.Vendor"
+[[table."Purchasing.PurchaseOrderHeader".fk]]
+columns = ["ShipMethodID"]
+references = "Purchasing.ShipMethod"
+
+[table."Purchasing.ShipMethod"]
+pk = ["ShipMethodID"]
+
+[table."Purchasing.Vendor"]
+pk = ["BusinessEntityID"]
+[[table."Purchasing.Vendor".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.BusinessEntity"
+
+[table."Sales.CountryRegionCurrency"]
+pk = ["CountryRegionCode", "CurrencyCode"]
+[[table."Sales.CountryRegionCurrency".fk]]
+columns = ["CountryRegionCode"]
+references = "Person.CountryRegion"
+[[table."Sales.CountryRegionCurrency".fk]]
+columns = ["CurrencyCode"]
+references = "Sales.Currency"
+
+[table."Sales.CreditCard"]
+pk = ["CreditCardID"]
+
+[table."Sales.Currency"]
+pk = ["CurrencyCode"]
+
+[table."Sales.CurrencyRate"]
+pk = ["CurrencyRateID"]
+[[table."Sales.CurrencyRate".fk]]
+columns = ["FromCurrencyCode"]
+references = "Sales.Currency"
+[[table."Sales.CurrencyRate".fk]]
+columns = ["ToCurrencyCode"]
+references = "Sales.Currency"
+
+[table."Sales.Customer"]
+pk = ["CustomerID"]
+[[table."Sales.Customer".fk]]
+columns = ["PersonID"]
+references = "Person.Person"
+nullable = true
+[[table."Sales.Customer".fk]]
+columns = ["StoreID"]
+references = "Sales.Store"
+nullable = true
+[[table."Sales.Customer".fk]]
+columns = ["TerritoryID"]
+references = "Sales.SalesTerritory"
+nullable = true
+
+[table."Sales.PersonCreditCard"]
+pk = ["BusinessEntityID", "CreditCardID"]
+[[table."Sales.PersonCreditCard".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.Person"
+[[table."Sales.PersonCreditCard".fk]]
+columns = ["CreditCardID"]
+references = "Sales.CreditCard"
+
+[table."Sales.SalesOrderDetail"]
+pk = ["SalesOrderID", "SalesOrderDetailID"]
+[[table."Sales.SalesOrderDetail".fk]]
+columns = ["SalesOrderID"]
+references = "Sales.SalesOrderHeader"
+[[table."Sales.SalesOrderDetail".fk]]
+columns = ["SpecialOfferID", "ProductID"]
+references = "Sales.SpecialOfferProduct"
+
+[table."Sales.SalesOrderHeader"]
+pk = ["SalesOrderID"]
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["BillToAddressID"]
+references = "Person.Address"
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["ShipToAddressID"]
+references = "Person.Address"
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["CreditCardID"]
+references = "Sales.CreditCard"
+nullable = true
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["CurrencyRateID"]
+references = "Sales.CurrencyRate"
+nullable = true
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["CustomerID"]
+references = "Sales.Customer"
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["SalesPersonID"]
+references = "Sales.SalesPerson"
+nullable = true
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["ShipMethodID"]
+references = "Purchasing.ShipMethod"
+[[table."Sales.SalesOrderHeader".fk]]
+columns = ["TerritoryID"]
+references = "Sales.SalesTerritory"
+nullable = true
+
+[table."Sales.SalesOrderHeaderSalesReason"]
+pk = ["SalesOrderID", "SalesReasonID"]
+[[table."Sales.SalesOrderHeaderSalesReason".fk]]
+columns = ["SalesReasonID"]
+references = "Sales.SalesReason"
+[[table."Sales.SalesOrderHeaderSalesReason".fk]]
+columns = ["SalesOrderID"]
+references = "Sales.SalesOrderHeader"
+
+[table."Sales.SalesPerson"]
+pk = ["BusinessEntityID"]
+[[table."Sales.SalesPerson".fk]]
+columns = ["BusinessEntityID"]
+references = "HumanResources.Employee"
+[[table."Sales.SalesPerson".fk]]
+columns = ["TerritoryID"]
+references = "Sales.SalesTerritory"
+nullable = true
+
+[table."Sales.SalesPersonQuotaHistory"]
+pk = ["BusinessEntityID", "QuotaDate"]
+[[table."Sales.SalesPersonQuotaHistory".fk]]
+columns = ["BusinessEntityID"]
+references = "Sales.SalesPerson"
+
+[table."Sales.SalesReason"]
+pk = ["SalesReasonID"]
+
+[table."Sales.SalesTaxRate"]
+pk = ["SalesTaxRateID"]
+[[table."Sales.SalesTaxRate".fk]]
+columns = ["StateProvinceID"]
+references = "Person.StateProvince"
+
+[table."Sales.SalesTerritory"]
+pk = ["TerritoryID"]
+[[table."Sales.SalesTerritory".fk]]
+columns = ["CountryRegionCode"]
+references = "Person.CountryRegion"
+
+[table."Sales.SalesTerritoryHistory"]
+pk = ["BusinessEntityID", "StartDate", "TerritoryID"]
+[[table."Sales.SalesTerritoryHistory".fk]]
+columns = ["BusinessEntityID"]
+references = "Sales.SalesPerson"
+[[table."Sales.SalesTerritoryHistory".fk]]
+columns = ["TerritoryID"]
+references = "Sales.SalesTerritory"
+
+[table."Sales.ShoppingCartItem"]
+pk = ["ShoppingCartItemID"]
+[[table."Sales.ShoppingCartItem".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+
+[table."Sales.SpecialOffer"]
+pk = ["SpecialOfferID"]
+
+[table."Sales.SpecialOfferProduct"]
+pk = ["SpecialOfferID", "ProductID"]
+[[table."Sales.SpecialOfferProduct".fk]]
+columns = ["ProductID"]
+references = "Production.Product"
+[[table."Sales.SpecialOfferProduct".fk]]
+columns = ["SpecialOfferID"]
+references = "Sales.SpecialOffer"
+
+[table."Sales.Store"]
+pk = ["BusinessEntityID"]
+[[table."Sales.Store".fk]]
+columns = ["BusinessEntityID"]
+references = "Person.BusinessEntity"
+[[table."Sales.Store".fk]]
+columns = ["SalesPersonID"]
+references = "Sales.SalesPerson"
+nullable = true
+
+[table."dbo.AWBuildVersion"]
+pk = ["SystemInformationID"]
+
+[table."dbo.DatabaseLog"]
+pk = ["DatabaseLogID"]
+
+[table."dbo.ErrorLog"]
+pk = ["ErrorLogID"]
+
+[view."HumanResources.vEmployee"]
+sources = ["HumanResources.Employee", "Person.Address", "Person.BusinessEntityAddress", "Person.CountryRegion", "Person.EmailAddress", "Person.Person", "Person.PersonPhone", "Person.PhoneNumberType", "Person.StateProvince"]
+
+[view."HumanResources.vEmployeeDepartment"]
+sources = ["HumanResources.Department", "HumanResources.Employee", "HumanResources.EmployeeDepartmentHistory", "Person.Person"]
+
+[view."HumanResources.vEmployeeDepartmentHistory"]
+sources = ["HumanResources.Department", "HumanResources.Employee", "HumanResources.EmployeeDepartmentHistory", "HumanResources.Shift", "Person.Person"]
+
+[view."HumanResources.vJobCandidate"]
+sources = ["HumanResources.JobCandidate"]
+
+[view."HumanResources.vJobCandidateEducation"]
+sources = ["HumanResources.JobCandidate"]
+
+[view."HumanResources.vJobCandidateEmployment"]
+sources = ["HumanResources.JobCandidate"]
+
+[view."Person.vAdditionalContactInfo"]
+sources = ["Person.Person"]
+
+[view."Person.vStateProvinceCountryRegion"]
+sources = ["Person.CountryRegion", "Person.StateProvince"]
+
+[view."Production.vProductAndDescription"]
+sources = ["Production.Product", "Production.ProductDescription", "Production.ProductModel", "Production.ProductModelProductDescriptionCulture"]
+
+[view."Production.vProductModelCatalogDescription"]
+sources = ["Production.ProductModel"]
+
+[view."Production.vProductModelInstructions"]
+sources = ["Production.ProductModel"]
+
+[view."Purchasing.vVendorWithAddresses"]
+sources = ["Person.Address", "Person.AddressType", "Person.BusinessEntityAddress", "Person.CountryRegion", "Person.StateProvince", "Purchasing.Vendor"]
+
+[view."Purchasing.vVendorWithContacts"]
+sources = ["Person.BusinessEntityContact", "Person.ContactType", "Person.EmailAddress", "Person.Person", "Person.PersonPhone", "Person.PhoneNumberType", "Purchasing.Vendor"]
+
+[view."Sales.vIndividualCustomer"]
+sources = ["Person.Address", "Person.AddressType", "Person.BusinessEntityAddress", "Person.CountryRegion", "Person.EmailAddress", "Person.Person", "Person.PersonPhone", "Person.PhoneNumberType", "Person.StateProvince", "Sales.Customer"]
+
+[view."Sales.vPersonDemographics"]
+sources = ["Person.Person"]
+
+[view."Sales.vSalesPerson"]
+sources = ["HumanResources.Employee", "Person.Address", "Person.BusinessEntityAddress", "Person.CountryRegion", "Person.EmailAddress", "Person.Person", "Person.PersonPhone", "Person.PhoneNumberType", "Person.StateProvince", "Sales.SalesPerson", "Sales.SalesTerritory"]
+
+[view."Sales.vSalesPersonSalesByFiscalYears"]
+sources = ["HumanResources.Employee", "Person.Person", "Sales.SalesOrderHeader", "Sales.SalesPerson", "Sales.SalesTerritory"]
+
+[view."Sales.vStoreWithAddresses"]
+sources = ["Person.Address", "Person.AddressType", "Person.BusinessEntityAddress", "Person.CountryRegion", "Person.StateProvince", "Sales.Store"]
+
+[view."Sales.vStoreWithContacts"]
+sources = ["Person.BusinessEntityContact", "Person.ContactType", "Person.EmailAddress", "Person.Person", "Person.PersonPhone", "Person.PhoneNumberType", "Sales.Store"]
+
+[view."Sales.vStoreWithDemographics"]
+sources = ["Sales.Store"]
