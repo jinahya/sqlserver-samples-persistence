@@ -20,7 +20,6 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
-import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
 import com.github.jinahya.mssql.sample.databases.persistence.common.Heirarchyid;
 import com.github.jinahya.mssql.sample.databases.persistence.common.HeirarchyidAttributeConverter;
 import jakarta.persistence.Basic;
@@ -1007,7 +1006,6 @@ public abstract class MappedEmployee {
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
-    @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,

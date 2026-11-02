@@ -192,7 +192,7 @@ column changed.
 | This module, once the binding has them
 | Move to the binding's new version, and pin `jaxb-plugins-runtime` if dependency convergence asks for it; map the five
 writable columns, `Resume`, `Person.Person.AdditionalContactInfo`, `Person.Person.Demographics`, `CatalogDescription`
-and `Sales.Store.Demographics`, each with a converter, and test under both providers that every value converts and that
+and `Sales.Store.Demographics`, each with a converter, and test that every value converts and that
 a flush of loaded rows writes nothing.
 |===
 

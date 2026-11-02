@@ -10,7 +10,7 @@ stated as a request, followed by its solutions. The `sql` blocks are SQL Server'
 (see link:../README.md[README.md]), and are the ones in `src/test/sql/exercises`, a file per schema; a parameter is a
 T-SQL variable, `@name`, declared with the value the tests use. The `jpaql` blocks are Jakarta Persistence 3.2 query
 language against this module's entities. `AdventureWorks_Exercises_PersistenceIT` runs every one of them, and its
-Criteria API counterpart, with both providers, and checks the rows the SQL returns.
+Criteria API counterpart, and checks the rows the SQL returns.
 
 The problems are grouped by the schema whose question they answer, and some of them read the other schemas too. Each
 section goes from Basic through Intermediate to Advanced. An id is `AW_<SCHEMA>_<TIER>_<NN>`, numbered within its

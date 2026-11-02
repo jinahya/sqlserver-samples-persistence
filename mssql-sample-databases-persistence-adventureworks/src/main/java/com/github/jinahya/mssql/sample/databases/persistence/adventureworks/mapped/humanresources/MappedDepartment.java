@@ -40,7 +40,7 @@ import java.util.Objects;
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID,
                                     nullable = false,
-                                    insertable = true, // EclipseLink
+                                    insertable = true,
                                     updatable = false
                    )
 )

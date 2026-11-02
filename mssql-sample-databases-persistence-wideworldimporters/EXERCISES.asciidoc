@@ -12,7 +12,7 @@ Jakarta Persistence 3.2 query language against this module's entities, with name
 
 The SQL is in `src/test/sql/exercises/<schema>_exercises.sql`, a file per schema. The query language and Criteria API
 solutions are the nested classes of `WideWorldImporters_Exercises_PersistenceIT`, a class per exercise, which assert
-the rows the SQL returns, with both providers.
+the rows the SQL returns.
 
 The problems are grouped by the schema of the table they are about; a problem which joins another schema's tables
 stays with the one it asks about. Each section goes from Basic (`B`) through Intermediate (`I`) to Advanced (`A`). An

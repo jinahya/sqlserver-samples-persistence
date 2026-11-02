@@ -20,7 +20,6 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
-import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
 import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
 import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
@@ -503,7 +502,6 @@ public abstract class MappedAddress {
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
-    @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,

@@ -20,10 +20,8 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
-import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
@@ -38,9 +36,8 @@ import java.util.UUID;
  * <p>
  * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
- * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; some of its columns
- * are derived or constant (error 4406).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
+ * insertable; some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedAdditionalContactInfoView {
@@ -727,13 +724,12 @@ public abstract class MappedAdditionalContactInfoView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
-    // of every identifier column; see the class documentation
+    // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
             nullable = false,
-            insertable = true,
+            insertable = false,
             updatable = false
     )
     private Integer businessEntityId;
@@ -905,7 +901,6 @@ public abstract class MappedAdditionalContactInfoView {
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
-    @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,

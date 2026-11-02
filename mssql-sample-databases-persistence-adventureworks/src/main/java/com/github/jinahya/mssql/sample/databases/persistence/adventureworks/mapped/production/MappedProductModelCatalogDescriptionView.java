@@ -20,10 +20,8 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
-import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,10 +38,9 @@ import java.util.UUID;
  * <p>
  * Identifier: the view declares no key; ProductModelID is unique, and not null, in every row it returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
- * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; some of its columns
- * are derived or constant (error 4406); one of its columns is an identity column of its base table, which no UPDATE
- * sets (error 8102).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
+ * insertable; some of its columns are derived or constant (error 4406); one of its columns is an identity column of its
+ * base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedProductModelCatalogDescriptionView {
@@ -1027,13 +1024,12 @@ public abstract class MappedProductModelCatalogDescriptionView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
-    // of every identifier column; see the class documentation
+    // read-only: SQL Server does not write this view; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
             nullable = false,
-            insertable = true,
+            insertable = false,
             updatable = false
     )
     private Integer productModelId;
@@ -1300,7 +1296,6 @@ public abstract class MappedProductModelCatalogDescriptionView {
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
-    @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,

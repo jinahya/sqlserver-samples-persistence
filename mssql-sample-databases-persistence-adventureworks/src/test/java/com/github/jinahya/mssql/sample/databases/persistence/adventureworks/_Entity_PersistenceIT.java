@@ -20,6 +20,7 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.EntityType;
@@ -32,10 +33,12 @@ import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * The integration tests of an entity, against the {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on the
- * database {@code compose.yaml} brings up. Each reads installed rows only, and rolls back.
+ * database {@code compose.yaml} brings up. Each reads installed rows, or persists a new randomized instance, and rolls
+ * back.
  *
  * @param <T> the type of the entity.
  */
@@ -136,6 +139,43 @@ public abstract class _Entity_PersistenceIT<T> {
             }
             return null;
         });
+    }
+
+    /**
+     * Persists a new, randomized instance of the entity, through its persister, and flushes it.
+     * <p>
+     * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister}, are found by name,
+     * beside the entity. An entity which has no persister is skipped: a view, or a table which only SQL Server or the
+     * installer writes, never has one, and a table may not have one yet.
+     *
+     * @implNote The flush is what makes the {@code INSERT} reach the database, with its constraints and triggers; the
+     *         transaction is rolled back, so without it nothing would be written, and nothing tested.
+     */
+    @DisplayName("a new randomized instance is persisted")
+    @Test
+    void persist() {
+        assumeTrue(EntityPersisterUtils.newPersisterInstanceOf(entityClass).isPresent(),
+                   () -> entityClass.getSimpleName() + " has no persister");
+        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+            final var persisted = EntityPersisterUtils.newPersistedInstanceOf(em, entityClass);
+            em.flush();
+            assertThat(em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(persisted))
+                    .as("the identifier of the persisted %s", persisted)
+                    .isNotNull();
+            persisted(em, persisted);
+            return null;
+        });
+    }
+
+    /**
+     * Called with the instance {@link #persist()} persisted and flushed, while it is still managed.
+     *
+     * @param entityManager the entity manager which persisted the instance.
+     * @param instance      the persisted instance.
+     * @implSpec This class does nothing; a subclass overrides it to assert what its table does with a new row.
+     */
+    protected void persisted(final EntityManager entityManager, final T instance) {
+        // empty
     }
 
     // -----------------------------------------------------------------------------------------------------------------

@@ -39,7 +39,7 @@ import java.util.Objects;
  * <p>
  * Read-only: the database DDL trigger ddlDatabaseTriggerLog, ON DATABASE FOR DDL_DATABASE_LEVEL_EVENTS, inserts every
  * row of this table, out of EVENTDATA(), and nothing in the database updates one; so no column of it is insertable or
- * updatable, but for the identifier, of which EclipseLink requires a writable mapping.
+ * updatable, but for the identifier, which is generated.
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDatabaseLog.COLUMN_NAME_DATABASE_LOG_ID,

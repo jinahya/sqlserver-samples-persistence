@@ -14,10 +14,9 @@ The three depend on `mssql-sample-databases-persistence-common`, which holds wha
 and the `hierarchyid` and `geography` types with their converters.
 
 Each module's main sources are a package per schema, `<database>.mapped.<schema>`: one `@MappedSuperclass`
-`Mapped<Entity>` per table and view, and one `Mapped<Entity>Id` per composite key. `UuidStringAttributeConverter`, which
-the schemas share, is in `<database>.mapped`. The entities, which add `@Entity`, `@Table`, `@IdClass` and the
-associations, live in `src/test/java`, in `<database>.<schema>`, with the persistence unit, `<database>-it`, and an
-integration test per class. The layout follows
+`Mapped<Entity>` per table and view, and one `Mapped<Entity>Id` per composite key. The entities, which add `@Entity`,
+`@Table`, `@IdClass` and the associations, live in `src/test/java`, in `<database>.<schema>`, with the persistence unit,
+`<database>-it`, and an integration test per class. The layout follows
 [oracle-sample-schemas-persistence](https://github.com/jinahya/oracle-sample-schemas-persistence).
 
 A table or view is named within its schema, and so is its class: `Website.Customers` is `website.Customer`, next to
@@ -57,7 +56,7 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
 | `char`, `nchar`, `varchar`, `nvarchar`, `sysname` | `String` | `length`, and `@Size`; `(max)` has no length |
 | `xml` | `String` | the document's text; `dbo.DatabaseLog.XmlEvent` and `HumanResources.vEmployee.AdditionalContactInfo` are the exceptions, below |
 | `date`, `time`, `datetime`, `datetime2` | `LocalDate`, `LocalTime`, `LocalDateTime` | |
-| `uniqueidentifier` | `UUID` | `UuidStringAttributeConverter`, through the text; an identifier, to which no converter applies, is a `String` |
+| `uniqueidentifier` | `UUID` | Hibernate ORM maps it, with no converter; an identifier is a `String` |
 | `varbinary` | `byte[]` | the driver's bytes |
 | `hierarchyid` | `-common`'s `Heirarchyid` | `HeirarchyidAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.2; its `toString()` is `ToString()`'s |
 | `geography` | `-common`'s `Geography` | `GeographyAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.1; its `toString()` is `STAsText()`'s, but for the digits of a coordinate |
@@ -83,8 +82,6 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
   `RevisionNumber`, `SalesYTD`) stays writable.
 - A column name SQL Server reserves, or which is no plain identifier (`Group`, `Database Version`, `2002`), is
   quoted, `"\"Group\""`.
-- `uniqueidentifier` needs the converter for EclipseLink, which reads the driver's text and parses it as hexadecimal
-  bytes into a `UUID`; Hibernate ORM maps it either way.
 - AdventureWorks' `dbo.DatabaseLog.XmlEvent`, one `EVENTDATA()` document a row, is an `EventInstance`: the class
   [`sqlserver-xml-schema-binding-b872ce`](https://central.sonatype.com/artifact/io.github.jinahya/sqlserver-xml-schema-binding-b872ce)
   generates for the row's event type, `EVENTINSTANCECREATETABLE` for a `CREATE_TABLE`, through
@@ -107,16 +104,17 @@ What identifies a row:
 
 ## Building
 
-The persistence provider is the property `persistence-unit.provider`, which each module's `persistence.xml` reads; a
-profile per provider sets it, `jakarta-ee-11-hibernate-orm` (the default) and `jakarta-ee-11-eclipselink`. Each
-module's unit, `<database>-it`, reads the JDBC URL and the credentials from the root `pom.xml`'s `mssql.*`
-properties.
+The persistence provider is Hibernate ORM, a test dependency; the property `persistence-unit.provider` names it, and
+each module's `persistence.xml` reads it. EclipseLink is not supported: how a provider meets SQL Server's driver differs
+by database, driver and provider (EclipseLink binds a NULL `geography` with the driver's own `GEOGRAPHY` type, which the
+driver rejects), and the MySQL and Oracle projects keep both providers. Each module's unit, `<database>-it`, reads the
+JDBC URL and the credentials from the root `pom.xml`'s `mssql.*` properties.
 
-| runs | Hibernate ORM | EclipseLink |
-|---|---|---|
-| unit tests | `_mvn_jakarta_ee_11_test_hibernate_orm.sh` | `_mvn_jakarta_ee_11_test_eclipselink.sh` |
-| unit tests and ITs, the database up | `_mvn_jakarta_ee_11_verify_hibernate_orm.sh` | `_mvn_jakarta_ee_11_verify_eclipselink.sh` |
-| no test, but still compiles them | `_mvn_jakarta_ee_11_verify_notests_hibernate_orm.sh` | `_mvn_jakarta_ee_11_verify_notests_eclipselink.sh` |
+| runs | script |
+|---|---|
+| unit tests | `_mvn_jakarta_ee_11_test_hibernate_orm.sh` |
+| unit tests and ITs, the database up | `_mvn_jakarta_ee_11_verify_hibernate_orm.sh` |
+| no test, but still compiles them | `_mvn_jakarta_ee_11_verify_notests_hibernate_orm.sh` |
 
 `-Dtests.skipAfterFailureCount=0` runs every test instead of stopping at the first failure. Building needs Java 25.
 
@@ -140,8 +138,8 @@ that its public constructor takes them all.
 Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
 Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.
 
-All of them pass with both providers. A test is skipped when an entity maps no association, or a view returns no
-row.
+All of them pass. A test is skipped when an entity maps no association, a view returns no row, or an entity has no
+persister yet.
 
 ## The diagrams
 

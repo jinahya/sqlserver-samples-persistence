@@ -10,12 +10,12 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
 
 ## The module, as it stands (absolute rules)
 
-- **Not Hibernate ORM only.** The provider is a property, `persistence-unit.provider`, set by the
-  `jakarta-ee-11-hibernate-orm` (default) and `jakarta-ee-11-eclipselink` profiles. Every mapping is plain Jakarta
-  Persistence and must work with both; check both before committing.
+- **Hibernate ORM only.** The provider is Hibernate ORM, a test dependency; there is no provider profile. EclipseLink
+  was dropped: what it does depends on the database, the driver and the provider together (here it binds a NULL with
+  the driver's own `GEOGRAPHY` type, which the driver rejects), and the mysql and oracle projects keep both providers.
 - **Main holds mapped superclasses; the entities are test code.** Main is a package per schema,
   `<database>.mapped.<schema>` (the schema in lower case): `Mapped<Entity>` per table and view and `Mapped<Entity>Id`
-  per composite key (an `@IdClass`). `UuidStringAttributeConverter`, shared by the schemas, is in `<database>.mapped`.
+  per composite key (an `@IdClass`).
   No association, fetch type, cascade or named query in main. Each entity, its keyless class and its IT are in
   `<database>.<schema>`; the test bases and the exercises stay in `<database>`.
 - **Every entity name carries its schema**, with no exception: `@Entity(name = "<Schema><Entity>")`, the schema as

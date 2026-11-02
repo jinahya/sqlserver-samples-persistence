@@ -11,7 +11,7 @@ in; the files are in `src/test/sql/exercises`, a file per section, each exercise
 The `jpaql` blocks are Jakarta Persistence 3.2 query language against this module's entities, with named
 parameters. `FutonManufacturing_Exercises_PersistenceIT` answers each with the query language and with the Criteria
 API, as a nested class named after the id, or with a native query where the query language cannot, and checks the
-rows the SQL gives; it passes with both providers.
+rows the SQL gives.
 
 An id is `FUTON_DBO_<TIER>_<NN>`, after `dbo`, the only schema; the tier is B (Basic), I (Intermediate) or A
 (Advanced), and the number is within that tier. `EXERCISES.yaml` registers every id; an id is never reused or
@@ -91,8 +91,7 @@ RM-HARD-002  Bolt and Nut Kit (50 pack)
 ....
 ====
 
-EclipseLink rejects both a Criteria entity join (`From.join(Class)`) and a subquery in `multiselect`, so the unused raw
-materials are found with `NOT EXISTS`, which both providers run.
+The unused raw materials are found with `NOT EXISTS`.
 
 [source,jpaql]
 ----
@@ -455,8 +454,8 @@ FG-FUT-006  Queen Luxury Futon - Linen Beige      22
 ....
 ====
 
-The query language joins `Inventory` with `+JOIN Inventory v ON v.item = b.componentItem+`. The Criteria API answer
-takes `Inventory` as a second root and compares the two in `WHERE`, for EclipseLink rejects `From.join(Class)`.
+The query language joins `Inventory` with `+JOIN Inventory v ON v.item = b.componentItem+`, and the Criteria API answer
+with an entity join, `From.join(Class)`, and its `on`.
 
 [source,jpaql]
 ----
@@ -547,7 +546,7 @@ SUP-004       Industrial Fasteners Inc     200.00     2.00      1.00
 ====
 
 An inspection names its purchase order by `ReferenceNumber`, not by a foreign key, so there is no association to
-navigate: the query language joins on the column, and the Criteria API answer takes a second root.
+navigate: the query language joins on the column, and the Criteria API answer with an entity join.
 
 [source,jpaql]
 ----

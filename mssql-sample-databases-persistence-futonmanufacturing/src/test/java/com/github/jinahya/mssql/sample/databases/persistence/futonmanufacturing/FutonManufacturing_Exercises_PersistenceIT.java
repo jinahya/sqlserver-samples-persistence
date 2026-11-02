@@ -560,12 +560,12 @@ class FutonManufacturing_Exercises_PersistenceIT {
                 final var query = builder.createQuery(Object[].class);
                 final var b = query.from(BillOfMaterials.class);
                 final var p = b.join(BillOfMaterials_.parentItem);
-                final var v = query.from(Inventory.class);
+                final var v = b.join(Inventory.class);
+                v.on(builder.equal(v.get(Inventory_.item), b.get(BillOfMaterials_.componentItem)));
                 final var buildable = builder.min(builder.floor(
                         builder.quot(v.get(Inventory_.quantityAvailable), b.get(BillOfMaterials_.quantity))));
                 query.multiselect(p, buildable)
-                        .where(builder.equal(v.get(Inventory_.item), b.get(BillOfMaterials_.componentItem)),
-                               builder.equal(p.get(Item_.itemType).get(ItemType_.typeCode), "FG"),
+                        .where(builder.equal(p.get(Item_.itemType).get(ItemType_.typeCode), "FG"),
                                builder.isTrue(b.get(BillOfMaterials_.isActive)),
                                builder.equal(v.get(Inventory_.warehouse).get(Warehouse_.warehouseCode), "WH-MAIN"))
                         .groupBy(p)
@@ -661,14 +661,13 @@ class FutonManufacturing_Exercises_PersistenceIT {
                 final var query = builder.createQuery(Object[].class);
                 final var po = query.from(PurchaseOrder.class);
                 final var s = po.join(PurchaseOrder_.supplier);
-                final var q = query.from(QualityInspection.class);
+                final var q = po.join(QualityInspection.class);
+                q.on(builder.equal(q.get(QualityInspection_.referenceType), "PO"),
+                     builder.equal(q.get(QualityInspection_.referenceNumber), po.get(PurchaseOrder_.poNumber)));
                 final var inspected = builder.sum(q.get(QualityInspection_.quantityInspected));
                 final var rejected = builder.sum(q.get(QualityInspection_.quantityRejected));
                 final var percent = builder.quot(builder.prod(rejected, BigDecimal.valueOf(100)), inspected);
                 query.multiselect(s, inspected, rejected, percent)
-                        .where(builder.equal(q.get(QualityInspection_.referenceType), "PO"),
-                               builder.equal(q.get(QualityInspection_.referenceNumber),
-                                             po.get(PurchaseOrder_.poNumber)))
                         .groupBy(s)
                         .orderBy(builder.desc(percent), builder.asc(s.get(Supplier_.supplierCode)));
                 final var list = entityManager.createQuery(query).getResultList();

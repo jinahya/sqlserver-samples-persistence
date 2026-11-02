@@ -39,9 +39,9 @@ import java.util.Objects;
  * <p>
  * Read-only: the triggers iPurchaseOrderDetail, uPurchaseOrderDetail, Sales.iduSalesOrderDetail, iWorkOrder and
  * uWorkOrder insert every row of this table, a record of each purchase, sales and work order transaction, and nothing
- * in the database updates one; so no column of it is insertable or updatable, but for the identifier, of which
- * EclipseLink requires a writable mapping. The {@value #COLUMN_NAME_PRODUCT_ID} column, a foreign key, is read-only
- * here and in the association of the extending entity alike.
+ * in the database updates one; so no column of it is insertable or updatable, but for the identifier, which is
+ * generated. The {@value #COLUMN_NAME_PRODUCT_ID} column, a foreign key, is read-only here and in the association of
+ * the extending entity alike.
  */
 @MappedSuperclass
 public abstract class MappedTransactionHistory {

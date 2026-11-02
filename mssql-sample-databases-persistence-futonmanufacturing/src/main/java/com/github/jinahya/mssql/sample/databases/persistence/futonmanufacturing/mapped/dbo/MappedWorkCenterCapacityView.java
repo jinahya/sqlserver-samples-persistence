@@ -37,9 +37,9 @@ import java.util.Objects;
  * <p>
  * Identifier: the view declares no key; WorkCenterCode is unique, and not null, in every row it returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
- * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; it contains
- * aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or constant (error 4406).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
+ * insertable; it contains aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or
+ * constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedWorkCenterCapacityView {
@@ -483,14 +483,13 @@ public abstract class MappedWorkCenterCapacityView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
-    // of every identifier column; see the class documentation
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_CODE)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_WORK_CENTER_CODE,
             nullable = false,
-            insertable = true,
+            insertable = false,
             updatable = false,
             length = COLUMN_LENGTH_WORK_CENTER_CODE
     )

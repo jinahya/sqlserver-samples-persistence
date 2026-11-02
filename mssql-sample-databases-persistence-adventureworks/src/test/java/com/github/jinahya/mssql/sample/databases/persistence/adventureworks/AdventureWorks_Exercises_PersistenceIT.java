@@ -445,13 +445,11 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var builder = entityManager.getCriteriaBuilder();
                 final var query = builder.createQuery(Object[].class);
                 final var v = query.from(PersonDemographicsView.class);
-                // a second root, not v.join(Person.class), which EclipseLink does not take
-                final var p = query.from(Person.class);
+                final var p = v.join(Person.class);
+                p.on(builder.equal(p.get(Person_.businessEntityId), v.get(PersonDemographicsView_.businessEntityId)));
                 final var yearlyIncome = v.get(PersonDemographicsView_.yearlyIncome);
                 query.multiselect(yearlyIncome, builder.count(v));
-                query.where(builder.equal(p.get(Person_.businessEntityId),
-                                          v.get(PersonDemographicsView_.businessEntityId)),
-                            builder.equal(p.get(Person_.personType), Person.PersonType.IN));
+                query.where(builder.equal(p.get(Person_.personType), Person.PersonType.IN));
                 query.groupBy(yearlyIncome);
                 query.orderBy(builder.asc(yearlyIncome));
                 return entityManager.createQuery(query).getResultList();

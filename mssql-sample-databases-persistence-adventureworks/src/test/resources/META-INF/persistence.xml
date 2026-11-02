@@ -30,7 +30,6 @@
     <description>Persistence Unit for AdventureWorks on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter</class>
-    <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.dbo.EventInstanceStringAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production.MappedProduct$ProductClassConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production.MappedProduct$ProductLineConverter</class>
@@ -135,10 +134,6 @@
       <property name="hibernate.highlight_sql" value="true"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.use_sql_comment" value="true"/>
-      <!-- ///////////////////////////////////////////////////////////////////////////////////////////// eclipselink -->
-      <property name="eclipselink.ddl-generation" value="none"/>
-      <property name="eclipselink.logging.level.sql" value="FINE"/>
-      <property name="eclipselink.logging.parameters" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>

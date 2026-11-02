@@ -36,10 +36,9 @@ import java.util.Objects;
  * <p>
  * Identifier: the view declares no key; ItemCode is unique, and not null, in every row it returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable,
- * and none but the identifier, of which EclipseLink requires a writable mapping, is insertable; an INSERT or an UPDATE
- * of a whole row affects more than one of its base tables (error 4405); some of its columns are derived or constant
- * (error 4406).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
+ * insertable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405); some of its
+ * columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedCostRollUpView {
@@ -509,14 +508,13 @@ public abstract class MappedCostRollUpView {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // read-only but for an INSERT: SQL Server does not write this view, and EclipseLink requires a writable mapping
-    // of every identifier column; see the class documentation
+    // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_ITEM_CODE,
             nullable = false,
-            insertable = true,
+            insertable = false,
             updatable = false,
             length = COLUMN_LENGTH_ITEM_CODE
     )

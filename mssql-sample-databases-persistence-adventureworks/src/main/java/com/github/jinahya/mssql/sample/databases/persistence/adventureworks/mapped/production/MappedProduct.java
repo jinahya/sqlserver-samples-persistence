@@ -20,7 +20,6 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
-import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -1603,7 +1602,6 @@ public abstract class MappedProduct {
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
-    @Convert(converter = UuidStringAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,

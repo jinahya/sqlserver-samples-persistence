@@ -38,7 +38,7 @@ import java.util.Objects;
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedAwBuildVersion.COLUMN_NAME_SYSTEM_INFORMATION_ID,
                                     nullable = false,
-                                    insertable = true, // EclipseLink
+                                    insertable = true,
                                     updatable = false
                    )
 )
