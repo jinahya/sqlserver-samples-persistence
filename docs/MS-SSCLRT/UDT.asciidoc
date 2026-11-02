@@ -1,0 +1,180 @@
+= CLR UDT binary format history
+:toc:
+
+How [MS-SSCLRT] (_Microsoft SQL Server CLR Types Serialization Formats_) describes the binary format of common
+language runtime (CLR) user-defined types (UDTs), revision by revision. Source: the PDFs in this directory, downloaded
+from https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/77460aa9-8c2f-4449-a65e-1d649ebd77fa[the
+specification's page]. The format is in section 2.3, and the example is in section 3.3.
+
+== Summary
+
+A CLR UDT is serialized in one of two ways: _native_ UDT serialization, which the specification defines, and
+_user-defined_ UDT serialization, which it leaves to the type and to .NET Remoting Binary Format ([MS-NRBF]). There
+is no version: section 1.6 says that SQL Server defines no versioning scheme for CLR UDTs.
+
+The native format and its twenty types are the same in every revision. What changed is the text:
+
+* the NULL flag of the `Sql*` types, stated backward until 0.2 and corrected in 1.0 (2010-04-21);
+* SqlDouble, "5 bytes" until 3.0 and 9 bytes from 3.1 (2011-02-09);
+* FLOAT, without a rule for negative values until 3.0;
+* the example's field values, changed in 1.0 so that two of them no longer match the bytes.
+
+== The native format, as the latest revision states it
+
+The value is the UDT's fields, in the order the user defines them, with nothing between them. A nested structure is
+its fields in the same way; the format does not carry the structure's definition. The fields MUST be of these types:
+
+[cols="1,1,5",options="header"]
+|===
+| Type | Bytes | Encoding
+
+| BOOL | 1 | `01` true, `00` false.
+| BYTE | 1 | As is.
+| SBYTE | 1 | The most significant bit reversed.
+| USHORT | 2 | Most significant byte first.
+| SHORT | 2 | Most significant byte first, its most significant bit reversed.
+| UINT | 4 | Most significant byte first.
+| INT | 4 | Most significant byte first, its most significant bit reversed.
+| ULONG | 8 | Most significant byte first.
+| LONG | 8 | Most significant byte first, its most significant bit reversed.
+| FLOAT | 4 | IEEE 754 single precision, bytes reversed (most significant first). Positive (and +0): the first bit
+reversed. Negative: every bit reversed. -0: unchanged.
+| DOUBLE | 8 | IEEE 754 double precision, the same way as FLOAT.
+| SqlByte | 2 | BOOL (true when not NULL), then BYTE.
+| SqlInt16 | 3 | BOOL, then SHORT.
+| SqlInt32 | 5 | BOOL, then INT.
+| SqlInt64 | 9 | BOOL, then LONG.
+| SqlBoolean | 1 | `00` NULL, `01` false, `02` true.
+| SqlSingle | 5 | BOOL, then FLOAT.
+| SqlDouble | 9 | BOOL, then DOUBLE.
+| SqlDateTime | 9 | BOOL, then INT days since 1900-01-01 (negative before), then INT ticks since midnight, 300 per
+second. From 1753-01-01 00:00:00.000 through 9999-12-31 23:59:59.997.
+| SqlMoney | 9 | BOOL, then LONG of the value × 10000.
+|===
+
+The signed types reverse the sign bit and the floating-point types reverse every bit of a negative value, so that the
+bytes compare in the same order as the values.
+
+The example (section 3.3) is a `[SqlUserDefinedType(Format.Native)]` struct `SampleNativeUdt` with one field of each
+type: for instance `7E` for SBYTE -2, `8003` for SHORT 3, `7FFFFFFB` for INT -5, `0180008EAC80C5C100` for SqlDateTime
+2000-01-01 12:00:00 (36524 days, 12960000 ticks) and `01800000000001FBD0` for SqlMoney $13.
+
+== Revisions
+
+Each row links the PDF it was read from, named `<yyyyMMdd>-<protocol revision>-<original name>`. A revision that
+changed nothing in section 2.3 or 3.3 is grouped with the one before it. The two Editorial revisions, 0.1.1
+(2009-11-06) and 1.0.1 (2010-06-04), are left out.
+
+The *Binary format* column flags a revision in which the binary format itself changed, that is, what SQL Server writes,
+not only how the specification describes it. A correction to the text, even one that changes the described bytes, is
+*No* when the specification's own examples show that the format was already what the corrected text says. The native UDT
+format has not changed in any revision.
+
+[cols="1,1,1,2,5",options="header"]
+|===
+| Revision | Date | Binary format | PDF | CLR UDT changes
+
+| 0.1
+| 2009-08-07
+| Initial
+| link:20090807-0.1-%5BMS-SSCLRT%5D-090801.pdf[`20090807-0.1`]
+a| First release, for SQL Server 2008. Section 2.3 has _SQL Server Native UDT Serialization_ and _User-Defined UDT
+Serialization_; the twenty types and their encodings are those above, except:
+
+* *NULL flag:* every `Sql*` type says "True indicates that this value is NULL; False indicates that it is not NULL",
+  the reverse of the BOOL `01` that the example writes for a value that is not NULL.
+* *FLOAT:* rules for positive values and for -0 only, none for negative values.
+* *SqlDouble:* "represented as 5 bytes ... The other 4 bytes are the actual DOUBLE value", although DOUBLE takes 8.
+* *Example:* FloatValue = 123456789.0123456789, DoubleValue = -123456789.0123456789, SqlSingleValue =
+  -123456789.0123456789, SqlDoubleValue = 123456789.0123456789. The bytes match these values.
+
+| 0.2
+| 2010-03-05
+| No
+| link:20100305-0.2-%5BMS-SSCLRT%5D-100305.pdf[`20100305-0.2`]
+| Wording only ("see [MS-NRBF]").
+
+| 1.0
+| 2010-04-21
+| No
+| link:20100421-1.0-%5BMS-SSCLRT%5D-100421.pdf[`20100421-1.0`]
+a| * *NULL flag corrected:* "True indicates that this value is not NULL; False indicates that it is NULL."
+* "SQL Server native UDT serialization" becomes "native UDT serialization"; adds the reference [MSDN-UDTR].
+* *Example values:* FloatValue and SqlSingleValue become `1.234568E+08`, DoubleValue and SqlDoubleValue
+  `123456789.0123456`, all positive. The bytes do not change, so DoubleValue and SqlSingleValue no longer match them
+  (see the notes).
+
+| 2.0, 3.0
+| 2010-06-22, 2010-09-03
+| No
+| link:20100622-2.0-%5BMS-SSCLRT%5D-100721.pdf[`20100622-2.0`],
+link:20100903-3.0-%5BMS-SSCLRT%5D-100903.pdf[`20100903-3.0`]
+| Wording only: 3.0 spells out "common language runtime (CLR) user-defined type (UDT)".
+
+| 3.1
+| 2011-02-09
+| No
+| link:20110209-3.1-%5BMS-SSCLRT%5D-110209.pdf[`20110209-3.1`]
+a| * *FLOAT:* adds "For negative values, all bits of all bytes are reversed".
+* *SqlDouble corrected:* "represented as 9 bytes ... The other 8 bytes are the actual DOUBLE value".
+* Nested structures: adds that the user creates them and that decoding one needs its definition, which the format
+  does not carry.
+
+| 3.1
+| 2011-07-07 to 2013-12-05
+| No
+| link:20110707-3.1-%5BMS-SSCLRT%5D-110707.pdf[`20110707-3.1`] and eleven others
+| No change.
+
+| 4.0
+| 2014-02-11
+| No
+| link:20140211-4.0-%5BMS-SSCLRT%5D-140211.pdf[`20140211-4.0`]
+| Wording and layout only: the types become a list; "by using types defined in .NET Remoting Binary Format".
+
+| 4.0, 5.0
+| 2014-05-20, 2016-05-10
+| No
+| link:20140520-4.0-%5BMS-SSCLRT%5D-140520.pdf[`20140520-4.0`],
+link:20160510-5.0-%5BMS-SSCLRT%5D-160510.pdf[`20160510-5.0`]
+| No change.
+
+| 6.0
+| 2017-08-16
+| No
+| link:20170816-6.0-%5BMS-SSCLRT%5D-170816.pdf[`20170816-6.0`]
+| Nested fields "are required to" instead of "must" adhere to the same limits. Section 3.3 is renamed from _CLR UDT
+Serialization Example_ to _CLR UDT Serialization_.
+
+| 7.0, 8.0, 9.0
+| 2019-10-16, 2022-11-01, 2025-10-31
+| No
+| link:20191016-7.0-%5BMS-SSCLRT%5D-191016.pdf[`20191016-7.0`],
+link:20221101-8.0-%5BMS-SSCLRT%5D-221101.pdf[`20221101-8.0`],
+link:20251031-9.0-%5BMS-SSCLRT%5D.pdf[`20251031-9.0`] (latest)
+| No change.
+|===
+
+== Notes on the text
+
+* *The example's floating-point values.* Encoding the values by the rules above (computed, not taken from the
+  specification) gives:
++
+[cols="1,1,1,1,2",options="header"]
+|===
+| Field | Value since 1.0 | Encoding of that value | Bytes in the example | The bytes are the encoding of
+
+| FloatValue | 1.234568E+08 | `CCEB79A4` | `CCEB79A3` | 123456789.0123456789
+| DoubleValue | 123456789.0123456 | `C19D6F34540CA453` | `3E6290CBABF35BA7` | *-*123456789.0123456789
+| SqlSingleValue | 1.234568E+08 | `01CCEB79A4` | `013314865C` | *-*123456789.0123456789
+| SqlDoubleValue | 123456789.0123456 | `01C19D6F34540CA453` | `01C19D6F34540CA458` | 123456789.0123456789
+|===
++
+The bytes are those of revision 0.1, which encode its values exactly. The values written since 1.0 are those values
+rounded for display, which changes the last byte, and DoubleValue and SqlSingleValue have also lost their minus
+sign. The comment on the DOUBLE line still says "double -123456789.0123456789", while the one on the SqlSingle line
+says "float 1.234568E+08".
+* *-0.* By the rules, +0 becomes `80000000` (first bit reversed) and -0, `80000000` as is, stays `80000000`: both
+  zeros encode the same.
+* *The SqlInt32 comment.* `018000000B -- SqlInt32 [bool true, int 11` has no closing bracket in any revision.
+

@@ -26,6 +26,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -44,7 +46,7 @@ public abstract class MappedShoppingCartItem {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -87,6 +89,17 @@ public abstract class MappedShoppingCartItem {
      * The name of the {@code int, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_QUANTITY} column, as the {@code CK_ShoppingCartItem_Quantity} check
+     * constraint ({@code [Quantity]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_QUANTITY = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_QUANTITY = Integer.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
@@ -327,6 +340,9 @@ public abstract class MappedShoppingCartItem {
     private String shoppingCartId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ShoppingCartItem_Quantity: ([Quantity]>=(1))
+    @Max(COLUMN_MAX_QUANTITY)
+    @Min(COLUMN_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY,

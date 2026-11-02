@@ -79,7 +79,8 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
      */
     public void setLocation(final Location location) {
         this.location = location;
-        setLocationId(location == null ? null : location.getLocationId());
+        setLocationId(location == null || location.getLocationId() == null
+                      ? null : location.getLocationId().intValue());
     }
 
     // ------------------------------------------------------------------------------------------------------- workOrder

@@ -26,6 +26,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -41,7 +42,7 @@ public abstract class MappedSalesTerritoryHistory {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -172,6 +173,28 @@ public abstract class MappedSalesTerritoryHistory {
     @Override
     public final int hashCode() {
         return Objects.hash(businessEntityId, startDate, territoryId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_SalesTerritoryHistory_EndDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute, or if the {@value #ATTRIBUTE_NAME_START_DATE} attribute is
+     *         {@code null}; {@code false} otherwise.
+     */
+    @AssertTrue(message = "endDate must be null or not before startDate")
+    protected boolean isEndDateValid() {
+        if (endDate == null || startDate == null) {
+            return true;
+        }
+        return !endDate.isBefore(startDate);
     }
 
     // ------------------------------------------------------------------------------------------------ businessEntityId

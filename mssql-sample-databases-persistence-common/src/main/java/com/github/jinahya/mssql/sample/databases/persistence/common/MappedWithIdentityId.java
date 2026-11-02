@@ -1,4 +1,4 @@
-package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.dbo;
+package com.github.jinahya.mssql.sample.databases.persistence.common;
 
 /*-
  * #%L
@@ -20,27 +20,28 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
-import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
-import java.util.Objects;
-
 /**
- * A mapped superclass which holds the mappings of the {@code dbo.AWBuildVersion} table.
+ * A mapped superclass which holds the identifier of a table, or a view, keyed by a single
+ * {@code IDENTITY} column, mapped as a {@link Long} whatever the column's width.
+ * <p>
+ * The class names no column; each extending class names its own, and sets its nullability and
+ * writability, with an {@link jakarta.persistence.AttributeOverride @AttributeOverride} of the
+ * {@value #ATTRIBUTE_NAME_ID_} attribute, whose column replaces the default one as a whole.
+ * <p>
+ * The accessors are protected; each extending class exposes the identifier with a getter of its
+ * own, named after its column.
  */
 @MappedSuperclass
-public abstract class _Mapped {
+public abstract class MappedWithIdentityId {
 
     /**
-     * The name of the identifier column. The value is {@value}.
-     */
-    public static final String COLUMN_NAME_ID_ = "id_";
-
-    /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ID_} column. The value is {@value}.
+     * The name of the identifier attribute, which an extending class overrides. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ID_ = "id_";
 
@@ -49,28 +50,8 @@ public abstract class _Mapped {
     /**
      * Creates a new instance.
      */
-    protected _Mapped() {
+    protected MappedWithIdentityId() {
         super();
-    }
-
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
-
-    // Equal by the surrogate key alone, read through the getter so that a lazy proxy answers with its identifier; an
-    // EqualsVerifier check suppresses Warning.SURROGATE_KEY.
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof _Mapped that)) {
-            return false;
-        }
-        return Objects.equals(getId_(), that.getId_());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId_());
     }
 
     // ------------------------------------------------------------------------------------------------------------- id_
@@ -81,7 +62,7 @@ public abstract class _Mapped {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
      */
-    public Long getId_() {
+    protected Long getId_() {
         return id_;
     }
 
@@ -97,11 +78,6 @@ public abstract class _Mapped {
     // -----------------------------------------------------------------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_ID_,
-            nullable = false,
-            insertable = true, // EclipseLink
-            updatable = false
-    )
     private Long id_;
 }
 

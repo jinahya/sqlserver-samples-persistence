@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -44,7 +47,7 @@ public abstract class MappedCityArchive {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Application";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -170,7 +173,7 @@ public abstract class MappedCityArchive {
                + "cityId=" + cityId
                + ",cityName=" + cityName
                + ",stateProvinceId=" + stateProvinceId
-               + ",location=" + (this.location == null ? null : this.location.length + " bytes")
+               + ",location=" + location
                + ",latestRecordedPopulation=" + latestRecordedPopulation
                + ",lastEditedBy=" + lastEditedBy
                + ",validFrom=" + validFrom
@@ -245,7 +248,7 @@ public abstract class MappedCityArchive {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION} attribute.
      */
-    public byte[] getLocation() {
+    public Geography getLocation() {
         return location;
     }
 
@@ -254,7 +257,7 @@ public abstract class MappedCityArchive {
      *
      * @param location new value for {@value #ATTRIBUTE_NAME_LOCATION} attribute.
      */
-    protected void setLocation(final byte[] location) {
+    protected void setLocation(final Geography location) {
         this.location = location;
     }
 
@@ -376,13 +379,14 @@ public abstract class MappedCityArchive {
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private byte[] location;
+    private Geography location;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation

@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,7 +52,7 @@ public abstract class MappedCity {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Application";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -175,7 +178,7 @@ public abstract class MappedCity {
                + "cityId=" + cityId
                + ",cityName=" + cityName
                + ",stateProvinceId=" + stateProvinceId
-               + ",location=" + (this.location == null ? null : this.location.length + " bytes")
+               + ",location=" + location
                + ",latestRecordedPopulation=" + latestRecordedPopulation
                + ",lastEditedBy=" + lastEditedBy
                + ",validFrom=" + validFrom
@@ -281,7 +284,7 @@ public abstract class MappedCity {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION} attribute.
      */
-    public byte[] getLocation() {
+    public Geography getLocation() {
         return location;
     }
 
@@ -290,7 +293,7 @@ public abstract class MappedCity {
      *
      * @param location new value for {@value #ATTRIBUTE_NAME_LOCATION} attribute.
      */
-    public void setLocation(final byte[] location) {
+    public void setLocation(final Geography location) {
         this.location = location;
     }
 
@@ -416,13 +419,14 @@ public abstract class MappedCity {
     private Integer stateProvinceId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION,
             nullable = true,
             insertable = true,
             updatable = true
     )
-    private byte[] location;
+    private Geography location;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Basic(optional = true)

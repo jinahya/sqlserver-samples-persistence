@@ -10,6 +10,9 @@ per database.
 | `mssql-sample-databases-persistence-futonmanufacturing` | `FutonManufacturing`, a bill of materials, inventory, production and sales | 32 + 40 | 50 | 22 |
 | `mssql-sample-databases-persistence-wideworldimporters` | `WideWorldImporters`, the SQL Server 2016+ sample | 48 + 3 | 34 | 17 |
 
+The three depend on `mssql-sample-databases-persistence-common`, which holds what they share: `MappedWithIdentityId`,
+and the `hierarchyid` and `geography` types with their converters.
+
 Each module's main sources are a package per schema, `<database>.mapped.<schema>`: one `@MappedSuperclass`
 `Mapped<Entity>` per table and view, and one `Mapped<Entity>Id` per composite key. `UuidStringAttributeConverter`, which
 the schemas share, is in `<database>.mapped`. The entities, which add `@Entity`, `@Table`, `@IdClass` and the
@@ -48,19 +51,26 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
 
 | SQL Server | Attribute | How |
 |---|---|---|
-| `int`, `smallint`, `tinyint`, `bigint` | `Integer`, `Short`, `Short`, `Long` | `tinyint` with `@Min(0)` and `@Max(255)` |
+| `int`, `smallint`, `tinyint`, `bigint` | `Integer`, `Integer`, `Integer`, `Long` | `smallint` with `@Min(-32768)` and `@Max(32767)`, `tinyint` with `@Min(0)` and `@Max(255)`, narrowed to a `CHECK` constraint's bounds, which a comment quotes; an `IDENTITY` key, below |
 | `decimal`, `numeric`, `money`, `smallmoney` | `BigDecimal` | `precision` and `scale`, and `@Digits`, for `decimal` and `numeric` |
 | `float`, `real`, `bit` | `Double`, `Float`, `Boolean` | |
 | `char`, `nchar`, `varchar`, `nvarchar`, `sysname` | `String` | `length`, and `@Size`; `(max)` has no length |
 | `xml` | `String` | the document's text; `dbo.DatabaseLog.XmlEvent` and `HumanResources.vEmployee.AdditionalContactInfo` are the exceptions, below |
 | `date`, `time`, `datetime`, `datetime2` | `LocalDate`, `LocalTime`, `LocalDateTime` | |
 | `uniqueidentifier` | `UUID` | `UuidStringAttributeConverter`, through the text; an identifier, to which no converter applies, is a `String` |
-| `varbinary`, `hierarchyid`, `geography` | `byte[]` | the driver's bytes; the CLR types' serialized form |
+| `varbinary` | `byte[]` | the driver's bytes |
+| `hierarchyid` | `-common`'s `Heirarchyid` | `HeirarchyidAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.2; its `toString()` is `ToString()`'s |
+| `geography` | `-common`'s `Geography` | `GeographyAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.1; its `toString()` is `STAsText()`'s, but for the digits of a coordinate |
 | alias types (`Name`, `Flag`, `Phone`, ...) | as their base type | |
 
 - An `IDENTITY` column is `@GeneratedValue(strategy = IDENTITY)`, and WideWorldImporters' keys, whose defaults are
   `NEXT VALUE FOR [Sequences].[...]`, `@GeneratedValue(strategy = SEQUENCE)` with a `@SequenceGenerator` per
   sequence.
+- An AdventureWorks `dbo` or `HumanResources` table keyed by a single `IDENTITY` column extends `-common`'s
+  `MappedWithIdentityId`, whose `Long id_` maps the column through an `@AttributeOverride`, whatever its width;
+  `Production.Location` and `Production.ScrapReason` keep their `smallint` keys as `Short`.
+- A keyless class, which no converter reaches, takes a `hierarchyid` or a `geography` column's bytes in its
+  constructor and decodes them.
 - A computed column, and the `ValidFrom` / `ValidTo` period columns of a system-versioned table, are read-only.
 - Every column of a view is read-only. SQL Server takes no whole row of any of the views in an INSERT or an UPDATE,
   which is how a provider writes one: the row spans more than one base table (error 4405), or has derived, constant

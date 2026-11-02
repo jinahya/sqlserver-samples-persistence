@@ -29,6 +29,8 @@
  */
 module com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters {
 
+    // the geography columns; the mapped superclasses return a Geography
+    requires transitive com.github.jinahya.mssql.sample.databases.persistence.common;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
 

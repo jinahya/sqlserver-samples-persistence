@@ -26,6 +26,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -43,7 +44,7 @@ public abstract class MappedLocation {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -87,6 +88,12 @@ public abstract class MappedLocation {
     public static final String COLUMN_NAME_COST_RATE = "CostRate";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_COST_RATE} column, as the {@code CK_Location_CostRate} check
+     * constraint ({@code [CostRate]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_COST_RATE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_RATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COST_RATE = "costRate";
@@ -107,6 +114,12 @@ public abstract class MappedLocation {
      * The scale of the {@value #COLUMN_NAME_AVAILABILITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVAILABILITY = 2;
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_AVAILABILITY} column, as the {@code CK_Location_Availability}
+     * check constraint ({@code [Availability]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_AVAILABILITY = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABILITY} column. The value is {@value}.
@@ -301,6 +314,8 @@ public abstract class MappedLocation {
     private String name;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Location_CostRate: ([CostRate]>=(0.00))
+    @DecimalMin(COLUMN_MIN_COST_RATE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COST_RATE,
@@ -311,6 +326,8 @@ public abstract class MappedLocation {
     private BigDecimal costRate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Location_Availability: ([Availability]>=(0.00))
+    @DecimalMin(COLUMN_MIN_AVAILABILITY)
     @Digits(integer = COLUMN_PRECISION_AVAILABILITY - COLUMN_SCALE_AVAILABILITY, fraction = COLUMN_SCALE_AVAILABILITY)
     @NotNull
     @Basic(optional = false)

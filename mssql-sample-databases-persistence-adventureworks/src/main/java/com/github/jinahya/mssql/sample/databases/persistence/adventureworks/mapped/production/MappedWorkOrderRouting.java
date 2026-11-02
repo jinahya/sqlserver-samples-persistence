@@ -24,7 +24,11 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -43,7 +47,7 @@ public abstract class MappedWorkOrderRouting {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -82,6 +86,16 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_OPERATION_SEQUENCE = "OperationSequence";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_OPERATION_SEQUENCE = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_OPERATION_SEQUENCE = Short.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_OPERATION_SEQUENCE = "operationSequence";
@@ -92,6 +106,16 @@ public abstract class MappedWorkOrderRouting {
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_LOCATION_ID = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_LOCATION_ID = Short.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
@@ -165,6 +189,13 @@ public abstract class MappedWorkOrderRouting {
     public static final int COLUMN_SCALE_ACTUAL_RESOURCE_HRS = 4;
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column, as the
+     * {@code CK_WorkOrderRouting_ActualResourceHrs} check constraint ({@code [ActualResourceHrs]>=(0.0000)})
+     * requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_ACTUAL_RESOURCE_HRS = "0.0000";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column. The value is
      * {@value}.
      */
@@ -178,6 +209,13 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_PLANNED_COST = "PlannedCost";
 
     /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_PLANNED_COST} column, as the
+     * {@code CK_WorkOrderRouting_PlannedCost} check constraint ({@code [PlannedCost]>(0.00)}) requires. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_MIN_PLANNED_COST_EXCLUSIVE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PLANNED_COST} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PLANNED_COST = "plannedCost";
@@ -188,6 +226,13 @@ public abstract class MappedWorkOrderRouting {
      * The name of the {@code money} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ACTUAL_COST = "ActualCost";
+
+    /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_ACTUAL_COST} column, as the
+     * {@code CK_WorkOrderRouting_ActualCost} check constraint ({@code [ActualCost]>(0.00)}) requires. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_MIN_ACTUAL_COST_EXCLUSIVE = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value is {@value}.
@@ -266,6 +311,50 @@ public abstract class MappedWorkOrderRouting {
         return Objects.hash(workOrderId, productId, operationSequence);
     }
 
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is not before the
+     * {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute, as the table's
+     * {@code CK_WorkOrderRouting_ScheduledEndDate} constraint requires.
+     * {@snippet lang = "sql":
+     * ([ScheduledEndDate]>=[ScheduledStartDate])
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "scheduledEndDate must not be before scheduledStartDate")
+    protected boolean isScheduledEndDateValid() {
+        if (scheduledEndDate == null || scheduledStartDate == null) {
+            return true;
+        }
+        return !scheduledEndDate.isBefore(scheduledStartDate);
+    }
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute, as the table's {@code CK_WorkOrderRouting_ActualEndDate}
+     * constraint requires.
+     * {@snippet lang = "sql":
+     * ([ActualEndDate]>=[ActualStartDate] OR [ActualEndDate] IS NULL OR [ActualStartDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "actualEndDate must be null or not before actualStartDate")
+    protected boolean isActualEndDateValid() {
+        if (actualEndDate == null || actualStartDate == null) {
+            return true;
+        }
+        return !actualEndDate.isBefore(actualStartDate);
+    }
+
     // ----------------------------------------------------------------------------------------------------- workOrderId
 
     /**
@@ -313,7 +402,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute.
      */
-    public Short getOperationSequence() {
+    public Integer getOperationSequence() {
         return operationSequence;
     }
 
@@ -322,7 +411,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @param operationSequence new value for {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute.
      */
-    public void setOperationSequence(final Short operationSequence) {
+    public void setOperationSequence(final Integer operationSequence) {
         this.operationSequence = operationSequence;
     }
 
@@ -333,7 +422,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    public Short getLocationId() {
+    public Integer getLocationId() {
         return locationId;
     }
 
@@ -343,7 +432,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    protected void setLocationId(final Short locationId) {
+    protected void setLocationId(final Integer locationId) {
         this.locationId = locationId;
     }
 
@@ -531,6 +620,8 @@ public abstract class MappedWorkOrderRouting {
 
     // -----------------------------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(COLUMN_MAX_OPERATION_SEQUENCE)
+    @Min(COLUMN_MIN_OPERATION_SEQUENCE)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_OPERATION_SEQUENCE,
@@ -538,10 +629,12 @@ public abstract class MappedWorkOrderRouting {
             insertable = true,
             updatable = false
     )
-    private Short operationSequence;
+    private Integer operationSequence;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(COLUMN_MAX_LOCATION_ID)
+    @Min(COLUMN_MIN_LOCATION_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LOCATION_ID,
@@ -549,7 +642,7 @@ public abstract class MappedWorkOrderRouting {
             insertable = false,
             updatable = false
     )
-    private Short locationId;
+    private Integer locationId;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -590,6 +683,8 @@ public abstract class MappedWorkOrderRouting {
     private LocalDateTime actualEndDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_WorkOrderRouting_ActualResourceHrs: ([ActualResourceHrs]>=(0.0000))
+    @DecimalMin(COLUMN_MIN_ACTUAL_RESOURCE_HRS)
     @Digits(integer = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS - COLUMN_SCALE_ACTUAL_RESOURCE_HRS,
             fraction = COLUMN_SCALE_ACTUAL_RESOURCE_HRS)
     @Basic(optional = true)
@@ -603,6 +698,8 @@ public abstract class MappedWorkOrderRouting {
     private BigDecimal actualResourceHrs;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_WorkOrderRouting_PlannedCost: ([PlannedCost]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_PLANNED_COST_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PLANNED_COST,
@@ -613,6 +710,8 @@ public abstract class MappedWorkOrderRouting {
     private BigDecimal plannedCost;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_WorkOrderRouting_ActualCost: ([ActualCost]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_ACTUAL_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTUAL_COST,
             nullable = true,

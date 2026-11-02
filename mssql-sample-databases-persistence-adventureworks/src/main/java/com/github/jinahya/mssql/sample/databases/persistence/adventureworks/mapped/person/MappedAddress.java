@@ -21,6 +21,8 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  */
 
 import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -47,7 +49,7 @@ public abstract class MappedAddress {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Person";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -202,7 +204,7 @@ public abstract class MappedAddress {
                + ",city=" + city
                + ",stateProvinceId=" + stateProvinceId
                + ",postalCode=" + postalCode
-               + ",spatialLocation=" + (this.spatialLocation == null ? null : this.spatialLocation.length + " bytes")
+               + ",spatialLocation=" + spatialLocation
                + ",rowguid=" + rowguid
                + ",modifiedDate=" + modifiedDate
                + "}";
@@ -366,7 +368,7 @@ public abstract class MappedAddress {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SPATIAL_LOCATION} attribute.
      */
-    public byte[] getSpatialLocation() {
+    public Geography getSpatialLocation() {
         return spatialLocation;
     }
 
@@ -375,7 +377,7 @@ public abstract class MappedAddress {
      *
      * @param spatialLocation new value for {@value #ATTRIBUTE_NAME_SPATIAL_LOCATION} attribute.
      */
-    public void setSpatialLocation(final byte[] spatialLocation) {
+    public void setSpatialLocation(final Geography spatialLocation) {
         this.spatialLocation = spatialLocation;
     }
 
@@ -490,13 +492,14 @@ public abstract class MappedAddress {
     private String postalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SPATIAL_LOCATION,
             nullable = true,
             insertable = true,
             updatable = true
     )
-    private byte[] spatialLocation;
+    private Geography spatialLocation;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull

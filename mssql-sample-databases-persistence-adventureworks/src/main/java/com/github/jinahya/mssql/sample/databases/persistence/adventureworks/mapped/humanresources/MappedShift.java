@@ -20,11 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.MappedWithIdentityId;
+
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -36,13 +36,23 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.Shift} table.
  */
+// not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+// the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+@AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
+                   column = @Column(name = MappedShift.COLUMN_NAME_SHIFT_ID,
+                                    nullable = false,
+                                    insertable = true,
+                                    updatable = false
+                   )
+)
 @MappedSuperclass
-public abstract class MappedShift {
+public abstract class MappedShift
+        extends MappedWithIdentityId {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -55,11 +65,6 @@ public abstract class MappedShift {
      * The name of the {@code tinyint, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SHIFT_ID = "ShiftID";
-
-    /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SHIFT_ID} column. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_SHIFT_ID = "shiftId";
 
     // ------------------------------------------------------------------------------------------------------------ Name
 
@@ -128,7 +133,7 @@ public abstract class MappedShift {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "shiftId=" + shiftId
+               + "shiftId=" + getShiftId()
                + ",name=" + name
                + ",startTime=" + startTime
                + ",endTime=" + endTime
@@ -151,7 +156,7 @@ public abstract class MappedShift {
         if (!(obj instanceof MappedShift that)) {
             return false;
         }
-        return Objects.equals(shiftId, that.shiftId);
+        return Objects.equals(getId_(), that.getId_());
     }
 
     /**
@@ -162,27 +167,18 @@ public abstract class MappedShift {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(shiftId);
+        return Objects.hash(getId_());
     }
 
     // --------------------------------------------------------------------------------------------------------- shiftId
 
     /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_SHIFT_ID} column.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
+     * @return current value of the identifier.
      */
-    public Short getShiftId() {
-        return shiftId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute with the specified value.
-     *
-     * @param shiftId new value for {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
-     */
-    protected void setShiftId(final Short shiftId) {
-        this.shiftId = shiftId;
+    public Long getShiftId() {
+        return getId_();
     }
 
     // ------------------------------------------------------------------------------------------------------------ name
@@ -264,18 +260,6 @@ public abstract class MappedShift {
     public void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SHIFT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    private Short shiftId;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)

@@ -26,6 +26,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -44,7 +47,7 @@ public abstract class MappedWorkOrder {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -83,6 +86,17 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_ORDER_QTY = "OrderQty";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the {@code CK_WorkOrder_OrderQty} check
+     * constraint ({@code [OrderQty]>(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_ORDER_QTY = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_ORDER_QTY = Integer.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_QTY = "orderQty";
@@ -106,6 +120,17 @@ public abstract class MappedWorkOrder {
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SCRAPPED_QTY = "ScrappedQty";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_SCRAPPED_QTY} column, as the {@code CK_WorkOrder_ScrappedQty}
+     * check constraint ({@code [ScrappedQty]>=(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_SCRAPPED_QTY = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_SCRAPPED_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_SCRAPPED_QTY = Short.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAPPED_QTY} column. The value is {@value}.
@@ -154,6 +179,16 @@ public abstract class MappedWorkOrder {
      * The name of the {@code smallint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SCRAP_REASON_ID = "ScrapReasonID";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_SCRAP_REASON_ID = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_SCRAP_REASON_ID = Short.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is {@value}.
@@ -226,6 +261,28 @@ public abstract class MappedWorkOrder {
     @Override
     public final int hashCode() {
         return Objects.hash(workOrderId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_WorkOrder_EndDate} constraint requires.
+     * {@snippet lang = "sql":
+     * ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_START_DATE}
+     *         attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "endDate must be null or not before startDate")
+    protected boolean isEndDateValid() {
+        if (endDate == null || startDate == null) {
+            return true;
+        }
+        return !endDate.isBefore(startDate);
     }
 
     // ----------------------------------------------------------------------------------------------------- workOrderId
@@ -317,7 +374,7 @@ public abstract class MappedWorkOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SCRAPPED_QTY} attribute.
      */
-    public Short getScrappedQty() {
+    public Integer getScrappedQty() {
         return scrappedQty;
     }
 
@@ -326,7 +383,7 @@ public abstract class MappedWorkOrder {
      *
      * @param scrappedQty new value for {@value #ATTRIBUTE_NAME_SCRAPPED_QTY} attribute.
      */
-    public void setScrappedQty(final Short scrappedQty) {
+    public void setScrappedQty(final Integer scrappedQty) {
         this.scrappedQty = scrappedQty;
     }
 
@@ -397,7 +454,7 @@ public abstract class MappedWorkOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    public Short getScrapReasonId() {
+    public Integer getScrapReasonId() {
         return scrapReasonId;
     }
 
@@ -408,7 +465,7 @@ public abstract class MappedWorkOrder {
      *
      * @param scrapReasonId new value for {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    protected void setScrapReasonId(final Short scrapReasonId) {
+    protected void setScrapReasonId(final Integer scrapReasonId) {
         this.scrapReasonId = scrapReasonId;
     }
 
@@ -456,6 +513,9 @@ public abstract class MappedWorkOrder {
     private Integer productId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_WorkOrder_OrderQty: ([OrderQty]>(0)); int's upper bound
+    @Max(COLUMN_MAX_ORDER_QTY)
+    @Min(COLUMN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_QTY,
@@ -476,6 +536,9 @@ public abstract class MappedWorkOrder {
     private Integer stockedQty;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_WorkOrder_ScrappedQty: ([ScrappedQty]>=(0)); smallint's upper bound
+    @Max(COLUMN_MAX_SCRAPPED_QTY)
+    @Min(COLUMN_MIN_SCRAPPED_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SCRAPPED_QTY,
@@ -483,7 +546,7 @@ public abstract class MappedWorkOrder {
             insertable = true,
             updatable = true
     )
-    private Short scrappedQty;
+    private Integer scrappedQty;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -516,13 +579,15 @@ public abstract class MappedWorkOrder {
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(COLUMN_MAX_SCRAP_REASON_ID)
+    @Min(COLUMN_MIN_SCRAP_REASON_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_REASON_ID,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private Short scrapReasonId;
+    private Integer scrapReasonId;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing

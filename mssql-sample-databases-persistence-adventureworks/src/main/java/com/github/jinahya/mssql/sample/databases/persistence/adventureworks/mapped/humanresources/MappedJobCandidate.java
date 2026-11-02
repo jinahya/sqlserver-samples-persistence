@@ -20,11 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.MappedWithIdentityId;
+
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
 import java.time.LocalDateTime;
@@ -36,13 +36,23 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column is mapped read-only, as a foreign key; the extending entity owns
  * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
  */
+// not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+// the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+@AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
+                   column = @Column(name = MappedJobCandidate.COLUMN_NAME_JOB_CANDIDATE_ID,
+                                    nullable = false,
+                                    insertable = true,
+                                    updatable = false
+                   )
+)
 @MappedSuperclass
-public abstract class MappedJobCandidate {
+public abstract class MappedJobCandidate
+        extends MappedWithIdentityId {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -55,11 +65,6 @@ public abstract class MappedJobCandidate {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_JOB_CANDIDATE_ID = "JobCandidateID";
-
-    /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_JOB_CANDIDATE_ID = "jobCandidateId";
 
     // ------------------------------------------------------------------------------------------------ BusinessEntityID
 
@@ -111,7 +116,7 @@ public abstract class MappedJobCandidate {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "jobCandidateId=" + jobCandidateId
+               + "jobCandidateId=" + getJobCandidateId()
                + ",businessEntityId=" + businessEntityId
                + ",resume=" + resume
                + ",modifiedDate=" + modifiedDate
@@ -133,7 +138,7 @@ public abstract class MappedJobCandidate {
         if (!(obj instanceof MappedJobCandidate that)) {
             return false;
         }
-        return Objects.equals(jobCandidateId, that.jobCandidateId);
+        return Objects.equals(getId_(), that.getId_());
     }
 
     /**
@@ -144,27 +149,18 @@ public abstract class MappedJobCandidate {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(jobCandidateId);
+        return Objects.hash(getId_());
     }
 
     // -------------------------------------------------------------------------------------------------- jobCandidateId
 
     /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
+     * @return current value of the identifier.
      */
-    public Integer getJobCandidateId() {
-        return jobCandidateId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute with the specified value.
-     *
-     * @param jobCandidateId new value for {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
-     */
-    protected void setJobCandidateId(final Integer jobCandidateId) {
-        this.jobCandidateId = jobCandidateId;
+    public Long getJobCandidateId() {
+        return getId_();
     }
 
     // ------------------------------------------------------------------------------------------------ businessEntityId
@@ -228,18 +224,6 @@ public abstract class MappedJobCandidate {
     public void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    private Integer jobCandidateId;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation

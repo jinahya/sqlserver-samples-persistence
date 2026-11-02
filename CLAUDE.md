@@ -5,8 +5,8 @@ Guidance for working in this repository.
 ## What this project is
 
 Jakarta Persistence mappings of three Microsoft SQL Server sample databases, one Maven module per database:
-`-adventureworks`, `-futonmanufacturing`, `-wideworldimporters`. The modules are independent of each other, tests
-included. See `README.md` for the type mappings and the identifiers chosen.
+`-adventureworks`, `-futonmanufacturing`, `-wideworldimporters`. Each depends on `-common`, which holds what they
+share, and on nothing of the others, tests included. See `README.md` for the type mappings and the identifiers chosen.
 
 ## The module, as it stands (absolute rules)
 
@@ -26,7 +26,9 @@ included. See `README.md` for the type mappings and the identifiers chosen.
   another foreign key; then the basic attribute writes it and the association is read-only. A column has exactly one
   writable mapping.
 - **No H2, ITs only.** Each module has one persistence unit, `<database>-it`, on the database `compose.yaml` brings
-  up. A test that needs the database is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`).
+  up. A test that needs the database is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`). `-common` has no
+  persistence unit; its `*Test`s, run by surefire, test what needs no database (the `hierarchyid` and `geography`
+  codecs), and a database module's ITs test them against SQL Server.
 - **Exercises are registered.** Each module's `EXERCISES.asciidoc` states every problem, and the `EXERCISES.yaml`
   beside it registers every id, `<DB>_<SCHEMA>_<TIER>_<NN>` (`AW`, `FUTON`, `WWI`), with its `sql` file and its
   `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused
@@ -37,6 +39,8 @@ included. See `README.md` for the type mappings and the identifiers chosen.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested
   types, constructors, `java.lang.Object`, accessors, then the private fields; markers padded with dashes to column
   120.
+- **Prefer `Optional` over the ternary operator** for a value that depends on whether another is `null`:
+  `Optional.ofNullable(x).map(f).orElse(null)`, not `x == null ? null : f(x)`.
 
 ## Dependency convergence
 

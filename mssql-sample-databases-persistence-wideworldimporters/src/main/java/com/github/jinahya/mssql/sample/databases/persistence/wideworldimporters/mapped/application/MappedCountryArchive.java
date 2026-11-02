@@ -20,13 +20,17 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Application.Countries_Archive} table.
@@ -44,7 +48,7 @@ public abstract class MappedCountryArchive {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Application";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -279,7 +283,7 @@ public abstract class MappedCountryArchive {
                + ",continent=" + continent
                + ",region=" + region
                + ",subregion=" + subregion
-               + ",border=" + (this.border == null ? null : this.border.length + " bytes")
+               + ",border=" + Optional.ofNullable(border).map(b -> b.getNumPoints() + " points").orElse(null)
                + ",lastEditedBy=" + lastEditedBy
                + ",validFrom=" + validFrom
                + ",validTo=" + validTo
@@ -494,7 +498,7 @@ public abstract class MappedCountryArchive {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BORDER} attribute.
      */
-    public byte[] getBorder() {
+    public Geography getBorder() {
         return border;
     }
 
@@ -503,7 +507,7 @@ public abstract class MappedCountryArchive {
      *
      * @param border new value for {@value #ATTRIBUTE_NAME_BORDER} attribute.
      */
-    protected void setBorder(final byte[] border) {
+    protected void setBorder(final Geography border) {
         this.border = border;
     }
 
@@ -689,13 +693,14 @@ public abstract class MappedCountryArchive {
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BORDER,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private byte[] border;
+    private Geography border;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation

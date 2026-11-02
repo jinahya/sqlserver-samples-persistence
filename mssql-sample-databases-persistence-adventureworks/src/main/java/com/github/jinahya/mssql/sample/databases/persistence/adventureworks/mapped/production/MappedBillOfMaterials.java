@@ -26,7 +26,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -47,7 +51,7 @@ public abstract class MappedBillOfMaterials {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -141,6 +145,19 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_BOM_LEVEL = "BOMLevel";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_BOM_LEVEL} column, as the table's
+     * {@code CK_BillOfMaterials_BOMLevel} check constraint ({@code [BOMLevel]=(0)} for an assembly with no
+     * {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID}, {@code [BOMLevel]>=(1)} for any other) requires. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MIN_BOM_LEVEL = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_BOM_LEVEL} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_BOM_LEVEL = Short.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BOM_LEVEL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BOM_LEVEL = "bomLevel";
@@ -161,6 +178,13 @@ public abstract class MappedBillOfMaterials {
      * The scale of the {@value #COLUMN_NAME_PER_ASSEMBLY_QTY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PER_ASSEMBLY_QTY = 2;
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_PER_ASSEMBLY_QTY} column, as the
+     * {@code CK_BillOfMaterials_PerAssemblyQty} check constraint ({@code [PerAssemblyQty]>=(1.00)}) requires. The
+     * value is {@value}.
+     */
+    public static final String COLUMN_MIN_PER_ASSEMBLY_QTY = "1.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PER_ASSEMBLY_QTY} column. The value is {@value}.
@@ -232,6 +256,77 @@ public abstract class MappedBillOfMaterials {
     @Override
     public final int hashCode() {
         return Objects.hash(billOfMaterialsId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null} or not equal to the
+     * {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute, as the table's {@code CK_BillOfMaterials_ProductAssemblyID}
+     * constraint requires.
+     * {@snippet lang = "sql":
+     * ([ProductAssemblyID]<>[ComponentID])
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute is {@code null}, or the two attributes are not equal;
+     *         {@code false} otherwise.
+     */
+    @AssertTrue(message = "productAssemblyId must be null or not equal to componentId")
+    protected boolean isProductAssemblyIdValid() {
+        if (productAssemblyId == null || componentId == null) {
+            return true;
+        }
+        return !productAssemblyId.equals(componentId);
+    }
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or after the
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_BillOfMaterials_EndDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([EndDate]>[StartDate] OR [EndDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is after the {@value #ATTRIBUTE_NAME_START_DATE} attribute;
+     *         {@code false} otherwise.
+     */
+    @AssertTrue(message = "endDate must be null or after startDate")
+    protected boolean isEndDateValid() {
+        if (endDate == null || startDate == null) {
+            return true;
+        }
+        return endDate.isAfter(startDate);
+    }
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute agrees with the
+     * {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} and {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attributes, as the
+     * table's {@code CK_BillOfMaterials_BOMLevel} constraint requires: a top-level assembly, with no
+     * {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID}, is at level {@code 0} with a quantity of {@code 1.00}; any other
+     * component is at level {@code 1} or more.
+     * {@snippet lang = "sql":
+     * ([ProductAssemblyID] IS NULL AND [BOMLevel]=(0) AND [PerAssemblyQty]=(1.00) OR [ProductAssemblyID] IS NOT NULL AND [BOMLevel]>=(1))
+     *}
+     *
+     * @return {@code false} if the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null} and the
+     *         {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute is not {@code 0} or the
+     *         {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute is not {@code 1.00}, or if the
+     *         {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is not {@code null} and the
+     *         {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute is less than {@code 1}; {@code true} otherwise, including
+     *         when an attribute the constraint compares is {@code null}.
+     */
+    @AssertTrue(message = "bomLevel must be 0, with perAssemblyQty 1.00, for no productAssemblyId, or 1 or more")
+    protected boolean isBomLevelValid() {
+        if (productAssemblyId == null) {
+            if (bomLevel != null && bomLevel != 0) {
+                return false;
+            }
+            return perAssemblyQty == null || perAssemblyQty.compareTo(BigDecimal.ONE) == 0;
+        }
+        return bomLevel == null || bomLevel >= 1;
     }
 
     // ----------------------------------------------------------------------------------------------- billOfMaterialsId
@@ -366,7 +461,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute.
      */
-    public Short getBomLevel() {
+    public Integer getBomLevel() {
         return bomLevel;
     }
 
@@ -375,7 +470,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @param bomLevel new value for {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute.
      */
-    public void setBomLevel(final Short bomLevel) {
+    public void setBomLevel(final Integer bomLevel) {
         this.bomLevel = bomLevel;
     }
 
@@ -485,6 +580,10 @@ public abstract class MappedBillOfMaterials {
     private String unitMeasureCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_BillOfMaterials_BOMLevel, of the table: 0 for an assembly with no ProductAssemblyID, 1 or more for any other;
+    // smallint's upper bound
+    @Max(COLUMN_MAX_BOM_LEVEL)
+    @Min(COLUMN_MIN_BOM_LEVEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BOM_LEVEL,
@@ -492,9 +591,11 @@ public abstract class MappedBillOfMaterials {
             insertable = true,
             updatable = true
     )
-    private Short bomLevel;
+    private Integer bomLevel;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_BillOfMaterials_PerAssemblyQty: ([PerAssemblyQty]>=(1.00))
+    @DecimalMin(COLUMN_MIN_PER_ASSEMBLY_QTY)
     @Digits(integer = COLUMN_PRECISION_PER_ASSEMBLY_QTY - COLUMN_SCALE_PER_ASSEMBLY_QTY,
             fraction = COLUMN_SCALE_PER_ASSEMBLY_QTY)
     @NotNull

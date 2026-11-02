@@ -26,6 +26,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 
@@ -47,7 +48,7 @@ public abstract class MappedBillOfMaterials {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "dbo";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -287,6 +288,28 @@ public abstract class MappedBillOfMaterials {
     @Override
     public final int hashCode() {
         return Objects.hash(bomId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute differs from the
+     * {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, as the table's {@code CHK_BOM_NotSelf} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([ParentItemID]<>[ComponentItemID])
+     *}
+     *
+     * @return {@code true} if either attribute is {@code null}, or the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID}
+     *         attribute differs from the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute; {@code false}
+     *         otherwise.
+     */
+    @AssertTrue(message = "parentItemId must differ from componentItemId")
+    protected boolean isParentItemIdValid() {
+        if (parentItemId == null || componentItemId == null) {
+            return true;
+        }
+        return !parentItemId.equals(componentItemId);
     }
 
     // ----------------------------------------------------------------------------------------------------------- bomId

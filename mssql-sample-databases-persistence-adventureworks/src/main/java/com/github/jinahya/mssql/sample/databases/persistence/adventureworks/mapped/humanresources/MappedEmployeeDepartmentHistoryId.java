@@ -123,7 +123,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
      *
      * @return current value of the {@code departmentId} attribute.
      */
-    public Short getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
@@ -132,7 +132,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
      *
      * @param departmentId new value for the {@code departmentId} attribute.
      */
-    public void setDepartmentId(final Short departmentId) {
+    public void setDepartmentId(final Integer departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -143,7 +143,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
      *
      * @return current value of the {@code shiftId} attribute.
      */
-    public Short getShiftId() {
+    public Integer getShiftId() {
         return shiftId;
     }
 
@@ -152,7 +152,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
      *
      * @param shiftId new value for the {@code shiftId} attribute.
      */
-    public void setShiftId(final Short shiftId) {
+    public void setShiftId(final Integer shiftId) {
         this.shiftId = shiftId;
     }
 
@@ -161,8 +161,8 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
 
     private LocalDate startDate;
 
-    private Short departmentId;
+    private Integer departmentId;
 
-    private Short shiftId;
+    private Integer shiftId;
 }
 

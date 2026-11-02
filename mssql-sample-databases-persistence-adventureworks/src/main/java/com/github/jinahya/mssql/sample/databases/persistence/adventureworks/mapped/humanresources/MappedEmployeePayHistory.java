@@ -24,6 +24,8 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -41,7 +43,7 @@ public abstract class MappedEmployeePayHistory {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -80,6 +82,18 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_RATE = "Rate";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_RATE} column, as the {@code CK_EmployeePayHistory_Rate} check
+     * constraint ({@code [Rate]>=(6.50)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_RATE = "6.50";
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_RATE} column, as the {@code CK_EmployeePayHistory_Rate} check
+     * constraint ({@code [Rate]<=(200.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MAX_RATE = "200.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RATE = "rate";
@@ -90,6 +104,20 @@ public abstract class MappedEmployeePayHistory {
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PAY_FREQUENCY = "PayFrequency";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_PAY_FREQUENCY} column, as the
+     * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(1)}) requires. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MIN_PAY_FREQUENCY = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_PAY_FREQUENCY} column, as the
+     * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(2)}) requires. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MAX_PAY_FREQUENCY = +2;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PAY_FREQUENCY} column. The value is {@value}.
@@ -227,7 +255,7 @@ public abstract class MappedEmployeePayHistory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute.
      */
-    public Short getPayFrequency() {
+    public Integer getPayFrequency() {
         return payFrequency;
     }
 
@@ -236,7 +264,7 @@ public abstract class MappedEmployeePayHistory {
      *
      * @param payFrequency new value for {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute.
      */
-    public void setPayFrequency(final Short payFrequency) {
+    public void setPayFrequency(final Integer payFrequency) {
         this.payFrequency = payFrequency;
     }
 
@@ -283,6 +311,9 @@ public abstract class MappedEmployeePayHistory {
     private LocalDateTime rateChangeDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_EmployeePayHistory_Rate: ([Rate]>=(6.50) AND [Rate]<=(200.00))
+    @DecimalMax(COLUMN_MAX_RATE)
+    @DecimalMin(COLUMN_MIN_RATE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RATE,
@@ -293,8 +324,9 @@ public abstract class MappedEmployeePayHistory {
     private BigDecimal rate;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    // CK_EmployeePayHistory_PayFrequency: ([PayFrequency]=(2) OR [PayFrequency]=(1))
+    @Max(COLUMN_MAX_PAY_FREQUENCY)
+    @Min(COLUMN_MIN_PAY_FREQUENCY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAY_FREQUENCY,
@@ -302,7 +334,7 @@ public abstract class MappedEmployeePayHistory {
             insertable = true,
             updatable = true
     )
-    private Short payFrequency;
+    private Integer payFrequency;
 
     // -----------------------------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,

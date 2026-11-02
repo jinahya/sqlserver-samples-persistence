@@ -26,6 +26,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -47,7 +49,7 @@ public abstract class MappedPurchaseOrderHeader {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Purchasing";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -74,6 +76,16 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_REVISION_NUMBER = "RevisionNumber";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_REVISION_NUMBER = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_REVISION_NUMBER = +255;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVISION_NUMBER = "revisionNumber";
@@ -84,6 +96,18 @@ public abstract class MappedPurchaseOrderHeader {
      * The name of the {@code tinyint, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STATUS = "Status";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_PurchaseOrderHeader_Status} check
+     * constraint ({@code [Status]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_STATUS = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_PurchaseOrderHeader_Status} check
+     * constraint ({@code [Status]<=(4)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_STATUS = +4;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is {@value}.
@@ -158,6 +182,12 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_SUB_TOTAL = "SubTotal";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_SUB_TOTAL} column, as the {@code CK_PurchaseOrderHeader_SubTotal}
+     * check constraint ({@code [SubTotal]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SUB_TOTAL = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUB_TOTAL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUB_TOTAL = "subTotal";
@@ -170,6 +200,12 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_TAX_AMT = "TaxAmt";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_TAX_AMT} column, as the {@code CK_PurchaseOrderHeader_TaxAmt} check
+     * constraint ({@code [TaxAmt]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_TAX_AMT = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_AMT = "taxAmt";
@@ -180,6 +216,12 @@ public abstract class MappedPurchaseOrderHeader {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_FREIGHT = "Freight";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_FREIGHT} column, as the {@code CK_PurchaseOrderHeader_Freight}
+     * check constraint ({@code [Freight]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_FREIGHT = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_FREIGHT} column. The value is {@value}.
@@ -270,6 +312,29 @@ public abstract class MappedPurchaseOrderHeader {
         return Objects.hash(purchaseOrderId);
     }
 
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, as the table's {@code CK_PurchaseOrderHeader_ShipDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_ORDER_DATE}
+     *         attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "shipDate must be null or not before orderDate")
+    protected boolean isShipDateValid() {
+        if (shipDate == null || orderDate == null) {
+            return true;
+        }
+        return !shipDate.isBefore(orderDate);
+    }
+
     // ------------------------------------------------------------------------------------------------- purchaseOrderId
 
     /**
@@ -297,7 +362,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute.
      */
-    public Short getRevisionNumber() {
+    public Integer getRevisionNumber() {
         return revisionNumber;
     }
 
@@ -306,7 +371,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @param revisionNumber new value for {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute.
      */
-    public void setRevisionNumber(final Short revisionNumber) {
+    public void setRevisionNumber(final Integer revisionNumber) {
         this.revisionNumber = revisionNumber;
     }
 
@@ -317,7 +382,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -326,7 +391,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @param status new value for {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
-    public void setStatus(final Short status) {
+    public void setStatus(final Integer status) {
         this.status = status;
     }
 
@@ -548,8 +613,8 @@ public abstract class MappedPurchaseOrderHeader {
     private Integer purchaseOrderId;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    @Max(COLUMN_MAX_REVISION_NUMBER)
+    @Min(COLUMN_MIN_REVISION_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REVISION_NUMBER,
@@ -557,11 +622,12 @@ public abstract class MappedPurchaseOrderHeader {
             insertable = true,
             updatable = true
     )
-    private Short revisionNumber;
+    private Integer revisionNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    // CK_PurchaseOrderHeader_Status: ([Status]>=(1) AND [Status]<=(4))
+    @Max(COLUMN_MAX_STATUS)
+    @Min(COLUMN_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATUS,
@@ -569,7 +635,7 @@ public abstract class MappedPurchaseOrderHeader {
             insertable = true,
             updatable = true
     )
-    private Short status;
+    private Integer status;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
@@ -624,6 +690,8 @@ public abstract class MappedPurchaseOrderHeader {
     private LocalDateTime shipDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_PurchaseOrderHeader_SubTotal: ([SubTotal]>=(0.00))
+    @DecimalMin(COLUMN_MIN_SUB_TOTAL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUB_TOTAL,
@@ -634,6 +702,8 @@ public abstract class MappedPurchaseOrderHeader {
     private BigDecimal subTotal;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_PurchaseOrderHeader_TaxAmt: ([TaxAmt]>=(0.00))
+    @DecimalMin(COLUMN_MIN_TAX_AMT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_AMT,
@@ -644,6 +714,8 @@ public abstract class MappedPurchaseOrderHeader {
     private BigDecimal taxAmt;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_PurchaseOrderHeader_Freight: ([Freight]>=(0.00))
+    @DecimalMin(COLUMN_MIN_FREIGHT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FREIGHT,

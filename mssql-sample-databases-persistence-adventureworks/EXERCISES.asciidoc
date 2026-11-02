@@ -58,7 +58,7 @@ SELECT d.name, d.groupName, COUNT(h)
 FROM HumanResourcesEmployeeDepartmentHistory h
          JOIN h.department d
 WHERE h.endDate IS NULL
-GROUP BY d.departmentId, d.name, d.groupName
+GROUP BY d.id_, d.name, d.groupName
 ORDER BY COUNT(h) DESC, d.name
 ----
 
@@ -235,7 +235,7 @@ ORDER BY i.YearlyIncome
 SELECT v.yearlyIncome, COUNT(v)
 FROM SalesPersonDemographicsView v
          JOIN PersonPerson p ON p.businessEntityId = v.businessEntityId
-WHERE p.personType = 'IN'
+WHERE p.personType = :personType
 GROUP BY v.yearlyIncome
 ORDER BY v.yearlyIncome
 ----

@@ -120,7 +120,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
      *
      * @return current value of the {@code operationSequence} attribute.
      */
-    public Short getOperationSequence() {
+    public Integer getOperationSequence() {
         return operationSequence;
     }
 
@@ -129,7 +129,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
      *
      * @param operationSequence new value for the {@code operationSequence} attribute.
      */
-    public void setOperationSequence(final Short operationSequence) {
+    public void setOperationSequence(final Integer operationSequence) {
         this.operationSequence = operationSequence;
     }
 
@@ -138,6 +138,6 @@ public class MappedWorkOrderRoutingId implements Serializable {
 
     private Integer productId;
 
-    private Short operationSequence;
+    private Integer operationSequence;
 }
 

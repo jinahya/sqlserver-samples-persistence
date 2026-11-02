@@ -98,7 +98,7 @@ public class MappedProductInventoryId implements Serializable {
      *
      * @return current value of the {@code locationId} attribute.
      */
-    public Short getLocationId() {
+    public Integer getLocationId() {
         return locationId;
     }
 
@@ -107,13 +107,13 @@ public class MappedProductInventoryId implements Serializable {
      *
      * @param locationId new value for the {@code locationId} attribute.
      */
-    public void setLocationId(final Short locationId) {
+    public void setLocationId(final Integer locationId) {
         this.locationId = locationId;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
     private Integer productId;
 
-    private Short locationId;
+    private Integer locationId;
 }
 

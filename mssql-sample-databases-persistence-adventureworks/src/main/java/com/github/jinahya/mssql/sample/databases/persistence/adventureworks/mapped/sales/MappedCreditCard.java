@@ -43,7 +43,7 @@ public abstract class MappedCreditCard {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -104,6 +104,16 @@ public abstract class MappedCreditCard {
     public static final String COLUMN_NAME_EXP_MONTH = "ExpMonth";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_EXP_MONTH} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_EXP_MONTH = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_EXP_MONTH} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_EXP_MONTH = +255;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXP_MONTH} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EXP_MONTH = "expMonth";
@@ -114,6 +124,16 @@ public abstract class MappedCreditCard {
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_EXP_YEAR = "ExpYear";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_EXP_YEAR} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_EXP_YEAR = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_EXP_YEAR} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_EXP_YEAR = Short.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXP_YEAR} column. The value is {@value}.
@@ -251,7 +271,7 @@ public abstract class MappedCreditCard {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_EXP_MONTH} attribute.
      */
-    public Short getExpMonth() {
+    public Integer getExpMonth() {
         return expMonth;
     }
 
@@ -260,7 +280,7 @@ public abstract class MappedCreditCard {
      *
      * @param expMonth new value for {@value #ATTRIBUTE_NAME_EXP_MONTH} attribute.
      */
-    public void setExpMonth(final Short expMonth) {
+    public void setExpMonth(final Integer expMonth) {
         this.expMonth = expMonth;
     }
 
@@ -271,7 +291,7 @@ public abstract class MappedCreditCard {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_EXP_YEAR} attribute.
      */
-    public Short getExpYear() {
+    public Integer getExpYear() {
         return expYear;
     }
 
@@ -280,7 +300,7 @@ public abstract class MappedCreditCard {
      *
      * @param expYear new value for {@value #ATTRIBUTE_NAME_EXP_YEAR} attribute.
      */
-    public void setExpYear(final Short expYear) {
+    public void setExpYear(final Integer expYear) {
         this.expYear = expYear;
     }
 
@@ -341,8 +361,8 @@ public abstract class MappedCreditCard {
     private String cardNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    @Max(COLUMN_MAX_EXP_MONTH)
+    @Min(COLUMN_MIN_EXP_MONTH)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EXP_MONTH,
@@ -350,9 +370,11 @@ public abstract class MappedCreditCard {
             insertable = true,
             updatable = true
     )
-    private Short expMonth;
+    private Integer expMonth;
 
     // -----------------------------------------------------------------------------------------------------------------
+    @Max(COLUMN_MAX_EXP_YEAR)
+    @Min(COLUMN_MIN_EXP_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EXP_YEAR,
@@ -360,7 +382,7 @@ public abstract class MappedCreditCard {
             insertable = true,
             updatable = true
     )
-    private Short expYear;
+    private Integer expYear;
 
     // -----------------------------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,

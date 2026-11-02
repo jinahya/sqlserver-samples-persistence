@@ -41,7 +41,7 @@ public abstract class MappedVendor {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Purchasing";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -100,6 +100,18 @@ public abstract class MappedVendor {
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CREDIT_RATING = "CreditRating";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the {@code CK_Vendor_CreditRating} check
+     * constraint ({@code [CreditRating]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_CREDIT_RATING = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the {@code CK_Vendor_CreditRating} check
+     * constraint ({@code [CreditRating]<=(5)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_CREDIT_RATING = +5;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CREDIT_RATING} column. The value is {@value}.
@@ -282,7 +294,7 @@ public abstract class MappedVendor {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute.
      */
-    public Short getCreditRating() {
+    public Integer getCreditRating() {
         return creditRating;
     }
 
@@ -291,7 +303,7 @@ public abstract class MappedVendor {
      *
      * @param creditRating new value for {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute.
      */
-    public void setCreditRating(final Short creditRating) {
+    public void setCreditRating(final Integer creditRating) {
         this.creditRating = creditRating;
     }
 
@@ -412,8 +424,9 @@ public abstract class MappedVendor {
     private String name;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    // CK_Vendor_CreditRating: ([CreditRating]>=(1) AND [CreditRating]<=(5))
+    @Max(COLUMN_MAX_CREDIT_RATING)
+    @Min(COLUMN_MIN_CREDIT_RATING)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CREDIT_RATING,
@@ -421,7 +434,7 @@ public abstract class MappedVendor {
             insertable = true,
             updatable = true
     )
-    private Short creditRating;
+    private Integer creditRating;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull

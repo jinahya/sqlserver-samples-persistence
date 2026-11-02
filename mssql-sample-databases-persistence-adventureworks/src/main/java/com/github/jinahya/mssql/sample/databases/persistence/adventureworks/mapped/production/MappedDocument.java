@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Heirarchyid;
+import com.github.jinahya.mssql.sample.databases.persistence.common.HeirarchyidAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Max;
@@ -47,7 +50,7 @@ public abstract class MappedDocument {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -72,6 +75,16 @@ public abstract class MappedDocument {
      * The name of the {@code smallint, computed as ([DocumentNode].[GetLevel]())} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DOCUMENT_LEVEL = "DocumentLevel";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_DOCUMENT_LEVEL = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_DOCUMENT_LEVEL = Short.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The value is {@value}.
@@ -190,6 +203,18 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_STATUS = "Status";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_Document_Status} check
+     * constraint ({@code [Status]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_STATUS = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_Document_Status} check
+     * constraint ({@code [Status]<=(3)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_STATUS = +3;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
@@ -261,7 +286,7 @@ public abstract class MappedDocument {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "documentNode=" + (this.documentNode == null ? null : this.documentNode.length + " bytes")
+               + "documentNode=" + documentNode
                + ",documentLevel=" + documentLevel
                + ",title=" + title
                + ",owner=" + owner
@@ -314,7 +339,7 @@ public abstract class MappedDocument {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
      */
-    public byte[] getDocumentNode() {
+    public Heirarchyid getDocumentNode() {
         return documentNode;
     }
 
@@ -323,7 +348,7 @@ public abstract class MappedDocument {
      *
      * @param documentNode new value for {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
      */
-    public void setDocumentNode(final byte[] documentNode) {
+    public void setDocumentNode(final Heirarchyid documentNode) {
         this.documentNode = documentNode;
     }
 
@@ -334,7 +359,7 @@ public abstract class MappedDocument {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute.
      */
-    public Short getDocumentLevel() {
+    public Integer getDocumentLevel() {
         return documentLevel;
     }
 
@@ -344,7 +369,7 @@ public abstract class MappedDocument {
      *
      * @param documentLevel new value for {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute.
      */
-    protected void setDocumentLevel(final Short documentLevel) {
+    protected void setDocumentLevel(final Integer documentLevel) {
         this.documentLevel = documentLevel;
     }
 
@@ -496,7 +521,7 @@ public abstract class MappedDocument {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -505,7 +530,7 @@ public abstract class MappedDocument {
      *
      * @param status new value for {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
-    public void setStatus(final Short status) {
+    public void setStatus(final Integer status) {
         this.status = status;
     }
 
@@ -591,23 +616,26 @@ public abstract class MappedDocument {
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
+    @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DOCUMENT_NODE,
             nullable = false,
             insertable = true,
             updatable = true
     )
-    private byte[] documentNode;
+    private Heirarchyid documentNode;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
+    @Max(COLUMN_MAX_DOCUMENT_LEVEL)
+    @Min(COLUMN_MIN_DOCUMENT_LEVEL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_LEVEL,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private Short documentLevel;
+    private Integer documentLevel;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TITLE)
@@ -689,8 +717,9 @@ public abstract class MappedDocument {
     private Integer changeNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    // CK_Document_Status: ([Status]>=(1) AND [Status]<=(3))
+    @Max(COLUMN_MAX_STATUS)
+    @Min(COLUMN_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATUS,
@@ -698,7 +727,7 @@ public abstract class MappedDocument {
             insertable = true,
             updatable = true
     )
-    private Short status;
+    private Integer status;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Basic(optional = true)

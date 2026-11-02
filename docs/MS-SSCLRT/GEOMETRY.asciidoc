@@ -1,0 +1,109 @@
+= GEOMETRY binary format history
+:toc:
+
+How [MS-SSCLRT] (_Microsoft SQL Server CLR Types Serialization Formats_) describes the `geometry` binary format,
+revision by revision. Source: the PDFs in this directory, downloaded from
+https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/77460aa9-8c2f-4449-a65e-1d649ebd77fa[the
+specification's page]. The format is in section 2.1, and the examples are in section 3.1.
+
+== Summary
+
+`geometry` has no structure of its own. The specification describes one structure for `geography` and `geometry`
+and calls it the "GEOGRAPHY structure" (stated from revision 4.0, 2014); only the point differs, a GEOMETRY POINT of
+an x and a y coordinate. The header, the flags, FIGURE, SHAPE and SEGMENT, version 2 and their history are in
+link:GEOGRAPHY.asciidoc[GEOGRAPHY.asciidoc], and this file covers only what the text says about `geometry`.
+
+What changed for `geometry`:
+
+* the SRID, unconstrained from 3.1 (2011-07-07), with a default of 0 (zero) from 3.1 (2011-02-09);
+* the coordinates, "no limitations on the values of x and y" (besides Infinity and NaN) until 0.2;
+* the rules the text gives only for GEOGRAPHY, which do not apply: the SRID range 4120 to 4999, the V flag always
+  set, and the ring orientation.
+
+== The format, as the latest revision states it
+
+The header is the GEOGRAPHY structure's: SRID (4), Version (1), Serialization Properties (1), then the points,
+optional Z and M values, figures, shapes and, in version 2, segments; little-endian, IEEE 754 doubles. For
+`geometry`:
+
+* *SRID.* "For GEOMETRY instance, SRID can be any value: SRID is not constrained." Default 0 (zero). -1 is a null
+  instance, and then every other field is omitted.
+* *V flag (0x04).* Valid. The text sets it always only for GEOGRAPHY structures.
+* *Ring order.* "The order of the coordinates in each ring of a geography polygon (but not a geometry polygon) is
+  important."
+* *GEOMETRY POINT (16 bytes).* X Coordinate (8), then Y Coordinate (8). Neither is Infinity or NaN.
+
+The examples in section 3.1 that are geometry: POINT (5 10) in SRID 4326, `E6100000 01 0C 0000000000001440
+0000000000002440` (P and V, X = 5, Y = 10), and LINESTRING (0 1 1, 3 2 2, 4 5 NULL) in SRID 4326, with Z values and
+QNaN (`000000000000F8FF`) for the NULL Z.
+
+== Revisions
+
+Each row links the PDF it was read from, named `<yyyyMMdd>-<protocol revision>-<original name>`. Only the revisions
+that changed the text about `geometry` are listed; link:GEOGRAPHY.asciidoc[GEOGRAPHY.asciidoc] lists every change to
+the shared structure. The two Editorial revisions, 0.1.1 and 1.0.1, are left out.
+
+The *Binary format* column flags a revision in which the binary format itself changed, that is, what SQL Server writes,
+not only how the specification describes it. A correction to the text, even one that changes the described bytes, is
+*No* when the specification's own examples show that the format was already what the corrected text says. The format
+changed once: version 2, shared with geography, first described in revision 1.0; see
+link:GEOGRAPHY.asciidoc[GEOGRAPHY.asciidoc].
+
+[cols="1,1,1,2,5",options="header"]
+|===
+| Revision | Date | Binary format | PDF | GEOMETRY changes
+
+| 0.1
+| 2009-08-07
+| Initial
+| link:20090807-0.1-%5BMS-SSCLRT%5D-090801.pdf[`20090807-0.1`]
+a| First release, for SQL Server 2008.
+
+* _The GEOMETRY POINT Structure_ (2.1.6): X Coordinate (8-byte double), Y Coordinate (8-byte double). "X Coordinate
+  and Y Coordinate values MUST NOT contain Infinity or NaN. Otherwise, there are no limitations on the values of x
+  and y."
+* The SRID rule names only GEOGRAPHY structures; nothing is said about a GEOMETRY SRID.
+
+| 1.0
+| 2010-04-21
+| *Yes*
+| link:20100421-1.0-%5BMS-SSCLRT%5D-100421.pdf[`20100421-1.0`]
+| Removes "Otherwise, there are no limitations on the values of x and y." The change tracking table lists "Added
+GEOMETRY structure information" for sections 1.6 and 1.7. Version 2 applies to both types.
+
+| 3.1
+| 2011-02-09
+| No
+| link:20110209-3.1-%5BMS-SSCLRT%5D-110209.pdf[`20110209-3.1`]
+| Adds "Default SRID for GEOMETRY instances is zero (0)." GEOMETRY POINT becomes section 2.1.6 of _GEOGRAPHY and
+GEOMETRY Structures_, and gains the note that its example uses WKT from [OGCSFS].
+
+| 3.1
+| 2011-07-07
+| No
+| link:20110707-3.1-%5BMS-SSCLRT%5D-110707.pdf[`20110707-3.1`]
+| Adds "For GEOMETRY instance, SRID can be any value: SRID is not constrained."
+
+| 4.0
+| 2014-02-11
+| No
+| link:20140211-4.0-%5BMS-SSCLRT%5D-140211.pdf[`20140211-4.0`]
+| States that the structures of the two types are identical, that "GEOGRAPHY structure" refers to both, and that
+"GEOGRAPHY POINT structure" does not also refer to the GEOMETRY POINT structure. The GEOGRAPHY POINT and GEOMETRY
+POINT structures are named together in the overview.
+
+| 5.0 to 9.0
+| 2016-05-10 to 2025-10-31
+| No
+| link:20251031-9.0-%5BMS-SSCLRT%5D.pdf[`20251031-9.0`] (latest)
+| No change to the text about `geometry`.
+|===
+
+== Notes on the text
+
+* *SRID 4326 in the geometry examples.* POINT (5 10) and the LINESTRING use SRID 4326, the default for GEOGRAPHY. It
+  is valid for `geometry`, whose SRID is not constrained, but the bytes do not say which type they are: the type
+  comes from the column, not from the structure.
+* *"GEOMETRY structure" in FIGURE.* The Figures Attribute "determines the role of this figure within the GEOMETRY
+  structure" in every revision, although elsewhere the text uses "GEOGRAPHY structure" for both types.
+

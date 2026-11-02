@@ -24,6 +24,7 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -41,7 +42,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -68,6 +69,16 @@ public abstract class MappedEmployeeDepartmentHistory {
     public static final String COLUMN_NAME_DEPARTMENT_ID = "DepartmentID";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_DEPARTMENT_ID = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_DEPARTMENT_ID = Short.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DEPARTMENT_ID = "departmentId";
@@ -78,6 +89,16 @@ public abstract class MappedEmployeeDepartmentHistory {
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SHIFT_ID = "ShiftID";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_SHIFT_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_SHIFT_ID = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_SHIFT_ID} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_SHIFT_ID = +255;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIFT_ID} column. The value is {@value}.
@@ -175,6 +196,29 @@ public abstract class MappedEmployeeDepartmentHistory {
         return Objects.hash(businessEntityId, startDate, departmentId, shiftId);
     }
 
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_EmployeeDepartmentHistory_EndDate}
+     * constraint requires.
+     * {@snippet lang = "sql":
+     * ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_START_DATE}
+     *         attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "endDate must be null or not before startDate")
+    protected boolean isEndDateValid() {
+        if (endDate == null || startDate == null) {
+            return true;
+        }
+        return !endDate.isBefore(startDate);
+    }
+
     // ------------------------------------------------------------------------------------------------ businessEntityId
 
     /**
@@ -202,7 +246,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
      */
-    public Short getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
@@ -211,7 +255,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param departmentId new value for {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
      */
-    public void setDepartmentId(final Short departmentId) {
+    public void setDepartmentId(final Integer departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -222,7 +266,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
      */
-    public Short getShiftId() {
+    public Integer getShiftId() {
         return shiftId;
     }
 
@@ -231,7 +275,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param shiftId new value for {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
      */
-    public void setShiftId(final Short shiftId) {
+    public void setShiftId(final Integer shiftId) {
         this.shiftId = shiftId;
     }
 
@@ -308,6 +352,8 @@ public abstract class MappedEmployeeDepartmentHistory {
 
     // -----------------------------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(COLUMN_MAX_DEPARTMENT_ID)
+    @Min(COLUMN_MIN_DEPARTMENT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_DEPARTMENT_ID,
@@ -315,12 +361,12 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = true,
             updatable = false
     )
-    private Short departmentId;
+    private Integer departmentId;
 
     // -----------------------------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(255)
-    @Min(0)
+    @Max(COLUMN_MAX_SHIFT_ID)
+    @Min(COLUMN_MIN_SHIFT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SHIFT_ID,
@@ -328,7 +374,7 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = true,
             updatable = false
     )
-    private Short shiftId;
+    private Integer shiftId;
 
     // -----------------------------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity

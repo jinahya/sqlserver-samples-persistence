@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
@@ -44,7 +47,7 @@ public abstract class MappedCustomer {
     /**
      * The name of the schema of the view to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Website";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the view to which this class maps. The value is {@value}.
@@ -305,7 +308,7 @@ public abstract class MappedCustomer {
                + ",websiteUrl=" + websiteUrl
                + ",deliveryMethod=" + deliveryMethod
                + ",cityName=" + cityName
-               + ",deliveryLocation=" + (this.deliveryLocation == null ? null : this.deliveryLocation.length + " bytes")
+               + ",deliveryLocation=" + deliveryLocation
                + ",deliveryRun=" + deliveryRun
                + ",runPosition=" + runPosition
                + "}";
@@ -567,7 +570,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
      */
-    public byte[] getDeliveryLocation() {
+    public Geography getDeliveryLocation() {
         return deliveryLocation;
     }
 
@@ -576,7 +579,7 @@ public abstract class MappedCustomer {
      *
      * @param deliveryLocation new value for {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
      */
-    protected void setDeliveryLocation(final byte[] deliveryLocation) {
+    protected void setDeliveryLocation(final Geography deliveryLocation) {
         this.deliveryLocation = deliveryLocation;
     }
 
@@ -758,13 +761,14 @@ public abstract class MappedCustomer {
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private byte[] deliveryLocation;
+    private Geography deliveryLocation;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation

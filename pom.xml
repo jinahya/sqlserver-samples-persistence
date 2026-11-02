@@ -36,6 +36,7 @@
   </developers>
 
   <modules>
+    <module>mssql-sample-databases-persistence-common</module>
     <module>mssql-sample-databases-persistence-adventureworks</module>
     <module>mssql-sample-databases-persistence-futonmanufacturing</module>
     <module>mssql-sample-databases-persistence-wideworldimporters</module>
@@ -77,6 +78,8 @@
     <version.maven-surefire>3.6.0</version.maven-surefire>
     <!-- https://central.sonatype.com/artifact/com.microsoft.sqlserver/mssql-jdbc/versions -->
     <version.com.microsoft.sqlserver>13.4.0.jre11</version.com.microsoft.sqlserver>
+    <!-- https://central.sonatype.com/artifact/io.github.jinahya/bit-io/versions -->
+    <version.io.github.jinahya.bit-io>4.2.0</version.io.github.jinahya.bit-io>
     <!-- https://central.sonatype.com/artifact/io.github.jinahya/jinahya-persistence-more/versions -->
     <version.io.github.jinahya.jinahya-persistence>0.6.11-SNAPSHOT</version.io.github.jinahya.jinahya-persistence>
     <!-- https://central.sonatype.com/artifact/io.github.jinahya/sqlserver-xml-schema-binding/versions -->
@@ -112,9 +115,19 @@
     <dependencies>
 
       <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mssql-sample-databases-persistence-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.microsoft.sqlserver</groupId>
         <artifactId>mssql-jdbc</artifactId>
         <version>${version.com.microsoft.sqlserver}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>bit-io</artifactId>
+        <version>${version.io.github.jinahya.bit-io}</version>
       </dependency>
       <dependency>
         <groupId>io.github.jinahya</groupId>
@@ -201,6 +214,16 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>

@@ -21,11 +21,18 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  */
 
 import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
+import com.github.jinahya.mssql.sample.databases.persistence.common.Heirarchyid;
+import com.github.jinahya.mssql.sample.databases.persistence.common.HeirarchyidAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -43,7 +50,7 @@ public abstract class MappedEmployee {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -58,7 +65,8 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -75,7 +83,8 @@ public abstract class MappedEmployee {
     public static final int COLUMN_LENGTH_NATIONAL_ID_NUMBER = 15;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NATIONAL_ID_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NATIONAL_ID_NUMBER} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NATIONAL_ID_NUMBER = "nationalIdNumber";
 
@@ -92,7 +101,8 @@ public abstract class MappedEmployee {
     public static final int COLUMN_LENGTH_LOGIN_ID = 256;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LOGIN_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LOGIN_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOGIN_ID = "loginId";
 
@@ -104,19 +114,34 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_ORGANIZATION_NODE = "OrganizationNode";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ORGANIZATION_NODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ORGANIZATION_NODE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORGANIZATION_NODE = "organizationNode";
 
     // ----------------------------------------------------------------------------------------------- OrganizationLevel
 
     /**
-     * The name of the {@code smallint, computed as ([OrganizationNode].[GetLevel]())} column. The value is {@value}.
+     * The name of the {@code smallint, computed as ([OrganizationNode].[GetLevel]())} column. The
+     * value is {@value}.
      */
     public static final String COLUMN_NAME_ORGANIZATION_LEVEL = "OrganizationLevel";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MIN_ORGANIZATION_LEVEL = Short.MIN_VALUE;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MAX_ORGANIZATION_LEVEL = Short.MAX_VALUE;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORGANIZATION_LEVEL = "organizationLevel";
 
@@ -133,7 +158,8 @@ public abstract class MappedEmployee {
     public static final int COLUMN_LENGTH_JOB_TITLE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
@@ -145,11 +171,12 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_BIRTH_DATE = "BirthDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BIRTH_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BIRTH_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BIRTH_DATE = "birthDate";
 
-    // --------------------------------------------------------------------------------------------------- MaritalStatus
+    // ------------------------------------------------------------------------------- MaritalStatus
 
     /**
      * The name of the {@code nchar(1), NOT NULL} column. The value is {@value}.
@@ -162,9 +189,44 @@ public abstract class MappedEmployee {
     public static final int COLUMN_LENGTH_MARITAL_STATUS = 1;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MARITAL_STATUS} column. The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_MARITAL_STATUS} column, for an employee who is single.
+     * The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_MARITAL_STATUS_SINGLE = "S";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_MARITAL_STATUS} column, for an employee who is married.
+     * The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_MARITAL_STATUS_MARRIED = "M";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MARITAL_STATUS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MARITAL_STATUS = "maritalStatus";
+
+    /**
+     * An enum for the {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute, of the values the
+     * {@code CK_Employee_MaritalStatus} constraint allows.
+     * {@snippet lang = "sql":
+     * (upper([MaritalStatus])='S' OR upper([MaritalStatus])='M')
+     *} The constants are named after the column values, which are stored in upper case.
+     */
+    public enum MaritalStatus {
+
+        /**
+         * A constant for the {@value MappedEmployee#COLUMN_VALUE_MARITAL_STATUS_SINGLE} value, for
+         * an employee who is single.
+         */
+        S,
+
+        /**
+         * A constant for the {@value MappedEmployee#COLUMN_VALUE_MARITAL_STATUS_MARRIED} value, for
+         * an employee who is married.
+         */
+        M
+    }
 
     // ---------------------------------------------------------------------------------------------------------- Gender
 
@@ -179,9 +241,44 @@ public abstract class MappedEmployee {
     public static final int COLUMN_LENGTH_GENDER = 1;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_GENDER} column. The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_GENDER} column, for a female employee. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_VALUE_GENDER_FEMALE = "F";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_GENDER} column, for a male employee. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_VALUE_GENDER_MALE = "M";
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_GENDER} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_GENDER = "gender";
+
+    /**
+     * An enum for the {@value #ATTRIBUTE_NAME_GENDER} attribute, of the values the
+     * {@code CK_Employee_Gender} constraint allows.
+     * {@snippet lang = "sql":
+     * (upper([Gender])='F' OR upper([Gender])='M')
+     *} The constants are named after the column values, which are stored in upper case.
+     */
+    public enum Gender {
+
+        /**
+         * A constant for the {@value MappedEmployee#COLUMN_VALUE_GENDER_FEMALE} value, for a female
+         * employee.
+         */
+        F,
+
+        /**
+         * A constant for the {@value MappedEmployee#COLUMN_VALUE_GENDER_MALE} value, for a male
+         * employee.
+         */
+        M
+    }
 
     // -------------------------------------------------------------------------------------------------------- HireDate
 
@@ -191,7 +288,8 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_HIRE_DATE = "HireDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_HIRE_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_HIRE_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_HIRE_DATE = "hireDate";
 
@@ -203,7 +301,8 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_SALARIED_FLAG = "SalariedFlag";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALARIED_FLAG} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALARIED_FLAG} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALARIED_FLAG = "salariedFlag";
 
@@ -215,7 +314,22 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_VACATION_HOURS = "VacationHours";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_VACATION_HOURS} column. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_VACATION_HOURS} column, as the
+     * {@code CK_Employee_VacationHours} check constraint ({@code [VacationHours]>=(-40)}) requires.
+     * The value is {@value}.
+     */
+    public static final int COLUMN_MIN_VACATION_HOURS = -40;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_VACATION_HOURS} column, as the
+     * {@code CK_Employee_VacationHours} check constraint ({@code [VacationHours]<=(240)}) requires.
+     * The value is {@value}.
+     */
+    public static final int COLUMN_MAX_VACATION_HOURS = +240;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_VACATION_HOURS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_VACATION_HOURS = "vacationHours";
 
@@ -227,7 +341,22 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_SICK_LEAVE_HOURS = "SickLeaveHours";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column, as the
+     * {@code CK_Employee_SickLeaveHours} check constraint ({@code [SickLeaveHours]>=(0)}) requires.
+     * The value is {@value}.
+     */
+    public static final int COLUMN_MIN_SICK_LEAVE_HOURS = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column, as the
+     * {@code CK_Employee_SickLeaveHours} check constraint ({@code [SickLeaveHours]<=(120)})
+     * requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_SICK_LEAVE_HOURS = +120;
+
+    /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SICK_LEAVE_HOURS = "sickLeaveHours";
 
@@ -239,31 +368,36 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_CURRENT_FLAG = "CurrentFlag";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENT_FLAG} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENT_FLAG} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CURRENT_FLAG = "currentFlag";
 
     // --------------------------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // ---------------------------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -284,7 +418,7 @@ public abstract class MappedEmployee {
                + "businessEntityId=" + businessEntityId
                + ",nationalIdNumber=" + nationalIdNumber
                + ",loginId=" + loginId
-               + ",organizationNode=" + (this.organizationNode == null ? null : this.organizationNode.length + " bytes")
+               + ",organizationNode=" + organizationNode
                + ",organizationLevel=" + organizationLevel
                + ",jobTitle=" + jobTitle
                + ",birthDate=" + birthDate
@@ -329,7 +463,51 @@ public abstract class MappedEmployee {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------------- VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute is {@code null} or within
+     * the range of the table's {@code CK_Employee_BirthDate} constraint.
+     * {@snippet lang = "sql":
+     * ([BirthDate]>='1930-01-01' AND [BirthDate]<=dateadd(year,(-18),getdate()))
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute is {@code null} or
+     *         within the range; {@code false} otherwise.
+     * @implNote This method compares with the current date of this JVM, not with the
+     *         {@code getdate()} of the database.
+     */
+    @AssertTrue(message = "birthDate must be between 1930-01-01 and 18 years ago, inclusive")
+    protected boolean isBirthDateValid() {
+        if (birthDate == null) {
+            return true;
+        }
+        return !birthDate.isBefore(LocalDate.of(1930, 1, 1))
+               && !birthDate.isAfter(LocalDate.now().minusYears(18L));
+    }
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute is {@code null} or within the
+     * range of the table's {@code CK_Employee_HireDate} constraint.
+     * {@snippet lang = "sql":
+     * ([HireDate]>='1996-07-01' AND [HireDate]<=dateadd(day,(1),getdate()))
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute is {@code null} or
+     *         within the range; {@code false} otherwise.
+     * @implNote This method compares with the current date of this JVM, not with the
+     *         {@code getdate()} of the database.
+     */
+    @AssertTrue(message = "hireDate must be between 1996-07-01 and tomorrow, inclusive")
+    protected boolean isHireDateValid() {
+        if (hireDate == null) {
+            return true;
+        }
+        return !hireDate.isBefore(LocalDate.of(1996, 7, 1))
+               && !hireDate.isAfter(LocalDate.now().plusDays(1L));
+    }
+
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -341,7 +519,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -361,7 +540,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_NATIONAL_ID_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NATIONAL_ID_NUMBER} attribute with the
+     * specified value.
      *
      * @param nationalIdNumber new value for {@value #ATTRIBUTE_NAME_NATIONAL_ID_NUMBER} attribute.
      */
@@ -381,7 +561,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LOGIN_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LOGIN_ID} attribute with the specified
+     * value.
      *
      * @param loginId new value for {@value #ATTRIBUTE_NAME_LOGIN_ID} attribute.
      */
@@ -396,16 +577,17 @@ public abstract class MappedEmployee {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_NODE} attribute.
      */
-    public byte[] getOrganizationNode() {
+    public Heirarchyid getOrganizationNode() {
         return organizationNode;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_NODE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_NODE} attribute with the
+     * specified value.
      *
      * @param organizationNode new value for {@value #ATTRIBUTE_NAME_ORGANIZATION_NODE} attribute.
      */
-    public void setOrganizationNode(final byte[] organizationNode) {
+    public void setOrganizationNode(final Heirarchyid organizationNode) {
         this.organizationNode = organizationNode;
     }
 
@@ -416,17 +598,19 @@ public abstract class MappedEmployee {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute.
      */
-    public Short getOrganizationLevel() {
+    public Integer getOrganizationLevel() {
         return organizationLevel;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute with the specified value. The
-     * database writes the column; this is for the provider and the extending class only.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute with the
+     * specified value. The database writes the column; this is for the provider and the extending
+     * class only.
      *
-     * @param organizationLevel new value for {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute.
+     * @param organizationLevel new value for {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL}
+     *                          attribute.
      */
-    protected void setOrganizationLevel(final Short organizationLevel) {
+    protected void setOrganizationLevel(final Integer organizationLevel) {
         this.organizationLevel = organizationLevel;
     }
 
@@ -442,7 +626,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified
+     * value.
      *
      * @param jobTitle new value for {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
      */
@@ -462,7 +647,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute with the specified
+     * value.
      *
      * @param birthDate new value for {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
      */
@@ -470,23 +656,24 @@ public abstract class MappedEmployee {
         this.birthDate = birthDate;
     }
 
-    // --------------------------------------------------------------------------------------------------- maritalStatus
+    // ------------------------------------------------------------------------------- maritalStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
      */
-    public String getMaritalStatus() {
+    public MaritalStatus getMaritalStatus() {
         return maritalStatus;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute with the
+     * specified value.
      *
      * @param maritalStatus new value for {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
      */
-    public void setMaritalStatus(final String maritalStatus) {
+    public void setMaritalStatus(final MaritalStatus maritalStatus) {
         this.maritalStatus = maritalStatus;
     }
 
@@ -497,16 +684,17 @@ public abstract class MappedEmployee {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_GENDER} attribute.
      */
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_GENDER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_GENDER} attribute with the specified
+     * value.
      *
      * @param gender new value for {@value #ATTRIBUTE_NAME_GENDER} attribute.
      */
-    public void setGender(final String gender) {
+    public void setGender(final Gender gender) {
         this.gender = gender;
     }
 
@@ -522,7 +710,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute with the specified
+     * value.
      *
      * @param hireDate new value for {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute.
      */
@@ -542,7 +731,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALARIED_FLAG} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALARIED_FLAG} attribute with the specified
+     * value.
      *
      * @param salariedFlag new value for {@value #ATTRIBUTE_NAME_SALARIED_FLAG} attribute.
      */
@@ -557,16 +747,17 @@ public abstract class MappedEmployee {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute.
      */
-    public Short getVacationHours() {
+    public Integer getVacationHours() {
         return vacationHours;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute with the
+     * specified value.
      *
      * @param vacationHours new value for {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute.
      */
-    public void setVacationHours(final Short vacationHours) {
+    public void setVacationHours(final Integer vacationHours) {
         this.vacationHours = vacationHours;
     }
 
@@ -577,16 +768,17 @@ public abstract class MappedEmployee {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute.
      */
-    public Short getSickLeaveHours() {
+    public Integer getSickLeaveHours() {
         return sickLeaveHours;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute with the
+     * specified value.
      *
      * @param sickLeaveHours new value for {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute.
      */
-    public void setSickLeaveHours(final Short sickLeaveHours) {
+    public void setSickLeaveHours(final Integer sickLeaveHours) {
         this.sickLeaveHours = sickLeaveHours;
     }
 
@@ -602,7 +794,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENT_FLAG} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENT_FLAG} attribute with the specified
+     * value.
      *
      * @param currentFlag new value for {@value #ATTRIBUTE_NAME_CURRENT_FLAG} attribute.
      */
@@ -622,7 +815,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified
+     * value.
      *
      * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
      */
@@ -642,7 +836,8 @@ public abstract class MappedEmployee {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -651,7 +846,8 @@ public abstract class MappedEmployee {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -686,23 +882,26 @@ public abstract class MappedEmployee {
     private String loginId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_NODE,
             nullable = true,
             insertable = true,
             updatable = true
     )
-    private byte[] organizationNode;
+    private Heirarchyid organizationNode;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
+    @Max(COLUMN_MAX_ORGANIZATION_LEVEL)
+    @Min(COLUMN_MIN_ORGANIZATION_LEVEL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_LEVEL,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private Short organizationLevel;
+    private Integer organizationLevel;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
@@ -727,8 +926,8 @@ public abstract class MappedEmployee {
     private LocalDate birthDate;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_MARITAL_STATUS)
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MARITAL_STATUS,
             nullable = false,
@@ -736,11 +935,11 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_MARITAL_STATUS
     )
-    private String maritalStatus;
+    private MaritalStatus maritalStatus;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_GENDER)
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_GENDER,
             nullable = false,
@@ -748,7 +947,7 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_GENDER
     )
-    private String gender;
+    private Gender gender;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -771,6 +970,9 @@ public abstract class MappedEmployee {
     private Boolean salariedFlag;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Employee_VacationHours: ([VacationHours]>=(-40) AND [VacationHours]<=(240))
+    @Max(COLUMN_MAX_VACATION_HOURS)
+    @Min(COLUMN_MIN_VACATION_HOURS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VACATION_HOURS,
@@ -778,9 +980,12 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
-    private Short vacationHours;
+    private Integer vacationHours;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Employee_SickLeaveHours: ([SickLeaveHours]>=(0) AND [SickLeaveHours]<=(120))
+    @Max(COLUMN_MAX_SICK_LEAVE_HOURS)
+    @Min(COLUMN_MIN_SICK_LEAVE_HOURS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SICK_LEAVE_HOURS,
@@ -788,7 +993,7 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
-    private Short sickLeaveHours;
+    private Integer sickLeaveHours;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -812,7 +1017,8 @@ public abstract class MappedEmployee {
     private UUID rowguid;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,

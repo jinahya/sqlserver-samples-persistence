@@ -28,6 +28,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -45,7 +49,7 @@ public abstract class MappedSpecialOffer {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -87,6 +91,12 @@ public abstract class MappedSpecialOffer {
      * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DISCOUNT_PCT = "DiscountPct";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_DISCOUNT_PCT} column, as the {@code CK_SpecialOffer_DiscountPct}
+     * check constraint ({@code [DiscountPct]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_DISCOUNT_PCT = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PCT} column. The value is {@value}.
@@ -159,6 +169,17 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_MIN_QTY = "MinQty";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_MIN_QTY} column, as the {@code CK_SpecialOffer_MinQty} check
+     * constraint ({@code [MinQty]>=(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_MIN_QTY = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_MIN_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_MIN_QTY = Integer.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_QTY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIN_QTY = "minQty";
@@ -169,6 +190,17 @@ public abstract class MappedSpecialOffer {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MAX_QTY = "MaxQty";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_MAX_QTY} column, as the {@code CK_SpecialOffer_MaxQty} check
+     * constraint ({@code [MaxQty]>=(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_MAX_QTY = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_MAX_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_MAX_QTY = Integer.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_QTY} column. The value is {@value}.
@@ -254,6 +286,28 @@ public abstract class MappedSpecialOffer {
     @Override
     public final int hashCode() {
         return Objects.hash(specialOfferId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_SpecialOffer_EndDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([EndDate]>=[StartDate])
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute, or if either attribute is {@code null}; {@code false}
+     *         otherwise.
+     */
+    @AssertTrue(message = "endDate must not be before startDate")
+    protected boolean isEndDateValid() {
+        if (endDate == null || startDate == null) {
+            return true;
+        }
+        return !endDate.isBefore(startDate);
     }
 
     // -------------------------------------------------------------------------------------------------- specialOfferId
@@ -501,6 +555,8 @@ public abstract class MappedSpecialOffer {
     private String description;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SpecialOffer_DiscountPct: ([DiscountPct]>=(0.00))
+    @DecimalMin(COLUMN_MIN_DISCOUNT_PCT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DISCOUNT_PCT,
@@ -555,6 +611,9 @@ public abstract class MappedSpecialOffer {
     private LocalDateTime endDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SpecialOffer_MinQty: ([MinQty]>=(0))
+    @Max(COLUMN_MAX_MIN_QTY)
+    @Min(COLUMN_MIN_MIN_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MIN_QTY,
@@ -565,6 +624,9 @@ public abstract class MappedSpecialOffer {
     private Integer minQty;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SpecialOffer_MaxQty: ([MaxQty]>=(0))
+    @Max(COLUMN_MAX_MAX_QTY)
+    @Min(COLUMN_MIN_MAX_QTY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MAX_QTY,
             nullable = true,

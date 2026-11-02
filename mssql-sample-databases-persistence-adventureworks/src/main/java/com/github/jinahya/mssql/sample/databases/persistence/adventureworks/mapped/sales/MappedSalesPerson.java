@@ -26,6 +26,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -45,7 +46,7 @@ public abstract class MappedSalesPerson {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -84,6 +85,12 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_SALES_QUOTA = "SalesQuota";
 
     /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_SALES_QUOTA} column, as the
+     * {@code CK_SalesPerson_SalesQuota} check constraint ({@code [SalesQuota]>(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SALES_QUOTA_EXCLUSIVE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_QUOTA = "salesQuota";
@@ -94,6 +101,12 @@ public abstract class MappedSalesPerson {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BONUS = "Bonus";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_BONUS} column, as the {@code CK_SalesPerson_Bonus} check constraint
+     * ({@code [Bonus]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_BONUS = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BONUS} column. The value is {@value}.
@@ -108,6 +121,12 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_COMMISSION_PCT = "CommissionPct";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_COMMISSION_PCT} column, as the {@code CK_SalesPerson_CommissionPct}
+     * check constraint ({@code [CommissionPct]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_COMMISSION_PCT = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMMISSION_PCT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMMISSION_PCT = "commissionPct";
@@ -120,6 +139,12 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_SALES_YTD = "SalesYTD";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the {@code CK_SalesPerson_SalesYTD} check
+     * constraint ({@code [SalesYTD]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SALES_YTD = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
@@ -130,6 +155,13 @@ public abstract class MappedSalesPerson {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_LAST_YEAR = "SalesLastYear";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_SALES_LAST_YEAR} column, as the
+     * {@code CK_SalesPerson_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)}) requires. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_MIN_SALES_LAST_YEAR = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The value is {@value}.
@@ -418,6 +450,8 @@ public abstract class MappedSalesPerson {
     private Integer territoryId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesPerson_SalesQuota: ([SalesQuota]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_QUOTA,
             nullable = true,
@@ -427,6 +461,8 @@ public abstract class MappedSalesPerson {
     private BigDecimal salesQuota;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesPerson_Bonus: ([Bonus]>=(0.00))
+    @DecimalMin(COLUMN_MIN_BONUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BONUS,
@@ -437,6 +473,8 @@ public abstract class MappedSalesPerson {
     private BigDecimal bonus;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesPerson_CommissionPct: ([CommissionPct]>=(0.00))
+    @DecimalMin(COLUMN_MIN_COMMISSION_PCT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMMISSION_PCT,
@@ -447,6 +485,8 @@ public abstract class MappedSalesPerson {
     private BigDecimal commissionPct;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesPerson_SalesYTD: ([SalesYTD]>=(0.00))
+    @DecimalMin(COLUMN_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_YTD,
@@ -457,6 +497,8 @@ public abstract class MappedSalesPerson {
     private BigDecimal salesYtd;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesPerson_SalesLastYear: ([SalesLastYear]>=(0.00))
+    @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_LAST_YEAR,

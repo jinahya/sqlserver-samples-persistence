@@ -22,10 +22,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ public abstract class MappedTransactionHistoryArchive {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -119,6 +120,27 @@ public abstract class MappedTransactionHistoryArchive {
      * The length of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column. The value is {@value}.
      */
     public static final int COLUMN_LENGTH_TRANSACTION_TYPE = 1;
+
+    /**
+     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a work order transaction. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_VALUE_TRANSACTION_TYPE_WORK_ORDER =
+            MappedTransactionHistory.COLUMN_VALUE_TRANSACTION_TYPE_WORK_ORDER;
+
+    /**
+     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a sales order transaction. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_VALUE_TRANSACTION_TYPE_SALES_ORDER =
+            MappedTransactionHistory.COLUMN_VALUE_TRANSACTION_TYPE_SALES_ORDER;
+
+    /**
+     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a purchase order transaction. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_VALUE_TRANSACTION_TYPE_PURCHASE_ORDER =
+            MappedTransactionHistory.COLUMN_VALUE_TRANSACTION_TYPE_PURCHASE_ORDER;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_TYPE} column. The value is {@value}.
@@ -323,7 +345,7 @@ public abstract class MappedTransactionHistoryArchive {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute.
      */
-    public String getTransactionType() {
+    public MappedTransactionHistory.TransactionType getTransactionType() {
         return transactionType;
     }
 
@@ -332,7 +354,7 @@ public abstract class MappedTransactionHistoryArchive {
      *
      * @param transactionType new value for {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute.
      */
-    public void setTransactionType(final String transactionType) {
+    public void setTransactionType(final MappedTransactionHistory.TransactionType transactionType) {
         this.transactionType = transactionType;
     }
 
@@ -448,8 +470,11 @@ public abstract class MappedTransactionHistoryArchive {
     private LocalDateTime transactionDate;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_TRANSACTION_TYPE)
+    // CK_TransactionHistoryArchive_TransactionType:
+    // (upper([TransactionType])='P' OR upper([TransactionType])='S' OR upper([TransactionType])='W'), the same values
+    // as MappedTransactionHistory.TransactionType
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE,
             nullable = false,
@@ -457,7 +482,7 @@ public abstract class MappedTransactionHistoryArchive {
             updatable = true,
             length = COLUMN_LENGTH_TRANSACTION_TYPE
     )
-    private String transactionType;
+    private MappedTransactionHistory.TransactionType transactionType;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull

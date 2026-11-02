@@ -1,0 +1,222 @@
+= GEOGRAPHY binary format history
+:toc:
+
+How [MS-SSCLRT] (_Microsoft SQL Server CLR Types Serialization Formats_) describes the `geography` binary format,
+revision by revision. Source: the PDFs in this directory, downloaded from
+https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/77460aa9-8c2f-4449-a65e-1d649ebd77fa[the
+specification's page]. The format is in section 2.1, which `geography` shares with `geometry` (see
+link:GEOMETRY.asciidoc[GEOMETRY.asciidoc]); the examples are in section 3.1.
+
+== Summary
+
+The specification describes one structure for both types and calls it the "GEOGRAPHY structure". What is specific to
+`geography` is the SRID range, the V flag, the ring orientation, the H flag and the GEOGRAPHY POINT (latitude, then
+longitude).
+
+The structure has a version byte. Version 1 is the format of the first revision (2009). Version 2, which adds the H
+flag, the segments and the curve types, appeared in revision 1.0 (2010-04-21), was withdrawn in 2.0 (2010-06-22) and
+came back in 3.0 (2010-09-03). Apart from that, the changes are corrections and additions to the text:
+
+* the order of the SHAPE fields, Figure Offset first until 0.2 and Parent Offset first from 1.0;
+* the counts, "strictly positive" until 0.2, then "positive number or 0 (zero)" for points and figures from 3.1;
+* OpenGIS type `0 (0x00): Unknown`, listed until 3.0 and dropped in 3.1;
+* the default SRID (4326), stated from 3.1;
+* the product notes, from SQL Server 2008 to SQL Server 2025.
+
+== The format, as the latest revision states it
+
+All integers and doubles are little-endian; doubles are IEEE 754, 8 bytes.
+
+[cols="2,1,4",options="header"]
+|===
+| Field | Size | Contents
+
+| SRID | 4 | 4120 through 4999, inclusive; -1 is a null geography, and then every other field is omitted. Default 4326.
+| Version | 1 | 1 or 2.
+| Serialization Properties | 1 | Flags, below.
+| Number of Points | 4 | Omitted when P or L is set.
+| Points | 16 × points | GEOGRAPHY POINT structures. One when P is set, two when L is set.
+| Z Values | 8 × points | When Z is set. A NULL is QNaN.
+| M Values | 8 × points | When M is set. A NULL is QNaN.
+| Number of Figures | 4 | Omitted when P or L is set.
+| Figures | 5 × figures | FIGURE structures.
+| Number of Shapes | 4 | Omitted when P or L is set.
+| Shapes | 9 × shapes | SHAPE structures.
+| Number of Segments | 4 | Version 2 only.
+| Segments | 1 × segments | Version 2 only. SEGMENT structures.
+|===
+
+Serialization Properties, from the high bit: `0 0 H L P V M Z`. The first three bits are reserved.
+
+[cols="1,1,5",options="header"]
+|===
+| Flag | Bit | Meaning
+
+| Z | 0x01 | Has Z values.
+| M | 0x02 | Has M values.
+| V | 0x04 | Valid. For GEOGRAPHY structures, always set, in version 1 and in version 2.
+| P | 0x08 | A single point: one point, one stroke figure at offset 0, one Point shape with parent -1.
+| L | 0x10 | A single line segment: two points, one stroke figure at offset 0, one LineString shape with parent -1.
+| H | 0x20 | Version 2: the geography is larger than a hemisphere.
+|===
+
+[cols="1,4",options="header"]
+|===
+| Structure | Fields
+
+| FIGURE (5 bytes)
+a| Figures Attribute (1), Point Offset (4).
+
+* Version 1: `0` interior ring, `1` stroke (a point or a line), `2` exterior ring.
+* Version 2: `0` point, `1` line, `2` arc, `3` composite curve.
+
+| SHAPE (9 bytes)
+a| Parent Offset (4), Figure Offset (4), OpenGIS Type (1).
+
+* Version 1: `1` Point, `2` LineString, `3` Polygon, `4` MultiPoint, `5` MultiLineString, `6` MultiPolygon, `7`
+  GeometryCollection.
+* Version 2 adds `8` CircularString, `9` CompoundCurve, `10` CurvePolygon, `11` FullGlobe.
+
+| GEOGRAPHY POINT (16 bytes)
+| Latitude (8), then Longitude (8), in decimal degrees; south and west are negative. Latitude -90 to 90, longitude
+-15069 to 15069, both inclusive. Neither is Infinity or NaN.
+
+| SEGMENT (1 byte)
+| Version 2, only for figures whose attribute is `3`: `0` line, `1` arc, `2` first line, `3` first arc.
+|===
+
+The order of the points in a geography polygon ring matters: an exterior ring is counter-clockwise (the "left-hand"
+rule), and a hole is clockwise (the "right-hand" rule).
+
+Section 3.1 has five examples: POINT EMPTY with SRID 0 (`00000000 01 04 00000000 00000000 01000000 FFFFFFFF FFFFFFFF
+01`), a geometry point and a geometry linestring with SRID 4326, a geography GEOMETRYCOLLECTION of a point, a
+linestring and a polygon with a hole (points as latitude and longitude), and, in version 2, a CURVEPOLYGON whose
+Serialization Properties are `24` (V and H).
+
+== Revisions
+
+Each row links the PDF it was read from, named `<yyyyMMdd>-<protocol revision>-<original name>`. A revision that
+changed nothing in section 2.1 or 3.1 is grouped with the one before it. The two Editorial revisions, 0.1.1
+(2009-11-06) and 1.0.1 (2010-06-04), are left out.
+
+The *Binary format* column flags a revision in which the binary format itself changed, that is, what SQL Server writes,
+not only how the specification describes it. A correction to the text, even one that changes the described bytes, is
+*No* when the specification's own examples show that the format was already what the corrected text says. The format
+changed once: version 2 (the H flag, segments, curve figures and OpenGIS types 8 to 11), used from SQL Server 2012 and
+first described in revision 1.0. Revisions 2.0 and 3.0 removed it from the document and restored it; SQL Server did not
+change.
+
+[cols="1,1,1,2,5",options="header"]
+|===
+| Revision | Date | Binary format | PDF | GEOGRAPHY changes
+
+| 0.1
+| 2009-08-07
+| Initial
+| link:20090807-0.1-%5BMS-SSCLRT%5D-090801.pdf[`20090807-0.1`]
+a| First release, for SQL Server 2008. Version 1 only; the layouts are drawn as figures.
+
+* The header has the fields of version 1 above, with "The current version is 1."
+* Z and M: "MUST NOT be set if P or L is set."
+* Number of Points, Number of Figures and Number of Shapes: "MUST be a strictly positive number."
+* SHAPE: *Figure Offset (4), Parent Offset (4)*, OpenGIS Type (1). OpenGIS types `0 (0x00): Unknown` to `7`, with `5`
+  named "MultiLine".
+* Product notes: the SRID values are EPSG's (EPSG Dataset 6.17, July 2008), and "SQL Server 2008 never reads the V
+  flag."
+
+| 0.2
+| 2010-03-05
+| No
+| link:20100305-0.2-%5BMS-SSCLRT%5D-100305.pdf[`20100305-0.2`]
+| Removes "Z MUST NOT be set if P or L is set" and the same sentence for M.
+
+| 1.0
+| 2010-04-21
+| *Yes*
+| link:20100421-1.0-%5BMS-SSCLRT%5D-100421.pdf[`20100421-1.0`]
+a| Adds version 2, for SQL Server "Denali" CTP1; version 1 is SQL Server 2008 R2.
+
+* Two header sections, version 1 and version 2. Version 2 adds the H flag (0x20), Number of Segments and Segments.
+* FIGURE: the version 2 attribute values. SHAPE: OpenGIS types 8 to 11. New SEGMENT structure.
+* The layouts become packet diagrams. *SHAPE is now Parent Offset (4), Figure Offset (4)*, OpenGIS Type (1).
+* Removes "strictly positive" from the three counts, "The current version is 1", the EPSG note (402767) and the note
+  that SQL Server 2008 never reads the V flag (400941). The V flag loses "always set" for GEOGRAPHY.
+* New example 3.1.5, a version 2 CURVEPOLYGON.
+
+| 2.0
+| 2010-06-22
+| No
+| link:20100622-2.0-%5BMS-SSCLRT%5D-100721.pdf[`20100622-2.0`]
+a| Removes version 2 and every mention of "Denali": one Basic GEOGRAPHY Structure, no H flag, no segments, no curve
+values, no example 3.1.5. SHAPE keeps the Parent Offset first order. "For GEOGRAPHY structures, V in version 1 is
+always set" and "This MUST be a positive number" for Number of Points are back.
+
+| 3.0
+| 2010-09-03
+| No
+| link:20100903-3.0-%5BMS-SSCLRT%5D-100903.pdf[`20100903-3.0`]
+| Restores version 2 as in 1.0, for SQL Server "Denali" CTP1. Section headings lose "The".
+
+| 3.1
+| 2011-02-09
+| No
+| link:20110209-3.1-%5BMS-SSCLRT%5D-110209.pdf[`20110209-3.1`]
+a| * Section 2.1 becomes _GEOGRAPHY and GEOMETRY Structures_ (no longer _System CLR Types Structure_) and the
+  subsections are renumbered: 2.1.1 version 1, 2.1.2 version 2, 2.1.3 FIGURE, 2.1.4 SHAPE, 2.1.5 GEOGRAPHY POINT,
+  2.1.6 GEOMETRY POINT, 2.1.7 SEGMENT.
+* Adds the default SRIDs (4326 for GEOGRAPHY, 0 for GEOMETRY) and "The first 3 bits of the serialization properties
+  are reserved for future use."
+* L flag: Number of Figures and Number of Shapes are also implicitly 1.
+* Counts: points and figures "MUST be a positive number or 0 (zero)", shapes "MUST be a positive number".
+* OpenGIS types: `0 (0x00): Unknown` removed; `5` becomes "MultiLineString".
+
+| 3.1
+| 2011-07-07
+| No
+| link:20110707-3.1-%5BMS-SSCLRT%5D-110707.pdf[`20110707-3.1`]
+| Adds "For GEOGRAPHY structures, V in version 2 is always set." and the reference to [OGCSFS] section 7.
+
+| 3.1
+| 2011-11-03 to 2013-12-05
+| No
+| link:20120119-3.1-%5BMS-SSCLRT%5D-120119.pdf[`20120119-3.1`] and ten others
+| No change to the format. From 2012-01-19, the product notes name SQL Server 2012 instead of "Denali" CTP1.
+
+| 4.0
+| 2014-02-11
+| No
+| link:20140211-4.0-%5BMS-SSCLRT%5D-140211.pdf[`20140211-4.0`]
+a| * "Three or four secondary structures" become "building elements".
+* States that the structures of the two types are identical and that "GEOGRAPHY structure" refers to both.
+* H, Number of Segments and Segments say "In version 2 of the serialization format" in the text instead of a note.
+* Product notes become a table: version 1 for SQL Server 2008 R2, 2012 and 2014; version 2 for 2012 and 2014.
+* Example 3.1.5 drops "It is an instance of geography type that is a hole, so it is larger than a hemisphere."
+
+| 4.0
+| 2014-05-20
+| No
+| link:20140520-4.0-%5BMS-SSCLRT%5D-140520.pdf[`20140520-4.0`]
+| No change.
+
+| 5.0, 6.0, 7.0, 8.0, 9.0
+| 2016-05-10 to 2025-10-31
+| No
+| link:20160510-5.0-%5BMS-SSCLRT%5D-160510.pdf[`20160510-5.0`],
+link:20170816-6.0-%5BMS-SSCLRT%5D-170816.pdf[`20170816-6.0`],
+link:20191016-7.0-%5BMS-SSCLRT%5D-191016.pdf[`20191016-7.0`],
+link:20221101-8.0-%5BMS-SSCLRT%5D-221101.pdf[`20221101-8.0`],
+link:20251031-9.0-%5BMS-SSCLRT%5D.pdf[`20251031-9.0`]
+| No change to the format. Each adds its SQL Server release (2016, 2017, 2019, 2022, 2025) to both versions in the
+product table. 6.0 also drops "Example of" from the example headings.
+|===
+
+== Notes on the text
+
+* *SHAPE field order.* Revisions 0.1 and 0.2 draw and describe Figure Offset before Parent Offset; every later
+  revision puts Parent Offset first. The examples are the same in both, and in 0.1 they already list "Parent Offset"
+  before "Figure Offset", so the early figure contradicted the document's own examples.
+* *The same byte, two meanings.* A Figures Attribute of `0`, `1` or `2` means interior ring, stroke or exterior ring
+  in version 1 and point, line or arc in version 2. A reader has to look at the Version byte first.
+* *POINT EMPTY.* Its Number of Shapes is 1 and its shape's Figure Offset is -1, although the text says only that the
+  offset points to the shape's figure.
+

@@ -20,11 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.MappedWithIdentityId;
+
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -35,13 +35,23 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.Department} table.
  */
+// not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+// the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+@AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
+                   column = @Column(name = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID,
+                                    nullable = false,
+                                    insertable = true, // EclipseLink
+                                    updatable = false
+                   )
+)
 @MappedSuperclass
-public abstract class MappedDepartment {
+public abstract class MappedDepartment
+        extends MappedWithIdentityId {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -54,11 +64,6 @@ public abstract class MappedDepartment {
      * The name of the {@code smallint, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DEPARTMENT_ID = "DepartmentID";
-
-    /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_DEPARTMENT_ID = "departmentId";
 
     // ------------------------------------------------------------------------------------------------------------ Name
 
@@ -120,7 +125,7 @@ public abstract class MappedDepartment {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "departmentId=" + departmentId
+               + "departmentId=" + getDepartmentId()
                + ",name=" + name
                + ",groupName=" + groupName
                + ",modifiedDate=" + modifiedDate
@@ -142,7 +147,7 @@ public abstract class MappedDepartment {
         if (!(obj instanceof MappedDepartment that)) {
             return false;
         }
-        return Objects.equals(departmentId, that.departmentId);
+        return Objects.equals(getId_(), that.getId_());
     }
 
     /**
@@ -153,27 +158,18 @@ public abstract class MappedDepartment {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(departmentId);
+        return Objects.hash(getId_());
     }
 
     // ---------------------------------------------------------------------------------------------------- departmentId
 
     /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_DEPARTMENT_ID} column.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
+     * @return current value of the identifier.
      */
-    public Short getDepartmentId() {
-        return departmentId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute with the specified value.
-     *
-     * @param departmentId new value for {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
-     */
-    protected void setDepartmentId(final Short departmentId) {
-        this.departmentId = departmentId;
+    public Long getDepartmentId() {
+        return getId_();
     }
 
     // ------------------------------------------------------------------------------------------------------------ name
@@ -235,18 +231,6 @@ public abstract class MappedDepartment {
     public void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_DEPARTMENT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    private Short departmentId;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)

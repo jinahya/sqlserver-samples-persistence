@@ -26,6 +26,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -42,7 +43,7 @@ public abstract class MappedSalesPersonQuotaHistory {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -79,6 +80,13 @@ public abstract class MappedSalesPersonQuotaHistory {
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_QUOTA = "SalesQuota";
+
+    /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_SALES_QUOTA} column, as the
+     * {@code CK_SalesPersonQuotaHistory_SalesQuota} check constraint ({@code [SalesQuota]>(0.00)}) requires. The value
+     * is {@value}.
+     */
+    public static final String COLUMN_MIN_SALES_QUOTA_EXCLUSIVE = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value is {@value}.
@@ -284,6 +292,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     private LocalDateTime quotaDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesPersonQuotaHistory_SalesQuota: ([SalesQuota]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_QUOTA,

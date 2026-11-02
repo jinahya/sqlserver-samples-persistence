@@ -47,7 +47,7 @@ public abstract class MappedEmployeeView {
     /**
      * The name of the schema of the view to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "HumanResources";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the view to which this class maps. The value is {@value}.

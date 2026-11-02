@@ -32,6 +32,11 @@
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.dbo.EventInstanceStringAttributeConverter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production.MappedProduct$ProductClassConverter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production.MappedProduct$ProductLineConverter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production.MappedProduct$ProductStyleConverter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter</class>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.common.HeirarchyidAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.AdditionalContactInfoView</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.Address</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.adventureworks.person.AddressType</class>

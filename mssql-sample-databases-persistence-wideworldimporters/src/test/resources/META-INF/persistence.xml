@@ -29,6 +29,7 @@
   <persistence-unit name="wideworldimporters-it" transaction-type="RESOURCE_LOCAL">
     <description>Persistence Unit for WideWorldImporters on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>
+    <class>com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.mapped.UuidStringAttributeConverter</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.sales.BuyingGroup</class>
     <class>com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.application.City</class>

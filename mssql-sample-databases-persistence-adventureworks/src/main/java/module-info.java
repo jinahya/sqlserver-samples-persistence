@@ -29,6 +29,8 @@
  */
 module com.github.jinahya.mssql.sample.databases.persistence.adventureworks {
 
+    // HumanResources.Employee.OrganizationNode; MappedEmployee returns a Heirarchyid
+    requires transitive com.github.jinahya.mssql.sample.databases.persistence.common;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
     requires java.xml;

@@ -79,7 +79,8 @@ public class ProductInventory extends MappedProductInventory {
      */
     public void setLocation(final Location location) {
         this.location = location;
-        setLocationId(location == null ? null : location.getLocationId());
+        setLocationId(location == null || location.getLocationId() == null
+                      ? null : location.getLocationId().intValue());
     }
 
     // --------------------------------------------------------------------------------------------------------- product

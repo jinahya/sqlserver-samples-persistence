@@ -27,6 +27,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -50,7 +51,7 @@ public abstract class MappedSpecialDeal {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -320,6 +321,45 @@ public abstract class MappedSpecialDeal {
     @Override
     public final int hashCode() {
         return Objects.hash(specialDealId);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether exactly one of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT},
+     * {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENTAGE} and {@value #ATTRIBUTE_NAME_UNIT_PRICE} attributes is not
+     * {@code null}, as the table's {@code CK_Sales_SpecialDeals_Exactly_One_NOT_NULL_Pricing_Option_Is_Required}
+     * constraint requires.
+     * {@snippet lang = "sql":
+     * (((case when [DiscountAmount] IS NULL then (0) else (1) end+case when [DiscountPercentage] IS NULL then (0) else (1) end)+case when [UnitPrice] IS NULL then (0) else (1) end)=(1))
+     *}
+     *
+     * @return {@code true} if exactly one of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT},
+     *         {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENTAGE} and {@value #ATTRIBUTE_NAME_UNIT_PRICE} attributes is not
+     *         {@code null}; {@code false} otherwise.
+     */
+    @AssertTrue(message = "exactly one of discountAmount, discountPercentage and unitPrice must not be null")
+    protected boolean isPricingOptionValid() {
+        return (discountAmount == null ? 0 : 1)
+               + (discountPercentage == null ? 0 : 1)
+               + (unitPrice == null ? 0 : 1)
+               == 1;
+    }
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute is {@code null}, or the
+     * {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute is not {@code null}, as the table's
+     * {@code CK_Sales_SpecialDeals_Unit_Price_Deal_Requires_Special_StockItem} constraint requires.
+     * {@snippet lang = "sql":
+     * ([StockItemID] IS NOT NULL AND [UnitPrice] IS NOT NULL OR [UnitPrice] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute is not {@code null}; {@code false} otherwise.
+     */
+    @AssertTrue(message = "unitPrice must be null unless stockItemId is not null")
+    protected boolean isUnitPriceValid() {
+        return unitPrice == null || stockItemId != null;
     }
 
     // --------------------------------------------------------------------------------------------------- specialDealId

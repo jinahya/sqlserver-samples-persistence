@@ -28,6 +28,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -48,7 +49,7 @@ public abstract class MappedSalesTerritory {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -127,6 +128,12 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_SALES_YTD = "SalesYTD";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the {@code CK_SalesTerritory_SalesYTD} check
+     * constraint ({@code [SalesYTD]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SALES_YTD = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
@@ -137,6 +144,13 @@ public abstract class MappedSalesTerritory {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_LAST_YEAR = "SalesLastYear";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_SALES_LAST_YEAR} column, as the
+     * {@code CK_SalesTerritory_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)}) requires. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_MIN_SALES_LAST_YEAR = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The value is {@value}.
@@ -151,6 +165,12 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_COST_YTD = "CostYTD";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_COST_YTD} column, as the {@code CK_SalesTerritory_CostYTD} check
+     * constraint ({@code [CostYTD]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_COST_YTD = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_YTD} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COST_YTD = "costYtd";
@@ -161,6 +181,13 @@ public abstract class MappedSalesTerritory {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COST_LAST_YEAR = "CostLastYear";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_COST_LAST_YEAR} column, as the
+     * {@code CK_SalesTerritory_CostLastYear} check constraint ({@code [CostLastYear]>=(0.00)}) requires. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_MIN_COST_LAST_YEAR = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_LAST_YEAR} column. The value is {@value}.
@@ -499,6 +526,8 @@ public abstract class MappedSalesTerritory {
     private String group;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesTerritory_SalesYTD: ([SalesYTD]>=(0.00))
+    @DecimalMin(COLUMN_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_YTD,
@@ -509,6 +538,8 @@ public abstract class MappedSalesTerritory {
     private BigDecimal salesYtd;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesTerritory_SalesLastYear: ([SalesLastYear]>=(0.00))
+    @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_LAST_YEAR,
@@ -519,6 +550,8 @@ public abstract class MappedSalesTerritory {
     private BigDecimal salesLastYear;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesTerritory_CostYTD: ([CostYTD]>=(0.00))
+    @DecimalMin(COLUMN_MIN_COST_YTD)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COST_YTD,
@@ -529,6 +562,8 @@ public abstract class MappedSalesTerritory {
     private BigDecimal costYtd;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesTerritory_CostLastYear: ([CostLastYear]>=(0.00))
+    @DecimalMin(COLUMN_MIN_COST_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COST_LAST_YEAR,

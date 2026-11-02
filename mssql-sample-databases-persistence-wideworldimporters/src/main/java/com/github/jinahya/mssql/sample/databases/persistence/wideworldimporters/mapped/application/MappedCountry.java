@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,6 +35,7 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Application.Countries} table.
@@ -48,7 +52,7 @@ public abstract class MappedCountry {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Application";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -283,7 +287,7 @@ public abstract class MappedCountry {
                + ",continent=" + continent
                + ",region=" + region
                + ",subregion=" + subregion
-               + ",border=" + (this.border == null ? null : this.border.length + " bytes")
+               + ",border=" + Optional.ofNullable(border).map(b -> b.getNumPoints() + " points").orElse(null)
                + ",lastEditedBy=" + lastEditedBy
                + ",validFrom=" + validFrom
                + ",validTo=" + validTo
@@ -527,7 +531,7 @@ public abstract class MappedCountry {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BORDER} attribute.
      */
-    public byte[] getBorder() {
+    public Geography getBorder() {
         return border;
     }
 
@@ -536,7 +540,7 @@ public abstract class MappedCountry {
      *
      * @param border new value for {@value #ATTRIBUTE_NAME_BORDER} attribute.
      */
-    public void setBorder(final byte[] border) {
+    public void setBorder(final Geography border) {
         this.border = border;
     }
 
@@ -719,13 +723,14 @@ public abstract class MappedCountry {
     private String subregion;
 
     // -----------------------------------------------------------------------------------------------------------------
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BORDER,
             nullable = true,
             insertable = true,
             updatable = true
     )
-    private byte[] border;
+    private Geography border;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation

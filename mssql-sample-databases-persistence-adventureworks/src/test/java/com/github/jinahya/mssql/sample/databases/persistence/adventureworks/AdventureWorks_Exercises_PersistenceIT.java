@@ -149,7 +149,7 @@ class AdventureWorks_Exercises_PersistenceIT {
                             FROM HumanResourcesEmployeeDepartmentHistory h
                                      JOIN h.department d
                             WHERE h.endDate IS NULL
-                            GROUP BY d.departmentId, d.name, d.groupName
+                            GROUP BY d.id_, d.name, d.groupName
                             ORDER BY COUNT(h) DESC, d.name""",
                     Object[].class
             ).getResultList()));
@@ -165,7 +165,7 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var employees = builder.count(h);
                 query.multiselect(d.get(Department_.name), d.get(Department_.groupName), employees);
                 query.where(builder.isNull(h.get(EmployeeDepartmentHistory_.endDate)));
-                query.groupBy(d.get(Department_.departmentId), d.get(Department_.name), d.get(Department_.groupName));
+                query.groupBy(d.get(Department_.id_), d.get(Department_.name), d.get(Department_.groupName));
                 query.orderBy(builder.desc(employees), builder.asc(d.get(Department_.name)));
                 return entityManager.createQuery(query).getResultList();
             }));
@@ -432,11 +432,11 @@ class AdventureWorks_Exercises_PersistenceIT {
                             SELECT v.yearlyIncome, COUNT(v)
                             FROM SalesPersonDemographicsView v
                                      JOIN PersonPerson p ON p.businessEntityId = v.businessEntityId
-                            WHERE p.personType = 'IN'
+                            WHERE p.personType = :personType
                             GROUP BY v.yearlyIncome
                             ORDER BY v.yearlyIncome""",
                     Object[].class
-            ).getResultList()));
+            ).setParameter("personType", Person.PersonType.IN).getResultList()));
         }
 
         @Test
@@ -451,7 +451,7 @@ class AdventureWorks_Exercises_PersistenceIT {
                 query.multiselect(yearlyIncome, builder.count(v));
                 query.where(builder.equal(p.get(Person_.businessEntityId),
                                           v.get(PersonDemographicsView_.businessEntityId)),
-                            builder.equal(p.get(Person_.personType), "IN"));
+                            builder.equal(p.get(Person_.personType), Person.PersonType.IN));
                 query.groupBy(yearlyIncome);
                 query.orderBy(builder.asc(yearlyIncome));
                 return entityManager.createQuery(query).getResultList();

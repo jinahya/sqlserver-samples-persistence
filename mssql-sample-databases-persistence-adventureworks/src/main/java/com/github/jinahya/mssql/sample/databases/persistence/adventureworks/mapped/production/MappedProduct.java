@@ -21,14 +21,20 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  */
 
 import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.UuidStringAttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.Converter;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -51,7 +57,7 @@ public abstract class MappedProduct {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -154,6 +160,18 @@ public abstract class MappedProduct {
     public static final String COLUMN_NAME_SAFETY_STOCK_LEVEL = "SafetyStockLevel";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_SAFETY_STOCK_LEVEL} column, as the
+     * {@code CK_Product_SafetyStockLevel} check constraint ({@code [SafetyStockLevel]>(0)}) requires. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MIN_SAFETY_STOCK_LEVEL = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_SAFETY_STOCK_LEVEL} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_SAFETY_STOCK_LEVEL = Short.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SAFETY_STOCK_LEVEL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SAFETY_STOCK_LEVEL = "safetyStockLevel";
@@ -164,6 +182,17 @@ public abstract class MappedProduct {
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_REORDER_POINT = "ReorderPoint";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_REORDER_POINT} column, as the {@code CK_Product_ReorderPoint}
+     * check constraint ({@code [ReorderPoint]>(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_REORDER_POINT = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_REORDER_POINT} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_REORDER_POINT = Short.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REORDER_POINT} column. The value is {@value}.
@@ -178,6 +207,12 @@ public abstract class MappedProduct {
     public static final String COLUMN_NAME_STANDARD_COST = "StandardCost";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_STANDARD_COST} column, as the {@code CK_Product_StandardCost}
+     * check constraint ({@code [StandardCost]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_STANDARD_COST = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
@@ -188,6 +223,12 @@ public abstract class MappedProduct {
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LIST_PRICE = "ListPrice";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_LIST_PRICE} column, as the {@code CK_Product_ListPrice} check
+     * constraint ({@code [ListPrice]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_LIST_PRICE = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value is {@value}.
@@ -265,6 +306,12 @@ public abstract class MappedProduct {
     public static final int COLUMN_SCALE_WEIGHT = 2;
 
     /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_WEIGHT} column, as the {@code CK_Product_Weight} check
+     * constraint ({@code [Weight]>(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_WEIGHT_EXCLUSIVE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WEIGHT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_WEIGHT = "weight";
@@ -275,6 +322,18 @@ public abstract class MappedProduct {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_TO_MANUFACTURE = "DaysToManufacture";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_DAYS_TO_MANUFACTURE} column, as the
+     * {@code CK_Product_DaysToManufacture} check constraint ({@code [DaysToManufacture]>=(0)}) requires. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MIN_DAYS_TO_MANUFACTURE = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_DAYS_TO_MANUFACTURE} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_DAYS_TO_MANUFACTURE = Integer.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_TO_MANUFACTURE} column. The value is
@@ -295,9 +354,104 @@ public abstract class MappedProduct {
     public static final int COLUMN_LENGTH_PRODUCT_LINE = 2;
 
     /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_LINE} column, for a road product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_LINE_ROAD = "R";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_LINE} column, for a mountain product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_LINE_MOUNTAIN = "M";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_LINE} column, for a touring product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_LINE_TOURING = "T";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_LINE} column, for a standard product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_LINE_STANDARD = "S";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_LINE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_LINE = "productLine";
+
+    /**
+     * An enum for the {@value #ATTRIBUTE_NAME_PRODUCT_LINE} attribute, of the values the
+     * {@code CK_Product_ProductLine} constraint allows.
+     * {@snippet lang = "sql":
+     * (upper([ProductLine])='R' OR upper([ProductLine])='M' OR upper([ProductLine])='T' OR upper([ProductLine])='S' OR [ProductLine] IS NULL)
+     *} The constants are named after the column values, which are stored in upper case.
+     */
+    public enum ProductLine {
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_LINE_ROAD} value, for a road product.
+         */
+        R,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_LINE_MOUNTAIN} value, for a mountain
+         * product.
+         */
+        M,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_LINE_TOURING} value, for a touring product.
+         */
+        T,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_LINE_STANDARD} value, for a standard
+         * product.
+         */
+        S
+    }
+
+    /**
+     * An attribute converter between the {@link ProductLine} constants and the values of the
+     * {@value #COLUMN_NAME_PRODUCT_LINE} column. The column is an {@code nchar(2)} which holds a single letter, padded
+     * with a space ({@code 'R '}), so {@link jakarta.persistence.Enumerated @Enumerated} cannot read it; this
+     * converter strips the padding off a column value, and writes a constant's {@link Enum#name() name}, which the
+     * database pads.
+     */
+    @Converter(autoApply = false)
+    public static class ProductLineConverter
+            implements AttributeConverter<ProductLine, String> {
+
+        /**
+         * Creates a new instance.
+         */
+        public ProductLineConverter() {
+            super();
+        }
+
+        @Override
+        public String convertToDatabaseColumn(final ProductLine attribute) {
+            if (attribute == null) {
+                return null;
+            }
+            return attribute.name();
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @param dbData {@inheritDoc}
+         * @return {@inheritDoc}
+         * @throws IllegalArgumentException if {@code dbData}, stripped, is the name of no {@link ProductLine}
+         *                                  constant.
+         */
+        @Override
+        public ProductLine convertToEntityAttribute(final String dbData) {
+            if (dbData == null) {
+                return null;
+            }
+            return ProductLine.valueOf(dbData.strip());
+        }
+    }
 
     // ----------------------------------------------------------------------------------------------------------- Class
 
@@ -312,9 +466,93 @@ public abstract class MappedProduct {
     public static final int COLUMN_LENGTH_PRODUCT_CLASS = 2;
 
     /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_CLASS} column, for a high class product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_CLASS_HIGH = "H";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_CLASS} column, for a medium class product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_CLASS_MEDIUM = "M";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PRODUCT_CLASS} column, for a low class product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PRODUCT_CLASS_LOW = "L";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_CLASS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_CLASS = "productClass";
+
+    /**
+     * An enum for the {@value #ATTRIBUTE_NAME_PRODUCT_CLASS} attribute, of the values the
+     * {@code CK_Product_Class} constraint allows.
+     * {@snippet lang = "sql":
+     * (upper([Class])='H' OR upper([Class])='M' OR upper([Class])='L' OR [Class] IS NULL)
+     *} The constants are named after the column values, which are stored in upper case.
+     */
+    public enum ProductClass {
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_CLASS_HIGH} value, for a high class product.
+         */
+        H,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_CLASS_MEDIUM} value, for a medium class
+         * product.
+         */
+        M,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_CLASS_LOW} value, for a low class product.
+         */
+        L
+    }
+
+    /**
+     * An attribute converter between the {@link ProductClass} constants and the values of the
+     * {@value #COLUMN_NAME_PRODUCT_CLASS} column. The column is an {@code nchar(2)} which holds a single letter, padded
+     * with a space ({@code 'H '}), so {@link jakarta.persistence.Enumerated @Enumerated} cannot read it; this
+     * converter strips the padding off a column value, and writes a constant's {@link Enum#name() name}, which the
+     * database pads.
+     */
+    @Converter(autoApply = false)
+    public static class ProductClassConverter
+            implements AttributeConverter<ProductClass, String> {
+
+        /**
+         * Creates a new instance.
+         */
+        public ProductClassConverter() {
+            super();
+        }
+
+        @Override
+        public String convertToDatabaseColumn(final ProductClass attribute) {
+            if (attribute == null) {
+                return null;
+            }
+            return attribute.name();
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @param dbData {@inheritDoc}
+         * @return {@inheritDoc}
+         * @throws IllegalArgumentException if {@code dbData}, stripped, is the name of no {@link ProductClass}
+         *                                  constant.
+         */
+        @Override
+        public ProductClass convertToEntityAttribute(final String dbData) {
+            if (dbData == null) {
+                return null;
+            }
+            return ProductClass.valueOf(dbData.strip());
+        }
+    }
 
     // ----------------------------------------------------------------------------------------------------------- Style
 
@@ -329,9 +567,92 @@ public abstract class MappedProduct {
     public static final int COLUMN_LENGTH_STYLE = 2;
 
     /**
+     * A value of the {@value #COLUMN_NAME_STYLE} column, for a women's product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_STYLE_WOMENS = "W";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_STYLE} column, for a men's product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_STYLE_MENS = "M";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_STYLE} column, for a universal product. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_STYLE_UNIVERSAL = "U";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STYLE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STYLE = "style";
+
+    /**
+     * An enum for the {@value #ATTRIBUTE_NAME_STYLE} attribute, of the values the {@code CK_Product_Style} constraint
+     * allows.
+     * {@snippet lang = "sql":
+     * (upper([Style])='U' OR upper([Style])='M' OR upper([Style])='W' OR [Style] IS NULL)
+     *} The constants are named after the column values, which are stored in upper case.
+     */
+    public enum ProductStyle {
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_STYLE_WOMENS} value, for a women's product.
+         */
+        W,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_STYLE_MENS} value, for a men's product.
+         */
+        M,
+
+        /**
+         * A constant for the {@value MappedProduct#COLUMN_VALUE_STYLE_UNIVERSAL} value, for a universal product.
+         */
+        U
+    }
+
+    /**
+     * An attribute converter between the {@link ProductStyle} constants and the values of the
+     * {@value #COLUMN_NAME_STYLE} column. The column is an {@code nchar(2)} which holds a single letter, padded with a
+     * space ({@code 'U '}), so {@link jakarta.persistence.Enumerated @Enumerated} cannot read it; this converter
+     * strips the padding off a column value, and writes a constant's {@link Enum#name() name}, which the database
+     * pads.
+     */
+    @Converter(autoApply = false)
+    public static class ProductStyleConverter
+            implements AttributeConverter<ProductStyle, String> {
+
+        /**
+         * Creates a new instance.
+         */
+        public ProductStyleConverter() {
+            super();
+        }
+
+        @Override
+        public String convertToDatabaseColumn(final ProductStyle attribute) {
+            if (attribute == null) {
+                return null;
+            }
+            return attribute.name();
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @param dbData {@inheritDoc}
+         * @return {@inheritDoc}
+         * @throws IllegalArgumentException if {@code dbData}, stripped, is the name of no {@link ProductStyle}
+         *                                  constant.
+         */
+        @Override
+        public ProductStyle convertToEntityAttribute(final String dbData) {
+            if (dbData == null) {
+                return null;
+            }
+            return ProductStyle.valueOf(dbData.strip());
+        }
+    }
 
     // -------------------------------------------------------------------------------------------- ProductSubcategoryID
 
@@ -489,6 +810,29 @@ public abstract class MappedProduct {
         return Objects.hash(productId);
     }
 
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_SELL_END_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_SELL_START_DATE} attribute, as the table's {@code CK_Product_SellEndDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([SellEndDate]>=[SellStartDate] OR [SellEndDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SELL_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_SELL_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_SELL_END_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_SELL_START_DATE} attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "sellEndDate must be null or not before sellStartDate")
+    protected boolean isSellEndDateValid() {
+        if (sellEndDate == null || sellStartDate == null) {
+            return true;
+        }
+        return !sellEndDate.isBefore(sellStartDate);
+    }
+
     // ------------------------------------------------------------------------------------------------------- productId
 
     /**
@@ -616,7 +960,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SAFETY_STOCK_LEVEL} attribute.
      */
-    public Short getSafetyStockLevel() {
+    public Integer getSafetyStockLevel() {
         return safetyStockLevel;
     }
 
@@ -625,7 +969,7 @@ public abstract class MappedProduct {
      *
      * @param safetyStockLevel new value for {@value #ATTRIBUTE_NAME_SAFETY_STOCK_LEVEL} attribute.
      */
-    public void setSafetyStockLevel(final Short safetyStockLevel) {
+    public void setSafetyStockLevel(final Integer safetyStockLevel) {
         this.safetyStockLevel = safetyStockLevel;
     }
 
@@ -636,7 +980,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute.
      */
-    public Short getReorderPoint() {
+    public Integer getReorderPoint() {
         return reorderPoint;
     }
 
@@ -645,7 +989,7 @@ public abstract class MappedProduct {
      *
      * @param reorderPoint new value for {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute.
      */
-    public void setReorderPoint(final Short reorderPoint) {
+    public void setReorderPoint(final Integer reorderPoint) {
         this.reorderPoint = reorderPoint;
     }
 
@@ -800,7 +1144,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_LINE} attribute.
      */
-    public String getProductLine() {
+    public ProductLine getProductLine() {
         return productLine;
     }
 
@@ -809,7 +1153,7 @@ public abstract class MappedProduct {
      *
      * @param productLine new value for {@value #ATTRIBUTE_NAME_PRODUCT_LINE} attribute.
      */
-    public void setProductLine(final String productLine) {
+    public void setProductLine(final ProductLine productLine) {
         this.productLine = productLine;
     }
 
@@ -820,7 +1164,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_CLASS} attribute.
      */
-    public String getProductClass() {
+    public ProductClass getProductClass() {
         return productClass;
     }
 
@@ -829,7 +1173,7 @@ public abstract class MappedProduct {
      *
      * @param productClass new value for {@value #ATTRIBUTE_NAME_PRODUCT_CLASS} attribute.
      */
-    public void setProductClass(final String productClass) {
+    public void setProductClass(final ProductClass productClass) {
         this.productClass = productClass;
     }
 
@@ -840,7 +1184,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STYLE} attribute.
      */
-    public String getStyle() {
+    public ProductStyle getStyle() {
         return style;
     }
 
@@ -849,7 +1193,7 @@ public abstract class MappedProduct {
      *
      * @param style new value for {@value #ATTRIBUTE_NAME_STYLE} attribute.
      */
-    public void setStyle(final String style) {
+    public void setStyle(final ProductStyle style) {
         this.style = style;
     }
 
@@ -1065,6 +1409,9 @@ public abstract class MappedProduct {
     private String color;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Product_SafetyStockLevel: ([SafetyStockLevel]>(0)); smallint's upper bound
+    @Max(COLUMN_MAX_SAFETY_STOCK_LEVEL)
+    @Min(COLUMN_MIN_SAFETY_STOCK_LEVEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SAFETY_STOCK_LEVEL,
@@ -1072,9 +1419,12 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
-    private Short safetyStockLevel;
+    private Integer safetyStockLevel;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Product_ReorderPoint: ([ReorderPoint]>(0)); smallint's upper bound
+    @Max(COLUMN_MAX_REORDER_POINT)
+    @Min(COLUMN_MIN_REORDER_POINT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REORDER_POINT,
@@ -1082,9 +1432,11 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
-    private Short reorderPoint;
+    private Integer reorderPoint;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Product_StandardCost: ([StandardCost]>=(0.00))
+    @DecimalMin(COLUMN_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_COST,
@@ -1095,6 +1447,8 @@ public abstract class MappedProduct {
     private BigDecimal standardCost;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Product_ListPrice: ([ListPrice]>=(0.00))
+    @DecimalMin(COLUMN_MIN_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LIST_PRICE,
@@ -1140,6 +1494,8 @@ public abstract class MappedProduct {
     private String weightUnitMeasureCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Product_Weight: ([Weight]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_WEIGHT_EXCLUSIVE, inclusive = false)
     @Digits(integer = COLUMN_PRECISION_WEIGHT - COLUMN_SCALE_WEIGHT, fraction = COLUMN_SCALE_WEIGHT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WEIGHT,
@@ -1152,6 +1508,9 @@ public abstract class MappedProduct {
     private BigDecimal weight;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Product_DaysToManufacture: ([DaysToManufacture]>=(0)); int's upper bound
+    @Max(COLUMN_MAX_DAYS_TO_MANUFACTURE)
+    @Min(COLUMN_MIN_DAYS_TO_MANUFACTURE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DAYS_TO_MANUFACTURE,
@@ -1162,7 +1521,7 @@ public abstract class MappedProduct {
     private Integer daysToManufacture;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_PRODUCT_LINE)
+    @Convert(converter = ProductLineConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_LINE,
             nullable = true,
@@ -1170,10 +1529,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_PRODUCT_LINE
     )
-    private String productLine;
+    private ProductLine productLine;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_PRODUCT_CLASS)
+    @Convert(converter = ProductClassConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_CLASS,
             nullable = true,
@@ -1181,10 +1540,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_PRODUCT_CLASS
     )
-    private String productClass;
+    private ProductClass productClass;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_STYLE)
+    @Convert(converter = ProductStyleConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STYLE,
             nullable = true,
@@ -1192,7 +1551,7 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_STYLE
     )
-    private String style;
+    private ProductStyle style;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation

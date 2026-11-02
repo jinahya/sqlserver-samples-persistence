@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -55,7 +58,7 @@ public abstract class MappedCustomer {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -563,7 +566,7 @@ public abstract class MappedCustomer {
                + ",deliveryAddressLine1=" + deliveryAddressLine1
                + ",deliveryAddressLine2=" + deliveryAddressLine2
                + ",deliveryPostalCode=" + deliveryPostalCode
-               + ",deliveryLocation=" + (this.deliveryLocation == null ? null : this.deliveryLocation.length + " bytes")
+               + ",deliveryLocation=" + deliveryLocation
                + ",postalAddressLine1=" + postalAddressLine1
                + ",postalAddressLine2=" + postalAddressLine2
                + ",postalPostalCode=" + postalPostalCode
@@ -1106,7 +1109,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
      */
-    public byte[] getDeliveryLocation() {
+    public Geography getDeliveryLocation() {
         return deliveryLocation;
     }
 
@@ -1115,7 +1118,7 @@ public abstract class MappedCustomer {
      *
      * @param deliveryLocation new value for {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
      */
-    public void setDeliveryLocation(final byte[] deliveryLocation) {
+    public void setDeliveryLocation(final Geography deliveryLocation) {
         this.deliveryLocation = deliveryLocation;
     }
 
@@ -1515,13 +1518,14 @@ public abstract class MappedCustomer {
     private String deliveryPostalCode;
 
     // -----------------------------------------------------------------------------------------------------------------
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
             nullable = true,
             insertable = true,
             updatable = true
     )
-    private byte[] deliveryLocation;
+    private Geography deliveryLocation;
 
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)

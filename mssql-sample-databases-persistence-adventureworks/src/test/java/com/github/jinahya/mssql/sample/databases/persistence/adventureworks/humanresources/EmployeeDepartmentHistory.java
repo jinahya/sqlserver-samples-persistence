@@ -87,7 +87,8 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
      */
     public void setDepartment(final Department department) {
         this.department = department;
-        setDepartmentId(department == null ? null : department.getDepartmentId());
+        setDepartmentId(department == null || department.getDepartmentId() == null
+                        ? null : department.getDepartmentId().intValue());
     }
 
     // -------------------------------------------------------------------------------------------------- businessEntity
@@ -132,7 +133,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
      */
     public void setShift(final Shift shift) {
         this.shift = shift;
-        setShiftId(shift == null ? null : shift.getShiftId());
+        setShiftId(shift == null || shift.getShiftId() == null ? null : shift.getShiftId().intValue());
     }
 
     // -----------------------------------------------------------------------------------------------------------------

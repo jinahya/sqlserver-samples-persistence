@@ -18,18 +18,12 @@
   <dependencies>
 
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mssql-sample-databases-persistence-common</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.microsoft.sqlserver</groupId>
       <artifactId>mssql-jdbc</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.persistence</groupId>
-      <artifactId>jakarta.persistence-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.validation</groupId>
-      <artifactId>jakarta.validation-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>

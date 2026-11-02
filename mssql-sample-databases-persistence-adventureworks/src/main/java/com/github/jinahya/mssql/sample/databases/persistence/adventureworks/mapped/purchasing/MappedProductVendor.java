@@ -24,6 +24,9 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -43,7 +46,7 @@ public abstract class MappedProductVendor {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Purchasing";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -82,6 +85,18 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_AVERAGE_LEAD_TIME = "AverageLeadTime";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column, as the
+     * {@code CK_ProductVendor_AverageLeadTime} check constraint ({@code [AverageLeadTime]>=(1)}) requires. The value is
+     * {@value}.
+     */
+    public static final int COLUMN_MIN_AVERAGE_LEAD_TIME = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_AVERAGE_LEAD_TIME = Integer.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVERAGE_LEAD_TIME = "averageLeadTime";
@@ -94,6 +109,13 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_STANDARD_PRICE = "StandardPrice";
 
     /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_STANDARD_PRICE} column, as the
+     * {@code CK_ProductVendor_StandardPrice} check constraint ({@code [StandardPrice]>(0.00)}) requires. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_MIN_STANDARD_PRICE_EXCLUSIVE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STANDARD_PRICE = "standardPrice";
@@ -104,6 +126,13 @@ public abstract class MappedProductVendor {
      * The name of the {@code money} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_RECEIPT_COST = "LastReceiptCost";
+
+    /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_LAST_RECEIPT_COST} column, as the
+     * {@code CK_ProductVendor_LastReceiptCost} check constraint ({@code [LastReceiptCost]>(0.00)}) requires. The value
+     * is {@value}.
+     */
+    public static final String COLUMN_MIN_LAST_RECEIPT_COST_EXCLUSIVE = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_RECEIPT_COST} column. The value is {@value}.
@@ -130,6 +159,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_MIN_ORDER_QTY = "MinOrderQty";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_MIN_ORDER_QTY} column, as the {@code CK_ProductVendor_MinOrderQty}
+     * check constraint ({@code [MinOrderQty]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_MIN_ORDER_QTY = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_MIN_ORDER_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_MIN_ORDER_QTY = Integer.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_ORDER_QTY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIN_ORDER_QTY = "minOrderQty";
@@ -142,6 +182,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_MAX_ORDER_QTY = "MaxOrderQty";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_MAX_ORDER_QTY} column, as the {@code CK_ProductVendor_MaxOrderQty}
+     * check constraint ({@code [MaxOrderQty]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_MAX_ORDER_QTY = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_MAX_ORDER_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_MAX_ORDER_QTY = Integer.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_ORDER_QTY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MAX_ORDER_QTY = "maxOrderQty";
@@ -152,6 +203,17 @@ public abstract class MappedProductVendor {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ON_ORDER_QTY = "OnOrderQty";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_ON_ORDER_QTY} column, as the {@code CK_ProductVendor_OnOrderQty}
+     * check constraint ({@code [OnOrderQty]>=(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_ON_ORDER_QTY = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_ON_ORDER_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_ON_ORDER_QTY = Integer.MAX_VALUE;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ON_ORDER_QTY} column. The value is {@value}.
@@ -490,6 +552,9 @@ public abstract class MappedProductVendor {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductVendor_AverageLeadTime: ([AverageLeadTime]>=(1))
+    @Max(COLUMN_MAX_AVERAGE_LEAD_TIME)
+    @Min(COLUMN_MIN_AVERAGE_LEAD_TIME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVERAGE_LEAD_TIME,
@@ -500,6 +565,8 @@ public abstract class MappedProductVendor {
     private Integer averageLeadTime;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductVendor_StandardPrice: ([StandardPrice]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_STANDARD_PRICE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_PRICE,
@@ -510,6 +577,8 @@ public abstract class MappedProductVendor {
     private BigDecimal standardPrice;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductVendor_LastReceiptCost: ([LastReceiptCost]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_LAST_RECEIPT_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_RECEIPT_COST,
             nullable = true,
@@ -528,6 +597,9 @@ public abstract class MappedProductVendor {
     private LocalDateTime lastReceiptDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductVendor_MinOrderQty: ([MinOrderQty]>=(1))
+    @Max(COLUMN_MAX_MIN_ORDER_QTY)
+    @Min(COLUMN_MIN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MIN_ORDER_QTY,
@@ -538,6 +610,9 @@ public abstract class MappedProductVendor {
     private Integer minOrderQty;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductVendor_MaxOrderQty: ([MaxOrderQty]>=(1))
+    @Max(COLUMN_MAX_MAX_ORDER_QTY)
+    @Min(COLUMN_MIN_MAX_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MAX_ORDER_QTY,
@@ -548,6 +623,9 @@ public abstract class MappedProductVendor {
     private Integer maxOrderQty;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductVendor_OnOrderQty: ([OnOrderQty]>=(0))
+    @Max(COLUMN_MAX_ON_ORDER_QTY)
+    @Min(COLUMN_MIN_ON_ORDER_QTY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_ORDER_QTY,
             nullable = true,

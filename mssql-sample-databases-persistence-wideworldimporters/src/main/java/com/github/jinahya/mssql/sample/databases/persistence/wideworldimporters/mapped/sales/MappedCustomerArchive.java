@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
+import com.github.jinahya.mssql.sample.databases.persistence.common.GeographyAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -47,7 +50,7 @@ public abstract class MappedCustomerArchive {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -555,7 +558,7 @@ public abstract class MappedCustomerArchive {
                + ",deliveryAddressLine1=" + deliveryAddressLine1
                + ",deliveryAddressLine2=" + deliveryAddressLine2
                + ",deliveryPostalCode=" + deliveryPostalCode
-               + ",deliveryLocation=" + (this.deliveryLocation == null ? null : this.deliveryLocation.length + " bytes")
+               + ",deliveryLocation=" + deliveryLocation
                + ",postalAddressLine1=" + postalAddressLine1
                + ",postalAddressLine2=" + postalAddressLine2
                + ",postalPostalCode=" + postalPostalCode
@@ -1054,7 +1057,7 @@ public abstract class MappedCustomerArchive {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
      */
-    public byte[] getDeliveryLocation() {
+    public Geography getDeliveryLocation() {
         return deliveryLocation;
     }
 
@@ -1063,7 +1066,7 @@ public abstract class MappedCustomerArchive {
      *
      * @param deliveryLocation new value for {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
      */
-    protected void setDeliveryLocation(final byte[] deliveryLocation) {
+    protected void setDeliveryLocation(final Geography deliveryLocation) {
         this.deliveryLocation = deliveryLocation;
     }
 
@@ -1472,13 +1475,14 @@ public abstract class MappedCustomerArchive {
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
             nullable = true,
             insertable = false,
             updatable = false
     )
-    private byte[] deliveryLocation;
+    private Geography deliveryLocation;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation

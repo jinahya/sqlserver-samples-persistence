@@ -20,8 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Heirarchyid;
+import com.github.jinahya.mssql.sample.databases.persistence.common.HeirarchyidAttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 
@@ -41,7 +44,7 @@ public abstract class MappedProductDocument {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -99,7 +102,7 @@ public abstract class MappedProductDocument {
     public String toString() {
         return super.toString() + "{"
                + "productId=" + productId
-               + ",documentNode=" + (this.documentNode == null ? null : this.documentNode.length + " bytes")
+               + ",documentNode=" + documentNode
                + ",modifiedDate=" + modifiedDate
                + "}";
     }
@@ -131,7 +134,7 @@ public abstract class MappedProductDocument {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
      */
-    public byte[] getDocumentNode() {
+    public Heirarchyid getDocumentNode() {
         return documentNode;
     }
 
@@ -140,7 +143,7 @@ public abstract class MappedProductDocument {
      *
      * @param documentNode new value for {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
      */
-    protected void setDocumentNode(final byte[] documentNode) {
+    protected void setDocumentNode(final Heirarchyid documentNode) {
         this.documentNode = documentNode;
     }
 
@@ -176,13 +179,14 @@ public abstract class MappedProductDocument {
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
+    @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DOCUMENT_NODE,
             nullable = false,
             insertable = true,
             updatable = true
     )
-    private byte[] documentNode;
+    private Heirarchyid documentNode;
 
     // -----------------------------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,

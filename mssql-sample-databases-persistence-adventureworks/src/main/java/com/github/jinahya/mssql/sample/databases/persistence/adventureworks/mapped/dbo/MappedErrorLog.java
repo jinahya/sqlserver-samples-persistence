@@ -20,6 +20,8 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.map
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.MappedWithIdentityId;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -28,11 +30,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.ErrorLog} table.
  */
-@AttributeOverride(name = _Mapped.ATTRIBUTE_NAME_ID_,
+@AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedErrorLog.COLUMN_NAME_ERROR_LOG_ID,
                                     nullable = false,
                                     insertable = true,
@@ -41,7 +44,7 @@ import java.time.LocalDateTime;
 )
 @MappedSuperclass
 public abstract class MappedErrorLog
-        extends _Mapped {
+        extends MappedWithIdentityId {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
@@ -185,7 +188,7 @@ public abstract class MappedErrorLog
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "id_=" + getId_()
+               + "errorLogId=" + getErrorLogId()
                + ",errorTime=" + errorTime
                + ",userName=" + userName
                + ",errorNumber=" + errorNumber
@@ -195,6 +198,46 @@ public abstract class MappedErrorLog
                + ",errorLine=" + errorLine
                + ",errorMessage=" + errorMessage
                + "}";
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param obj {@inheritDoc}
+     * @return {@inheritDoc}
+     * @implSpec Equality is by the identifier alone.
+     */
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MappedErrorLog that)) {
+            return false;
+        }
+        return Objects.equals(getId_(), that.getId_());
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     */
+    @Override
+    public final int hashCode() {
+        return Objects.hash(getId_());
+    }
+
+    // ------------------------------------------------------------------------------------------------------ errorLogId
+
+    /**
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_ERROR_LOG_ID} column.
+     *
+     * @return current value of the identifier.
+     */
+    public Long getErrorLogId() {
+        return getId_();
     }
 
     // ------------------------------------------------------------------------------------------------------- errorTime

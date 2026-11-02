@@ -20,9 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
 import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.mapped.purchasing.MappedSupplierArchive;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * A plain class which holds a row of the {@code Purchasing.Suppliers_Archive} table, which no entity can map: a history
@@ -67,7 +69,7 @@ public class SupplierArchive extends MappedSupplierArchive {
      * @param deliveryAddressLine1     the value of the {@value #COLUMN_NAME_DELIVERY_ADDRESS_LINE_1} column.
      * @param deliveryAddressLine2     the value of the {@value #COLUMN_NAME_DELIVERY_ADDRESS_LINE_2} column.
      * @param deliveryPostalCode       the value of the {@value #COLUMN_NAME_DELIVERY_POSTAL_CODE} column.
-     * @param deliveryLocation         the value of the {@value #COLUMN_NAME_DELIVERY_LOCATION} column.
+     * @param deliveryLocation         the value of the {@value #COLUMN_NAME_DELIVERY_LOCATION} column, in its binary form.
      * @param postalAddressLine1       the value of the {@value #COLUMN_NAME_POSTAL_ADDRESS_LINE_1} column.
      * @param postalAddressLine2       the value of the {@value #COLUMN_NAME_POSTAL_ADDRESS_LINE_2} column.
      * @param postalPostalCode         the value of the {@value #COLUMN_NAME_POSTAL_POSTAL_CODE} column.
@@ -128,7 +130,7 @@ public class SupplierArchive extends MappedSupplierArchive {
         setDeliveryAddressLine1(deliveryAddressLine1);
         setDeliveryAddressLine2(deliveryAddressLine2);
         setDeliveryPostalCode(deliveryPostalCode);
-        setDeliveryLocation(deliveryLocation);
+        setDeliveryLocation(Optional.ofNullable(deliveryLocation).map(Geography::decode).orElse(null));
         setPostalAddressLine1(postalAddressLine1);
         setPostalAddressLine2(postalAddressLine2);
         setPostalPostalCode(postalPostalCode);

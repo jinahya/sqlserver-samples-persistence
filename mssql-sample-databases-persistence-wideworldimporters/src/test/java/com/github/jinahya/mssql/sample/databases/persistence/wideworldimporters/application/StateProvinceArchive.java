@@ -20,9 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
 import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.mapped.application.MappedStateProvinceArchive;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * A plain class which holds a row of the {@code Application.StateProvinces_Archive} table, which no entity can map: a
@@ -50,7 +52,7 @@ public class StateProvinceArchive extends MappedStateProvinceArchive {
      * @param stateProvinceName        the value of the {@value #COLUMN_NAME_STATE_PROVINCE_NAME} column.
      * @param countryId                the value of the {@value #COLUMN_NAME_COUNTRY_ID} column.
      * @param salesTerritory           the value of the {@value #COLUMN_NAME_SALES_TERRITORY} column.
-     * @param border                   the value of the {@value #COLUMN_NAME_BORDER} column.
+     * @param border                   the value of the {@value #COLUMN_NAME_BORDER} column, in its binary form.
      * @param latestRecordedPopulation the value of the {@value #COLUMN_NAME_LATEST_RECORDED_POPULATION} column.
      * @param lastEditedBy             the value of the {@value #COLUMN_NAME_LAST_EDITED_BY} column.
      * @param validFrom                the value of the {@value #COLUMN_NAME_VALID_FROM} column.
@@ -73,7 +75,7 @@ public class StateProvinceArchive extends MappedStateProvinceArchive {
         setStateProvinceName(stateProvinceName);
         setCountryId(countryId);
         setSalesTerritory(salesTerritory);
-        setBorder(border);
+        setBorder(Optional.ofNullable(border).map(Geography::decode).orElse(null));
         setLatestRecordedPopulation(latestRecordedPopulation);
         setLastEditedBy(lastEditedBy);
         setValidFrom(validFrom);

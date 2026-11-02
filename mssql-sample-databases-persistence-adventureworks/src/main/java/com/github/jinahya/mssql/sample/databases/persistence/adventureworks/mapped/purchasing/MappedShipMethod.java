@@ -28,6 +28,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -45,7 +46,7 @@ public abstract class MappedShipMethod {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Purchasing";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -89,6 +90,12 @@ public abstract class MappedShipMethod {
     public static final String COLUMN_NAME_SHIP_BASE = "ShipBase";
 
     /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_SHIP_BASE} column, as the {@code CK_ShipMethod_ShipBase}
+     * check constraint ({@code [ShipBase]>(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SHIP_BASE_EXCLUSIVE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_BASE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIP_BASE = "shipBase";
@@ -99,6 +106,12 @@ public abstract class MappedShipMethod {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SHIP_RATE = "ShipRate";
+
+    /**
+     * The exclusive minimum value of the {@value #COLUMN_NAME_SHIP_RATE} column, as the {@code CK_ShipMethod_ShipRate}
+     * check constraint ({@code [ShipRate]>(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SHIP_RATE_EXCLUSIVE = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_RATE} column. The value is {@value}.
@@ -326,6 +339,8 @@ public abstract class MappedShipMethod {
     private String name;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ShipMethod_ShipBase: ([ShipBase]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_SHIP_BASE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHIP_BASE,
@@ -336,6 +351,8 @@ public abstract class MappedShipMethod {
     private BigDecimal shipBase;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ShipMethod_ShipRate: ([ShipRate]>(0.00))
+    @DecimalMin(value = COLUMN_MIN_SHIP_RATE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHIP_RATE,

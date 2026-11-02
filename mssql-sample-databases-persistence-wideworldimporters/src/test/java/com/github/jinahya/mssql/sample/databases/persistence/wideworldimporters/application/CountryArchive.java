@@ -20,9 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
 import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.mapped.application.MappedCountryArchive;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * A plain class which holds a row of the {@code Application.Countries_Archive} table, which no entity can map: a
@@ -55,7 +57,7 @@ public class CountryArchive extends MappedCountryArchive {
      * @param continent                the value of the {@value #COLUMN_NAME_CONTINENT} column.
      * @param region                   the value of the {@value #COLUMN_NAME_REGION} column.
      * @param subregion                the value of the {@value #COLUMN_NAME_SUBREGION} column.
-     * @param border                   the value of the {@value #COLUMN_NAME_BORDER} column.
+     * @param border                   the value of the {@value #COLUMN_NAME_BORDER} column, in its binary form.
      * @param lastEditedBy             the value of the {@value #COLUMN_NAME_LAST_EDITED_BY} column.
      * @param validFrom                the value of the {@value #COLUMN_NAME_VALID_FROM} column.
      * @param validTo                  the value of the {@value #COLUMN_NAME_VALID_TO} column.
@@ -86,7 +88,7 @@ public class CountryArchive extends MappedCountryArchive {
         setContinent(continent);
         setRegion(region);
         setSubregion(subregion);
-        setBorder(border);
+        setBorder(Optional.ofNullable(border).map(Geography::decode).orElse(null));
         setLastEditedBy(lastEditedBy);
         setValidFrom(validFrom);
         setValidTo(validTo);

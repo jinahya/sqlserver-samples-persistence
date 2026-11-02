@@ -20,9 +20,11 @@ package com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters
  * #L%
  */
 
+import com.github.jinahya.mssql.sample.databases.persistence.common.Geography;
 import com.github.jinahya.mssql.sample.databases.persistence.wideworldimporters.mapped.application.MappedCityArchive;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * A plain class which holds a row of the {@code Application.Cities_Archive} table, which no entity can map: a history
@@ -48,7 +50,7 @@ public class CityArchive extends MappedCityArchive {
      * @param cityId                   the value of the {@value #COLUMN_NAME_CITY_ID} column.
      * @param cityName                 the value of the {@value #COLUMN_NAME_CITY_NAME} column.
      * @param stateProvinceId          the value of the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column.
-     * @param location                 the value of the {@value #COLUMN_NAME_LOCATION} column.
+     * @param location                 the value of the {@value #COLUMN_NAME_LOCATION} column, in its binary form.
      * @param latestRecordedPopulation the value of the {@value #COLUMN_NAME_LATEST_RECORDED_POPULATION} column.
      * @param lastEditedBy             the value of the {@value #COLUMN_NAME_LAST_EDITED_BY} column.
      * @param validFrom                the value of the {@value #COLUMN_NAME_VALID_FROM} column.
@@ -67,7 +69,7 @@ public class CityArchive extends MappedCityArchive {
         setCityId(cityId);
         setCityName(cityName);
         setStateProvinceId(stateProvinceId);
-        setLocation(location);
+        setLocation(Optional.ofNullable(location).map(Geography::decode).orElse(null));
         setLatestRecordedPopulation(latestRecordedPopulation);
         setLastEditedBy(lastEditedBy);
         setValidFrom(validFrom);

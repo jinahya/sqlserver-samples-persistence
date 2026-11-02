@@ -24,8 +24,12 @@ import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapp
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -42,7 +46,7 @@ public abstract class MappedPerson {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Person";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -74,9 +78,83 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_PERSON_TYPE = 2;
 
     /**
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a store contact. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PERSON_TYPE_STORE_CONTACT = "SC";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for an individual (retail) customer. The value is
+     * {@value}.
+     */
+    public static final String COLUMN_VALUE_PERSON_TYPE_INDIVIDUAL_CUSTOMER = "IN";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a sales person. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PERSON_TYPE_SALES_PERSON = "SP";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for an employee (non-sales). The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PERSON_TYPE_EMPLOYEE = "EM";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a vendor contact. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PERSON_TYPE_VENDOR_CONTACT = "VC";
+
+    /**
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a general contact. The value is {@value}.
+     */
+    public static final String COLUMN_VALUE_PERSON_TYPE_GENERAL_CONTACT = "GC";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_TYPE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PERSON_TYPE = "personType";
+
+    /**
+     * An enum for the {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute, of the values the {@code CK_Person_PersonType}
+     * constraint allows.
+     * {@snippet lang = "sql":
+     * ([PersonType] IS NULL OR (upper([PersonType])='GC' OR upper([PersonType])='SP' OR upper([PersonType])='EM' OR upper([PersonType])='IN' OR upper([PersonType])='VC' OR upper([PersonType])='SC'))
+     *} The constants are named after the column values, which are stored in upper case.
+     */
+    public enum PersonType {
+
+        /**
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_STORE_CONTACT} value, for a store contact.
+         */
+        SC,
+
+        /**
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_INDIVIDUAL_CUSTOMER} value, for an
+         * individual (retail) customer.
+         */
+        IN,
+
+        /**
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_SALES_PERSON} value, for a sales person.
+         */
+        SP,
+
+        /**
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_EMPLOYEE} value, for an employee
+         * (non-sales).
+         */
+        EM,
+
+        /**
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_VENDOR_CONTACT} value, for a vendor contact.
+         */
+        VC,
+
+        /**
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_GENERAL_CONTACT} value, for a general
+         * contact.
+         */
+        GC
+    }
 
     // ------------------------------------------------------------------------------------------------------- NameStyle
 
@@ -181,6 +259,18 @@ public abstract class MappedPerson {
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_EMAIL_PROMOTION = "EmailPromotion";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the {@code CK_Person_EmailPromotion}
+     * check constraint ({@code [EmailPromotion]>=(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_EMAIL_PROMOTION = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the {@code CK_Person_EmailPromotion}
+     * check constraint ({@code [EmailPromotion]<=(2)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_EMAIL_PROMOTION = +2;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The value is {@value}.
@@ -322,7 +412,7 @@ public abstract class MappedPerson {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute.
      */
-    public String getPersonType() {
+    public PersonType getPersonType() {
         return personType;
     }
 
@@ -331,7 +421,7 @@ public abstract class MappedPerson {
      *
      * @param personType new value for {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute.
      */
-    public void setPersonType(final String personType) {
+    public void setPersonType(final PersonType personType) {
         this.personType = personType;
     }
 
@@ -567,8 +657,8 @@ public abstract class MappedPerson {
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_PERSON_TYPE)
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PERSON_TYPE,
             nullable = false,
@@ -576,7 +666,7 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_PERSON_TYPE
     )
-    private String personType;
+    private PersonType personType;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -646,6 +736,9 @@ public abstract class MappedPerson {
     private String suffix;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_Person_EmailPromotion: ([EmailPromotion]>=(0) AND [EmailPromotion]<=(2))
+    @Max(COLUMN_MAX_EMAIL_PROMOTION)
+    @Min(COLUMN_MIN_EMAIL_PROMOTION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMAIL_PROMOTION,

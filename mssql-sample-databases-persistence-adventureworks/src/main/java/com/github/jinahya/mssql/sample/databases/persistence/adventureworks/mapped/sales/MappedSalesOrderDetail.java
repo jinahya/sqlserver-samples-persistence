@@ -28,7 +28,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -50,7 +53,7 @@ public abstract class MappedSalesOrderDetail {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -108,6 +111,17 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_ORDER_QTY = "OrderQty";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the {@code CK_SalesOrderDetail_OrderQty}
+     * check constraint ({@code [OrderQty]>(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_ORDER_QTY = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_ORDER_QTY = Short.MAX_VALUE;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_QTY = "orderQty";
@@ -144,6 +158,12 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_UNIT_PRICE = "UnitPrice";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE} column, as the {@code CK_SalesOrderDetail_UnitPrice}
+     * check constraint ({@code [UnitPrice]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_UNIT_PRICE = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
@@ -154,6 +174,13 @@ public abstract class MappedSalesOrderDetail {
      * The name of the {@code money, DEFAULT ((0.0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIT_PRICE_DISCOUNT = "UnitPriceDiscount";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column, as the
+     * {@code CK_SalesOrderDetail_UnitPriceDiscount} check constraint ({@code [UnitPriceDiscount]>=(0.00)}) requires.
+     * The value is {@value}.
+     */
+    public static final String COLUMN_MIN_UNIT_PRICE_DISCOUNT = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column. The value is
@@ -334,7 +361,7 @@ public abstract class MappedSalesOrderDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute.
      */
-    public Short getOrderQty() {
+    public Integer getOrderQty() {
         return orderQty;
     }
 
@@ -343,7 +370,7 @@ public abstract class MappedSalesOrderDetail {
      *
      * @param orderQty new value for {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute.
      */
-    public void setOrderQty(final Short orderQty) {
+    public void setOrderQty(final Integer orderQty) {
         this.orderQty = orderQty;
     }
 
@@ -526,6 +553,9 @@ public abstract class MappedSalesOrderDetail {
     private String carrierTrackingNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesOrderDetail_OrderQty: ([OrderQty]>(0)); smallint's upper bound
+    @Max(COLUMN_MAX_ORDER_QTY)
+    @Min(COLUMN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_QTY,
@@ -533,7 +563,7 @@ public abstract class MappedSalesOrderDetail {
             insertable = true,
             updatable = true
     )
-    private Short orderQty;
+    private Integer orderQty;
 
     // -----------------------------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
@@ -558,6 +588,8 @@ public abstract class MappedSalesOrderDetail {
     private Integer specialOfferId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesOrderDetail_UnitPrice: ([UnitPrice]>=(0.00))
+    @DecimalMin(COLUMN_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE,
@@ -568,6 +600,8 @@ public abstract class MappedSalesOrderDetail {
     private BigDecimal unitPrice;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesOrderDetail_UnitPriceDiscount: ([UnitPriceDiscount]>=(0.00))
+    @DecimalMin(COLUMN_MIN_UNIT_PRICE_DISCOUNT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT,

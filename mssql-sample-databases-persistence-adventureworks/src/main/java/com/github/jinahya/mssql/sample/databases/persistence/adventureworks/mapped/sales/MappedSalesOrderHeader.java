@@ -28,6 +28,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -53,7 +55,7 @@ public abstract class MappedSalesOrderHeader {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -78,6 +80,16 @@ public abstract class MappedSalesOrderHeader {
      * The name of the {@code tinyint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_REVISION_NUMBER = "RevisionNumber";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_REVISION_NUMBER = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_REVISION_NUMBER = +255;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
@@ -126,6 +138,18 @@ public abstract class MappedSalesOrderHeader {
      * The name of the {@code tinyint, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STATUS = "Status";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_SalesOrderHeader_Status} check
+     * constraint ({@code [Status]>=(0)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_STATUS = 0;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_SalesOrderHeader_Status} check
+     * constraint ({@code [Status]<=(8)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_STATUS = +8;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is {@value}.
@@ -320,6 +344,12 @@ public abstract class MappedSalesOrderHeader {
     public static final String COLUMN_NAME_SUB_TOTAL = "SubTotal";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_SUB_TOTAL} column, as the {@code CK_SalesOrderHeader_SubTotal}
+     * check constraint ({@code [SubTotal]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_SUB_TOTAL = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUB_TOTAL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUB_TOTAL = "subTotal";
@@ -332,6 +362,12 @@ public abstract class MappedSalesOrderHeader {
     public static final String COLUMN_NAME_TAX_AMT = "TaxAmt";
 
     /**
+     * The minimum value of the {@value #COLUMN_NAME_TAX_AMT} column, as the {@code CK_SalesOrderHeader_TaxAmt} check
+     * constraint ({@code [TaxAmt]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_TAX_AMT = "0.00";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_AMT = "taxAmt";
@@ -342,6 +378,12 @@ public abstract class MappedSalesOrderHeader {
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_FREIGHT = "Freight";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_FREIGHT} column, as the {@code CK_SalesOrderHeader_Freight} check
+     * constraint ({@code [Freight]>=(0.00)}) requires. The value is {@value}.
+     */
+    public static final String COLUMN_MIN_FREIGHT = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_FREIGHT} column. The value is {@value}.
@@ -474,6 +516,48 @@ public abstract class MappedSalesOrderHeader {
         return Objects.hash(salesOrderId);
     }
 
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_DUE_DATE} attribute is not before the
+     * {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, as the table's {@code CK_SalesOrderHeader_DueDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([DueDate]>=[OrderDate])
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_DUE_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, or if either attribute is {@code null}; {@code false}
+     *         otherwise.
+     */
+    @AssertTrue(message = "dueDate must not be before orderDate")
+    protected boolean isDueDateValid() {
+        if (dueDate == null || orderDate == null) {
+            return true;
+        }
+        return !dueDate.isBefore(orderDate);
+    }
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, as the table's {@code CK_SalesOrderHeader_ShipDate} constraint
+     * requires.
+     * {@snippet lang = "sql":
+     * ([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null} or not before the
+     *         {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, or if the {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute is
+     *         {@code null}; {@code false} otherwise.
+     */
+    @AssertTrue(message = "shipDate must be null or not before orderDate")
+    protected boolean isShipDateValid() {
+        if (shipDate == null || orderDate == null) {
+            return true;
+        }
+        return !shipDate.isBefore(orderDate);
+    }
+
     // ---------------------------------------------------------------------------------------------------- salesOrderId
 
     /**
@@ -501,7 +585,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute.
      */
-    public Short getRevisionNumber() {
+    public Integer getRevisionNumber() {
         return revisionNumber;
     }
 
@@ -510,7 +594,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @param revisionNumber new value for {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute.
      */
-    public void setRevisionNumber(final Short revisionNumber) {
+    public void setRevisionNumber(final Integer revisionNumber) {
         this.revisionNumber = revisionNumber;
     }
 
@@ -581,7 +665,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -590,7 +674,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @param status new value for {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
-    public void setStatus(final Short status) {
+    public void setStatus(final Integer status) {
         this.status = status;
     }
 
@@ -1023,8 +1107,8 @@ public abstract class MappedSalesOrderHeader {
     private Integer salesOrderId;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    @Max(COLUMN_MAX_REVISION_NUMBER)
+    @Min(COLUMN_MIN_REVISION_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REVISION_NUMBER,
@@ -1032,7 +1116,7 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
-    private Short revisionNumber;
+    private Integer revisionNumber;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -1064,8 +1148,9 @@ public abstract class MappedSalesOrderHeader {
     private LocalDateTime shipDate;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    // CK_SalesOrderHeader_Status: ([Status]>=(0) AND [Status]<=(8))
+    @Max(COLUMN_MAX_STATUS)
+    @Min(COLUMN_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATUS,
@@ -1073,7 +1158,7 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
-    private Short status;
+    private Integer status;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
@@ -1215,6 +1300,8 @@ public abstract class MappedSalesOrderHeader {
     private Integer currencyRateId;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesOrderHeader_SubTotal: ([SubTotal]>=(0.00))
+    @DecimalMin(COLUMN_MIN_SUB_TOTAL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUB_TOTAL,
@@ -1225,6 +1312,8 @@ public abstract class MappedSalesOrderHeader {
     private BigDecimal subTotal;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesOrderHeader_TaxAmt: ([TaxAmt]>=(0.00))
+    @DecimalMin(COLUMN_MIN_TAX_AMT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_AMT,
@@ -1235,6 +1324,8 @@ public abstract class MappedSalesOrderHeader {
     private BigDecimal taxAmt;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_SalesOrderHeader_Freight: ([Freight]>=(0.00))
+    @DecimalMin(COLUMN_MIN_FREIGHT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FREIGHT,

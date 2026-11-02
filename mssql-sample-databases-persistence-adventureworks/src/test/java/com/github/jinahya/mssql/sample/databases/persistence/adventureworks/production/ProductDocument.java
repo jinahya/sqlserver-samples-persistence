@@ -21,8 +21,10 @@ package com.github.jinahya.mssql.sample.databases.persistence.adventureworks.pro
  */
 
 import com.github.jinahya.mssql.sample.databases.persistence.adventureworks.mapped.production.MappedProductDocument;
+import com.github.jinahya.mssql.sample.databases.persistence.common.Heirarchyid;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * A plain class which holds a row of the {@code Production.ProductDocument} table, which no entity can map: the primary
@@ -47,7 +49,7 @@ public class ProductDocument extends MappedProductDocument {
      * Creates a new instance of a row.
      *
      * @param productId    the value of the {@value #COLUMN_NAME_PRODUCT_ID} column.
-     * @param documentNode the value of the {@value #COLUMN_NAME_DOCUMENT_NODE} column.
+     * @param documentNode the value of the {@value #COLUMN_NAME_DOCUMENT_NODE} column, in its binary form.
      * @param modifiedDate the value of the {@value #COLUMN_NAME_MODIFIED_DATE} column.
      */
     @SuppressWarnings({"java:S107"}) // Methods should not have too many parameters
@@ -56,7 +58,7 @@ public class ProductDocument extends MappedProductDocument {
                            final LocalDateTime modifiedDate) {
         super();
         setProductId(productId);
-        setDocumentNode(documentNode);
+        setDocumentNode(Optional.ofNullable(documentNode).map(Heirarchyid::decode).orElse(null));
         setModifiedDate(modifiedDate);
     }
 }

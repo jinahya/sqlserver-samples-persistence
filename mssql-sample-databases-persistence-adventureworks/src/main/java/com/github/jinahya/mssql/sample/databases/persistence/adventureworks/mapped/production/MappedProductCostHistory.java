@@ -24,6 +24,8 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -39,7 +41,7 @@ public abstract class MappedProductCostHistory {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -88,6 +90,13 @@ public abstract class MappedProductCostHistory {
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STANDARD_COST = "StandardCost";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_STANDARD_COST} column, as the
+     * {@code CK_ProductCostHistory_StandardCost} check constraint ({@code [StandardCost]>=(0.00)}) requires. The value
+     * is {@value}.
+     */
+    public static final String COLUMN_MIN_STANDARD_COST = "0.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The value is {@value}.
@@ -156,6 +165,29 @@ public abstract class MappedProductCostHistory {
     @Override
     public final int hashCode() {
         return Objects.hash(productId, startDate);
+    }
+
+    // ------------------------------------------------------------------------------------------------------ VALIDATION
+
+    /**
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_ProductCostHistory_EndDate}
+     * constraint requires.
+     * {@snippet lang = "sql":
+     * ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+     *}
+     *
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_START_DATE}
+     *         attribute; {@code false} otherwise.
+     */
+    @AssertTrue(message = "endDate must be null or not before startDate")
+    protected boolean isEndDateValid() {
+        if (endDate == null || startDate == null) {
+            return true;
+        }
+        return !endDate.isBefore(startDate);
     }
 
     // ------------------------------------------------------------------------------------------------------- productId
@@ -290,6 +322,8 @@ public abstract class MappedProductCostHistory {
     private LocalDateTime endDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductCostHistory_StandardCost: ([StandardCost]>=(0.00))
+    @DecimalMin(COLUMN_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_COST,

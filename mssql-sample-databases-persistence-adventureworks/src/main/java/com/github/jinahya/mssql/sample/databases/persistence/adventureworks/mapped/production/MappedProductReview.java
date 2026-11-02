@@ -26,6 +26,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -44,7 +46,7 @@ public abstract class MappedProductReview {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Production";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -127,6 +129,18 @@ public abstract class MappedProductReview {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_RATING = "Rating";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_RATING} column, as the {@code CK_ProductReview_Rating} check
+     * constraint ({@code [Rating]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_RATING = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_RATING} column, as the {@code CK_ProductReview_Rating} check
+     * constraint ({@code [Rating]<=(5)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_RATING = +5;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RATING} column. The value is {@value}.
@@ -435,6 +449,9 @@ public abstract class MappedProductReview {
     private String emailAddress;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // CK_ProductReview_Rating: ([Rating]>=(1) AND [Rating]<=(5))
+    @Max(COLUMN_MAX_RATING)
+    @Min(COLUMN_MIN_RATING)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RATING,

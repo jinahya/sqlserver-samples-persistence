@@ -1,0 +1,188 @@
+= HIERARCHYID binary format history
+:toc:
+
+How [MS-SSCLRT] (_Microsoft SQL Server CLR Types Serialization Formats_) describes the `hierarchyid` binary format,
+revision by revision. Source: the PDFs in this directory, downloaded from
+https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/77460aa9-8c2f-4449-a65e-1d649ebd77fa[the
+specification's page]. The format is in section 2.2 (_HIERARCHYID Structure_), and its examples are in section 3.2.
+
+== Summary
+
+The encoding itself has never changed. Every revision from the first (2009-08-07) to the latest (2025-10-31) gives
+the same `L~i~ O~i~ F~i~` levels, the same thirteen `L~i~` prefixes with the same ranges and anti-ambiguity bits, the
+same zero padding `W`, and the same 892-byte limit. The structure has no version field, and section 1.6 states that
+the document describes a single version of it.
+
+What changed is the text around the encoding:
+
+* the encoding of the root node, from a zero-length string to "a binary string of length 1" (revision 1.0, 2010);
+* an arithmetic error in example 2 (7 padding bits instead of 6), fixed in revision 1.0;
+* a wrong cross-reference, fixed in revisions 0.2 and 1.0;
+* the field notation, `L1/O1/F1` to `L~i~/O~i~/F~i~` (2011-07-07);
+* a footnote attached to `hierarchyid` (revision 4.0, 2014), whose text is about another type.
+
+== The encoding, as every revision states it
+
+A node is its path from the root: a sequence of node labels, each a dot-separated sequence of integers, each label
+followed by a slash (`/`, `/1/`, `/0.3.-7/`, `/1/3/`, `/0.1/0.2/`). Each integer is encoded as one level:
+
+----
+L0 O0 F0  Li Oi Fi  ...  Lk Ok Fk  W
+----
+
+* `L~i~` is a prefix that selects a range and the size of `O~i~`.
+* `O~i~` is the offset from the range's lower limit, with fixed anti-ambiguity bits that let the string be parsed
+  backward.
+* `F~i~` is `1` when the integer is followed by a slash (a _real_ level) and `0` when it is followed by a dot (a
+  _fake_ level). A fake level encodes `n + 1`, so that fake levels compare above real ones.
+* `W` is 0 to 7 zero bits, padding to a whole byte.
+
+[cols="1m,1,3m,2",options="header"]
+|===
+| L~i~ | O~i~ bits (without/with anti-ambiguity) | L~i~/O~i~ pair | Range
+
+| 000100 | 48/53 | 000100..............0.....................0......0...0.1... | -281479271682120 to -4294971465
+| 000101 | 32/36 | 000101...................0......0...0.1... | -4294971464 to -4169
+| 000110 | 12/15 | 000110.....0...0.1... | -4168 to -73
+| 0010 | 6/8 | 0010..0.1... | -72 to -9
+| 00111 | 3/3 | 00111... | -8 to -1
+| 01 | 2/2 | 01.. | 0 to 3
+| 100 | 2/2 | 100.. | 4 to 7
+| 101 | 3/3 | 101... | 8 to 15
+| 110 | 6/8 | 110..0.1... | 16 to 79
+| 1110 | 10/13 | 1110...0...0.1... | 80 to 1103
+| 11110 | 12/15 | 11110.....0...0.1... | 1104 to 5199
+| 111110 | 32/36 | 111110...................0......0...0.1... | 5200 to 4294972495
+| 111111 | 48/53 | 111111..............0.....................0......0...0.1... | 4294972496 to 281479271683151
+|===
+
+The encoding is limited to 892 bytes. Lexicographical comparison of two encodings is a depth-first comparison of the
+nodes.
+
+Examples (section 3.2, unchanged in substance since 2009):
+
+* `/1/` is `01011000` (`01` `01` `1`, padded with `000`).
+* `/1/-2.18/` is `01011001 11111011 00000101 01000000`: `01 01 1` for `/1/`, then `00111 111 0` for `-2.` (`-1` in a
+  fake level, so `-2`), then `110 00001010 1` for `18/` (`16 + 2`), then `000000` padding.
+
+== Revisions
+
+Each row links the PDF it was read from, named `<yyyyMMdd>-<protocol revision>-<original name>`. A revision whose
+hierarchyid text did not change is grouped with the one before it. The two Editorial revisions, 0.1.1 (2009-11-06)
+and 1.0.1 (2010-06-04), are left out; they changed no hierarchyid text.
+
+The *Binary format* column flags a revision in which the binary format itself changed, that is, what SQL Server writes,
+not only how the specification describes it. A correction to the text, even one that changes the described bytes, is
+*No* when the specification's own examples show that the format was already what the corrected text says. The
+hierarchyid format has not changed in any revision.
+
+[cols="1,1,1,2,5",options="header"]
+|===
+| Revision | Date | Binary format | PDF | hierarchyid changes
+
+| 0.1
+| 2009-08-07
+| Initial
+| link:20090807-0.1-%5BMS-SSCLRT%5D-090801.pdf[`20090807-0.1`]
+a| First release, written for SQL Server 2008.
+
+* Section 2.2 (_The HIERARCHY ID Structure_) and section 3.2 (_HIERARCHY ID Examples_) state the format above.
+* *Root node:* "The encoding for the root node is a binary string of length 0 (zero). Thus, there are 0 levels and no
+  W field." Section 3.2 agrees: "an empty HIERARCHYID structure (that is, a zero-length bit sequence)".
+* Section 2.2.1 says the encoding "is described in section 3.1.2, Example of a Geometry Point Structure", a wrong
+  reference.
+* Example 2 ends with "The final 7 bits (0000000) are the W field", although the levels take 26 of the 32 bits.
+
+| 0.2
+| 2010-03-05
+| No
+| link:20100305-0.2-%5BMS-SSCLRT%5D-100305.pdf[`20100305-0.2`]
+| The cross-reference becomes "section 3.1.2." (still the geometry example). Otherwise unchanged.
+
+| 1.0
+| 2010-04-21
+| No
+| link:20100421-1.0-%5BMS-SSCLRT%5D-100421.pdf[`20100421-1.0`]
+a| Written for SQL Server "Denali" CTP1. The change tracking table lists section 3.2 as "Updated description of
+HIERARCHYID structure" (tracking number 405307).
+
+* *Root node:* "The encoding for the root node is a binary string of length 1. Thus, there is one level and no W
+  field." Section 3.2 now says only "The root node is represented by a HIERARCHYID structure."
+* Example 2: "The final 6 bits (000000) are the W field", which is correct.
+* The cross-reference becomes "section 3.2", the hierarchyid examples.
+* Wording: "We encode ..." becomes passive, `L 1/O 1` becomes `L1/O1`, "anti-ambiguity" is hyphenated in example 2.
+* Section 1.6 describes "version 1 of the HIERARCHY structure", whose version "is not stored anywhere in the
+  structure".
+
+| 2.0, 3.0, 3.1
+| 2010-06-22 to 2011-02-09
+| No
+| link:20100622-2.0-%5BMS-SSCLRT%5D-100721.pdf[`20100622-2.0`],
+link:20100903-3.0-%5BMS-SSCLRT%5D-100903.pdf[`20100903-3.0`],
+link:20110209-3.1-%5BMS-SSCLRT%5D-110209.pdf[`20110209-3.1`]
+| No change to the hierarchyid text; the section heading loses "The" (_HIERARCHYID Structure_) in 3.0.
+
+| 3.1
+| 2011-07-07
+| No
+| link:20110707-3.1-%5BMS-SSCLRT%5D-110707.pdf[`20110707-3.1`]
+| Notation only: the fields are named `L~i~`, `O~i~`, `F~i~` instead of `L1`, `O1`, `F1`, and the diagram reads
+`L0 O0 F0 Li Oi Fi ... Lk Ok Fk W`.
+
+| 3.1
+| 2011-11-03 to 2013-12-05
+| No
+| `20111103-3.1` to `20131205-3.1` (11 PDFs)
+| Revision class "None"; no change.
+
+| 4.0
+| 2014-02-11
+| No
+| link:20140211-4.0-%5BMS-SSCLRT%5D-140211.pdf[`20140211-4.0`]
+a| * Section 1 adds a description of the hierarchyid data type: a value represents a position in a hierarchy, not a
+  tree; the application generates and assigns the values.
+* Section 1.6 now says the document describes "only a single version" of the HIERARCHYID serialization format.
+* "The hierarchyid data type logically encodes" gains footnote `<5>`. The footnote reads "Section 2.2.1: Microsoft
+  implementations do not produce values outside the range 00:00:00.0000000 through 23:59:59.9999999 ...", which is
+  about time values, not hierarchyid. It is still there in the latest revision.
+* "The hierarchy data type represents" is corrected to "The hierarchyid data type represents".
+
+| 4.0
+| 2014-05-20
+| No
+| link:20140520-4.0-%5BMS-SSCLRT%5D-140520.pdf[`20140520-4.0`]
+| No change.
+
+| 5.0
+| 2016-05-10
+| No
+| link:20160510-5.0-%5BMS-SSCLRT%5D-160510.pdf[`20160510-5.0`]
+(link:20160510-5.0-%5BMS-SSCLRT%5D-160510-diff.pdf[diff])
+| Layout only; no change to the hierarchyid text.
+
+| 6.0
+| 2017-08-16
+| No
+| link:20170816-6.0-%5BMS-SSCLRT%5D-170816.pdf[`20170816-6.0`]
+(link:20170816-6.0-%5BMS-SSCLRT%5D-170816-diff.pdf[diff])
+| Section 3.2 is renamed from _HIERARCHYID Examples_ to _HIERARCHYID Structure_. No change to its text.
+
+| 7.0, 8.0, 9.0
+| 2019-10-16, 2022-11-01, 2025-10-31
+| No
+| link:20191016-7.0-%5BMS-SSCLRT%5D-191016.pdf[`20191016-7.0`],
+link:20221101-8.0-%5BMS-SSCLRT%5D-221101.pdf[`20221101-8.0`],
+link:20251031-9.0-%5BMS-SSCLRT%5D.pdf[`20251031-9.0`] (latest)
+| No change to the hierarchyid text.
+|===
+
+== Notes on the text
+
+* *The root node.* Revisions 0.1 to 0.2 give the root a zero-length encoding; revision 1.0 onward gives it "a binary
+  string of length 1" with "one level". The latter does not fit the rest of the section: one level would be at least
+  an `L~i~`, an `O~i~` and an `F~i~`, and the logical root `/` has no integer to encode. SQL Server itself returns
+  `0x`, an empty value, for `hierarchyid::GetRoot()`, which matches the earlier text.
+* *The range sentence.* Every revision says "No integer outside of the range -281479271682120 − 281479271683119 can
+  be represented", while the table's last row goes up to 281479271683151.
+* *Example 2.* Every revision calls the 8 bits `00001010` "the L4 field"; they are the `O~3~` field.
+

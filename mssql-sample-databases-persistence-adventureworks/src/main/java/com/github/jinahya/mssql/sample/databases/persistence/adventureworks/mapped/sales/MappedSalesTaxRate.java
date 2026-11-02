@@ -50,7 +50,7 @@ public abstract class MappedSalesTaxRate {
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
      */
-    public static final String TABLE_SCHEMA = "Sales";
+    public static final String TABLE_SCHEMA = _Constants.TABLE_SCHEMA;
 
     /**
      * The name of the table to which this class maps. The value is {@value}.
@@ -87,6 +87,18 @@ public abstract class MappedSalesTaxRate {
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TAX_TYPE = "TaxType";
+
+    /**
+     * The minimum value of the {@value #COLUMN_NAME_TAX_TYPE} column, as the {@code CK_SalesTaxRate_TaxType} check
+     * constraint ({@code [TaxType]>=(1)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MIN_TAX_TYPE = +1;
+
+    /**
+     * The maximum value of the {@value #COLUMN_NAME_TAX_TYPE} column, as the {@code CK_SalesTaxRate_TaxType} check
+     * constraint ({@code [TaxType]<=(3)}) requires. The value is {@value}.
+     */
+    public static final int COLUMN_MAX_TAX_TYPE = +3;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_TYPE} column. The value is {@value}.
@@ -248,7 +260,7 @@ public abstract class MappedSalesTaxRate {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TAX_TYPE} attribute.
      */
-    public Short getTaxType() {
+    public Integer getTaxType() {
         return taxType;
     }
 
@@ -257,7 +269,7 @@ public abstract class MappedSalesTaxRate {
      *
      * @param taxType new value for {@value #ATTRIBUTE_NAME_TAX_TYPE} attribute.
      */
-    public void setTaxType(final Short taxType) {
+    public void setTaxType(final Integer taxType) {
         this.taxType = taxType;
     }
 
@@ -365,8 +377,9 @@ public abstract class MappedSalesTaxRate {
     private Integer stateProvinceId;
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Max(255)
-    @Min(0)
+    // CK_SalesTaxRate_TaxType: ([TaxType]>=(1) AND [TaxType]<=(3))
+    @Max(COLUMN_MAX_TAX_TYPE)
+    @Min(COLUMN_MIN_TAX_TYPE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_TYPE,
@@ -374,7 +387,7 @@ public abstract class MappedSalesTaxRate {
             insertable = true,
             updatable = true
     )
-    private Short taxType;
+    private Integer taxType;
 
     // -----------------------------------------------------------------------------------------------------------------
     @NotNull
