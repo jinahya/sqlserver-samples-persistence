@@ -102,9 +102,46 @@ What identifies a row:
 | A view | the columns which are unique, and not null, in every row it returns, when they are identifiers (`...ID`, `...Code`, `...Number`); an entity with no association |
 | A view with no such columns, `Production.ProductDocument` (whose key includes a `hierarchyid`) and the 17 `*_Archive` history tables of WideWorldImporters | none: a keyless class, a plain class over the mapped superclass with a public all-args constructor |
 
+## Hibernate Spatial and `geography`
+
+Hibernate Spatial and geolatte-geom are provided dependencies, but no mapping uses them: a `geography` column stays
+`-common`'s `Geography`. Hibernate Spatial reads and writes a SQL Server `geography` with its latitude and longitude
+swapped. Checked against `Person.Address.SpatialLocation`, with Hibernate ORM 7.4.12, geolatte-geom 1.11, and
+mssql-jdbc 13.4.0:
+
+| What | Result |
+|---|---|
+| `Point<G2D>` (geolatte) or `Point` (JTS), `@JdbcType(SqlServerGeographyType.class)` or `@JdbcTypeCode(SqlTypes.GEOGRAPHY)` | read with the axes swapped: `getLat()`, or JTS's `getY()`, is the column's `Long`, and the other its `Lat` |
+| A native query with no declared type | the dialect knows the driver's `GEOGRAPHY` (-158), and returns a geolatte `Point`, swapped too |
+| `st_srid`, `st_astext`, and `st_distance` of two columns, in the Query Language | right; SQL Server computes them, on the stored bytes |
+| A point bound as a parameter, `st_distance(a.spatialLocation, :p)` | the axes swapped: a latitude out of range is rejected (`System.FormatException`); one within it would be another, wrong, point |
+| A curve, or `FULLGLOBE` | not decoded: geolatte reads version 1 of the serialized form only |
+
+The swap is geolatte's. Its SQL Server codec, which `SqlServerGeographyType` uses for both its binder and its
+extractor, reads every value as a `geometry`, x before y, while a `geography` point is serialized latitude first
+([MS-SSCLRT](https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/), section 2.1). A round trip
+through Hibernate alone hides it: what it writes swapped, it reads back swapped.
+
+- [geolatte-geom #58](https://github.com/GeoLatte/geolatte-geom/issues/58), "SQL Server: Lat/Lon ordering is wrong
+  when doing encoding/decoding", open since 2018: the maintainer answers that the codec is for `geometry`, not for
+  `geography`.
+- [geolatte-geom #50](https://github.com/GeoLatte/geolatte-geom/issues/50), version 2 of the serialized form, open
+  since 2017.
+- [mssql-jdbc #851](https://github.com/microsoft/mssql-jdbc/issues/851), the same swap in the driver's own
+  `microsoft.sql.Geography`, fixed in 7.1.3 ([#853](https://github.com/microsoft/mssql-jdbc/pull/853)); Hibernate
+  Spatial does not use that class.
+- [HHH-21058](https://hibernate.atlassian.net/browse/HHH-21058), "SqlServerGeographyType reads and binds SQL Server
+  geography values with latitude and longitude swapped", this project's report to Hibernate. The type came with
+  [HHH-15165](https://hibernate.atlassian.net/browse/HHH-15165)
+  ([#4938](https://github.com/hibernate/hibernate-orm/pull/4938)); Hibernate's package documentation still says that
+  only `geometry` is supported on SQL Server.
+
+`SqlServerGeographyType` is Hibernate's, so it is Hibernate the swap is to be reported to, and fixed by; a `JdbcType`
+of this project's own, which would swap the axes itself, is the last resort.
+
 ## Building
 
-The persistence provider is Hibernate ORM, a test dependency; the property `persistence-unit.provider` names it, and
+The persistence provider is Hibernate ORM, a provided dependency; the property `persistence-unit.provider` names it, and
 each module's `persistence.xml` reads it. EclipseLink is not supported: how a provider meets SQL Server's driver differs
 by database, driver and provider (EclipseLink binds a NULL `geography` with the driver's own `GEOGRAPHY` type, which the
 driver rejects), and the MySQL and Oracle projects keep both providers. Each module's unit, `<database>-it`, reads the

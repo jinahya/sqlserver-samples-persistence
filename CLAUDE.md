@@ -10,9 +10,10 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
 
 ## The module, as it stands (absolute rules)
 
-- **Hibernate ORM only.** The provider is Hibernate ORM, a test dependency; there is no provider profile. EclipseLink
-  was dropped: what it does depends on the database, the driver and the provider together (here it binds a NULL with
-  the driver's own `GEOGRAPHY` type, which the driver rejects), and the mysql and oracle projects keep both providers.
+- **Hibernate ORM only.** The provider is Hibernate ORM, a provided dependency; there is no provider profile.
+  EclipseLink was dropped: what it does depends on the database, the driver and the provider together (here it binds a
+  NULL with the driver's own `GEOGRAPHY` type, which the driver rejects), and the mysql and oracle projects keep both
+  providers.
 - **Main holds mapped superclasses; the entities are test code.** Main is a package per schema,
   `<database>.mapped.<schema>` (the schema in lower case): `Mapped<Entity>` per table and view and `Mapped<Entity>Id`
   per composite key (an `@IdClass`).

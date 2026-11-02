@@ -67,7 +67,7 @@
     <!-- profile can move the platform out from under the implementations. -->
     <persistence.version>3.2</persistence.version>
     <persistence.schemaLocation>https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd</persistence.schemaLocation>
-    <!-- the Jakarta Persistence provider, Hibernate ORM, a test dependency; persistence.xml reads it -->
+    <!-- the Jakarta Persistence provider, Hibernate ORM, a provided dependency; persistence.xml reads it -->
     <persistence-unit.provider>org.hibernate.jpa.HibernatePersistenceProvider</persistence-unit.provider>
     <metamodel.generator.groupId>org.hibernate.orm</metamodel.generator.groupId>
     <metamodel.generator.artifactId>hibernate-jpamodelgen</metamodel.generator.artifactId>
@@ -96,6 +96,8 @@
     <version.jakarta.xml.bind-api>4.0.5</version.jakarta.xml.bind-api>
     <!-- https://central.sonatype.com/artifact/org.assertj/assertj-core/versions -->
     <version.org.assertj>4.0.0-M1</version.org.assertj>
+    <!-- https://central.sonatype.com/artifact/org.geolatte/geolatte-geom/versions; the one hibernate-spatial takes -->
+    <version.org.geolatte>1.11</version.org.geolatte>
     <!-- hibernate-validator: 9 / expressly: 6 -->
     <!-- https://central.sonatype.com/artifact/org.glassfish.expressly/expressly/versions -->
     <version.org.glassfish.expressly>6.0.0</version.org.glassfish.expressly>
@@ -184,6 +186,11 @@
         <version>${version.org.assertj}</version>
       </dependency>
       <dependency>
+        <groupId>org.geolatte</groupId>
+        <artifactId>geolatte-geom</artifactId>
+        <version>${version.org.geolatte}</version>
+      </dependency>
+      <dependency>
         <groupId>org.glassfish.expressly</groupId>
         <artifactId>expressly</artifactId>
         <version>${version.org.glassfish.expressly}</version>
@@ -196,6 +203,11 @@
       <dependency>
         <groupId>org.hibernate.orm</groupId>
         <artifactId>hibernate-core</artifactId>
+        <version>${version.org.hibernate.orm}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-spatial</artifactId>
         <version>${version.org.hibernate.orm}</version>
       </dependency>
       <dependency>
@@ -242,6 +254,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.geolatte</groupId>
+      <artifactId>geolatte-geom</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>org.glassfish.expressly</groupId>
       <artifactId>expressly</artifactId>
       <scope>test</scope>
@@ -249,7 +266,12 @@
     <dependency><!-- the Jakarta Persistence provider -->
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
-      <scope>test</scope>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-spatial</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.hibernate.validator</groupId>
