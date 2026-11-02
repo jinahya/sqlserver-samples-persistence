@@ -21,24 +21,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 class Person_PersistenceIT extends _Entity_PersistenceIT<Person> {
 
     Person_PersistenceIT() {
         super(Person.class);
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Does nothing; {@code Person.Person} has no randomizer and persister yet.
-     */
-    @Disabled("no randomizer and persister yet")
-    @Override
-    @Test
-    protected void persistTargetInstance() {
-        // empty
     }
 }
