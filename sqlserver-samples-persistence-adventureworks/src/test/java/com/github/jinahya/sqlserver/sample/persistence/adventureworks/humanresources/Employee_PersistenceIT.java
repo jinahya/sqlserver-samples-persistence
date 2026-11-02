@@ -25,7 +25,6 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persist
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import jakarta.persistence.EntityManager;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,18 +38,6 @@ class Employee_PersistenceIT
 
     Employee_PersistenceIT() {
         super(Employee.class);
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Does nothing; {@code HumanResources.Employee} has no randomizer and persister yet.
-     */
-    @Disabled("no randomizer and persister yet")
-    @Override
-    @Test
-    protected void persistTargetInstance() {
-        // empty
     }
 
     // -----------------------------------------------------------------------------------------------------------------
