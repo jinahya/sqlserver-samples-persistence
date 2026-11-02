@@ -21,24 +21,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 class PurchaseOrderDetail_PersistenceIT extends _Entity_PersistenceIT<PurchaseOrderDetail> {
 
     PurchaseOrderDetail_PersistenceIT() {
         super(PurchaseOrderDetail.class);
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Does nothing; {@code Purchasing.PurchaseOrderDetail} has no randomizer and persister yet.
-     */
-    @Disabled("no randomizer and persister yet")
-    @Override
-    @Test
-    protected void persistTargetInstance() {
-        // empty
     }
 }
