@@ -33,9 +33,9 @@ module com.github.jinahya.sqlserver.sample.databases.persistence.futonmanufactur
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
 
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.futonmanufacturing.mapped;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.futonmanufacturing.mapped.dbo;
+    exports com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped;
+    exports com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo;
 
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.futonmanufacturing.mapped;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.futonmanufacturing.mapped.dbo;
+    opens com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped;
+    opens com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo;
 }

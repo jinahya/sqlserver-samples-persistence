@@ -44,19 +44,19 @@ module com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks 
     requires io.github.jinahya.sqlserver.xml.schema.binding.b80e2e;
     requires io.github.jinahya.sqlserver.xml.schema.binding.b2e7ae;
 
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.dbo;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.humanresources;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.person;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.production;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.purchasing;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.sales;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing;
+    exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales;
 
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.dbo;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.humanresources;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.person;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.production;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.purchasing;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks.mapped.sales;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing;
+    opens com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales;
 }

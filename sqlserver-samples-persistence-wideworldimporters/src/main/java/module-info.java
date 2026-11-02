@@ -34,17 +34,17 @@ module com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimport
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
 
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.application;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.purchasing;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.sales;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.warehouse;
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.website;
+    exports com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped;
+    exports com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.application;
+    exports com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.purchasing;
+    exports com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.sales;
+    exports com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.warehouse;
+    exports com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.website;
 
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.application;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.purchasing;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.sales;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.warehouse;
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.mapped.website;
+    opens com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped;
+    opens com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.application;
+    opens com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.purchasing;
+    opens com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.sales;
+    opens com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.warehouse;
+    opens com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.website;
 }

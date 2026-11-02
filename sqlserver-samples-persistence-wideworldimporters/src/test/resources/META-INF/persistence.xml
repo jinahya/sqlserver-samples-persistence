@@ -29,41 +29,41 @@
   <persistence-unit name="wideworldimporters-it" transaction-type="RESOURCE_LOCAL">
     <description>Persistence Unit for WideWorldImporters on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.common.GeographyAttributeConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.BuyingGroup</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.City</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.ColdRoomTemperature</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.Color</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.Country</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.Customer</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.CustomerCategory</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.CustomerTransaction</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.DeliveryMethod</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.Invoice</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.InvoiceLine</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.Order</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.OrderLine</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.PackageType</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.PaymentMethod</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.Person</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrder</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.purchasing.PurchaseOrderLine</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.sales.SpecialDeal</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.StateProvince</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.StockGroup</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.StockItem</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.StockItemHolding</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.StockItemStockGroup</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.StockItemTransaction</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.purchasing.Supplier</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.purchasing.SupplierCategory</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.purchasing.SupplierTransaction</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.SystemParameter</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.application.TransactionType</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.warehouse.VehicleTemperature</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.website.Customer</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.website.Supplier</class>
-    <class>com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters.website.VehicleTemperature</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.BuyingGroup</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.City</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.ColdRoomTemperature</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.Color</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.Country</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.Customer</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.CustomerCategory</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.CustomerTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.DeliveryMethod</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.Invoice</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.InvoiceLine</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.Order</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.OrderLine</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.PackageType</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.PaymentMethod</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.Person</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.PurchaseOrder</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.PurchaseOrderLine</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.SpecialDeal</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.StateProvince</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockGroup</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItem</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemHolding</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemStockGroup</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.Supplier</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.SupplierCategory</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.SupplierTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.SystemParameter</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.TransactionType</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.VehicleTemperature</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.website.Customer</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.website.Supplier</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.website.VehicleTemperature</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>

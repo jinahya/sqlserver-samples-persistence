@@ -30,7 +30,7 @@ module com.github.jinahya.sqlserver.sample.databases.persistence.common {
 
     requires transitive jakarta.persistence;
 
-    exports com.github.jinahya.sqlserver.sample.databases.persistence.common;
+    exports com.github.jinahya.sqlserver.sample.persistence.common;
 
-    opens com.github.jinahya.sqlserver.sample.databases.persistence.common;
+    opens com.github.jinahya.sqlserver.sample.persistence.common;
 }
