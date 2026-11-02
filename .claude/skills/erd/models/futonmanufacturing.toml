@@ -6,7 +6,7 @@
 
 schema = "FutonManufacturing"
 title = "FutonManufacturing"
-output = "sql-server-samples-persistence-futonmanufacturing/docs/erd"
+output = "sqlserver-samples-persistence-futonmanufacturing/docs/erd"
 
 [[group]]
 name = "items"

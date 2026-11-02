@@ -9,7 +9,7 @@
   </parent>
 
   <groupId>io.github.jinahya</groupId>
-  <artifactId>sql-server-samples-persistence</artifactId>
+  <artifactId>sqlserver-samples-persistence</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -36,10 +36,10 @@
   </developers>
 
   <modules>
-    <module>sql-server-samples-persistence-common</module>
-    <module>sql-server-samples-persistence-adventureworks</module>
-    <module>sql-server-samples-persistence-futonmanufacturing</module>
-    <module>sql-server-samples-persistence-wideworldimporters</module>
+    <module>sqlserver-samples-persistence-common</module>
+    <module>sqlserver-samples-persistence-adventureworks</module>
+    <module>sqlserver-samples-persistence-futonmanufacturing</module>
+    <module>sqlserver-samples-persistence-wideworldimporters</module>
   </modules>
 
   <scm>
@@ -118,7 +118,7 @@
 
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>sql-server-samples-persistence-common</artifactId>
+        <artifactId>sqlserver-samples-persistence-common</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

@@ -5,7 +5,7 @@
 
 schema = "AdventureWorks"
 title = "AdventureWorks"
-output = "sql-server-samples-persistence-adventureworks/docs/erd"
+output = "sqlserver-samples-persistence-adventureworks/docs/erd"
 
 [[group]]
 name = "business_entities"
