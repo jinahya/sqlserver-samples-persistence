@@ -6,11 +6,11 @@ per database.
 
 | Module | Database | Tables + views | Entities | Keyless classes |
 |---|---|---|---|---|
-| `mssql-sample-databases-persistence-adventureworks` | `AdventureWorks`, the classic OLTP sample | 71 + 20 | 82 | 9 |
-| `mssql-sample-databases-persistence-futonmanufacturing` | `FutonManufacturing`, a bill of materials, inventory, production and sales | 32 + 40 | 50 | 22 |
-| `mssql-sample-databases-persistence-wideworldimporters` | `WideWorldImporters`, the SQL Server 2016+ sample | 48 + 3 | 34 | 17 |
+| `sql-server-samples-persistence-adventureworks` | `AdventureWorks`, the classic OLTP sample | 71 + 20 | 82 | 9 |
+| `sql-server-samples-persistence-futonmanufacturing` | `FutonManufacturing`, a bill of materials, inventory, production and sales | 32 + 40 | 50 | 22 |
+| `sql-server-samples-persistence-wideworldimporters` | `WideWorldImporters`, the SQL Server 2016+ sample | 48 + 3 | 34 | 17 |
 
-The three depend on `mssql-sample-databases-persistence-common`, which holds what they share: `MappedWithIdentityId`,
+The three depend on `sql-server-samples-persistence-common`, which holds what they share: `MappedWithIdentityId`,
 and the `hierarchyid` and `geography` types with their converters.
 
 Each module's main sources are a package per schema, `<database>.mapped.<schema>`: one `@MappedSuperclass`

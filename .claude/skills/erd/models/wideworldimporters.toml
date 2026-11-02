@@ -6,7 +6,7 @@
 
 schema = "WideWorldImporters"
 title = "WideWorldImporters"
-output = "mssql-sample-databases-persistence-wideworldimporters/docs/erd"
+output = "sql-server-samples-persistence-wideworldimporters/docs/erd"
 
 [[group]]
 name = "application"
