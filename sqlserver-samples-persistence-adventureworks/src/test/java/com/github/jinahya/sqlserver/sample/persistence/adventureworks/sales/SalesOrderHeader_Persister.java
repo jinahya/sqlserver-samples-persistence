@@ -1,0 +1,63 @@
+package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
+
+
+/*-
+ * #%L
+ * sqlserver-samples-persistence-adventureworks
+ * %%
+ * Copyright (C) 2026 Jinahya, Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
+import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Address;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.ShipMethod;
+import jakarta.persistence.EntityManager;
+
+/**
+ * Persists a new {@link SalesOrderHeader}, of a new customer, and of a new instance of everything else it references.
+ */
+class SalesOrderHeader_Persister
+        extends AbstractEntityPersister<SalesOrderHeader> {
+
+    SalesOrderHeader_Persister() {
+        super(SalesOrderHeader.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    @Override
+    public SalesOrderHeader apply(final EntityManager entityManager, final SalesOrderHeader entityInstance) {
+        final var customer = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Customer.class);
+        final var salesPerson = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);
+        final var territory = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
+        final var billToAddress = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Address.class);
+        final var shipToAddress = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Address.class);
+        final var shipMethod = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ShipMethod.class);
+        final var creditCard = EntityPersisterUtils.newPersistedInstanceOf(entityManager, CreditCard.class);
+        final var currencyRate = EntityPersisterUtils.newPersistedInstanceOf(entityManager, CurrencyRate.class);
+        // the identifiers of the parents are the INSERTs'; the flush is what assigns them
+        entityManager.flush();
+        entityInstance.setCustomer(customer);
+        entityInstance.setSalesPerson(salesPerson);
+        entityInstance.setTerritory(territory);
+        entityInstance.setBillToAddress(billToAddress);
+        entityInstance.setShipToAddress(shipToAddress);
+        entityInstance.setShipMethod(shipMethod);
+        entityInstance.setCreditCard(creditCard);
+        entityInstance.setCurrencyRate(currencyRate);
+        return super.apply(entityManager, entityInstance);
+    }
+}

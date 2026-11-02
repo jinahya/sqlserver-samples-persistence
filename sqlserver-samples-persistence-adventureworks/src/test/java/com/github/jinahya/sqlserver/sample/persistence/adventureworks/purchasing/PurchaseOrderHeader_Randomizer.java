@@ -54,12 +54,15 @@ class PurchaseOrderHeader_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints, and its dates in order.
+     * @implNote The returned instance has amounts within their columns and CHECK constraints, its dates in order, and
+     *         room in its revision number for the updates its details make.
      */
     @Override
     public PurchaseOrderHeader get() {
         final var instance = super.get();
         final var random = ThreadLocalRandom.current();
+        // RevisionNumber, a tinyint, which uPurchaseOrderHeader increments on each update, as each detail inserted makes
+        instance.setRevisionNumber(random.nextInt(100));
         // SubTotal, TaxAmt and Freight, all money, >= 0
         instance.setSubTotal(__Random_TestUtils.positive(5, 4));
         instance.setTaxAmt(__Random_TestUtils.positive(5, 4));
