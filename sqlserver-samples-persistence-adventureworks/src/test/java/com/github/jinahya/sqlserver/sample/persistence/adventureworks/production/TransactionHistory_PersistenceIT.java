@@ -33,9 +33,10 @@ class TransactionHistory_PersistenceIT extends _Entity_PersistenceIT<Transaction
     // -----------------------------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; {@code Production.TransactionHistory} has no randomizer and persister yet.
+     * Does nothing; the triggers of the work-order, purchase-order and sales-order tables insert every row of
+     * {@code Production.TransactionHistory}, and nothing else inserts into it.
      */
-    @Disabled("no randomizer and persister yet")
+    @Disabled("written by the order and work-order triggers: nothing else inserts into it")
     @Override
     @Test
     protected void persistTargetInstance() {
