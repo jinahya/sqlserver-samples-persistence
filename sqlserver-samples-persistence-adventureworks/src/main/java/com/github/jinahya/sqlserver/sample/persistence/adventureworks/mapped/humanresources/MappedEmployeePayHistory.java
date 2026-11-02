@@ -36,6 +36,9 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.EmployeePayHistory} table.
+ * <p>
+ * Read-only: the application writes this table only through {@code HumanResources.uspUpdateEmployeeHireInfo}, which
+ * inserts a row, and nothing updates or deletes one; so no column of it is insertable, nor updatable.
  */
 @MappedSuperclass
 public abstract class MappedEmployeePayHistory {
@@ -204,7 +207,7 @@ public abstract class MappedEmployeePayHistory {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -224,7 +227,7 @@ public abstract class MappedEmployeePayHistory {
      *
      * @param rateChangeDate new value for {@value #ATTRIBUTE_NAME_RATE_CHANGE_DATE} attribute.
      */
-    public void setRateChangeDate(final LocalDateTime rateChangeDate) {
+    protected void setRateChangeDate(final LocalDateTime rateChangeDate) {
         this.rateChangeDate = rateChangeDate;
     }
 
@@ -244,7 +247,7 @@ public abstract class MappedEmployeePayHistory {
      *
      * @param rate new value for {@value #ATTRIBUTE_NAME_RATE} attribute.
      */
-    public void setRate(final BigDecimal rate) {
+    protected void setRate(final BigDecimal rate) {
         this.rate = rate;
     }
 
@@ -264,7 +267,7 @@ public abstract class MappedEmployeePayHistory {
      *
      * @param payFrequency new value for {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute.
      */
-    public void setPayFrequency(final Integer payFrequency) {
+    protected void setPayFrequency(final Integer payFrequency) {
         this.payFrequency = payFrequency;
     }
 
@@ -284,33 +287,34 @@ public abstract class MappedEmployeePayHistory {
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
-    public void setModifiedDate(final LocalDateTime modifiedDate) {
+    protected void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
             nullable = false,
-            insertable = true,
+            insertable = false,
             updatable = false
     )
     private Integer businessEntityId;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_RATE_CHANGE_DATE,
             nullable = false,
-            insertable = true,
+            insertable = false,
             updatable = false
     )
     private LocalDateTime rateChangeDate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     // CK_EmployeePayHistory_Rate: ([Rate]>=(6.50) AND [Rate]<=(200.00))
     @DecimalMax(COLUMN_MAX_RATE)
     @DecimalMin(COLUMN_MIN_RATE)
@@ -318,12 +322,13 @@ public abstract class MappedEmployeePayHistory {
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RATE,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private BigDecimal rate;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     // CK_EmployeePayHistory_PayFrequency: ([PayFrequency]=(2) OR [PayFrequency]=(1))
     @Max(COLUMN_MAX_PAY_FREQUENCY)
     @Min(COLUMN_MIN_PAY_FREQUENCY)
@@ -331,19 +336,19 @@ public abstract class MappedEmployeePayHistory {
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAY_FREQUENCY,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
     private Integer payFrequency;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
-    // which nothing in the database restamps, so an UPDATE writes it
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
+    // the database's DEFAULT (getdate()) fills it on the INSERT of the procedure
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = false,
             insertable = false,
-            updatable = true
+            updatable = false
     )
     private LocalDateTime modifiedDate;
 }

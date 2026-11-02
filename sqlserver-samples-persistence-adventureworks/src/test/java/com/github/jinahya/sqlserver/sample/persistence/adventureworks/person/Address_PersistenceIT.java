@@ -52,16 +52,16 @@ class Address_PersistenceIT extends _Entity_PersistenceIT<Address> {
      * @implNote The spatial location SQL Server stored is the randomized point, byte for byte.
      */
     @Override
-    protected void persisted(final EntityManager entityManager, final Address instance) {
-        assertThat(instance.getSpatialLocation()).isNotNull();
-        assertThat((byte[]) storedSpatialLocation(entityManager, instance))
-                .as("the SpatialLocation stored for %s", instance.getSpatialLocation())
-                .isEqualTo(instance.getSpatialLocation().getBytes());
+    protected void targetInstancePersisted(final EntityManager entityManager, final Address entityInstance) {
+        assertThat(entityInstance.getSpatialLocation()).isNotNull();
+        assertThat((byte[]) storedSpatialLocation(entityManager, entityInstance))
+                .as("the SpatialLocation stored for %s", entityInstance.getSpatialLocation())
+                .isEqualTo(entityInstance.getSpatialLocation().getBytes());
     }
 
     @DisplayName("a new instance with no spatial location is persisted, and SQL Server stores a NULL")
     @Test
-    void persist_SpatialLocationNull() {
+    void persistTargetInstance_SpatialLocationNull() {
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
             final var instance = ObjectRandomizerUtils.newRandomizedInstanceOf(Address.class).orElseThrow();
             instance.setSpatialLocation(null);

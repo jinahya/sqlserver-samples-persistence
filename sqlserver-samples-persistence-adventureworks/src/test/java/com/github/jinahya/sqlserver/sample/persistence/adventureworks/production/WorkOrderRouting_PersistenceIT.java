@@ -21,10 +21,24 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class WorkOrderRouting_PersistenceIT extends _Entity_PersistenceIT<WorkOrderRouting> {
 
     WorkOrderRouting_PersistenceIT() {
         super(WorkOrderRouting.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code Production.WorkOrderRouting} has no randomizer and persister yet.
+     */
+    @Disabled("no randomizer and persister yet")
+    @Override
+    @Test
+    protected void persistTargetInstance() {
+        // empty
     }
 }

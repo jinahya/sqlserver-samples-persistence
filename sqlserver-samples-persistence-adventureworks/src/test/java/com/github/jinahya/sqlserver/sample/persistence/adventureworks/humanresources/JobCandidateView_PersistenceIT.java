@@ -21,10 +21,24 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class JobCandidateView_PersistenceIT extends _Entity_PersistenceIT<JobCandidateView> {
 
     JobCandidateView_PersistenceIT() {
         super(JobCandidateView.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code HumanResources.vJobCandidate} is a view, which no row is inserted into.
+     */
+    @Disabled("a view: nothing is inserted into it")
+    @Override
+    @Test
+    protected void persistTargetInstance() {
+        // empty
     }
 }

@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.EntityType;
@@ -32,6 +33,7 @@ import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * The integration tests of an entity, against the {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on the
@@ -136,6 +138,36 @@ public abstract class _Entity_PersistenceIT<T> {
             }
             return null;
         });
+    }
+
+    /**
+     * Selects a random instance of the entity, from the installed rows, and hands it to
+     * {@link #randomTargetInstanceSelected(Object)}.
+     *
+     * @implNote The selection and the callback both run inside a transaction which is rolled back, so the instance
+     *         handed over is still managed, and nothing the callback does reaches the sample data.
+     * @implSpec An empty table is not a failure; the test aborts, since the table's content is the installer's.
+     */
+    @DisplayName("a randomly selected installed row is handed to randomTargetInstanceSelected")
+    @Test
+    void selectRandomTargetInstance() {
+        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+            final var selected = JinahyaEntityManagerTestUtils.selectRandomEntity(em, entityClass);
+            assumeTrue(selected.isPresent(), () -> "no row of " + entityClass.getSimpleName() + " is installed");
+            randomTargetInstanceSelected(selected.get());
+            return null;
+        });
+    }
+
+    /**
+     * Called with the instance {@link #selectRandomTargetInstance()} selected, while it is still managed.
+     *
+     * @param instance the randomly selected instance.
+     * @implSpec This class does nothing; a subclass overrides it to assert what its entity promises of an installed
+     *         row.
+     */
+    protected void randomTargetInstanceSelected(final T instance) {
+        // empty
     }
 
     // -----------------------------------------------------------------------------------------------------------------

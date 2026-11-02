@@ -32,6 +32,8 @@ import jakarta.persistence.Table;
 
 /**
  * An entity which maps the {@code HumanResources.EmployeePayHistory} table.
+ * <p>
+ * The application adds a row through {@link Employee#NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}.
  */
 @Entity(name = "HumanResourcesEmployeePayHistory")
 @Table(schema = MappedEmployeePayHistory.TABLE_SCHEMA, name = MappedEmployeePayHistory.TABLE_NAME)
@@ -71,7 +73,7 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
      *
      * @param businessEntity the {@code Employee} to reference; {@code null} for none.
      */
-    public void setBusinessEntity(final Employee businessEntity) {
+    protected void setBusinessEntity(final Employee businessEntity) {
         this.businessEntity = businessEntity;
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }

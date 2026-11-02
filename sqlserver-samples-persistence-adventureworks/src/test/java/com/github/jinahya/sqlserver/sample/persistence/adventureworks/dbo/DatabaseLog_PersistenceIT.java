@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
 import io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +33,19 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
 
     DatabaseLog_PersistenceIT() {
         super(DatabaseLog.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; the {@code ddlDatabaseTriggerLog} database trigger inserts every row of {@code dbo.DatabaseLog},
+     * on each DDL statement, and nothing else inserts into it.
+     */
+    @Disabled("written by the ddlDatabaseTriggerLog trigger: nothing else inserts into it")
+    @Override
+    @Test
+    protected void persistTargetInstance() {
+        // empty
     }
 
     // -------------------------------------------------------------------------------------------------------- xmlEvent

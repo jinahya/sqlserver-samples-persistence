@@ -21,11 +21,25 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class ProductModelProductDescriptionCulture_PersistenceIT
         extends _Entity_PersistenceIT<ProductModelProductDescriptionCulture> {
 
     ProductModelProductDescriptionCulture_PersistenceIT() {
         super(ProductModelProductDescriptionCulture.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code Production.ProductModelProductDescriptionCulture} has no randomizer and persister yet.
+     */
+    @Disabled("no randomizer and persister yet")
+    @Override
+    @Test
+    protected void persistTargetInstance() {
+        // empty
     }
 }

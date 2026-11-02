@@ -21,10 +21,24 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class SalesPersonSalesByFiscalYearsView_PersistenceIT extends _Entity_PersistenceIT<SalesPersonSalesByFiscalYearsView> {
 
     SalesPersonSalesByFiscalYearsView_PersistenceIT() {
         super(SalesPersonSalesByFiscalYearsView.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code Sales.vSalesPersonSalesByFiscalYears} is a view, which no row is inserted into.
+     */
+    @Disabled("a view: nothing is inserted into it")
+    @Override
+    @Test
+    protected void persistTargetInstance() {
+        // empty
     }
 }

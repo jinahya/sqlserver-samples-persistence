@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persist
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter;
 import io.github.jinahya.sqlserver.xml.schema.binding.b80e2e.ContactRecord;
 import jakarta.xml.bind.JAXBElement;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,18 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
 
     EmployeeView_PersistenceIT() {
         super(EmployeeView.class);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code HumanResources.vEmployee} is a view, which no row is inserted into.
+     */
+    @Disabled("a view: nothing is inserted into it")
+    @Override
+    @Test
+    protected void persistTargetInstance() {
+        // empty
     }
 
     // ------------------------------------------------------------------------------------------- additionalContactInfo

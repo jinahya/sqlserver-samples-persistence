@@ -27,11 +27,60 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedStoredProcedureQuery;
+import jakarta.persistence.StoredProcedureParameter;
 import jakarta.persistence.Table;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * An entity which maps the {@code HumanResources.Employee} table.
+ * <p>
+ * Three named stored procedure queries call the procedures of {@code HumanResources}, each of which updates an
+ * employee: {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}, which also adds a row to
+ * {@code HumanResources.EmployeePayHistory}, in one transaction;
+ * {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_LOGIN}; and
+ * {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO}. Their parameters are positional, in the
+ * order each procedure declares them; every one is required. A procedure logs a failure to {@code dbo.ErrorLog} and
+ * raises nothing.
  */
+@NamedStoredProcedureQuery(
+        name = Employee.NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO,
+        procedureName = "HumanResources.uspUpdateEmployeeHireInfo",
+        parameters = {
+                @StoredProcedureParameter(type = Integer.class),       // @BusinessEntityID int
+                @StoredProcedureParameter(type = String.class),        // @JobTitle nvarchar(50)
+                @StoredProcedureParameter(type = LocalDateTime.class), // @HireDate datetime
+                @StoredProcedureParameter(type = LocalDateTime.class), // @RateChangeDate datetime
+                @StoredProcedureParameter(type = BigDecimal.class),    // @Rate money
+                @StoredProcedureParameter(type = Integer.class),       // @PayFrequency tinyint
+                @StoredProcedureParameter(type = Boolean.class)        // @CurrentFlag dbo.Flag
+        }
+)
+@NamedStoredProcedureQuery(
+        name = Employee.NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_LOGIN,
+        procedureName = "HumanResources.uspUpdateEmployeeLogin",
+        parameters = {
+                @StoredProcedureParameter(type = Integer.class),       // @BusinessEntityID int
+                @StoredProcedureParameter(type = byte[].class),        // @OrganizationNode hierarchyid
+                @StoredProcedureParameter(type = String.class),        // @LoginID nvarchar(256)
+                @StoredProcedureParameter(type = String.class),        // @JobTitle nvarchar(50)
+                @StoredProcedureParameter(type = LocalDateTime.class), // @HireDate datetime
+                @StoredProcedureParameter(type = Boolean.class)        // @CurrentFlag dbo.Flag
+        }
+)
+@NamedStoredProcedureQuery(
+        name = Employee.NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO,
+        procedureName = "HumanResources.uspUpdateEmployeePersonalInfo",
+        parameters = {
+                @StoredProcedureParameter(type = Integer.class),       // @BusinessEntityID int
+                @StoredProcedureParameter(type = String.class),        // @NationalIDNumber nvarchar(15)
+                @StoredProcedureParameter(type = LocalDateTime.class), // @BirthDate datetime
+                @StoredProcedureParameter(type = String.class),        // @MaritalStatus nchar(1)
+                @StoredProcedureParameter(type = String.class)         // @Gender nchar(1)
+        }
+)
 @Entity(name = "HumanResourcesEmployee")
 @Table(schema = MappedEmployee.TABLE_SCHEMA, name = MappedEmployee.TABLE_NAME)
 public class Employee extends MappedEmployee {
@@ -40,6 +89,28 @@ public class Employee extends MappedEmployee {
      * The name of the attribute of the {@code FK_Employee_Person_BusinessEntityID} foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
+
+    /**
+     * The name of the named stored procedure query which calls {@code HumanResources.uspUpdateEmployeeHireInfo}. The
+     * value is {@value}.
+     */
+    public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO =
+            "HumanResourcesEmployee.uspUpdateEmployeeHireInfo";
+
+    /**
+     * The name of the named stored procedure query which calls {@code HumanResources.uspUpdateEmployeeLogin}; its
+     * {@code @OrganizationNode} takes the bytes of a {@code hierarchyid}, which SQL Server converts from
+     * {@code varbinary}. The value is {@value}.
+     */
+    public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_LOGIN =
+            "HumanResourcesEmployee.uspUpdateEmployeeLogin";
+
+    /**
+     * The name of the named stored procedure query which calls {@code HumanResources.uspUpdateEmployeePersonalInfo};
+     * its {@code @MaritalStatus} and {@code @Gender} take the names of the constants. The value is {@value}.
+     */
+    public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO =
+            "HumanResourcesEmployee.uspUpdateEmployeePersonalInfo";
 
     // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
 
