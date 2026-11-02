@@ -146,9 +146,9 @@ public abstract class _Entity_PersistenceIT<T> {
      * Persists a new, randomized instance of the entity, through its persister, and flushes it.
      * <p>
      * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister}, are found by name,
-     * beside the entity. An entity which cannot be persisted -- a view, or a table which only SQL Server or the
-     * installer writes -- overrides this method with an empty one, {@link org.junit.jupiter.api.Disabled @Disabled}
-     * with the reason; so does a table which has no randomizer and persister yet.
+     * beside the entity. An entity which is not persisted -- a view, or a table which only SQL Server, the installer,
+     * or a procedure writes -- overrides this method with an empty one,
+     * {@link org.junit.jupiter.api.Disabled @Disabled} with the reason.
      *
      * @implNote The flush is what makes the {@code INSERT} reach the database, with its constraints and triggers; the
      *         transaction is rolled back, so without it nothing would be written, and nothing tested.

@@ -40,8 +40,8 @@ import jakarta.persistence.MappedSuperclass;
 public abstract class MappedWithIdentityId {
 
     /**
-     * The name of the identifier attribute, which an extending class overrides. The value is
-     * {@value}.
+     * The name of the identifier attribute, whose column an extending class overrides. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ID_ = "id_";
 
