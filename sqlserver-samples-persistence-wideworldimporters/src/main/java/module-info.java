@@ -27,10 +27,10 @@
  * The packages are opened, not only exported, because a persistence provider and a validation provider reach the
  * mapped superclasses' private fields reflectively.
  */
-module com.github.jinahya.sqlserver.sample.databases.persistence.wideworldimporters {
+module com.github.jinahya.sqlserver.sample.persistence.wideworldimporters {
 
     // the geography columns; the mapped superclasses return a Geography
-    requires transitive com.github.jinahya.sqlserver.sample.databases.persistence.common;
+    requires transitive com.github.jinahya.sqlserver.sample.persistence.common;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
 

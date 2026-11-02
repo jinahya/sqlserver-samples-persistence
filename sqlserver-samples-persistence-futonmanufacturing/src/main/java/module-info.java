@@ -27,9 +27,9 @@
  * The packages are opened, not only exported, because a persistence provider and a validation provider reach the
  * mapped superclasses' private fields reflectively.
  */
-module com.github.jinahya.sqlserver.sample.databases.persistence.futonmanufacturing {
+module com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing {
 
-    requires com.github.jinahya.sqlserver.sample.databases.persistence.common;
+    requires com.github.jinahya.sqlserver.sample.persistence.common;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
 

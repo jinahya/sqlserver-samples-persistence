@@ -27,10 +27,10 @@
  * The packages are opened, not only exported, because a persistence provider and a validation provider reach the
  * mapped superclasses' private fields reflectively.
  */
-module com.github.jinahya.sqlserver.sample.databases.persistence.adventureworks {
+module com.github.jinahya.sqlserver.sample.persistence.adventureworks {
 
     // HumanResources.Employee.OrganizationNode; MappedEmployee returns a Heirarchyid
-    requires transitive com.github.jinahya.sqlserver.sample.databases.persistence.common;
+    requires transitive com.github.jinahya.sqlserver.sample.persistence.common;
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
     requires java.xml;

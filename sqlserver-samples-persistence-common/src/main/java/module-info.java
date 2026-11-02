@@ -24,7 +24,7 @@
  * The package is opened, not only exported, because a persistence provider reaches the mapped superclasses' private
  * fields reflectively.
  */
-module com.github.jinahya.sqlserver.sample.databases.persistence.common {
+module com.github.jinahya.sqlserver.sample.persistence.common {
 
     requires io.github.jinahya.bit.io;
 
