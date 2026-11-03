@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -102,6 +103,18 @@ public abstract class MappedEmployeeDepartmentHistory {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -115,14 +128,16 @@ public abstract class MappedEmployeeDepartmentHistory {
     public static final String COLUMN_NAME_DEPARTMENT_ID = "DepartmentID";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute, the minimum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_DEPARTMENT_ID = Short.MIN_VALUE;
+    public static final int ATTRIBUTE_MIN_DEPARTMENT_ID = SqlServerConstants.SMALLINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_DEPARTMENT_ID = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_DEPARTMENT_ID = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DEPARTMENT_ID} column. The
@@ -138,14 +153,16 @@ public abstract class MappedEmployeeDepartmentHistory {
     public static final String COLUMN_NAME_SHIFT_ID = "ShiftID";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SHIFT_ID} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute, the minimum of the
+     * {@code tinyint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_SHIFT_ID = 0;
+    public static final int ATTRIBUTE_MIN_SHIFT_ID = SqlServerConstants.TINYINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_SHIFT_ID} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute, the maximum of the
+     * {@code tinyint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_SHIFT_ID = +255;
+    public static final int ATTRIBUTE_MAX_SHIFT_ID = SqlServerConstants.TINYINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIFT_ID} column. The value is
@@ -415,6 +432,8 @@ public abstract class MappedEmployeeDepartmentHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -427,8 +446,8 @@ public abstract class MappedEmployeeDepartmentHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(COLUMN_MAX_DEPARTMENT_ID)
-    @Min(COLUMN_MIN_DEPARTMENT_ID)
+    @Max(ATTRIBUTE_MAX_DEPARTMENT_ID)
+    @Min(ATTRIBUTE_MIN_DEPARTMENT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_DEPARTMENT_ID, nullable = false, insertable = true,
@@ -441,8 +460,8 @@ public abstract class MappedEmployeeDepartmentHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(COLUMN_MAX_SHIFT_ID)
-    @Min(COLUMN_MIN_SHIFT_ID)
+    @Max(ATTRIBUTE_MAX_SHIFT_ID)
+    @Min(ATTRIBUTE_MIN_SHIFT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SHIFT_ID, nullable = false, insertable = true, updatable = false)

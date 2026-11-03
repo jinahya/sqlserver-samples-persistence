@@ -20,12 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -112,6 +114,18 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
      * is {@value}.
      */
@@ -123,6 +137,18 @@ public abstract class MappedProductVendor {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
@@ -138,17 +164,18 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_AVERAGE_LEAD_TIME = "AverageLeadTime";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute, as the
      * {@code CK_ProductVendor_AverageLeadTime} check constraint ({@code [AverageLeadTime]>=(1)})
      * requires. The value is {@value}.
      */
-    public static final int COLUMN_MIN_AVERAGE_LEAD_TIME = +1;
+    public static final int ATTRIBUTE_MIN_AVERAGE_LEAD_TIME = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column. The value is
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute, the maximum of the
+     * {@code int} type. The value is
      * {@value}.
      */
-    public static final int COLUMN_MAX_AVERAGE_LEAD_TIME = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_AVERAGE_LEAD_TIME = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVERAGE_LEAD_TIME} column. The
@@ -164,11 +191,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_STANDARD_PRICE = "StandardPrice";
 
     /**
-     * The exclusive minimum value of the {@value #COLUMN_NAME_STANDARD_PRICE} column, as the
+     * The exclusive minimum value of the {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute, as the
      * {@code CK_ProductVendor_StandardPrice} check constraint ({@code [StandardPrice]>(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_STANDARD_PRICE_EXCLUSIVE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_STANDARD_PRICE_EXCLUSIVE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_STANDARD_PRICE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_PRICE} column. The
@@ -184,11 +217,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_LAST_RECEIPT_COST = "LastReceiptCost";
 
     /**
-     * The exclusive minimum value of the {@value #COLUMN_NAME_LAST_RECEIPT_COST} column, as the
+     * The exclusive minimum value of the {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute, as the
      * {@code CK_ProductVendor_LastReceiptCost} check constraint ({@code [LastReceiptCost]>(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_LAST_RECEIPT_COST_EXCLUSIVE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_LAST_RECEIPT_COST_EXCLUSIVE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LAST_RECEIPT_COST = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_RECEIPT_COST} column. The
@@ -217,16 +256,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_MIN_ORDER_QTY = "MinOrderQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_MIN_ORDER_QTY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute, as the
      * {@code CK_ProductVendor_MinOrderQty} check constraint ({@code [MinOrderQty]>=(1)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MIN_MIN_ORDER_QTY = +1;
+    public static final int ATTRIBUTE_MIN_MIN_ORDER_QTY = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_MIN_ORDER_QTY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_MIN_ORDER_QTY = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_MIN_ORDER_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_ORDER_QTY} column. The
@@ -242,16 +282,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_MAX_ORDER_QTY = "MaxOrderQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_MAX_ORDER_QTY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute, as the
      * {@code CK_ProductVendor_MaxOrderQty} check constraint ({@code [MaxOrderQty]>=(1)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MIN_MAX_ORDER_QTY = +1;
+    public static final int ATTRIBUTE_MIN_MAX_ORDER_QTY = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_MAX_ORDER_QTY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_MAX_ORDER_QTY = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_MAX_ORDER_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_ORDER_QTY} column. The
@@ -267,16 +308,17 @@ public abstract class MappedProductVendor {
     public static final String COLUMN_NAME_ON_ORDER_QTY = "OnOrderQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_ON_ORDER_QTY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute, as the
      * {@code CK_ProductVendor_OnOrderQty} check constraint ({@code [OnOrderQty]>=(0)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MIN_ON_ORDER_QTY = 0;
+    public static final int ATTRIBUTE_MIN_ON_ORDER_QTY = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_ON_ORDER_QTY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_ON_ORDER_QTY = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_ON_ORDER_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ON_ORDER_QTY} column. The value
@@ -619,6 +661,8 @@ public abstract class MappedProductVendor {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -629,6 +673,8 @@ public abstract class MappedProductVendor {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -639,8 +685,8 @@ public abstract class MappedProductVendor {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_AverageLeadTime: ([AverageLeadTime]>=(1))
-    @Max(COLUMN_MAX_AVERAGE_LEAD_TIME)
-    @Min(COLUMN_MIN_AVERAGE_LEAD_TIME)
+    @Max(ATTRIBUTE_MAX_AVERAGE_LEAD_TIME)
+    @Min(ATTRIBUTE_MIN_AVERAGE_LEAD_TIME)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVERAGE_LEAD_TIME, nullable = false, insertable = true,
@@ -652,21 +698,23 @@ public abstract class MappedProductVendor {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_StandardPrice: ([StandardPrice]>(0.00))
-    @DecimalMin(value = COLUMN_MIN_STANDARD_PRICE_EXCLUSIVE, inclusive = false)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_STANDARD_PRICE)
+    @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_STANDARD_PRICE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_PRICE, nullable = false, insertable = true,
-            updatable = true)
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_STANDARD_PRICE,
                           value = "The vendor's usual selling price.")
     private BigDecimal standardPrice;
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_LastReceiptCost: ([LastReceiptCost]>(0.00))
-    @DecimalMin(value = COLUMN_MIN_LAST_RECEIPT_COST_EXCLUSIVE, inclusive = false)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LAST_RECEIPT_COST)
+    @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_LAST_RECEIPT_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_RECEIPT_COST, nullable = true, insertable = true,
-            updatable = true)
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_COST,
                           value = "The selling price when last purchased.")
     private BigDecimal lastReceiptCost;
@@ -681,8 +729,8 @@ public abstract class MappedProductVendor {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_MinOrderQty: ([MinOrderQty]>=(1))
-    @Max(COLUMN_MAX_MIN_ORDER_QTY)
-    @Min(COLUMN_MIN_MIN_ORDER_QTY)
+    @Max(ATTRIBUTE_MAX_MIN_ORDER_QTY)
+    @Min(ATTRIBUTE_MIN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MIN_ORDER_QTY, nullable = false, insertable = true, updatable = true)
@@ -692,8 +740,8 @@ public abstract class MappedProductVendor {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_MaxOrderQty: ([MaxOrderQty]>=(1))
-    @Max(COLUMN_MAX_MAX_ORDER_QTY)
-    @Min(COLUMN_MIN_MAX_ORDER_QTY)
+    @Max(ATTRIBUTE_MAX_MAX_ORDER_QTY)
+    @Min(ATTRIBUTE_MIN_MAX_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MAX_ORDER_QTY, nullable = false, insertable = true, updatable = true)
@@ -703,8 +751,8 @@ public abstract class MappedProductVendor {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_OnOrderQty: ([OnOrderQty]>=(0))
-    @Max(COLUMN_MAX_ON_ORDER_QTY)
-    @Min(COLUMN_MIN_ON_ORDER_QTY)
+    @Max(ATTRIBUTE_MAX_ON_ORDER_QTY)
+    @Min(ATTRIBUTE_MIN_ON_ORDER_QTY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_ORDER_QTY, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ON_ORDER_QTY,

@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -61,6 +65,18 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -71,6 +87,18 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MONTH = "Month";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
@@ -102,6 +130,18 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final String COLUMN_NAME_ORDERS = "Orders";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ORDERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDERS = "orders";
@@ -112,6 +152,18 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMERS = "Customers";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMERS} column. The value is {@value}.
@@ -136,6 +188,18 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final int COLUMN_SCALE_REVENUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REVENUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REVENUE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REVENUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVENUE = "revenue";
@@ -156,6 +220,18 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The scale of the {@value #COLUMN_NAME_PRIOR_MONTH_REVENUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PRIOR_MONTH_REVENUE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIOR_MONTH_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PRIOR_MONTH_REVENUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIOR_MONTH_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PRIOR_MONTH_REVENUE = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIOR_MONTH_REVENUE} column. The value is
@@ -181,6 +257,18 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final int COLUMN_SCALE_REVENUE_GROWTH = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REVENUE_GROWTH} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REVENUE_GROWTH = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REVENUE_GROWTH} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REVENUE_GROWTH = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REVENUE_GROWTH} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVENUE_GROWTH = "revenueGrowth";
@@ -203,6 +291,18 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final int COLUMN_SCALE_GROWTH_PERCENT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_GROWTH_PERCENT} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_GROWTH_PERCENT = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_GROWTH_PERCENT} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_GROWTH_PERCENT = "999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_GROWTH_PERCENT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROWTH_PERCENT = "growthPercent";
@@ -213,6 +313,18 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIOR_MONTH_CUSTOMERS = "PriorMonthCustomers";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIOR_MONTH_CUSTOMERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRIOR_MONTH_CUSTOMERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIOR_MONTH_CUSTOMERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRIOR_MONTH_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIOR_MONTH_CUSTOMERS} column. The value is
@@ -226,6 +338,18 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMER_GROWTH = "CustomerGrowth";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_GROWTH} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_GROWTH = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_GROWTH} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_GROWTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_GROWTH} column. The value is {@value}.
@@ -250,6 +374,18 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final int COLUMN_SCALE_CUMULATIVE_REVENUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUMULATIVE_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_CUMULATIVE_REVENUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUMULATIVE_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_CUMULATIVE_REVENUE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUMULATIVE_REVENUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUMULATIVE_REVENUE = "cumulativeRevenue";
@@ -270,6 +406,18 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The scale of the {@value #COLUMN_NAME_THREE_MONTH_AVG} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_THREE_MONTH_AVG = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_THREE_MONTH_AVG} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_THREE_MONTH_AVG = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_THREE_MONTH_AVG} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_THREE_MONTH_AVG = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_THREE_MONTH_AVG} column. The value is {@value}.
@@ -568,12 +716,16 @@ public abstract class MappedSalesGrowthAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_YEAR)
+    @Min(ATTRIBUTE_MIN_YEAR)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_MONTH)
+    @Min(ATTRIBUTE_MIN_MONTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
@@ -588,71 +740,80 @@ public abstract class MappedSalesGrowthAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ORDERS)
+    @Min(ATTRIBUTE_MIN_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer orders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMERS)
+    @Min(ATTRIBUTE_MIN_CUSTOMERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer customers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_REVENUE - COLUMN_SCALE_REVENUE, fraction = COLUMN_SCALE_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REVENUE, scale = COLUMN_SCALE_REVENUE)
     private BigDecimal revenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PRIOR_MONTH_REVENUE - COLUMN_SCALE_PRIOR_MONTH_REVENUE,
-            fraction = COLUMN_SCALE_PRIOR_MONTH_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PRIOR_MONTH_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PRIOR_MONTH_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_MONTH_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRIOR_MONTH_REVENUE, scale = COLUMN_SCALE_PRIOR_MONTH_REVENUE)
     private BigDecimal priorMonthRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_REVENUE_GROWTH - COLUMN_SCALE_REVENUE_GROWTH,
-            fraction = COLUMN_SCALE_REVENUE_GROWTH)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REVENUE_GROWTH)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REVENUE_GROWTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REVENUE_GROWTH, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REVENUE_GROWTH, scale = COLUMN_SCALE_REVENUE_GROWTH)
     private BigDecimal revenueGrowth;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_GROWTH_PERCENT - COLUMN_SCALE_GROWTH_PERCENT,
-            fraction = COLUMN_SCALE_GROWTH_PERCENT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_GROWTH_PERCENT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_GROWTH_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROWTH_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROWTH_PERCENT, scale = COLUMN_SCALE_GROWTH_PERCENT)
     private BigDecimal growthPercent;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRIOR_MONTH_CUSTOMERS)
+    @Min(ATTRIBUTE_MIN_PRIOR_MONTH_CUSTOMERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_MONTH_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer priorMonthCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_GROWTH)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_GROWTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_GROWTH, nullable = true, insertable = false, updatable = false)
     private Integer customerGrowth;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_CUMULATIVE_REVENUE - COLUMN_SCALE_CUMULATIVE_REVENUE,
-            fraction = COLUMN_SCALE_CUMULATIVE_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_CUMULATIVE_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_CUMULATIVE_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUMULATIVE_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_CUMULATIVE_REVENUE, scale = COLUMN_SCALE_CUMULATIVE_REVENUE)
     private BigDecimal cumulativeRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_THREE_MONTH_AVG - COLUMN_SCALE_THREE_MONTH_AVG,
-            fraction = COLUMN_SCALE_THREE_MONTH_AVG)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_THREE_MONTH_AVG)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_THREE_MONTH_AVG)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_THREE_MONTH_AVG, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_THREE_MONTH_AVG, scale = COLUMN_SCALE_THREE_MONTH_AVG)
     private BigDecimal threeMonthAvg;

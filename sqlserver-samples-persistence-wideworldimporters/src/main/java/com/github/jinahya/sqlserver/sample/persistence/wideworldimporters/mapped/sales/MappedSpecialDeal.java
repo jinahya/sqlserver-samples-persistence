@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -30,7 +31,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -119,6 +123,18 @@ public abstract class MappedSpecialDeal {
     public static final String COLUMN_NAME_SPECIAL_DEAL_ID = "SpecialDealID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SPECIAL_DEAL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SPECIAL_DEAL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SPECIAL_DEAL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SPECIAL_DEAL_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_DEAL_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_DEAL_ID = "specialDealId";
@@ -129,6 +145,18 @@ public abstract class MappedSpecialDeal {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STOCK_ITEM_ID = "StockItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STOCK_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STOCK_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_ITEM_ID} column. The value is {@value}.
@@ -143,6 +171,18 @@ public abstract class MappedSpecialDeal {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -153,6 +193,18 @@ public abstract class MappedSpecialDeal {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BUYING_GROUP_ID = "BuyingGroupID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUYING_GROUP_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUYING_GROUP_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUYING_GROUP_ID} column. The value is {@value}.
@@ -167,6 +219,18 @@ public abstract class MappedSpecialDeal {
     public static final String COLUMN_NAME_CUSTOMER_CATEGORY_ID = "CustomerCategoryID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_CATEGORY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_CATEGORY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_CATEGORY_ID} column. The value is
      * {@value}.
      */
@@ -178,6 +242,18 @@ public abstract class MappedSpecialDeal {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STOCK_GROUP_ID = "StockGroupID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STOCK_GROUP_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STOCK_GROUP_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_GROUP_ID} column. The value is {@value}.
@@ -243,6 +319,18 @@ public abstract class MappedSpecialDeal {
     public static final int COLUMN_SCALE_DISCOUNT_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_AMOUNT = "discountAmount";
@@ -263,6 +351,18 @@ public abstract class MappedSpecialDeal {
      * The scale of the {@value #COLUMN_NAME_DISCOUNT_PERCENTAGE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_DISCOUNT_PERCENTAGE = 3;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENTAGE} attribute, the minimum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PERCENTAGE = "-999999999999999.999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENTAGE} attribute, the maximum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PERCENTAGE = "999999999999999.999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PERCENTAGE} column. The value is
@@ -288,6 +388,18 @@ public abstract class MappedSpecialDeal {
     public static final int COLUMN_SCALE_UNIT_PRICE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
@@ -298,6 +410,18 @@ public abstract class MappedSpecialDeal {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -708,6 +832,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_SPECIAL_DEAL_ID)
+    @Min(ATTRIBUTE_MIN_SPECIAL_DEAL_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SpecialDealID", schema = "Sequences",
                        sequenceName = "SpecialDealID",
@@ -721,6 +847,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_STOCK_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_STOCK_ITEM_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
@@ -730,6 +858,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
@@ -739,6 +869,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_BUYING_GROUP_ID)
+    @Min(ATTRIBUTE_MIN_BUYING_GROUP_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
@@ -748,6 +880,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_CATEGORY_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_CATEGORY_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
@@ -757,6 +891,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_STOCK_GROUP_ID)
+    @Min(ATTRIBUTE_MIN_STOCK_GROUP_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
@@ -790,8 +926,8 @@ public abstract class MappedSpecialDeal {
     private LocalDate endDate;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
-            fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
@@ -799,8 +935,8 @@ public abstract class MappedSpecialDeal {
     private BigDecimal discountAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENTAGE - COLUMN_SCALE_DISCOUNT_PERCENTAGE,
-            fraction = COLUMN_SCALE_DISCOUNT_PERCENTAGE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PERCENTAGE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PERCENTAGE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_PERCENTAGE, scale = COLUMN_SCALE_DISCOUNT_PERCENTAGE)
     @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE,
@@ -809,7 +945,8 @@ public abstract class MappedSpecialDeal {
     private BigDecimal discountPercentage;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
@@ -819,6 +956,8 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

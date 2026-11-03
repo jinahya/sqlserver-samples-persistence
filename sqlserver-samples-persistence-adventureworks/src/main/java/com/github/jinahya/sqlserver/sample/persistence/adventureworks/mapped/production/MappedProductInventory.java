@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -107,6 +108,18 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
      * is {@value}.
      */
@@ -120,14 +133,16 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_LOCATION_ID = Short.MIN_VALUE;
+    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.SMALLINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_LOCATION_ID = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
@@ -161,18 +176,18 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_BIN = "Bin";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_BIN} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BIN} attribute, as the
      * {@code CK_ProductInventory_Bin} check constraint ({@code [Bin]>=(0)}) requires. The value is
      * {@value}.
      */
-    public static final int COLUMN_MIN_BIN = 0;
+    public static final int ATTRIBUTE_MIN_BIN = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_BIN} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BIN} attribute, as the
      * {@code CK_ProductInventory_Bin} check constraint ({@code [Bin]<=(100)}) requires. The value
      * is {@value}.
      */
-    public static final int COLUMN_MAX_BIN = +100;
+    public static final int ATTRIBUTE_MAX_BIN = +100;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BIN} column. The value is
@@ -188,14 +203,16 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_QUANTITY = Short.MIN_VALUE;
+    public static final int ATTRIBUTE_MIN_QUANTITY = SqlServerConstants.SMALLINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_QUANTITY = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_QUANTITY = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is
@@ -456,6 +473,8 @@ public abstract class MappedProductInventory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -467,8 +486,8 @@ public abstract class MappedProductInventory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(COLUMN_MAX_LOCATION_ID)
-    @Min(COLUMN_MIN_LOCATION_ID)
+    @Max(ATTRIBUTE_MAX_LOCATION_ID)
+    @Min(ATTRIBUTE_MIN_LOCATION_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false)
@@ -489,8 +508,8 @@ public abstract class MappedProductInventory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductInventory_Bin: ([Bin]>=(0) AND [Bin]<=(100))
-    @Max(COLUMN_MAX_BIN)
-    @Min(COLUMN_MIN_BIN)
+    @Max(ATTRIBUTE_MAX_BIN)
+    @Min(ATTRIBUTE_MIN_BIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BIN, nullable = false, insertable = true, updatable = true)
@@ -499,8 +518,8 @@ public abstract class MappedProductInventory {
     private Integer bin;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(COLUMN_MAX_QUANTITY)
-    @Min(COLUMN_MIN_QUANTITY)
+    @Max(ATTRIBUTE_MAX_QUANTITY)
+    @Min(ATTRIBUTE_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)

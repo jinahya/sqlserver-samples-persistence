@@ -20,9 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -57,6 +60,18 @@ public abstract class MappedVendorWithContactsView {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
@@ -250,6 +265,18 @@ public abstract class MappedVendorWithContactsView {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_EMAIL_PROMOTION = "EmailPromotion";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_EMAIL_PROMOTION = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_EMAIL_PROMOTION = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The
@@ -538,6 +565,8 @@ public abstract class MappedVendorWithContactsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
@@ -630,6 +659,8 @@ public abstract class MappedVendorWithContactsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_EMAIL_PROMOTION)
+    @Min(ATTRIBUTE_MIN_EMAIL_PROMOTION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = false,

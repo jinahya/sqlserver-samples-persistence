@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -103,6 +104,18 @@ public abstract class MappedShoppingCartItem {
     public static final String COLUMN_NAME_SHOPPING_CART_ITEM_ID = "ShoppingCartItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHOPPING_CART_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SHOPPING_CART_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHOPPING_CART_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SHOPPING_CART_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHOPPING_CART_ITEM_ID} column.
      * The value is {@value}.
      */
@@ -134,16 +147,17 @@ public abstract class MappedShoppingCartItem {
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_QUANTITY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, as the
      * {@code CK_ShoppingCartItem_Quantity} check constraint ({@code [Quantity]>=(1)}) requires. The
      * value is {@value}.
      */
-    public static final int COLUMN_MIN_QUANTITY = +1;
+    public static final int ATTRIBUTE_MIN_QUANTITY = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_QUANTITY = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_QUANTITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is
@@ -157,6 +171,18 @@ public abstract class MappedShoppingCartItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -376,6 +402,8 @@ public abstract class MappedShoppingCartItem {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_SHOPPING_CART_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_SHOPPING_CART_ITEM_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID, nullable = false, insertable = true,
@@ -396,8 +424,8 @@ public abstract class MappedShoppingCartItem {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ShoppingCartItem_Quantity: ([Quantity]>=(1))
-    @Max(COLUMN_MAX_QUANTITY)
-    @Min(COLUMN_MIN_QUANTITY)
+    @Max(ATTRIBUTE_MAX_QUANTITY)
+    @Min(ATTRIBUTE_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
@@ -408,6 +436,8 @@ public abstract class MappedShoppingCartItem {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)

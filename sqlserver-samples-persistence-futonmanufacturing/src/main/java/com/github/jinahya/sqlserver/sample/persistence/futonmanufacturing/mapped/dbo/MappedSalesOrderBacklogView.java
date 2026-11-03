@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -184,6 +188,18 @@ public abstract class MappedSalesOrderBacklogView {
     public static final String COLUMN_NAME_DAYS_OPEN = "DaysOpen";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_OPEN} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_OPEN = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_OPEN} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_OPEN = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_OPEN} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_OPEN = "daysOpen";
@@ -196,6 +212,18 @@ public abstract class MappedSalesOrderBacklogView {
     public static final String COLUMN_NAME_DAYS_UNTIL_DUE = "DaysUntilDue";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_DUE} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_UNTIL_DUE = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_DUE} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_UNTIL_DUE = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_UNTIL_DUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_UNTIL_DUE = "daysUntilDue";
@@ -206,6 +234,18 @@ public abstract class MappedSalesOrderBacklogView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LINE_ITEMS = "LineItems";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LINE_ITEMS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LINE_ITEMS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_ITEMS} column. The value is {@value}.
@@ -228,6 +268,18 @@ public abstract class MappedSalesOrderBacklogView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_QUANTITY_ORDERED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_QUANTITY_ORDERED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_ORDERED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_QUANTITY_ORDERED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_ORDERED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_QUANTITY_ORDERED = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_QUANTITY_ORDERED} column. The value is
@@ -253,6 +305,18 @@ public abstract class MappedSalesOrderBacklogView {
     public static final int COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_SHIPPED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_QUANTITY_SHIPPED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_SHIPPED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_QUANTITY_SHIPPED = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_QUANTITY_SHIPPED} column. The value is
      * {@value}.
      */
@@ -274,6 +338,18 @@ public abstract class MappedSalesOrderBacklogView {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_BACKLOG} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_BACKLOG = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_BACKLOG} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_BACKLOG = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_BACKLOG} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_BACKLOG = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_BACKLOG} column. The value is {@value}.
@@ -298,6 +374,18 @@ public abstract class MappedSalesOrderBacklogView {
     public static final int COLUMN_SCALE_TOTAL_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_AMOUNT = "totalAmount";
@@ -318,6 +406,18 @@ public abstract class MappedSalesOrderBacklogView {
      * The scale of the {@value #COLUMN_NAME_ORDER_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_ORDER_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ORDER_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ORDER_VALUE = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_VALUE} column. The value is {@value}.
@@ -342,6 +442,18 @@ public abstract class MappedSalesOrderBacklogView {
     public static final int COLUMN_SCALE_BACKLOG_VALUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BACKLOG_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_BACKLOG_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BACKLOG_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_BACKLOG_VALUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BACKLOG_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BACKLOG_VALUE = "backlogValue";
@@ -362,6 +474,18 @@ public abstract class MappedSalesOrderBacklogView {
      * The scale of the {@value #COLUMN_NAME_PERCENT_COMPLETE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PERCENT_COMPLETE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PERCENT_COMPLETE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PERCENT_COMPLETE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PERCENT_COMPLETE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PERCENT_COMPLETE = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PERCENT_COMPLETE} column. The value is {@value}.
@@ -891,72 +1015,80 @@ public abstract class MappedSalesOrderBacklogView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_OPEN)
+    @Min(ATTRIBUTE_MIN_DAYS_OPEN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_OPEN, nullable = true, insertable = false, updatable = false)
     private Integer daysOpen;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_UNTIL_DUE)
+    @Min(ATTRIBUTE_MIN_DAYS_UNTIL_DUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_DUE, nullable = true, insertable = false, updatable = false)
     private Integer daysUntilDue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LINE_ITEMS)
+    @Min(ATTRIBUTE_MIN_LINE_ITEMS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer lineItems;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED - COLUMN_SCALE_TOTAL_QUANTITY_ORDERED,
-            fraction = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_QUANTITY_ORDERED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_QUANTITY_ORDERED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_QUANTITY_ORDERED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED, scale = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED)
     private BigDecimal totalQuantityOrdered;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED - COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED,
-            fraction = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_QUANTITY_SHIPPED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_QUANTITY_SHIPPED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_QUANTITY_SHIPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED, scale = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED)
     private BigDecimal totalQuantityShipped;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_BACKLOG - COLUMN_SCALE_QUANTITY_BACKLOG,
-            fraction = COLUMN_SCALE_QUANTITY_BACKLOG)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_BACKLOG)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_BACKLOG)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_BACKLOG, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_BACKLOG, scale = COLUMN_SCALE_QUANTITY_BACKLOG)
     private BigDecimal quantityBacklog;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_AMOUNT, scale = COLUMN_SCALE_TOTAL_AMOUNT)
     private BigDecimal totalAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ORDER_VALUE - COLUMN_SCALE_ORDER_VALUE, fraction = COLUMN_SCALE_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ORDER_VALUE, scale = COLUMN_SCALE_ORDER_VALUE)
     private BigDecimal orderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_BACKLOG_VALUE - COLUMN_SCALE_BACKLOG_VALUE,
-            fraction = COLUMN_SCALE_BACKLOG_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_BACKLOG_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_BACKLOG_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BACKLOG_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_BACKLOG_VALUE, scale = COLUMN_SCALE_BACKLOG_VALUE)
     private BigDecimal backlogValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
-            fraction = COLUMN_SCALE_PERCENT_COMPLETE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PERCENT_COMPLETE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PERCENT_COMPLETE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERCENT_COMPLETE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_COMPLETE, scale = COLUMN_SCALE_PERCENT_COMPLETE)
     private BigDecimal percentComplete;

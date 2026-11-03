@@ -23,7 +23,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -170,6 +171,18 @@ public abstract class MappedMaterialRequirementsView {
     public static final int COLUMN_SCALE_REQUIRED_QUANTITY = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REQUIRED_QUANTITY = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REQUIRED_QUANTITY = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REQUIRED_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REQUIRED_QUANTITY = "requiredQuantity";
@@ -192,6 +205,18 @@ public abstract class MappedMaterialRequirementsView {
     public static final int COLUMN_SCALE_AVAILABLE_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVAILABLE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVAILABLE_QUANTITY = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVAILABLE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVAILABLE_QUANTITY = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABLE_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVAILABLE_QUANTITY = "availableQuantity";
@@ -212,6 +237,18 @@ public abstract class MappedMaterialRequirementsView {
      * The scale of the {@value #COLUMN_NAME_SHORTAGE_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SHORTAGE_QUANTITY = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SHORTAGE_QUANTITY = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SHORTAGE_QUANTITY = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHORTAGE_QUANTITY} column. The value is {@value}.
@@ -549,16 +586,16 @@ public abstract class MappedMaterialRequirementsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
-            fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REQUIRED_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REQUIRED_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REQUIRED_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REQUIRED_QUANTITY, scale = COLUMN_SCALE_REQUIRED_QUANTITY)
     private BigDecimal requiredQuantity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVAILABLE_QUANTITY - COLUMN_SCALE_AVAILABLE_QUANTITY,
-            fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVAILABLE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVAILABLE_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVAILABLE_QUANTITY, scale = COLUMN_SCALE_AVAILABLE_QUANTITY)
@@ -566,8 +603,8 @@ public abstract class MappedMaterialRequirementsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
-            fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHORTAGE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SHORTAGE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHORTAGE_QUANTITY, scale = COLUMN_SCALE_SHORTAGE_QUANTITY)
     private BigDecimal shortageQuantity;

@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -205,6 +209,18 @@ public abstract class MappedSalesQuoteConversionView {
     public static final String COLUMN_NAME_DAYS_TO_EXPIRE = "DaysToExpire";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_EXPIRE} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_TO_EXPIRE = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_EXPIRE} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_TO_EXPIRE = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_TO_EXPIRE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_TO_EXPIRE = "daysToExpire";
@@ -225,6 +241,18 @@ public abstract class MappedSalesQuoteConversionView {
      * The scale of the {@value #COLUMN_NAME_QUOTE_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUOTE_AMOUNT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTE_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUOTE_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTE_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUOTE_AMOUNT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTE_AMOUNT} column. The value is {@value}.
@@ -284,6 +312,18 @@ public abstract class MappedSalesQuoteConversionView {
     public static final int COLUMN_SCALE_ORDER_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ORDER_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ORDER_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_AMOUNT = "orderAmount";
@@ -306,6 +346,18 @@ public abstract class MappedSalesQuoteConversionView {
     public static final int COLUMN_SCALE_VALUE_VARIANCE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_VALUE_VARIANCE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_VALUE_VARIANCE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_VALUE_VARIANCE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_VALUE_VARIANCE = "99999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VALUE_VARIANCE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_VALUE_VARIANCE = "valueVariance";
@@ -316,6 +368,18 @@ public abstract class MappedSalesQuoteConversionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_TO_CONVERT = "DaysToConvert";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_CONVERT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_TO_CONVERT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_CONVERT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_TO_CONVERT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_TO_CONVERT} column. The value is {@value}.
@@ -771,13 +835,16 @@ public abstract class MappedSalesQuoteConversionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_TO_EXPIRE)
+    @Min(ATTRIBUTE_MIN_DAYS_TO_EXPIRE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_EXPIRE, nullable = true, insertable = false, updatable = false)
     private Integer daysToExpire;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUOTE_AMOUNT - COLUMN_SCALE_QUOTE_AMOUNT, fraction = COLUMN_SCALE_QUOTE_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUOTE_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUOTE_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTE_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUOTE_AMOUNT, scale = COLUMN_SCALE_QUOTE_AMOUNT)
     private BigDecimal quoteAmount;
@@ -799,21 +866,24 @@ public abstract class MappedSalesQuoteConversionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ORDER_AMOUNT - COLUMN_SCALE_ORDER_AMOUNT, fraction = COLUMN_SCALE_ORDER_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ORDER_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ORDER_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ORDER_AMOUNT, scale = COLUMN_SCALE_ORDER_AMOUNT)
     private BigDecimal orderAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_VALUE_VARIANCE - COLUMN_SCALE_VALUE_VARIANCE,
-            fraction = COLUMN_SCALE_VALUE_VARIANCE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_VALUE_VARIANCE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_VALUE_VARIANCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_VARIANCE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_VALUE_VARIANCE, scale = COLUMN_SCALE_VALUE_VARIANCE)
     private BigDecimal valueVariance;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_TO_CONVERT)
+    @Min(ATTRIBUTE_MIN_DAYS_TO_CONVERT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_CONVERT, nullable = true, insertable = false, updatable = false)
     private Integer daysToConvert;

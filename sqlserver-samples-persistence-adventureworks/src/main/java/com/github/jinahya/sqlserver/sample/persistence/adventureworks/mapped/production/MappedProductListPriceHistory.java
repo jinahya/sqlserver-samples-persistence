@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -27,7 +28,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -94,6 +98,18 @@ public abstract class MappedProductListPriceHistory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
      * is {@value}.
      */
@@ -133,11 +149,17 @@ public abstract class MappedProductListPriceHistory {
     public static final String COLUMN_NAME_LIST_PRICE = "ListPrice";
 
     /**
-     * The exclusive minimum value of the {@value #COLUMN_NAME_LIST_PRICE} column, as the
+     * The exclusive minimum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, as the
      * {@code CK_ProductListPriceHistory_ListPrice} check constraint ({@code [ListPrice]>(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_LIST_PRICE_EXCLUSIVE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_LIST_PRICE_EXCLUSIVE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LIST_PRICE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value
@@ -347,6 +369,8 @@ public abstract class MappedProductListPriceHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -371,10 +395,11 @@ public abstract class MappedProductListPriceHistory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductListPriceHistory_ListPrice: ([ListPrice]>(0.00))
-    @DecimalMin(value = COLUMN_MIN_LIST_PRICE_EXCLUSIVE, inclusive = false)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LIST_PRICE)
+    @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_LIST_PRICE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_LIST_PRICE, value = "Product list price.")
     private BigDecimal listPrice;
 

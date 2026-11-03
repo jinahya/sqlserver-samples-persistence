@@ -22,6 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.IndividualSurveyStringAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
@@ -141,6 +142,18 @@ public abstract class MappedPerson {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
@@ -362,18 +375,18 @@ public abstract class MappedPerson {
     public static final String COLUMN_NAME_EMAIL_PROMOTION = "EmailPromotion";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute, as the
      * {@code CK_Person_EmailPromotion} check constraint ({@code [EmailPromotion]>=(0)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MIN_EMAIL_PROMOTION = 0;
+    public static final int ATTRIBUTE_MIN_EMAIL_PROMOTION = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute, as the
      * {@code CK_Person_EmailPromotion} check constraint ({@code [EmailPromotion]<=(2)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MAX_EMAIL_PROMOTION = +2;
+    public static final int ATTRIBUTE_MAX_EMAIL_PROMOTION = +2;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The
@@ -760,6 +773,8 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -838,8 +853,8 @@ public abstract class MappedPerson {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Person_EmailPromotion: ([EmailPromotion]>=(0) AND [EmailPromotion]<=(2))
-    @Max(COLUMN_MAX_EMAIL_PROMOTION)
-    @Min(COLUMN_MIN_EMAIL_PROMOTION)
+    @Max(ATTRIBUTE_MAX_EMAIL_PROMOTION)
+    @Min(ATTRIBUTE_MIN_EMAIL_PROMOTION)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = true,

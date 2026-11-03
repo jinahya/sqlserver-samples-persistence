@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
@@ -116,6 +117,18 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -166,18 +179,18 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_CREDIT_RATING = "CreditRating";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute, as the
      * {@code CK_Vendor_CreditRating} check constraint ({@code [CreditRating]>=(1)}) requires. The
      * value is {@value}.
      */
-    public static final int COLUMN_MIN_CREDIT_RATING = +1;
+    public static final int ATTRIBUTE_MIN_CREDIT_RATING = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute, as the
      * {@code CK_Vendor_CreditRating} check constraint ({@code [CreditRating]<=(5)}) requires. The
      * value is {@value}.
      */
-    public static final int COLUMN_MAX_CREDIT_RATING = +5;
+    public static final int ATTRIBUTE_MAX_CREDIT_RATING = +5;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CREDIT_RATING} column. The
@@ -472,6 +485,8 @@ public abstract class MappedVendor {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -502,8 +517,8 @@ public abstract class MappedVendor {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Vendor_CreditRating: ([CreditRating]>=(1) AND [CreditRating]<=(5))
-    @Max(COLUMN_MAX_CREDIT_RATING)
-    @Min(COLUMN_MIN_CREDIT_RATING)
+    @Max(ATTRIBUTE_MAX_CREDIT_RATING)
+    @Min(ATTRIBUTE_MIN_CREDIT_RATING)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CREDIT_RATING, nullable = false, insertable = true, updatable = true)

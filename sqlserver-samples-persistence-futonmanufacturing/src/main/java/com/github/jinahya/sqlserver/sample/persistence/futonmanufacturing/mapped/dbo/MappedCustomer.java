@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -76,6 +80,18 @@ public abstract class MappedCustomer {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
@@ -270,6 +286,18 @@ public abstract class MappedCustomer {
     public static final int COLUMN_SCALE_CREDIT_LIMIT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CREDIT_LIMIT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_CREDIT_LIMIT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CREDIT_LIMIT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_CREDIT_LIMIT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CREDIT_LIMIT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CREDIT_LIMIT = "creditLimit";
@@ -323,6 +351,18 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_SALES_REP_ID = "SalesRepID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_REP_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_REP_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REP_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_REP_ID = "salesRepId";
@@ -333,6 +373,18 @@ public abstract class MappedCustomer {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TERRITORY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TERRITORY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value is {@value}.
@@ -747,6 +799,8 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = true, updatable = false)
@@ -815,7 +869,8 @@ public abstract class MappedCustomer {
     private String country;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_CREDIT_LIMIT - COLUMN_SCALE_CREDIT_LIMIT, fraction = COLUMN_SCALE_CREDIT_LIMIT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_CREDIT_LIMIT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_CREDIT_LIMIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREDIT_LIMIT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_CREDIT_LIMIT, scale = COLUMN_SCALE_CREDIT_LIMIT)
     private BigDecimal creditLimit;
@@ -842,12 +897,16 @@ public abstract class MappedCustomer {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_REP_ID)
+    @Min(ATTRIBUTE_MIN_SALES_REP_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REP_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesRepId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_TERRITORY_ID)
+    @Min(ATTRIBUTE_MIN_TERRITORY_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     private Integer territoryId;

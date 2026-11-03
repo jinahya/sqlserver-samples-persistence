@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -29,6 +30,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -116,6 +119,18 @@ public abstract class MappedOrder {
     public static final String COLUMN_NAME_ORDER_ID = "OrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_ID = "orderId";
@@ -128,6 +143,18 @@ public abstract class MappedOrder {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -138,6 +165,18 @@ public abstract class MappedOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALESPERSON_PERSON_ID = "SalespersonPersonID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALESPERSON_PERSON_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALESPERSON_PERSON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALESPERSON_PERSON_ID} column. The value is
@@ -153,6 +192,18 @@ public abstract class MappedOrder {
     public static final String COLUMN_NAME_PICKED_BY_PERSON_ID = "PickedByPersonID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PICKED_BY_PERSON_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PICKED_BY_PERSON_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PICKED_BY_PERSON_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PICKED_BY_PERSON_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PICKED_BY_PERSON_ID} column. The value is
      * {@value}.
      */
@@ -166,6 +217,18 @@ public abstract class MappedOrder {
     public static final String COLUMN_NAME_CONTACT_PERSON_ID = "ContactPersonID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CONTACT_PERSON_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CONTACT_PERSON_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CONTACT_PERSON_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CONTACT_PERSON_ID = "contactPersonId";
@@ -176,6 +239,18 @@ public abstract class MappedOrder {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BACKORDER_ORDER_ID = "BackorderOrderID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BACKORDER_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BACKORDER_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BACKORDER_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BACKORDER_ORDER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BACKORDER_ORDER_ID} column. The value is {@value}.
@@ -294,6 +369,18 @@ public abstract class MappedOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -710,6 +797,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_ORDER_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.OrderID", schema = "Sequences", sequenceName = "OrderID",
                        allocationSize = 1)
@@ -722,6 +811,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -730,6 +821,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALESPERSON_PERSON_ID)
+    @Min(ATTRIBUTE_MIN_SALESPERSON_PERSON_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -739,6 +832,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PICKED_BY_PERSON_ID)
+    @Min(ATTRIBUTE_MIN_PICKED_BY_PERSON_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID,
@@ -747,6 +842,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CONTACT_PERSON_ID)
+    @Min(ATTRIBUTE_MIN_CONTACT_PERSON_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -756,6 +853,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_BACKORDER_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_BACKORDER_ORDER_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BACKORDER_ORDER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BACKORDER_ORDER_ID,
@@ -795,6 +894,7 @@ public abstract class MappedOrder {
     private Boolean isUndersupplyBackordered;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
@@ -802,6 +902,7 @@ public abstract class MappedOrder {
     private String comments;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
@@ -809,6 +910,7 @@ public abstract class MappedOrder {
     private String deliveryInstructions;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
@@ -825,6 +927,8 @@ public abstract class MappedOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

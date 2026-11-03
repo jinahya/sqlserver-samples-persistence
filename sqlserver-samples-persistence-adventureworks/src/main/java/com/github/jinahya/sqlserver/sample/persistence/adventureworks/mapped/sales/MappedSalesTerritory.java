@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -119,6 +123,18 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TERRITORY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TERRITORY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
      * is {@value}.
      */
@@ -186,11 +202,17 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_SALES_YTD = "SalesYTD";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_YTD} attribute, as the
      * {@code CK_SalesTerritory_SalesYTD} check constraint ({@code [SalesYTD]>=(0.00)}) requires.
      * The value is {@value}.
      */
-    public static final String COLUMN_MIN_SALES_YTD = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_SALES_YTD = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_YTD} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_YTD = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is
@@ -206,11 +228,17 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_SALES_LAST_YEAR = "SalesLastYear";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SALES_LAST_YEAR} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute, as the
      * {@code CK_SalesTerritory_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_SALES_LAST_YEAR = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_SALES_LAST_YEAR = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_LAST_YEAR = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The
@@ -226,11 +254,17 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_COST_YTD = "CostYTD";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_COST_YTD} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COST_YTD} attribute, as the
      * {@code CK_SalesTerritory_CostYTD} check constraint ({@code [CostYTD]>=(0.00)}) requires. The
      * value is {@value}.
      */
-    public static final String COLUMN_MIN_COST_YTD = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_COST_YTD = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COST_YTD} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_COST_YTD = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_YTD} column. The value is
@@ -246,11 +280,17 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_COST_LAST_YEAR = "CostLastYear";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_COST_LAST_YEAR} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COST_LAST_YEAR} attribute, as the
      * {@code CK_SalesTerritory_CostLastYear} check constraint ({@code [CostLastYear]>=(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_COST_LAST_YEAR = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_COST_LAST_YEAR = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COST_LAST_YEAR} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_COST_LAST_YEAR = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_LAST_YEAR} column. The
@@ -546,6 +586,8 @@ public abstract class MappedSalesTerritory {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_TERRITORY_ID)
+    @Min(ATTRIBUTE_MIN_TERRITORY_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = true, updatable = false)
@@ -587,10 +629,11 @@ public abstract class MappedSalesTerritory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_SalesYTD: ([SalesYTD]>=(0.00))
-    @DecimalMin(COLUMN_MIN_SALES_YTD)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_YTD)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_SALES_YTD,
                           value = "Sales in the territory year to date.")
     @MsDefault(name = "DF_SalesTerritory_SalesYTD", value = "((0.00))")
@@ -598,11 +641,12 @@ public abstract class MappedSalesTerritory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_SalesLastYear: ([SalesLastYear]>=(0.00))
-    @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_LAST_YEAR)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true,
-            updatable = true)
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
                           value = "Sales in the territory the previous year.")
     @MsDefault(name = "DF_SalesTerritory_SalesLastYear", value = "((0.00))")
@@ -610,10 +654,11 @@ public abstract class MappedSalesTerritory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_CostYTD: ([CostYTD]>=(0.00))
-    @DecimalMin(COLUMN_MIN_COST_YTD)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_COST_YTD)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COST_YTD)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COST_YTD, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_COST_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_COST_YTD,
                           value = "Business costs in the territory year to date.")
     @MsDefault(name = "DF_SalesTerritory_CostYTD", value = "((0.00))")
@@ -621,11 +666,12 @@ public abstract class MappedSalesTerritory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_CostLastYear: ([CostLastYear]>=(0.00))
-    @DecimalMin(COLUMN_MIN_COST_LAST_YEAR)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_COST_LAST_YEAR)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COST_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COST_LAST_YEAR, nullable = false, insertable = true,
-            updatable = true)
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_COST_LAST_YEAR,
                           value = "Business costs in the territory the previous year.")
     @MsDefault(name = "DF_SalesTerritory_CostLastYear", value = "((0.00))")

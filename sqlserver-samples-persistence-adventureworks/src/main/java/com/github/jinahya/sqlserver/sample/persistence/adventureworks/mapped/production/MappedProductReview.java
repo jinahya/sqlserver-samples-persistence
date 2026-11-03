@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -106,6 +107,18 @@ public abstract class MappedProductReview {
     public static final String COLUMN_NAME_PRODUCT_REVIEW_ID = "ProductReviewID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_REVIEW_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_REVIEW_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_REVIEW_ID} column. The
      * value is {@value}.
      */
@@ -117,6 +130,18 @@ public abstract class MappedProductReview {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -182,18 +207,18 @@ public abstract class MappedProductReview {
     public static final String COLUMN_NAME_RATING = "Rating";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_RATING} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RATING} attribute, as the
      * {@code CK_ProductReview_Rating} check constraint ({@code [Rating]>=(1)}) requires. The value
      * is {@value}.
      */
-    public static final int COLUMN_MIN_RATING = +1;
+    public static final int ATTRIBUTE_MIN_RATING = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_RATING} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RATING} attribute, as the
      * {@code CK_ProductReview_Rating} check constraint ({@code [Rating]<=(5)}) requires. The value
      * is {@value}.
      */
-    public static final int COLUMN_MAX_RATING = +5;
+    public static final int ATTRIBUTE_MAX_RATING = +5;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RATING} column. The value is
@@ -460,6 +485,8 @@ public abstract class MappedProductReview {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_PRODUCT_REVIEW_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_REVIEW_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID, nullable = false, insertable = true,
@@ -471,6 +498,8 @@ public abstract class MappedProductReview {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
@@ -507,8 +536,8 @@ public abstract class MappedProductReview {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductReview_Rating: ([Rating]>=(1) AND [Rating]<=(5))
-    @Max(COLUMN_MAX_RATING)
-    @Min(COLUMN_MIN_RATING)
+    @Max(ATTRIBUTE_MAX_RATING)
+    @Min(ATTRIBUTE_MIN_RATING)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RATING, nullable = false, insertable = true, updatable = true)

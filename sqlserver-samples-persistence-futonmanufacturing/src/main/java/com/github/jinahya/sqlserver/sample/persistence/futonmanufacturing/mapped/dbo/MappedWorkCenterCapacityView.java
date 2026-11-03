@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -106,6 +110,18 @@ public abstract class MappedWorkCenterCapacityView {
     public static final int COLUMN_SCALE_DAILY_CAPACITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAILY_CAPACITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DAILY_CAPACITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAILY_CAPACITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DAILY_CAPACITY = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAILY_CAPACITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAILY_CAPACITY = "dailyCapacity";
@@ -118,6 +134,18 @@ public abstract class MappedWorkCenterCapacityView {
     public static final String COLUMN_NAME_ACTIVE_ORDERS = "ActiveOrders";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ACTIVE_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ACTIVE_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ACTIVE_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ACTIVE_ORDERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACTIVE_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTIVE_ORDERS = "activeOrders";
@@ -128,6 +156,18 @@ public abstract class MappedWorkCenterCapacityView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_IN_PROGRESS_ORDERS = "InProgressOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_IN_PROGRESS_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_IN_PROGRESS_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_IN_PROGRESS_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_IN_PROGRESS_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_IN_PROGRESS_ORDERS} column. The value is {@value}.
@@ -150,6 +190,18 @@ public abstract class MappedWorkCenterCapacityView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_QUANTITY_PENDING} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_QUANTITY_PENDING = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_PENDING} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_QUANTITY_PENDING = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_PENDING} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_QUANTITY_PENDING = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_QUANTITY_PENDING} column. The value is
@@ -175,6 +227,18 @@ public abstract class MappedWorkCenterCapacityView {
     public static final int COLUMN_SCALE_DAYS_OF_WORK = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_OF_WORK} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DAYS_OF_WORK = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_OF_WORK} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DAYS_OF_WORK = "99999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_OF_WORK} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_OF_WORK = "daysOfWork";
@@ -195,6 +259,18 @@ public abstract class MappedWorkCenterCapacityView {
      * The scale of the {@value #COLUMN_NAME_PERCENT_OF_TOTAL_ORDERS} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PERCENT_OF_TOTAL_ORDERS} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PERCENT_OF_TOTAL_ORDERS = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PERCENT_OF_TOTAL_ORDERS} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PERCENT_OF_TOTAL_ORDERS = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PERCENT_OF_TOTAL_ORDERS} column. The value is
@@ -500,43 +576,48 @@ public abstract class MappedWorkCenterCapacityView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_DAILY_CAPACITY - COLUMN_SCALE_DAILY_CAPACITY,
-            fraction = COLUMN_SCALE_DAILY_CAPACITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DAILY_CAPACITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DAILY_CAPACITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAILY_CAPACITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DAILY_CAPACITY, scale = COLUMN_SCALE_DAILY_CAPACITY)
     private BigDecimal dailyCapacity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ACTIVE_ORDERS)
+    @Min(ATTRIBUTE_MIN_ACTIVE_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTIVE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer activeOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_IN_PROGRESS_ORDERS)
+    @Min(ATTRIBUTE_MIN_IN_PROGRESS_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_IN_PROGRESS_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer inProgressOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_PENDING - COLUMN_SCALE_TOTAL_QUANTITY_PENDING,
-            fraction = COLUMN_SCALE_TOTAL_QUANTITY_PENDING)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_QUANTITY_PENDING)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_QUANTITY_PENDING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_QUANTITY_PENDING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_QUANTITY_PENDING, scale = COLUMN_SCALE_TOTAL_QUANTITY_PENDING)
     private BigDecimal totalQuantityPending;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_DAYS_OF_WORK - COLUMN_SCALE_DAYS_OF_WORK, fraction = COLUMN_SCALE_DAYS_OF_WORK)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DAYS_OF_WORK)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DAYS_OF_WORK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_OF_WORK, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DAYS_OF_WORK, scale = COLUMN_SCALE_DAYS_OF_WORK)
     private BigDecimal daysOfWork;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PERCENT_OF_TOTAL_ORDERS - COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS,
-            fraction = COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PERCENT_OF_TOTAL_ORDERS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PERCENT_OF_TOTAL_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERCENT_OF_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_OF_TOTAL_ORDERS, scale = COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS)
     private BigDecimal percentOfTotalOrders;

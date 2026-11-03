@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -157,6 +161,18 @@ public abstract class MappedItemsBelowReorderPointView {
     public static final int COLUMN_SCALE_QUANTITY_AVAILABLE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE = "99999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_AVAILABLE = "quantityAvailable";
@@ -177,6 +193,18 @@ public abstract class MappedItemsBelowReorderPointView {
      * The scale of the {@value #COLUMN_NAME_REORDER_POINT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_REORDER_POINT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REORDER_POINT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REORDER_POINT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REORDER_POINT} column. The value is {@value}.
@@ -201,6 +229,18 @@ public abstract class MappedItemsBelowReorderPointView {
     public static final int COLUMN_SCALE_SAFETY_STOCK = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SAFETY_STOCK} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SAFETY_STOCK = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SAFETY_STOCK} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SAFETY_STOCK = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SAFETY_STOCK} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SAFETY_STOCK = "safetyStock";
@@ -221,6 +261,18 @@ public abstract class MappedItemsBelowReorderPointView {
      * The scale of the {@value #COLUMN_NAME_SHORTAGE_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SHORTAGE_QUANTITY = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(20, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SHORTAGE_QUANTITY = "-999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(20, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SHORTAGE_QUANTITY = "999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHORTAGE_QUANTITY} column. The value is {@value}.
@@ -250,6 +302,18 @@ public abstract class MappedItemsBelowReorderPointView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
@@ -289,6 +353,18 @@ public abstract class MappedItemsBelowReorderPointView {
      * The scale of the {@value #COLUMN_NAME_PREFERRED_PRICE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PREFERRED_PRICE = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PREFERRED_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PREFERRED_PRICE = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PREFERRED_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PREFERRED_PRICE = "99999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PREFERRED_PRICE} column. The value is {@value}.
@@ -660,31 +736,32 @@ public abstract class MappedItemsBelowReorderPointView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
-            fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     private BigDecimal quantityAvailable;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_REORDER_POINT - COLUMN_SCALE_REORDER_POINT,
-            fraction = COLUMN_SCALE_REORDER_POINT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REORDER_POINT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REORDER_POINT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REORDER_POINT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REORDER_POINT, scale = COLUMN_SCALE_REORDER_POINT)
     private BigDecimal reorderPoint;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SAFETY_STOCK - COLUMN_SCALE_SAFETY_STOCK, fraction = COLUMN_SCALE_SAFETY_STOCK)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SAFETY_STOCK)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SAFETY_STOCK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SAFETY_STOCK, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SAFETY_STOCK, scale = COLUMN_SCALE_SAFETY_STOCK)
     private BigDecimal safetyStock;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
-            fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHORTAGE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SHORTAGE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHORTAGE_QUANTITY, scale = COLUMN_SCALE_SHORTAGE_QUANTITY)
     private BigDecimal shortageQuantity;
@@ -699,6 +776,8 @@ public abstract class MappedItemsBelowReorderPointView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
+    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer leadTimeDays;
@@ -712,8 +791,8 @@ public abstract class MappedItemsBelowReorderPointView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PREFERRED_PRICE - COLUMN_SCALE_PREFERRED_PRICE,
-            fraction = COLUMN_SCALE_PREFERRED_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PREFERRED_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PREFERRED_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PREFERRED_PRICE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PREFERRED_PRICE, scale = COLUMN_SCALE_PREFERRED_PRICE)
     private BigDecimal preferredPrice;

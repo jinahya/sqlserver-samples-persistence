@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -69,6 +73,18 @@ public abstract class MappedPromotion {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PROMOTION_ID = "PromotionID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PROMOTION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PROMOTION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PROMOTION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PROMOTION_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PROMOTION_ID} column. The value is {@value}.
@@ -139,6 +155,18 @@ public abstract class MappedPromotion {
     public static final int COLUMN_SCALE_DISCOUNT_PERCENT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PERCENT = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PERCENT = "999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PERCENT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENT = "discountPercent";
@@ -159,6 +187,18 @@ public abstract class MappedPromotion {
      * The scale of the {@value #COLUMN_NAME_DISCOUNT_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_DISCOUNT_AMOUNT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_AMOUNT} column. The value is {@value}.
@@ -217,6 +257,18 @@ public abstract class MappedPromotion {
      * The scale of the {@value #COLUMN_NAME_MINIMUM_PURCHASE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_MINIMUM_PURCHASE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MINIMUM_PURCHASE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MINIMUM_PURCHASE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MINIMUM_PURCHASE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MINIMUM_PURCHASE = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MINIMUM_PURCHASE} column. The value is {@value}.
@@ -521,6 +573,8 @@ public abstract class MappedPromotion {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_PROMOTION_ID)
+    @Min(ATTRIBUTE_MIN_PROMOTION_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PROMOTION_ID, nullable = false, insertable = true, updatable = false)
@@ -541,20 +595,21 @@ public abstract class MappedPromotion {
     private String promotionName;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 58 bytes (29 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true)
     private String description;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
-            fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PERCENT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCOUNT_PERCENT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_PERCENT, scale = COLUMN_SCALE_DISCOUNT_PERCENT)
     private BigDecimal discountPercent;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
-            fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
     private BigDecimal discountAmount;
@@ -579,8 +634,8 @@ public abstract class MappedPromotion {
     private Boolean isActive;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_MINIMUM_PURCHASE - COLUMN_SCALE_MINIMUM_PURCHASE,
-            fraction = COLUMN_SCALE_MINIMUM_PURCHASE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MINIMUM_PURCHASE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MINIMUM_PURCHASE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MINIMUM_PURCHASE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_MINIMUM_PURCHASE, scale = COLUMN_SCALE_MINIMUM_PURCHASE)
     @MsDefault("((0))")

@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -105,6 +109,18 @@ public abstract class MappedSupplierPerformanceView {
     public static final int COLUMN_SCALE_SUPPLIER_RATING = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_RATING} attribute, the minimum of the
+     * {@code decimal(3, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SUPPLIER_RATING = "-9.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_RATING} attribute, the maximum of the
+     * {@code decimal(3, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SUPPLIER_RATING = "9.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_RATING} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_RATING = "supplierRating";
@@ -115,6 +131,18 @@ public abstract class MappedSupplierPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
@@ -139,6 +167,18 @@ public abstract class MappedSupplierPerformanceView {
     public static final int COLUMN_SCALE_TOTAL_PURCHASE_VALUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_PURCHASE_VALUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_PURCHASE_VALUE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_PURCHASE_VALUE} column. The value is
      * {@value}.
      */
@@ -150,6 +190,18 @@ public abstract class MappedSupplierPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_AVG_DELIVERY_DAYS = "AvgDeliveryDays";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_DELIVERY_DAYS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_AVG_DELIVERY_DAYS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_DELIVERY_DAYS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_AVG_DELIVERY_DAYS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_DELIVERY_DAYS} column. The value is {@value}.
@@ -164,6 +216,18 @@ public abstract class MappedSupplierPerformanceView {
     public static final String COLUMN_NAME_ON_TIME_DELIVERIES = "OnTimeDeliveries";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERIES} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ON_TIME_DELIVERIES = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERIES} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ON_TIME_DELIVERIES = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ON_TIME_DELIVERIES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ON_TIME_DELIVERIES = "onTimeDeliveries";
@@ -174,6 +238,18 @@ public abstract class MappedSupplierPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPLETED_DELIVERIES = "CompletedDeliveries";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPLETED_DELIVERIES} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COMPLETED_DELIVERIES = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPLETED_DELIVERIES} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COMPLETED_DELIVERIES = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPLETED_DELIVERIES} column. The value is
@@ -197,6 +273,18 @@ public abstract class MappedSupplierPerformanceView {
      * The scale of the {@value #COLUMN_NAME_ON_TIME_DELIVERY_RATE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_ON_TIME_DELIVERY_RATE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERY_RATE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ON_TIME_DELIVERY_RATE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERY_RATE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ON_TIME_DELIVERY_RATE = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ON_TIME_DELIVERY_RATE} column. The value is
@@ -495,48 +583,56 @@ public abstract class MappedSupplierPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SUPPLIER_RATING - COLUMN_SCALE_SUPPLIER_RATING,
-            fraction = COLUMN_SCALE_SUPPLIER_RATING)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SUPPLIER_RATING)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SUPPLIER_RATING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_RATING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SUPPLIER_RATING, scale = COLUMN_SCALE_SUPPLIER_RATING)
     private BigDecimal supplierRating;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
+    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_PURCHASE_VALUE - COLUMN_SCALE_TOTAL_PURCHASE_VALUE,
-            fraction = COLUMN_SCALE_TOTAL_PURCHASE_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_PURCHASE_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_PURCHASE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_PURCHASE_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_PURCHASE_VALUE, scale = COLUMN_SCALE_TOTAL_PURCHASE_VALUE)
     private BigDecimal totalPurchaseValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_AVG_DELIVERY_DAYS)
+    @Min(ATTRIBUTE_MIN_AVG_DELIVERY_DAYS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DELIVERY_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer avgDeliveryDays;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ON_TIME_DELIVERIES)
+    @Min(ATTRIBUTE_MIN_ON_TIME_DELIVERIES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES, nullable = true, insertable = false, updatable = false)
     private Integer onTimeDeliveries;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_COMPLETED_DELIVERIES)
+    @Min(ATTRIBUTE_MIN_COMPLETED_DELIVERIES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_DELIVERIES, nullable = true, insertable = false, updatable = false)
     private Integer completedDeliveries;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE - COLUMN_SCALE_ON_TIME_DELIVERY_RATE,
-            fraction = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ON_TIME_DELIVERY_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ON_TIME_DELIVERY_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERY_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE, scale = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
     private BigDecimal onTimeDeliveryRate;

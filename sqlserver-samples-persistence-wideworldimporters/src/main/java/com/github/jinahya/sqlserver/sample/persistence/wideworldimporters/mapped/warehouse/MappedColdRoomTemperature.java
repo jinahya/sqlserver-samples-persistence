@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -87,6 +91,18 @@ public abstract class MappedColdRoomTemperature {
     public static final String COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID = "ColdRoomTemperatureID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_COLD_ROOM_TEMPERATURE_ID = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_COLD_ROOM_TEMPERATURE_ID = SqlServerConstants.BIGINT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID} column. The value is
      * {@value}.
      */
@@ -98,6 +114,18 @@ public abstract class MappedColdRoomTemperature {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER = "ColdRoomSensorNumber";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COLD_ROOM_SENSOR_NUMBER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COLD_ROOM_SENSOR_NUMBER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER} column. The value is
@@ -133,6 +161,18 @@ public abstract class MappedColdRoomTemperature {
      * The scale of the {@value #COLUMN_NAME_TEMPERATURE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TEMPERATURE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TEMPERATURE = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TEMPERATURE = "99999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TEMPERATURE} column. The value is {@value}.
@@ -340,6 +380,8 @@ public abstract class MappedColdRoomTemperature {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_COLD_ROOM_TEMPERATURE_ID)
+    @Min(ATTRIBUTE_MIN_COLD_ROOM_TEMPERATURE_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID, nullable = false, insertable = true, updatable = false)
@@ -348,6 +390,8 @@ public abstract class MappedColdRoomTemperature {
     private Long coldRoomTemperatureId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_COLD_ROOM_SENSOR_NUMBER)
+    @Min(ATTRIBUTE_MIN_COLD_ROOM_SENSOR_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER, nullable = false, insertable = true, updatable = true)
@@ -364,7 +408,8 @@ public abstract class MappedColdRoomTemperature {
     private LocalDateTime recordedWhen;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TEMPERATURE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE)

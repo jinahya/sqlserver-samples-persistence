@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -29,7 +30,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -117,6 +121,18 @@ public abstract class MappedPurchaseOrderLine {
     public static final String COLUMN_NAME_PURCHASE_ORDER_LINE_ID = "PurchaseOrderLineID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_LINE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_LINE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_LINE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_LINE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_LINE_ID} column. The value is
      * {@value}.
      */
@@ -128,6 +144,18 @@ public abstract class MappedPurchaseOrderLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
@@ -142,6 +170,18 @@ public abstract class MappedPurchaseOrderLine {
     public static final String COLUMN_NAME_STOCK_ITEM_ID = "StockItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STOCK_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STOCK_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
@@ -152,6 +192,18 @@ public abstract class MappedPurchaseOrderLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ORDERED_OUTERS = "OrderedOuters";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDERED_OUTERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ORDERED_OUTERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDERED_OUTERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ORDERED_OUTERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDERED_OUTERS} column. The value is {@value}.
@@ -183,6 +235,18 @@ public abstract class MappedPurchaseOrderLine {
     public static final String COLUMN_NAME_RECEIVED_OUTERS = "ReceivedOuters";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RECEIVED_OUTERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_RECEIVED_OUTERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RECEIVED_OUTERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_RECEIVED_OUTERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RECEIVED_OUTERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RECEIVED_OUTERS = "receivedOuters";
@@ -193,6 +257,18 @@ public abstract class MappedPurchaseOrderLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PACKAGE_TYPE_ID = "PackageTypeID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PACKAGE_TYPE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PACKAGE_TYPE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PACKAGE_TYPE_ID} column. The value is {@value}.
@@ -215,6 +291,18 @@ public abstract class MappedPurchaseOrderLine {
      * The scale of the {@value #COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EXPECTED_UNIT_PRICE_PER_OUTER} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_EXPECTED_UNIT_PRICE_PER_OUTER = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EXPECTED_UNIT_PRICE_PER_OUTER} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_EXPECTED_UNIT_PRICE_PER_OUTER = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER} column. The value is
@@ -253,6 +341,18 @@ public abstract class MappedPurchaseOrderLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -580,6 +680,8 @@ public abstract class MappedPurchaseOrderLine {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_LINE_ID)
+    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_LINE_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PurchaseOrderLineID", schema = "Sequences",
                        sequenceName = "PurchaseOrderLineID",
@@ -595,6 +697,8 @@ public abstract class MappedPurchaseOrderLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = false, updatable = false)
@@ -604,6 +708,8 @@ public abstract class MappedPurchaseOrderLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_STOCK_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_STOCK_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -612,6 +718,8 @@ public abstract class MappedPurchaseOrderLine {
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_ORDERED_OUTERS)
+    @Min(ATTRIBUTE_MIN_ORDERED_OUTERS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDERED_OUTERS, nullable = false, insertable = true, updatable = true)
@@ -630,6 +738,8 @@ public abstract class MappedPurchaseOrderLine {
     private String description;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_RECEIVED_OUTERS)
+    @Min(ATTRIBUTE_MIN_RECEIVED_OUTERS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RECEIVED_OUTERS, nullable = false, insertable = true, updatable = true)
@@ -639,6 +749,8 @@ public abstract class MappedPurchaseOrderLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PACKAGE_TYPE_ID)
+    @Min(ATTRIBUTE_MIN_PACKAGE_TYPE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
@@ -646,8 +758,8 @@ public abstract class MappedPurchaseOrderLine {
     private Integer packageTypeId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER - COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER,
-            fraction = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_EXPECTED_UNIT_PRICE_PER_OUTER)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_EXPECTED_UNIT_PRICE_PER_OUTER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER, scale = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER)
     @MsDescription.Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER,
@@ -673,6 +785,8 @@ public abstract class MappedPurchaseOrderLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

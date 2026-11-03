@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -157,6 +161,18 @@ public abstract class MappedInventoryValuationView {
     public static final int COLUMN_SCALE_QUANTITY_ON_HAND = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_ON_HAND = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_ON_HAND = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ON_HAND} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
@@ -179,6 +195,18 @@ public abstract class MappedInventoryValuationView {
     public static final int COLUMN_SCALE_QUANTITY_ALLOCATED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ALLOCATED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_ALLOCATED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ALLOCATED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_ALLOCATED = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ALLOCATED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ALLOCATED = "quantityAllocated";
@@ -199,6 +227,18 @@ public abstract class MappedInventoryValuationView {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_AVAILABLE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE = "99999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
@@ -240,6 +280,18 @@ public abstract class MappedInventoryValuationView {
     public static final int COLUMN_SCALE_STANDARD_COST = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_STANDARD_COST = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_STANDARD_COST = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
@@ -260,6 +312,18 @@ public abstract class MappedInventoryValuationView {
      * The scale of the {@value #COLUMN_NAME_INVENTORY_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_INVENTORY_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_INVENTORY_VALUE} attribute, the minimum of the
+     * {@code decimal(37, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_INVENTORY_VALUE = "-9999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_INVENTORY_VALUE} attribute, the maximum of the
+     * {@code decimal(37, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_INVENTORY_VALUE = "9999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INVENTORY_VALUE} column. The value is {@value}.
@@ -284,6 +348,18 @@ public abstract class MappedInventoryValuationView {
     public static final int COLUMN_SCALE_AVAILABLE_VALUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVAILABLE_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVAILABLE_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVAILABLE_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVAILABLE_VALUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABLE_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVAILABLE_VALUE = "availableValue";
@@ -306,6 +382,18 @@ public abstract class MappedInventoryValuationView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_SINCE_COUNT = "DaysSinceCount";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_SINCE_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_SINCE_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_COUNT} column. The value is {@value}.
@@ -694,8 +782,8 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
-            fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_ON_HAND)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_ON_HAND, scale = COLUMN_SCALE_QUANTITY_ON_HAND)
@@ -703,8 +791,8 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_ALLOCATED - COLUMN_SCALE_QUANTITY_ALLOCATED,
-            fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_ALLOCATED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_ALLOCATED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_ALLOCATED, scale = COLUMN_SCALE_QUANTITY_ALLOCATED)
@@ -712,8 +800,8 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
-            fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     private BigDecimal quantityAvailable;
@@ -728,8 +816,8 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
-            fraction = COLUMN_SCALE_STANDARD_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_STANDARD_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_STANDARD_COST, scale = COLUMN_SCALE_STANDARD_COST)
@@ -737,16 +825,16 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
-            fraction = COLUMN_SCALE_INVENTORY_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_INVENTORY_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_INVENTORY_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVENTORY_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_INVENTORY_VALUE, scale = COLUMN_SCALE_INVENTORY_VALUE)
     private BigDecimal inventoryValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVAILABLE_VALUE - COLUMN_SCALE_AVAILABLE_VALUE,
-            fraction = COLUMN_SCALE_AVAILABLE_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVAILABLE_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVAILABLE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVAILABLE_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVAILABLE_VALUE, scale = COLUMN_SCALE_AVAILABLE_VALUE)
     private BigDecimal availableValue;
@@ -759,6 +847,8 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_SINCE_COUNT)
+    @Min(ATTRIBUTE_MIN_DAYS_SINCE_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceCount;

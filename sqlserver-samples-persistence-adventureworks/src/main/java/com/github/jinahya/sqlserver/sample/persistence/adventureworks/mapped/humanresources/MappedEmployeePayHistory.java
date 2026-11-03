@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -101,6 +102,18 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -127,18 +140,18 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_RATE = "Rate";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_RATE} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RATE} attribute, as the
      * {@code CK_EmployeePayHistory_Rate} check constraint ({@code [Rate]>=(6.50)}) requires. The
      * value is {@value}.
      */
-    public static final String COLUMN_MIN_RATE = "6.50";
+    public static final String ATTRIBUTE_DECIMAL_MIN_RATE = "6.50";
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_RATE} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RATE} attribute, as the
      * {@code CK_EmployeePayHistory_Rate} check constraint ({@code [Rate]<=(200.00)}) requires. The
      * value is {@value}.
      */
-    public static final String COLUMN_MAX_RATE = "200.00";
+    public static final String ATTRIBUTE_DECIMAL_MAX_RATE = "200.00";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RATE} column. The value is
@@ -154,18 +167,18 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_PAY_FREQUENCY = "PayFrequency";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_PAY_FREQUENCY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute, as the
      * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(1)})
      * requires. The value is {@value}.
      */
-    public static final int COLUMN_MIN_PAY_FREQUENCY = +1;
+    public static final int ATTRIBUTE_MIN_PAY_FREQUENCY = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_PAY_FREQUENCY} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute, as the
      * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(2)})
      * requires. The value is {@value}.
      */
-    public static final int COLUMN_MAX_PAY_FREQUENCY = +2;
+    public static final int ATTRIBUTE_MAX_PAY_FREQUENCY = +2;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PAY_FREQUENCY} column. The
@@ -351,6 +364,8 @@ public abstract class MappedEmployeePayHistory {
     // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
     // documentation
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
@@ -375,11 +390,11 @@ public abstract class MappedEmployeePayHistory {
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
     // documentation
     // CK_EmployeePayHistory_Rate: ([Rate]>=(6.50) AND [Rate]<=(200.00))
-    @DecimalMax(COLUMN_MAX_RATE)
-    @DecimalMin(COLUMN_MIN_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_RATE, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_RATE, value = "Salary hourly rate.")
     private BigDecimal rate;
 
@@ -387,8 +402,8 @@ public abstract class MappedEmployeePayHistory {
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
     // documentation
     // CK_EmployeePayHistory_PayFrequency: ([PayFrequency]=(2) OR [PayFrequency]=(1))
-    @Max(COLUMN_MAX_PAY_FREQUENCY)
-    @Min(COLUMN_MIN_PAY_FREQUENCY)
+    @Max(ATTRIBUTE_MAX_PAY_FREQUENCY)
+    @Min(ATTRIBUTE_MIN_PAY_FREQUENCY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAY_FREQUENCY, nullable = false, insertable = false,

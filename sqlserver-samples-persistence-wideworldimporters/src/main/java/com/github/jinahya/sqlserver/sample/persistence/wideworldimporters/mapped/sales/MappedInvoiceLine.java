@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -29,7 +30,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -108,6 +112,18 @@ public abstract class MappedInvoiceLine {
     public static final String COLUMN_NAME_INVOICE_LINE_ID = "InvoiceLineID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_INVOICE_LINE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_INVOICE_LINE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_INVOICE_LINE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_INVOICE_LINE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INVOICE_LINE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_INVOICE_LINE_ID = "invoiceLineId";
@@ -120,6 +136,18 @@ public abstract class MappedInvoiceLine {
     public static final String COLUMN_NAME_INVOICE_ID = "InvoiceID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_INVOICE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_INVOICE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INVOICE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_INVOICE_ID = "invoiceId";
@@ -130,6 +158,18 @@ public abstract class MappedInvoiceLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STOCK_ITEM_ID = "StockItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STOCK_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STOCK_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_ITEM_ID} column. The value is {@value}.
@@ -161,6 +201,18 @@ public abstract class MappedInvoiceLine {
     public static final String COLUMN_NAME_PACKAGE_TYPE_ID = "PackageTypeID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PACKAGE_TYPE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PACKAGE_TYPE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PACKAGE_TYPE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PACKAGE_TYPE_ID = "packageTypeId";
@@ -171,6 +223,18 @@ public abstract class MappedInvoiceLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUANTITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUANTITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
@@ -195,6 +259,18 @@ public abstract class MappedInvoiceLine {
     public static final int COLUMN_SCALE_UNIT_PRICE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
@@ -215,6 +291,18 @@ public abstract class MappedInvoiceLine {
      * The scale of the {@value #COLUMN_NAME_TAX_RATE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TAX_RATE = 3;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_RATE} attribute, the minimum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_RATE = "-999999999999999.999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_RATE} attribute, the maximum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_RATE = "999999999999999.999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_RATE} column. The value is {@value}.
@@ -239,6 +327,18 @@ public abstract class MappedInvoiceLine {
     public static final int COLUMN_SCALE_TAX_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_AMOUNT = "taxAmount";
@@ -259,6 +359,18 @@ public abstract class MappedInvoiceLine {
      * The scale of the {@value #COLUMN_NAME_LINE_PROFIT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_LINE_PROFIT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LINE_PROFIT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LINE_PROFIT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LINE_PROFIT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LINE_PROFIT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_PROFIT} column. The value is {@value}.
@@ -283,6 +395,18 @@ public abstract class MappedInvoiceLine {
     public static final int COLUMN_SCALE_EXTENDED_PRICE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EXTENDED_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_EXTENDED_PRICE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EXTENDED_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_EXTENDED_PRICE = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXTENDED_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EXTENDED_PRICE = "extendedPrice";
@@ -293,6 +417,18 @@ public abstract class MappedInvoiceLine {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -639,6 +775,8 @@ public abstract class MappedInvoiceLine {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_INVOICE_LINE_ID)
+    @Min(ATTRIBUTE_MIN_INVOICE_LINE_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.InvoiceLineID", schema = "Sequences",
                        sequenceName = "InvoiceLineID",
@@ -653,6 +791,8 @@ public abstract class MappedInvoiceLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_INVOICE_ID)
+    @Min(ATTRIBUTE_MIN_INVOICE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = false, updatable = false)
@@ -662,6 +802,8 @@ public abstract class MappedInvoiceLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_STOCK_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_STOCK_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -681,6 +823,8 @@ public abstract class MappedInvoiceLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PACKAGE_TYPE_ID)
+    @Min(ATTRIBUTE_MIN_PACKAGE_TYPE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
@@ -688,6 +832,8 @@ public abstract class MappedInvoiceLine {
     private Integer packageTypeId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_QUANTITY)
+    @Min(ATTRIBUTE_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
@@ -695,14 +841,16 @@ public abstract class MappedInvoiceLine {
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price charged")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_RATE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
@@ -710,7 +858,8 @@ public abstract class MappedInvoiceLine {
     private BigDecimal taxRate;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
@@ -718,7 +867,8 @@ public abstract class MappedInvoiceLine {
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_LINE_PROFIT - COLUMN_SCALE_LINE_PROFIT, fraction = COLUMN_SCALE_LINE_PROFIT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LINE_PROFIT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LINE_PROFIT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_PROFIT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LINE_PROFIT, scale = COLUMN_SCALE_LINE_PROFIT)
@@ -727,8 +877,8 @@ public abstract class MappedInvoiceLine {
     private BigDecimal lineProfit;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_EXTENDED_PRICE - COLUMN_SCALE_EXTENDED_PRICE,
-            fraction = COLUMN_SCALE_EXTENDED_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_EXTENDED_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_EXTENDED_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EXTENDED_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXTENDED_PRICE, scale = COLUMN_SCALE_EXTENDED_PRICE)
@@ -737,6 +887,8 @@ public abstract class MappedInvoiceLine {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

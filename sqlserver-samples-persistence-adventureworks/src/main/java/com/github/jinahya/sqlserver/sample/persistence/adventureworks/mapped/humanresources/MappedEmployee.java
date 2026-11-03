@@ -22,6 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
@@ -160,6 +161,18 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -223,16 +236,18 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_ORGANIZATION_LEVEL = "OrganizationLevel";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The value is
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute, the minimum of the
+     * {@code smallint} type. The value is
      * {@value}.
      */
-    public static final int COLUMN_MIN_ORGANIZATION_LEVEL = Short.MIN_VALUE;
+    public static final int ATTRIBUTE_MIN_ORGANIZATION_LEVEL = SqlServerConstants.SMALLINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The value is
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute, the maximum of the
+     * {@code smallint} type. The value is
      * {@value}.
      */
-    public static final int COLUMN_MAX_ORGANIZATION_LEVEL = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_ORGANIZATION_LEVEL = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORGANIZATION_LEVEL} column. The
@@ -409,18 +424,18 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_VACATION_HOURS = "VacationHours";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_VACATION_HOURS} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute, as the
      * {@code CK_Employee_VacationHours} check constraint ({@code [VacationHours]>=(-40)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MIN_VACATION_HOURS = -40;
+    public static final int ATTRIBUTE_MIN_VACATION_HOURS = -40;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_VACATION_HOURS} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute, as the
      * {@code CK_Employee_VacationHours} check constraint ({@code [VacationHours]<=(240)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MAX_VACATION_HOURS = +240;
+    public static final int ATTRIBUTE_MAX_VACATION_HOURS = +240;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VACATION_HOURS} column. The
@@ -436,18 +451,18 @@ public abstract class MappedEmployee {
     public static final String COLUMN_NAME_SICK_LEAVE_HOURS = "SickLeaveHours";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute, as the
      * {@code CK_Employee_SickLeaveHours} check constraint ({@code [SickLeaveHours]>=(0)}) requires.
      * The value is {@value}.
      */
-    public static final int COLUMN_MIN_SICK_LEAVE_HOURS = 0;
+    public static final int ATTRIBUTE_MIN_SICK_LEAVE_HOURS = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute, as the
      * {@code CK_Employee_SickLeaveHours} check constraint ({@code [SickLeaveHours]<=(120)})
      * requires. The value is {@value}.
      */
-    public static final int COLUMN_MAX_SICK_LEAVE_HOURS = +120;
+    public static final int ATTRIBUTE_MAX_SICK_LEAVE_HOURS = +120;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SICK_LEAVE_HOURS} column. The
@@ -933,6 +948,8 @@ public abstract class MappedEmployee {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -973,8 +990,8 @@ public abstract class MappedEmployee {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Max(COLUMN_MAX_ORGANIZATION_LEVEL)
-    @Min(COLUMN_MIN_ORGANIZATION_LEVEL)
+    @Max(ATTRIBUTE_MAX_ORGANIZATION_LEVEL)
+    @Min(ATTRIBUTE_MIN_ORGANIZATION_LEVEL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_LEVEL, nullable = true, insertable = false,
             updatable = false)
@@ -1037,8 +1054,8 @@ public abstract class MappedEmployee {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Employee_VacationHours: ([VacationHours]>=(-40) AND [VacationHours]<=(240))
-    @Max(COLUMN_MAX_VACATION_HOURS)
-    @Min(COLUMN_MIN_VACATION_HOURS)
+    @Max(ATTRIBUTE_MAX_VACATION_HOURS)
+    @Min(ATTRIBUTE_MIN_VACATION_HOURS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VACATION_HOURS, nullable = false, insertable = true,
@@ -1050,8 +1067,8 @@ public abstract class MappedEmployee {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Employee_SickLeaveHours: ([SickLeaveHours]>=(0) AND [SickLeaveHours]<=(120))
-    @Max(COLUMN_MAX_SICK_LEAVE_HOURS)
-    @Min(COLUMN_MIN_SICK_LEAVE_HOURS)
+    @Max(ATTRIBUTE_MAX_SICK_LEAVE_HOURS)
+    @Min(ATTRIBUTE_MIN_SICK_LEAVE_HOURS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SICK_LEAVE_HOURS, nullable = false, insertable = true,

@@ -20,9 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
@@ -39,11 +42,35 @@ import java.util.Objects;
 public class ProductModelIllustrationId {
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the
      * {@value MappedProductModelIllustration#COLUMN_NAME_PRODUCT_MODEL_ID} column. The value is
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ILLUSTRATION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ILLUSTRATION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ILLUSTRATION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ILLUSTRATION_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the
@@ -135,6 +162,10 @@ public class ProductModelIllustrationId {
      */
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_ILLUSTRATION_ID)
+    @Min(ATTRIBUTE_MIN_ILLUSTRATION_ID)
+    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
     @NotNull
     @Column(name = MappedProductModelIllustration.COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false,
             insertable = true, updatable = false)

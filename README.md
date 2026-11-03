@@ -62,7 +62,7 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
 | SQL Server | Attribute | How |
 |---|---|---|
 | `int`, `smallint`, `tinyint`, `bigint` | `Integer`, `Integer`, `Integer`, `Long` | `smallint` with `@Min(-32768)` and `@Max(32767)`, `tinyint` with `@Min(0)` and `@Max(255)`, narrowed to a `CHECK` constraint's bounds, which a comment quotes; an `IDENTITY` key, below |
-| `decimal`, `numeric`, `money`, `smallmoney` | `BigDecimal` | `precision` and `scale`, and `@Digits`, for `decimal` and `numeric` |
+| `decimal`, `numeric`, `money`, `smallmoney` | `BigDecimal` | `precision` and `scale`, for `decimal` and `numeric`; `@DecimalMin` and `@DecimalMax`, the type's range or a check constraint's bound (`ATTRIBUTE_DECIMAL_MIN_*`, `ATTRIBUTE_DECIMAL_MAX_*`), and no `@Digits` |
 | `float`, `real`, `bit` | `Double`, `Float`, `Boolean` | |
 | `char`, `nchar`, `varchar`, `nvarchar`, `sysname` | `String` | `length`, and `@Size`; `(max)` has no length |
 | `xml` | `String` | the document's text; `dbo.DatabaseLog.XmlEvent` and `HumanResources.vEmployee.AdditionalContactInfo` are the exceptions, below |

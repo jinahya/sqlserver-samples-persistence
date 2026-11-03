@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,6 +29,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -69,6 +72,18 @@ public abstract class MappedStore {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STORE_ID = "StoreID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STORE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STORE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STORE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STORE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STORE_ID} column. The value is {@value}.
@@ -115,6 +130,18 @@ public abstract class MappedStore {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_CHANNEL_ID = "SalesChannelID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_CHANNEL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_CHANNEL_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_CHANNEL_ID} column. The value is {@value}.
@@ -588,6 +615,8 @@ public abstract class MappedStore {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_STORE_ID)
+    @Min(ATTRIBUTE_MIN_STORE_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_STORE_ID, nullable = false, insertable = true, updatable = false)
@@ -609,6 +638,8 @@ public abstract class MappedStore {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_CHANNEL_ID)
+    @Min(ATTRIBUTE_MIN_SALES_CHANNEL_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_CHANNEL_ID, nullable = false, insertable = false, updatable = false)

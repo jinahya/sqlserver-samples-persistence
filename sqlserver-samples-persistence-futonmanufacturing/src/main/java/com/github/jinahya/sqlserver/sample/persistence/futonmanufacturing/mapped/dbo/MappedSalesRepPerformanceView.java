@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -129,6 +133,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
@@ -139,6 +155,18 @@ public abstract class MappedSalesRepPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIQUE_CUSTOMERS = "UniqueCustomers";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_CUSTOMERS} column. The value is {@value}.
@@ -163,6 +191,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final int COLUMN_SCALE_GROSS_SALES = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_GROSS_SALES = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_GROSS_SALES = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_GROSS_SALES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
@@ -183,6 +223,18 @@ public abstract class MappedSalesRepPerformanceView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_DISCOUNTS} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_DISCOUNTS = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_DISCOUNTS} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_DISCOUNTS = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_DISCOUNTS} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_DISCOUNTS = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_DISCOUNTS} column. The value is {@value}.
@@ -207,6 +259,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final int COLUMN_SCALE_NET_SALES = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_NET_SALES} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_NET_SALES = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_NET_SALES} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_NET_SALES = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NET_SALES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
@@ -227,6 +291,18 @@ public abstract class MappedSalesRepPerformanceView {
      * The scale of the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_ORDER_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
@@ -251,6 +327,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final int COLUMN_SCALE_DELIVERED_SALES = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DELIVERED_SALES} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DELIVERED_SALES = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DELIVERED_SALES} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DELIVERED_SALES = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DELIVERED_SALES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DELIVERED_SALES = "deliveredSales";
@@ -273,6 +361,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final int COLUMN_SCALE_AVG_DAYS_TO_SHIP = 1;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP} attribute, the minimum of the
+     * {@code decimal(10, 1)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_DAYS_TO_SHIP = "-999999999.9";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP} attribute, the maximum of the
+     * {@code decimal(10, 1)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_DAYS_TO_SHIP = "999999999.9";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_DAYS_TO_SHIP} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP = "avgDaysToShip";
@@ -285,6 +385,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final String COLUMN_NAME_QUOTES_CREATED = "QuotesCreated";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTES_CREATED} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUOTES_CREATED = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTES_CREATED} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUOTES_CREATED = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTES_CREATED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUOTES_CREATED = "quotesCreated";
@@ -295,6 +407,18 @@ public abstract class MappedSalesRepPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUOTES_ACCEPTED = "QuotesAccepted";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTES_ACCEPTED} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUOTES_ACCEPTED = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTES_ACCEPTED} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUOTES_ACCEPTED = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTES_ACCEPTED} column. The value is {@value}.
@@ -319,6 +443,18 @@ public abstract class MappedSalesRepPerformanceView {
     public static final int COLUMN_SCALE_QUOTE_WIN_RATE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTE_WIN_RATE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUOTE_WIN_RATE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTE_WIN_RATE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUOTE_WIN_RATE = "999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTE_WIN_RATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUOTE_WIN_RATE = "quoteWinRate";
@@ -329,6 +465,18 @@ public abstract class MappedSalesRepPerformanceView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_RANK = "SalesRank";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_RANK} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_SALES_RANK = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_RANK} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_SALES_RANK = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_RANK} column. The value is {@value}.
@@ -749,84 +897,96 @@ public abstract class MappedSalesRepPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
+    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_UNIQUE_CUSTOMERS)
+    @Min(ATTRIBUTE_MIN_UNIQUE_CUSTOMERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_GROSS_SALES)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_GROSS_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_SALES, scale = COLUMN_SCALE_GROSS_SALES)
     private BigDecimal grossSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
-            fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_DISCOUNTS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_DISCOUNTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_DISCOUNTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_DISCOUNTS, scale = COLUMN_SCALE_TOTAL_DISCOUNTS)
     private BigDecimal totalDiscounts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_NET_SALES)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_NET_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NET_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_NET_SALES, scale = COLUMN_SCALE_NET_SALES)
     private BigDecimal netSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
-            fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_DELIVERED_SALES - COLUMN_SCALE_DELIVERED_SALES,
-            fraction = COLUMN_SCALE_DELIVERED_SALES)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DELIVERED_SALES)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DELIVERED_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERED_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DELIVERED_SALES, scale = COLUMN_SCALE_DELIVERED_SALES)
     private BigDecimal deliveredSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_DAYS_TO_SHIP - COLUMN_SCALE_AVG_DAYS_TO_SHIP,
-            fraction = COLUMN_SCALE_AVG_DAYS_TO_SHIP)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_DAYS_TO_SHIP)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_DAYS_TO_SHIP)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DAYS_TO_SHIP, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_DAYS_TO_SHIP, scale = COLUMN_SCALE_AVG_DAYS_TO_SHIP)
     private BigDecimal avgDaysToShip;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_QUOTES_CREATED)
+    @Min(ATTRIBUTE_MIN_QUOTES_CREATED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_CREATED, nullable = true, insertable = false, updatable = false)
     private Integer quotesCreated;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_QUOTES_ACCEPTED)
+    @Min(ATTRIBUTE_MIN_QUOTES_ACCEPTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_ACCEPTED, nullable = true, insertable = false, updatable = false)
     private Integer quotesAccepted;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUOTE_WIN_RATE - COLUMN_SCALE_QUOTE_WIN_RATE,
-            fraction = COLUMN_SCALE_QUOTE_WIN_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUOTE_WIN_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUOTE_WIN_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTE_WIN_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUOTE_WIN_RATE, scale = COLUMN_SCALE_QUOTE_WIN_RATE)
     private BigDecimal quoteWinRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_RANK)
+    @Min(ATTRIBUTE_MIN_SALES_RANK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_RANK, nullable = true, insertable = false, updatable = false)
     private Long salesRank;

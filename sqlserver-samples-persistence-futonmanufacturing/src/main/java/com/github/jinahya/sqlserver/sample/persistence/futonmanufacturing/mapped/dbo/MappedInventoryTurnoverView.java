@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -123,6 +127,18 @@ public abstract class MappedInventoryTurnoverView {
     public static final int COLUMN_SCALE_QUANTITY_ON_HAND = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_ON_HAND = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_ON_HAND = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ON_HAND} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
@@ -143,6 +159,18 @@ public abstract class MappedInventoryTurnoverView {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_AVAILABLE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE = "99999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
@@ -167,6 +195,18 @@ public abstract class MappedInventoryTurnoverView {
     public static final int COLUMN_SCALE_ANNUAL_USAGE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ANNUAL_USAGE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ANNUAL_USAGE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ANNUAL_USAGE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ANNUAL_USAGE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_USAGE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_USAGE = "annualUsage";
@@ -189,6 +229,18 @@ public abstract class MappedInventoryTurnoverView {
     public static final int COLUMN_SCALE_ANNUAL_RECEIPTS = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ANNUAL_RECEIPTS} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ANNUAL_RECEIPTS = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ANNUAL_RECEIPTS} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ANNUAL_RECEIPTS = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_RECEIPTS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_RECEIPTS = "annualReceipts";
@@ -199,6 +251,18 @@ public abstract class MappedInventoryTurnoverView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TRANSACTION_COUNT = "TransactionCount";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TRANSACTION_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TRANSACTION_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_COUNT} column. The value is {@value}.
@@ -223,6 +287,18 @@ public abstract class MappedInventoryTurnoverView {
     public static final int COLUMN_SCALE_TURNOVER_RATIO = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TURNOVER_RATIO} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TURNOVER_RATIO = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TURNOVER_RATIO} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TURNOVER_RATIO = "99999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TURNOVER_RATIO} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TURNOVER_RATIO = "turnoverRatio";
@@ -245,6 +321,18 @@ public abstract class MappedInventoryTurnoverView {
     public static final int COLUMN_SCALE_DAYS_ON_HAND = 1;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_ON_HAND} attribute, the minimum of the
+     * {@code decimal(10, 1)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DAYS_ON_HAND = "-999999999.9";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_ON_HAND} attribute, the maximum of the
+     * {@code decimal(10, 1)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DAYS_ON_HAND = "999999999.9";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_ON_HAND} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_ON_HAND = "daysOnHand";
@@ -265,6 +353,18 @@ public abstract class MappedInventoryTurnoverView {
      * The scale of the {@value #COLUMN_NAME_INVENTORY_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_INVENTORY_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_INVENTORY_VALUE} attribute, the minimum of the
+     * {@code decimal(37, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_INVENTORY_VALUE = "-9999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_INVENTORY_VALUE} attribute, the maximum of the
+     * {@code decimal(37, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_INVENTORY_VALUE = "9999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INVENTORY_VALUE} column. The value is {@value}.
@@ -301,6 +401,18 @@ public abstract class MappedInventoryTurnoverView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_SINCE_LAST_ACTIVITY = "DaysSinceLastActivity";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_ACTIVITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_SINCE_LAST_ACTIVITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_ACTIVITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_SINCE_LAST_ACTIVITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_LAST_ACTIVITY} column. The value is
@@ -712,8 +824,8 @@ public abstract class MappedInventoryTurnoverView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
-            fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_ON_HAND)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_ON_HAND, scale = COLUMN_SCALE_QUANTITY_ON_HAND)
@@ -721,52 +833,56 @@ public abstract class MappedInventoryTurnoverView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
-            fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     private BigDecimal quantityAvailable;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ANNUAL_USAGE - COLUMN_SCALE_ANNUAL_USAGE, fraction = COLUMN_SCALE_ANNUAL_USAGE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ANNUAL_USAGE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ANNUAL_USAGE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_USAGE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ANNUAL_USAGE, scale = COLUMN_SCALE_ANNUAL_USAGE)
     private BigDecimal annualUsage;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ANNUAL_RECEIPTS - COLUMN_SCALE_ANNUAL_RECEIPTS,
-            fraction = COLUMN_SCALE_ANNUAL_RECEIPTS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ANNUAL_RECEIPTS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ANNUAL_RECEIPTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_RECEIPTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ANNUAL_RECEIPTS, scale = COLUMN_SCALE_ANNUAL_RECEIPTS)
     private BigDecimal annualReceipts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_TRANSACTION_COUNT)
+    @Min(ATTRIBUTE_MIN_TRANSACTION_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TRANSACTION_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer transactionCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TURNOVER_RATIO - COLUMN_SCALE_TURNOVER_RATIO,
-            fraction = COLUMN_SCALE_TURNOVER_RATIO)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TURNOVER_RATIO)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TURNOVER_RATIO)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TURNOVER_RATIO, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TURNOVER_RATIO, scale = COLUMN_SCALE_TURNOVER_RATIO)
     private BigDecimal turnoverRatio;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_DAYS_ON_HAND - COLUMN_SCALE_DAYS_ON_HAND, fraction = COLUMN_SCALE_DAYS_ON_HAND)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DAYS_ON_HAND)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DAYS_ON_HAND)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_ON_HAND, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DAYS_ON_HAND, scale = COLUMN_SCALE_DAYS_ON_HAND)
     private BigDecimal daysOnHand;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
-            fraction = COLUMN_SCALE_INVENTORY_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_INVENTORY_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_INVENTORY_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVENTORY_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_INVENTORY_VALUE, scale = COLUMN_SCALE_INVENTORY_VALUE)
     private BigDecimal inventoryValue;
@@ -785,6 +901,8 @@ public abstract class MappedInventoryTurnoverView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_SINCE_LAST_ACTIVITY)
+    @Min(ATTRIBUTE_MIN_DAYS_SINCE_LAST_ACTIVITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_ACTIVITY, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceLastActivity;

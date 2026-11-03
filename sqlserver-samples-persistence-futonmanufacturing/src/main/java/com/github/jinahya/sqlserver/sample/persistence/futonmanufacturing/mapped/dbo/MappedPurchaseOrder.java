@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -86,6 +90,18 @@ public abstract class MappedPurchaseOrder {
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
@@ -115,6 +131,18 @@ public abstract class MappedPurchaseOrder {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -125,6 +153,18 @@ public abstract class MappedPurchaseOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WAREHOUSE_ID = "WarehouseID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_WAREHOUSE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_WAREHOUSE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WAREHOUSE_ID} column. The value is {@value}.
@@ -204,6 +244,18 @@ public abstract class MappedPurchaseOrder {
     public static final int COLUMN_SCALE_SUBTOTAL = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUBTOTAL} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SUBTOTAL = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUBTOTAL} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SUBTOTAL = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUBTOTAL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUBTOTAL = "subtotal";
@@ -224,6 +276,18 @@ public abstract class MappedPurchaseOrder {
      * The scale of the {@value #COLUMN_NAME_TAX_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TAX_AMOUNT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMOUNT} column. The value is {@value}.
@@ -248,6 +312,18 @@ public abstract class MappedPurchaseOrder {
     public static final int COLUMN_SCALE_SHIPPING_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHIPPING_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SHIPPING_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIPPING_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SHIPPING_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIPPING_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIPPING_AMOUNT = "shippingAmount";
@@ -268,6 +344,18 @@ public abstract class MappedPurchaseOrder {
      * The scale of the {@value #COLUMN_NAME_TOTAL_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_AMOUNT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_AMOUNT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_AMOUNT} column. The value is {@value}.
@@ -714,6 +802,8 @@ public abstract class MappedPurchaseOrder {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false)
@@ -728,6 +818,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
+    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -735,6 +827,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_WAREHOUSE_ID)
+    @Min(ATTRIBUTE_MIN_WAREHOUSE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
@@ -766,35 +860,39 @@ public abstract class MappedPurchaseOrder {
     private String status;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_SUBTOTAL - COLUMN_SCALE_SUBTOTAL, fraction = COLUMN_SCALE_SUBTOTAL)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SUBTOTAL)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SUBTOTAL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUBTOTAL, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SUBTOTAL, scale = COLUMN_SCALE_SUBTOTAL)
     @MsDefault("((0))")
     private BigDecimal subtotal;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_SHIPPING_AMOUNT - COLUMN_SCALE_SHIPPING_AMOUNT,
-            fraction = COLUMN_SCALE_SHIPPING_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHIPPING_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SHIPPING_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHIPPING_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SHIPPING_AMOUNT, scale = COLUMN_SCALE_SHIPPING_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal shippingAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_TOTAL_AMOUNT, scale = COLUMN_SCALE_TOTAL_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal totalAmount;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 126 bytes (63 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;

@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -83,6 +87,18 @@ public abstract class MappedItem {
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
@@ -129,6 +145,18 @@ public abstract class MappedItem {
     public static final String COLUMN_NAME_ITEM_TYPE_ID = "ItemTypeID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_TYPE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_TYPE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_TYPE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_TYPE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_TYPE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE_ID = "itemTypeId";
@@ -139,6 +167,18 @@ public abstract class MappedItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIT_ID = "UnitID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_UNIT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_UNIT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_ID} column. The value is {@value}.
@@ -175,6 +215,18 @@ public abstract class MappedItem {
     public static final int COLUMN_SCALE_STANDARD_COST = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_STANDARD_COST = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_STANDARD_COST = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
@@ -195,6 +247,18 @@ public abstract class MappedItem {
      * The scale of the {@value #COLUMN_NAME_LIST_PRICE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_LIST_PRICE = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LIST_PRICE = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LIST_PRICE = "99999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value is {@value}.
@@ -221,6 +285,18 @@ public abstract class MappedItem {
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
@@ -243,6 +319,18 @@ public abstract class MappedItem {
     public static final int COLUMN_SCALE_REORDER_POINT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REORDER_POINT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REORDER_POINT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REORDER_POINT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REORDER_POINT = "reorderPoint";
@@ -263,6 +351,18 @@ public abstract class MappedItem {
      * The scale of the {@value #COLUMN_NAME_SAFETY_STOCK} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SAFETY_STOCK = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SAFETY_STOCK} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SAFETY_STOCK = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SAFETY_STOCK} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SAFETY_STOCK = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SAFETY_STOCK} column. The value is {@value}.
@@ -638,6 +738,8 @@ public abstract class MappedItem {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = true, updatable = false)
@@ -659,6 +761,8 @@ public abstract class MappedItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_TYPE_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_TYPE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_TYPE_ID, nullable = false, insertable = false, updatable = false)
@@ -666,19 +770,22 @@ public abstract class MappedItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_UNIT_ID)
+    @Min(ATTRIBUTE_MIN_UNIT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_ID, nullable = false, insertable = false, updatable = false)
     private Integer unitId;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 136 bytes (68 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true)
     private String description;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
-            fraction = COLUMN_SCALE_STANDARD_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_STANDARD_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_STANDARD_COST, scale = COLUMN_SCALE_STANDARD_COST)
@@ -686,7 +793,8 @@ public abstract class MappedItem {
     private BigDecimal standardCost;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LIST_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LIST_PRICE, scale = COLUMN_SCALE_LIST_PRICE)
@@ -701,21 +809,24 @@ public abstract class MappedItem {
     private Boolean isActive;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
+    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = true, updatable = true)
     @MsDefault("((0))")
     private Integer leadTimeDays;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_REORDER_POINT - COLUMN_SCALE_REORDER_POINT,
-            fraction = COLUMN_SCALE_REORDER_POINT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REORDER_POINT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REORDER_POINT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REORDER_POINT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_REORDER_POINT, scale = COLUMN_SCALE_REORDER_POINT)
     @MsDefault("((0))")
     private BigDecimal reorderPoint;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_SAFETY_STOCK - COLUMN_SCALE_SAFETY_STOCK, fraction = COLUMN_SCALE_SAFETY_STOCK)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SAFETY_STOCK)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SAFETY_STOCK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SAFETY_STOCK, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SAFETY_STOCK, scale = COLUMN_SCALE_SAFETY_STOCK)
     @MsDefault("((0))")

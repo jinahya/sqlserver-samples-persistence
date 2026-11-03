@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -78,6 +82,18 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     public static final String COLUMN_NAME_DAY_NUMBER = "DayNumber";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAY_NUMBER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAY_NUMBER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAY_NUMBER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAY_NUMBER = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAY_NUMBER} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAY_NUMBER = "dayNumber";
@@ -88,6 +104,18 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_HOUR_OF_DAY = "HourOfDay";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_HOUR_OF_DAY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_HOUR_OF_DAY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_HOUR_OF_DAY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_HOUR_OF_DAY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_HOUR_OF_DAY} column. The value is {@value}.
@@ -136,6 +164,18 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
@@ -156,6 +196,18 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_REVENUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_REVENUE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_REVENUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_REVENUE = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_REVENUE} column. The value is {@value}.
@@ -180,6 +232,18 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     public static final int COLUMN_SCALE_AVG_ORDER_VALUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
@@ -190,6 +254,18 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIQUE_CUSTOMERS = "UniqueCustomers";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_CUSTOMERS} column. The value is {@value}.
@@ -411,12 +487,16 @@ public abstract class MappedSalesTimeBasedAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAY_NUMBER)
+    @Min(ATTRIBUTE_MIN_DAY_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAY_NUMBER, nullable = true, insertable = false, updatable = false)
     private Integer dayNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_HOUR_OF_DAY)
+    @Min(ATTRIBUTE_MIN_HOUR_OF_DAY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOUR_OF_DAY, nullable = true, insertable = false, updatable = false)
     private Integer hourOfDay;
@@ -439,28 +519,32 @@ public abstract class MappedSalesTimeBasedAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
+    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
-            fraction = COLUMN_SCALE_TOTAL_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REVENUE, scale = COLUMN_SCALE_TOTAL_REVENUE)
     private BigDecimal totalRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
-            fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_UNIQUE_CUSTOMERS)
+    @Min(ATTRIBUTE_MIN_UNIQUE_CUSTOMERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;

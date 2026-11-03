@@ -20,9 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
@@ -39,11 +42,35 @@ import java.util.Objects;
 public class SalesOrderHeaderSalesReasonId {
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the
      * {@value MappedSalesOrderHeaderSalesReason#COLUMN_NAME_SALES_ORDER_ID} column. The value is
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_REASON_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_REASON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the
@@ -135,6 +162,10 @@ public class SalesOrderHeaderSalesReasonId {
      */
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_SALES_REASON_ID)
+    @Min(ATTRIBUTE_MIN_SALES_REASON_ID)
+    @Max(ATTRIBUTE_MAX_SALES_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_SALES_ORDER_ID)
     @NotNull
     @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_ORDER_ID, nullable = false,
             insertable = true, updatable = false)

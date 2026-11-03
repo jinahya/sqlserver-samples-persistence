@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -81,6 +85,18 @@ public abstract class MappedSupplierItem {
     public static final String COLUMN_NAME_SUPPLIER_ITEM_ID = "SupplierItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SUPPLIER_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SUPPLIER_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ITEM_ID = "supplierItemId";
@@ -93,6 +109,18 @@ public abstract class MappedSupplierItem {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -103,6 +131,18 @@ public abstract class MappedSupplierItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
@@ -145,6 +185,18 @@ public abstract class MappedSupplierItem {
     public static final int COLUMN_SCALE_UNIT_PRICE = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
@@ -167,6 +219,18 @@ public abstract class MappedSupplierItem {
     public static final int COLUMN_SCALE_MINIMUM_ORDER_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MINIMUM_ORDER_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MINIMUM_ORDER_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MINIMUM_ORDER_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MINIMUM_ORDER_QUANTITY = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MINIMUM_ORDER_QUANTITY} column. The value is
      * {@value}.
      */
@@ -178,6 +242,18 @@ public abstract class MappedSupplierItem {
      * The name of the {@code int, DEFAULT ((0))} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
@@ -481,6 +557,8 @@ public abstract class MappedSupplierItem {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_SUPPLIER_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_SUPPLIER_ITEM_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SUPPLIER_ITEM_ID, nullable = false, insertable = true, updatable = false)
@@ -488,6 +566,8 @@ public abstract class MappedSupplierItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
+    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -495,6 +575,8 @@ public abstract class MappedSupplierItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -507,21 +589,24 @@ public abstract class MappedSupplierItem {
     private String supplierPartNumber;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY - COLUMN_SCALE_MINIMUM_ORDER_QUANTITY,
-            fraction = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MINIMUM_ORDER_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MINIMUM_ORDER_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MINIMUM_ORDER_QUANTITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY, scale = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY)
     @MsDefault("((1))")
     private BigDecimal minimumOrderQuantity;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
+    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = true, updatable = true)
     @MsDefault("((0))")

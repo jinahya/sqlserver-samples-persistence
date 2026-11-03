@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -95,6 +96,18 @@ public abstract class MappedCreditCard {
     public static final String COLUMN_NAME_CREDIT_CARD_ID = "CreditCardID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CREDIT_CARD_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CREDIT_CARD_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CREDIT_CARD_ID} column. The
      * value is {@value}.
      */
@@ -144,14 +157,16 @@ public abstract class MappedCreditCard {
     public static final String COLUMN_NAME_EXP_MONTH = "ExpMonth";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_EXP_MONTH} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EXP_MONTH} attribute, the minimum of the
+     * {@code tinyint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_EXP_MONTH = 0;
+    public static final int ATTRIBUTE_MIN_EXP_MONTH = SqlServerConstants.TINYINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_EXP_MONTH} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EXP_MONTH} attribute, the maximum of the
+     * {@code tinyint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_EXP_MONTH = +255;
+    public static final int ATTRIBUTE_MAX_EXP_MONTH = SqlServerConstants.TINYINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXP_MONTH} column. The value is
@@ -167,14 +182,16 @@ public abstract class MappedCreditCard {
     public static final String COLUMN_NAME_EXP_YEAR = "ExpYear";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_EXP_YEAR} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EXP_YEAR} attribute, the minimum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_EXP_YEAR = Short.MIN_VALUE;
+    public static final int ATTRIBUTE_MIN_EXP_YEAR = SqlServerConstants.SMALLINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_EXP_YEAR} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EXP_YEAR} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_EXP_YEAR = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_EXP_YEAR = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXP_YEAR} column. The value is
@@ -378,6 +395,8 @@ public abstract class MappedCreditCard {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_CREDIT_CARD_ID)
+    @Min(ATTRIBUTE_MIN_CREDIT_CARD_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_CREDIT_CARD_ID, nullable = false, insertable = true,
@@ -405,8 +424,8 @@ public abstract class MappedCreditCard {
     private String cardNumber;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(COLUMN_MAX_EXP_MONTH)
-    @Min(COLUMN_MIN_EXP_MONTH)
+    @Max(ATTRIBUTE_MAX_EXP_MONTH)
+    @Min(ATTRIBUTE_MIN_EXP_MONTH)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EXP_MONTH, nullable = false, insertable = true, updatable = true)
@@ -414,8 +433,8 @@ public abstract class MappedCreditCard {
     private Integer expMonth;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(COLUMN_MAX_EXP_YEAR)
-    @Min(COLUMN_MIN_EXP_YEAR)
+    @Max(ATTRIBUTE_MAX_EXP_YEAR)
+    @Min(ATTRIBUTE_MIN_EXP_YEAR)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EXP_YEAR, nullable = false, insertable = true, updatable = true)

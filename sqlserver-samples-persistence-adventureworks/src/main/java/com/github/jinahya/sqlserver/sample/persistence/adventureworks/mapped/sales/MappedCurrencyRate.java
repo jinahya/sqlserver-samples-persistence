@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -28,6 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -103,6 +108,18 @@ public abstract class MappedCurrencyRate {
     public static final String COLUMN_NAME_CURRENCY_RATE_ID = "CurrencyRateID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CURRENCY_RATE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CURRENCY_RATE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_RATE_ID} column. The
      * value is {@value}.
      */
@@ -165,6 +182,18 @@ public abstract class MappedCurrencyRate {
     public static final String COLUMN_NAME_AVERAGE_RATE = "AverageRate";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVERAGE_RATE} attribute, the minimum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVERAGE_RATE = SqlServerConstants.MONEY_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVERAGE_RATE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVERAGE_RATE = SqlServerConstants.MONEY_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVERAGE_RATE} column. The value
      * is {@value}.
      */
@@ -176,6 +205,18 @@ public abstract class MappedCurrencyRate {
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_END_OF_DAY_RATE = "EndOfDayRate";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_END_OF_DAY_RATE} attribute, the minimum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_END_OF_DAY_RATE = SqlServerConstants.MONEY_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_END_OF_DAY_RATE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_END_OF_DAY_RATE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_END_OF_DAY_RATE} column. The
@@ -403,6 +444,8 @@ public abstract class MappedCurrencyRate {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_CURRENCY_RATE_ID)
+    @Min(ATTRIBUTE_MIN_CURRENCY_RATE_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_CURRENCY_RATE_ID, nullable = false, insertable = true,
@@ -445,18 +488,22 @@ public abstract class MappedCurrencyRate {
     private String toCurrencyCode;
 
     // ---------------------------------------------------------------------------------------------
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVERAGE_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVERAGE_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AVERAGE_RATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_AVERAGE_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_AVERAGE_RATE,
                           value = "Average exchange rate for the day.")
     private BigDecimal averageRate;
 
     // ---------------------------------------------------------------------------------------------
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_END_OF_DAY_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_END_OF_DAY_RATE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_END_OF_DAY_RATE, nullable = false, insertable = true,
-            updatable = true)
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_END_OF_DAY_RATE,
                           value = "Final exchange rate for the day.")
     private BigDecimal endOfDayRate;

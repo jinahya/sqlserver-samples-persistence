@@ -20,12 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -99,6 +102,18 @@ public abstract class MappedBusinessEntityAddress {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -112,6 +127,18 @@ public abstract class MappedBusinessEntityAddress {
     public static final String COLUMN_NAME_ADDRESS_ID = "AddressID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ADDRESS_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ADDRESS_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_ID} column. The value
      * is {@value}.
      */
@@ -123,6 +150,18 @@ public abstract class MappedBusinessEntityAddress {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ADDRESS_TYPE_ID = "AddressTypeID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ADDRESS_TYPE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ADDRESS_TYPE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ADDRESS_TYPE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ADDRESS_TYPE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_TYPE_ID} column. The
@@ -324,6 +363,8 @@ public abstract class MappedBusinessEntityAddress {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
+    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -335,6 +376,8 @@ public abstract class MappedBusinessEntityAddress {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_ADDRESS_ID)
+    @Min(ATTRIBUTE_MIN_ADDRESS_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_ADDRESS_ID, nullable = false, insertable = true, updatable = false)
@@ -345,6 +388,8 @@ public abstract class MappedBusinessEntityAddress {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_ADDRESS_TYPE_ID)
+    @Min(ATTRIBUTE_MIN_ADDRESS_TYPE_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_ADDRESS_TYPE_ID, nullable = false, insertable = true,

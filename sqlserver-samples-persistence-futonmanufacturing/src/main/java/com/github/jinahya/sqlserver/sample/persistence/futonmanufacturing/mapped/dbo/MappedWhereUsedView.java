@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
@@ -57,6 +61,18 @@ public abstract class MappedWhereUsedView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPONENT_ITEM_ID = "ComponentItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COMPONENT_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COMPONENT_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ITEM_ID} column. The value is {@value}.
@@ -105,6 +121,18 @@ public abstract class MappedWhereUsedView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PARENT_ITEM_ID = "ParentItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PARENT_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PARENT_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PARENT_ITEM_ID} column. The value is {@value}.
@@ -170,6 +198,18 @@ public abstract class MappedWhereUsedView {
     public static final String COLUMN_NAME_LEVEL = "Level";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEVEL} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEVEL = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEVEL} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEVEL = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEVEL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LEVEL = "level";
@@ -190,6 +230,18 @@ public abstract class MappedWhereUsedView {
      * The scale of the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY = "99999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
@@ -475,6 +527,8 @@ public abstract class MappedWhereUsedView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_COMPONENT_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_COMPONENT_ITEM_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer componentItemId;
@@ -495,6 +549,8 @@ public abstract class MappedWhereUsedView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PARENT_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_PARENT_ITEM_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PARENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer parentItemId;
@@ -522,13 +578,16 @@ public abstract class MappedWhereUsedView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LEVEL)
+    @Min(ATTRIBUTE_MIN_LEVEL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEVEL, nullable = true, insertable = false, updatable = false)
     private Integer level;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY, scale = COLUMN_SCALE_QUANTITY)
     private BigDecimal quantity;
@@ -541,6 +600,7 @@ public abstract class MappedWhereUsedView {
     private String unitCode;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 92 bytes (46 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_USAGE_PATH, nullable = true, insertable = false, updatable = false)

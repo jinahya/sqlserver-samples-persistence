@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -60,6 +64,18 @@ public abstract class MappedColdRoomTemperatureArchive {
     public static final String COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID = "ColdRoomTemperatureID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_COLD_ROOM_TEMPERATURE_ID = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_COLD_ROOM_TEMPERATURE_ID = SqlServerConstants.BIGINT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID} column. The value is
      * {@value}.
      */
@@ -71,6 +87,18 @@ public abstract class MappedColdRoomTemperatureArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER = "ColdRoomSensorNumber";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COLD_ROOM_SENSOR_NUMBER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COLD_ROOM_SENSOR_NUMBER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER} column. The value is
@@ -106,6 +134,18 @@ public abstract class MappedColdRoomTemperatureArchive {
      * The scale of the {@value #COLUMN_NAME_TEMPERATURE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TEMPERATURE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TEMPERATURE = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TEMPERATURE = "99999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TEMPERATURE} column. The value is {@value}.
@@ -281,6 +321,8 @@ public abstract class MappedColdRoomTemperatureArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_COLD_ROOM_TEMPERATURE_ID)
+    @Min(ATTRIBUTE_MIN_COLD_ROOM_TEMPERATURE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID, nullable = false, insertable = false, updatable = false)
@@ -288,6 +330,8 @@ public abstract class MappedColdRoomTemperatureArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_COLD_ROOM_SENSOR_NUMBER)
+    @Min(ATTRIBUTE_MIN_COLD_ROOM_SENSOR_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER, nullable = false, insertable = false, updatable = false)
@@ -302,7 +346,8 @@ public abstract class MappedColdRoomTemperatureArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TEMPERATURE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE)

@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -28,6 +29,10 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -104,6 +109,18 @@ public abstract class MappedTransactionHistoryArchive {
     public static final String COLUMN_NAME_TRANSACTION_ID = "TransactionID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TRANSACTION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TRANSACTION_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_ID} column. The
      * value is {@value}.
      */
@@ -115,6 +132,18 @@ public abstract class MappedTransactionHistoryArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -130,6 +159,18 @@ public abstract class MappedTransactionHistoryArchive {
     public static final String COLUMN_NAME_REFERENCE_ORDER_ID = "ReferenceOrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_REFERENCE_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_REFERENCE_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REFERENCE_ORDER_ID} column. The
      * value is {@value}.
      */
@@ -141,6 +182,18 @@ public abstract class MappedTransactionHistoryArchive {
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_REFERENCE_ORDER_LINE_ID = "ReferenceOrderLineID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_REFERENCE_ORDER_LINE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_REFERENCE_ORDER_LINE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REFERENCE_ORDER_LINE_ID}
@@ -209,6 +262,18 @@ public abstract class MappedTransactionHistoryArchive {
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUANTITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUANTITY = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is
      * {@value}.
      */
@@ -220,6 +285,18 @@ public abstract class MappedTransactionHistoryArchive {
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ACTUAL_COST = "ActualCost";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute, the minimum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ACTUAL_COST = SqlServerConstants.MONEY_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ACTUAL_COST = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value
@@ -489,6 +566,8 @@ public abstract class MappedTransactionHistoryArchive {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_TRANSACTION_ID)
+    @Min(ATTRIBUTE_MIN_TRANSACTION_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true,
@@ -498,6 +577,8 @@ public abstract class MappedTransactionHistoryArchive {
     private Integer transactionId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = true)
@@ -507,6 +588,8 @@ public abstract class MappedTransactionHistoryArchive {
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_REFERENCE_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_REFERENCE_ORDER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID, nullable = false, insertable = true,
@@ -517,6 +600,8 @@ public abstract class MappedTransactionHistoryArchive {
     private Integer referenceOrderId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_REFERENCE_ORDER_LINE_ID)
+    @Min(ATTRIBUTE_MIN_REFERENCE_ORDER_LINE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID, nullable = false, insertable = true,
@@ -552,6 +637,8 @@ public abstract class MappedTransactionHistoryArchive {
     private MappedTransactionHistory.TransactionType transactionType;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_QUANTITY)
+    @Min(ATTRIBUTE_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
@@ -559,9 +646,11 @@ public abstract class MappedTransactionHistoryArchive {
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ACTUAL_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ACTUAL_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_ACTUAL_COST, value = "Product cost.")
     private BigDecimal actualCost;
 

@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
@@ -57,6 +61,18 @@ public abstract class MappedBomExplosionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PARENT_ITEM_ID = "ParentItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PARENT_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PARENT_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PARENT_ITEM_ID} column. The value is {@value}.
@@ -103,6 +119,18 @@ public abstract class MappedBomExplosionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPONENT_ITEM_ID = "ComponentItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COMPONENT_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COMPONENT_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ITEM_ID} column. The value is {@value}.
@@ -170,6 +198,18 @@ public abstract class MappedBomExplosionView {
     public static final String COLUMN_NAME_LEVEL = "Level";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEVEL} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEVEL = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEVEL} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEVEL = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEVEL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LEVEL = "level";
@@ -190,6 +230,18 @@ public abstract class MappedBomExplosionView {
      * The scale of the {@value #COLUMN_NAME_EFFECTIVE_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_EFFECTIVE_QUANTITY = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EFFECTIVE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_EFFECTIVE_QUANTITY = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EFFECTIVE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_EFFECTIVE_QUANTITY = "99999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EFFECTIVE_QUANTITY} column. The value is {@value}.
@@ -231,6 +283,18 @@ public abstract class MappedBomExplosionView {
     public static final int COLUMN_SCALE_STANDARD_COST = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_STANDARD_COST = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_STANDARD_COST = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
@@ -251,6 +315,18 @@ public abstract class MappedBomExplosionView {
      * The scale of the {@value #COLUMN_NAME_EXTENDED_COST} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_EXTENDED_COST = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_EXTENDED_COST} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_EXTENDED_COST = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_EXTENDED_COST} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_EXTENDED_COST = "99999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EXTENDED_COST} column. The value is {@value}.
@@ -561,6 +637,8 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PARENT_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_PARENT_ITEM_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PARENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer parentItemId;
@@ -581,6 +659,8 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_COMPONENT_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_COMPONENT_ITEM_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer componentItemId;
@@ -608,14 +688,16 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LEVEL)
+    @Min(ATTRIBUTE_MIN_LEVEL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEVEL, nullable = true, insertable = false, updatable = false)
     private Integer level;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_EFFECTIVE_QUANTITY - COLUMN_SCALE_EFFECTIVE_QUANTITY,
-            fraction = COLUMN_SCALE_EFFECTIVE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_EFFECTIVE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_EFFECTIVE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EFFECTIVE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_EFFECTIVE_QUANTITY, scale = COLUMN_SCALE_EFFECTIVE_QUANTITY)
     private BigDecimal effectiveQuantity;
@@ -629,21 +711,22 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
-            fraction = COLUMN_SCALE_STANDARD_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_STANDARD_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STANDARD_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_STANDARD_COST, scale = COLUMN_SCALE_STANDARD_COST)
     private BigDecimal standardCost;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_EXTENDED_COST - COLUMN_SCALE_EXTENDED_COST,
-            fraction = COLUMN_SCALE_EXTENDED_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_EXTENDED_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_EXTENDED_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXTENDED_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_EXTENDED_COST, scale = COLUMN_SCALE_EXTENDED_COST)
     private BigDecimal extendedCost;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 80 bytes (40 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BOM_PATH, nullable = true, insertable = false, updatable = false)

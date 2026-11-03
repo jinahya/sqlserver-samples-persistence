@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -60,6 +64,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
@@ -167,6 +183,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final String COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS = "CustomerLifetimeMonths";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_LIFETIME_MONTHS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_LIFETIME_MONTHS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_LIFETIME_MONTHS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_LIFETIME_MONTHS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS} column. The value is
      * {@value}.
      */
@@ -178,6 +206,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
@@ -202,6 +242,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final int COLUMN_SCALE_TOTAL_REVENUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_REVENUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_REVENUE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_REVENUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
@@ -222,6 +274,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_PROFIT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_PROFIT = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_PROFIT} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_PROFIT = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_PROFIT} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_PROFIT = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_PROFIT} column. The value is {@value}.
@@ -246,6 +310,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final int COLUMN_SCALE_AVG_ORDER_VALUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
@@ -266,6 +342,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The scale of the {@value #COLUMN_NAME_AVG_MONTHLY_REVENUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_MONTHLY_REVENUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_MONTHLY_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_MONTHLY_REVENUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_MONTHLY_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_MONTHLY_REVENUE = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_MONTHLY_REVENUE} column. The value is
@@ -296,6 +384,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE = "DaysSinceLastPurchase";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_PURCHASE} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_SINCE_LAST_PURCHASE = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_PURCHASE} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_SINCE_LAST_PURCHASE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE} column. The value is
@@ -338,6 +438,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final int COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PROJECTED_ANNUAL_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PROJECTED_ANNUAL_REVENUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PROJECTED_ANNUAL_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PROJECTED_ANNUAL_REVENUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PROJECTED_ANNUAL_REVENUE} column. The value is
      * {@value}.
      */
@@ -349,6 +461,18 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_VALUE_RANK = "ValueRank";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_VALUE_RANK} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_VALUE_RANK = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_VALUE_RANK} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_VALUE_RANK = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VALUE_RANK} column. The value is {@value}.
@@ -781,6 +905,8 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -830,43 +956,48 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_LIFETIME_MONTHS)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_LIFETIME_MONTHS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS, nullable = true, insertable = false, updatable = false)
     private Integer customerLifetimeMonths;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
+    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
-            fraction = COLUMN_SCALE_TOTAL_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REVENUE, scale = COLUMN_SCALE_TOTAL_REVENUE)
     private BigDecimal totalRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_PROFIT - COLUMN_SCALE_TOTAL_PROFIT, fraction = COLUMN_SCALE_TOTAL_PROFIT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_PROFIT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_PROFIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_PROFIT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_PROFIT, scale = COLUMN_SCALE_TOTAL_PROFIT)
     private BigDecimal totalProfit;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
-            fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_MONTHLY_REVENUE - COLUMN_SCALE_AVG_MONTHLY_REVENUE,
-            fraction = COLUMN_SCALE_AVG_MONTHLY_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_MONTHLY_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_MONTHLY_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_MONTHLY_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_MONTHLY_REVENUE, scale = COLUMN_SCALE_AVG_MONTHLY_REVENUE)
     private BigDecimal avgMonthlyRevenue;
@@ -881,6 +1012,8 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_SINCE_LAST_PURCHASE)
+    @Min(ATTRIBUTE_MIN_DAYS_SINCE_LAST_PURCHASE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceLastPurchase;
@@ -895,14 +1028,16 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PROJECTED_ANNUAL_REVENUE - COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE,
-            fraction = COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PROJECTED_ANNUAL_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PROJECTED_ANNUAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PROJECTED_ANNUAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PROJECTED_ANNUAL_REVENUE, scale = COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE)
     private BigDecimal projectedAnnualRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_VALUE_RANK)
+    @Min(ATTRIBUTE_MIN_VALUE_RANK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_RANK, nullable = true, insertable = false, updatable = false)
     private Long valueRank;

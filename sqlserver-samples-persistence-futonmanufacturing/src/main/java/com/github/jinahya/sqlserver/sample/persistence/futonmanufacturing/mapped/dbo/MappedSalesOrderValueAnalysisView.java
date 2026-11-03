@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -129,6 +133,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
@@ -149,6 +165,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The scale of the {@value #COLUMN_NAME_AVG_SUBTOTAL} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_SUBTOTAL = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_SUBTOTAL} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_SUBTOTAL = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_SUBTOTAL} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_SUBTOTAL = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_SUBTOTAL} column. The value is {@value}.
@@ -173,6 +201,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final int COLUMN_SCALE_AVG_DISCOUNT = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_DISCOUNT} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_DISCOUNT = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_DISCOUNT} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_DISCOUNT = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_DISCOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_DISCOUNT = "avgDiscount";
@@ -193,6 +233,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The scale of the {@value #COLUMN_NAME_AVG_NET_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_NET_AMOUNT = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_NET_AMOUNT} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_NET_AMOUNT = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_NET_AMOUNT} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_NET_AMOUNT = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_NET_AMOUNT} column. The value is {@value}.
@@ -217,6 +269,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final int COLUMN_SCALE_AVG_TAX = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_TAX} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_TAX = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_TAX} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_TAX = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_TAX} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_TAX = "avgTax";
@@ -237,6 +301,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The scale of the {@value #COLUMN_NAME_AVG_SHIPPING} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_SHIPPING = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_SHIPPING} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_SHIPPING = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_SHIPPING} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_SHIPPING = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_SHIPPING} column. The value is {@value}.
@@ -261,6 +337,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final int COLUMN_SCALE_MIN_ORDER_VALUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MIN_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MIN_ORDER_VALUE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MIN_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MIN_ORDER_VALUE = "99999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_ORDER_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIN_ORDER_VALUE = "minOrderValue";
@@ -281,6 +369,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The scale of the {@value #COLUMN_NAME_MAX_ORDER_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_MAX_ORDER_VALUE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MAX_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MAX_ORDER_VALUE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MAX_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MAX_ORDER_VALUE = "99999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_ORDER_VALUE} column. The value is {@value}.
@@ -308,6 +408,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final String COLUMN_NAME_SMALL_ORDERS = "SmallOrders";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SMALL_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SMALL_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SMALL_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SMALL_ORDERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SMALL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SMALL_ORDERS = "smallOrders";
@@ -318,6 +430,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MEDIUM_ORDERS = "MediumOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MEDIUM_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_MEDIUM_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MEDIUM_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_MEDIUM_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MEDIUM_ORDERS} column. The value is {@value}.
@@ -332,6 +456,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final String COLUMN_NAME_LARGE_ORDERS = "LargeOrders";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LARGE_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LARGE_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LARGE_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LARGE_ORDERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LARGE_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LARGE_ORDERS = "largeOrders";
@@ -342,6 +478,18 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ENTERPRISE_ORDERS = "EnterpriseOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ENTERPRISE_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ENTERPRISE_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ENTERPRISE_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ENTERPRISE_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ENTERPRISE_ORDERS} column. The value is {@value}.
@@ -753,58 +901,64 @@ public abstract class MappedSalesOrderValueAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
+    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_SUBTOTAL - COLUMN_SCALE_AVG_SUBTOTAL, fraction = COLUMN_SCALE_AVG_SUBTOTAL)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_SUBTOTAL)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_SUBTOTAL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_SUBTOTAL, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_SUBTOTAL, scale = COLUMN_SCALE_AVG_SUBTOTAL)
     private BigDecimal avgSubtotal;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT - COLUMN_SCALE_AVG_DISCOUNT, fraction = COLUMN_SCALE_AVG_DISCOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_DISCOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_DISCOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DISCOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_DISCOUNT, scale = COLUMN_SCALE_AVG_DISCOUNT)
     private BigDecimal avgDiscount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_NET_AMOUNT - COLUMN_SCALE_AVG_NET_AMOUNT,
-            fraction = COLUMN_SCALE_AVG_NET_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_NET_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_NET_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_NET_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_NET_AMOUNT, scale = COLUMN_SCALE_AVG_NET_AMOUNT)
     private BigDecimal avgNetAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_TAX - COLUMN_SCALE_AVG_TAX, fraction = COLUMN_SCALE_AVG_TAX)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_TAX)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_TAX)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_TAX, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_TAX, scale = COLUMN_SCALE_AVG_TAX)
     private BigDecimal avgTax;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_SHIPPING - COLUMN_SCALE_AVG_SHIPPING, fraction = COLUMN_SCALE_AVG_SHIPPING)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_SHIPPING)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_SHIPPING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_SHIPPING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_SHIPPING, scale = COLUMN_SCALE_AVG_SHIPPING)
     private BigDecimal avgShipping;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_MIN_ORDER_VALUE - COLUMN_SCALE_MIN_ORDER_VALUE,
-            fraction = COLUMN_SCALE_MIN_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MIN_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MIN_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MIN_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MIN_ORDER_VALUE, scale = COLUMN_SCALE_MIN_ORDER_VALUE)
     private BigDecimal minOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_MAX_ORDER_VALUE - COLUMN_SCALE_MAX_ORDER_VALUE,
-            fraction = COLUMN_SCALE_MAX_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MAX_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MAX_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MAX_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MAX_ORDER_VALUE, scale = COLUMN_SCALE_MAX_ORDER_VALUE)
     private BigDecimal maxOrderValue;
@@ -817,24 +971,32 @@ public abstract class MappedSalesOrderValueAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_SMALL_ORDERS)
+    @Min(ATTRIBUTE_MIN_SMALL_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SMALL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer smallOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_MEDIUM_ORDERS)
+    @Min(ATTRIBUTE_MIN_MEDIUM_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MEDIUM_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer mediumOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LARGE_ORDERS)
+    @Min(ATTRIBUTE_MIN_LARGE_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LARGE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer largeOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ENTERPRISE_ORDERS)
+    @Min(ATTRIBUTE_MIN_ENTERPRISE_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ENTERPRISE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer enterpriseOrders;

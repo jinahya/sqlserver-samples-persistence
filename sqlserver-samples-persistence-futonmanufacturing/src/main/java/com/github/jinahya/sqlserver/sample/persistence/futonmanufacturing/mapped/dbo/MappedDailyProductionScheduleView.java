@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -185,6 +189,18 @@ public abstract class MappedDailyProductionScheduleView {
     public static final int COLUMN_SCALE_QUANTITY_TO_PRODUCE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_TO_PRODUCE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_TO_PRODUCE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_TO_PRODUCE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_TO_PRODUCE = "99999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_TO_PRODUCE} column. The value is
      * {@value}.
      */
@@ -196,6 +212,18 @@ public abstract class MappedDailyProductionScheduleView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIORITY = "Priority";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRIORITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRIORITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIORITY} column. The value is {@value}.
@@ -220,6 +248,18 @@ public abstract class MappedDailyProductionScheduleView {
     public static final int COLUMN_SCALE_ESTIMATED_DAYS = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ESTIMATED_DAYS} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ESTIMATED_DAYS = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ESTIMATED_DAYS} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ESTIMATED_DAYS = "99999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ESTIMATED_DAYS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ESTIMATED_DAYS = "estimatedDays";
@@ -240,6 +280,18 @@ public abstract class MappedDailyProductionScheduleView {
      * The scale of the {@value #COLUMN_NAME_PRODUCTION_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PRODUCTION_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PRODUCTION_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PRODUCTION_VALUE = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCTION_VALUE} column. The value is {@value}.
@@ -586,30 +638,32 @@ public abstract class MappedDailyProductionScheduleView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_TO_PRODUCE - COLUMN_SCALE_QUANTITY_TO_PRODUCE,
-            fraction = COLUMN_SCALE_QUANTITY_TO_PRODUCE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_TO_PRODUCE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_TO_PRODUCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_TO_PRODUCE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_TO_PRODUCE, scale = COLUMN_SCALE_QUANTITY_TO_PRODUCE)
     private BigDecimal quantityToProduce;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRIORITY)
+    @Min(ATTRIBUTE_MIN_PRIORITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = false, updatable = false)
     private Integer priority;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ESTIMATED_DAYS - COLUMN_SCALE_ESTIMATED_DAYS,
-            fraction = COLUMN_SCALE_ESTIMATED_DAYS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ESTIMATED_DAYS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ESTIMATED_DAYS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ESTIMATED_DAYS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ESTIMATED_DAYS, scale = COLUMN_SCALE_ESTIMATED_DAYS)
     private BigDecimal estimatedDays;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PRODUCTION_VALUE - COLUMN_SCALE_PRODUCTION_VALUE,
-            fraction = COLUMN_SCALE_PRODUCTION_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PRODUCTION_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PRODUCTION_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCTION_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRODUCTION_VALUE, scale = COLUMN_SCALE_PRODUCTION_VALUE)
     private BigDecimal productionValue;

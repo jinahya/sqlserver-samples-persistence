@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -122,6 +126,18 @@ public abstract class MappedCostRollUpView {
     public static final int COLUMN_SCALE_CURRENT_STANDARD_COST = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CURRENT_STANDARD_COST} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_CURRENT_STANDARD_COST = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CURRENT_STANDARD_COST} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_CURRENT_STANDARD_COST = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENT_STANDARD_COST} column. The value is
      * {@value}.
      */
@@ -143,6 +159,18 @@ public abstract class MappedCostRollUpView {
      * The scale of the {@value #COLUMN_NAME_CALCULATED_MATERIAL_COST} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_CALCULATED_MATERIAL_COST = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CALCULATED_MATERIAL_COST} attribute, the minimum of the
+     * {@code decimal(38, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_CALCULATED_MATERIAL_COST = "-9999999999999999999999999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CALCULATED_MATERIAL_COST} attribute, the maximum of the
+     * {@code decimal(38, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_CALCULATED_MATERIAL_COST = "9999999999999999999999999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CALCULATED_MATERIAL_COST} column. The value is
@@ -168,6 +196,18 @@ public abstract class MappedCostRollUpView {
     public static final int COLUMN_SCALE_LABOR_AND_OVERHEAD = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LABOR_AND_OVERHEAD} attribute, the minimum of the
+     * {@code decimal(38, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LABOR_AND_OVERHEAD = "-9999999999999999999999999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LABOR_AND_OVERHEAD} attribute, the maximum of the
+     * {@code decimal(38, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LABOR_AND_OVERHEAD = "9999999999999999999999999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LABOR_AND_OVERHEAD} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LABOR_AND_OVERHEAD = "laborAndOverhead";
@@ -178,6 +218,18 @@ public abstract class MappedCostRollUpView {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPONENT_COUNT = "ComponentCount";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COMPONENT_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COMPONENT_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_COUNT} column. The value is {@value}.
@@ -202,6 +254,18 @@ public abstract class MappedCostRollUpView {
     public static final int COLUMN_SCALE_LIST_PRICE = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LIST_PRICE = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LIST_PRICE = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LIST_PRICE = "listPrice";
@@ -224,6 +288,18 @@ public abstract class MappedCostRollUpView {
     public static final int COLUMN_SCALE_GROSS_PROFIT = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_GROSS_PROFIT} attribute, the minimum of the
+     * {@code decimal(19, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_GROSS_PROFIT = "-999999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_GROSS_PROFIT} attribute, the maximum of the
+     * {@code decimal(19, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_GROSS_PROFIT = "999999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_GROSS_PROFIT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROSS_PROFIT = "grossProfit";
@@ -244,6 +320,18 @@ public abstract class MappedCostRollUpView {
      * The scale of the {@value #COLUMN_NAME_GROSS_MARGIN_PERCENT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_GROSS_MARGIN_PERCENT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_GROSS_MARGIN_PERCENT = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_GROSS_MARGIN_PERCENT = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_GROSS_MARGIN_PERCENT} column. The value is
@@ -533,8 +621,8 @@ public abstract class MappedCostRollUpView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_CURRENT_STANDARD_COST - COLUMN_SCALE_CURRENT_STANDARD_COST,
-            fraction = COLUMN_SCALE_CURRENT_STANDARD_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_CURRENT_STANDARD_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_CURRENT_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CURRENT_STANDARD_COST, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_CURRENT_STANDARD_COST, scale = COLUMN_SCALE_CURRENT_STANDARD_COST)
@@ -542,8 +630,8 @@ public abstract class MappedCostRollUpView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_CALCULATED_MATERIAL_COST - COLUMN_SCALE_CALCULATED_MATERIAL_COST,
-            fraction = COLUMN_SCALE_CALCULATED_MATERIAL_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_CALCULATED_MATERIAL_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_CALCULATED_MATERIAL_COST)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CALCULATED_MATERIAL_COST, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_CALCULATED_MATERIAL_COST, scale = COLUMN_SCALE_CALCULATED_MATERIAL_COST)
@@ -551,14 +639,16 @@ public abstract class MappedCostRollUpView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_LABOR_AND_OVERHEAD - COLUMN_SCALE_LABOR_AND_OVERHEAD,
-            fraction = COLUMN_SCALE_LABOR_AND_OVERHEAD)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LABOR_AND_OVERHEAD)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LABOR_AND_OVERHEAD)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LABOR_AND_OVERHEAD, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_LABOR_AND_OVERHEAD, scale = COLUMN_SCALE_LABOR_AND_OVERHEAD)
     private BigDecimal laborAndOverhead;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_COMPONENT_COUNT)
+    @Min(ATTRIBUTE_MIN_COMPONENT_COUNT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMPONENT_COUNT, nullable = false, insertable = false, updatable = false)
@@ -566,7 +656,8 @@ public abstract class MappedCostRollUpView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LIST_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_LIST_PRICE, scale = COLUMN_SCALE_LIST_PRICE)
@@ -574,15 +665,16 @@ public abstract class MappedCostRollUpView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_GROSS_PROFIT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_GROSS_PROFIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_PROFIT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_PROFIT, scale = COLUMN_SCALE_GROSS_PROFIT)
     private BigDecimal grossProfit;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
-            fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_GROSS_MARGIN_PERCENT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_GROSS_MARGIN_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT, scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     private BigDecimal grossMarginPercent;

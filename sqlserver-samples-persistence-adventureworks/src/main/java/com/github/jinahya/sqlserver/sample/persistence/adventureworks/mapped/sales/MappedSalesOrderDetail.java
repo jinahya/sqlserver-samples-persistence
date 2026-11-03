@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
@@ -30,8 +31,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -152,6 +153,18 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_SALES_ORDER_ID = "SalesOrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column. The
      * value is {@value}.
      */
@@ -163,6 +176,18 @@ public abstract class MappedSalesOrderDetail {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_ORDER_DETAIL_ID = "SalesOrderDetailID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_ORDER_DETAIL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_ORDER_DETAIL_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_DETAIL_ID} column.
@@ -197,16 +222,17 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_ORDER_QTY = "OrderQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute, as the
      * {@code CK_SalesOrderDetail_OrderQty} check constraint ({@code [OrderQty]>(0)}) requires. The
      * value is {@value}.
      */
-    public static final int COLUMN_MIN_ORDER_QTY = +1;
+    public static final int ATTRIBUTE_MIN_ORDER_QTY = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_ORDER_QTY = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_ORDER_QTY = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is
@@ -222,6 +248,18 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
      * is {@value}.
      */
@@ -233,6 +271,18 @@ public abstract class MappedSalesOrderDetail {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SPECIAL_OFFER_ID = "SpecialOfferID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SPECIAL_OFFER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SPECIAL_OFFER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The
@@ -248,11 +298,17 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_UNIT_PRICE = "UnitPrice";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, as the
      * {@code CK_SalesOrderDetail_UnitPrice} check constraint ({@code [UnitPrice]>=(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_UNIT_PRICE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value
@@ -268,11 +324,17 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_UNIT_PRICE_DISCOUNT = "UnitPriceDiscount";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT} attribute, as the
      * {@code CK_SalesOrderDetail_UnitPriceDiscount} check constraint
      * ({@code [UnitPriceDiscount]>=(0.00)}) requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_UNIT_PRICE_DISCOUNT = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE_DISCOUNT = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE_DISCOUNT = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column.
@@ -299,6 +361,18 @@ public abstract class MappedSalesOrderDetail {
      * The scale of the {@value #COLUMN_NAME_LINE_TOTAL} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_LINE_TOTAL = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute, the minimum of the
+     * {@code numeric(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LINE_TOTAL = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute, the maximum of the
+     * {@code numeric(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LINE_TOTAL = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_TOTAL} column. The value
@@ -632,6 +706,8 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
+    @Max(ATTRIBUTE_MAX_SALES_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_SALES_ORDER_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true,
@@ -644,6 +720,8 @@ public abstract class MappedSalesOrderDetail {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_SALES_ORDER_DETAIL_ID)
+    @Min(ATTRIBUTE_MIN_SALES_ORDER_DETAIL_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = true,
@@ -663,8 +741,8 @@ public abstract class MappedSalesOrderDetail {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderDetail_OrderQty: ([OrderQty]>(0)); smallint's upper bound
-    @Max(COLUMN_MAX_ORDER_QTY)
-    @Min(COLUMN_MIN_ORDER_QTY)
+    @Max(ATTRIBUTE_MAX_ORDER_QTY)
+    @Min(ATTRIBUTE_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true)
@@ -674,6 +752,8 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
@@ -684,6 +764,8 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
+    @Max(ATTRIBUTE_MAX_SPECIAL_OFFER_ID)
+    @Min(ATTRIBUTE_MIN_SPECIAL_OFFER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = false,
@@ -694,29 +776,31 @@ public abstract class MappedSalesOrderDetail {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderDetail_UnitPrice: ([UnitPrice]>=(0.00))
-    @DecimalMin(COLUMN_MIN_UNIT_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
                           value = "Selling price of a single product.")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderDetail_UnitPriceDiscount: ([UnitPriceDiscount]>=(0.00))
-    @DecimalMin(COLUMN_MIN_UNIT_PRICE_DISCOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE_DISCOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE_DISCOUNT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, nullable = false, insertable = true,
-            updatable = true)
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, value = "Discount amount.")
     @MsDefault(name = "DF_SalesOrderDetail_UnitPriceDiscount", value = "((0.0))")
     private BigDecimal unitPriceDiscount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL,
-            fraction = COLUMN_SCALE_LINE_TOTAL)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LINE_TOTAL)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LINE_TOTAL)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false,
             precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL)

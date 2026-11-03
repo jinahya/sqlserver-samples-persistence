@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -74,6 +78,18 @@ public abstract class MappedScrapWasteAnalysisView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -84,6 +100,18 @@ public abstract class MappedScrapWasteAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MONTH = "Month";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
@@ -176,6 +204,18 @@ public abstract class MappedScrapWasteAnalysisView {
     public static final int COLUMN_SCALE_TOTAL_COMPLETED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_COMPLETED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_COMPLETED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_COMPLETED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_COMPLETED = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_COMPLETED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_COMPLETED = "totalCompleted";
@@ -196,6 +236,18 @@ public abstract class MappedScrapWasteAnalysisView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_SCRAPPED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_SCRAPPED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_SCRAPPED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_SCRAPPED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_SCRAPPED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_SCRAPPED = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_SCRAPPED} column. The value is {@value}.
@@ -220,6 +272,18 @@ public abstract class MappedScrapWasteAnalysisView {
     public static final int COLUMN_SCALE_TOTAL_PRODUCED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_PRODUCED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_PRODUCED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_PRODUCED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_PRODUCED = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_PRODUCED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_PRODUCED = "totalProduced";
@@ -240,6 +304,18 @@ public abstract class MappedScrapWasteAnalysisView {
      * The scale of the {@value #COLUMN_NAME_SCRAP_RATE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SCRAP_RATE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SCRAP_RATE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SCRAP_RATE = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_RATE} column. The value is {@value}.
@@ -264,6 +340,18 @@ public abstract class MappedScrapWasteAnalysisView {
     public static final int COLUMN_SCALE_SCRAP_VALUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SCRAP_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SCRAP_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SCRAP_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SCRAP_VALUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCRAP_VALUE = "scrapValue";
@@ -274,6 +362,18 @@ public abstract class MappedScrapWasteAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_NUMBER_OF_ORDERS = "NumberOfOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_NUMBER_OF_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_NUMBER_OF_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_OF_ORDERS} column. The value is {@value}.
@@ -296,6 +396,18 @@ public abstract class MappedScrapWasteAnalysisView {
      * The scale of the {@value #COLUMN_NAME_AVG_UNIT_COST} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_UNIT_COST = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_UNIT_COST} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_UNIT_COST = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_UNIT_COST} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_UNIT_COST = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_UNIT_COST} column. The value is {@value}.
@@ -659,12 +771,16 @@ public abstract class MappedScrapWasteAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_YEAR)
+    @Min(ATTRIBUTE_MIN_YEAR)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_MONTH)
+    @Min(ATTRIBUTE_MIN_MONTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
@@ -702,52 +818,56 @@ public abstract class MappedScrapWasteAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_COMPLETED - COLUMN_SCALE_TOTAL_COMPLETED,
-            fraction = COLUMN_SCALE_TOTAL_COMPLETED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_COMPLETED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_COMPLETED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_COMPLETED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_COMPLETED, scale = COLUMN_SCALE_TOTAL_COMPLETED)
     private BigDecimal totalCompleted;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_SCRAPPED - COLUMN_SCALE_TOTAL_SCRAPPED,
-            fraction = COLUMN_SCALE_TOTAL_SCRAPPED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_SCRAPPED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_SCRAPPED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_SCRAPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_SCRAPPED, scale = COLUMN_SCALE_TOTAL_SCRAPPED)
     private BigDecimal totalScrapped;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_PRODUCED - COLUMN_SCALE_TOTAL_PRODUCED,
-            fraction = COLUMN_SCALE_TOTAL_PRODUCED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_PRODUCED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_PRODUCED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_PRODUCED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_PRODUCED, scale = COLUMN_SCALE_TOTAL_PRODUCED)
     private BigDecimal totalProduced;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SCRAP_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SCRAP_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SCRAP_RATE, scale = COLUMN_SCALE_SCRAP_RATE)
     private BigDecimal scrapRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SCRAP_VALUE - COLUMN_SCALE_SCRAP_VALUE, fraction = COLUMN_SCALE_SCRAP_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SCRAP_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SCRAP_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SCRAP_VALUE, scale = COLUMN_SCALE_SCRAP_VALUE)
     private BigDecimal scrapValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_NUMBER_OF_ORDERS)
+    @Min(ATTRIBUTE_MIN_NUMBER_OF_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer numberOfOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_UNIT_COST - COLUMN_SCALE_AVG_UNIT_COST,
-            fraction = COLUMN_SCALE_AVG_UNIT_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_UNIT_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_UNIT_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_UNIT_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_UNIT_COST, scale = COLUMN_SCALE_AVG_UNIT_COST)
     private BigDecimal avgUnitCost;

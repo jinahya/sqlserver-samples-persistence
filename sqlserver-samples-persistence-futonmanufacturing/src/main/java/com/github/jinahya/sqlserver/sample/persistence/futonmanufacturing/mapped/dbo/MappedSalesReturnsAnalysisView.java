@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -61,6 +65,18 @@ public abstract class MappedSalesReturnsAnalysisView {
     public static final String COLUMN_NAME_RETURN_ID = "ReturnID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RETURN_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_RETURN_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RETURN_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_RETURN_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RETURN_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RETURN_ID = "returnId";
@@ -73,6 +89,18 @@ public abstract class MappedSalesReturnsAnalysisView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -83,6 +111,18 @@ public abstract class MappedSalesReturnsAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MONTH = "Month";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
@@ -192,6 +232,18 @@ public abstract class MappedSalesReturnsAnalysisView {
     public static final int COLUMN_SCALE_TOTAL_REFUNDS = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_REFUNDS} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_REFUNDS = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_REFUNDS} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_REFUNDS = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_REFUNDS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REFUNDS = "totalRefunds";
@@ -214,6 +266,18 @@ public abstract class MappedSalesReturnsAnalysisView {
     public static final int COLUMN_SCALE_AVG_REFUND_AMOUNT = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_REFUND_AMOUNT} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_REFUND_AMOUNT = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_REFUND_AMOUNT} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_REFUND_AMOUNT = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_REFUND_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_REFUND_AMOUNT = "avgRefundAmount";
@@ -234,6 +298,18 @@ public abstract class MappedSalesReturnsAnalysisView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_RESTOCKING_FEES} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_RESTOCKING_FEES = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_RESTOCKING_FEES} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_RESTOCKING_FEES = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_RESTOCKING_FEES} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_RESTOCKING_FEES = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_RESTOCKING_FEES} column. The value is
@@ -293,6 +369,18 @@ public abstract class MappedSalesReturnsAnalysisView {
     public static final int COLUMN_SCALE_UNITS_RETURNED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNITS_RETURNED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNITS_RETURNED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNITS_RETURNED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNITS_RETURNED = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNITS_RETURNED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNITS_RETURNED = "unitsReturned";
@@ -330,6 +418,18 @@ public abstract class MappedSalesReturnsAnalysisView {
      * The scale of the {@value #COLUMN_NAME_RETURN_RATE_PERCENT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_RETURN_RATE_PERCENT = 12;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RETURN_RATE_PERCENT} attribute, the minimum of the
+     * {@code numeric(26, 12)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_RETURN_RATE_PERCENT = "-99999999999999.999999999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RETURN_RATE_PERCENT} attribute, the maximum of the
+     * {@code numeric(26, 12)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_RETURN_RATE_PERCENT = "99999999999999.999999999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RETURN_RATE_PERCENT} column. The value is
@@ -721,6 +821,8 @@ public abstract class MappedSalesReturnsAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_RETURN_ID)
+    @Min(ATTRIBUTE_MIN_RETURN_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_RETURN_ID, nullable = false, insertable = false, updatable = false)
@@ -728,12 +830,16 @@ public abstract class MappedSalesReturnsAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_YEAR)
+    @Min(ATTRIBUTE_MIN_YEAR)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_MONTH)
+    @Min(ATTRIBUTE_MIN_MONTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
@@ -779,24 +885,24 @@ public abstract class MappedSalesReturnsAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_REFUNDS - COLUMN_SCALE_TOTAL_REFUNDS,
-            fraction = COLUMN_SCALE_TOTAL_REFUNDS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_REFUNDS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_REFUNDS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REFUNDS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REFUNDS, scale = COLUMN_SCALE_TOTAL_REFUNDS)
     private BigDecimal totalRefunds;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_REFUND_AMOUNT - COLUMN_SCALE_AVG_REFUND_AMOUNT,
-            fraction = COLUMN_SCALE_AVG_REFUND_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_REFUND_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_REFUND_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_REFUND_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_REFUND_AMOUNT, scale = COLUMN_SCALE_AVG_REFUND_AMOUNT)
     private BigDecimal avgRefundAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES - COLUMN_SCALE_TOTAL_RESTOCKING_FEES,
-            fraction = COLUMN_SCALE_TOTAL_RESTOCKING_FEES)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_RESTOCKING_FEES)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_RESTOCKING_FEES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_RESTOCKING_FEES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES, scale = COLUMN_SCALE_TOTAL_RESTOCKING_FEES)
     private BigDecimal totalRestockingFees;
@@ -819,8 +925,8 @@ public abstract class MappedSalesReturnsAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_UNITS_RETURNED - COLUMN_SCALE_UNITS_RETURNED,
-            fraction = COLUMN_SCALE_UNITS_RETURNED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNITS_RETURNED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNITS_RETURNED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNITS_RETURNED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_UNITS_RETURNED, scale = COLUMN_SCALE_UNITS_RETURNED)
     private BigDecimal unitsReturned;
@@ -834,8 +940,8 @@ public abstract class MappedSalesReturnsAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_RETURN_RATE_PERCENT - COLUMN_SCALE_RETURN_RATE_PERCENT,
-            fraction = COLUMN_SCALE_RETURN_RATE_PERCENT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_RETURN_RATE_PERCENT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_RETURN_RATE_PERCENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RETURN_RATE_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_RETURN_RATE_PERCENT, scale = COLUMN_SCALE_RETURN_RATE_PERCENT)
     private BigDecimal returnRatePercent;

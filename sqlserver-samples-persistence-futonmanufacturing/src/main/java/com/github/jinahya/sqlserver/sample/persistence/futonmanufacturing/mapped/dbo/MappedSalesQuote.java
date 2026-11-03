@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -85,6 +89,18 @@ public abstract class MappedSalesQuote {
     public static final String COLUMN_NAME_QUOTE_ID = "QuoteID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUOTE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUOTE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUOTE_ID = "quoteId";
@@ -114,6 +130,18 @@ public abstract class MappedSalesQuote {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -126,6 +154,18 @@ public abstract class MappedSalesQuote {
     public static final String COLUMN_NAME_SALES_CHANNEL_ID = "SalesChannelID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_CHANNEL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_CHANNEL_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_CHANNEL_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL_ID = "salesChannelId";
@@ -136,6 +176,18 @@ public abstract class MappedSalesQuote {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_REP_ID = "SalesRepID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_REP_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_REP_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REP_ID} column. The value is {@value}.
@@ -201,6 +253,18 @@ public abstract class MappedSalesQuote {
     public static final int COLUMN_SCALE_SUBTOTAL = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUBTOTAL} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SUBTOTAL = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUBTOTAL} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SUBTOTAL = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUBTOTAL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUBTOTAL = "subtotal";
@@ -221,6 +285,18 @@ public abstract class MappedSalesQuote {
      * The scale of the {@value #COLUMN_NAME_DISCOUNT_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_DISCOUNT_AMOUNT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_AMOUNT} column. The value is {@value}.
@@ -245,6 +321,18 @@ public abstract class MappedSalesQuote {
     public static final int COLUMN_SCALE_TAX_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_AMOUNT = "taxAmount";
@@ -267,6 +355,18 @@ public abstract class MappedSalesQuote {
     public static final int COLUMN_SCALE_TOTAL_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_AMOUNT = "totalAmount";
@@ -277,6 +377,18 @@ public abstract class MappedSalesQuote {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CONVERTED_TO_ORDER_ID = "ConvertedToOrderID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CONVERTED_TO_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CONVERTED_TO_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CONVERTED_TO_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CONVERTED_TO_ORDER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CONVERTED_TO_ORDER_ID} column. The value is
@@ -716,6 +828,8 @@ public abstract class MappedSalesQuote {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_QUOTE_ID)
+    @Min(ATTRIBUTE_MIN_QUOTE_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_QUOTE_ID, nullable = false, insertable = true, updatable = false)
@@ -730,6 +844,8 @@ public abstract class MappedSalesQuote {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -737,12 +853,16 @@ public abstract class MappedSalesQuote {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_CHANNEL_ID)
+    @Min(ATTRIBUTE_MIN_SALES_CHANNEL_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_CHANNEL_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesChannelId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_REP_ID)
+    @Min(ATTRIBUTE_MIN_SALES_REP_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REP_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesRepId;
@@ -768,29 +888,32 @@ public abstract class MappedSalesQuote {
     private String status;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_SUBTOTAL - COLUMN_SCALE_SUBTOTAL, fraction = COLUMN_SCALE_SUBTOTAL)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SUBTOTAL)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SUBTOTAL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUBTOTAL, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SUBTOTAL, scale = COLUMN_SCALE_SUBTOTAL)
     @MsDefault("((0))")
     private BigDecimal subtotal;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
-            fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal discountAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_TOTAL_AMOUNT, scale = COLUMN_SCALE_TOTAL_AMOUNT)
     @MsDefault("((0))")
@@ -798,11 +921,14 @@ public abstract class MappedSalesQuote {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CONVERTED_TO_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_CONVERTED_TO_ORDER_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONVERTED_TO_ORDER_ID, nullable = true, insertable = false, updatable = false)
     private Integer convertedToOrderId;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;

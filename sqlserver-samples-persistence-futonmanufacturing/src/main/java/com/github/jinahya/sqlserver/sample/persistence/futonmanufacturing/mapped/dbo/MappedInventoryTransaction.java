@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -76,6 +80,18 @@ public abstract class MappedInventoryTransaction {
     public static final String COLUMN_NAME_TRANSACTION_ID = "TransactionID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TRANSACTION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TRANSACTION_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_ID = "transactionId";
@@ -86,6 +102,18 @@ public abstract class MappedInventoryTransaction {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
@@ -100,6 +128,18 @@ public abstract class MappedInventoryTransaction {
     public static final String COLUMN_NAME_WAREHOUSE_ID = "WarehouseID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_WAREHOUSE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_WAREHOUSE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WAREHOUSE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
@@ -110,6 +150,18 @@ public abstract class MappedInventoryTransaction {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TRANSACTION_TYPE_ID = "TransactionTypeID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TRANSACTION_TYPE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TRANSACTION_TYPE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_TYPE_ID} column. The value is
@@ -135,6 +187,18 @@ public abstract class MappedInventoryTransaction {
     public static final int COLUMN_SCALE_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
@@ -155,6 +219,18 @@ public abstract class MappedInventoryTransaction {
      * The scale of the {@value #COLUMN_NAME_UNIT_COST} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_UNIT_COST = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_COST} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_COST = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_COST} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_COST = "99999999999999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_COST} column. The value is {@value}.
@@ -520,6 +596,8 @@ public abstract class MappedInventoryTransaction {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_TRANSACTION_ID)
+    @Min(ATTRIBUTE_MIN_TRANSACTION_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true, updatable = false)
@@ -527,6 +605,8 @@ public abstract class MappedInventoryTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -534,6 +614,8 @@ public abstract class MappedInventoryTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_WAREHOUSE_ID)
+    @Min(ATTRIBUTE_MIN_WAREHOUSE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
@@ -541,20 +623,24 @@ public abstract class MappedInventoryTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_TRANSACTION_TYPE_ID)
+    @Min(ATTRIBUTE_MIN_TRANSACTION_TYPE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false)
     private Integer transactionTypeId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY, scale = COLUMN_SCALE_QUANTITY)
     private BigDecimal quantity;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_UNIT_COST - COLUMN_SCALE_UNIT_COST, fraction = COLUMN_SCALE_UNIT_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_COST, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_COST, scale = COLUMN_SCALE_UNIT_COST)
     private BigDecimal unitCost;
@@ -572,6 +658,7 @@ public abstract class MappedInventoryTransaction {
     private String referenceType;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;

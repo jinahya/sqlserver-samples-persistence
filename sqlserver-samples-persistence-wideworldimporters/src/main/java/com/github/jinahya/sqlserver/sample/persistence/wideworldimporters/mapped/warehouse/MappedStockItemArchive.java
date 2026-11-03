@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -61,6 +65,18 @@ public abstract class MappedStockItemArchive {
     public static final String COLUMN_NAME_STOCK_ITEM_ID = "StockItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STOCK_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STOCK_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
@@ -90,6 +106,18 @@ public abstract class MappedStockItemArchive {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -100,6 +128,18 @@ public abstract class MappedStockItemArchive {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COLOR_ID = "ColorID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COLOR_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COLOR_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COLOR_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COLOR_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COLOR_ID} column. The value is {@value}.
@@ -114,6 +154,18 @@ public abstract class MappedStockItemArchive {
     public static final String COLUMN_NAME_UNIT_PACKAGE_ID = "UnitPackageID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_UNIT_PACKAGE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_UNIT_PACKAGE_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PACKAGE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PACKAGE_ID = "unitPackageId";
@@ -124,6 +176,18 @@ public abstract class MappedStockItemArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_OUTER_PACKAGE_ID = "OuterPackageID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_OUTER_PACKAGE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_OUTER_PACKAGE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OUTER_PACKAGE_ID} column. The value is {@value}.
@@ -172,6 +236,18 @@ public abstract class MappedStockItemArchive {
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
@@ -182,6 +258,18 @@ public abstract class MappedStockItemArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUANTITY_PER_OUTER = "QuantityPerOuter";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_PER_OUTER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUANTITY_PER_OUTER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_PER_OUTER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUANTITY_PER_OUTER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_PER_OUTER} column. The value is {@value}.
@@ -235,6 +323,18 @@ public abstract class MappedStockItemArchive {
     public static final int COLUMN_SCALE_TAX_RATE = 3;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_RATE} attribute, the minimum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_RATE = "-999999999999999.999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_RATE} attribute, the maximum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_RATE = "999999999999999.999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_RATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_RATE = "taxRate";
@@ -255,6 +355,18 @@ public abstract class MappedStockItemArchive {
      * The scale of the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_UNIT_PRICE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
@@ -279,6 +391,18 @@ public abstract class MappedStockItemArchive {
     public static final int COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RECOMMENDED_RETAIL_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_RECOMMENDED_RETAIL_PRICE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RECOMMENDED_RETAIL_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_RECOMMENDED_RETAIL_PRICE = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RECOMMENDED_RETAIL_PRICE} column. The value is
      * {@value}.
      */
@@ -300,6 +424,18 @@ public abstract class MappedStockItemArchive {
      * The scale of the {@value #COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT = 3;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TYPICAL_WEIGHT_PER_UNIT} attribute, the minimum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TYPICAL_WEIGHT_PER_UNIT = "-999999999999999.999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TYPICAL_WEIGHT_PER_UNIT} attribute, the maximum of the
+     * {@code decimal(18, 3)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TYPICAL_WEIGHT_PER_UNIT = "999999999999999.999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT} column. The value is
@@ -385,6 +521,18 @@ public abstract class MappedStockItemArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -959,6 +1107,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_STOCK_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_STOCK_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -974,6 +1124,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
+    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -981,12 +1133,16 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_COLOR_ID)
+    @Min(ATTRIBUTE_MIN_COLOR_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COLOR_ID, nullable = true, insertable = false, updatable = false)
     private Integer colorId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_UNIT_PACKAGE_ID)
+    @Min(ATTRIBUTE_MIN_UNIT_PACKAGE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PACKAGE_ID, nullable = false, insertable = false, updatable = false)
@@ -994,6 +1150,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_OUTER_PACKAGE_ID)
+    @Min(ATTRIBUTE_MIN_OUTER_PACKAGE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OUTER_PACKAGE_ID, nullable = false, insertable = false, updatable = false)
@@ -1015,6 +1173,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
+    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = false, insertable = false, updatable = false)
@@ -1022,6 +1182,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_QUANTITY_PER_OUTER)
+    @Min(ATTRIBUTE_MIN_QUANTITY_PER_OUTER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_PER_OUTER, nullable = false, insertable = false, updatable = false)
@@ -1043,7 +1205,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_RATE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
@@ -1051,7 +1214,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
@@ -1059,52 +1223,58 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE - COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE,
-            fraction = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_RECOMMENDED_RETAIL_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_RECOMMENDED_RETAIL_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RECOMMENDED_RETAIL_PRICE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE, scale = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
     private BigDecimal recommendedRetailPrice;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT - COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT,
-            fraction = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TYPICAL_WEIGHT_PER_UNIT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TYPICAL_WEIGHT_PER_UNIT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT, scale = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
     private BigDecimal typicalWeightPerUnit;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 126 bytes (63 characters)
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MARKETING_COMMENTS, nullable = true, insertable = false, updatable = false)
     private String marketingComments;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = false, updatable = false)
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO, nullable = true, insertable = false, updatable = false)
     private byte[] photo;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 200 bytes (100 characters)
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS, nullable = true, insertable = false, updatable = false)
     private String customFields;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 70 bytes (35 characters)
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAGS, nullable = true, insertable = false, updatable = false)
     private String tags;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 208 bytes (104 characters)
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1113,6 +1283,8 @@ public abstract class MappedStockItemArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

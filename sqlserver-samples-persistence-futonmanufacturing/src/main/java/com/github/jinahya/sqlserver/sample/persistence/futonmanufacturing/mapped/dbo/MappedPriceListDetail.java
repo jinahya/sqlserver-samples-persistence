@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -72,6 +76,18 @@ public abstract class MappedPriceListDetail {
     public static final String COLUMN_NAME_PRICE_LIST_DETAIL_ID = "PriceListDetailID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRICE_LIST_DETAIL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRICE_LIST_DETAIL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRICE_LIST_DETAIL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRICE_LIST_DETAIL_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRICE_LIST_DETAIL_ID} column. The value is
      * {@value}.
      */
@@ -85,6 +101,18 @@ public abstract class MappedPriceListDetail {
     public static final String COLUMN_NAME_PRICE_LIST_ID = "PriceListID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRICE_LIST_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRICE_LIST_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRICE_LIST_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRICE_LIST_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRICE_LIST_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRICE_LIST_ID = "priceListId";
@@ -95,6 +123,18 @@ public abstract class MappedPriceListDetail {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
@@ -119,6 +159,18 @@ public abstract class MappedPriceListDetail {
     public static final int COLUMN_SCALE_UNIT_PRICE = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
@@ -139,6 +191,18 @@ public abstract class MappedPriceListDetail {
      * The scale of the {@value #COLUMN_NAME_MINIMUM_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_MINIMUM_QUANTITY = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MINIMUM_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MINIMUM_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MINIMUM_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MINIMUM_QUANTITY = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MINIMUM_QUANTITY} column. The value is {@value}.
@@ -302,6 +366,8 @@ public abstract class MappedPriceListDetail {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_PRICE_LIST_DETAIL_ID)
+    @Min(ATTRIBUTE_MIN_PRICE_LIST_DETAIL_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRICE_LIST_DETAIL_ID, nullable = false, insertable = true, updatable = false)
@@ -309,6 +375,8 @@ public abstract class MappedPriceListDetail {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRICE_LIST_ID)
+    @Min(ATTRIBUTE_MIN_PRICE_LIST_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRICE_LIST_ID, nullable = false, insertable = false, updatable = false)
@@ -316,21 +384,24 @@ public abstract class MappedPriceListDetail {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_MINIMUM_QUANTITY - COLUMN_SCALE_MINIMUM_QUANTITY,
-            fraction = COLUMN_SCALE_MINIMUM_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MINIMUM_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MINIMUM_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MINIMUM_QUANTITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_MINIMUM_QUANTITY, scale = COLUMN_SCALE_MINIMUM_QUANTITY)
     @MsDefault("((1))")

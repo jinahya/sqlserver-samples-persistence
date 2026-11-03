@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -77,6 +81,18 @@ public abstract class MappedProductionCompletion {
     public static final String COLUMN_NAME_COMPLETION_ID = "CompletionID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPLETION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COMPLETION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPLETION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COMPLETION_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPLETION_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_ID = "completionId";
@@ -87,6 +103,18 @@ public abstract class MappedProductionCompletion {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCTION_ORDER_ID = "ProductionOrderID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCTION_ORDER_ID} column. The value is
@@ -112,6 +140,18 @@ public abstract class MappedProductionCompletion {
     public static final int COLUMN_SCALE_QUANTITY_COMPLETED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_COMPLETED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_COMPLETED = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_COMPLETED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_COMPLETED = "quantityCompleted";
@@ -132,6 +172,18 @@ public abstract class MappedProductionCompletion {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_SCRAPPED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_SCRAPPED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_SCRAPPED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_SCRAPPED = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_SCRAPPED} column. The value is {@value}.
@@ -156,6 +208,18 @@ public abstract class MappedProductionCompletion {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WORK_CENTER_ID = "WorkCenterID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_WORK_CENTER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_WORK_CENTER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_CENTER_ID} column. The value is {@value}.
@@ -412,6 +476,8 @@ public abstract class MappedProductionCompletion {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_COMPLETION_ID)
+    @Min(ATTRIBUTE_MIN_COMPLETION_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_COMPLETION_ID, nullable = false, insertable = true, updatable = false)
@@ -419,22 +485,24 @@ public abstract class MappedProductionCompletion {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRODUCTION_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCTION_ORDER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = false, updatable = false)
     private Integer productionOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
-            fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_COMPLETED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_COMPLETED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_COMPLETED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_COMPLETED, scale = COLUMN_SCALE_QUANTITY_COMPLETED)
     private BigDecimal quantityCompleted;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
-            fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_SCRAPPED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_SCRAPPED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_SCRAPPED, scale = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @MsDefault("((0))")
@@ -448,11 +516,14 @@ public abstract class MappedProductionCompletion {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_WORK_CENTER_ID)
+    @Min(ATTRIBUTE_MIN_WORK_CENTER_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = true, insertable = false, updatable = false)
     private Integer workCenterId;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;

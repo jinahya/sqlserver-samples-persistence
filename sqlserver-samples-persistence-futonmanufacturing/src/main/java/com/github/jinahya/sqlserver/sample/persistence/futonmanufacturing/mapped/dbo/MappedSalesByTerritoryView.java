@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -112,6 +116,18 @@ public abstract class MappedSalesByTerritoryView {
     public static final String COLUMN_NAME_SALES_REPS = "SalesReps";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_REPS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_REPS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_REPS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_REPS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REPS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_REPS = "salesReps";
@@ -124,6 +140,18 @@ public abstract class MappedSalesByTerritoryView {
     public static final String COLUMN_NAME_TOTAL_CUSTOMERS = "TotalCustomers";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_CUSTOMERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TOTAL_CUSTOMERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_CUSTOMERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TOTAL_CUSTOMERS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_CUSTOMERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_CUSTOMERS = "totalCustomers";
@@ -134,6 +162,18 @@ public abstract class MappedSalesByTerritoryView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
@@ -158,6 +198,18 @@ public abstract class MappedSalesByTerritoryView {
     public static final int COLUMN_SCALE_GROSS_SALES = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_GROSS_SALES = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_GROSS_SALES = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_GROSS_SALES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
@@ -178,6 +230,18 @@ public abstract class MappedSalesByTerritoryView {
      * The scale of the {@value #COLUMN_NAME_DISCOUNTS} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_DISCOUNTS = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNTS} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNTS = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNTS} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNTS = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNTS} column. The value is {@value}.
@@ -202,6 +266,18 @@ public abstract class MappedSalesByTerritoryView {
     public static final int COLUMN_SCALE_NET_SALES = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_NET_SALES} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_NET_SALES = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_NET_SALES} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_NET_SALES = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NET_SALES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
@@ -222,6 +298,18 @@ public abstract class MappedSalesByTerritoryView {
      * The scale of the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_ORDER_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
@@ -246,6 +334,18 @@ public abstract class MappedSalesByTerritoryView {
     public static final int COLUMN_SCALE_SALES_PER_REP = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_PER_REP} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SALES_PER_REP = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_PER_REP} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_PER_REP = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_PER_REP} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_PER_REP = "salesPerRep";
@@ -266,6 +366,18 @@ public abstract class MappedSalesByTerritoryView {
      * The scale of the {@value #COLUMN_NAME_SALES_PER_CUSTOMER} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SALES_PER_CUSTOMER = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_PER_CUSTOMER} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SALES_PER_CUSTOMER = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_PER_CUSTOMER} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_PER_CUSTOMER = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_PER_CUSTOMER} column. The value is {@value}.
@@ -633,63 +745,72 @@ public abstract class MappedSalesByTerritoryView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_REPS)
+    @Min(ATTRIBUTE_MIN_SALES_REPS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REPS, nullable = true, insertable = false, updatable = false)
     private Integer salesReps;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_TOTAL_CUSTOMERS)
+    @Min(ATTRIBUTE_MIN_TOTAL_CUSTOMERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer totalCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
+    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_GROSS_SALES)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_GROSS_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_GROSS_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_SALES, scale = COLUMN_SCALE_GROSS_SALES)
     private BigDecimal grossSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_DISCOUNTS - COLUMN_SCALE_DISCOUNTS, fraction = COLUMN_SCALE_DISCOUNTS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNTS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCOUNTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DISCOUNTS, scale = COLUMN_SCALE_DISCOUNTS)
     private BigDecimal discounts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_NET_SALES)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_NET_SALES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NET_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_NET_SALES, scale = COLUMN_SCALE_NET_SALES)
     private BigDecimal netSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
-            fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SALES_PER_REP - COLUMN_SCALE_SALES_PER_REP,
-            fraction = COLUMN_SCALE_SALES_PER_REP)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_PER_REP)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_PER_REP)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_PER_REP, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SALES_PER_REP, scale = COLUMN_SCALE_SALES_PER_REP)
     private BigDecimal salesPerRep;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SALES_PER_CUSTOMER - COLUMN_SCALE_SALES_PER_CUSTOMER,
-            fraction = COLUMN_SCALE_SALES_PER_CUSTOMER)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_PER_CUSTOMER)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_PER_CUSTOMER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_PER_CUSTOMER, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SALES_PER_CUSTOMER, scale = COLUMN_SCALE_SALES_PER_CUSTOMER)
     private BigDecimal salesPerCustomer;

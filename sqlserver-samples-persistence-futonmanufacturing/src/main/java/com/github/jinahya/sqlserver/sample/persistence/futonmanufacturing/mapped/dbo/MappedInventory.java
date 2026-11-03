@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
@@ -29,7 +30,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -89,6 +93,18 @@ public abstract class MappedInventory {
     public static final String COLUMN_NAME_INVENTORY_ID = "InventoryID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_INVENTORY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_INVENTORY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_INVENTORY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_INVENTORY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INVENTORY_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_INVENTORY_ID = "inventoryId";
@@ -101,6 +117,18 @@ public abstract class MappedInventory {
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
@@ -111,6 +139,18 @@ public abstract class MappedInventory {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WAREHOUSE_ID = "WarehouseID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_WAREHOUSE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_WAREHOUSE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WAREHOUSE_ID} column. The value is {@value}.
@@ -135,6 +175,18 @@ public abstract class MappedInventory {
     public static final int COLUMN_SCALE_QUANTITY_ON_HAND = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_ON_HAND = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_ON_HAND = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ON_HAND} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
@@ -155,6 +207,18 @@ public abstract class MappedInventory {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_ALLOCATED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_ALLOCATED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ALLOCATED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_ALLOCATED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ALLOCATED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_ALLOCATED = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ALLOCATED} column. The value is {@value}.
@@ -178,6 +242,18 @@ public abstract class MappedInventory {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_AVAILABLE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE = "99999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_AVAILABLE} column. The value is {@value}.
@@ -428,6 +504,8 @@ public abstract class MappedInventory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_INVENTORY_ID)
+    @Min(ATTRIBUTE_MIN_INVENTORY_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_INVENTORY_ID, nullable = false, insertable = true, updatable = false)
@@ -435,6 +513,8 @@ public abstract class MappedInventory {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -442,14 +522,16 @@ public abstract class MappedInventory {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_WAREHOUSE_ID)
+    @Min(ATTRIBUTE_MIN_WAREHOUSE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
     private Integer warehouseId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
-            fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_ON_HAND)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_ON_HAND, scale = COLUMN_SCALE_QUANTITY_ON_HAND)
@@ -457,8 +539,8 @@ public abstract class MappedInventory {
     private BigDecimal quantityOnHand;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_ALLOCATED - COLUMN_SCALE_QUANTITY_ALLOCATED,
-            fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_ALLOCATED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_ALLOCATED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_ALLOCATED, scale = COLUMN_SCALE_QUANTITY_ALLOCATED)
@@ -467,8 +549,8 @@ public abstract class MappedInventory {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
-            fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_AVAILABLE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_AVAILABLE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @MsComputedColumn(value = "([QuantityOnHand]-[QuantityAllocated])", persisted = true)

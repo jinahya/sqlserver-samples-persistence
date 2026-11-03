@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -29,6 +30,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -113,6 +115,18 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_SPECIAL_OFFER_ID = "SpecialOfferID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SPECIAL_OFFER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SPECIAL_OFFER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The
      * value is {@value}.
      */
@@ -145,11 +159,17 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_DISCOUNT_PCT = "DiscountPct";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_DISCOUNT_PCT} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute, as the
      * {@code CK_SpecialOffer_DiscountPct} check constraint ({@code [DiscountPct]>=(0.00)})
      * requires. The value is {@value}.
      */
-    public static final String COLUMN_MIN_DISCOUNT_PCT = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PCT = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute, the maximum of the
+     * {@code smallmoney} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PCT = SqlServerConstants.SMALLMONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PCT} column. The value
@@ -227,16 +247,17 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_MIN_QTY = "MinQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_MIN_QTY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MIN_QTY} attribute, as the
      * {@code CK_SpecialOffer_MinQty} check constraint ({@code [MinQty]>=(0)}) requires. The value
      * is {@value}.
      */
-    public static final int COLUMN_MIN_MIN_QTY = 0;
+    public static final int ATTRIBUTE_MIN_MIN_QTY = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_MIN_QTY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MIN_QTY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_MIN_QTY = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_MIN_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_QTY} column. The value is
@@ -252,16 +273,17 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_MAX_QTY = "MaxQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_MAX_QTY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MAX_QTY} attribute, as the
      * {@code CK_SpecialOffer_MaxQty} check constraint ({@code [MaxQty]>=(0)}) requires. The value
      * is {@value}.
      */
-    public static final int COLUMN_MIN_MAX_QTY = 0;
+    public static final int ATTRIBUTE_MIN_MAX_QTY = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_MAX_QTY} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MAX_QTY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_MAX_QTY = Integer.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_MAX_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_QTY} column. The value is
@@ -600,6 +622,8 @@ public abstract class MappedSpecialOffer {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_SPECIAL_OFFER_ID)
+    @Min(ATTRIBUTE_MIN_SPECIAL_OFFER_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true,
@@ -619,10 +643,11 @@ public abstract class MappedSpecialOffer {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_DiscountPct: ([DiscountPct]>=(0.00))
-    @DecimalMin(COLUMN_MIN_DISCOUNT_PCT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PCT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PCT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DISCOUNT_PCT, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_DISCOUNT_PCT, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PCT, value = "Discount precentage.")
     @MsDefault(name = "DF_SpecialOffer_DiscountPct", value = "((0.00))")
     private BigDecimal discountPct;
@@ -662,8 +687,8 @@ public abstract class MappedSpecialOffer {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_MinQty: ([MinQty]>=(0))
-    @Max(COLUMN_MAX_MIN_QTY)
-    @Min(COLUMN_MIN_MIN_QTY)
+    @Max(ATTRIBUTE_MAX_MIN_QTY)
+    @Min(ATTRIBUTE_MIN_MIN_QTY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MIN_QTY, nullable = false, insertable = true, updatable = true)
@@ -673,8 +698,8 @@ public abstract class MappedSpecialOffer {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_MaxQty: ([MaxQty]>=(0))
-    @Max(COLUMN_MAX_MAX_QTY)
-    @Min(COLUMN_MIN_MAX_QTY)
+    @Max(ATTRIBUTE_MAX_MAX_QTY)
+    @Min(ATTRIBUTE_MIN_MAX_QTY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MAX_QTY, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MAX_QTY, value = "Maximum discount percent allowed.")

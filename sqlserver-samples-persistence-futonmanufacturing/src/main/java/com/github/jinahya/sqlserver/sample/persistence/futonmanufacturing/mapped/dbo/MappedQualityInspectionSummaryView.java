@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -74,6 +78,18 @@ public abstract class MappedQualityInspectionSummaryView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -84,6 +100,18 @@ public abstract class MappedQualityInspectionSummaryView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MONTH = "Month";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
@@ -166,6 +194,18 @@ public abstract class MappedQualityInspectionSummaryView {
     public static final String COLUMN_NAME_NUMBER_OF_INSPECTIONS = "NumberOfInspections";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_INSPECTIONS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_NUMBER_OF_INSPECTIONS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_INSPECTIONS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_NUMBER_OF_INSPECTIONS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_OF_INSPECTIONS} column. The value is
      * {@value}.
      */
@@ -187,6 +227,18 @@ public abstract class MappedQualityInspectionSummaryView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_INSPECTED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_INSPECTED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_INSPECTED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_INSPECTED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_INSPECTED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_INSPECTED = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_INSPECTED} column. The value is {@value}.
@@ -211,6 +263,18 @@ public abstract class MappedQualityInspectionSummaryView {
     public static final int COLUMN_SCALE_TOTAL_ACCEPTED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ACCEPTED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_ACCEPTED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ACCEPTED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_ACCEPTED = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ACCEPTED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ACCEPTED = "totalAccepted";
@@ -231,6 +295,18 @@ public abstract class MappedQualityInspectionSummaryView {
      * The scale of the {@value #COLUMN_NAME_TOTAL_REJECTED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TOTAL_REJECTED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_REJECTED} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_REJECTED = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_REJECTED} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_REJECTED = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_REJECTED} column. The value is {@value}.
@@ -255,6 +331,18 @@ public abstract class MappedQualityInspectionSummaryView {
     public static final int COLUMN_SCALE_ACCEPTANCE_RATE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ACCEPTANCE_RATE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ACCEPTANCE_RATE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ACCEPTANCE_RATE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ACCEPTANCE_RATE = "999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACCEPTANCE_RATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACCEPTANCE_RATE = "acceptanceRate";
@@ -275,6 +363,18 @@ public abstract class MappedQualityInspectionSummaryView {
      * The scale of the {@value #COLUMN_NAME_REJECTION_RATE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_REJECTION_RATE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REJECTION_RATE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REJECTION_RATE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REJECTION_RATE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REJECTION_RATE = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REJECTION_RATE} column. The value is {@value}.
@@ -579,12 +679,16 @@ public abstract class MappedQualityInspectionSummaryView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_YEAR)
+    @Min(ATTRIBUTE_MIN_YEAR)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_MONTH)
+    @Min(ATTRIBUTE_MIN_MONTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
@@ -623,46 +727,48 @@ public abstract class MappedQualityInspectionSummaryView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_NUMBER_OF_INSPECTIONS)
+    @Min(ATTRIBUTE_MIN_NUMBER_OF_INSPECTIONS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_INSPECTIONS, nullable = true, insertable = false, updatable = false)
     private Integer numberOfInspections;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_INSPECTED - COLUMN_SCALE_TOTAL_INSPECTED,
-            fraction = COLUMN_SCALE_TOTAL_INSPECTED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_INSPECTED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_INSPECTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_INSPECTED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_INSPECTED, scale = COLUMN_SCALE_TOTAL_INSPECTED)
     private BigDecimal totalInspected;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_ACCEPTED - COLUMN_SCALE_TOTAL_ACCEPTED,
-            fraction = COLUMN_SCALE_TOTAL_ACCEPTED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_ACCEPTED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_ACCEPTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ACCEPTED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_ACCEPTED, scale = COLUMN_SCALE_TOTAL_ACCEPTED)
     private BigDecimal totalAccepted;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_REJECTED - COLUMN_SCALE_TOTAL_REJECTED,
-            fraction = COLUMN_SCALE_TOTAL_REJECTED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_REJECTED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_REJECTED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REJECTED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REJECTED, scale = COLUMN_SCALE_TOTAL_REJECTED)
     private BigDecimal totalRejected;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ACCEPTANCE_RATE - COLUMN_SCALE_ACCEPTANCE_RATE,
-            fraction = COLUMN_SCALE_ACCEPTANCE_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ACCEPTANCE_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ACCEPTANCE_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACCEPTANCE_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ACCEPTANCE_RATE, scale = COLUMN_SCALE_ACCEPTANCE_RATE)
     private BigDecimal acceptanceRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_REJECTION_RATE - COLUMN_SCALE_REJECTION_RATE,
-            fraction = COLUMN_SCALE_REJECTION_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REJECTION_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REJECTION_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REJECTION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REJECTION_RATE, scale = COLUMN_SCALE_REJECTION_RATE)
     private BigDecimal rejectionRate;

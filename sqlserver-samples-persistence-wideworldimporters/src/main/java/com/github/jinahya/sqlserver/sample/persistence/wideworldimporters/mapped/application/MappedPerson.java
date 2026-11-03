@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
@@ -31,6 +32,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -139,6 +142,18 @@ public abstract class MappedPerson {
      * The name of the {@code int, NEXT VALUE FOR Sequences.PersonID, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PERSON_ID = "PersonID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PERSON_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PERSON_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PERSON_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PERSON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_ID} column. The value is {@value}.
@@ -394,6 +409,18 @@ public abstract class MappedPerson {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -921,6 +948,8 @@ public abstract class MappedPerson {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_PERSON_ID)
+    @Min(ATTRIBUTE_MIN_PERSON_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PersonID", schema = "Sequences", sequenceName = "PersonID",
                        allocationSize = 1)
@@ -982,6 +1011,7 @@ public abstract class MappedPerson {
     private Boolean isExternalLogonProvider;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 32 bytes
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HASHED_PASSWORD, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_HASHED_PASSWORD,
@@ -1012,6 +1042,7 @@ public abstract class MappedPerson {
     private Boolean isSalesperson;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 308 bytes (154 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_USER_PREFERENCES, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_USER_PREFERENCES,
@@ -1040,12 +1071,14 @@ public abstract class MappedPerson {
     private String emailAddress;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PHOTO, value = "Photo of this person")
     private byte[] photo;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 332 bytes (166 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOM_FIELDS,
@@ -1053,6 +1086,7 @@ public abstract class MappedPerson {
     private String customFields;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 64 bytes (32 characters)
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_OTHER_LANGUAGES, nullable = true, insertable = false, updatable = false)
@@ -1063,6 +1097,8 @@ public abstract class MappedPerson {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

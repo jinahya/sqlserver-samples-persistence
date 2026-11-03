@@ -513,6 +513,7 @@ public abstract class MappedDatabaseLog
     private String object;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 13504 bytes (6752 characters)
     // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
     // it; see the
     // class documentation

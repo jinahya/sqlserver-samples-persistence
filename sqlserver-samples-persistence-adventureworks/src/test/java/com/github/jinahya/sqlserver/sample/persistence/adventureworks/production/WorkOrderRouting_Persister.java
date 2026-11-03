@@ -49,7 +49,7 @@ class WorkOrderRouting_Persister
         entityManager.flush();
         final var instance = WorkOrderRouting.of(
                 workOrder, ThreadLocalRandom.current()
-                        .nextInt(1, WorkOrderRouting.COLUMN_MAX_OPERATION_SEQUENCE + 1));
+                        .nextInt(1, WorkOrderRouting.ATTRIBUTE_MAX_OPERATION_SEQUENCE + 1));
         instance.setLocation(location);
         instance.setScheduledStartDate(entityInstance.getScheduledStartDate());
         instance.setScheduledEndDate(entityInstance.getScheduledEndDate());

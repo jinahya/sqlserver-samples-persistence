@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -75,6 +79,18 @@ public abstract class MappedQualityInspection {
     public static final String COLUMN_NAME_INSPECTION_ID = "InspectionID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_INSPECTION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_INSPECTION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_INSPECTION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_INSPECTION_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INSPECTION_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_INSPECTION_ID = "inspectionId";
@@ -85,6 +101,18 @@ public abstract class MappedQualityInspection {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
@@ -160,6 +188,18 @@ public abstract class MappedQualityInspection {
     public static final int COLUMN_SCALE_QUANTITY_INSPECTED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_INSPECTED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_INSPECTED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_INSPECTED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_INSPECTED = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_INSPECTED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_INSPECTED = "quantityInspected";
@@ -182,6 +222,18 @@ public abstract class MappedQualityInspection {
     public static final int COLUMN_SCALE_QUANTITY_ACCEPTED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ACCEPTED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_ACCEPTED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ACCEPTED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_ACCEPTED = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ACCEPTED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ACCEPTED = "quantityAccepted";
@@ -202,6 +254,18 @@ public abstract class MappedQualityInspection {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_REJECTED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_REJECTED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_REJECTED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_REJECTED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_REJECTED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_REJECTED = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_REJECTED} column. The value is {@value}.
@@ -530,6 +594,8 @@ public abstract class MappedQualityInspection {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_INSPECTION_ID)
+    @Min(ATTRIBUTE_MIN_INSPECTION_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_INSPECTION_ID, nullable = false, insertable = true, updatable = false)
@@ -537,6 +603,8 @@ public abstract class MappedQualityInspection {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -562,24 +630,24 @@ public abstract class MappedQualityInspection {
     private String referenceNumber;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_INSPECTED - COLUMN_SCALE_QUANTITY_INSPECTED,
-            fraction = COLUMN_SCALE_QUANTITY_INSPECTED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_INSPECTED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_INSPECTED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_INSPECTED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_INSPECTED, scale = COLUMN_SCALE_QUANTITY_INSPECTED)
     private BigDecimal quantityInspected;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_ACCEPTED - COLUMN_SCALE_QUANTITY_ACCEPTED,
-            fraction = COLUMN_SCALE_QUANTITY_ACCEPTED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_ACCEPTED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_ACCEPTED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ACCEPTED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_ACCEPTED, scale = COLUMN_SCALE_QUANTITY_ACCEPTED)
     private BigDecimal quantityAccepted;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_REJECTED - COLUMN_SCALE_QUANTITY_REJECTED,
-            fraction = COLUMN_SCALE_QUANTITY_REJECTED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_REJECTED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_REJECTED)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_REJECTED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_REJECTED, scale = COLUMN_SCALE_QUANTITY_REJECTED)
@@ -598,6 +666,7 @@ public abstract class MappedQualityInspection {
     private String inspectedBy;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 126 bytes (63 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;

@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -103,6 +107,18 @@ public abstract class MappedShipMethod {
     public static final String COLUMN_NAME_SHIP_METHOD_ID = "ShipMethodID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SHIP_METHOD_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SHIP_METHOD_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_METHOD_ID} column. The
      * value is {@value}.
      */
@@ -134,11 +150,17 @@ public abstract class MappedShipMethod {
     public static final String COLUMN_NAME_SHIP_BASE = "ShipBase";
 
     /**
-     * The exclusive minimum value of the {@value #COLUMN_NAME_SHIP_BASE} column, as the
+     * The exclusive minimum value of the {@value #ATTRIBUTE_NAME_SHIP_BASE} attribute, as the
      * {@code CK_ShipMethod_ShipBase} check constraint ({@code [ShipBase]>(0.00)}) requires. The
      * value is {@value}.
      */
-    public static final String COLUMN_MIN_SHIP_BASE_EXCLUSIVE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_SHIP_BASE_EXCLUSIVE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_BASE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SHIP_BASE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_BASE} column. The value is
@@ -154,11 +176,17 @@ public abstract class MappedShipMethod {
     public static final String COLUMN_NAME_SHIP_RATE = "ShipRate";
 
     /**
-     * The exclusive minimum value of the {@value #COLUMN_NAME_SHIP_RATE} column, as the
+     * The exclusive minimum value of the {@value #ATTRIBUTE_NAME_SHIP_RATE} attribute, as the
      * {@code CK_ShipMethod_ShipRate} check constraint ({@code [ShipRate]>(0.00)}) requires. The
      * value is {@value}.
      */
-    public static final String COLUMN_MIN_SHIP_RATE_EXCLUSIVE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_SHIP_RATE_EXCLUSIVE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_RATE} attribute, the maximum of the
+     * {@code money} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SHIP_RATE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_RATE} column. The value is
@@ -365,6 +393,8 @@ public abstract class MappedShipMethod {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_SHIP_METHOD_ID)
+    @Min(ATTRIBUTE_MIN_SHIP_METHOD_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = true,
@@ -384,20 +414,22 @@ public abstract class MappedShipMethod {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ShipMethod_ShipBase: ([ShipBase]>(0.00))
-    @DecimalMin(value = COLUMN_MIN_SHIP_BASE_EXCLUSIVE, inclusive = false)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHIP_BASE)
+    @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SHIP_BASE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_BASE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SHIP_BASE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_BASE, value = "Minimum shipping charge.")
     @MsDefault(name = "DF_ShipMethod_ShipBase", value = "((0.00))")
     private BigDecimal shipBase;
 
     // ---------------------------------------------------------------------------------------------
     // CK_ShipMethod_ShipRate: ([ShipRate]>(0.00))
-    @DecimalMin(value = COLUMN_MIN_SHIP_RATE_EXCLUSIVE, inclusive = false)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHIP_RATE)
+    @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SHIP_RATE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_RATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SHIP_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_RATE, value = "Shipping charge per pound.")
     @MsDefault(name = "DF_ShipMethod_ShipRate", value = "((0.00))")
     private BigDecimal shipRate;

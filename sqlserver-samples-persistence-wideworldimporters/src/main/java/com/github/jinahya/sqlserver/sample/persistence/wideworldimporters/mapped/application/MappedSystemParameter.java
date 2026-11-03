@@ -22,6 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -32,6 +33,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -114,6 +117,18 @@ public abstract class MappedSystemParameter {
     public static final String COLUMN_NAME_SYSTEM_PARAMETER_ID = "SystemParameterID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SYSTEM_PARAMETER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SYSTEM_PARAMETER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SYSTEM_PARAMETER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SYSTEM_PARAMETER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SYSTEM_PARAMETER_ID} column. The value is
      * {@value}.
      */
@@ -161,6 +176,18 @@ public abstract class MappedSystemParameter {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DELIVERY_CITY_ID = "DeliveryCityID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DELIVERY_CITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DELIVERY_CITY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DELIVERY_CITY_ID} column. The value is {@value}.
@@ -241,6 +268,18 @@ public abstract class MappedSystemParameter {
     public static final String COLUMN_NAME_POSTAL_CITY_ID = "PostalCityID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_POSTAL_CITY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_POSTAL_CITY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CITY_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CITY_ID = "postalCityId";
@@ -281,6 +320,18 @@ public abstract class MappedSystemParameter {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -626,6 +677,8 @@ public abstract class MappedSystemParameter {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_SYSTEM_PARAMETER_ID)
+    @Min(ATTRIBUTE_MIN_SYSTEM_PARAMETER_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SystemParameterID", schema = "Sequences",
                        sequenceName = "SystemParameterID",
@@ -657,6 +710,8 @@ public abstract class MappedSystemParameter {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_DELIVERY_CITY_ID)
+    @Min(ATTRIBUTE_MIN_DELIVERY_CITY_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false)
@@ -701,6 +756,8 @@ public abstract class MappedSystemParameter {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_POSTAL_CITY_ID)
+    @Min(ATTRIBUTE_MIN_POSTAL_CITY_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false)
@@ -718,6 +775,7 @@ public abstract class MappedSystemParameter {
     private String postalPostalCode;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 6596 bytes (3298 characters)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_APPLICATION_SETTINGS, nullable = false, insertable = true, updatable = true)
@@ -727,6 +785,8 @@ public abstract class MappedSystemParameter {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

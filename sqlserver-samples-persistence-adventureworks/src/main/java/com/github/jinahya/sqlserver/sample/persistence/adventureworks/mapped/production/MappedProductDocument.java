@@ -22,12 +22,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -94,6 +97,18 @@ public abstract class MappedProductDocument {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -212,6 +227,8 @@ public abstract class MappedProductDocument {
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = true)
@@ -221,6 +238,9 @@ public abstract class MappedProductDocument {
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
+    // part of the primary key, which is not mapped as an identifier: a hierarchyid needs a converter, and Jakarta
+    // Persistence applies no converter to an identifier attribute (Hibernate ORM does, as an extension), so the
+    // class is keyless
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)

@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -158,6 +162,18 @@ public abstract class MappedProductionOrderStatusView {
     public static final int COLUMN_SCALE_ORDER_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ORDER_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ORDER_QUANTITY = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_QUANTITY = "orderQuantity";
@@ -178,6 +194,18 @@ public abstract class MappedProductionOrderStatusView {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_COMPLETED} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_COMPLETED = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_COMPLETED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_COMPLETED = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_COMPLETED} column. The value is {@value}.
@@ -202,6 +230,18 @@ public abstract class MappedProductionOrderStatusView {
     public static final int COLUMN_SCALE_QUANTITY_SCRAPPED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_SCRAPPED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_SCRAPPED = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_SCRAPPED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_SCRAPPED = "quantityScrapped";
@@ -224,6 +264,18 @@ public abstract class MappedProductionOrderStatusView {
     public static final int COLUMN_SCALE_QUANTITY_REMAINING = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_REMAINING} attribute, the minimum of the
+     * {@code decimal(20, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_REMAINING = "-999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_REMAINING} attribute, the maximum of the
+     * {@code decimal(20, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_REMAINING = "999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_REMAINING} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_REMAINING = "quantityRemaining";
@@ -244,6 +296,18 @@ public abstract class MappedProductionOrderStatusView {
      * The scale of the {@value #COLUMN_NAME_PERCENT_COMPLETE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_PERCENT_COMPLETE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PERCENT_COMPLETE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PERCENT_COMPLETE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PERCENT_COMPLETE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PERCENT_COMPLETE = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PERCENT_COMPLETE} column. The value is {@value}.
@@ -330,6 +394,18 @@ public abstract class MappedProductionOrderStatusView {
     public static final String COLUMN_NAME_DAYS_VARIANCE = "DaysVariance";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_VARIANCE = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_VARIANCE = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_VARIANCE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_VARIANCE = "daysVariance";
@@ -357,6 +433,18 @@ public abstract class MappedProductionOrderStatusView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIORITY = "Priority";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRIORITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRIORITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIORITY} column. The value is {@value}.
@@ -871,8 +959,8 @@ public abstract class MappedProductionOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ORDER_QUANTITY - COLUMN_SCALE_ORDER_QUANTITY,
-            fraction = COLUMN_SCALE_ORDER_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ORDER_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ORDER_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_ORDER_QUANTITY, scale = COLUMN_SCALE_ORDER_QUANTITY)
@@ -880,32 +968,32 @@ public abstract class MappedProductionOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
-            fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_COMPLETED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_COMPLETED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_COMPLETED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_COMPLETED, scale = COLUMN_SCALE_QUANTITY_COMPLETED)
     private BigDecimal quantityCompleted;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
-            fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_SCRAPPED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_SCRAPPED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_SCRAPPED, scale = COLUMN_SCALE_QUANTITY_SCRAPPED)
     private BigDecimal quantityScrapped;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_REMAINING - COLUMN_SCALE_QUANTITY_REMAINING,
-            fraction = COLUMN_SCALE_QUANTITY_REMAINING)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_REMAINING)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_REMAINING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_REMAINING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_REMAINING, scale = COLUMN_SCALE_QUANTITY_REMAINING)
     private BigDecimal quantityRemaining;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
-            fraction = COLUMN_SCALE_PERCENT_COMPLETE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PERCENT_COMPLETE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PERCENT_COMPLETE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERCENT_COMPLETE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_COMPLETE, scale = COLUMN_SCALE_PERCENT_COMPLETE)
     private BigDecimal percentComplete;
@@ -945,6 +1033,8 @@ public abstract class MappedProductionOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_VARIANCE)
+    @Min(ATTRIBUTE_MIN_DAYS_VARIANCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_VARIANCE, nullable = true, insertable = false, updatable = false)
     private Integer daysVariance;
@@ -959,6 +1049,8 @@ public abstract class MappedProductionOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRIORITY)
+    @Min(ATTRIBUTE_MIN_PRIORITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = false, updatable = false)
     private Integer priority;

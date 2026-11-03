@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -112,6 +116,18 @@ public abstract class MappedSalesProductMixAnalysisView {
     public static final String COLUMN_NAME_UNIQUE_PRODUCTS = "UniqueProducts";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_PRODUCTS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_UNIQUE_PRODUCTS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_PRODUCTS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_UNIQUE_PRODUCTS = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_PRODUCTS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_PRODUCTS = "uniqueProducts";
@@ -122,6 +138,18 @@ public abstract class MappedSalesProductMixAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
@@ -146,6 +174,18 @@ public abstract class MappedSalesProductMixAnalysisView {
     public static final int COLUMN_SCALE_TOTAL_REVENUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_REVENUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_REVENUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_REVENUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
@@ -166,6 +206,18 @@ public abstract class MappedSalesProductMixAnalysisView {
      * The scale of the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_ORDER_VALUE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_ORDER_VALUE} column. The value is {@value}.
@@ -190,6 +242,18 @@ public abstract class MappedSalesProductMixAnalysisView {
     public static final int COLUMN_SCALE_AVG_UNITS = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_UNITS} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_UNITS = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_UNITS} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_UNITS = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_UNITS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_UNITS = "avgUnits";
@@ -200,6 +264,18 @@ public abstract class MappedSalesProductMixAnalysisView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_POPULARITY_RANK = "PopularityRank";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_POPULARITY_RANK} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_POPULARITY_RANK = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_POPULARITY_RANK} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_POPULARITY_RANK = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_POPULARITY_RANK} column. The value is {@value}.
@@ -436,41 +512,48 @@ public abstract class MappedSalesProductMixAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_UNIQUE_PRODUCTS)
+    @Min(ATTRIBUTE_MIN_UNIQUE_PRODUCTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_PRODUCTS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueProducts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
+    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
-            fraction = COLUMN_SCALE_TOTAL_REVENUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_REVENUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_REVENUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REVENUE, scale = COLUMN_SCALE_TOTAL_REVENUE)
     private BigDecimal totalRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
-            fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_ORDER_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_ORDER_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_UNITS - COLUMN_SCALE_AVG_UNITS, fraction = COLUMN_SCALE_AVG_UNITS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_UNITS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_UNITS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_UNITS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_UNITS, scale = COLUMN_SCALE_AVG_UNITS)
     private BigDecimal avgUnits;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_POPULARITY_RANK)
+    @Min(ATTRIBUTE_MIN_POPULARITY_RANK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POPULARITY_RANK, nullable = true, insertable = false, updatable = false)
     private Long popularityRank;

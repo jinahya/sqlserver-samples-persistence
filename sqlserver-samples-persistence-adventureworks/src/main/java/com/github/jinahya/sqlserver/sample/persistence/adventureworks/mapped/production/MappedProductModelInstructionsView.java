@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -63,6 +67,18 @@ public abstract class MappedProductModelInstructionsView {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The
@@ -109,6 +125,18 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
      * is {@value}.
      */
@@ -130,6 +158,18 @@ public abstract class MappedProductModelInstructionsView {
      * The scale of the {@value #COLUMN_NAME_SETUP_HOURS} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SETUP_HOURS = 4;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SETUP_HOURS} attribute, the minimum of the
+     * {@code decimal(9, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SETUP_HOURS = "-99999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SETUP_HOURS} attribute, the maximum of the
+     * {@code decimal(9, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SETUP_HOURS = "99999.9999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SETUP_HOURS} column. The value
@@ -155,6 +195,18 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_SCALE_MACHINE_HOURS = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MACHINE_HOURS} attribute, the minimum of the
+     * {@code decimal(9, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MACHINE_HOURS = "-99999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MACHINE_HOURS} attribute, the maximum of the
+     * {@code decimal(9, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MACHINE_HOURS = "99999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MACHINE_HOURS} column. The
      * value is {@value}.
      */
@@ -178,6 +230,18 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_SCALE_LABOR_HOURS = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LABOR_HOURS} attribute, the minimum of the
+     * {@code decimal(9, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LABOR_HOURS = "-99999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LABOR_HOURS} attribute, the maximum of the
+     * {@code decimal(9, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LABOR_HOURS = "99999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LABOR_HOURS} column. The value
      * is {@value}.
      */
@@ -189,6 +253,18 @@ public abstract class MappedProductModelInstructionsView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOT_SIZE = "LotSize";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LOT_SIZE = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LOT_SIZE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOT_SIZE} column. The value is
@@ -499,6 +575,8 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false,
             updatable = false)
@@ -514,6 +592,7 @@ public abstract class MappedProductModelInstructionsView {
     private String name;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 1076 bytes (538 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSTRUCTIONS, nullable = true, insertable = false, updatable = false)
@@ -521,14 +600,16 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LOCATION_ID)
+    @Min(ATTRIBUTE_MIN_LOCATION_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = true, insertable = false, updatable = false)
     private Integer locationId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SETUP_HOURS - COLUMN_SCALE_SETUP_HOURS,
-            fraction = COLUMN_SCALE_SETUP_HOURS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SETUP_HOURS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SETUP_HOURS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SETUP_HOURS, nullable = true, insertable = false, updatable = false,
             precision = COLUMN_PRECISION_SETUP_HOURS, scale = COLUMN_SCALE_SETUP_HOURS)
@@ -536,8 +617,8 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_MACHINE_HOURS - COLUMN_SCALE_MACHINE_HOURS,
-            fraction = COLUMN_SCALE_MACHINE_HOURS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MACHINE_HOURS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MACHINE_HOURS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MACHINE_HOURS, nullable = true, insertable = false,
             updatable = false, precision = COLUMN_PRECISION_MACHINE_HOURS,
@@ -546,8 +627,8 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_LABOR_HOURS - COLUMN_SCALE_LABOR_HOURS,
-            fraction = COLUMN_SCALE_LABOR_HOURS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LABOR_HOURS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LABOR_HOURS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LABOR_HOURS, nullable = true, insertable = false, updatable = false,
             precision = COLUMN_PRECISION_LABOR_HOURS, scale = COLUMN_SCALE_LABOR_HOURS)
@@ -555,6 +636,8 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LOT_SIZE)
+    @Min(ATTRIBUTE_MIN_LOT_SIZE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOT_SIZE, nullable = true, insertable = false, updatable = false)
     private Integer lotSize;

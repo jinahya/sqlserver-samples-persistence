@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
@@ -30,7 +31,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -134,6 +138,18 @@ public abstract class MappedSupplierTransaction {
     public static final String COLUMN_NAME_SUPPLIER_TRANSACTION_ID = "SupplierTransactionID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_TRANSACTION_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SUPPLIER_TRANSACTION_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_TRANSACTION_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SUPPLIER_TRANSACTION_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_TRANSACTION_ID} column. The value is
      * {@value}.
      */
@@ -147,6 +163,18 @@ public abstract class MappedSupplierTransaction {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -157,6 +185,18 @@ public abstract class MappedSupplierTransaction {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TRANSACTION_TYPE_ID = "TransactionTypeID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TRANSACTION_TYPE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TRANSACTION_TYPE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_TYPE_ID} column. The value is
@@ -172,6 +212,18 @@ public abstract class MappedSupplierTransaction {
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
@@ -182,6 +234,18 @@ public abstract class MappedSupplierTransaction {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PAYMENT_METHOD_ID = "PaymentMethodID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PAYMENT_METHOD_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PAYMENT_METHOD_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PAYMENT_METHOD_ID} column. The value is {@value}.
@@ -236,6 +300,18 @@ public abstract class MappedSupplierTransaction {
     public static final int COLUMN_SCALE_AMOUNT_EXCLUDING_TAX = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AMOUNT_EXCLUDING_TAX} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AMOUNT_EXCLUDING_TAX = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AMOUNT_EXCLUDING_TAX} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AMOUNT_EXCLUDING_TAX = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AMOUNT_EXCLUDING_TAX} column. The value is
      * {@value}.
      */
@@ -257,6 +333,18 @@ public abstract class MappedSupplierTransaction {
      * The scale of the {@value #COLUMN_NAME_TAX_AMOUNT} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_TAX_AMOUNT = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMOUNT} column. The value is {@value}.
@@ -281,6 +369,18 @@ public abstract class MappedSupplierTransaction {
     public static final int COLUMN_SCALE_TRANSACTION_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TRANSACTION_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TRANSACTION_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_AMOUNT = "transactionAmount";
@@ -301,6 +401,18 @@ public abstract class MappedSupplierTransaction {
      * The scale of the {@value #COLUMN_NAME_OUTSTANDING_BALANCE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_OUTSTANDING_BALANCE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_OUTSTANDING_BALANCE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_OUTSTANDING_BALANCE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_OUTSTANDING_BALANCE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_OUTSTANDING_BALANCE = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OUTSTANDING_BALANCE} column. The value is
@@ -340,6 +452,18 @@ public abstract class MappedSupplierTransaction {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -731,6 +855,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_SUPPLIER_TRANSACTION_ID)
+    @Min(ATTRIBUTE_MIN_SUPPLIER_TRANSACTION_ID)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.TransactionID", schema = "Sequences",
                        sequenceName = "TransactionID",
@@ -746,6 +872,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
+    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -754,6 +882,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_TRANSACTION_TYPE_ID)
+    @Min(ATTRIBUTE_MIN_TRANSACTION_TYPE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false)
@@ -762,6 +892,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -771,6 +903,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PAYMENT_METHOD_ID)
+    @Min(ATTRIBUTE_MIN_PAYMENT_METHOD_ID)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
@@ -793,8 +927,8 @@ public abstract class MappedSupplierTransaction {
     private LocalDate transactionDate;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX - COLUMN_SCALE_AMOUNT_EXCLUDING_TAX,
-            fraction = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AMOUNT_EXCLUDING_TAX)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AMOUNT_EXCLUDING_TAX)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX, scale = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX)
@@ -803,7 +937,8 @@ public abstract class MappedSupplierTransaction {
     private BigDecimal amountExcludingTax;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
@@ -811,8 +946,8 @@ public abstract class MappedSupplierTransaction {
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_TRANSACTION_AMOUNT - COLUMN_SCALE_TRANSACTION_AMOUNT,
-            fraction = COLUMN_SCALE_TRANSACTION_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TRANSACTION_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TRANSACTION_AMOUNT)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TRANSACTION_AMOUNT, scale = COLUMN_SCALE_TRANSACTION_AMOUNT)
@@ -821,8 +956,8 @@ public abstract class MappedSupplierTransaction {
     private BigDecimal transactionAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_OUTSTANDING_BALANCE - COLUMN_SCALE_OUTSTANDING_BALANCE,
-            fraction = COLUMN_SCALE_OUTSTANDING_BALANCE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_OUTSTANDING_BALANCE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_OUTSTANDING_BALANCE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OUTSTANDING_BALANCE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_OUTSTANDING_BALANCE, scale = COLUMN_SCALE_OUTSTANDING_BALANCE)
@@ -851,6 +986,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

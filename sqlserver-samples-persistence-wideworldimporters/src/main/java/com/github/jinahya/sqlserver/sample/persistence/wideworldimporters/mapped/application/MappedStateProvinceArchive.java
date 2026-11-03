@@ -22,10 +22,13 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -61,6 +64,18 @@ public abstract class MappedStateProvinceArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STATE_PROVINCE_ID = "StateProvinceID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STATE_PROVINCE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STATE_PROVINCE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The value is {@value}.
@@ -111,6 +126,18 @@ public abstract class MappedStateProvinceArchive {
     public static final String COLUMN_NAME_COUNTRY_ID = "CountryID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COUNTRY_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COUNTRY_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_ID = "countryId";
@@ -152,6 +179,18 @@ public abstract class MappedStateProvinceArchive {
     public static final String COLUMN_NAME_LATEST_RECORDED_POPULATION = "LatestRecordedPopulation";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_LATEST_RECORDED_POPULATION = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_LATEST_RECORDED_POPULATION = SqlServerConstants.BIGINT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LATEST_RECORDED_POPULATION} column. The value is
      * {@value}.
      */
@@ -163,6 +202,18 @@ public abstract class MappedStateProvinceArchive {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -423,6 +474,8 @@ public abstract class MappedStateProvinceArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_STATE_PROVINCE_ID)
+    @Min(ATTRIBUTE_MIN_STATE_PROVINCE_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false, updatable = false)
@@ -446,6 +499,8 @@ public abstract class MappedStateProvinceArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_COUNTRY_ID)
+    @Min(ATTRIBUTE_MIN_COUNTRY_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_ID, nullable = false, insertable = false, updatable = false)
@@ -468,12 +523,16 @@ public abstract class MappedStateProvinceArchive {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_LATEST_RECORDED_POPULATION)
+    @Min(ATTRIBUTE_MIN_LATEST_RECORDED_POPULATION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = false, updatable = false)
     private Long latestRecordedPopulation;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

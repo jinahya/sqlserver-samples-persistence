@@ -20,13 +20,17 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -101,6 +105,18 @@ public abstract class MappedStockItemHolding {
     public static final String COLUMN_NAME_STOCK_ITEM_ID = "StockItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STOCK_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STOCK_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
@@ -111,6 +127,18 @@ public abstract class MappedStockItemHolding {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUANTITY_ON_HAND = "QuantityOnHand";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUANTITY_ON_HAND = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUANTITY_ON_HAND = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_ON_HAND} column. The value is {@value}.
@@ -142,6 +170,18 @@ public abstract class MappedStockItemHolding {
     public static final String COLUMN_NAME_LAST_STOCKTAKE_QUANTITY = "LastStocktakeQuantity";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_STOCKTAKE_QUANTITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_STOCKTAKE_QUANTITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_STOCKTAKE_QUANTITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_STOCKTAKE_QUANTITY = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_STOCKTAKE_QUANTITY} column. The value is
      * {@value}.
      */
@@ -165,6 +205,18 @@ public abstract class MappedStockItemHolding {
     public static final int COLUMN_SCALE_LAST_COST_PRICE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_COST_PRICE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_LAST_COST_PRICE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_COST_PRICE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_LAST_COST_PRICE = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_COST_PRICE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LAST_COST_PRICE = "lastCostPrice";
@@ -175,6 +227,18 @@ public abstract class MappedStockItemHolding {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_REORDER_LEVEL = "ReorderLevel";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REORDER_LEVEL} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_REORDER_LEVEL = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REORDER_LEVEL} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_REORDER_LEVEL = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REORDER_LEVEL} column. The value is {@value}.
@@ -189,6 +253,18 @@ public abstract class MappedStockItemHolding {
     public static final String COLUMN_NAME_TARGET_STOCK_LEVEL = "TargetStockLevel";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TARGET_STOCK_LEVEL} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_TARGET_STOCK_LEVEL = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TARGET_STOCK_LEVEL} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_TARGET_STOCK_LEVEL = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TARGET_STOCK_LEVEL} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TARGET_STOCK_LEVEL = "targetStockLevel";
@@ -199,6 +275,18 @@ public abstract class MappedStockItemHolding {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -456,6 +544,8 @@ public abstract class MappedStockItemHolding {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    @Max(ATTRIBUTE_MAX_STOCK_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_STOCK_ITEM_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = true, updatable = false)
@@ -465,6 +555,8 @@ public abstract class MappedStockItemHolding {
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_QUANTITY_ON_HAND)
+    @Min(ATTRIBUTE_MIN_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = true, updatable = true)
@@ -482,6 +574,8 @@ public abstract class MappedStockItemHolding {
     private String binLocation;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_LAST_STOCKTAKE_QUANTITY)
+    @Min(ATTRIBUTE_MIN_LAST_STOCKTAKE_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_STOCKTAKE_QUANTITY, nullable = false, insertable = true, updatable = true)
@@ -490,8 +584,8 @@ public abstract class MappedStockItemHolding {
     private Integer lastStocktakeQuantity;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_LAST_COST_PRICE - COLUMN_SCALE_LAST_COST_PRICE,
-            fraction = COLUMN_SCALE_LAST_COST_PRICE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LAST_COST_PRICE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LAST_COST_PRICE)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_COST_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LAST_COST_PRICE, scale = COLUMN_SCALE_LAST_COST_PRICE)
@@ -500,6 +594,8 @@ public abstract class MappedStockItemHolding {
     private BigDecimal lastCostPrice;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_REORDER_LEVEL)
+    @Min(ATTRIBUTE_MIN_REORDER_LEVEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REORDER_LEVEL, nullable = false, insertable = true, updatable = true)
@@ -508,6 +604,8 @@ public abstract class MappedStockItemHolding {
     private Integer reorderLevel;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_TARGET_STOCK_LEVEL)
+    @Min(ATTRIBUTE_MIN_TARGET_STOCK_LEVEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TARGET_STOCK_LEVEL, nullable = false, insertable = true, updatable = true)
@@ -516,6 +614,8 @@ public abstract class MappedStockItemHolding {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
+    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

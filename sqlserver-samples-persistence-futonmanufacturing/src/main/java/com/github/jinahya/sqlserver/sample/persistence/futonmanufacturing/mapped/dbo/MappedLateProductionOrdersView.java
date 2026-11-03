@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -157,6 +161,18 @@ public abstract class MappedLateProductionOrdersView {
     public static final int COLUMN_SCALE_ORDER_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ORDER_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ORDER_QUANTITY = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_QUANTITY = "orderQuantity";
@@ -179,6 +195,18 @@ public abstract class MappedLateProductionOrdersView {
     public static final int COLUMN_SCALE_QUANTITY_COMPLETED = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_COMPLETED = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_COMPLETED = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_COMPLETED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_COMPLETED = "quantityCompleted";
@@ -199,6 +227,18 @@ public abstract class MappedLateProductionOrdersView {
      * The scale of the {@value #COLUMN_NAME_QUANTITY_REMAINING} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_QUANTITY_REMAINING = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_REMAINING} attribute, the minimum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY_REMAINING = "-99999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_REMAINING} attribute, the maximum of the
+     * {@code decimal(19, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY_REMAINING = "99999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_REMAINING} column. The value is {@value}.
@@ -255,6 +295,18 @@ public abstract class MappedLateProductionOrdersView {
     public static final String COLUMN_NAME_DAYS_LATE = "DaysLate";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_LATE} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_LATE = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_LATE} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_LATE = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_LATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_LATE = "daysLate";
@@ -265,6 +317,18 @@ public abstract class MappedLateProductionOrdersView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIORITY = "Priority";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRIORITY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRIORITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIORITY} column. The value is {@value}.
@@ -304,6 +368,18 @@ public abstract class MappedLateProductionOrdersView {
      * The scale of the {@value #COLUMN_NAME_VALUE_AT_RISK} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_VALUE_AT_RISK = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_VALUE_AT_RISK} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_VALUE_AT_RISK = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_VALUE_AT_RISK} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_VALUE_AT_RISK = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VALUE_AT_RISK} column. The value is {@value}.
@@ -684,8 +760,8 @@ public abstract class MappedLateProductionOrdersView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_ORDER_QUANTITY - COLUMN_SCALE_ORDER_QUANTITY,
-            fraction = COLUMN_SCALE_ORDER_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ORDER_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ORDER_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_ORDER_QUANTITY, scale = COLUMN_SCALE_ORDER_QUANTITY)
@@ -693,16 +769,16 @@ public abstract class MappedLateProductionOrdersView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
-            fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_COMPLETED)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_COMPLETED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_COMPLETED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_COMPLETED, scale = COLUMN_SCALE_QUANTITY_COMPLETED)
     private BigDecimal quantityCompleted;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_QUANTITY_REMAINING - COLUMN_SCALE_QUANTITY_REMAINING,
-            fraction = COLUMN_SCALE_QUANTITY_REMAINING)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY_REMAINING)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY_REMAINING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUANTITY_REMAINING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_REMAINING, scale = COLUMN_SCALE_QUANTITY_REMAINING)
     private BigDecimal quantityRemaining;
@@ -728,12 +804,16 @@ public abstract class MappedLateProductionOrdersView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_LATE)
+    @Min(ATTRIBUTE_MIN_DAYS_LATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_LATE, nullable = true, insertable = false, updatable = false)
     private Integer daysLate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRIORITY)
+    @Min(ATTRIBUTE_MIN_PRIORITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = false, updatable = false)
     private Integer priority;
@@ -748,8 +828,8 @@ public abstract class MappedLateProductionOrdersView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_VALUE_AT_RISK - COLUMN_SCALE_VALUE_AT_RISK,
-            fraction = COLUMN_SCALE_VALUE_AT_RISK)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_VALUE_AT_RISK)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_VALUE_AT_RISK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_AT_RISK, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_VALUE_AT_RISK, scale = COLUMN_SCALE_VALUE_AT_RISK)
     private BigDecimal valueAtRisk;

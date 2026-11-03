@@ -22,6 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
@@ -150,14 +151,16 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_DOCUMENT_LEVEL = "DocumentLevel";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The value is {@value}.
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute, the minimum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MIN_DOCUMENT_LEVEL = Short.MIN_VALUE;
+    public static final int ATTRIBUTE_MIN_DOCUMENT_LEVEL = SqlServerConstants.SMALLINT_MIN;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The value is {@value}.
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
      */
-    public static final int COLUMN_MAX_DOCUMENT_LEVEL = Short.MAX_VALUE;
+    public static final int ATTRIBUTE_MAX_DOCUMENT_LEVEL = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The
@@ -189,6 +192,18 @@ public abstract class MappedDocument {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_OWNER = "Owner";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_OWNER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_OWNER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_OWNER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_OWNER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OWNER} column. The value is
@@ -271,6 +286,18 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_CHANGE_NUMBER = "ChangeNumber";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CHANGE_NUMBER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CHANGE_NUMBER = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CHANGE_NUMBER} column. The
      * value is {@value}.
      */
@@ -284,18 +311,18 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_STATUS = "Status";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STATUS} attribute, as the
      * {@code CK_Document_Status} check constraint ({@code [Status]>=(1)}) requires. The value is
      * {@value}.
      */
-    public static final int COLUMN_MIN_STATUS = +1;
+    public static final int ATTRIBUTE_MIN_STATUS = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STATUS} attribute, as the
      * {@code CK_Document_Status} check constraint ({@code [Status]<=(3)}) requires. The value is
      * {@value}.
      */
-    public static final int COLUMN_MAX_STATUS = +3;
+    public static final int ATTRIBUTE_MAX_STATUS = +3;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is
@@ -718,6 +745,9 @@ public abstract class MappedDocument {
     }
 
     // ---------------------------------------------------------------------------------------------
+    // the primary key, which is not the identifier: a hierarchyid needs a converter, and Jakarta Persistence
+    // applies no converter to an identifier attribute; Hibernate ORM does, as an extension, but the identifier
+    // stays portable, and is rowguid, which is unique
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
@@ -728,8 +758,8 @@ public abstract class MappedDocument {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Max(COLUMN_MAX_DOCUMENT_LEVEL)
-    @Min(COLUMN_MIN_DOCUMENT_LEVEL)
+    @Max(ATTRIBUTE_MAX_DOCUMENT_LEVEL)
+    @Min(ATTRIBUTE_MIN_DOCUMENT_LEVEL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_LEVEL, nullable = true, insertable = false,
             updatable = false)
@@ -750,6 +780,8 @@ public abstract class MappedDocument {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
+    @Max(ATTRIBUTE_MAX_OWNER)
+    @Min(ATTRIBUTE_MIN_OWNER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OWNER, nullable = false, insertable = false, updatable = false)
@@ -797,6 +829,8 @@ public abstract class MappedDocument {
     private String revision;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_CHANGE_NUMBER)
+    @Min(ATTRIBUTE_MIN_CHANGE_NUMBER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHANGE_NUMBER, nullable = false, insertable = true, updatable = true)
@@ -807,8 +841,8 @@ public abstract class MappedDocument {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Document_Status: ([Status]>=(1) AND [Status]<=(3))
-    @Max(COLUMN_MAX_STATUS)
-    @Min(COLUMN_MIN_STATUS)
+    @Max(ATTRIBUTE_MAX_STATUS)
+    @Min(ATTRIBUTE_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true)
@@ -817,6 +851,7 @@ public abstract class MappedDocument {
     private Integer status;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 784 bytes (392 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, nullable = true, insertable = true,
             updatable = true)
@@ -824,12 +859,15 @@ public abstract class MappedDocument {
     private String documentSummary;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 46592 bytes
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DOCUMENT, value = "Complete document.")
     private byte[] document;
 
     // ---------------------------------------------------------------------------------------------
+    // the identifier, in place of the primary key, DocumentNode, a hierarchyid, which only a converter maps, and
+    // Jakarta Persistence converts no identifier attribute; see documentNode
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
     @Size(max = COLUMN_LENGTH_ROWGUID)

@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -124,6 +128,18 @@ public abstract class MappedComponentShortageView {
     public static final int COLUMN_SCALE_REQUIRED_QUANTITY = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REQUIRED_QUANTITY = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REQUIRED_QUANTITY = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REQUIRED_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REQUIRED_QUANTITY = "requiredQuantity";
@@ -146,6 +162,18 @@ public abstract class MappedComponentShortageView {
     public static final int COLUMN_SCALE_AVAILABLE_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVAILABLE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVAILABLE_QUANTITY = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVAILABLE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVAILABLE_QUANTITY = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABLE_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVAILABLE_QUANTITY = "availableQuantity";
@@ -166,6 +194,18 @@ public abstract class MappedComponentShortageView {
      * The scale of the {@value #COLUMN_NAME_SHORTAGE_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SHORTAGE_QUANTITY = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SHORTAGE_QUANTITY = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SHORTAGE_QUANTITY = "999999999999999999999999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHORTAGE_QUANTITY} column. The value is {@value}.
@@ -192,6 +232,18 @@ public abstract class MappedComponentShortageView {
     public static final String COLUMN_NAME_DAYS_UNTIL_NEEDED = "DaysUntilNeeded";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_DAYS_UNTIL_NEEDED = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_DAYS_UNTIL_NEEDED = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_UNTIL_NEEDED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED = "daysUntilNeeded";
@@ -202,6 +254,18 @@ public abstract class MappedComponentShortageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_AFFECTED_ORDERS = "AffectedOrders";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AFFECTED_ORDERS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_AFFECTED_ORDERS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AFFECTED_ORDERS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_AFFECTED_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AFFECTED_ORDERS} column. The value is {@value}.
@@ -248,6 +312,18 @@ public abstract class MappedComponentShortageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
@@ -620,16 +696,16 @@ public abstract class MappedComponentShortageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
-            fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REQUIRED_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REQUIRED_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REQUIRED_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REQUIRED_QUANTITY, scale = COLUMN_SCALE_REQUIRED_QUANTITY)
     private BigDecimal requiredQuantity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVAILABLE_QUANTITY - COLUMN_SCALE_AVAILABLE_QUANTITY,
-            fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVAILABLE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVAILABLE_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVAILABLE_QUANTITY, scale = COLUMN_SCALE_AVAILABLE_QUANTITY)
@@ -637,8 +713,8 @@ public abstract class MappedComponentShortageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
-            fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHORTAGE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SHORTAGE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHORTAGE_QUANTITY, scale = COLUMN_SCALE_SHORTAGE_QUANTITY)
     private BigDecimal shortageQuantity;
@@ -651,12 +727,16 @@ public abstract class MappedComponentShortageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_DAYS_UNTIL_NEEDED)
+    @Min(ATTRIBUTE_MIN_DAYS_UNTIL_NEEDED)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_NEEDED, nullable = true, insertable = false, updatable = false)
     private Integer daysUntilNeeded;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_AFFECTED_ORDERS)
+    @Min(ATTRIBUTE_MIN_AFFECTED_ORDERS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AFFECTED_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer affectedOrders;
@@ -678,6 +758,8 @@ public abstract class MappedComponentShortageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
+    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer leadTimeDays;

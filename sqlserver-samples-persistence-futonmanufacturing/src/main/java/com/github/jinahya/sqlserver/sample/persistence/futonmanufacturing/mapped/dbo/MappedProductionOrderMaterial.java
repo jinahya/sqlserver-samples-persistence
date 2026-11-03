@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -72,6 +76,18 @@ public abstract class MappedProductionOrderMaterial {
     public static final String COLUMN_NAME_PROD_ORDER_MATERIAL_ID = "ProdOrderMaterialID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PROD_ORDER_MATERIAL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PROD_ORDER_MATERIAL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PROD_ORDER_MATERIAL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PROD_ORDER_MATERIAL_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PROD_ORDER_MATERIAL_ID} column. The value is
      * {@value}.
      */
@@ -85,6 +101,18 @@ public abstract class MappedProductionOrderMaterial {
     public static final String COLUMN_NAME_PRODUCTION_ORDER_ID = "ProductionOrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCTION_ORDER_ID} column. The value is
      * {@value}.
      */
@@ -96,6 +124,18 @@ public abstract class MappedProductionOrderMaterial {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
@@ -120,6 +160,18 @@ public abstract class MappedProductionOrderMaterial {
     public static final int COLUMN_SCALE_REQUIRED_QUANTITY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REQUIRED_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REQUIRED_QUANTITY = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REQUIRED_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REQUIRED_QUANTITY = "requiredQuantity";
@@ -140,6 +192,18 @@ public abstract class MappedProductionOrderMaterial {
      * The scale of the {@value #COLUMN_NAME_ISSUED_QUANTITY} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_ISSUED_QUANTITY = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_ISSUED_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_ISSUED_QUANTITY = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_ISSUED_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_ISSUED_QUANTITY = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ISSUED_QUANTITY} column. The value is {@value}.
@@ -303,6 +367,8 @@ public abstract class MappedProductionOrderMaterial {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_PROD_ORDER_MATERIAL_ID)
+    @Min(ATTRIBUTE_MIN_PROD_ORDER_MATERIAL_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PROD_ORDER_MATERIAL_ID, nullable = false, insertable = true, updatable = false)
@@ -310,6 +376,8 @@ public abstract class MappedProductionOrderMaterial {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRODUCTION_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCTION_ORDER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = false, updatable = false)
@@ -317,22 +385,24 @@ public abstract class MappedProductionOrderMaterial {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
-            fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REQUIRED_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REQUIRED_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REQUIRED_QUANTITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_REQUIRED_QUANTITY, scale = COLUMN_SCALE_REQUIRED_QUANTITY)
     private BigDecimal requiredQuantity;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_ISSUED_QUANTITY - COLUMN_SCALE_ISSUED_QUANTITY,
-            fraction = COLUMN_SCALE_ISSUED_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ISSUED_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ISSUED_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ISSUED_QUANTITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_ISSUED_QUANTITY, scale = COLUMN_SCALE_ISSUED_QUANTITY)
     @MsDefault("((0))")

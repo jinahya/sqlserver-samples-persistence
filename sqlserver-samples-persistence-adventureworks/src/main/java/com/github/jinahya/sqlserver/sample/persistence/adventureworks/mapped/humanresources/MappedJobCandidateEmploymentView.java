@@ -20,9 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -59,6 +62,18 @@ public abstract class MappedJobCandidateEmploymentView {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_JOB_CANDIDATE_ID = "JobCandidateID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_JOB_CANDIDATE_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_JOB_CANDIDATE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The
@@ -471,6 +486,8 @@ public abstract class MappedJobCandidateEmploymentView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_JOB_CANDIDATE_ID)
+    @Min(ATTRIBUTE_MIN_JOB_CANDIDATE_ID)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false,
             updatable = false)
@@ -506,6 +523,7 @@ public abstract class MappedJobCandidateEmploymentView {
     private String empJobTitle;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 1506 bytes (753 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_RESPONSIBILITY, nullable = true, insertable = false,
@@ -513,6 +531,7 @@ public abstract class MappedJobCandidateEmploymentView {
     private String empResponsibility;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 20 bytes (10 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_FUNCTION_CATEGORY, nullable = true, insertable = false,
@@ -520,6 +539,7 @@ public abstract class MappedJobCandidateEmploymentView {
     private String empFunctionCategory;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 40 bytes (20 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_INDUSTRY_CATEGORY, nullable = true, insertable = false,
@@ -527,6 +547,7 @@ public abstract class MappedJobCandidateEmploymentView {
     private String empIndustryCategory;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 20 bytes (10 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_LOC_COUNTRY_REGION, nullable = true, insertable = false,
@@ -534,6 +555,7 @@ public abstract class MappedJobCandidateEmploymentView {
     private String empLocCountryRegion;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 38 bytes (19 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_LOC_STATE, nullable = true, insertable = false,
@@ -541,6 +563,7 @@ public abstract class MappedJobCandidateEmploymentView {
     private String empLocState;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 30 bytes (15 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_LOC_CITY, nullable = true, insertable = false, updatable = false)

@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -61,6 +65,18 @@ public abstract class MappedRawMaterialUsageView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -73,6 +89,18 @@ public abstract class MappedRawMaterialUsageView {
     public static final String COLUMN_NAME_MONTH = "Month";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
@@ -83,6 +111,18 @@ public abstract class MappedRawMaterialUsageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUARTER = "Quarter";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUARTER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_QUARTER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUARTER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_QUARTER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUARTER} column. The value is {@value}.
@@ -175,6 +215,18 @@ public abstract class MappedRawMaterialUsageView {
     public static final int COLUMN_SCALE_TOTAL_USAGE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_USAGE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_USAGE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_USAGE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_USAGE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_USAGE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_USAGE = "totalUsage";
@@ -197,6 +249,18 @@ public abstract class MappedRawMaterialUsageView {
     public static final int COLUMN_SCALE_TOTAL_RECEIPTS = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_RECEIPTS} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_RECEIPTS = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_RECEIPTS} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_RECEIPTS = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_RECEIPTS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_RECEIPTS = "totalReceipts";
@@ -207,6 +271,18 @@ public abstract class MappedRawMaterialUsageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_NUMBER_OF_ISSUES = "NumberOfIssues";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_ISSUES} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_NUMBER_OF_ISSUES = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_ISSUES} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_NUMBER_OF_ISSUES = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_OF_ISSUES} column. The value is {@value}.
@@ -231,6 +307,18 @@ public abstract class MappedRawMaterialUsageView {
     public static final int COLUMN_SCALE_AVG_ISSUE_QUANTITY = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_ISSUE_QUANTITY} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_ISSUE_QUANTITY = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_ISSUE_QUANTITY} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_ISSUE_QUANTITY = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_ISSUE_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_ISSUE_QUANTITY = "avgIssueQuantity";
@@ -253,6 +341,18 @@ public abstract class MappedRawMaterialUsageView {
     public static final int COLUMN_SCALE_TOTAL_USAGE_VALUE = 6;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_USAGE_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_USAGE_VALUE = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_USAGE_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_USAGE_VALUE = "99999999999999999999999999999999.999999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_USAGE_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_USAGE_VALUE = "totalUsageValue";
@@ -273,6 +373,18 @@ public abstract class MappedRawMaterialUsageView {
      * The scale of the {@value #COLUMN_NAME_AVG_UNIT_COST} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_AVG_UNIT_COST = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_UNIT_COST} attribute, the minimum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVG_UNIT_COST = "-99999999999999999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_UNIT_COST} attribute, the maximum of the
+     * {@code decimal(38, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVG_UNIT_COST = "99999999999999999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_UNIT_COST} column. The value is {@value}.
@@ -571,18 +683,24 @@ public abstract class MappedRawMaterialUsageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_YEAR)
+    @Min(ATTRIBUTE_MIN_YEAR)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_MONTH)
+    @Min(ATTRIBUTE_MIN_MONTH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_QUARTER)
+    @Min(ATTRIBUTE_MIN_QUARTER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUARTER, nullable = true, insertable = false, updatable = false)
     private Integer quarter;
@@ -621,45 +739,48 @@ public abstract class MappedRawMaterialUsageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_USAGE - COLUMN_SCALE_TOTAL_USAGE, fraction = COLUMN_SCALE_TOTAL_USAGE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_USAGE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_USAGE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_USAGE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_USAGE, scale = COLUMN_SCALE_TOTAL_USAGE)
     private BigDecimal totalUsage;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_RECEIPTS - COLUMN_SCALE_TOTAL_RECEIPTS,
-            fraction = COLUMN_SCALE_TOTAL_RECEIPTS)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_RECEIPTS)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_RECEIPTS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_RECEIPTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_RECEIPTS, scale = COLUMN_SCALE_TOTAL_RECEIPTS)
     private BigDecimal totalReceipts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_NUMBER_OF_ISSUES)
+    @Min(ATTRIBUTE_MIN_NUMBER_OF_ISSUES)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_ISSUES, nullable = true, insertable = false, updatable = false)
     private Integer numberOfIssues;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_ISSUE_QUANTITY - COLUMN_SCALE_AVG_ISSUE_QUANTITY,
-            fraction = COLUMN_SCALE_AVG_ISSUE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_ISSUE_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_ISSUE_QUANTITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_ISSUE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ISSUE_QUANTITY, scale = COLUMN_SCALE_AVG_ISSUE_QUANTITY)
     private BigDecimal avgIssueQuantity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_TOTAL_USAGE_VALUE - COLUMN_SCALE_TOTAL_USAGE_VALUE,
-            fraction = COLUMN_SCALE_TOTAL_USAGE_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_USAGE_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_USAGE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_USAGE_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_USAGE_VALUE, scale = COLUMN_SCALE_TOTAL_USAGE_VALUE)
     private BigDecimal totalUsageValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_AVG_UNIT_COST - COLUMN_SCALE_AVG_UNIT_COST,
-            fraction = COLUMN_SCALE_AVG_UNIT_COST)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVG_UNIT_COST)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVG_UNIT_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_UNIT_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_UNIT_COST, scale = COLUMN_SCALE_AVG_UNIT_COST)
     private BigDecimal avgUnitCost;

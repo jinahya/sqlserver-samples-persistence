@@ -20,10 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -77,6 +81,18 @@ public abstract class MappedSalesPipelineView {
     public static final String COLUMN_NAME_STAGE_ORDER = "StageOrder";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_STAGE_ORDER} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_STAGE_ORDER = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_STAGE_ORDER} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_STAGE_ORDER = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STAGE_ORDER} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STAGE_ORDER = "stageOrder";
@@ -87,6 +103,18 @@ public abstract class MappedSalesPipelineView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COUNT = "Count";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COUNT} column. The value is {@value}.
@@ -111,6 +139,18 @@ public abstract class MappedSalesPipelineView {
     public static final int COLUMN_SCALE_VALUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_VALUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_VALUE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_VALUE = "value";
@@ -121,6 +161,18 @@ public abstract class MappedSalesPipelineView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIOR_STAGE_COUNT = "PriorStageCount";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIOR_STAGE_COUNT} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRIOR_STAGE_COUNT = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIOR_STAGE_COUNT} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRIOR_STAGE_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIOR_STAGE_COUNT} column. The value is {@value}.
@@ -145,6 +197,18 @@ public abstract class MappedSalesPipelineView {
     public static final int COLUMN_SCALE_PRIOR_STAGE_VALUE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIOR_STAGE_VALUE} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_PRIOR_STAGE_VALUE = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIOR_STAGE_VALUE} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_PRIOR_STAGE_VALUE = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIOR_STAGE_VALUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRIOR_STAGE_VALUE = "priorStageValue";
@@ -167,6 +231,18 @@ public abstract class MappedSalesPipelineView {
     public static final int COLUMN_SCALE_CONVERSION_RATE = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CONVERSION_RATE} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_CONVERSION_RATE = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CONVERSION_RATE} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_CONVERSION_RATE = "99999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CONVERSION_RATE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CONVERSION_RATE = "conversionRate";
@@ -187,6 +263,18 @@ public abstract class MappedSalesPipelineView {
      * The scale of the {@value #COLUMN_NAME_VALUE_RETENTION_RATE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_VALUE_RETENTION_RATE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_VALUE_RETENTION_RATE} attribute, the minimum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_VALUE_RETENTION_RATE = "-99999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_VALUE_RETENTION_RATE} attribute, the maximum of the
+     * {@code decimal(10, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_VALUE_RETENTION_RATE = "99999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VALUE_RETENTION_RATE} column. The value is
@@ -389,6 +477,8 @@ public abstract class MappedSalesPipelineView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_STAGE_ORDER)
+    @Min(ATTRIBUTE_MIN_STAGE_ORDER)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STAGE_ORDER, nullable = false, insertable = false, updatable = false)
@@ -396,43 +486,48 @@ public abstract class MappedSalesPipelineView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_COUNT)
+    @Min(ATTRIBUTE_MIN_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer count;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_VALUE - COLUMN_SCALE_VALUE, fraction = COLUMN_SCALE_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_VALUE, scale = COLUMN_SCALE_VALUE)
     private BigDecimal value;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRIOR_STAGE_COUNT)
+    @Min(ATTRIBUTE_MIN_PRIOR_STAGE_COUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_STAGE_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer priorStageCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_PRIOR_STAGE_VALUE - COLUMN_SCALE_PRIOR_STAGE_VALUE,
-            fraction = COLUMN_SCALE_PRIOR_STAGE_VALUE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PRIOR_STAGE_VALUE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_PRIOR_STAGE_VALUE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_STAGE_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRIOR_STAGE_VALUE, scale = COLUMN_SCALE_PRIOR_STAGE_VALUE)
     private BigDecimal priorStageValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_CONVERSION_RATE - COLUMN_SCALE_CONVERSION_RATE,
-            fraction = COLUMN_SCALE_CONVERSION_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_CONVERSION_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_CONVERSION_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONVERSION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_CONVERSION_RATE, scale = COLUMN_SCALE_CONVERSION_RATE)
     private BigDecimal conversionRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_VALUE_RETENTION_RATE - COLUMN_SCALE_VALUE_RETENTION_RATE,
-            fraction = COLUMN_SCALE_VALUE_RETENTION_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_VALUE_RETENTION_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_VALUE_RETENTION_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_RETENTION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_VALUE_RETENTION_RATE, scale = COLUMN_SCALE_VALUE_RETENTION_RATE)
     private BigDecimal valueRetentionRate;

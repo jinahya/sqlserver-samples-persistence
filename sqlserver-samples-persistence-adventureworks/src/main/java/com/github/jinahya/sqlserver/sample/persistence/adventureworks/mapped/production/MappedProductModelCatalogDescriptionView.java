@@ -20,12 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -63,6 +66,18 @@ public abstract class MappedProductModelCatalogDescriptionView {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The
@@ -1073,6 +1088,8 @@ public abstract class MappedProductModelCatalogDescriptionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
+    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false,
@@ -1089,12 +1106,14 @@ public abstract class MappedProductModelCatalogDescriptionView {
     private String name;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 462 bytes (231 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUMMARY, nullable = true, insertable = false, updatable = false)
     private String summary;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 28 bytes (14 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MANUFACTURER, nullable = true, insertable = false, updatable = false)
@@ -1173,6 +1192,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     private String pedal;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 458 bytes (229 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BIKE_FRAME, nullable = true, insertable = false, updatable = false)

@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -28,8 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -99,6 +102,18 @@ public abstract class MappedLocation {
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
+     * {@code smallint} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.SMALLINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
+     * {@code smallint} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.SMALLINT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
      * is {@value}.
      */
@@ -131,11 +146,17 @@ public abstract class MappedLocation {
     public static final String COLUMN_NAME_COST_RATE = "CostRate";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_COST_RATE} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COST_RATE} attribute, as the
      * {@code CK_Location_CostRate} check constraint ({@code [CostRate]>=(0.00)}) requires. The
      * value is {@value}.
      */
-    public static final String COLUMN_MIN_COST_RATE = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_COST_RATE = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COST_RATE} attribute, the maximum of the
+     * {@code smallmoney} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_COST_RATE = SqlServerConstants.SMALLMONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_RATE} column. The value is
@@ -162,11 +183,17 @@ public abstract class MappedLocation {
     public static final int COLUMN_SCALE_AVAILABILITY = 2;
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_AVAILABILITY} column, as the
+     * The minimum value of the {@value #ATTRIBUTE_NAME_AVAILABILITY} attribute, as the
      * {@code CK_Location_Availability} check constraint ({@code [Availability]>=(0.00)}) requires.
      * The value is {@value}.
      */
-    public static final String COLUMN_MIN_AVAILABILITY = "0.00";
+    public static final String ATTRIBUTE_DECIMAL_MIN_AVAILABILITY = "0.00";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_AVAILABILITY} attribute, the maximum of the
+     * {@code decimal(8, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_AVAILABILITY = "999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABILITY} column. The value
@@ -347,6 +374,8 @@ public abstract class MappedLocation {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_LOCATION_ID)
+    @Min(ATTRIBUTE_MIN_LOCATION_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false)
@@ -365,10 +394,11 @@ public abstract class MappedLocation {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Location_CostRate: ([CostRate]>=(0.00))
-    @DecimalMin(COLUMN_MIN_COST_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_COST_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COST_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COST_RATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_COST_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_COST_RATE,
                           value = "Standard hourly cost of the manufacturing location.")
     @MsDefault(name = "DF_Location_CostRate", value = "((0.00))")
@@ -376,9 +406,8 @@ public abstract class MappedLocation {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Location_Availability: ([Availability]>=(0.00))
-    @DecimalMin(COLUMN_MIN_AVAILABILITY)
-    @Digits(integer = COLUMN_PRECISION_AVAILABILITY - COLUMN_SCALE_AVAILABILITY,
-            fraction = COLUMN_SCALE_AVAILABILITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_AVAILABILITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AVAILABILITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVAILABILITY, nullable = false, insertable = true, updatable = true,

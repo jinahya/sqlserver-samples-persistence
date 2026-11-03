@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -29,7 +30,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -84,6 +88,18 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_BOM_ID = "BOMID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BOM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BOM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BOM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BOM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BOM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BOM_ID = "bomId";
@@ -96,6 +112,18 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_PARENT_ITEM_ID = "ParentItemID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_PARENT_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_PARENT_ITEM_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PARENT_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_ID = "parentItemId";
@@ -106,6 +134,18 @@ public abstract class MappedBillOfMaterials {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPONENT_ITEM_ID = "ComponentItemID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_COMPONENT_ITEM_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_COMPONENT_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ITEM_ID} column. The value is {@value}.
@@ -130,6 +170,18 @@ public abstract class MappedBillOfMaterials {
     public static final int COLUMN_SCALE_QUANTITY = 4;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_QUANTITY = "-99999999999999.9999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
+     * {@code decimal(18, 4)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_QUANTITY = "99999999999999.9999";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
@@ -140,6 +192,18 @@ public abstract class MappedBillOfMaterials {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIT_ID = "UnitID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_UNIT_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_UNIT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_ID} column. The value is {@value}.
@@ -162,6 +226,18 @@ public abstract class MappedBillOfMaterials {
      * The scale of the {@value #COLUMN_NAME_SCRAP_RATE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_SCRAP_RATE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute, the minimum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_SCRAP_RATE = "-999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute, the maximum of the
+     * {@code decimal(5, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_SCRAP_RATE = "999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_RATE} column. The value is {@value}.
@@ -198,6 +274,18 @@ public abstract class MappedBillOfMaterials {
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BOM_LEVEL = "BOMLevel";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_BOM_LEVEL = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_BOM_LEVEL = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BOM_LEVEL} column. The value is {@value}.
@@ -601,6 +689,8 @@ public abstract class MappedBillOfMaterials {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_BOM_ID)
+    @Min(ATTRIBUTE_MIN_BOM_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_BOM_ID, nullable = false, insertable = true, updatable = false)
@@ -608,6 +698,8 @@ public abstract class MappedBillOfMaterials {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_PARENT_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_PARENT_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PARENT_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -615,13 +707,16 @@ public abstract class MappedBillOfMaterials {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_COMPONENT_ITEM_ID)
+    @Min(ATTRIBUTE_MIN_COMPONENT_ITEM_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer componentItemId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_QUANTITY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY, scale = COLUMN_SCALE_QUANTITY)
@@ -629,13 +724,16 @@ public abstract class MappedBillOfMaterials {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_UNIT_ID)
+    @Min(ATTRIBUTE_MIN_UNIT_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_ID, nullable = false, insertable = false, updatable = false)
     private Integer unitId;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SCRAP_RATE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SCRAP_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_RATE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SCRAP_RATE, scale = COLUMN_SCALE_SCRAP_RATE)
     @MsDefault("((0))")
@@ -653,6 +751,8 @@ public abstract class MappedBillOfMaterials {
     private LocalDate endDate;
 
     // ---------------------------------------------------------------------------------------------
+    @Max(ATTRIBUTE_MAX_BOM_LEVEL)
+    @Min(ATTRIBUTE_MIN_BOM_LEVEL)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BOM_LEVEL, nullable = false, insertable = true, updatable = true)
@@ -667,6 +767,7 @@ public abstract class MappedBillOfMaterials {
     private Boolean isActive;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;

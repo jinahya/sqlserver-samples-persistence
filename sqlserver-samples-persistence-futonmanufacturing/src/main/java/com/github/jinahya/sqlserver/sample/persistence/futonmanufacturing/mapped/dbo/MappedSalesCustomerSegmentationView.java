@@ -20,11 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -59,6 +63,18 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
@@ -124,6 +140,18 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final String COLUMN_NAME_RECENCY = "Recency";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RECENCY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_RECENCY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RECENCY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_RECENCY = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RECENCY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RECENCY = "recency";
@@ -134,6 +162,18 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_FREQUENCY = "Frequency";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_FREQUENCY} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_FREQUENCY = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_FREQUENCY} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_FREQUENCY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_FREQUENCY} column. The value is {@value}.
@@ -158,6 +198,18 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final int COLUMN_SCALE_MONETARY = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_MONETARY} attribute, the minimum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_MONETARY = "-999999999999999999999999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_MONETARY} attribute, the maximum of the
+     * {@code decimal(38, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_MONETARY = "999999999999999999999999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONETARY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MONETARY = "monetary";
@@ -168,6 +220,18 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_R_SCORE = "R_Score";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_R_SCORE} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_R_SCORE = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_R_SCORE} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_R_SCORE = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_R_SCORE} column. The value is {@value}.
@@ -182,6 +246,18 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final String COLUMN_NAME_F_SCORE = "F_Score";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_F_SCORE} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_F_SCORE = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_F_SCORE} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_F_SCORE = SqlServerConstants.BIGINT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_F_SCORE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_F_SCORE = "fScore";
@@ -192,6 +268,18 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_M_SCORE = "M_Score";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_M_SCORE} attribute, the minimum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MIN_M_SCORE = SqlServerConstants.BIGINT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_M_SCORE} attribute, the maximum of the
+     * {@code bigint} type. The value is {@value}.
+     */
+    public static final long ATTRIBUTE_MAX_M_SCORE = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_M_SCORE} column. The value is {@value}.
@@ -214,6 +302,18 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The scale of the {@value #COLUMN_NAME_RFM_SCORE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_RFM_SCORE = 6;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RFM_SCORE} attribute, the minimum of the
+     * {@code numeric(26, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_RFM_SCORE = "-99999999999999999999.999999";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RFM_SCORE} attribute, the maximum of the
+     * {@code numeric(26, 6)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_RFM_SCORE = "99999999999999999999.999999";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RFM_SCORE} column. The value is {@value}.
@@ -575,6 +675,8 @@ public abstract class MappedSalesCustomerSegmentationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -605,44 +707,56 @@ public abstract class MappedSalesCustomerSegmentationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_RECENCY)
+    @Min(ATTRIBUTE_MIN_RECENCY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RECENCY, nullable = true, insertable = false, updatable = false)
     private Integer recency;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_FREQUENCY)
+    @Min(ATTRIBUTE_MIN_FREQUENCY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FREQUENCY, nullable = true, insertable = false, updatable = false)
     private Integer frequency;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_MONETARY - COLUMN_SCALE_MONETARY, fraction = COLUMN_SCALE_MONETARY)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_MONETARY)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_MONETARY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONETARY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MONETARY, scale = COLUMN_SCALE_MONETARY)
     private BigDecimal monetary;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_R_SCORE)
+    @Min(ATTRIBUTE_MIN_R_SCORE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_R_SCORE, nullable = true, insertable = false, updatable = false)
     private Long rScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_F_SCORE)
+    @Min(ATTRIBUTE_MIN_F_SCORE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_F_SCORE, nullable = true, insertable = false, updatable = false)
     private Long fScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
+    @Max(ATTRIBUTE_MAX_M_SCORE)
+    @Min(ATTRIBUTE_MIN_M_SCORE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_M_SCORE, nullable = true, insertable = false, updatable = false)
     private Long mScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_RFM_SCORE - COLUMN_SCALE_RFM_SCORE, fraction = COLUMN_SCALE_RFM_SCORE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_RFM_SCORE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_RFM_SCORE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RFM_SCORE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_RFM_SCORE, scale = COLUMN_SCALE_RFM_SCORE)
     private BigDecimal rfmScore;

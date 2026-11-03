@@ -73,3 +73,32 @@ WHERE t.is_user_defined = 1
     WHERE c.user_type_id = t.user_type_id)
 ;
 
+
+
+-- --------------------------------------------------------------------------------------------------- varbinary columns
+-- A varbinary(max) holds up to 2^31-1 bytes, which a mapped byte[] reads whole; the size of the largest value says
+-- whether that matters. A column's sizes take a query of its own table, so the statement is built from sys.columns.
+
+-- each varbinary column of the tables, its declared length, its rows, its values, and its largest value in bytes; 3,
+-- all max, in Production:
+--   Document.Document 12 rows, 8 values, 46592 bytes; ProductPhoto.ThumbNailPhoto 101 rows, 101 values, 17623 bytes;
+--   ProductPhoto.LargePhoto 101 rows, 101 values, 25925 bytes.
+DECLARE @varbinary_sql nvarchar(max);
+SELECT @varbinary_sql = STRING_AGG(
+               CAST(N'SELECT N' + QUOTENAME(s.name, '''') + N' AS [schema], N' + QUOTENAME(t.name, '''')
+                    + N' AS [table], N' + QUOTENAME(c.name, '''') + N' AS [column], '
+                    + N'''' + IIF(c.max_length = -1, N'max', CAST(c.max_length AS nvarchar(4))) + N''''
+                    + N' AS declared, COUNT(*) AS [rows], COUNT(' + QUOTENAME(c.name) + N') AS non_null, '
+                    + N'MAX(DATALENGTH(' + QUOTENAME(c.name) + N')) AS max_bytes FROM '
+                    + QUOTENAME(s.name) + N'.' + QUOTENAME(t.name) AS nvarchar(max)),
+               N' UNION ALL ')
+           WITHIN GROUP (ORDER BY s.name, t.name, c.column_id)
+FROM sys.columns c
+    JOIN sys.tables t
+ON t.object_id = c.object_id
+    JOIN sys.schemas s ON s.schema_id = t.schema_id
+WHERE c.system_type_id = TYPE_ID('varbinary')
+  AND t.is_ms_shipped = 0
+;
+EXEC sp_executesql @varbinary_sql
+;

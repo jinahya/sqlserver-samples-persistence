@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
 import jakarta.persistence.Basic;
@@ -28,7 +29,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -83,6 +87,18 @@ public abstract class MappedSalesReturn {
     public static final String COLUMN_NAME_RETURN_ID = "ReturnID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RETURN_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_RETURN_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RETURN_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_RETURN_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RETURN_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RETURN_ID = "returnId";
@@ -112,6 +128,18 @@ public abstract class MappedSalesReturn {
     public static final String COLUMN_NAME_SALES_ORDER_ID = "SalesOrderID";
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_SALES_ORDER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_SALES_ORDER_ID = SqlServerConstants.INT_MAX;
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
@@ -122,6 +150,18 @@ public abstract class MappedSalesReturn {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
@@ -146,6 +186,18 @@ public abstract class MappedSalesReturn {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_RETURN_REASON_ID = "ReturnReasonID";
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RETURN_REASON_ID} attribute, the minimum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MIN_RETURN_REASON_ID = SqlServerConstants.INT_MIN;
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RETURN_REASON_ID} attribute, the maximum of the
+     * {@code int} type. The value is {@value}.
+     */
+    public static final int ATTRIBUTE_MAX_RETURN_REASON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RETURN_REASON_ID} column. The value is {@value}.
@@ -187,6 +239,18 @@ public abstract class MappedSalesReturn {
     public static final int COLUMN_SCALE_REFUND_AMOUNT = 2;
 
     /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_REFUND_AMOUNT} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_REFUND_AMOUNT = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_REFUND_AMOUNT} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_REFUND_AMOUNT = "9999999999999999.99";
+
+    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REFUND_AMOUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REFUND_AMOUNT = "refundAmount";
@@ -207,6 +271,18 @@ public abstract class MappedSalesReturn {
      * The scale of the {@value #COLUMN_NAME_RESTOCKING_FEE} column. The value is {@value}.
      */
     public static final int COLUMN_SCALE_RESTOCKING_FEE = 2;
+
+    /**
+     * The minimum value of the {@value #ATTRIBUTE_NAME_RESTOCKING_FEE} attribute, the minimum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MIN_RESTOCKING_FEE = "-9999999999999999.99";
+
+    /**
+     * The maximum value of the {@value #ATTRIBUTE_NAME_RESTOCKING_FEE} attribute, the maximum of the
+     * {@code decimal(18, 2)} type. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_DECIMAL_MAX_RESTOCKING_FEE = "9999999999999999.99";
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RESTOCKING_FEE} column. The value is {@value}.
@@ -593,6 +669,8 @@ public abstract class MappedSalesReturn {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
+    @Max(ATTRIBUTE_MAX_RETURN_ID)
+    @Min(ATTRIBUTE_MIN_RETURN_ID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_RETURN_ID, nullable = false, insertable = true, updatable = false)
@@ -607,6 +685,8 @@ public abstract class MappedSalesReturn {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_SALES_ORDER_ID)
+    @Min(ATTRIBUTE_MIN_SALES_ORDER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = false, updatable = false)
@@ -614,6 +694,8 @@ public abstract class MappedSalesReturn {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
+    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -628,6 +710,8 @@ public abstract class MappedSalesReturn {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    @Max(ATTRIBUTE_MAX_RETURN_REASON_ID)
+    @Min(ATTRIBUTE_MIN_RETURN_REASON_ID)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RETURN_REASON_ID, nullable = false, insertable = false, updatable = false)
@@ -642,22 +726,23 @@ public abstract class MappedSalesReturn {
     private String status;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_REFUND_AMOUNT - COLUMN_SCALE_REFUND_AMOUNT,
-            fraction = COLUMN_SCALE_REFUND_AMOUNT)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_REFUND_AMOUNT)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_REFUND_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REFUND_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_REFUND_AMOUNT, scale = COLUMN_SCALE_REFUND_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal refundAmount;
 
     // ---------------------------------------------------------------------------------------------
-    @Digits(integer = COLUMN_PRECISION_RESTOCKING_FEE - COLUMN_SCALE_RESTOCKING_FEE,
-            fraction = COLUMN_SCALE_RESTOCKING_FEE)
+    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_RESTOCKING_FEE)
+    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_RESTOCKING_FEE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RESTOCKING_FEE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_RESTOCKING_FEE, scale = COLUMN_SCALE_RESTOCKING_FEE)
     @MsDefault("((0))")
     private BigDecimal restockingFee;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;
