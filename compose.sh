@@ -1,12 +1,13 @@
 #!/bin/sh
 #
-# Cleans up any previous run, brings the database up, and follows its log until you press
-# Ctrl-C, which tears the stack back down again. Both ends use `down -v`.
+# Cleans up any previous run, brings the three databases up, and follows their logs until you
+# press Ctrl-C, which tears the stack back down again. Both ends use `down -v`.
 #
-# The data directory is not mounted, so it lives in the container's anonymous volume, which
-# `down -v` removes. Every run therefore starts from an empty data directory, and the image's
-# loader restores AdventureWorks and WideWorldImporters and builds FutonManufacturing before
-# the container reports healthy, which takes under a minute.
+# Each database runs in its own container: adventureworks on localhost:1433, wideworldimporters
+# on 1434, futonmanufacturing on 1435. The data directories are not mounted, so they live in the
+# containers' anonymous volumes, which `down -v` removes. Every run therefore starts from empty
+# data directories, and each image's loader restores its backup, or runs its scripts, before its
+# container reports healthy, which takes under a minute.
 #
 set -eu
 

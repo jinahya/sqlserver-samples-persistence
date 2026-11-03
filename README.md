@@ -29,15 +29,24 @@ name, `@Entity(name = "<Schema><Entity>")`: `SalesCustomer`, `WebsiteCustomer`, 
 $ ./compose.sh
 ```
 
-Brings up [`onacit/mssql-sample-databases:2025-latest`](https://hub.docker.com/r/onacit/mssql-sample-databases) on
-`localhost:1433`, as `sa` / `Passw0rd!`, and follows its log; Ctrl-C takes it down again. That is the official
-`mcr.microsoft.com/mssql/server:2025-latest` image with the three databases loaded on first start (see
-[mssql-sample-databases-docker](https://github.com/jinahya/mssql-sample-databases-docker)). Every run starts from an
-empty data directory, so loading happens every time, under a minute; the container is `healthy` once the three are
-there. The image is `linux/amd64` only; on Apple silicon, turn on Rosetta in Docker Desktop.
+Brings up one container per database, from
+[`jinahya/sql-server-samples`](https://hub.docker.com/r/jinahya/sql-server-samples) (see
+[sql-server-samples-docker](https://github.com/jinahya/sql-server-samples-docker)), as `sa` / `Passw0rd!`, and follows
+their logs; Ctrl-C takes them down again.
+
+| Container | Image | Port | JDBC URL |
+|---|---|---|---|
+| `adventureworks` | `jinahya/sql-server-samples:adventureworks-2025` | 1433 | `jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=AdventureWorks` |
+| `wideworldimporters` | `jinahya/sql-server-samples:wideworldimporters-2025` | 1434 | `jdbc:sqlserver://localhost:1434;encrypt=true;trustServerCertificate=true;databaseName=WideWorldImporters` |
+| `futonmanufacturing` | `jinahya/sql-server-samples:futon-manufacturing-2025` | 1435 | `jdbc:sqlserver://localhost:1435;encrypt=true;trustServerCertificate=true;databaseName=FutonManufacturing` |
+
+Each is the official `mcr.microsoft.com/mssql/server:2025-latest` image with its database loaded on first start. Every
+run starts from an empty data directory, so loading happens every time, under a minute; a container is `healthy` once
+its database is there. The three SQL Servers want about 6 GB of Docker's memory together. The images are `linux/amd64`
+only; on Apple silicon, turn on Rosetta in Docker Desktop.
 
 ```shell
-$ ./_docker_exec_sqlcmd.sh -d AdventureWorks
+$ ./_docker_exec_sqlcmd.sh adventureworks
 ```
 
 ## The mappings

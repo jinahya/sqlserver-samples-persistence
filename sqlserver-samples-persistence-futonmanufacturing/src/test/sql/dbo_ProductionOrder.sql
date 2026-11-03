@@ -25,7 +25,7 @@
 -- are kept for the rows an application would add.
 --
 -- Run the file as a whole:
---   docker exec -i mssql-sample-databases /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
+--   docker exec -i futonmanufacturing /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
 --     -d FutonManufacturing -W -s ' | ' < src/test/sql/dbo_ProductionOrder.sql
 --
 

@@ -22,7 +22,7 @@
 -- be; 'no rows' marks a check that passes when nothing comes back.
 --
 -- Run the file as a whole:
---   docker exec -i mssql-sample-databases /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
+--   docker exec -i adventureworks /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
 --     -d AdventureWorks -W -s ' | ' < src/test/sql/Person_ContactType.sql
 --
 

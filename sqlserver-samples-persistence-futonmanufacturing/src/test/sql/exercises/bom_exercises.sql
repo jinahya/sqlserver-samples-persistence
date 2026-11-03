@@ -22,7 +22,7 @@
 -- poses a question, and answers it in Transact-SQL against the installed FutonManufacturing database.
 --
 -- Run the file as a whole:
---   docker exec -i mssql-sample-databases /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
+--   docker exec -i futonmanufacturing /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
 --     -d FutonManufacturing -W -s ' | ' < src/test/sql/exercises/bom_exercises.sql
 --
 

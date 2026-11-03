@@ -26,7 +26,7 @@
 -- taken from GETDATE(), so even with orders the rows would depend on the clock, not only on the data.
 --
 -- Run the file as a whole:
---   docker exec -i mssql-sample-databases /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
+--   docker exec -i futonmanufacturing /opt/mssql-tools18/bin/sqlcmd -C -I -S localhost -U sa -P 'Passw0rd!' \
 --     -d FutonManufacturing -W -s ' | ' < src/test/sql/dbo_vw_DailyProductionSchedule.sql
 --
 

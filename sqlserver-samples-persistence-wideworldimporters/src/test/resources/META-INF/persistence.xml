@@ -71,7 +71,7 @@
       <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <!-- the database from compose.yaml; see compose.sh -->
       <property name="jakarta.persistence.jdbc.url"
-                value="jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=WideWorldImporters"/>
+                value="jdbc:sqlserver://localhost:1434;encrypt=true;trustServerCertificate=true;databaseName=WideWorldImporters"/>
       <property name="jakarta.persistence.jdbc.user" value="sa"/>
       <property name="jakarta.persistence.jdbc.password" value="Passw0rd!"/>
       <!-- /////////////////////////////////////////////////////////////////////////////////////////////// hibernate -->
