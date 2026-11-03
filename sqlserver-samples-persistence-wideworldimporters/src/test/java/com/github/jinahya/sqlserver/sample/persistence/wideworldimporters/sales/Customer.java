@@ -34,12 +34,23 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.Customers} table.
  */
 @Entity(name = "SalesCustomer")
-@Table(schema = MappedCustomer.TABLE_SCHEMA, name = MappedCustomer.TABLE_NAME)
+@Table(schema = MappedCustomer.TABLE_SCHEMA,
+       name = MappedCustomer.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_Sales_Customers_CustomerName",
+                       columnNames = {
+                               Customer.COLUMN_NAME_CUSTOMER_NAME
+                       }
+               )
+       }
+)
 public class Customer extends MappedCustomer {
 
     /**
@@ -96,7 +107,7 @@ public class Customer extends MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -105,7 +116,7 @@ public class Customer extends MappedCustomer {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- billToCustomer
+    // ------------------------------------------------------------------------------ billToCustomer
 
     /**
      * Returns the {@code Customer} which the {@code FK_Sales_Customers_BillToCustomerID_Sales_Customers} foreign key
@@ -128,7 +139,7 @@ public class Customer extends MappedCustomer {
         setBillToCustomerId(billToCustomer == null ? null : billToCustomer.getCustomerId());
     }
 
-    // ------------------------------------------------------------------------------------------------ customerCategory
+    // ---------------------------------------------------------------------------- customerCategory
 
     /**
      * Returns the {@code CustomerCategory} which the
@@ -152,7 +163,7 @@ public class Customer extends MappedCustomer {
         setCustomerCategoryId(customerCategory == null ? null : customerCategory.getCustomerCategoryId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- buyingGroup
+    // --------------------------------------------------------------------------------- buyingGroup
 
     /**
      * Returns the {@code BuyingGroup} which the {@code FK_Sales_Customers_BuyingGroupID_Sales_BuyingGroups} foreign key
@@ -175,7 +186,7 @@ public class Customer extends MappedCustomer {
         setBuyingGroupId(buyingGroup == null ? null : buyingGroup.getBuyingGroupId());
     }
 
-    // -------------------------------------------------------------------------------------------- primaryContactPerson
+    // ------------------------------------------------------------------------ primaryContactPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Customers_PrimaryContactPersonID_Application_People} foreign
@@ -198,7 +209,7 @@ public class Customer extends MappedCustomer {
         setPrimaryContactPersonId(primaryContactPerson == null ? null : primaryContactPerson.getPersonId());
     }
 
-    // ------------------------------------------------------------------------------------------ alternateContactPerson
+    // ---------------------------------------------------------------------- alternateContactPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Customers_AlternateContactPersonID_Application_People}
@@ -221,7 +232,7 @@ public class Customer extends MappedCustomer {
         setAlternateContactPersonId(alternateContactPerson == null ? null : alternateContactPerson.getPersonId());
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryMethod
+    // ------------------------------------------------------------------------------ deliveryMethod
 
     /**
      * Returns the {@code DeliveryMethod} which the
@@ -245,7 +256,7 @@ public class Customer extends MappedCustomer {
         setDeliveryMethodId(deliveryMethod == null ? null : deliveryMethod.getDeliveryMethodId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- deliveryCity
+    // -------------------------------------------------------------------------------- deliveryCity
 
     /**
      * Returns the {@code City} which the {@code FK_Sales_Customers_DeliveryCityID_Application_Cities} foreign key
@@ -268,7 +279,7 @@ public class Customer extends MappedCustomer {
         setDeliveryCityId(deliveryCity == null ? null : deliveryCity.getCityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ postalCity
+    // ---------------------------------------------------------------------------------- postalCity
 
     /**
      * Returns the {@code City} which the {@code FK_Sales_Customers_PostalCityID_Application_Cities} foreign key
@@ -291,7 +302,7 @@ public class Customer extends MappedCustomer {
         setPostalCityId(postalCity == null ? null : postalCity.getCityId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Customers_Application_People} foreign key references.
@@ -313,7 +324,7 @@ public class Customer extends MappedCustomer {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -323,7 +334,7 @@ public class Customer extends MappedCustomer {
     )
     private Customer billToCustomer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
                 referencedColumnName = MappedCustomerCategory.COLUMN_NAME_CUSTOMER_CATEGORY_ID,
@@ -333,7 +344,7 @@ public class Customer extends MappedCustomer {
     )
     private CustomerCategory customerCategory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUYING_GROUP_ID,
                 referencedColumnName = MappedBuyingGroup.COLUMN_NAME_BUYING_GROUP_ID,
@@ -343,7 +354,7 @@ public class Customer extends MappedCustomer {
     )
     private BuyingGroup buyingGroup;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -353,7 +364,7 @@ public class Customer extends MappedCustomer {
     )
     private Person primaryContactPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -363,7 +374,7 @@ public class Customer extends MappedCustomer {
     )
     private Person alternateContactPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_DELIVERY_METHOD_ID,
                 referencedColumnName = MappedDeliveryMethod.COLUMN_NAME_DELIVERY_METHOD_ID,
@@ -373,7 +384,7 @@ public class Customer extends MappedCustomer {
     )
     private DeliveryMethod deliveryMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_DELIVERY_CITY_ID,
                 referencedColumnName = MappedCity.COLUMN_NAME_CITY_ID,
@@ -383,7 +394,7 @@ public class Customer extends MappedCustomer {
     )
     private City deliveryCity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_POSTAL_CITY_ID,
                 referencedColumnName = MappedCity.COLUMN_NAME_CITY_ID,
@@ -393,7 +404,7 @@ public class Customer extends MappedCustomer {
     )
     private City postalCity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

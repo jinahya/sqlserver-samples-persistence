@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedSalesReason.TABLE_SCHEMA, name = MappedSalesReason.TABLE_NAME)
 public class SalesReason extends MappedSalesReason {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

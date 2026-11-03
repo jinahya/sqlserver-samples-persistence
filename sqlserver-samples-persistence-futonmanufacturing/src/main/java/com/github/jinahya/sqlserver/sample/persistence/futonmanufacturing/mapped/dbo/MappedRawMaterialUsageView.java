@@ -53,7 +53,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String TABLE_NAME = "vw_RawMaterialUsage";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -77,7 +77,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // --------------------------------------------------------------------------------------------------------- Quarter
+    // ------------------------------------------------------------------------------------- Quarter
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -89,7 +89,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_QUARTER = "quarter";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -157,7 +157,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // ------------------------------------------------------------------------------------------------------ TotalUsage
+    // ---------------------------------------------------------------------------------- TotalUsage
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -179,7 +179,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_USAGE = "totalUsage";
 
-    // --------------------------------------------------------------------------------------------------- TotalReceipts
+    // ------------------------------------------------------------------------------- TotalReceipts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -201,7 +201,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_RECEIPTS = "totalReceipts";
 
-    // -------------------------------------------------------------------------------------------------- NumberOfIssues
+    // ------------------------------------------------------------------------------ NumberOfIssues
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -213,7 +213,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_OF_ISSUES = "numberOfIssues";
 
-    // ------------------------------------------------------------------------------------------------ AvgIssueQuantity
+    // ---------------------------------------------------------------------------- AvgIssueQuantity
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ISSUE_QUANTITY = "avgIssueQuantity";
 
-    // ------------------------------------------------------------------------------------------------- TotalUsageValue
+    // ----------------------------------------------------------------------------- TotalUsageValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -257,7 +257,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_USAGE_VALUE = "totalUsageValue";
 
-    // ----------------------------------------------------------------------------------------------------- AvgUnitCost
+    // --------------------------------------------------------------------------------- AvgUnitCost
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -279,7 +279,7 @@ public abstract class MappedRawMaterialUsageView {
      */
     public static final String ATTRIBUTE_NAME_AVG_UNIT_COST = "avgUnitCost";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -288,7 +288,7 @@ public abstract class MappedRawMaterialUsageView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -309,7 +309,7 @@ public abstract class MappedRawMaterialUsageView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -329,7 +329,7 @@ public abstract class MappedRawMaterialUsageView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -349,7 +349,7 @@ public abstract class MappedRawMaterialUsageView {
         this.month = month;
     }
 
-    // --------------------------------------------------------------------------------------------------------- quarter
+    // ------------------------------------------------------------------------------------- quarter
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUARTER} attribute.
@@ -369,7 +369,7 @@ public abstract class MappedRawMaterialUsageView {
         this.quarter = quarter;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -389,7 +389,7 @@ public abstract class MappedRawMaterialUsageView {
         this.itemType = itemType;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -409,7 +409,7 @@ public abstract class MappedRawMaterialUsageView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -429,7 +429,7 @@ public abstract class MappedRawMaterialUsageView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -449,7 +449,7 @@ public abstract class MappedRawMaterialUsageView {
         this.unitCode = unitCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------ totalUsage
+    // ---------------------------------------------------------------------------------- totalUsage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_USAGE} attribute.
@@ -469,7 +469,7 @@ public abstract class MappedRawMaterialUsageView {
         this.totalUsage = totalUsage;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalReceipts
+    // ------------------------------------------------------------------------------- totalReceipts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_RECEIPTS} attribute.
@@ -489,7 +489,7 @@ public abstract class MappedRawMaterialUsageView {
         this.totalReceipts = totalReceipts;
     }
 
-    // -------------------------------------------------------------------------------------------------- numberOfIssues
+    // ------------------------------------------------------------------------------ numberOfIssues
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_OF_ISSUES} attribute.
@@ -509,7 +509,7 @@ public abstract class MappedRawMaterialUsageView {
         this.numberOfIssues = numberOfIssues;
     }
 
-    // ------------------------------------------------------------------------------------------------ avgIssueQuantity
+    // ---------------------------------------------------------------------------- avgIssueQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ISSUE_QUANTITY} attribute.
@@ -529,7 +529,7 @@ public abstract class MappedRawMaterialUsageView {
         this.avgIssueQuantity = avgIssueQuantity;
     }
 
-    // ------------------------------------------------------------------------------------------------- totalUsageValue
+    // ----------------------------------------------------------------------------- totalUsageValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_USAGE_VALUE} attribute.
@@ -549,7 +549,7 @@ public abstract class MappedRawMaterialUsageView {
         this.totalUsageValue = totalUsageValue;
     }
 
-    // ----------------------------------------------------------------------------------------------------- avgUnitCost
+    // --------------------------------------------------------------------------------- avgUnitCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_UNIT_COST} attribute.
@@ -569,7 +569,7 @@ public abstract class MappedRawMaterialUsageView {
         this.avgUnitCost = avgUnitCost;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -579,7 +579,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -589,7 +589,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUARTER,
@@ -599,7 +599,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private Integer quarter;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -612,7 +612,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -625,7 +625,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -638,7 +638,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
@@ -651,7 +651,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private String unitCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_USAGE - COLUMN_SCALE_TOTAL_USAGE, fraction = COLUMN_SCALE_TOTAL_USAGE)
     @Basic(optional = true)
@@ -664,7 +664,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private BigDecimal totalUsage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_RECEIPTS - COLUMN_SCALE_TOTAL_RECEIPTS,
             fraction = COLUMN_SCALE_TOTAL_RECEIPTS)
@@ -678,7 +678,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private BigDecimal totalReceipts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_ISSUES,
@@ -688,7 +688,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private Integer numberOfIssues;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ISSUE_QUANTITY - COLUMN_SCALE_AVG_ISSUE_QUANTITY,
             fraction = COLUMN_SCALE_AVG_ISSUE_QUANTITY)
@@ -702,7 +702,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private BigDecimal avgIssueQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_USAGE_VALUE - COLUMN_SCALE_TOTAL_USAGE_VALUE,
             fraction = COLUMN_SCALE_TOTAL_USAGE_VALUE)
@@ -716,7 +716,7 @@ public abstract class MappedRawMaterialUsageView {
     )
     private BigDecimal totalUsageValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_UNIT_COST - COLUMN_SCALE_AVG_UNIT_COST,
             fraction = COLUMN_SCALE_AVG_UNIT_COST)

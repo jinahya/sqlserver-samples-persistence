@@ -55,7 +55,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String TABLE_NAME = "vProductModelInstructions";
 
-    // -------------------------------------------------------------------------------------------------- ProductModelID
+    // ------------------------------------------------------------------------------ ProductModelID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -67,7 +67,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +84,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ---------------------------------------------------------------------------------------------------- Instructions
+    // -------------------------------------------------------------------------------- Instructions
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -96,7 +96,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_INSTRUCTIONS = "instructions";
 
-    // ------------------------------------------------------------------------------------------------------ LocationID
+    // ---------------------------------------------------------------------------------- LocationID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -108,7 +108,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
-    // ------------------------------------------------------------------------------------------------------ SetupHours
+    // ---------------------------------------------------------------------------------- SetupHours
 
     /**
      * The name of the {@code decimal(9, 4)} column. The value is {@value}.
@@ -130,7 +130,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_SETUP_HOURS = "setupHours";
 
-    // ---------------------------------------------------------------------------------------------------- MachineHours
+    // -------------------------------------------------------------------------------- MachineHours
 
     /**
      * The name of the {@code decimal(9, 4)} column. The value is {@value}.
@@ -152,7 +152,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_MACHINE_HOURS = "machineHours";
 
-    // ------------------------------------------------------------------------------------------------------ LaborHours
+    // ---------------------------------------------------------------------------------- LaborHours
 
     /**
      * The name of the {@code decimal(9, 4)} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_LABOR_HOURS = "laborHours";
 
-    // --------------------------------------------------------------------------------------------------------- LotSize
+    // ------------------------------------------------------------------------------------- LotSize
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -186,7 +186,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_LOT_SIZE = "lotSize";
 
-    // ------------------------------------------------------------------------------------------------------------ Step
+    // ---------------------------------------------------------------------------------------- Step
 
     /**
      * The name of the {@code nvarchar(1024)} column. The value is {@value}.
@@ -203,7 +203,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_STEP = "step";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, NOT NULL} column. The value is {@value}.
@@ -215,7 +215,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -227,7 +227,7 @@ public abstract class MappedProductModelInstructionsView {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -236,7 +236,7 @@ public abstract class MappedProductModelInstructionsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -255,7 +255,7 @@ public abstract class MappedProductModelInstructionsView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------- productModelId
+    // ------------------------------------------------------------------------------ productModelId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
@@ -275,7 +275,7 @@ public abstract class MappedProductModelInstructionsView {
         this.productModelId = productModelId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -295,7 +295,7 @@ public abstract class MappedProductModelInstructionsView {
         this.name = name;
     }
 
-    // ---------------------------------------------------------------------------------------------------- instructions
+    // -------------------------------------------------------------------------------- instructions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
@@ -315,7 +315,7 @@ public abstract class MappedProductModelInstructionsView {
         this.instructions = instructions;
     }
 
-    // ------------------------------------------------------------------------------------------------------ locationId
+    // ---------------------------------------------------------------------------------- locationId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
@@ -335,7 +335,7 @@ public abstract class MappedProductModelInstructionsView {
         this.locationId = locationId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ setupHours
+    // ---------------------------------------------------------------------------------- setupHours
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SETUP_HOURS} attribute.
@@ -355,7 +355,7 @@ public abstract class MappedProductModelInstructionsView {
         this.setupHours = setupHours;
     }
 
-    // ---------------------------------------------------------------------------------------------------- machineHours
+    // -------------------------------------------------------------------------------- machineHours
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MACHINE_HOURS} attribute.
@@ -375,7 +375,7 @@ public abstract class MappedProductModelInstructionsView {
         this.machineHours = machineHours;
     }
 
-    // ------------------------------------------------------------------------------------------------------ laborHours
+    // ---------------------------------------------------------------------------------- laborHours
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LABOR_HOURS} attribute.
@@ -395,7 +395,7 @@ public abstract class MappedProductModelInstructionsView {
         this.laborHours = laborHours;
     }
 
-    // --------------------------------------------------------------------------------------------------------- lotSize
+    // ------------------------------------------------------------------------------------- lotSize
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute.
@@ -415,7 +415,7 @@ public abstract class MappedProductModelInstructionsView {
         this.lotSize = lotSize;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ step
+    // ---------------------------------------------------------------------------------------- step
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STEP} attribute.
@@ -435,7 +435,7 @@ public abstract class MappedProductModelInstructionsView {
         this.step = step;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -455,7 +455,7 @@ public abstract class MappedProductModelInstructionsView {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -475,7 +475,7 @@ public abstract class MappedProductModelInstructionsView {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
@@ -485,7 +485,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private Integer productModelId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
@@ -498,7 +498,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSTRUCTIONS,
@@ -508,7 +508,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private String instructions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION_ID,
@@ -518,7 +518,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private Integer locationId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SETUP_HOURS - COLUMN_SCALE_SETUP_HOURS, fraction = COLUMN_SCALE_SETUP_HOURS)
     @Basic(optional = true)
@@ -531,7 +531,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private BigDecimal setupHours;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MACHINE_HOURS - COLUMN_SCALE_MACHINE_HOURS,
             fraction = COLUMN_SCALE_MACHINE_HOURS)
@@ -545,7 +545,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private BigDecimal machineHours;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LABOR_HOURS - COLUMN_SCALE_LABOR_HOURS, fraction = COLUMN_SCALE_LABOR_HOURS)
     @Basic(optional = true)
@@ -558,7 +558,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private BigDecimal laborHours;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOT_SIZE,
@@ -568,7 +568,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private Integer lotSize;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STEP)
     @Basic(optional = true)
@@ -580,7 +580,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private String step;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -591,7 +591,7 @@ public abstract class MappedProductModelInstructionsView {
     )
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)

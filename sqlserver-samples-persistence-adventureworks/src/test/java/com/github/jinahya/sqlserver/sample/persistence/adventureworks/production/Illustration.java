@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedIllustration.TABLE_SCHEMA, name = MappedIllustration.TABLE_NAME)
 public class Illustration extends MappedIllustration {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +44,43 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.BuyingGroups}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BuyingGroupID}</th>
+ *     <td>Numeric ID used for reference to a buying group within the database</td></tr>
+ * <tr><th scope="row">{@code BuyingGroupName}</th>
+ *     <td>Full name of a buying group that customers can be members of</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.BuyingGroups}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BuyingGroupID}</th><td>{@code (NEXT VALUE FOR [Sequences].[BuyingGroupID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedBuyingGroup.TABLE_SCHEMA,
+        table = MappedBuyingGroup.TABLE_NAME,
+        value = "Customer organizations can be part of groups that exert greater buying power"
+)
+@MsTemporal(
+        historyTable = "Sales.BuyingGroups_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedBuyingGroup {
 
     /**
@@ -55,7 +93,7 @@ public abstract class MappedBuyingGroup {
      */
     public static final String TABLE_NAME = "BuyingGroups";
 
-    // --------------------------------------------------------------------------------------------------- BuyingGroupID
+    // ------------------------------------------------------------------------------- BuyingGroupID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.BuyingGroupID, NOT NULL} column. The value is {@value}.
@@ -67,7 +105,7 @@ public abstract class MappedBuyingGroup {
      */
     public static final String ATTRIBUTE_NAME_BUYING_GROUP_ID = "buyingGroupId";
 
-    // ------------------------------------------------------------------------------------------------- BuyingGroupName
+    // ----------------------------------------------------------------------------- BuyingGroupName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +122,7 @@ public abstract class MappedBuyingGroup {
      */
     public static final String ATTRIBUTE_NAME_BUYING_GROUP_NAME = "buyingGroupName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -96,7 +134,7 @@ public abstract class MappedBuyingGroup {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -108,7 +146,7 @@ public abstract class MappedBuyingGroup {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -120,7 +158,7 @@ public abstract class MappedBuyingGroup {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -129,7 +167,7 @@ public abstract class MappedBuyingGroup {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -171,7 +209,7 @@ public abstract class MappedBuyingGroup {
         return Objects.hash(buyingGroupId);
     }
 
-    // --------------------------------------------------------------------------------------------------- buyingGroupId
+    // ------------------------------------------------------------------------------- buyingGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute.
@@ -191,7 +229,7 @@ public abstract class MappedBuyingGroup {
         this.buyingGroupId = buyingGroupId;
     }
 
-    // ------------------------------------------------------------------------------------------------- buyingGroupName
+    // ----------------------------------------------------------------------------- buyingGroupName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_NAME} attribute.
@@ -211,7 +249,7 @@ public abstract class MappedBuyingGroup {
         this.buyingGroupName = buyingGroupName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -233,7 +271,7 @@ public abstract class MappedBuyingGroup {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -254,7 +292,7 @@ public abstract class MappedBuyingGroup {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -275,7 +313,7 @@ public abstract class MappedBuyingGroup {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.BuyingGroupID", schema = "Sequences",
@@ -287,9 +325,13 @@ public abstract class MappedBuyingGroup {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
+                          value = "Numeric ID used for reference to a buying group within the "
+                                  + "database")
+    @MsDefault(name = "DF_Sales_BuyingGroups_BuyingGroupID", value = "(NEXT VALUE FOR [Sequences].[BuyingGroupID])")
     private Integer buyingGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BUYING_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
@@ -299,9 +341,11 @@ public abstract class MappedBuyingGroup {
             updatable = true,
             length = COLUMN_LENGTH_BUYING_GROUP_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_NAME,
+                          value = "Full name of a buying group that customers can be members of")
     private String buyingGroupName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -312,7 +356,7 @@ public abstract class MappedBuyingGroup {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -323,7 +367,7 @@ public abstract class MappedBuyingGroup {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

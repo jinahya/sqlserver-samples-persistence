@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class ScrapWasteAnalysisView extends MappedScrapWasteAnalysisView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

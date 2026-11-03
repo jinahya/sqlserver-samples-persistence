@@ -20,7 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.MappedWithIdentityId;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
@@ -34,8 +36,36 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.Department} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code HumanResources.Department}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DepartmentID}</th><td>Primary key for Department records.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Name of the department.</td></tr>
+ * <tr><th scope="row">{@code GroupName}</th>
+ *     <td>Name of the group to which the department belongs.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code HumanResources.Department}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
-// not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+// not updatable: an identity column, which SQL Server does not update (error 8102); and the
+// identifier, which
 // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID,
@@ -45,6 +75,11 @@ import java.util.Objects;
                    )
 )
 @MappedSuperclass
+@MsDescription(
+        schema = MappedDepartment.TABLE_SCHEMA,
+        table = MappedDepartment.TABLE_NAME,
+        value = "Lookup table containing the departments within the Adventure Works Cycles company."
+)
 public abstract class MappedDepartment
         extends MappedWithIdentityId {
 
@@ -58,14 +93,14 @@ public abstract class MappedDepartment
      */
     public static final String TABLE_NAME = "Department";
 
-    // ---------------------------------------------------------------------------------------------------- DepartmentID
+    // -------------------------------------------------------------------------------- DepartmentID
 
     /**
      * The name of the {@code smallint, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DEPARTMENT_ID = "DepartmentID";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -78,11 +113,12 @@ public abstract class MappedDepartment
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ------------------------------------------------------------------------------------------------------- GroupName
+    // ----------------------------------------------------------------------------------- GroupName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -95,23 +131,26 @@ public abstract class MappedDepartment
     public static final int COLUMN_LENGTH_GROUP_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_GROUP_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_GROUP_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROUP_NAME = "groupName";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -120,7 +159,7 @@ public abstract class MappedDepartment
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -161,10 +200,11 @@ public abstract class MappedDepartment
         return Objects.hash(getId_());
     }
 
-    // ---------------------------------------------------------------------------------------------------- departmentId
+    // -------------------------------------------------------------------------------- departmentId
 
     /**
-     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_DEPARTMENT_ID} column.
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_DEPARTMENT_ID}
+     * column.
      *
      * @return current value of the identifier.
      */
@@ -172,7 +212,7 @@ public abstract class MappedDepartment
         return getId_();
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -192,7 +232,7 @@ public abstract class MappedDepartment
         this.name = name;
     }
 
-    // ------------------------------------------------------------------------------------------------------- groupName
+    // ----------------------------------------------------------------------------------- groupName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute.
@@ -204,7 +244,8 @@ public abstract class MappedDepartment
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute with the specified
+     * value.
      *
      * @param groupName new value for {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute.
      */
@@ -212,7 +253,7 @@ public abstract class MappedDepartment
         this.groupName = groupName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -224,7 +265,8 @@ public abstract class MappedDepartment
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -232,7 +274,7 @@ public abstract class MappedDepartment
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -242,9 +284,10 @@ public abstract class MappedDepartment
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the department.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
@@ -254,10 +297,13 @@ public abstract class MappedDepartment
             updatable = true,
             length = COLUMN_LENGTH_GROUP_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_GROUP_NAME,
+                          value = "Name of the group to which the department belongs.")
     private String groupName;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // ---------------------------------------------------------------------------------------------
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
@@ -265,6 +311,9 @@ public abstract class MappedDepartment
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Department_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

@@ -39,7 +39,7 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   A fix to one is carried to the other two.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested
   types, constructors, `java.lang.Object`, accessors, then the private fields; markers padded with dashes to column
-  120.
+  100.
 - **Prefer `Optional` over the ternary operator** for a value that depends on whether another is `null`:
   `Optional.ofNullable(x).map(f).orElse(null)`, not `x == null ? null : f(x)`.
 

@@ -33,7 +33,7 @@ import java.math.BigDecimal;
  */
 public class WhereUsedView extends MappedWhereUsedView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

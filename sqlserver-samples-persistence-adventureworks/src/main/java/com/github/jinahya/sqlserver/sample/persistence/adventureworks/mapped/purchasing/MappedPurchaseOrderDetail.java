@@ -20,6 +20,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +45,88 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_PRODUCT_ID} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Purchasing.PurchaseOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PurchaseOrderID}</th>
+ *     <td>Primary key. Foreign key to PurchaseOrderHeader.PurchaseOrderID.</td></tr>
+ * <tr><th scope="row">{@code PurchaseOrderDetailID}</th>
+ *     <td>Primary key. One line number per purchased product.</td></tr>
+ * <tr><th scope="row">{@code DueDate}</th>
+ *     <td>Date the product is expected to be received.</td></tr>
+ * <tr><th scope="row">{@code OrderQty}</th><td>Quantity ordered.</td></tr>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product identification number. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code UnitPrice}</th>
+ *     <td>Vendor's selling price of a single product.</td></tr>
+ * <tr><th scope="row">{@code LineTotal}</th>
+ *     <td>Per product subtotal. Computed as OrderQty * UnitPrice.</td></tr>
+ * <tr><th scope="row">{@code ReceivedQty}</th>
+ *     <td>Quantity actually received from the vendor.</td></tr>
+ * <tr><th scope="row">{@code RejectedQty}</th><td>Quantity rejected during inspection.</td></tr>
+ * <tr><th scope="row">{@code StockedQty}</th>
+ *     <td>Quantity accepted into inventory. Computed as ReceivedQty - RejectedQty.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Purchasing.PurchaseOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Purchasing.PurchaseOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LineTotal}</th>
+ *     <td>{@code (isnull([OrderQty]*[UnitPrice],(0.00)))}</td><td>{@code false}</td></tr>
+ * <tr><th scope="row">{@code StockedQty}</th>
+ *     <td>{@code (isnull([ReceivedQty]-[RejectedQty],(0.00)))}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Triggers on {@code Purchasing.PurchaseOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Trigger</th><th scope="col">Timing</th><th scope="col">Events</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code iPurchaseOrderDetail}</th><td>{@code AFTER}</td><td>{@code INSERT}</td></tr>
+ * <tr><th scope="row">{@code uPurchaseOrderDetail}</th><td>{@code AFTER}</td><td>{@code UPDATE}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPurchaseOrderDetail.TABLE_SCHEMA,
+        table = MappedPurchaseOrderDetail.TABLE_NAME,
+        value = "Individual products associated with a specific purchase order. See "
+                + "PurchaseOrderHeader."
+)
+@MsTrigger(
+        name = "iPurchaseOrderDetail",
+        events = MsTrigger.Event.INSERT
+)
+@MsTrigger(
+        name = "uPurchaseOrderDetail",
+        events = MsTrigger.Event.UPDATE
+)
 public abstract class MappedPurchaseOrderDetail {
 
     /**
@@ -55,7 +139,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String TABLE_NAME = "PurchaseOrderDetail";
 
-    // ------------------------------------------------------------------------------------------------- PurchaseOrderID
+    // ----------------------------------------------------------------------------- PurchaseOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -67,7 +151,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
-    // ------------------------------------------------------------------------------------------- PurchaseOrderDetailID
+    // ----------------------------------------------------------------------- PurchaseOrderDetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -80,7 +164,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_DETAIL_ID = "purchaseOrderDetailId";
 
-    // --------------------------------------------------------------------------------------------------------- DueDate
+    // ------------------------------------------------------------------------------------- DueDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -92,7 +176,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_DUE_DATE = "dueDate";
 
-    // -------------------------------------------------------------------------------------------------------- OrderQty
+    // ------------------------------------------------------------------------------------ OrderQty
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -115,7 +199,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ORDER_QTY = "orderQty";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -127,7 +211,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -145,7 +229,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------------------- LineTotal
+    // ----------------------------------------------------------------------------------- LineTotal
 
     /**
      * The name of the {@code money, computed as (isnull([OrderQty]*[UnitPrice],(0.00))), NOT NULL} column. The value is
@@ -158,7 +242,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_TOTAL = "lineTotal";
 
-    // ----------------------------------------------------------------------------------------------------- ReceivedQty
+    // --------------------------------------------------------------------------------- ReceivedQty
 
     /**
      * The name of the {@code decimal(8, 2), NOT NULL} column. The value is {@value}.
@@ -187,7 +271,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_RECEIVED_QTY = "receivedQty";
 
-    // ----------------------------------------------------------------------------------------------------- RejectedQty
+    // --------------------------------------------------------------------------------- RejectedQty
 
     /**
      * The name of the {@code decimal(8, 2), NOT NULL} column. The value is {@value}.
@@ -216,7 +300,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_REJECTED_QTY = "rejectedQty";
 
-    // ------------------------------------------------------------------------------------------------------ StockedQty
+    // ---------------------------------------------------------------------------------- StockedQty
 
     /**
      * The name of the {@code decimal(9, 2), computed as (isnull([ReceivedQty]-[RejectedQty],(0.00))), NOT NULL} column.
@@ -239,7 +323,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_STOCKED_QTY = "stockedQty";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -251,7 +335,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -260,7 +344,7 @@ public abstract class MappedPurchaseOrderDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -309,7 +393,7 @@ public abstract class MappedPurchaseOrderDetail {
         return Objects.hash(purchaseOrderId, purchaseOrderDetailId);
     }
 
-    // ------------------------------------------------------------------------------------------------- purchaseOrderId
+    // ----------------------------------------------------------------------------- purchaseOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
@@ -329,7 +413,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------- purchaseOrderDetailId
+    // ----------------------------------------------------------------------- purchaseOrderDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_DETAIL_ID} attribute.
@@ -349,7 +433,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.purchaseOrderDetailId = purchaseOrderDetailId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- dueDate
+    // ------------------------------------------------------------------------------------- dueDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DUE_DATE} attribute.
@@ -369,7 +453,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.dueDate = dueDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- orderQty
+    // ------------------------------------------------------------------------------------ orderQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute.
@@ -389,7 +473,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.orderQty = orderQty;
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -410,7 +494,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -430,7 +514,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineTotal
+    // ----------------------------------------------------------------------------------- lineTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute.
@@ -451,7 +535,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.lineTotal = lineTotal;
     }
 
-    // ----------------------------------------------------------------------------------------------------- receivedQty
+    // --------------------------------------------------------------------------------- receivedQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECEIVED_QTY} attribute.
@@ -471,7 +555,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.receivedQty = receivedQty;
     }
 
-    // ----------------------------------------------------------------------------------------------------- rejectedQty
+    // --------------------------------------------------------------------------------- rejectedQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REJECTED_QTY} attribute.
@@ -491,7 +575,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.rejectedQty = rejectedQty;
     }
 
-    // ------------------------------------------------------------------------------------------------------ stockedQty
+    // ---------------------------------------------------------------------------------- stockedQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCKED_QTY} attribute.
@@ -512,7 +596,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.stockedQty = stockedQty;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -532,7 +616,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -541,9 +625,12 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
+                          value = "Primary key. Foreign key to "
+                                  + "PurchaseOrderHeader.PurchaseOrderID.")
     private Integer purchaseOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -553,9 +640,11 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID,
+                          value = "Primary key. One line number per purchased product.")
     private Integer purchaseOrderDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DUE_DATE,
@@ -563,9 +652,11 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DUE_DATE,
+                          value = "Date the product is expected to be received.")
     private LocalDateTime dueDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderDetail_OrderQty: ([OrderQty]>(0)); smallint's upper bound
     @Max(COLUMN_MAX_ORDER_QTY)
     @Min(COLUMN_MIN_ORDER_QTY)
@@ -576,9 +667,10 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_QTY, value = "Quantity ordered.")
     private Integer orderQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -587,9 +679,12 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product identification number. Foreign key to "
+                                  + "Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderDetail_UnitPrice: ([UnitPrice]>=(0.00))
     @DecimalMin(COLUMN_MIN_UNIT_PRICE)
     @NotNull
@@ -599,9 +694,11 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
+                          value = "Vendor's selling price of a single product.")
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_TOTAL,
@@ -609,9 +706,12 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
+                          value = "Per product subtotal. Computed as OrderQty * UnitPrice.")
+    @MsComputedColumn("(isnull([OrderQty]*[UnitPrice],(0.00)))")
     private BigDecimal lineTotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderDetail_ReceivedQty: ([ReceivedQty]>=(0.00))
     @DecimalMin(COLUMN_MIN_RECEIVED_QTY)
     @Digits(integer = COLUMN_PRECISION_RECEIVED_QTY - COLUMN_SCALE_RECEIVED_QTY, fraction = COLUMN_SCALE_RECEIVED_QTY)
@@ -624,9 +724,11 @@ public abstract class MappedPurchaseOrderDetail {
             precision = COLUMN_PRECISION_RECEIVED_QTY,
             scale = COLUMN_SCALE_RECEIVED_QTY
     )
+    @MsDescription.Column(name = COLUMN_NAME_RECEIVED_QTY,
+                          value = "Quantity actually received from the vendor.")
     private BigDecimal receivedQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderDetail_RejectedQty: ([RejectedQty]>=(0.00))
     @DecimalMin(COLUMN_MIN_REJECTED_QTY)
     @Digits(integer = COLUMN_PRECISION_REJECTED_QTY - COLUMN_SCALE_REJECTED_QTY, fraction = COLUMN_SCALE_REJECTED_QTY)
@@ -639,9 +741,11 @@ public abstract class MappedPurchaseOrderDetail {
             precision = COLUMN_PRECISION_REJECTED_QTY,
             scale = COLUMN_SCALE_REJECTED_QTY
     )
+    @MsDescription.Column(name = COLUMN_NAME_REJECTED_QTY,
+                          value = "Quantity rejected during inspection.")
     private BigDecimal rejectedQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_STOCKED_QTY - COLUMN_SCALE_STOCKED_QTY, fraction = COLUMN_SCALE_STOCKED_QTY)
     @Basic(optional = false)
@@ -652,9 +756,13 @@ public abstract class MappedPurchaseOrderDetail {
             precision = COLUMN_PRECISION_STOCKED_QTY,
             scale = COLUMN_SCALE_STOCKED_QTY
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCKED_QTY,
+                          value = "Quantity accepted into inventory. Computed as ReceivedQty - "
+                                  + "RejectedQty.")
+    @MsComputedColumn("(isnull([ReceivedQty]-[RejectedQty],(0.00)))")
     private BigDecimal stockedQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and the uPurchaseOrderDetail trigger
     // on every UPDATE
     @Basic(optional = false)
@@ -663,6 +771,9 @@ public abstract class MappedPurchaseOrderDetail {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_PurchaseOrderDetail_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

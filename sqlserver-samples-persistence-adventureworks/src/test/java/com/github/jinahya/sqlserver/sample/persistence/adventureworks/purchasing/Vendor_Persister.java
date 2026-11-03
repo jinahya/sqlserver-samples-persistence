@@ -36,7 +36,7 @@ class Vendor_Persister
         super(Vendor.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public Vendor apply(final EntityManager entityManager, final Vendor entityInstance) {
         final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);

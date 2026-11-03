@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,16 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.Warehouse} table.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.Warehouse}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedWarehouse {
@@ -47,7 +59,7 @@ public abstract class MappedWarehouse {
      */
     public static final String TABLE_NAME = "Warehouse";
 
-    // ----------------------------------------------------------------------------------------------------- WarehouseID
+    // --------------------------------------------------------------------------------- WarehouseID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -59,7 +71,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseCode
+    // ------------------------------------------------------------------------------- WarehouseCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -76,7 +88,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_CODE = "warehouseCode";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseName
+    // ------------------------------------------------------------------------------- WarehouseName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -93,7 +105,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_NAME = "warehouseName";
 
-    // --------------------------------------------------------------------------------------------------------- Address
+    // ------------------------------------------------------------------------------------- Address
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -110,7 +122,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_ADDRESS = "address";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -127,7 +139,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ----------------------------------------------------------------------------------------------------------- State
+    // --------------------------------------------------------------------------------------- State
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -144,7 +156,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_STATE = "state";
 
-    // --------------------------------------------------------------------------------------------------------- ZipCode
+    // ------------------------------------------------------------------------------------- ZipCode
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -161,7 +173,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_ZIP_CODE = "zipCode";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -173,7 +185,7 @@ public abstract class MappedWarehouse {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -182,7 +194,7 @@ public abstract class MappedWarehouse {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -227,7 +239,7 @@ public abstract class MappedWarehouse {
         return Objects.hash(warehouseId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- warehouseId
+    // --------------------------------------------------------------------------------- warehouseId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
@@ -247,7 +259,7 @@ public abstract class MappedWarehouse {
         this.warehouseId = warehouseId;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseCode
+    // ------------------------------------------------------------------------------- warehouseCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_CODE} attribute.
@@ -267,7 +279,7 @@ public abstract class MappedWarehouse {
         this.warehouseCode = warehouseCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseName
+    // ------------------------------------------------------------------------------- warehouseName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_NAME} attribute.
@@ -287,7 +299,7 @@ public abstract class MappedWarehouse {
         this.warehouseName = warehouseName;
     }
 
-    // --------------------------------------------------------------------------------------------------------- address
+    // ------------------------------------------------------------------------------------- address
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS} attribute.
@@ -307,7 +319,7 @@ public abstract class MappedWarehouse {
         this.address = address;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -327,7 +339,7 @@ public abstract class MappedWarehouse {
         this.city = city;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- state
+    // --------------------------------------------------------------------------------------- state
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE} attribute.
@@ -347,7 +359,7 @@ public abstract class MappedWarehouse {
         this.state = state;
     }
 
-    // --------------------------------------------------------------------------------------------------------- zipCode
+    // ------------------------------------------------------------------------------------- zipCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ZIP_CODE} attribute.
@@ -367,7 +379,7 @@ public abstract class MappedWarehouse {
         this.zipCode = zipCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -387,7 +399,7 @@ public abstract class MappedWarehouse {
         this.isActive = isActive;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -399,7 +411,7 @@ public abstract class MappedWarehouse {
     )
     private Integer warehouseId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
     @Basic(optional = false)
@@ -411,7 +423,7 @@ public abstract class MappedWarehouse {
     )
     private String warehouseCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
@@ -423,7 +435,7 @@ public abstract class MappedWarehouse {
     )
     private String warehouseName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDRESS,
@@ -434,7 +446,7 @@ public abstract class MappedWarehouse {
     )
     private String address;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CITY,
@@ -445,7 +457,7 @@ public abstract class MappedWarehouse {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STATE,
@@ -456,7 +468,7 @@ public abstract class MappedWarehouse {
     )
     private String state;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ZIP_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ZIP_CODE,
@@ -467,7 +479,7 @@ public abstract class MappedWarehouse {
     )
     private String zipCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -475,6 +487,7 @@ public abstract class MappedWarehouse {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 }
 

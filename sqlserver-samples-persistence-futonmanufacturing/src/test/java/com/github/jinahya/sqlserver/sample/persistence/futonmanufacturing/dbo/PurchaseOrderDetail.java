@@ -46,7 +46,7 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM = "item";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +55,7 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- purchaseOrder
+    // ------------------------------------------------------------------------------- purchaseOrder
 
     /**
      * Returns the {@code PurchaseOrder} which the {@code FK_PODetail_PO} foreign key references.
@@ -77,7 +77,7 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
         setPurchaseOrderId(purchaseOrder == null ? null : purchaseOrder.getPurchaseOrderId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_PODetail_Item} foreign key references.
@@ -99,7 +99,7 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                 referencedColumnName = MappedPurchaseOrder.COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -109,7 +109,7 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
     )
     private PurchaseOrder purchaseOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,

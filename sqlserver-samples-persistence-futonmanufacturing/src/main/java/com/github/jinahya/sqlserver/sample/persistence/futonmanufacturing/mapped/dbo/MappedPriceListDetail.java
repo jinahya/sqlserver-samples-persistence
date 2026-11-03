@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +40,16 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_PRICE_LIST_ID}, {@value #COLUMN_NAME_ITEM_ID} columns are mapped read-only, as a foreign
  * key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.PriceListDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code MinimumQuantity}</th><td>{@code ((1))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedPriceListDetail {
@@ -52,7 +64,7 @@ public abstract class MappedPriceListDetail {
      */
     public static final String TABLE_NAME = "PriceListDetail";
 
-    // ----------------------------------------------------------------------------------------------- PriceListDetailID
+    // --------------------------------------------------------------------------- PriceListDetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +77,7 @@ public abstract class MappedPriceListDetail {
      */
     public static final String ATTRIBUTE_NAME_PRICE_LIST_DETAIL_ID = "priceListDetailId";
 
-    // ----------------------------------------------------------------------------------------------------- PriceListID
+    // --------------------------------------------------------------------------------- PriceListID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -77,7 +89,7 @@ public abstract class MappedPriceListDetail {
      */
     public static final String ATTRIBUTE_NAME_PRICE_LIST_ID = "priceListId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -89,7 +101,7 @@ public abstract class MappedPriceListDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -111,7 +123,7 @@ public abstract class MappedPriceListDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------------- MinimumQuantity
+    // ----------------------------------------------------------------------------- MinimumQuantity
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((1))} column. The value is {@value}.
@@ -133,7 +145,7 @@ public abstract class MappedPriceListDetail {
      */
     public static final String ATTRIBUTE_NAME_MINIMUM_QUANTITY = "minimumQuantity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -142,7 +154,7 @@ public abstract class MappedPriceListDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -184,7 +196,7 @@ public abstract class MappedPriceListDetail {
         return Objects.hash(priceListDetailId);
     }
 
-    // ----------------------------------------------------------------------------------------------- priceListDetailId
+    // --------------------------------------------------------------------------- priceListDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRICE_LIST_DETAIL_ID} attribute.
@@ -204,7 +216,7 @@ public abstract class MappedPriceListDetail {
         this.priceListDetailId = priceListDetailId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- priceListId
+    // --------------------------------------------------------------------------------- priceListId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRICE_LIST_ID} attribute.
@@ -226,7 +238,7 @@ public abstract class MappedPriceListDetail {
         this.priceListId = priceListId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -247,7 +259,7 @@ public abstract class MappedPriceListDetail {
         this.itemId = itemId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -267,7 +279,7 @@ public abstract class MappedPriceListDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------- minimumQuantity
+    // ----------------------------------------------------------------------------- minimumQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MINIMUM_QUANTITY} attribute.
@@ -287,7 +299,7 @@ public abstract class MappedPriceListDetail {
         this.minimumQuantity = minimumQuantity;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -299,7 +311,7 @@ public abstract class MappedPriceListDetail {
     )
     private Integer priceListDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -310,7 +322,7 @@ public abstract class MappedPriceListDetail {
     )
     private Integer priceListId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -321,7 +333,7 @@ public abstract class MappedPriceListDetail {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -334,7 +346,7 @@ public abstract class MappedPriceListDetail {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_MINIMUM_QUANTITY - COLUMN_SCALE_MINIMUM_QUANTITY,
             fraction = COLUMN_SCALE_MINIMUM_QUANTITY)
     @Basic(optional = true)
@@ -345,6 +357,7 @@ public abstract class MappedPriceListDetail {
             precision = COLUMN_PRECISION_MINIMUM_QUANTITY,
             scale = COLUMN_SCALE_MINIMUM_QUANTITY
     )
+    @MsDefault("((1))")
     private BigDecimal minimumQuantity;
 }
 

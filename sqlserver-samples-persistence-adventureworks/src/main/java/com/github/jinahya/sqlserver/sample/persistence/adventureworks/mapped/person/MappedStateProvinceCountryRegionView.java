@@ -51,7 +51,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String TABLE_NAME = "vStateProvinceCountryRegion";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceCode
+    // --------------------------------------------------------------------------- StateProvinceCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -81,7 +81,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_CODE = "stateProvinceCode";
 
-    // ----------------------------------------------------------------------------------------- IsOnlyStateProvinceFlag
+    // --------------------------------------------------------------------- IsOnlyStateProvinceFlag
 
     /**
      * The name of the {@code Flag (bit), NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_IS_ONLY_STATE_PROVINCE_FLAG = "isOnlyStateProvinceFlag";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceName
+    // --------------------------------------------------------------------------- StateProvinceName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -112,7 +112,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_NAME = "stateProvinceName";
 
-    // ----------------------------------------------------------------------------------------------------- TerritoryID
+    // --------------------------------------------------------------------------------- TerritoryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -124,7 +124,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionCode
+    // --------------------------------------------------------------------------- CountryRegionCode
 
     /**
      * The name of the {@code nvarchar(3), NOT NULL} column. The value is {@value}.
@@ -142,7 +142,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionName
+    // --------------------------------------------------------------------------- CountryRegionName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -160,7 +160,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_NAME = "countryRegionName";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -169,7 +169,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -213,7 +213,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         return Objects.hash(stateProvinceId);
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -233,7 +233,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceCode
+    // --------------------------------------------------------------------------- stateProvinceCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_CODE} attribute.
@@ -253,7 +253,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.stateProvinceCode = stateProvinceCode;
     }
 
-    // ----------------------------------------------------------------------------------------- isOnlyStateProvinceFlag
+    // --------------------------------------------------------------------- isOnlyStateProvinceFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ONLY_STATE_PROVINCE_FLAG} attribute.
@@ -274,7 +274,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.isOnlyStateProvinceFlag = isOnlyStateProvinceFlag;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceName
+    // --------------------------------------------------------------------------- stateProvinceName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute.
@@ -294,7 +294,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.stateProvinceName = stateProvinceName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
@@ -314,7 +314,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.territoryId = territoryId;
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionCode
+    // --------------------------------------------------------------------------- countryRegionCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
@@ -334,7 +334,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.countryRegionCode = countryRegionCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionName
+    // --------------------------------------------------------------------------- countryRegionName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute.
@@ -354,7 +354,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         this.countryRegionName = countryRegionName;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -365,7 +365,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     )
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
@@ -378,7 +378,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     )
     private String stateProvinceCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -389,7 +389,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     )
     private Boolean isOnlyStateProvinceFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
@@ -402,7 +402,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     )
     private String stateProvinceName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -413,7 +413,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     )
     private Integer territoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
@@ -426,7 +426,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     )
     private String countryRegionCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull

@@ -36,7 +36,7 @@ class CountryRegionCurrency_Persister
         super(CountryRegionCurrency.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public CountryRegionCurrency apply(final EntityManager entityManager, final CountryRegionCurrency entityInstance) {
         entityInstance.setCountryRegion(

@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedTransactionHistoryArchive;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -28,10 +29,19 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Production.TransactionHistoryArchive} table.
  */
 @Entity(name = "ProductionTransactionHistoryArchive")
-@Table(schema = MappedTransactionHistoryArchive.TABLE_SCHEMA, name = MappedTransactionHistoryArchive.TABLE_NAME)
+@Table(schema = MappedTransactionHistoryArchive.TABLE_SCHEMA,
+       name = MappedTransactionHistoryArchive.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_TransactionHistoryArchive_TransactionType",
+                       constraint = "(upper([TransactionType])='P' OR "
+                               + "upper([TransactionType])='S' OR upper([TransactionType])='W')"
+               )
+       }
+)
 public class TransactionHistoryArchive extends MappedTransactionHistoryArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

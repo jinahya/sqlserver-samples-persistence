@@ -21,17 +21,45 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedShipMethod;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Purchasing.ShipMethod} table.
  */
 @Entity(name = "PurchasingShipMethod")
-@Table(schema = MappedShipMethod.TABLE_SCHEMA, name = MappedShipMethod.TABLE_NAME)
+@Table(schema = MappedShipMethod.TABLE_SCHEMA,
+       name = MappedShipMethod.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_ShipMethod_Name",
+                       columnNames = {
+                               ShipMethod.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_ShipMethod_rowguid",
+                       columnNames = {
+                               ShipMethod.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_ShipMethod_ShipBase",
+                       constraint = "([ShipBase]>(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ShipMethod_ShipRate",
+                       constraint = "([ShipRate]>(0.00))"
+               )
+       }
+)
 public class ShipMethod extends MappedShipMethod {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

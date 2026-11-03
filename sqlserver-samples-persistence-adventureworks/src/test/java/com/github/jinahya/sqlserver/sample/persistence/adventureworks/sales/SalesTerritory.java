@@ -23,17 +23,53 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedCountryRegion;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.CountryRegion;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SalesTerritory} table.
  */
 @Entity(name = "SalesSalesTerritory")
-@Table(schema = MappedSalesTerritory.TABLE_SCHEMA, name = MappedSalesTerritory.TABLE_NAME)
+@Table(schema = MappedSalesTerritory.TABLE_SCHEMA,
+       name = MappedSalesTerritory.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SalesTerritory_Name",
+                       columnNames = {
+                               SalesTerritory.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_SalesTerritory_rowguid",
+                       columnNames = {
+                               SalesTerritory.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SalesTerritory_CostLastYear",
+                       constraint = "([CostLastYear]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesTerritory_CostYTD",
+                       constraint = "([CostYTD]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesTerritory_SalesLastYear",
+                       constraint = "([SalesLastYear]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesTerritory_SalesYTD",
+                       constraint = "([SalesYTD]>=(0.00))"
+               )
+       }
+)
 public class SalesTerritory extends MappedSalesTerritory {
 
     /**
@@ -42,7 +78,7 @@ public class SalesTerritory extends MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION = "countryRegion";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -51,7 +87,7 @@ public class SalesTerritory extends MappedSalesTerritory {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- countryRegion
+    // ------------------------------------------------------------------------------- countryRegion
 
     /**
      * Returns the {@code CountryRegion} which the {@code FK_SalesTerritory_CountryRegion_CountryRegionCode} foreign key
@@ -74,7 +110,7 @@ public class SalesTerritory extends MappedSalesTerritory {
         setCountryRegionCode(countryRegion == null ? null : countryRegion.getCountryRegionCode());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COUNTRY_REGION_CODE,
                 referencedColumnName = MappedCountryRegion.COLUMN_NAME_COUNTRY_REGION_CODE,

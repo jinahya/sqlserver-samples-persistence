@@ -23,15 +23,26 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedDepartment;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code HumanResources.Department} table.
  */
 @Entity(name = "HumanResourcesDepartment")
-@Table(schema = MappedDepartment.TABLE_SCHEMA, name = MappedDepartment.TABLE_NAME)
+@Table(schema = MappedDepartment.TABLE_SCHEMA,
+       name = MappedDepartment.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Department_Name",
+                       columnNames = {
+                               Department.COLUMN_NAME_NAME
+                       }
+               )
+       }
+)
 public class Department extends MappedDepartment {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

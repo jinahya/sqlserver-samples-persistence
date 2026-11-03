@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +44,44 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Purchasing.SupplierCategories}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SupplierCategoryID}</th>
+ *     <td>Numeric ID used for reference to a supplier category within the database</td></tr>
+ * <tr><th scope="row">{@code SupplierCategoryName}</th>
+ *     <td>Full name of the category that suppliers can be assigned to</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Purchasing.SupplierCategories}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SupplierCategoryID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[SupplierCategoryID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSupplierCategory.TABLE_SCHEMA,
+        table = MappedSupplierCategory.TABLE_NAME,
+        value = "Categories for suppliers (ie novelties, toys, clothing, packaging, etc.)"
+)
+@MsTemporal(
+        historyTable = "Purchasing.SupplierCategories_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedSupplierCategory {
 
     /**
@@ -55,7 +94,7 @@ public abstract class MappedSupplierCategory {
      */
     public static final String TABLE_NAME = "SupplierCategories";
 
-    // ---------------------------------------------------------------------------------------------- SupplierCategoryID
+    // -------------------------------------------------------------------------- SupplierCategoryID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.SupplierCategoryID, NOT NULL} column. The value is
@@ -69,7 +108,7 @@ public abstract class MappedSupplierCategory {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_CATEGORY_ID = "supplierCategoryId";
 
-    // -------------------------------------------------------------------------------------------- SupplierCategoryName
+    // ------------------------------------------------------------------------ SupplierCategoryName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -87,7 +126,7 @@ public abstract class MappedSupplierCategory {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_CATEGORY_NAME = "supplierCategoryName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -99,7 +138,7 @@ public abstract class MappedSupplierCategory {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -111,7 +150,7 @@ public abstract class MappedSupplierCategory {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -123,7 +162,7 @@ public abstract class MappedSupplierCategory {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -132,7 +171,7 @@ public abstract class MappedSupplierCategory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -174,7 +213,7 @@ public abstract class MappedSupplierCategory {
         return Objects.hash(supplierCategoryId);
     }
 
-    // ---------------------------------------------------------------------------------------------- supplierCategoryId
+    // -------------------------------------------------------------------------- supplierCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CATEGORY_ID} attribute.
@@ -194,7 +233,7 @@ public abstract class MappedSupplierCategory {
         this.supplierCategoryId = supplierCategoryId;
     }
 
-    // -------------------------------------------------------------------------------------------- supplierCategoryName
+    // ------------------------------------------------------------------------ supplierCategoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CATEGORY_NAME} attribute.
@@ -214,7 +253,7 @@ public abstract class MappedSupplierCategory {
         this.supplierCategoryName = supplierCategoryName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -236,7 +275,7 @@ public abstract class MappedSupplierCategory {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -257,7 +296,7 @@ public abstract class MappedSupplierCategory {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -278,7 +317,7 @@ public abstract class MappedSupplierCategory {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SupplierCategoryID", schema = "Sequences",
@@ -290,9 +329,14 @@ public abstract class MappedSupplierCategory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID,
+                          value = "Numeric ID used for reference to a supplier category within "
+                                  + "the database")
+    @MsDefault(name = "DF_Purchasing_SupplierCategories_SupplierCategoryID",
+               value = "(NEXT VALUE FOR [Sequences].[SupplierCategoryID])")
     private Integer supplierCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME)
     @NotNull
     @Basic(optional = false)
@@ -302,9 +346,11 @@ public abstract class MappedSupplierCategory {
             updatable = true,
             length = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_NAME,
+                          value = "Full name of the category that suppliers can be assigned to")
     private String supplierCategoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -315,7 +361,7 @@ public abstract class MappedSupplierCategory {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -326,7 +372,7 @@ public abstract class MappedSupplierCategory {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

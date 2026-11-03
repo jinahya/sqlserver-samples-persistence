@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +44,53 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_PURCHASE_ORDER_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.StockItemTransactions}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemTransactionID}</th>
+ *     <td>Numeric ID used to refer to a stock item transaction within the database</td></tr>
+ * <tr><th scope="row">{@code StockItemID}</th><td>StockItem for this transaction</td></tr>
+ * <tr><th scope="row">{@code TransactionTypeID}</th><td>Type of transaction</td></tr>
+ * <tr><th scope="row">{@code CustomerID}</th>
+ *     <td>Customer for this transaction (if applicable)</td></tr>
+ * <tr><th scope="row">{@code InvoiceID}</th>
+ *     <td>ID of an invoice (for transactions associated with an invoice)</td></tr>
+ * <tr><th scope="row">{@code SupplierID}</th>
+ *     <td>Supplier for this stock transaction (if applicable)</td></tr>
+ * <tr><th scope="row">{@code PurchaseOrderID}</th>
+ *     <td>ID of an purchase order (for transactions associated with a purchase order)</td></tr>
+ * <tr><th scope="row">{@code TransactionOccurredWhen}</th>
+ *     <td>Date and time when the transaction occurred</td></tr>
+ * <tr><th scope="row">{@code Quantity}</th>
+ *     <td>Quantity of stock movement (positive is incoming stock, negative is outgoing)</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Warehouse.StockItemTransactions}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemTransactionID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[TransactionID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedStockItemTransaction.TABLE_SCHEMA,
+        table = MappedStockItemTransaction.TABLE_NAME,
+        value = "Transactions covering all movements of all stock items"
+)
 public abstract class MappedStockItemTransaction {
 
     /**
@@ -56,7 +103,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String TABLE_NAME = "StockItemTransactions";
 
-    // ------------------------------------------------------------------------------------------ StockItemTransactionID
+    // ---------------------------------------------------------------------- StockItemTransactionID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.TransactionID, NOT NULL} column. The value is {@value}.
@@ -69,7 +116,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_TRANSACTION_ID = "stockItemTransactionId";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -81,7 +128,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // ----------------------------------------------------------------------------------------------- TransactionTypeID
+    // --------------------------------------------------------------------------- TransactionTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +141,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE_ID = "transactionTypeId";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +153,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ------------------------------------------------------------------------------------------------------- InvoiceID
+    // ----------------------------------------------------------------------------------- InvoiceID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -118,7 +165,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_INVOICE_ID = "invoiceId";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -130,7 +177,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ------------------------------------------------------------------------------------------------- PurchaseOrderID
+    // ----------------------------------------------------------------------------- PurchaseOrderID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -142,7 +189,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
-    // ----------------------------------------------------------------------------------------- TransactionOccurredWhen
+    // --------------------------------------------------------------------- TransactionOccurredWhen
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -155,7 +202,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_OCCURRED_WHEN = "transactionOccurredWhen";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -177,7 +224,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -189,7 +236,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -201,7 +248,7 @@ public abstract class MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -210,7 +257,7 @@ public abstract class MappedStockItemTransaction {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -258,7 +305,7 @@ public abstract class MappedStockItemTransaction {
         return Objects.hash(stockItemTransactionId);
     }
 
-    // ------------------------------------------------------------------------------------------ stockItemTransactionId
+    // ---------------------------------------------------------------------- stockItemTransactionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_TRANSACTION_ID} attribute.
@@ -278,7 +325,7 @@ public abstract class MappedStockItemTransaction {
         this.stockItemTransactionId = stockItemTransactionId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -300,7 +347,7 @@ public abstract class MappedStockItemTransaction {
         this.stockItemId = stockItemId;
     }
 
-    // ----------------------------------------------------------------------------------------------- transactionTypeId
+    // --------------------------------------------------------------------------- transactionTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
@@ -322,7 +369,7 @@ public abstract class MappedStockItemTransaction {
         this.transactionTypeId = transactionTypeId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -343,7 +390,7 @@ public abstract class MappedStockItemTransaction {
         this.customerId = customerId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- invoiceId
+    // ----------------------------------------------------------------------------------- invoiceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute.
@@ -364,7 +411,7 @@ public abstract class MappedStockItemTransaction {
         this.invoiceId = invoiceId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -385,7 +432,7 @@ public abstract class MappedStockItemTransaction {
         this.supplierId = supplierId;
     }
 
-    // ------------------------------------------------------------------------------------------------- purchaseOrderId
+    // ----------------------------------------------------------------------------- purchaseOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
@@ -407,7 +454,7 @@ public abstract class MappedStockItemTransaction {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    // ----------------------------------------------------------------------------------------- transactionOccurredWhen
+    // --------------------------------------------------------------------- transactionOccurredWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_OCCURRED_WHEN} attribute.
@@ -427,7 +474,7 @@ public abstract class MappedStockItemTransaction {
         this.transactionOccurredWhen = transactionOccurredWhen;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -447,7 +494,7 @@ public abstract class MappedStockItemTransaction {
         this.quantity = quantity;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -469,7 +516,7 @@ public abstract class MappedStockItemTransaction {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -489,7 +536,7 @@ public abstract class MappedStockItemTransaction {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.TransactionID", schema = "Sequences",
@@ -501,9 +548,14 @@ public abstract class MappedStockItemTransaction {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_TRANSACTION_ID,
+                          value = "Numeric ID used to refer to a stock item transaction within "
+                                  + "the database")
+    @MsDefault(name = "DF_Warehouse_StockItemTransactions_StockItemTransactionID",
+               value = "(NEXT VALUE FOR [Sequences].[TransactionID])")
     private Integer stockItemTransactionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -512,9 +564,11 @@ public abstract class MappedStockItemTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "StockItem for this transaction")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -523,9 +577,10 @@ public abstract class MappedStockItemTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, value = "Type of transaction")
     private Integer transactionTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_ID,
@@ -533,9 +588,11 @@ public abstract class MappedStockItemTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
+                          value = "Customer for this transaction (if applicable)")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVOICE_ID,
@@ -543,9 +600,11 @@ public abstract class MappedStockItemTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
+                          value = "ID of an invoice (for transactions associated with an invoice)")
     private Integer invoiceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_ID,
@@ -553,9 +612,11 @@ public abstract class MappedStockItemTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
+                          value = "Supplier for this stock transaction (if applicable)")
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -563,9 +624,12 @@ public abstract class MappedStockItemTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
+                          value = "ID of an purchase order (for transactions associated with a "
+                                  + "purchase order)")
     private Integer purchaseOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_OCCURRED_WHEN,
@@ -573,9 +637,11 @@ public abstract class MappedStockItemTransaction {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_OCCURRED_WHEN,
+                          value = "Date and time when the transaction occurred")
     private LocalDateTime transactionOccurredWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
@@ -586,9 +652,12 @@ public abstract class MappedStockItemTransaction {
             precision = COLUMN_PRECISION_QUANTITY,
             scale = COLUMN_SCALE_QUANTITY
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY,
+                          value = "Quantity of stock movement (positive is incoming stock, "
+                                  + "negative is outgoing)")
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -599,7 +668,7 @@ public abstract class MappedStockItemTransaction {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -607,6 +676,7 @@ public abstract class MappedStockItemTransaction {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Warehouse_StockItemTransactions_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

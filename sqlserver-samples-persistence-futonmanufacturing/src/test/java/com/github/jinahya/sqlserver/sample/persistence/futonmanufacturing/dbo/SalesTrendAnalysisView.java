@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class SalesTrendAnalysisView extends MappedSalesTrendAnalysisView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

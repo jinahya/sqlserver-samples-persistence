@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -34,8 +36,39 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SalesReason} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SalesReason}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SalesReasonID}</th><td>Primary key for SalesReason records.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Sales reason description.</td></tr>
+ * <tr><th scope="row">{@code ReasonType}</th><td>Category the sales reason belongs to.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SalesReason}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSalesReason.TABLE_SCHEMA,
+        table = MappedSalesReason.TABLE_NAME,
+        value = "Lookup table of customer purchase reasons."
+)
 public abstract class MappedSalesReason {
 
     /**
@@ -48,7 +81,7 @@ public abstract class MappedSalesReason {
      */
     public static final String TABLE_NAME = "SalesReason";
 
-    // --------------------------------------------------------------------------------------------------- SalesReasonID
+    // ------------------------------------------------------------------------------- SalesReasonID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -60,7 +93,7 @@ public abstract class MappedSalesReason {
      */
     public static final String ATTRIBUTE_NAME_SALES_REASON_ID = "salesReasonId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -77,7 +110,7 @@ public abstract class MappedSalesReason {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ------------------------------------------------------------------------------------------------------ ReasonType
+    // ---------------------------------------------------------------------------------- ReasonType
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -94,7 +127,7 @@ public abstract class MappedSalesReason {
      */
     public static final String ATTRIBUTE_NAME_REASON_TYPE = "reasonType";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -106,7 +139,7 @@ public abstract class MappedSalesReason {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -115,7 +148,7 @@ public abstract class MappedSalesReason {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -156,7 +189,7 @@ public abstract class MappedSalesReason {
         return Objects.hash(salesReasonId);
     }
 
-    // --------------------------------------------------------------------------------------------------- salesReasonId
+    // ------------------------------------------------------------------------------- salesReasonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute.
@@ -176,7 +209,7 @@ public abstract class MappedSalesReason {
         this.salesReasonId = salesReasonId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -196,7 +229,7 @@ public abstract class MappedSalesReason {
         this.name = name;
     }
 
-    // ------------------------------------------------------------------------------------------------------ reasonType
+    // ---------------------------------------------------------------------------------- reasonType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REASON_TYPE} attribute.
@@ -216,7 +249,7 @@ public abstract class MappedSalesReason {
         this.reasonType = reasonType;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -236,7 +269,7 @@ public abstract class MappedSalesReason {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -246,9 +279,11 @@ public abstract class MappedSalesReason {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_REASON_ID,
+                          value = "Primary key for SalesReason records.")
     private Integer salesReasonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -258,9 +293,10 @@ public abstract class MappedSalesReason {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Sales reason description.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REASON_TYPE)
     @NotNull
     @Basic(optional = false)
@@ -270,9 +306,11 @@ public abstract class MappedSalesReason {
             updatable = true,
             length = COLUMN_LENGTH_REASON_TYPE
     )
+    @MsDescription.Column(name = COLUMN_NAME_REASON_TYPE,
+                          value = "Category the sales reason belongs to.")
     private String reasonType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -281,6 +319,9 @@ public abstract class MappedSalesReason {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_SalesReason_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

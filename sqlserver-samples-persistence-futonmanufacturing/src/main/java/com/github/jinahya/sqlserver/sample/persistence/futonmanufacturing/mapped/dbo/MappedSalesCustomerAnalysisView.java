@@ -54,7 +54,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_CustomerAnalysis";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -66,7 +66,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerCode
+    // -------------------------------------------------------------------------------- CustomerCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -83,7 +83,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CODE = "customerCode";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -100,7 +100,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -117,7 +117,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ----------------------------------------------------------------------------------------------------------- State
+    // --------------------------------------------------------------------------------------- State
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -151,7 +151,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_STATE = "state";
 
-    // -------------------------------------------------------------------------------------------------------- SalesRep
+    // ------------------------------------------------------------------------------------ SalesRep
 
     /**
      * The name of the {@code nvarchar(101)} column. The value is {@value}.
@@ -168,7 +168,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP = "salesRep";
 
-    // --------------------------------------------------------------------------------------------------- TerritoryName
+    // ------------------------------------------------------------------------------- TerritoryName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -185,7 +185,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_NAME = "territoryName";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -197,7 +197,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ------------------------------------------------------------------------------------------------------ TotalSales
+    // ---------------------------------------------------------------------------------- TotalSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -219,7 +219,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_SALES = "totalSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -241,7 +241,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // --------------------------------------------------------------------------------------------------- LastOrderDate
+    // ------------------------------------------------------------------------------- LastOrderDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -253,7 +253,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_LAST_ORDER_DATE = "lastOrderDate";
 
-    // -------------------------------------------------------------------------------------------------- FirstOrderDate
+    // ------------------------------------------------------------------------------ FirstOrderDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -265,7 +265,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_ORDER_DATE = "firstOrderDate";
 
-    // -------------------------------------------------------------------------------------------- CustomerLifespanDays
+    // ------------------------------------------------------------------------ CustomerLifespanDays
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -278,7 +278,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_LIFESPAN_DAYS = "customerLifespanDays";
 
-    // -------------------------------------------------------------------------------------------------- DeliveredSales
+    // ------------------------------------------------------------------------------ DeliveredSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -300,7 +300,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DELIVERED_SALES = "deliveredSales";
 
-    // ---------------------------------------------------------------------------------------------------- PendingSales
+    // -------------------------------------------------------------------------------- PendingSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -322,7 +322,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_PENDING_SALES = "pendingSales";
 
-    // ---------------------------------------------------------------------------------------------------- TotalReturns
+    // -------------------------------------------------------------------------------- TotalReturns
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -334,7 +334,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_RETURNS = "totalReturns";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRefunds
+    // -------------------------------------------------------------------------------- TotalRefunds
 
     /**
      * The name of the {@code decimal(38, 2), NOT NULL} column. The value is {@value}.
@@ -356,7 +356,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REFUNDS = "totalRefunds";
 
-    // ------------------------------------------------------------------------------------------------- CustomerSegment
+    // ----------------------------------------------------------------------------- CustomerSegment
 
     /**
      * The name of the {@code varchar(10), NOT NULL} column. The value is {@value}.
@@ -373,7 +373,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_SEGMENT = "customerSegment";
 
-    // ------------------------------------------------------------------------------------------------------ ReturnRate
+    // ---------------------------------------------------------------------------------- ReturnRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -395,7 +395,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_RETURN_RATE = "returnRate";
 
-    // ---------------------------------------------------------------------------------------------- DaysSinceLastOrder
+    // -------------------------------------------------------------------------- DaysSinceLastOrder
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -408,7 +408,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_LAST_ORDER = "daysSinceLastOrder";
 
-    // -------------------------------------------------------------------------------------------------- CustomerStatus
+    // ------------------------------------------------------------------------------ CustomerStatus
 
     /**
      * The name of the {@code varchar(8), NOT NULL} column. The value is {@value}.
@@ -425,7 +425,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_STATUS = "customerStatus";
 
-    // ------------------------------------------------------------------------------------------------- AvgMonthlyValue
+    // ----------------------------------------------------------------------------- AvgMonthlyValue
 
     /**
      * The name of the {@code numeric(38, 6)} column. The value is {@value}.
@@ -447,7 +447,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_MONTHLY_VALUE = "avgMonthlyValue";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -456,7 +456,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -516,7 +516,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         return Objects.hash(customerId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -536,7 +536,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerId = customerId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerCode
+    // -------------------------------------------------------------------------------- customerCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CODE} attribute.
@@ -556,7 +556,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerCode = customerCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -576,7 +576,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerName = customerName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -596,7 +596,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerType = customerType;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -616,7 +616,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.city = city;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- state
+    // --------------------------------------------------------------------------------------- state
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE} attribute.
@@ -636,7 +636,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.state = state;
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesRep
+    // ------------------------------------------------------------------------------------ salesRep
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REP} attribute.
@@ -656,7 +656,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.salesRep = salesRep;
     }
 
-    // --------------------------------------------------------------------------------------------------- territoryName
+    // ------------------------------------------------------------------------------- territoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute.
@@ -676,7 +676,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.territoryName = territoryName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -696,7 +696,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.totalOrders = totalOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------------ totalSales
+    // ---------------------------------------------------------------------------------- totalSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_SALES} attribute.
@@ -716,7 +716,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.totalSales = totalSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -736,7 +736,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // --------------------------------------------------------------------------------------------------- lastOrderDate
+    // ------------------------------------------------------------------------------- lastOrderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_ORDER_DATE} attribute.
@@ -756,7 +756,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.lastOrderDate = lastOrderDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- firstOrderDate
+    // ------------------------------------------------------------------------------ firstOrderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_ORDER_DATE} attribute.
@@ -776,7 +776,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.firstOrderDate = firstOrderDate;
     }
 
-    // -------------------------------------------------------------------------------------------- customerLifespanDays
+    // ------------------------------------------------------------------------ customerLifespanDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_LIFESPAN_DAYS} attribute.
@@ -796,7 +796,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerLifespanDays = customerLifespanDays;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveredSales
+    // ------------------------------------------------------------------------------ deliveredSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERED_SALES} attribute.
@@ -816,7 +816,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.deliveredSales = deliveredSales;
     }
 
-    // ---------------------------------------------------------------------------------------------------- pendingSales
+    // -------------------------------------------------------------------------------- pendingSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PENDING_SALES} attribute.
@@ -836,7 +836,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.pendingSales = pendingSales;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalReturns
+    // -------------------------------------------------------------------------------- totalReturns
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_RETURNS} attribute.
@@ -856,7 +856,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.totalReturns = totalReturns;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRefunds
+    // -------------------------------------------------------------------------------- totalRefunds
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REFUNDS} attribute.
@@ -876,7 +876,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.totalRefunds = totalRefunds;
     }
 
-    // ------------------------------------------------------------------------------------------------- customerSegment
+    // ----------------------------------------------------------------------------- customerSegment
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_SEGMENT} attribute.
@@ -896,7 +896,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerSegment = customerSegment;
     }
 
-    // ------------------------------------------------------------------------------------------------------ returnRate
+    // ---------------------------------------------------------------------------------- returnRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_RATE} attribute.
@@ -916,7 +916,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.returnRate = returnRate;
     }
 
-    // ---------------------------------------------------------------------------------------------- daysSinceLastOrder
+    // -------------------------------------------------------------------------- daysSinceLastOrder
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_ORDER} attribute.
@@ -936,7 +936,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.daysSinceLastOrder = daysSinceLastOrder;
     }
 
-    // -------------------------------------------------------------------------------------------------- customerStatus
+    // ------------------------------------------------------------------------------ customerStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_STATUS} attribute.
@@ -956,7 +956,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.customerStatus = customerStatus;
     }
 
-    // ------------------------------------------------------------------------------------------------- avgMonthlyValue
+    // ----------------------------------------------------------------------------- avgMonthlyValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_MONTHLY_VALUE} attribute.
@@ -976,7 +976,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         this.avgMonthlyValue = avgMonthlyValue;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -987,7 +987,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
@@ -1000,7 +1000,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String customerCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -1013,7 +1013,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -1025,7 +1025,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
@@ -1037,7 +1037,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
@@ -1049,7 +1049,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String state;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP)
     @Basic(optional = true)
@@ -1061,7 +1061,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String salesRep;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
@@ -1073,7 +1073,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String territoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -1083,7 +1083,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_SALES - COLUMN_SCALE_TOTAL_SALES, fraction = COLUMN_SCALE_TOTAL_SALES)
     @Basic(optional = true)
@@ -1096,7 +1096,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private BigDecimal totalSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -1110,7 +1110,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_ORDER_DATE,
@@ -1120,7 +1120,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private LocalDate lastOrderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FIRST_ORDER_DATE,
@@ -1130,7 +1130,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private LocalDate firstOrderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_LIFESPAN_DAYS,
@@ -1140,7 +1140,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private Integer customerLifespanDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DELIVERED_SALES - COLUMN_SCALE_DELIVERED_SALES,
             fraction = COLUMN_SCALE_DELIVERED_SALES)
@@ -1154,7 +1154,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private BigDecimal deliveredSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PENDING_SALES - COLUMN_SCALE_PENDING_SALES,
             fraction = COLUMN_SCALE_PENDING_SALES)
@@ -1168,7 +1168,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private BigDecimal pendingSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_RETURNS,
@@ -1178,7 +1178,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private Integer totalReturns;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REFUNDS - COLUMN_SCALE_TOTAL_REFUNDS,
             fraction = COLUMN_SCALE_TOTAL_REFUNDS)
@@ -1193,7 +1193,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private BigDecimal totalRefunds;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_SEGMENT)
     @NotNull
@@ -1206,7 +1206,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String customerSegment;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RETURN_RATE - COLUMN_SCALE_RETURN_RATE, fraction = COLUMN_SCALE_RETURN_RATE)
     @Basic(optional = true)
@@ -1219,7 +1219,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private BigDecimal returnRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_ORDER,
@@ -1229,7 +1229,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private Integer daysSinceLastOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_STATUS)
     @NotNull
@@ -1242,7 +1242,7 @@ public abstract class MappedSalesCustomerAnalysisView {
     )
     private String customerStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_MONTHLY_VALUE - COLUMN_SCALE_AVG_MONTHLY_VALUE,
             fraction = COLUMN_SCALE_AVG_MONTHLY_VALUE)

@@ -20,7 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.MappedWithIdentityId;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
@@ -63,14 +63,14 @@ public abstract class MappedJobCandidateView
      */
     public static final String TABLE_NAME = "vJobCandidate";
 
-    // -------------------------------------------------------------------------------------------------- JobCandidateID
+    // ------------------------------------------------------------------------------ JobCandidateID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_JOB_CANDIDATE_ID = "JobCandidateID";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ----------------------------------------------------------------------------------------------------- Name.Prefix
+    // --------------------------------------------------------------------------------- Name.Prefix
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_NAME_PREFIX = "namePrefix";
 
-    // ------------------------------------------------------------------------------------------------------ Name.First
+    // ---------------------------------------------------------------------------------- Name.First
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_NAME_FIRST = "nameFirst";
 
-    // ----------------------------------------------------------------------------------------------------- Name.Middle
+    // --------------------------------------------------------------------------------- Name.Middle
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_NAME_MIDDLE = "nameMiddle";
 
-    // ------------------------------------------------------------------------------------------------------- Name.Last
+    // ----------------------------------------------------------------------------------- Name.Last
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_NAME_LAST = "nameLast";
 
-    // ----------------------------------------------------------------------------------------------------- Name.Suffix
+    // --------------------------------------------------------------------------------- Name.Suffix
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_NAME_SUFFIX = "nameSuffix";
 
-    // ---------------------------------------------------------------------------------------------------------- Skills
+    // -------------------------------------------------------------------------------------- Skills
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -179,7 +179,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_SKILLS = "skills";
 
-    // ------------------------------------------------------------------------------------------------------- Addr.Type
+    // ----------------------------------------------------------------------------------- Addr.Type
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_ADDR_TYPE = "addrType";
 
-    // ------------------------------------------------------------------------------------------ Addr.Loc.CountryRegion
+    // ---------------------------------------------------------------------- Addr.Loc.CountryRegion
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -214,7 +214,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_ADDR_LOC_COUNTRY_REGION = "addrLocCountryRegion";
 
-    // -------------------------------------------------------------------------------------------------- Addr.Loc.State
+    // ------------------------------------------------------------------------------ Addr.Loc.State
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -231,7 +231,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_ADDR_LOC_STATE = "addrLocState";
 
-    // --------------------------------------------------------------------------------------------------- Addr.Loc.City
+    // ------------------------------------------------------------------------------- Addr.Loc.City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -248,7 +248,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_ADDR_LOC_CITY = "addrLocCity";
 
-    // ------------------------------------------------------------------------------------------------- Addr.PostalCode
+    // ----------------------------------------------------------------------------- Addr.PostalCode
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -265,7 +265,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_ADDR_POSTAL_CODE = "addrPostalCode";
 
-    // ----------------------------------------------------------------------------------------------------------- EMail
+    // --------------------------------------------------------------------------------------- EMail
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -277,7 +277,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_E_MAIL = "eMail";
 
-    // --------------------------------------------------------------------------------------------------------- WebSite
+    // ------------------------------------------------------------------------------------- WebSite
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -289,7 +289,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_WEB_SITE = "webSite";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -301,7 +301,7 @@ public abstract class MappedJobCandidateView
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -310,7 +310,7 @@ public abstract class MappedJobCandidateView
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -363,7 +363,7 @@ public abstract class MappedJobCandidateView
         return Objects.hash(getId_());
     }
 
-    // -------------------------------------------------------------------------------------------------- jobCandidateId
+    // ------------------------------------------------------------------------------ jobCandidateId
 
     /**
      * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column.
@@ -374,7 +374,7 @@ public abstract class MappedJobCandidateView
         return getId_();
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -394,7 +394,7 @@ public abstract class MappedJobCandidateView
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ namePrefix
+    // ---------------------------------------------------------------------------------- namePrefix
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME_PREFIX} attribute.
@@ -414,7 +414,7 @@ public abstract class MappedJobCandidateView
         this.namePrefix = namePrefix;
     }
 
-    // ------------------------------------------------------------------------------------------------------- nameFirst
+    // ----------------------------------------------------------------------------------- nameFirst
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME_FIRST} attribute.
@@ -434,7 +434,7 @@ public abstract class MappedJobCandidateView
         this.nameFirst = nameFirst;
     }
 
-    // ------------------------------------------------------------------------------------------------------ nameMiddle
+    // ---------------------------------------------------------------------------------- nameMiddle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME_MIDDLE} attribute.
@@ -454,7 +454,7 @@ public abstract class MappedJobCandidateView
         this.nameMiddle = nameMiddle;
     }
 
-    // -------------------------------------------------------------------------------------------------------- nameLast
+    // ------------------------------------------------------------------------------------ nameLast
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME_LAST} attribute.
@@ -474,7 +474,7 @@ public abstract class MappedJobCandidateView
         this.nameLast = nameLast;
     }
 
-    // ------------------------------------------------------------------------------------------------------ nameSuffix
+    // ---------------------------------------------------------------------------------- nameSuffix
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME_SUFFIX} attribute.
@@ -494,7 +494,7 @@ public abstract class MappedJobCandidateView
         this.nameSuffix = nameSuffix;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- skills
+    // -------------------------------------------------------------------------------------- skills
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SKILLS} attribute.
@@ -514,7 +514,7 @@ public abstract class MappedJobCandidateView
         this.skills = skills;
     }
 
-    // -------------------------------------------------------------------------------------------------------- addrType
+    // ------------------------------------------------------------------------------------ addrType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDR_TYPE} attribute.
@@ -534,7 +534,7 @@ public abstract class MappedJobCandidateView
         this.addrType = addrType;
     }
 
-    // -------------------------------------------------------------------------------------------- addrLocCountryRegion
+    // ------------------------------------------------------------------------ addrLocCountryRegion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDR_LOC_COUNTRY_REGION} attribute.
@@ -554,7 +554,7 @@ public abstract class MappedJobCandidateView
         this.addrLocCountryRegion = addrLocCountryRegion;
     }
 
-    // ---------------------------------------------------------------------------------------------------- addrLocState
+    // -------------------------------------------------------------------------------- addrLocState
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDR_LOC_STATE} attribute.
@@ -574,7 +574,7 @@ public abstract class MappedJobCandidateView
         this.addrLocState = addrLocState;
     }
 
-    // ----------------------------------------------------------------------------------------------------- addrLocCity
+    // --------------------------------------------------------------------------------- addrLocCity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDR_LOC_CITY} attribute.
@@ -594,7 +594,7 @@ public abstract class MappedJobCandidateView
         this.addrLocCity = addrLocCity;
     }
 
-    // -------------------------------------------------------------------------------------------------- addrPostalCode
+    // ------------------------------------------------------------------------------ addrPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDR_POSTAL_CODE} attribute.
@@ -614,7 +614,7 @@ public abstract class MappedJobCandidateView
         this.addrPostalCode = addrPostalCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- eMail
+    // --------------------------------------------------------------------------------------- eMail
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_E_MAIL} attribute.
@@ -634,7 +634,7 @@ public abstract class MappedJobCandidateView
         this.eMail = eMail;
     }
 
-    // --------------------------------------------------------------------------------------------------------- webSite
+    // ------------------------------------------------------------------------------------- webSite
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEB_SITE} attribute.
@@ -654,7 +654,7 @@ public abstract class MappedJobCandidateView
         this.webSite = webSite;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -674,7 +674,7 @@ public abstract class MappedJobCandidateView
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -684,7 +684,7 @@ public abstract class MappedJobCandidateView
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_PREFIX)
     @Basic(optional = true)
@@ -696,7 +696,7 @@ public abstract class MappedJobCandidateView
     )
     private String namePrefix;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_FIRST)
     @Basic(optional = true)
@@ -708,7 +708,7 @@ public abstract class MappedJobCandidateView
     )
     private String nameFirst;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_MIDDLE)
     @Basic(optional = true)
@@ -720,7 +720,7 @@ public abstract class MappedJobCandidateView
     )
     private String nameMiddle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_LAST)
     @Basic(optional = true)
@@ -732,7 +732,7 @@ public abstract class MappedJobCandidateView
     )
     private String nameLast;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME_SUFFIX)
     @Basic(optional = true)
@@ -744,7 +744,7 @@ public abstract class MappedJobCandidateView
     )
     private String nameSuffix;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SKILLS,
@@ -754,7 +754,7 @@ public abstract class MappedJobCandidateView
     )
     private String skills;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_TYPE)
     @Basic(optional = true)
@@ -766,7 +766,7 @@ public abstract class MappedJobCandidateView
     )
     private String addrType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_LOC_COUNTRY_REGION)
     @Basic(optional = true)
@@ -778,7 +778,7 @@ public abstract class MappedJobCandidateView
     )
     private String addrLocCountryRegion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_LOC_STATE)
     @Basic(optional = true)
@@ -790,7 +790,7 @@ public abstract class MappedJobCandidateView
     )
     private String addrLocState;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_LOC_CITY)
     @Basic(optional = true)
@@ -802,7 +802,7 @@ public abstract class MappedJobCandidateView
     )
     private String addrLocCity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDR_POSTAL_CODE)
     @Basic(optional = true)
@@ -814,7 +814,7 @@ public abstract class MappedJobCandidateView
     )
     private String addrPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_E_MAIL,
@@ -824,7 +824,7 @@ public abstract class MappedJobCandidateView
     )
     private String eMail;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WEB_SITE,
@@ -834,7 +834,7 @@ public abstract class MappedJobCandidateView
     )
     private String webSite;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)

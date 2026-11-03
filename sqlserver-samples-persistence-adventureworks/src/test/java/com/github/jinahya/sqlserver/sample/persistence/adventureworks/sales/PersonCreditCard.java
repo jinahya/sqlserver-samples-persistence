@@ -52,7 +52,7 @@ public class PersonCreditCard extends MappedPersonCreditCard {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_CARD = "creditCard";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +61,7 @@ public class PersonCreditCard extends MappedPersonCreditCard {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Person} which the {@code FK_PersonCreditCard_Person_BusinessEntityID} foreign key references.
@@ -83,7 +83,7 @@ public class PersonCreditCard extends MappedPersonCreditCard {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ creditCard
+    // ---------------------------------------------------------------------------------- creditCard
 
     /**
      * Returns the {@code CreditCard} which the {@code FK_PersonCreditCard_CreditCard_CreditCardID} foreign key
@@ -106,7 +106,7 @@ public class PersonCreditCard extends MappedPersonCreditCard {
         setCreditCardId(creditCard == null ? null : creditCard.getCreditCardId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -116,7 +116,7 @@ public class PersonCreditCard extends MappedPersonCreditCard {
     )
     private Person businessEntity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CREDIT_CARD_ID,
                 referencedColumnName = MappedCreditCard.COLUMN_NAME_CREDIT_CARD_ID,

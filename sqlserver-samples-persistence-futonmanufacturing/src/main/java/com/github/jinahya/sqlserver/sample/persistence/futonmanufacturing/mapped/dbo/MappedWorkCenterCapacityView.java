@@ -54,7 +54,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String TABLE_NAME = "vw_WorkCenterCapacity";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterCode
+    // ------------------------------------------------------------------------------ WorkCenterCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_CODE = "workCenterCode";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterName
+    // ------------------------------------------------------------------------------ WorkCenterName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_NAME = "workCenterName";
 
-    // --------------------------------------------------------------------------------------------------- DailyCapacity
+    // ------------------------------------------------------------------------------- DailyCapacity
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -110,7 +110,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_DAILY_CAPACITY = "dailyCapacity";
 
-    // ---------------------------------------------------------------------------------------------------- ActiveOrders
+    // -------------------------------------------------------------------------------- ActiveOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_ACTIVE_ORDERS = "activeOrders";
 
-    // ------------------------------------------------------------------------------------------------ InProgressOrders
+    // ---------------------------------------------------------------------------- InProgressOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_IN_PROGRESS_ORDERS = "inProgressOrders";
 
-    // -------------------------------------------------------------------------------------------- TotalQuantityPending
+    // ------------------------------------------------------------------------ TotalQuantityPending
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -157,7 +157,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_QUANTITY_PENDING = "totalQuantityPending";
 
-    // ------------------------------------------------------------------------------------------------------ DaysOfWork
+    // ---------------------------------------------------------------------------------- DaysOfWork
 
     /**
      * The name of the {@code decimal(10, 2)} column. The value is {@value}.
@@ -179,7 +179,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_OF_WORK = "daysOfWork";
 
-    // -------------------------------------------------------------------------------------------- PercentOfTotalOrders
+    // ------------------------------------------------------------------------ PercentOfTotalOrders
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -202,7 +202,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_PERCENT_OF_TOTAL_ORDERS = "percentOfTotalOrders";
 
-    // ------------------------------------------------------------------------------------------------- EarliestDueDate
+    // ----------------------------------------------------------------------------- EarliestDueDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -214,7 +214,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_EARLIEST_DUE_DATE = "earliestDueDate";
 
-    // --------------------------------------------------------------------------------------------------- LatestDueDate
+    // ------------------------------------------------------------------------------- LatestDueDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -226,7 +226,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     public static final String ATTRIBUTE_NAME_LATEST_DUE_DATE = "latestDueDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -235,7 +235,7 @@ public abstract class MappedWorkCenterCapacityView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -282,7 +282,7 @@ public abstract class MappedWorkCenterCapacityView {
         return Objects.hash(workCenterCode);
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterCode
+    // ------------------------------------------------------------------------------ workCenterCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_CODE} attribute.
@@ -302,7 +302,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.workCenterCode = workCenterCode;
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterName
+    // ------------------------------------------------------------------------------ workCenterName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_NAME} attribute.
@@ -322,7 +322,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.workCenterName = workCenterName;
     }
 
-    // --------------------------------------------------------------------------------------------------- dailyCapacity
+    // ------------------------------------------------------------------------------- dailyCapacity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAILY_CAPACITY} attribute.
@@ -342,7 +342,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.dailyCapacity = dailyCapacity;
     }
 
-    // ---------------------------------------------------------------------------------------------------- activeOrders
+    // -------------------------------------------------------------------------------- activeOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTIVE_ORDERS} attribute.
@@ -362,7 +362,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.activeOrders = activeOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------ inProgressOrders
+    // ---------------------------------------------------------------------------- inProgressOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IN_PROGRESS_ORDERS} attribute.
@@ -382,7 +382,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.inProgressOrders = inProgressOrders;
     }
 
-    // -------------------------------------------------------------------------------------------- totalQuantityPending
+    // ------------------------------------------------------------------------ totalQuantityPending
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_PENDING} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.totalQuantityPending = totalQuantityPending;
     }
 
-    // ------------------------------------------------------------------------------------------------------ daysOfWork
+    // ---------------------------------------------------------------------------------- daysOfWork
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_OF_WORK} attribute.
@@ -422,7 +422,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.daysOfWork = daysOfWork;
     }
 
-    // -------------------------------------------------------------------------------------------- percentOfTotalOrders
+    // ------------------------------------------------------------------------ percentOfTotalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERCENT_OF_TOTAL_ORDERS} attribute.
@@ -442,7 +442,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.percentOfTotalOrders = percentOfTotalOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------- earliestDueDate
+    // ----------------------------------------------------------------------------- earliestDueDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EARLIEST_DUE_DATE} attribute.
@@ -462,7 +462,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.earliestDueDate = earliestDueDate;
     }
 
-    // --------------------------------------------------------------------------------------------------- latestDueDate
+    // ------------------------------------------------------------------------------- latestDueDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATEST_DUE_DATE} attribute.
@@ -482,7 +482,7 @@ public abstract class MappedWorkCenterCapacityView {
         this.latestDueDate = latestDueDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_CODE)
     @NotNull
@@ -495,7 +495,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private String workCenterCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @NotNull
@@ -508,7 +508,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private String workCenterName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DAILY_CAPACITY - COLUMN_SCALE_DAILY_CAPACITY,
             fraction = COLUMN_SCALE_DAILY_CAPACITY)
@@ -522,7 +522,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private BigDecimal dailyCapacity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTIVE_ORDERS,
@@ -532,7 +532,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private Integer activeOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_IN_PROGRESS_ORDERS,
@@ -542,7 +542,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private Integer inProgressOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_PENDING - COLUMN_SCALE_TOTAL_QUANTITY_PENDING,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_PENDING)
@@ -556,7 +556,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private BigDecimal totalQuantityPending;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DAYS_OF_WORK - COLUMN_SCALE_DAYS_OF_WORK, fraction = COLUMN_SCALE_DAYS_OF_WORK)
     @Basic(optional = true)
@@ -569,7 +569,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private BigDecimal daysOfWork;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PERCENT_OF_TOTAL_ORDERS - COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS,
             fraction = COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS)
@@ -583,7 +583,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private BigDecimal percentOfTotalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EARLIEST_DUE_DATE,
@@ -593,7 +593,7 @@ public abstract class MappedWorkCenterCapacityView {
     )
     private LocalDate earliestDueDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_DUE_DATE,

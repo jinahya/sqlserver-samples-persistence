@@ -23,15 +23,33 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedShift;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code HumanResources.Shift} table.
  */
 @Entity(name = "HumanResourcesShift")
-@Table(schema = MappedShift.TABLE_SCHEMA, name = MappedShift.TABLE_NAME)
+@Table(schema = MappedShift.TABLE_SCHEMA,
+       name = MappedShift.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Shift_Name",
+                       columnNames = {
+                               Shift.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Shift_StartTime_EndTime",
+                       columnNames = {
+                               Shift.COLUMN_NAME_START_TIME,
+                               Shift.COLUMN_NAME_END_TIME
+                       }
+               )
+       }
+)
 public class Shift extends MappedShift {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

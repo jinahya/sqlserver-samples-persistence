@@ -54,7 +54,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String TABLE_NAME = "vw_InventoryValuation";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseCode
+    // ------------------------------------------------------------------------------- WarehouseCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_CODE = "warehouseCode";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseName
+    // ------------------------------------------------------------------------------- WarehouseName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_NAME = "warehouseName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------- QuantityOnHand
+    // ------------------------------------------------------------------------------ QuantityOnHand
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -161,7 +161,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
 
-    // ----------------------------------------------------------------------------------------------- QuantityAllocated
+    // --------------------------------------------------------------------------- QuantityAllocated
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -183,7 +183,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ALLOCATED = "quantityAllocated";
 
-    // ----------------------------------------------------------------------------------------------- QuantityAvailable
+    // --------------------------------------------------------------------------- QuantityAvailable
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -205,7 +205,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_AVAILABLE = "quantityAvailable";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -222,7 +222,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // ---------------------------------------------------------------------------------------------------- StandardCost
+    // -------------------------------------------------------------------------------- StandardCost
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -244,7 +244,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
 
-    // -------------------------------------------------------------------------------------------------- InventoryValue
+    // ------------------------------------------------------------------------------ InventoryValue
 
     /**
      * The name of the {@code decimal(37, 6)} column. The value is {@value}.
@@ -266,7 +266,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_INVENTORY_VALUE = "inventoryValue";
 
-    // -------------------------------------------------------------------------------------------------- AvailableValue
+    // ------------------------------------------------------------------------------ AvailableValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -288,7 +288,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_AVAILABLE_VALUE = "availableValue";
 
-    // --------------------------------------------------------------------------------------------------- LastCountDate
+    // ------------------------------------------------------------------------------- LastCountDate
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -300,7 +300,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_LAST_COUNT_DATE = "lastCountDate";
 
-    // -------------------------------------------------------------------------------------------------- DaysSinceCount
+    // ------------------------------------------------------------------------------ DaysSinceCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -312,7 +312,7 @@ public abstract class MappedInventoryValuationView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_COUNT = "daysSinceCount";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -321,7 +321,7 @@ public abstract class MappedInventoryValuationView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -372,7 +372,7 @@ public abstract class MappedInventoryValuationView {
         return Objects.hash(itemCode);
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseCode
+    // ------------------------------------------------------------------------------- warehouseCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_CODE} attribute.
@@ -392,7 +392,7 @@ public abstract class MappedInventoryValuationView {
         this.warehouseCode = warehouseCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseName
+    // ------------------------------------------------------------------------------- warehouseName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_NAME} attribute.
@@ -412,7 +412,7 @@ public abstract class MappedInventoryValuationView {
         this.warehouseName = warehouseName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -432,7 +432,7 @@ public abstract class MappedInventoryValuationView {
         this.itemType = itemType;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -452,7 +452,7 @@ public abstract class MappedInventoryValuationView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -472,7 +472,7 @@ public abstract class MappedInventoryValuationView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------- quantityOnHand
+    // ------------------------------------------------------------------------------ quantityOnHand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute.
@@ -492,7 +492,7 @@ public abstract class MappedInventoryValuationView {
         this.quantityOnHand = quantityOnHand;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityAllocated
+    // --------------------------------------------------------------------------- quantityAllocated
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ALLOCATED} attribute.
@@ -512,7 +512,7 @@ public abstract class MappedInventoryValuationView {
         this.quantityAllocated = quantityAllocated;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityAvailable
+    // --------------------------------------------------------------------------- quantityAvailable
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute.
@@ -532,7 +532,7 @@ public abstract class MappedInventoryValuationView {
         this.quantityAvailable = quantityAvailable;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -552,7 +552,7 @@ public abstract class MappedInventoryValuationView {
         this.unitCode = unitCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- standardCost
+    // -------------------------------------------------------------------------------- standardCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute.
@@ -572,7 +572,7 @@ public abstract class MappedInventoryValuationView {
         this.standardCost = standardCost;
     }
 
-    // -------------------------------------------------------------------------------------------------- inventoryValue
+    // ------------------------------------------------------------------------------ inventoryValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVENTORY_VALUE} attribute.
@@ -592,7 +592,7 @@ public abstract class MappedInventoryValuationView {
         this.inventoryValue = inventoryValue;
     }
 
-    // -------------------------------------------------------------------------------------------------- availableValue
+    // ------------------------------------------------------------------------------ availableValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVAILABLE_VALUE} attribute.
@@ -612,7 +612,7 @@ public abstract class MappedInventoryValuationView {
         this.availableValue = availableValue;
     }
 
-    // --------------------------------------------------------------------------------------------------- lastCountDate
+    // ------------------------------------------------------------------------------- lastCountDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_COUNT_DATE} attribute.
@@ -632,7 +632,7 @@ public abstract class MappedInventoryValuationView {
         this.lastCountDate = lastCountDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- daysSinceCount
+    // ------------------------------------------------------------------------------ daysSinceCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_SINCE_COUNT} attribute.
@@ -652,7 +652,7 @@ public abstract class MappedInventoryValuationView {
         this.daysSinceCount = daysSinceCount;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
@@ -665,7 +665,7 @@ public abstract class MappedInventoryValuationView {
     )
     private String warehouseCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
@@ -678,7 +678,7 @@ public abstract class MappedInventoryValuationView {
     )
     private String warehouseName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -691,7 +691,7 @@ public abstract class MappedInventoryValuationView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -704,7 +704,7 @@ public abstract class MappedInventoryValuationView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -717,7 +717,7 @@ public abstract class MappedInventoryValuationView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
@@ -732,7 +732,7 @@ public abstract class MappedInventoryValuationView {
     )
     private BigDecimal quantityOnHand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ALLOCATED - COLUMN_SCALE_QUANTITY_ALLOCATED,
             fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
@@ -747,7 +747,7 @@ public abstract class MappedInventoryValuationView {
     )
     private BigDecimal quantityAllocated;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
@@ -761,7 +761,7 @@ public abstract class MappedInventoryValuationView {
     )
     private BigDecimal quantityAvailable;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
@@ -774,7 +774,7 @@ public abstract class MappedInventoryValuationView {
     )
     private String unitCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
             fraction = COLUMN_SCALE_STANDARD_COST)
@@ -789,7 +789,7 @@ public abstract class MappedInventoryValuationView {
     )
     private BigDecimal standardCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
             fraction = COLUMN_SCALE_INVENTORY_VALUE)
@@ -803,7 +803,7 @@ public abstract class MappedInventoryValuationView {
     )
     private BigDecimal inventoryValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVAILABLE_VALUE - COLUMN_SCALE_AVAILABLE_VALUE,
             fraction = COLUMN_SCALE_AVAILABLE_VALUE)
@@ -817,7 +817,7 @@ public abstract class MappedInventoryValuationView {
     )
     private BigDecimal availableValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_COUNT_DATE,
@@ -827,7 +827,7 @@ public abstract class MappedInventoryValuationView {
     )
     private LocalDateTime lastCountDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_COUNT,

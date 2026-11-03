@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +45,38 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_STORE_ID}, {@value #COLUMN_NAME_SALES_REP_ID} columns are mapped read-only, as a foreign key;
  * the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SalesOrder}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrderDate}</th><td>{@code (CONVERT([date],getdate()))}</td></tr>
+ * <tr><th scope="row">{@code Status}</th><td>{@code ('Draft')}</td></tr>
+ * <tr><th scope="row">{@code Subtotal}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code TaxAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code ShippingAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code TotalAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code DiscountAmount}</th><td>{@code ((0))}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code dbo.SalesOrder}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code NetAmount}</th><td>{@code ([TotalAmount]-[DiscountAmount])}</td><td>{@code true}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedSalesOrder {
@@ -56,7 +91,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String TABLE_NAME = "SalesOrder";
 
-    // ---------------------------------------------------------------------------------------------------- SalesOrderID
+    // -------------------------------------------------------------------------------- SalesOrderID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -68,7 +103,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
-    // ----------------------------------------------------------------------------------------------------- OrderNumber
+    // --------------------------------------------------------------------------------- OrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -85,7 +120,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_NUMBER = "orderNumber";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -97,7 +132,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ----------------------------------------------------------------------------------------------------- WarehouseID
+    // --------------------------------------------------------------------------------- WarehouseID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -109,7 +144,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code date, DEFAULT (CONVERT([date],getdate())), NOT NULL} column. The value is {@value}.
@@ -121,7 +156,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // ------------------------------------------------------------------------------------------- RequestedDeliveryDate
+    // ----------------------------------------------------------------------- RequestedDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -134,7 +169,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_REQUESTED_DELIVERY_DATE = "requestedDeliveryDate";
 
-    // -------------------------------------------------------------------------------------------------------- ShipDate
+    // ------------------------------------------------------------------------------------ ShipDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -146,7 +181,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SHIP_DATE = "shipDate";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), DEFAULT ('Draft'), NOT NULL} column. The value is {@value}.
@@ -163,7 +198,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // -------------------------------------------------------------------------------------------------------- Subtotal
+    // ------------------------------------------------------------------------------------ Subtotal
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -185,7 +220,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SUBTOTAL = "subtotal";
 
-    // ------------------------------------------------------------------------------------------------------- TaxAmount
+    // ----------------------------------------------------------------------------------- TaxAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -207,7 +242,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_TAX_AMOUNT = "taxAmount";
 
-    // -------------------------------------------------------------------------------------------------- ShippingAmount
+    // ------------------------------------------------------------------------------ ShippingAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -229,7 +264,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SHIPPING_AMOUNT = "shippingAmount";
 
-    // ----------------------------------------------------------------------------------------------------- TotalAmount
+    // --------------------------------------------------------------------------------- TotalAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -251,7 +286,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_AMOUNT = "totalAmount";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -263,7 +298,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ------------------------------------------------------------------------------------------------------- CreatedBy
+    // ----------------------------------------------------------------------------------- CreatedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -280,7 +315,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_CREATED_BY = "createdBy";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -292,7 +327,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -304,7 +339,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // -------------------------------------------------------------------------------------------------- SalesChannelID
+    // ------------------------------------------------------------------------------ SalesChannelID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -316,7 +351,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL_ID = "salesChannelId";
 
-    // --------------------------------------------------------------------------------------------------------- StoreID
+    // ------------------------------------------------------------------------------------- StoreID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -328,7 +363,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_STORE_ID = "storeId";
 
-    // ------------------------------------------------------------------------------------------------------ SalesRepID
+    // ---------------------------------------------------------------------------------- SalesRepID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -340,7 +375,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP_ID = "salesRepId";
 
-    // -------------------------------------------------------------------------------------------------- DiscountAmount
+    // ------------------------------------------------------------------------------ DiscountAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -362,7 +397,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_AMOUNT = "discountAmount";
 
-    // ------------------------------------------------------------------------------------------------------- NetAmount
+    // ----------------------------------------------------------------------------------- NetAmount
 
     /**
      * The name of the {@code decimal(19, 2), computed as ([TotalAmount]-[DiscountAmount])} column. The value is
@@ -385,7 +420,7 @@ public abstract class MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_NET_AMOUNT = "netAmount";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -394,7 +429,7 @@ public abstract class MappedSalesOrder {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -452,7 +487,7 @@ public abstract class MappedSalesOrder {
         return Objects.hash(salesOrderId);
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesOrderId
+    // -------------------------------------------------------------------------------- salesOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
@@ -472,7 +507,7 @@ public abstract class MappedSalesOrder {
         this.salesOrderId = salesOrderId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- orderNumber
+    // --------------------------------------------------------------------------------- orderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_NUMBER} attribute.
@@ -492,7 +527,7 @@ public abstract class MappedSalesOrder {
         this.orderNumber = orderNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -513,7 +548,7 @@ public abstract class MappedSalesOrder {
         this.customerId = customerId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- warehouseId
+    // --------------------------------------------------------------------------------- warehouseId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
@@ -534,7 +569,7 @@ public abstract class MappedSalesOrder {
         this.warehouseId = warehouseId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -554,7 +589,7 @@ public abstract class MappedSalesOrder {
         this.orderDate = orderDate;
     }
 
-    // ------------------------------------------------------------------------------------------- requestedDeliveryDate
+    // ----------------------------------------------------------------------- requestedDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REQUESTED_DELIVERY_DATE} attribute.
@@ -574,7 +609,7 @@ public abstract class MappedSalesOrder {
         this.requestedDeliveryDate = requestedDeliveryDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- shipDate
+    // ------------------------------------------------------------------------------------ shipDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute.
@@ -594,7 +629,7 @@ public abstract class MappedSalesOrder {
         this.shipDate = shipDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -614,7 +649,7 @@ public abstract class MappedSalesOrder {
         this.status = status;
     }
 
-    // -------------------------------------------------------------------------------------------------------- subtotal
+    // ------------------------------------------------------------------------------------ subtotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUBTOTAL} attribute.
@@ -634,7 +669,7 @@ public abstract class MappedSalesOrder {
         this.subtotal = subtotal;
     }
 
-    // ------------------------------------------------------------------------------------------------------- taxAmount
+    // ----------------------------------------------------------------------------------- taxAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute.
@@ -654,7 +689,7 @@ public abstract class MappedSalesOrder {
         this.taxAmount = taxAmount;
     }
 
-    // -------------------------------------------------------------------------------------------------- shippingAmount
+    // ------------------------------------------------------------------------------ shippingAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIPPING_AMOUNT} attribute.
@@ -674,7 +709,7 @@ public abstract class MappedSalesOrder {
         this.shippingAmount = shippingAmount;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalAmount
+    // --------------------------------------------------------------------------------- totalAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute.
@@ -694,7 +729,7 @@ public abstract class MappedSalesOrder {
         this.totalAmount = totalAmount;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -714,7 +749,7 @@ public abstract class MappedSalesOrder {
         this.notes = notes;
     }
 
-    // ------------------------------------------------------------------------------------------------------- createdBy
+    // ----------------------------------------------------------------------------------- createdBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_BY} attribute.
@@ -734,7 +769,7 @@ public abstract class MappedSalesOrder {
         this.createdBy = createdBy;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -754,7 +789,7 @@ public abstract class MappedSalesOrder {
         this.createdDate = createdDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -774,7 +809,7 @@ public abstract class MappedSalesOrder {
         this.modifiedDate = modifiedDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- salesChannelId
+    // ------------------------------------------------------------------------------ salesChannelId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute.
@@ -796,7 +831,7 @@ public abstract class MappedSalesOrder {
         this.salesChannelId = salesChannelId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- storeId
+    // ------------------------------------------------------------------------------------- storeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STORE_ID} attribute.
@@ -817,7 +852,7 @@ public abstract class MappedSalesOrder {
         this.storeId = storeId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ salesRepId
+    // ---------------------------------------------------------------------------------- salesRepId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute.
@@ -838,7 +873,7 @@ public abstract class MappedSalesOrder {
         this.salesRepId = salesRepId;
     }
 
-    // -------------------------------------------------------------------------------------------------- discountAmount
+    // ------------------------------------------------------------------------------ discountAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute.
@@ -858,7 +893,7 @@ public abstract class MappedSalesOrder {
         this.discountAmount = discountAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------------- netAmount
+    // ----------------------------------------------------------------------------------- netAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_AMOUNT} attribute.
@@ -879,7 +914,7 @@ public abstract class MappedSalesOrder {
         this.netAmount = netAmount;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -891,7 +926,7 @@ public abstract class MappedSalesOrder {
     )
     private Integer salesOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ORDER_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -903,7 +938,7 @@ public abstract class MappedSalesOrder {
     )
     private String orderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -914,7 +949,7 @@ public abstract class MappedSalesOrder {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -925,7 +960,7 @@ public abstract class MappedSalesOrder {
     )
     private Integer warehouseId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_DATE,
@@ -933,9 +968,10 @@ public abstract class MappedSalesOrder {
             insertable = true,
             updatable = true
     )
+    @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REQUESTED_DELIVERY_DATE,
             nullable = true,
@@ -944,7 +980,7 @@ public abstract class MappedSalesOrder {
     )
     private LocalDate requestedDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHIP_DATE,
             nullable = true,
@@ -953,7 +989,7 @@ public abstract class MappedSalesOrder {
     )
     private LocalDate shipDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
@@ -963,9 +999,10 @@ public abstract class MappedSalesOrder {
             updatable = true,
             length = COLUMN_LENGTH_STATUS
     )
+    @MsDefault("('Draft')")
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SUBTOTAL - COLUMN_SCALE_SUBTOTAL, fraction = COLUMN_SCALE_SUBTOTAL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUBTOTAL,
@@ -975,9 +1012,10 @@ public abstract class MappedSalesOrder {
             precision = COLUMN_PRECISION_SUBTOTAL,
             scale = COLUMN_SCALE_SUBTOTAL
     )
+    @MsDefault("((0))")
     private BigDecimal subtotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAX_AMOUNT,
@@ -987,9 +1025,10 @@ public abstract class MappedSalesOrder {
             precision = COLUMN_PRECISION_TAX_AMOUNT,
             scale = COLUMN_SCALE_TAX_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal taxAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SHIPPING_AMOUNT - COLUMN_SCALE_SHIPPING_AMOUNT,
             fraction = COLUMN_SCALE_SHIPPING_AMOUNT)
     @Basic(optional = true)
@@ -1000,9 +1039,10 @@ public abstract class MappedSalesOrder {
             precision = COLUMN_PRECISION_SHIPPING_AMOUNT,
             scale = COLUMN_SCALE_SHIPPING_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal shippingAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_AMOUNT,
@@ -1012,9 +1052,10 @@ public abstract class MappedSalesOrder {
             precision = COLUMN_PRECISION_TOTAL_AMOUNT,
             scale = COLUMN_SCALE_TOTAL_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal totalAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -1023,7 +1064,7 @@ public abstract class MappedSalesOrder {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_BY,
@@ -1034,25 +1075,27 @@ public abstract class MappedSalesOrder {
     )
     private String createdBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_CHANNEL_ID,
@@ -1062,7 +1105,7 @@ public abstract class MappedSalesOrder {
     )
     private Integer salesChannelId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STORE_ID,
@@ -1072,7 +1115,7 @@ public abstract class MappedSalesOrder {
     )
     private Integer storeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REP_ID,
@@ -1082,7 +1125,7 @@ public abstract class MappedSalesOrder {
     )
     private Integer salesRepId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @Basic(optional = true)
@@ -1093,9 +1136,10 @@ public abstract class MappedSalesOrder {
             precision = COLUMN_PRECISION_DISCOUNT_AMOUNT,
             scale = COLUMN_SCALE_DISCOUNT_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal discountAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_NET_AMOUNT - COLUMN_SCALE_NET_AMOUNT, fraction = COLUMN_SCALE_NET_AMOUNT)
     @Basic(optional = true)
@@ -1106,6 +1150,7 @@ public abstract class MappedSalesOrder {
             precision = COLUMN_PRECISION_NET_AMOUNT,
             scale = COLUMN_SCALE_NET_AMOUNT
     )
+    @MsComputedColumn(value = "([TotalAmount]-[DiscountAmount])", persisted = true)
     private BigDecimal netAmount;
 }
 

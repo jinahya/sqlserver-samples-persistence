@@ -30,6 +30,7 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.warehouse.MappedStockItem;
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockGroup;
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItem;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -40,7 +41,22 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Sales.SpecialDeals} table.
  */
 @Entity(name = "SalesSpecialDeal")
-@Table(schema = MappedSpecialDeal.TABLE_SCHEMA, name = MappedSpecialDeal.TABLE_NAME)
+@Table(schema = MappedSpecialDeal.TABLE_SCHEMA,
+       name = MappedSpecialDeal.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_Sales_SpecialDeals_Exactly_One_NOT_NULL_Pricing_Option_Is_Required",
+                       constraint = "(((case when [DiscountAmount] IS NULL then (0) else (1) "
+                               + "end+case when [DiscountPercentage] IS NULL then (0) else (1) "
+                               + "end)+case when [UnitPrice] IS NULL then (0) else (1) end)=(1))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Sales_SpecialDeals_Unit_Price_Deal_Requires_Special_StockItem",
+                       constraint = "([StockItemID] IS NOT NULL AND [UnitPrice] IS NOT NULL OR "
+                               + "[UnitPrice] IS NULL)"
+               )
+       }
+)
 public class SpecialDeal extends MappedSpecialDeal {
 
     /**
@@ -79,7 +95,7 @@ public class SpecialDeal extends MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -88,7 +104,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------- stockItem
+    // ----------------------------------------------------------------------------------- stockItem
 
     /**
      * Returns the {@code StockItem} which the {@code FK_Sales_SpecialDeals_StockItemID_Warehouse_StockItems} foreign
@@ -111,7 +127,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         setStockItemId(stockItem == null ? null : stockItem.getStockItemId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- customer
+    // ------------------------------------------------------------------------------------ customer
 
     /**
      * Returns the {@code Customer} which the {@code FK_Sales_SpecialDeals_CustomerID_Sales_Customers} foreign key
@@ -134,7 +150,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         setCustomerId(customer == null ? null : customer.getCustomerId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- buyingGroup
+    // --------------------------------------------------------------------------------- buyingGroup
 
     /**
      * Returns the {@code BuyingGroup} which the {@code FK_Sales_SpecialDeals_BuyingGroupID_Sales_BuyingGroups} foreign
@@ -157,7 +173,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         setBuyingGroupId(buyingGroup == null ? null : buyingGroup.getBuyingGroupId());
     }
 
-    // ------------------------------------------------------------------------------------------------ customerCategory
+    // ---------------------------------------------------------------------------- customerCategory
 
     /**
      * Returns the {@code CustomerCategory} which the
@@ -181,7 +197,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         setCustomerCategoryId(customerCategory == null ? null : customerCategory.getCustomerCategoryId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ stockGroup
+    // ---------------------------------------------------------------------------------- stockGroup
 
     /**
      * Returns the {@code StockGroup} which the {@code FK_Sales_SpecialDeals_StockGroupID_Warehouse_StockGroups} foreign
@@ -204,7 +220,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         setStockGroupId(stockGroup == null ? null : stockGroup.getStockGroupId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_SpecialDeals_Application_People} foreign key references.
@@ -226,7 +242,7 @@ public class SpecialDeal extends MappedSpecialDeal {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_ITEM_ID,
                 referencedColumnName = MappedStockItem.COLUMN_NAME_STOCK_ITEM_ID,
@@ -236,7 +252,7 @@ public class SpecialDeal extends MappedSpecialDeal {
     )
     private StockItem stockItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -246,7 +262,7 @@ public class SpecialDeal extends MappedSpecialDeal {
     )
     private Customer customer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUYING_GROUP_ID,
                 referencedColumnName = MappedBuyingGroup.COLUMN_NAME_BUYING_GROUP_ID,
@@ -256,7 +272,7 @@ public class SpecialDeal extends MappedSpecialDeal {
     )
     private BuyingGroup buyingGroup;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
                 referencedColumnName = MappedCustomerCategory.COLUMN_NAME_CUSTOMER_CATEGORY_ID,
@@ -266,7 +282,7 @@ public class SpecialDeal extends MappedSpecialDeal {
     )
     private CustomerCategory customerCategory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_GROUP_ID,
                 referencedColumnName = MappedStockGroup.COLUMN_NAME_STOCK_GROUP_ID,
@@ -276,7 +292,7 @@ public class SpecialDeal extends MappedSpecialDeal {
     )
     private StockGroup stockGroup;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

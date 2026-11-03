@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -43,8 +46,93 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_PACKED_BY_PERSON_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.Invoices}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code InvoiceID}</th>
+ *     <td>Numeric ID used for reference to an invoice within the database</td></tr>
+ * <tr><th scope="row">{@code CustomerID}</th><td>Customer for this invoice</td></tr>
+ * <tr><th scope="row">{@code BillToCustomerID}</th>
+ *     <td>Bill to customer for this invoice (invoices might be billed to a head office)</td></tr>
+ * <tr><th scope="row">{@code OrderID}</th><td>Sales order (if any) for this invoice</td></tr>
+ * <tr><th scope="row">{@code DeliveryMethodID}</th>
+ *     <td>How these stock items are beign delivered</td></tr>
+ * <tr><th scope="row">{@code ContactPersonID}</th><td>Customer contact for this invoice</td></tr>
+ * <tr><th scope="row">{@code AccountsPersonID}</th>
+ *     <td>Customer accounts contact for this invoice</td></tr>
+ * <tr><th scope="row">{@code SalespersonPersonID}</th><td>Salesperson for this invoice</td></tr>
+ * <tr><th scope="row">{@code PackedByPersonID}</th>
+ *     <td>Person who packed this shipment (or checked the packing)</td></tr>
+ * <tr><th scope="row">{@code InvoiceDate}</th><td>Date that this invoice was raised</td></tr>
+ * <tr><th scope="row">{@code CustomerPurchaseOrderNumber}</th>
+ *     <td>Purchase Order Number received from customer</td></tr>
+ * <tr><th scope="row">{@code IsCreditNote}</th>
+ *     <td>Is this a credit note (rather than an invoice)</td></tr>
+ * <tr><th scope="row">{@code CreditNoteReason}</th>
+ *     <td>Reason that this credit note needed to be generated (if applicable)</td></tr>
+ * <tr><th scope="row">{@code Comments}</th>
+ *     <td>Any comments related to this invoice (sent to customer)</td></tr>
+ * <tr><th scope="row">{@code DeliveryInstructions}</th>
+ *     <td>Any comments related to delivery (sent to customer)</td></tr>
+ * <tr><th scope="row">{@code InternalComments}</th>
+ *     <td>Any internal comments related to this invoice (not sent to the customer)</td></tr>
+ * <tr><th scope="row">{@code TotalDryItems}</th>
+ *     <td>Total number of dry packages (information for the delivery driver)</td></tr>
+ * <tr><th scope="row">{@code TotalChillerItems}</th>
+ *     <td>Total number of chiller packages (information for the delivery driver)</td></tr>
+ * <tr><th scope="row">{@code DeliveryRun}</th><td>Delivery run for this shipment</td></tr>
+ * <tr><th scope="row">{@code RunPosition}</th>
+ *     <td>Position in the delivery run for this shipment</td></tr>
+ * <tr><th scope="row">{@code ReturnedDeliveryData}</th>
+ *     <td>JSON-structured data returned from delivery devices for deliveries made directly by the
+ *     organization</td></tr>
+ * <tr><th scope="row">{@code ConfirmedDeliveryTime}</th>
+ *     <td>Confirmed delivery date and time promoted from JSON delivery data</td></tr>
+ * <tr><th scope="row">{@code ConfirmedReceivedBy}</th>
+ *     <td>Confirmed receiver promoted from JSON delivery data</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.Invoices}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code InvoiceID}</th><td>{@code (NEXT VALUE FOR [Sequences].[InvoiceID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Sales.Invoices}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ConfirmedDeliveryTime}</th>
+ *     <td>{@code (TRY_CONVERT([datetime2](7),json_value([ReturnedDeliveryData],N'$.DeliveredWhen'),(126)))}</td>
+ *     <td>{@code false}</td></tr>
+ * <tr><th scope="row">{@code ConfirmedReceivedBy}</th>
+ *     <td>{@code (json_value([ReturnedDeliveryData],N'$.ReceivedBy'))}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/try-convert-transact-sql">TRY_CONVERT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql">JSON_VALUE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedInvoice.TABLE_SCHEMA,
+        table = MappedInvoice.TABLE_NAME,
+        value = "Details of customer invoices"
+)
 public abstract class MappedInvoice {
 
     /**
@@ -57,7 +145,7 @@ public abstract class MappedInvoice {
      */
     public static final String TABLE_NAME = "Invoices";
 
-    // ------------------------------------------------------------------------------------------------------- InvoiceID
+    // ----------------------------------------------------------------------------------- InvoiceID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.InvoiceID, NOT NULL} column. The value is {@value}.
@@ -69,7 +157,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_INVOICE_ID = "invoiceId";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -81,7 +169,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ------------------------------------------------------------------------------------------------ BillToCustomerID
+    // ---------------------------------------------------------------------------- BillToCustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +182,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID = "billToCustomerId";
 
-    // --------------------------------------------------------------------------------------------------------- OrderID
+    // ------------------------------------------------------------------------------------- OrderID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +194,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_ORDER_ID = "orderId";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryMethodID
+    // ---------------------------------------------------------------------------- DeliveryMethodID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -118,7 +206,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
 
-    // ------------------------------------------------------------------------------------------------- ContactPersonID
+    // ----------------------------------------------------------------------------- ContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -130,7 +218,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_CONTACT_PERSON_ID = "contactPersonId";
 
-    // ------------------------------------------------------------------------------------------------ AccountsPersonID
+    // ---------------------------------------------------------------------------- AccountsPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -142,7 +230,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_ACCOUNTS_PERSON_ID = "accountsPersonId";
 
-    // --------------------------------------------------------------------------------------------- SalespersonPersonID
+    // ------------------------------------------------------------------------- SalespersonPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -155,7 +243,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_SALESPERSON_PERSON_ID = "salespersonPersonId";
 
-    // ------------------------------------------------------------------------------------------------ PackedByPersonID
+    // ---------------------------------------------------------------------------- PackedByPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -168,7 +256,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_PACKED_BY_PERSON_ID = "packedByPersonId";
 
-    // ----------------------------------------------------------------------------------------------------- InvoiceDate
+    // --------------------------------------------------------------------------------- InvoiceDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -180,7 +268,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_INVOICE_DATE = "invoiceDate";
 
-    // ------------------------------------------------------------------------------------- CustomerPurchaseOrderNumber
+    // ----------------------------------------------------------------- CustomerPurchaseOrderNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -198,7 +286,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER = "customerPurchaseOrderNumber";
 
-    // ---------------------------------------------------------------------------------------------------- IsCreditNote
+    // -------------------------------------------------------------------------------- IsCreditNote
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -210,7 +298,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_IS_CREDIT_NOTE = "isCreditNote";
 
-    // ------------------------------------------------------------------------------------------------ CreditNoteReason
+    // ---------------------------------------------------------------------------- CreditNoteReason
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -222,7 +310,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_NOTE_REASON = "creditNoteReason";
 
-    // -------------------------------------------------------------------------------------------------------- Comments
+    // ------------------------------------------------------------------------------------ Comments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -234,7 +322,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_COMMENTS = "comments";
 
-    // -------------------------------------------------------------------------------------------- DeliveryInstructions
+    // ------------------------------------------------------------------------ DeliveryInstructions
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -247,7 +335,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_INSTRUCTIONS = "deliveryInstructions";
 
-    // ------------------------------------------------------------------------------------------------ InternalComments
+    // ---------------------------------------------------------------------------- InternalComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -259,7 +347,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_INTERNAL_COMMENTS = "internalComments";
 
-    // --------------------------------------------------------------------------------------------------- TotalDryItems
+    // ------------------------------------------------------------------------------- TotalDryItems
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -271,7 +359,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DRY_ITEMS = "totalDryItems";
 
-    // ----------------------------------------------------------------------------------------------- TotalChillerItems
+    // --------------------------------------------------------------------------- TotalChillerItems
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -284,7 +372,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_CHILLER_ITEMS = "totalChillerItems";
 
-    // ----------------------------------------------------------------------------------------------------- DeliveryRun
+    // --------------------------------------------------------------------------------- DeliveryRun
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -301,7 +389,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_RUN = "deliveryRun";
 
-    // ----------------------------------------------------------------------------------------------------- RunPosition
+    // --------------------------------------------------------------------------------- RunPosition
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -318,7 +406,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_RUN_POSITION = "runPosition";
 
-    // -------------------------------------------------------------------------------------------- ReturnedDeliveryData
+    // ------------------------------------------------------------------------ ReturnedDeliveryData
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -331,7 +419,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_RETURNED_DELIVERY_DATA = "returnedDeliveryData";
 
-    // ------------------------------------------------------------------------------------------- ConfirmedDeliveryTime
+    // ----------------------------------------------------------------------- ConfirmedDeliveryTime
 
     /**
      * The name of the
@@ -347,7 +435,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_CONFIRMED_DELIVERY_TIME = "confirmedDeliveryTime";
 
-    // --------------------------------------------------------------------------------------------- ConfirmedReceivedBy
+    // ------------------------------------------------------------------------- ConfirmedReceivedBy
 
     /**
      * The name of the {@code nvarchar(4000), computed as (json_value([ReturnedDeliveryData],N'$.ReceivedBy'))} column.
@@ -366,7 +454,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_CONFIRMED_RECEIVED_BY = "confirmedReceivedBy";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -378,7 +466,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -390,7 +478,7 @@ public abstract class MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -399,7 +487,7 @@ public abstract class MappedInvoice {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -461,7 +549,7 @@ public abstract class MappedInvoice {
         return Objects.hash(invoiceId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- invoiceId
+    // ----------------------------------------------------------------------------------- invoiceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute.
@@ -481,7 +569,7 @@ public abstract class MappedInvoice {
         this.invoiceId = invoiceId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -502,7 +590,7 @@ public abstract class MappedInvoice {
         this.customerId = customerId;
     }
 
-    // ------------------------------------------------------------------------------------------------ billToCustomerId
+    // ---------------------------------------------------------------------------- billToCustomerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute.
@@ -524,7 +612,7 @@ public abstract class MappedInvoice {
         this.billToCustomerId = billToCustomerId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- orderId
+    // ------------------------------------------------------------------------------------- orderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_ID} attribute.
@@ -545,7 +633,7 @@ public abstract class MappedInvoice {
         this.orderId = orderId;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryMethodId
+    // ---------------------------------------------------------------------------- deliveryMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
@@ -567,7 +655,7 @@ public abstract class MappedInvoice {
         this.deliveryMethodId = deliveryMethodId;
     }
 
-    // ------------------------------------------------------------------------------------------------- contactPersonId
+    // ----------------------------------------------------------------------------- contactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute.
@@ -589,7 +677,7 @@ public abstract class MappedInvoice {
         this.contactPersonId = contactPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ accountsPersonId
+    // ---------------------------------------------------------------------------- accountsPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACCOUNTS_PERSON_ID} attribute.
@@ -611,7 +699,7 @@ public abstract class MappedInvoice {
         this.accountsPersonId = accountsPersonId;
     }
 
-    // --------------------------------------------------------------------------------------------- salespersonPersonId
+    // ------------------------------------------------------------------------- salespersonPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute.
@@ -633,7 +721,7 @@ public abstract class MappedInvoice {
         this.salespersonPersonId = salespersonPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ packedByPersonId
+    // ---------------------------------------------------------------------------- packedByPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PACKED_BY_PERSON_ID} attribute.
@@ -655,7 +743,7 @@ public abstract class MappedInvoice {
         this.packedByPersonId = packedByPersonId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- invoiceDate
+    // --------------------------------------------------------------------------------- invoiceDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVOICE_DATE} attribute.
@@ -675,7 +763,7 @@ public abstract class MappedInvoice {
         this.invoiceDate = invoiceDate;
     }
 
-    // ------------------------------------------------------------------------------------- customerPurchaseOrderNumber
+    // ----------------------------------------------------------------- customerPurchaseOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER} attribute.
@@ -697,7 +785,7 @@ public abstract class MappedInvoice {
         this.customerPurchaseOrderNumber = customerPurchaseOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- isCreditNote
+    // -------------------------------------------------------------------------------- isCreditNote
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_CREDIT_NOTE} attribute.
@@ -717,7 +805,7 @@ public abstract class MappedInvoice {
         this.isCreditNote = isCreditNote;
     }
 
-    // ------------------------------------------------------------------------------------------------ creditNoteReason
+    // ---------------------------------------------------------------------------- creditNoteReason
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREDIT_NOTE_REASON} attribute.
@@ -737,7 +825,7 @@ public abstract class MappedInvoice {
         this.creditNoteReason = creditNoteReason;
     }
 
-    // -------------------------------------------------------------------------------------------------------- comments
+    // ------------------------------------------------------------------------------------ comments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
@@ -757,7 +845,7 @@ public abstract class MappedInvoice {
         this.comments = comments;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryInstructions
+    // ------------------------------------------------------------------------ deliveryInstructions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_INSTRUCTIONS} attribute.
@@ -777,7 +865,7 @@ public abstract class MappedInvoice {
         this.deliveryInstructions = deliveryInstructions;
     }
 
-    // ------------------------------------------------------------------------------------------------ internalComments
+    // ---------------------------------------------------------------------------- internalComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNAL_COMMENTS} attribute.
@@ -797,7 +885,7 @@ public abstract class MappedInvoice {
         this.internalComments = internalComments;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalDryItems
+    // ------------------------------------------------------------------------------- totalDryItems
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_DRY_ITEMS} attribute.
@@ -817,7 +905,7 @@ public abstract class MappedInvoice {
         this.totalDryItems = totalDryItems;
     }
 
-    // ----------------------------------------------------------------------------------------------- totalChillerItems
+    // --------------------------------------------------------------------------- totalChillerItems
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILLER_ITEMS} attribute.
@@ -837,7 +925,7 @@ public abstract class MappedInvoice {
         this.totalChillerItems = totalChillerItems;
     }
 
-    // ----------------------------------------------------------------------------------------------------- deliveryRun
+    // --------------------------------------------------------------------------------- deliveryRun
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_RUN} attribute.
@@ -857,7 +945,7 @@ public abstract class MappedInvoice {
         this.deliveryRun = deliveryRun;
     }
 
-    // ----------------------------------------------------------------------------------------------------- runPosition
+    // --------------------------------------------------------------------------------- runPosition
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RUN_POSITION} attribute.
@@ -877,7 +965,7 @@ public abstract class MappedInvoice {
         this.runPosition = runPosition;
     }
 
-    // -------------------------------------------------------------------------------------------- returnedDeliveryData
+    // ------------------------------------------------------------------------ returnedDeliveryData
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURNED_DELIVERY_DATA} attribute.
@@ -897,7 +985,7 @@ public abstract class MappedInvoice {
         this.returnedDeliveryData = returnedDeliveryData;
     }
 
-    // ------------------------------------------------------------------------------------------- confirmedDeliveryTime
+    // ----------------------------------------------------------------------- confirmedDeliveryTime
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONFIRMED_DELIVERY_TIME} attribute.
@@ -918,7 +1006,7 @@ public abstract class MappedInvoice {
         this.confirmedDeliveryTime = confirmedDeliveryTime;
     }
 
-    // --------------------------------------------------------------------------------------------- confirmedReceivedBy
+    // ------------------------------------------------------------------------- confirmedReceivedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONFIRMED_RECEIVED_BY} attribute.
@@ -939,7 +1027,7 @@ public abstract class MappedInvoice {
         this.confirmedReceivedBy = confirmedReceivedBy;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -961,7 +1049,7 @@ public abstract class MappedInvoice {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -981,7 +1069,7 @@ public abstract class MappedInvoice {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.InvoiceID", schema = "Sequences",
@@ -993,9 +1081,12 @@ public abstract class MappedInvoice {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
+                          value = "Numeric ID used for reference to an invoice within the database")
+    @MsDefault(name = "DF_Sales_Invoices_InvoiceID", value = "(NEXT VALUE FOR [Sequences].[InvoiceID])")
     private Integer invoiceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1004,9 +1095,10 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this invoice")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1015,9 +1107,12 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
+                          value = "Bill to customer for this invoice (invoices might be billed "
+                                  + "to a head office)")
     private Integer billToCustomerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_ID,
@@ -1025,9 +1120,11 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
+                          value = "Sales order (if any) for this invoice")
     private Integer orderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1036,9 +1133,11 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
+                          value = "How these stock items are beign delivered")
     private Integer deliveryMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1047,9 +1146,11 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
+                          value = "Customer contact for this invoice")
     private Integer contactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1058,9 +1159,11 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID,
+                          value = "Customer accounts contact for this invoice")
     private Integer accountsPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1069,9 +1172,11 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
+                          value = "Salesperson for this invoice")
     private Integer salespersonPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1080,9 +1185,11 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID,
+                          value = "Person who packed this shipment (or checked the packing)")
     private Integer packedByPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_INVOICE_DATE,
@@ -1090,9 +1197,11 @@ public abstract class MappedInvoice {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_INVOICE_DATE,
+                          value = "Date that this invoice was raised")
     private LocalDate invoiceDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
@@ -1101,9 +1210,11 @@ public abstract class MappedInvoice {
             updatable = true,
             length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
+                          value = "Purchase Order Number received from customer")
     private String customerPurchaseOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_CREDIT_NOTE,
@@ -1111,45 +1222,57 @@ public abstract class MappedInvoice {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_CREDIT_NOTE,
+                          value = "Is this a credit note (rather than an invoice)")
     private Boolean isCreditNote;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREDIT_NOTE_REASON,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CREDIT_NOTE_REASON,
+                          value = "Reason that this credit note needed to be generated (if "
+                                  + "applicable)")
     private String creditNoteReason;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
+                          value = "Any comments related to this invoice (sent to customer)")
     private String comments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
+                          value = "Any comments related to delivery (sent to customer)")
     private String deliveryInstructions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
+                          value = "Any internal comments related to this invoice (not sent to "
+                                  + "the customer)")
     private String internalComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS,
@@ -1157,9 +1280,12 @@ public abstract class MappedInvoice {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS,
+                          value = "Total number of dry packages (information for the delivery "
+                                  + "driver)")
     private Integer totalDryItems;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS,
@@ -1167,9 +1293,12 @@ public abstract class MappedInvoice {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS,
+                          value = "Total number of chiller packages (information for the "
+                                  + "delivery driver)")
     private Integer totalChillerItems;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_RUN,
@@ -1178,9 +1307,10 @@ public abstract class MappedInvoice {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_RUN
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_RUN, value = "Delivery run for this shipment")
     private String deliveryRun;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RUN_POSITION,
@@ -1189,18 +1319,23 @@ public abstract class MappedInvoice {
             updatable = true,
             length = COLUMN_LENGTH_RUN_POSITION
     )
+    @MsDescription.Column(name = COLUMN_NAME_RUN_POSITION,
+                          value = "Position in the delivery run for this shipment")
     private String runPosition;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA,
+                          value = "JSON-structured data returned from delivery devices for "
+                                  + "deliveries made directly by the organization")
     private String returnedDeliveryData;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME,
@@ -1208,9 +1343,13 @@ public abstract class MappedInvoice {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME,
+                          value = "Confirmed delivery date and time promoted from JSON delivery "
+                                  + "data")
+    @MsComputedColumn("(TRY_CONVERT([datetime2](7),json_value([ReturnedDeliveryData],N'$.DeliveredWhen'),(126)))")
     private LocalDateTime confirmedDeliveryTime;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY)
     @Basic(optional = true)
@@ -1220,9 +1359,12 @@ public abstract class MappedInvoice {
             updatable = false,
             length = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY
     )
+    @MsDescription.Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY,
+                          value = "Confirmed receiver promoted from JSON delivery data")
+    @MsComputedColumn("(json_value([ReturnedDeliveryData],N'$.ReceivedBy'))")
     private String confirmedReceivedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1233,7 +1375,7 @@ public abstract class MappedInvoice {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -1241,6 +1383,7 @@ public abstract class MappedInvoice {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Sales_Invoices_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

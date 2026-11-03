@@ -35,7 +35,7 @@ class BillOfMaterials_Persister
         super(BillOfMaterials.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public BillOfMaterials apply(final EntityManager entityManager, final BillOfMaterials entityInstance) {
         final var productAssembly = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

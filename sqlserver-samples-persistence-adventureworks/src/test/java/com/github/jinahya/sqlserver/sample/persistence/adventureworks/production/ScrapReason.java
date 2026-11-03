@@ -23,15 +23,26 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedScrapReason;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.ScrapReason} table.
  */
 @Entity(name = "ProductionScrapReason")
-@Table(schema = MappedScrapReason.TABLE_SCHEMA, name = MappedScrapReason.TABLE_NAME)
+@Table(schema = MappedScrapReason.TABLE_SCHEMA,
+       name = MappedScrapReason.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_ScrapReason_Name",
+                       columnNames = {
+                               ScrapReason.COLUMN_NAME_NAME
+                       }
+               )
+       }
+)
 public class ScrapReason extends MappedScrapReason {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

@@ -91,7 +91,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 })
 class AdventureWorks_Exercises_PersistenceIT {
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
         return ___Persistence_TestUtils.applyInTransactionAndRollback(function);
     }
@@ -115,7 +115,7 @@ class AdventureWorks_Exercises_PersistenceIT {
         return found.stream().map(r -> row((Object[]) r)).toList();
     }
 
-    // -------------------------------------------------------------------------------------------------- HumanResources
+    // ------------------------------------------------------------------------------ HumanResources
     @DisplayName("AW_HUMANRESOURCES_B_01: the current employees of each department")
     @Nested
     class AW_HUMANRESOURCES_B_01_Test {
@@ -324,7 +324,7 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    // ---------------------------------------------------------------------------------------------------------- Person
+    // -------------------------------------------------------------------------------------- Person
     @DisplayName("AW_PERSON_B_01: the persons of each type")
     @Nested
     class AW_PERSON_B_01_Test {
@@ -457,7 +457,7 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    // ------------------------------------------------------------------------------------------------------ Production
+    // ---------------------------------------------------------------------------------- Production
     @DisplayName("AW_PRODUCTION_B_01: the products on sale of each category, and their list prices")
     @Nested
     class AW_PRODUCTION_B_01_Test {
@@ -656,7 +656,7 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    // ------------------------------------------------------------------------------------------------------ Purchasing
+    // ---------------------------------------------------------------------------------- Purchasing
     @DisplayName("AW_PURCHASING_B_01: the vendors of a product, the cheapest first")
     @Nested
     class AW_PURCHASING_B_01_Test {
@@ -796,7 +796,7 @@ class AdventureWorks_Exercises_PersistenceIT {
         }
     }
 
-    // ----------------------------------------------------------------------------------------------------------- Sales
+    // --------------------------------------------------------------------------------------- Sales
     @DisplayName("AW_SALES_B_01: an order, by its order number")
     @Nested
     class AW_SALES_B_01_Test {

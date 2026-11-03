@@ -20,7 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.db
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.MappedWithIdentityId;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
@@ -34,6 +36,44 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.ErrorLog} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code dbo.ErrorLog}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ErrorLogID}</th><td>Primary key for ErrorLog records.</td></tr>
+ * <tr><th scope="row">{@code ErrorTime}</th>
+ *     <td>The date and time at which the error occurred.</td></tr>
+ * <tr><th scope="row">{@code UserName}</th>
+ *     <td>The user who executed the batch in which the error occurred.</td></tr>
+ * <tr><th scope="row">{@code ErrorNumber}</th>
+ *     <td>The error number of the error that occurred.</td></tr>
+ * <tr><th scope="row">{@code ErrorSeverity}</th>
+ *     <td>The severity of the error that occurred.</td></tr>
+ * <tr><th scope="row">{@code ErrorState}</th>
+ *     <td>The state number of the error that occurred.</td></tr>
+ * <tr><th scope="row">{@code ErrorProcedure}</th>
+ *     <td>The name of the stored procedure or trigger where the error occurred.</td></tr>
+ * <tr><th scope="row">{@code ErrorLine}</th>
+ *     <td>The line number at which the error occurred.</td></tr>
+ * <tr><th scope="row">{@code ErrorMessage}</th>
+ *     <td>The message text of the error that occurred.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.ErrorLog}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ErrorTime}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedErrorLog.COLUMN_NAME_ERROR_LOG_ID,
@@ -43,6 +83,14 @@ import java.util.Objects;
                    )
 )
 @MappedSuperclass
+@MsDescription(
+        schema = MappedErrorLog.TABLE_SCHEMA,
+        table = MappedErrorLog.TABLE_NAME,
+        value = "Audit table tracking errors in the the AdventureWorks database that are caught "
+                + "by the CATCH block of a TRY...CATCH construct. Data is inserted by stored "
+                + "procedure dbo.uspLogError when it is executed from inside the CATCH block of a "
+                + "TRY...CATCH construct."
+)
 public abstract class MappedErrorLog
         extends MappedWithIdentityId {
 
@@ -56,14 +104,14 @@ public abstract class MappedErrorLog
      */
     public static final String TABLE_NAME = "ErrorLog";
 
-    // ------------------------------------------------------------------------------------------------------ ErrorLogID
+    // ---------------------------------------------------------------------------------- ErrorLogID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ERROR_LOG_ID = "ErrorLogID";
 
-    // ------------------------------------------------------------------------------------------------------- ErrorTime
+    // ----------------------------------------------------------------------------------- ErrorTime
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -75,7 +123,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_TIME = "errorTime";
 
-    // -------------------------------------------------------------------------------------------------------- UserName
+    // ------------------------------------------------------------------------------------ UserName
 
     /**
      * The name of the {@code sysname(128), NOT NULL} column. The value is {@value}.
@@ -92,7 +140,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_USER_NAME = "userName";
 
-    // ----------------------------------------------------------------------------------------------------- ErrorNumber
+    // --------------------------------------------------------------------------------- ErrorNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -104,7 +152,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_NUMBER = "errorNumber";
 
-    // --------------------------------------------------------------------------------------------------- ErrorSeverity
+    // ------------------------------------------------------------------------------- ErrorSeverity
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -116,7 +164,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_SEVERITY = "errorSeverity";
 
-    // ------------------------------------------------------------------------------------------------------ ErrorState
+    // ---------------------------------------------------------------------------------- ErrorState
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -128,7 +176,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_STATE = "errorState";
 
-    // -------------------------------------------------------------------------------------------------- ErrorProcedure
+    // ------------------------------------------------------------------------------ ErrorProcedure
 
     /**
      * The name of the {@code nvarchar(126)} column. The value is {@value}.
@@ -145,7 +193,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_PROCEDURE = "errorProcedure";
 
-    // ------------------------------------------------------------------------------------------------------- ErrorLine
+    // ----------------------------------------------------------------------------------- ErrorLine
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -157,7 +205,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_LINE = "errorLine";
 
-    // ---------------------------------------------------------------------------------------------------- ErrorMessage
+    // -------------------------------------------------------------------------------- ErrorMessage
 
     /**
      * The name of the {@code nvarchar(4000), NOT NULL} column. The value is {@value}.
@@ -174,7 +222,7 @@ public abstract class MappedErrorLog
      */
     public static final String ATTRIBUTE_NAME_ERROR_MESSAGE = "errorMessage";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -183,7 +231,7 @@ public abstract class MappedErrorLog
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -229,7 +277,7 @@ public abstract class MappedErrorLog
         return Objects.hash(getId_());
     }
 
-    // ------------------------------------------------------------------------------------------------------ errorLogId
+    // ---------------------------------------------------------------------------------- errorLogId
 
     /**
      * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_ERROR_LOG_ID} column.
@@ -240,7 +288,7 @@ public abstract class MappedErrorLog
         return getId_();
     }
 
-    // ------------------------------------------------------------------------------------------------------- errorTime
+    // ----------------------------------------------------------------------------------- errorTime
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_TIME} attribute.
@@ -260,7 +308,7 @@ public abstract class MappedErrorLog
         this.errorTime = errorTime;
     }
 
-    // -------------------------------------------------------------------------------------------------------- userName
+    // ------------------------------------------------------------------------------------ userName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_USER_NAME} attribute.
@@ -280,7 +328,7 @@ public abstract class MappedErrorLog
         this.userName = userName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- errorNumber
+    // --------------------------------------------------------------------------------- errorNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_NUMBER} attribute.
@@ -300,7 +348,7 @@ public abstract class MappedErrorLog
         this.errorNumber = errorNumber;
     }
 
-    // --------------------------------------------------------------------------------------------------- errorSeverity
+    // ------------------------------------------------------------------------------- errorSeverity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_SEVERITY} attribute.
@@ -320,7 +368,7 @@ public abstract class MappedErrorLog
         this.errorSeverity = errorSeverity;
     }
 
-    // ------------------------------------------------------------------------------------------------------ errorState
+    // ---------------------------------------------------------------------------------- errorState
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_STATE} attribute.
@@ -340,7 +388,7 @@ public abstract class MappedErrorLog
         this.errorState = errorState;
     }
 
-    // -------------------------------------------------------------------------------------------------- errorProcedure
+    // ------------------------------------------------------------------------------ errorProcedure
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_PROCEDURE} attribute.
@@ -360,7 +408,7 @@ public abstract class MappedErrorLog
         this.errorProcedure = errorProcedure;
     }
 
-    // ------------------------------------------------------------------------------------------------------- errorLine
+    // ----------------------------------------------------------------------------------- errorLine
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_LINE} attribute.
@@ -380,7 +428,7 @@ public abstract class MappedErrorLog
         this.errorLine = errorLine;
     }
 
-    // ---------------------------------------------------------------------------------------------------- errorMessage
+    // -------------------------------------------------------------------------------- errorMessage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ERROR_MESSAGE} attribute.
@@ -400,7 +448,7 @@ public abstract class MappedErrorLog
         this.errorMessage = errorMessage;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ERROR_TIME,
@@ -408,9 +456,12 @@ public abstract class MappedErrorLog
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_TIME,
+                          value = "The date and time at which the error occurred.")
+    @MsDefault(name = "DF_ErrorLog_ErrorTime", value = "(getdate())")
     private LocalDateTime errorTime;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_USER_NAME)
     @NotNull
     @Basic(optional = false)
@@ -420,9 +471,11 @@ public abstract class MappedErrorLog
             updatable = true,
             length = COLUMN_LENGTH_USER_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_USER_NAME,
+                          value = "The user who executed the batch in which the error occurred.")
     private String userName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ERROR_NUMBER,
@@ -430,27 +483,33 @@ public abstract class MappedErrorLog
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_NUMBER,
+                          value = "The error number of the error that occurred.")
     private Integer errorNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_SEVERITY,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_SEVERITY,
+                          value = "The severity of the error that occurred.")
     private Integer errorSeverity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_STATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_STATE,
+                          value = "The state number of the error that occurred.")
     private Integer errorState;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ERROR_PROCEDURE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_PROCEDURE,
@@ -459,18 +518,23 @@ public abstract class MappedErrorLog
             updatable = true,
             length = COLUMN_LENGTH_ERROR_PROCEDURE
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_PROCEDURE,
+                          value = "The name of the stored procedure or trigger where the error "
+                                  + "occurred.")
     private String errorProcedure;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_LINE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_LINE,
+                          value = "The line number at which the error occurred.")
     private Integer errorLine;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ERROR_MESSAGE)
     @NotNull
     @Basic(optional = false)
@@ -480,6 +544,8 @@ public abstract class MappedErrorLog
             updatable = true,
             length = COLUMN_LENGTH_ERROR_MESSAGE
     )
+    @MsDescription.Column(name = COLUMN_NAME_ERROR_MESSAGE,
+                          value = "The message text of the error that occurred.")
     private String errorMessage;
 }
 

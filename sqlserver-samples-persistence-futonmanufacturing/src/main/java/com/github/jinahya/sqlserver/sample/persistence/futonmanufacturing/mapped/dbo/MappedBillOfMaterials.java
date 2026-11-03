@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,25 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_PARENT_ITEM_ID}, {@value #COLUMN_NAME_COMPONENT_ITEM_ID}, {@value #COLUMN_NAME_UNIT_ID}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.BillOfMaterials}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ScrapRate}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code EffectiveDate}</th><td>{@code (CONVERT([date],getdate()))}</td></tr>
+ * <tr><th scope="row">{@code BOMLevel}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedBillOfMaterials {
@@ -55,7 +76,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String TABLE_NAME = "BillOfMaterials";
 
-    // ----------------------------------------------------------------------------------------------------------- BOMID
+    // --------------------------------------------------------------------------------------- BOMID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -67,7 +88,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_BOM_ID = "bomId";
 
-    // ---------------------------------------------------------------------------------------------------- ParentItemID
+    // -------------------------------------------------------------------------------- ParentItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -79,7 +100,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_ID = "parentItemId";
 
-    // ------------------------------------------------------------------------------------------------- ComponentItemID
+    // ----------------------------------------------------------------------------- ComponentItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -91,7 +112,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_ID = "componentItemId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -113,7 +134,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ---------------------------------------------------------------------------------------------------------- UnitID
+    // -------------------------------------------------------------------------------------- UnitID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -125,7 +146,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_UNIT_ID = "unitId";
 
-    // ------------------------------------------------------------------------------------------------------- ScrapRate
+    // ----------------------------------------------------------------------------------- ScrapRate
 
     /**
      * The name of the {@code decimal(5, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -147,7 +168,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_SCRAP_RATE = "scrapRate";
 
-    // --------------------------------------------------------------------------------------------------- EffectiveDate
+    // ------------------------------------------------------------------------------- EffectiveDate
 
     /**
      * The name of the {@code date, DEFAULT (CONVERT([date],getdate()))} column. The value is {@value}.
@@ -159,7 +180,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_EFFECTIVE_DATE = "effectiveDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -171,7 +192,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // -------------------------------------------------------------------------------------------------------- BOMLevel
+    // ------------------------------------------------------------------------------------ BOMLevel
 
     /**
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -183,7 +204,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_BOM_LEVEL = "bomLevel";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -195,7 +216,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -207,7 +228,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -219,7 +240,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -231,7 +252,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -240,7 +261,7 @@ public abstract class MappedBillOfMaterials {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -290,7 +311,7 @@ public abstract class MappedBillOfMaterials {
         return Objects.hash(bomId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute differs from the
@@ -312,7 +333,7 @@ public abstract class MappedBillOfMaterials {
         return !parentItemId.equals(componentItemId);
     }
 
-    // ----------------------------------------------------------------------------------------------------------- bomId
+    // --------------------------------------------------------------------------------------- bomId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BOM_ID} attribute.
@@ -332,7 +353,7 @@ public abstract class MappedBillOfMaterials {
         this.bomId = bomId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- parentItemId
+    // -------------------------------------------------------------------------------- parentItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute.
@@ -354,7 +375,7 @@ public abstract class MappedBillOfMaterials {
         this.parentItemId = parentItemId;
     }
 
-    // ------------------------------------------------------------------------------------------------- componentItemId
+    // ----------------------------------------------------------------------------- componentItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute.
@@ -376,7 +397,7 @@ public abstract class MappedBillOfMaterials {
         this.componentItemId = componentItemId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -396,7 +417,7 @@ public abstract class MappedBillOfMaterials {
         this.quantity = quantity;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- unitId
+    // -------------------------------------------------------------------------------------- unitId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_ID} attribute.
@@ -417,7 +438,7 @@ public abstract class MappedBillOfMaterials {
         this.unitId = unitId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- scrapRate
+    // ----------------------------------------------------------------------------------- scrapRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute.
@@ -437,7 +458,7 @@ public abstract class MappedBillOfMaterials {
         this.scrapRate = scrapRate;
     }
 
-    // --------------------------------------------------------------------------------------------------- effectiveDate
+    // ------------------------------------------------------------------------------- effectiveDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EFFECTIVE_DATE} attribute.
@@ -457,7 +478,7 @@ public abstract class MappedBillOfMaterials {
         this.effectiveDate = effectiveDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -477,7 +498,7 @@ public abstract class MappedBillOfMaterials {
         this.endDate = endDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- bomLevel
+    // ------------------------------------------------------------------------------------ bomLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute.
@@ -497,7 +518,7 @@ public abstract class MappedBillOfMaterials {
         this.bomLevel = bomLevel;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -517,7 +538,7 @@ public abstract class MappedBillOfMaterials {
         this.isActive = isActive;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -537,7 +558,7 @@ public abstract class MappedBillOfMaterials {
         this.notes = notes;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -557,7 +578,7 @@ public abstract class MappedBillOfMaterials {
         this.createdDate = createdDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -577,7 +598,7 @@ public abstract class MappedBillOfMaterials {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -589,7 +610,7 @@ public abstract class MappedBillOfMaterials {
     )
     private Integer bomId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -600,7 +621,7 @@ public abstract class MappedBillOfMaterials {
     )
     private Integer parentItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -611,7 +632,7 @@ public abstract class MappedBillOfMaterials {
     )
     private Integer componentItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
@@ -624,7 +645,7 @@ public abstract class MappedBillOfMaterials {
     )
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -635,7 +656,7 @@ public abstract class MappedBillOfMaterials {
     )
     private Integer unitId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_RATE,
@@ -645,18 +666,20 @@ public abstract class MappedBillOfMaterials {
             precision = COLUMN_PRECISION_SCRAP_RATE,
             scale = COLUMN_SCALE_SCRAP_RATE
     )
+    @MsDefault("((0))")
     private BigDecimal scrapRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EFFECTIVE_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate effectiveDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_END_DATE,
             nullable = true,
@@ -665,7 +688,7 @@ public abstract class MappedBillOfMaterials {
     )
     private LocalDate endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BOM_LEVEL,
@@ -673,9 +696,10 @@ public abstract class MappedBillOfMaterials {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((0))")
     private Integer bomLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -683,9 +707,10 @@ public abstract class MappedBillOfMaterials {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -694,22 +719,24 @@ public abstract class MappedBillOfMaterials {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 }
 

@@ -53,7 +53,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_GrowthAnalysis";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -77,7 +77,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ---------------------------------------------------------------------------------------------------------- Orders
+    // -------------------------------------------------------------------------------------- Orders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ORDERS = "orders";
 
-    // ------------------------------------------------------------------------------------------------------- Customers
+    // ----------------------------------------------------------------------------------- Customers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMERS = "customers";
 
-    // --------------------------------------------------------------------------------------------------------- Revenue
+    // ------------------------------------------------------------------------------------- Revenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_REVENUE = "revenue";
 
-    // ----------------------------------------------------------------------------------------------- PriorMonthRevenue
+    // --------------------------------------------------------------------------- PriorMonthRevenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -163,7 +163,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_PRIOR_MONTH_REVENUE = "priorMonthRevenue";
 
-    // --------------------------------------------------------------------------------------------------- RevenueGrowth
+    // ------------------------------------------------------------------------------- RevenueGrowth
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -185,7 +185,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_REVENUE_GROWTH = "revenueGrowth";
 
-    // --------------------------------------------------------------------------------------------------- GrowthPercent
+    // ------------------------------------------------------------------------------- GrowthPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -207,7 +207,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_GROWTH_PERCENT = "growthPercent";
 
-    // --------------------------------------------------------------------------------------------- PriorMonthCustomers
+    // ------------------------------------------------------------------------- PriorMonthCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -220,7 +220,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_PRIOR_MONTH_CUSTOMERS = "priorMonthCustomers";
 
-    // -------------------------------------------------------------------------------------------------- CustomerGrowth
+    // ------------------------------------------------------------------------------ CustomerGrowth
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -232,7 +232,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_GROWTH = "customerGrowth";
 
-    // ----------------------------------------------------------------------------------------------- CumulativeRevenue
+    // --------------------------------------------------------------------------- CumulativeRevenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -254,7 +254,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUMULATIVE_REVENUE = "cumulativeRevenue";
 
-    // --------------------------------------------------------------------------------------------------- ThreeMonthAvg
+    // ------------------------------------------------------------------------------- ThreeMonthAvg
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -276,7 +276,7 @@ public abstract class MappedSalesGrowthAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_THREE_MONTH_AVG = "threeMonthAvg";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -285,7 +285,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -306,7 +306,7 @@ public abstract class MappedSalesGrowthAnalysisView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -326,7 +326,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -346,7 +346,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.month = month;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -366,7 +366,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.channelName = channelName;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- orders
+    // -------------------------------------------------------------------------------------- orders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDERS} attribute.
@@ -386,7 +386,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.orders = orders;
     }
 
-    // ------------------------------------------------------------------------------------------------------- customers
+    // ----------------------------------------------------------------------------------- customers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMERS} attribute.
@@ -406,7 +406,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.customers = customers;
     }
 
-    // --------------------------------------------------------------------------------------------------------- revenue
+    // ------------------------------------------------------------------------------------- revenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVENUE} attribute.
@@ -426,7 +426,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.revenue = revenue;
     }
 
-    // ----------------------------------------------------------------------------------------------- priorMonthRevenue
+    // --------------------------------------------------------------------------- priorMonthRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIOR_MONTH_REVENUE} attribute.
@@ -446,7 +446,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.priorMonthRevenue = priorMonthRevenue;
     }
 
-    // --------------------------------------------------------------------------------------------------- revenueGrowth
+    // ------------------------------------------------------------------------------- revenueGrowth
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVENUE_GROWTH} attribute.
@@ -466,7 +466,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.revenueGrowth = revenueGrowth;
     }
 
-    // --------------------------------------------------------------------------------------------------- growthPercent
+    // ------------------------------------------------------------------------------- growthPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROWTH_PERCENT} attribute.
@@ -486,7 +486,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.growthPercent = growthPercent;
     }
 
-    // --------------------------------------------------------------------------------------------- priorMonthCustomers
+    // ------------------------------------------------------------------------- priorMonthCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIOR_MONTH_CUSTOMERS} attribute.
@@ -506,7 +506,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.priorMonthCustomers = priorMonthCustomers;
     }
 
-    // -------------------------------------------------------------------------------------------------- customerGrowth
+    // ------------------------------------------------------------------------------ customerGrowth
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_GROWTH} attribute.
@@ -526,7 +526,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.customerGrowth = customerGrowth;
     }
 
-    // ----------------------------------------------------------------------------------------------- cumulativeRevenue
+    // --------------------------------------------------------------------------- cumulativeRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUMULATIVE_REVENUE} attribute.
@@ -546,7 +546,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.cumulativeRevenue = cumulativeRevenue;
     }
 
-    // --------------------------------------------------------------------------------------------------- threeMonthAvg
+    // ------------------------------------------------------------------------------- threeMonthAvg
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_THREE_MONTH_AVG} attribute.
@@ -566,7 +566,7 @@ public abstract class MappedSalesGrowthAnalysisView {
         this.threeMonthAvg = threeMonthAvg;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -576,7 +576,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -586,7 +586,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -599,7 +599,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDERS,
@@ -609,7 +609,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private Integer orders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMERS,
@@ -619,7 +619,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private Integer customers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REVENUE - COLUMN_SCALE_REVENUE, fraction = COLUMN_SCALE_REVENUE)
     @Basic(optional = true)
@@ -632,7 +632,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private BigDecimal revenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRIOR_MONTH_REVENUE - COLUMN_SCALE_PRIOR_MONTH_REVENUE,
             fraction = COLUMN_SCALE_PRIOR_MONTH_REVENUE)
@@ -646,7 +646,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private BigDecimal priorMonthRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REVENUE_GROWTH - COLUMN_SCALE_REVENUE_GROWTH,
             fraction = COLUMN_SCALE_REVENUE_GROWTH)
@@ -660,7 +660,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private BigDecimal revenueGrowth;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROWTH_PERCENT - COLUMN_SCALE_GROWTH_PERCENT,
             fraction = COLUMN_SCALE_GROWTH_PERCENT)
@@ -674,7 +674,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private BigDecimal growthPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_MONTH_CUSTOMERS,
@@ -684,7 +684,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private Integer priorMonthCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_GROWTH,
@@ -694,7 +694,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private Integer customerGrowth;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CUMULATIVE_REVENUE - COLUMN_SCALE_CUMULATIVE_REVENUE,
             fraction = COLUMN_SCALE_CUMULATIVE_REVENUE)
@@ -708,7 +708,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     )
     private BigDecimal cumulativeRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_THREE_MONTH_AVG - COLUMN_SCALE_THREE_MONTH_AVG,
             fraction = COLUMN_SCALE_THREE_MONTH_AVG)

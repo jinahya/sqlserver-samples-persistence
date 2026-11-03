@@ -20,11 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.db
  * #L%
  */
 
+/**
+ * Constants shared across the classes of the {@code dbo} schema.
+ */
 public final class _Constants {
 
     static final String TABLE_SCHEMA = "dbo";
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private _Constants() {
         throw new AssertionError("instantiation is not allowed");
     }

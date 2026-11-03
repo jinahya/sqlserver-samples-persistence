@@ -36,7 +36,7 @@ class Store_Persister
         super(Store.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public Store apply(final EntityManager entityManager, final Store entityInstance) {
         final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);

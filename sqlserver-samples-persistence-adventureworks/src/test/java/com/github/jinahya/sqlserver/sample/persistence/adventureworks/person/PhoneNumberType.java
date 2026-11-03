@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedPhoneNumberType.TABLE_SCHEMA, name = MappedPhoneNumberType.TABLE_NAME)
 public class PhoneNumberType extends MappedPhoneNumberType {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

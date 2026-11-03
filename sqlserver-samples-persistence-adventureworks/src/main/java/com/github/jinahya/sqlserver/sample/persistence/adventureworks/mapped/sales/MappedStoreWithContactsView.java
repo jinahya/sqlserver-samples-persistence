@@ -49,7 +49,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String TABLE_NAME = "vStoreWithContacts";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -61,7 +61,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -78,7 +78,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ----------------------------------------------------------------------------------------------------- ContactType
+    // --------------------------------------------------------------------------------- ContactType
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -95,7 +95,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_CONTACT_TYPE = "contactType";
 
-    // ----------------------------------------------------------------------------------------------------------- Title
+    // --------------------------------------------------------------------------------------- Title
 
     /**
      * The name of the {@code nvarchar(8)} column. The value is {@value}.
@@ -112,7 +112,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
-    // ------------------------------------------------------------------------------------------------------- FirstName
+    // ----------------------------------------------------------------------------------- FirstName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -129,7 +129,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
-    // ------------------------------------------------------------------------------------------------------ MiddleName
+    // ---------------------------------------------------------------------------------- MiddleName
 
     /**
      * The name of the {@code Name (nvarchar)(50)} column. The value is {@value}.
@@ -146,7 +146,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_MIDDLE_NAME = "middleName";
 
-    // -------------------------------------------------------------------------------------------------------- LastName
+    // ------------------------------------------------------------------------------------ LastName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -163,7 +163,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
-    // ---------------------------------------------------------------------------------------------------------- Suffix
+    // -------------------------------------------------------------------------------------- Suffix
 
     /**
      * The name of the {@code nvarchar(10)} column. The value is {@value}.
@@ -180,7 +180,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_SUFFIX = "suffix";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code Phone (nvarchar)(25)} column. The value is {@value}.
@@ -197,7 +197,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------- PhoneNumberType
+    // ----------------------------------------------------------------------------- PhoneNumberType
 
     /**
      * The name of the {@code Name (nvarchar)(50)} column. The value is {@value}.
@@ -214,7 +214,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER_TYPE = "phoneNumberType";
 
-    // ---------------------------------------------------------------------------------------------------- EmailAddress
+    // -------------------------------------------------------------------------------- EmailAddress
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -231,7 +231,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
 
-    // -------------------------------------------------------------------------------------------------- EmailPromotion
+    // ------------------------------------------------------------------------------ EmailPromotion
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -243,7 +243,7 @@ public abstract class MappedStoreWithContactsView {
      */
     public static final String ATTRIBUTE_NAME_EMAIL_PROMOTION = "emailPromotion";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -252,7 +252,7 @@ public abstract class MappedStoreWithContactsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -272,7 +272,7 @@ public abstract class MappedStoreWithContactsView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -292,7 +292,7 @@ public abstract class MappedStoreWithContactsView {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -312,7 +312,7 @@ public abstract class MappedStoreWithContactsView {
         this.name = name;
     }
 
-    // ----------------------------------------------------------------------------------------------------- contactType
+    // --------------------------------------------------------------------------------- contactType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONTACT_TYPE} attribute.
@@ -332,7 +332,7 @@ public abstract class MappedStoreWithContactsView {
         this.contactType = contactType;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- title
+    // --------------------------------------------------------------------------------------- title
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TITLE} attribute.
@@ -352,7 +352,7 @@ public abstract class MappedStoreWithContactsView {
         this.title = title;
     }
 
-    // ------------------------------------------------------------------------------------------------------- firstName
+    // ----------------------------------------------------------------------------------- firstName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
@@ -372,7 +372,7 @@ public abstract class MappedStoreWithContactsView {
         this.firstName = firstName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ middleName
+    // ---------------------------------------------------------------------------------- middleName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute.
@@ -392,7 +392,7 @@ public abstract class MappedStoreWithContactsView {
         this.middleName = middleName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- lastName
+    // ------------------------------------------------------------------------------------ lastName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
@@ -412,7 +412,7 @@ public abstract class MappedStoreWithContactsView {
         this.lastName = lastName;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- suffix
+    // -------------------------------------------------------------------------------------- suffix
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute.
@@ -432,7 +432,7 @@ public abstract class MappedStoreWithContactsView {
         this.suffix = suffix;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -452,7 +452,7 @@ public abstract class MappedStoreWithContactsView {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------- phoneNumberType
+    // ----------------------------------------------------------------------------- phoneNumberType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE} attribute.
@@ -472,7 +472,7 @@ public abstract class MappedStoreWithContactsView {
         this.phoneNumberType = phoneNumberType;
     }
 
-    // ---------------------------------------------------------------------------------------------------- emailAddress
+    // -------------------------------------------------------------------------------- emailAddress
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
@@ -492,7 +492,7 @@ public abstract class MappedStoreWithContactsView {
         this.emailAddress = emailAddress;
     }
 
-    // -------------------------------------------------------------------------------------------------- emailPromotion
+    // ------------------------------------------------------------------------------ emailPromotion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute.
@@ -512,7 +512,7 @@ public abstract class MappedStoreWithContactsView {
         this.emailPromotion = emailPromotion;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -523,7 +523,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
@@ -536,7 +536,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CONTACT_TYPE)
     @NotNull
@@ -549,7 +549,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String contactType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
@@ -561,7 +561,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String title;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
@@ -574,7 +574,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String firstName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
@@ -586,7 +586,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String middleName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
@@ -599,7 +599,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String lastName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
@@ -611,7 +611,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String suffix;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
@@ -623,7 +623,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER_TYPE)
     @Basic(optional = true)
@@ -635,7 +635,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String phoneNumberType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
@@ -647,7 +647,7 @@ public abstract class MappedStoreWithContactsView {
     )
     private String emailAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)

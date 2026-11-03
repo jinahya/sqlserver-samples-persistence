@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,16 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.SalesChannel} table.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SalesChannel}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedSalesChannel {
@@ -47,7 +59,7 @@ public abstract class MappedSalesChannel {
      */
     public static final String TABLE_NAME = "SalesChannel";
 
-    // -------------------------------------------------------------------------------------------------- SalesChannelID
+    // ------------------------------------------------------------------------------ SalesChannelID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -59,7 +71,7 @@ public abstract class MappedSalesChannel {
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL_ID = "salesChannelId";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelCode
+    // --------------------------------------------------------------------------------- ChannelCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -76,7 +88,7 @@ public abstract class MappedSalesChannel {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_CODE = "channelCode";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -93,7 +105,7 @@ public abstract class MappedSalesChannel {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -110,7 +122,7 @@ public abstract class MappedSalesChannel {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -122,7 +134,7 @@ public abstract class MappedSalesChannel {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -131,7 +143,7 @@ public abstract class MappedSalesChannel {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -173,7 +185,7 @@ public abstract class MappedSalesChannel {
         return Objects.hash(salesChannelId);
     }
 
-    // -------------------------------------------------------------------------------------------------- salesChannelId
+    // ------------------------------------------------------------------------------ salesChannelId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute.
@@ -193,7 +205,7 @@ public abstract class MappedSalesChannel {
         this.salesChannelId = salesChannelId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelCode
+    // --------------------------------------------------------------------------------- channelCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_CODE} attribute.
@@ -213,7 +225,7 @@ public abstract class MappedSalesChannel {
         this.channelCode = channelCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -233,7 +245,7 @@ public abstract class MappedSalesChannel {
         this.channelName = channelName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -253,7 +265,7 @@ public abstract class MappedSalesChannel {
         this.description = description;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -273,7 +285,7 @@ public abstract class MappedSalesChannel {
         this.isActive = isActive;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -285,7 +297,7 @@ public abstract class MappedSalesChannel {
     )
     private Integer salesChannelId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CHANNEL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -297,7 +309,7 @@ public abstract class MappedSalesChannel {
     )
     private String channelCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
@@ -309,7 +321,7 @@ public abstract class MappedSalesChannel {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION,
@@ -320,7 +332,7 @@ public abstract class MappedSalesChannel {
     )
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -328,6 +340,7 @@ public abstract class MappedSalesChannel {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 }
 

@@ -36,7 +36,7 @@ import jakarta.persistence.Table;
 @IdClass(MappedProductAndDescriptionViewId.class)
 public class ProductAndDescriptionView extends MappedProductAndDescriptionView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

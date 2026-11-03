@@ -22,6 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -39,10 +41,54 @@ import java.util.UUID;
 /**
  * A mapped superclass which holds the mappings of the {@code Person.Address} table.
  * <p>
- * The {@value #COLUMN_NAME_STATE_PROVINCE_ID} column is mapped read-only, as a foreign key; the extending entity owns
- * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_STATE_PROVINCE_ID} column is mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Person.Address}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code AddressID}</th><td>Primary key for Address records.</td></tr>
+ * <tr><th scope="row">{@code AddressLine1}</th><td>First street address line.</td></tr>
+ * <tr><th scope="row">{@code AddressLine2}</th><td>Second street address line.</td></tr>
+ * <tr><th scope="row">{@code City}</th><td>Name of the city.</td></tr>
+ * <tr><th scope="row">{@code StateProvinceID}</th>
+ *     <td>Unique identification number for the state or province. Foreign key to StateProvince
+ *     table.</td></tr>
+ * <tr><th scope="row">{@code PostalCode}</th><td>Postal code for the street address.</td></tr>
+ * <tr><th scope="row">{@code SpatialLocation}</th>
+ *     <td>Latitude and longitude of this address.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Person.Address}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedAddress.TABLE_SCHEMA,
+        table = MappedAddress.TABLE_NAME,
+        value = "Street address information for customers, employees, and vendors."
+)
 public abstract class MappedAddress {
 
     /**
@@ -55,7 +101,7 @@ public abstract class MappedAddress {
      */
     public static final String TABLE_NAME = "Address";
 
-    // ------------------------------------------------------------------------------------------------------- AddressID
+    // ----------------------------------------------------------------------------------- AddressID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,11 +109,12 @@ public abstract class MappedAddress {
     public static final String COLUMN_NAME_ADDRESS_ID = "AddressID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_ID = "addressId";
 
-    // ---------------------------------------------------------------------------------------------------- AddressLine1
+    // -------------------------------------------------------------------------------- AddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -80,11 +127,12 @@ public abstract class MappedAddress {
     public static final int COLUMN_LENGTH_ADDRESS_LINE_1 = 60;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_1} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_1} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_1 = "addressLine1";
 
-    // ---------------------------------------------------------------------------------------------------- AddressLine2
+    // -------------------------------------------------------------------------------- AddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -97,11 +145,12 @@ public abstract class MappedAddress {
     public static final int COLUMN_LENGTH_ADDRESS_LINE_2 = 60;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_2} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_2} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_2 = "addressLine2";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(30), NOT NULL} column. The value is {@value}.
@@ -114,11 +163,12 @@ public abstract class MappedAddress {
     public static final int COLUMN_LENGTH_CITY = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CITY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -126,11 +176,12 @@ public abstract class MappedAddress {
     public static final String COLUMN_NAME_STATE_PROVINCE_ID = "StateProvinceID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // ------------------------------------------------------------------------------------------------------ PostalCode
+    // ---------------------------------------------------------------------------------- PostalCode
 
     /**
      * The name of the {@code nvarchar(15), NOT NULL} column. The value is {@value}.
@@ -143,11 +194,12 @@ public abstract class MappedAddress {
     public static final int COLUMN_LENGTH_POSTAL_CODE = 15;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CODE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CODE = "postalCode";
 
-    // ------------------------------------------------------------------------------------------------- SpatialLocation
+    // ----------------------------------------------------------------------------- SpatialLocation
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -155,35 +207,40 @@ public abstract class MappedAddress {
     public static final String COLUMN_NAME_SPATIAL_LOCATION = "SpatialLocation";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SPATIAL_LOCATION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SPATIAL_LOCATION} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPATIAL_LOCATION = "spatialLocation";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -192,7 +249,7 @@ public abstract class MappedAddress {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -238,7 +295,7 @@ public abstract class MappedAddress {
         return Objects.hash(addressId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- addressId
+    // ----------------------------------------------------------------------------------- addressId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute.
@@ -250,7 +307,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute with the specified
+     * value.
      *
      * @param addressId new value for {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute.
      */
@@ -258,7 +316,7 @@ public abstract class MappedAddress {
         this.addressId = addressId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- addressLine1
+    // -------------------------------------------------------------------------------- addressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute.
@@ -270,7 +328,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute with the
+     * specified value.
      *
      * @param addressLine1 new value for {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute.
      */
@@ -278,7 +337,7 @@ public abstract class MappedAddress {
         this.addressLine1 = addressLine1;
     }
 
-    // ---------------------------------------------------------------------------------------------------- addressLine2
+    // -------------------------------------------------------------------------------- addressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute.
@@ -290,7 +349,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute with the
+     * specified value.
      *
      * @param addressLine2 new value for {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute.
      */
@@ -298,7 +358,7 @@ public abstract class MappedAddress {
         this.addressLine2 = addressLine2;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -318,7 +378,7 @@ public abstract class MappedAddress {
         this.city = city;
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -330,9 +390,9 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param stateProvinceId new value for {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
      */
@@ -340,7 +400,7 @@ public abstract class MappedAddress {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ postalCode
+    // ---------------------------------------------------------------------------------- postalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute.
@@ -352,7 +412,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute with the specified
+     * value.
      *
      * @param postalCode new value for {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute.
      */
@@ -360,7 +421,7 @@ public abstract class MappedAddress {
         this.postalCode = postalCode;
     }
 
-    // ------------------------------------------------------------------------------------------------- spatialLocation
+    // ----------------------------------------------------------------------------- spatialLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SPATIAL_LOCATION} attribute.
@@ -372,7 +433,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SPATIAL_LOCATION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SPATIAL_LOCATION} attribute with the
+     * specified value.
      *
      * @param spatialLocation new value for {@value #ATTRIBUTE_NAME_SPATIAL_LOCATION} attribute.
      */
@@ -380,7 +442,7 @@ public abstract class MappedAddress {
         this.spatialLocation = spatialLocation;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -392,7 +454,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified
+     * value.
      *
      * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
      */
@@ -400,7 +463,7 @@ public abstract class MappedAddress {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -412,7 +475,8 @@ public abstract class MappedAddress {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -420,8 +484,9 @@ public abstract class MappedAddress {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // ---------------------------------------------------------------------------------------------
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -430,9 +495,10 @@ public abstract class MappedAddress {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_ID, value = "Primary key for Address records.")
     private Integer addressId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -442,9 +508,10 @@ public abstract class MappedAddress {
             updatable = true,
             length = COLUMN_LENGTH_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_LINE_1, value = "First street address line.")
     private String addressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDRESS_LINE_2,
@@ -453,9 +520,10 @@ public abstract class MappedAddress {
             updatable = true,
             length = COLUMN_LENGTH_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_LINE_2, value = "Second street address line.")
     private String addressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
     @Basic(optional = false)
@@ -465,10 +533,12 @@ public abstract class MappedAddress {
             updatable = true,
             length = COLUMN_LENGTH_CITY
     )
+    @MsDescription.Column(name = COLUMN_NAME_CITY, value = "Name of the city.")
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // ---------------------------------------------------------------------------------------------
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
@@ -476,9 +546,12 @@ public abstract class MappedAddress {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
+                          value = "Unique identification number for the state or province. "
+                                  + "Foreign key to StateProvince table.")
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -488,9 +561,11 @@ public abstract class MappedAddress {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_CODE,
+                          value = "Postal code for the street address.")
     private String postalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SPATIAL_LOCATION,
@@ -498,20 +573,27 @@ public abstract class MappedAddress {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SPATIAL_LOCATION,
+                          value = "Latitude and longitude of this address.")
     private Geography spatialLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_Address_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // ---------------------------------------------------------------------------------------------
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
@@ -519,6 +601,9 @@ public abstract class MappedAddress {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Address_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

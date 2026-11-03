@@ -55,7 +55,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String TABLE_NAME = "vProductModelCatalogDescription";
 
-    // -------------------------------------------------------------------------------------------------- ProductModelID
+    // ------------------------------------------------------------------------------ ProductModelID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -67,7 +67,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +84,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // --------------------------------------------------------------------------------------------------------- Summary
+    // ------------------------------------------------------------------------------------- Summary
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -96,7 +96,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_SUMMARY = "summary";
 
-    // ---------------------------------------------------------------------------------------------------- Manufacturer
+    // -------------------------------------------------------------------------------- Manufacturer
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -108,7 +108,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_MANUFACTURER = "manufacturer";
 
-    // ------------------------------------------------------------------------------------------------------- Copyright
+    // ----------------------------------------------------------------------------------- Copyright
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -125,7 +125,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_COPYRIGHT = "copyright";
 
-    // ------------------------------------------------------------------------------------------------------ ProductURL
+    // ---------------------------------------------------------------------------------- ProductURL
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -142,7 +142,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_URL = "productUrl";
 
-    // -------------------------------------------------------------------------------------------------- WarrantyPeriod
+    // ------------------------------------------------------------------------------ WarrantyPeriod
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -159,7 +159,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_WARRANTY_PERIOD = "warrantyPeriod";
 
-    // --------------------------------------------------------------------------------------------- WarrantyDescription
+    // ------------------------------------------------------------------------- WarrantyDescription
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -177,7 +177,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_WARRANTY_DESCRIPTION = "warrantyDescription";
 
-    // ------------------------------------------------------------------------------------------------------- NoOfYears
+    // ----------------------------------------------------------------------------------- NoOfYears
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -194,7 +194,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_NO_OF_YEARS = "noOfYears";
 
-    // ------------------------------------------------------------------------------------------ MaintenanceDescription
+    // ---------------------------------------------------------------------- MaintenanceDescription
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -212,7 +212,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_MAINTENANCE_DESCRIPTION = "maintenanceDescription";
 
-    // ----------------------------------------------------------------------------------------------------------- Wheel
+    // --------------------------------------------------------------------------------------- Wheel
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -229,7 +229,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_WHEEL = "wheel";
 
-    // ---------------------------------------------------------------------------------------------------------- Saddle
+    // -------------------------------------------------------------------------------------- Saddle
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -246,7 +246,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_SADDLE = "saddle";
 
-    // ----------------------------------------------------------------------------------------------------------- Pedal
+    // --------------------------------------------------------------------------------------- Pedal
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -263,7 +263,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PEDAL = "pedal";
 
-    // ------------------------------------------------------------------------------------------------------- BikeFrame
+    // ----------------------------------------------------------------------------------- BikeFrame
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -275,7 +275,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_BIKE_FRAME = "bikeFrame";
 
-    // -------------------------------------------------------------------------------------------------------- Crankset
+    // ------------------------------------------------------------------------------------ Crankset
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -292,7 +292,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_CRANKSET = "crankset";
 
-    // ---------------------------------------------------------------------------------------------------- PictureAngle
+    // -------------------------------------------------------------------------------- PictureAngle
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -309,7 +309,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PICTURE_ANGLE = "pictureAngle";
 
-    // ----------------------------------------------------------------------------------------------------- PictureSize
+    // --------------------------------------------------------------------------------- PictureSize
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -326,7 +326,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PICTURE_SIZE = "pictureSize";
 
-    // -------------------------------------------------------------------------------------------------- ProductPhotoID
+    // ------------------------------------------------------------------------------ ProductPhotoID
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -343,7 +343,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO_ID = "productPhotoId";
 
-    // -------------------------------------------------------------------------------------------------------- Material
+    // ------------------------------------------------------------------------------------ Material
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -360,7 +360,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_MATERIAL = "material";
 
-    // ----------------------------------------------------------------------------------------------------------- Color
+    // --------------------------------------------------------------------------------------- Color
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -377,7 +377,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_COLOR = "color";
 
-    // ----------------------------------------------------------------------------------------------------- ProductLine
+    // --------------------------------------------------------------------------------- ProductLine
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -394,7 +394,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_LINE = "productLine";
 
-    // ----------------------------------------------------------------------------------------------------------- Style
+    // --------------------------------------------------------------------------------------- Style
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -411,7 +411,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_STYLE = "style";
 
-    // ------------------------------------------------------------------------------------------------- RiderExperience
+    // ----------------------------------------------------------------------------- RiderExperience
 
     /**
      * The name of the {@code nvarchar(1024)} column. The value is {@value}.
@@ -428,7 +428,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_RIDER_EXPERIENCE = "riderExperience";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, NOT NULL} column. The value is {@value}.
@@ -440,7 +440,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -452,7 +452,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -461,7 +461,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -523,7 +523,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         return Objects.hash(productModelId);
     }
 
-    // -------------------------------------------------------------------------------------------------- productModelId
+    // ------------------------------------------------------------------------------ productModelId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
@@ -543,7 +543,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.productModelId = productModelId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -563,7 +563,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.name = name;
     }
 
-    // --------------------------------------------------------------------------------------------------------- summary
+    // ------------------------------------------------------------------------------------- summary
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUMMARY} attribute.
@@ -583,7 +583,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.summary = summary;
     }
 
-    // ---------------------------------------------------------------------------------------------------- manufacturer
+    // -------------------------------------------------------------------------------- manufacturer
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MANUFACTURER} attribute.
@@ -603,7 +603,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.manufacturer = manufacturer;
     }
 
-    // ------------------------------------------------------------------------------------------------------- copyright
+    // ----------------------------------------------------------------------------------- copyright
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COPYRIGHT} attribute.
@@ -623,7 +623,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.copyright = copyright;
     }
 
-    // ------------------------------------------------------------------------------------------------------ productUrl
+    // ---------------------------------------------------------------------------------- productUrl
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_URL} attribute.
@@ -643,7 +643,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.productUrl = productUrl;
     }
 
-    // -------------------------------------------------------------------------------------------------- warrantyPeriod
+    // ------------------------------------------------------------------------------ warrantyPeriod
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WARRANTY_PERIOD} attribute.
@@ -663,7 +663,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.warrantyPeriod = warrantyPeriod;
     }
 
-    // --------------------------------------------------------------------------------------------- warrantyDescription
+    // ------------------------------------------------------------------------- warrantyDescription
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WARRANTY_DESCRIPTION} attribute.
@@ -683,7 +683,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.warrantyDescription = warrantyDescription;
     }
 
-    // ------------------------------------------------------------------------------------------------------- noOfYears
+    // ----------------------------------------------------------------------------------- noOfYears
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NO_OF_YEARS} attribute.
@@ -703,7 +703,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.noOfYears = noOfYears;
     }
 
-    // ------------------------------------------------------------------------------------------ maintenanceDescription
+    // ---------------------------------------------------------------------- maintenanceDescription
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MAINTENANCE_DESCRIPTION} attribute.
@@ -723,7 +723,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.maintenanceDescription = maintenanceDescription;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- wheel
+    // --------------------------------------------------------------------------------------- wheel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WHEEL} attribute.
@@ -743,7 +743,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.wheel = wheel;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- saddle
+    // -------------------------------------------------------------------------------------- saddle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SADDLE} attribute.
@@ -763,7 +763,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.saddle = saddle;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- pedal
+    // --------------------------------------------------------------------------------------- pedal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PEDAL} attribute.
@@ -783,7 +783,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.pedal = pedal;
     }
 
-    // ------------------------------------------------------------------------------------------------------- bikeFrame
+    // ----------------------------------------------------------------------------------- bikeFrame
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BIKE_FRAME} attribute.
@@ -803,7 +803,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.bikeFrame = bikeFrame;
     }
 
-    // -------------------------------------------------------------------------------------------------------- crankset
+    // ------------------------------------------------------------------------------------ crankset
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CRANKSET} attribute.
@@ -823,7 +823,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.crankset = crankset;
     }
 
-    // ---------------------------------------------------------------------------------------------------- pictureAngle
+    // -------------------------------------------------------------------------------- pictureAngle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PICTURE_ANGLE} attribute.
@@ -843,7 +843,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.pictureAngle = pictureAngle;
     }
 
-    // ----------------------------------------------------------------------------------------------------- pictureSize
+    // --------------------------------------------------------------------------------- pictureSize
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PICTURE_SIZE} attribute.
@@ -863,7 +863,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.pictureSize = pictureSize;
     }
 
-    // -------------------------------------------------------------------------------------------------- productPhotoId
+    // ------------------------------------------------------------------------------ productPhotoId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute.
@@ -883,7 +883,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.productPhotoId = productPhotoId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- material
+    // ------------------------------------------------------------------------------------ material
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MATERIAL} attribute.
@@ -903,7 +903,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.material = material;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- color
+    // --------------------------------------------------------------------------------------- color
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLOR} attribute.
@@ -923,7 +923,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.color = color;
     }
 
-    // ----------------------------------------------------------------------------------------------------- productLine
+    // --------------------------------------------------------------------------------- productLine
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_LINE} attribute.
@@ -943,7 +943,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.productLine = productLine;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- style
+    // --------------------------------------------------------------------------------------- style
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STYLE} attribute.
@@ -963,7 +963,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.style = style;
     }
 
-    // ------------------------------------------------------------------------------------------------- riderExperience
+    // ----------------------------------------------------------------------------- riderExperience
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RIDER_EXPERIENCE} attribute.
@@ -983,7 +983,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.riderExperience = riderExperience;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -1003,7 +1003,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -1023,7 +1023,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -1034,7 +1034,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private Integer productModelId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
@@ -1047,7 +1047,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUMMARY,
@@ -1057,7 +1057,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String summary;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MANUFACTURER,
@@ -1067,7 +1067,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String manufacturer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COPYRIGHT)
     @Basic(optional = true)
@@ -1079,7 +1079,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String copyright;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_URL)
     @Basic(optional = true)
@@ -1091,7 +1091,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String productUrl;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WARRANTY_PERIOD)
     @Basic(optional = true)
@@ -1103,7 +1103,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String warrantyPeriod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WARRANTY_DESCRIPTION)
     @Basic(optional = true)
@@ -1115,7 +1115,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String warrantyDescription;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NO_OF_YEARS)
     @Basic(optional = true)
@@ -1127,7 +1127,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String noOfYears;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MAINTENANCE_DESCRIPTION)
     @Basic(optional = true)
@@ -1139,7 +1139,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String maintenanceDescription;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WHEEL)
     @Basic(optional = true)
@@ -1151,7 +1151,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String wheel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SADDLE)
     @Basic(optional = true)
@@ -1163,7 +1163,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String saddle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PEDAL)
     @Basic(optional = true)
@@ -1175,7 +1175,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String pedal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BIKE_FRAME,
@@ -1185,7 +1185,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String bikeFrame;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CRANKSET)
     @Basic(optional = true)
@@ -1197,7 +1197,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String crankset;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PICTURE_ANGLE)
     @Basic(optional = true)
@@ -1209,7 +1209,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String pictureAngle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PICTURE_SIZE)
     @Basic(optional = true)
@@ -1221,7 +1221,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String pictureSize;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_PHOTO_ID)
     @Basic(optional = true)
@@ -1233,7 +1233,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String productPhotoId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MATERIAL)
     @Basic(optional = true)
@@ -1245,7 +1245,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String material;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COLOR)
     @Basic(optional = true)
@@ -1257,7 +1257,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String color;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_LINE)
     @Basic(optional = true)
@@ -1269,7 +1269,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String productLine;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STYLE)
     @Basic(optional = true)
@@ -1281,7 +1281,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String style;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_RIDER_EXPERIENCE)
     @Basic(optional = true)
@@ -1293,7 +1293,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private String riderExperience;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1304,7 +1304,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     )
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)

@@ -40,7 +40,7 @@ class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePay
         super(EmployeePayHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; the application inserts into {@code HumanResources.EmployeePayHistory} only through

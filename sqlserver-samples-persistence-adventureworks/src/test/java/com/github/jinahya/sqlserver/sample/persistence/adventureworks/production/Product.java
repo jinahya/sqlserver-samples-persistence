@@ -24,17 +24,87 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pro
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductModel;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductSubcategory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedUnitMeasure;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.Product} table.
  */
 @Entity(name = "ProductionProduct")
-@Table(schema = MappedProduct.TABLE_SCHEMA, name = MappedProduct.TABLE_NAME)
+@Table(schema = MappedProduct.TABLE_SCHEMA,
+       name = MappedProduct.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Product_Name",
+                       columnNames = {
+                               Product.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Product_ProductNumber",
+                       columnNames = {
+                               Product.COLUMN_NAME_PRODUCT_NUMBER
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Product_rowguid",
+                       columnNames = {
+                               Product.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_Product_Class",
+                       constraint = "(upper([Class])='H' OR upper([Class])='M' OR "
+                               + "upper([Class])='L' OR [Class] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_DaysToManufacture",
+                       constraint = "([DaysToManufacture]>=(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_ListPrice",
+                       constraint = "([ListPrice]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_ProductLine",
+                       constraint = "(upper([ProductLine])='R' OR upper([ProductLine])='M' OR "
+                               + "upper([ProductLine])='T' OR upper([ProductLine])='S' OR "
+                               + "[ProductLine] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_ReorderPoint",
+                       constraint = "([ReorderPoint]>(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_SafetyStockLevel",
+                       constraint = "([SafetyStockLevel]>(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_SellEndDate",
+                       constraint = "([SellEndDate]>=[SellStartDate] OR [SellEndDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_StandardCost",
+                       constraint = "([StandardCost]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_Style",
+                       constraint = "(upper([Style])='U' OR upper([Style])='M' OR "
+                               + "upper([Style])='W' OR [Style] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_Product_Weight",
+                       constraint = "([Weight]>(0.00))"
+               )
+       }
+)
 public class Product extends MappedProduct {
 
     /**
@@ -61,7 +131,7 @@ public class Product extends MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_SUBCATEGORY = "productSubcategory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -70,7 +140,7 @@ public class Product extends MappedProduct {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------- sizeUnitMeasure
+    // ----------------------------------------------------------------------------- sizeUnitMeasure
 
     /**
      * Returns the {@code UnitMeasure} which the {@code FK_Product_UnitMeasure_SizeUnitMeasureCode} foreign key
@@ -93,7 +163,7 @@ public class Product extends MappedProduct {
         setSizeUnitMeasureCode(sizeUnitMeasure == null ? null : sizeUnitMeasure.getUnitMeasureCode());
     }
 
-    // ----------------------------------------------------------------------------------------------- weightUnitMeasure
+    // --------------------------------------------------------------------------- weightUnitMeasure
 
     /**
      * Returns the {@code UnitMeasure} which the {@code FK_Product_UnitMeasure_WeightUnitMeasureCode} foreign key
@@ -116,7 +186,7 @@ public class Product extends MappedProduct {
         setWeightUnitMeasureCode(weightUnitMeasure == null ? null : weightUnitMeasure.getUnitMeasureCode());
     }
 
-    // ---------------------------------------------------------------------------------------------------- productModel
+    // -------------------------------------------------------------------------------- productModel
 
     /**
      * Returns the {@code ProductModel} which the {@code FK_Product_ProductModel_ProductModelID} foreign key
@@ -139,7 +209,7 @@ public class Product extends MappedProduct {
         setProductModelId(productModel == null ? null : productModel.getProductModelId());
     }
 
-    // ---------------------------------------------------------------------------------------------- productSubcategory
+    // -------------------------------------------------------------------------- productSubcategory
 
     /**
      * Returns the {@code ProductSubcategory} which the {@code FK_Product_ProductSubcategory_ProductSubcategoryID}
@@ -162,7 +232,7 @@ public class Product extends MappedProduct {
         setProductSubcategoryId(productSubcategory == null ? null : productSubcategory.getProductSubcategoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SIZE_UNIT_MEASURE_CODE,
                 referencedColumnName = MappedUnitMeasure.COLUMN_NAME_UNIT_MEASURE_CODE,
@@ -172,7 +242,7 @@ public class Product extends MappedProduct {
     )
     private UnitMeasure sizeUnitMeasure;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WEIGHT_UNIT_MEASURE_CODE,
                 referencedColumnName = MappedUnitMeasure.COLUMN_NAME_UNIT_MEASURE_CODE,
@@ -182,7 +252,7 @@ public class Product extends MappedProduct {
     )
     private UnitMeasure weightUnitMeasure;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_MODEL_ID,
                 referencedColumnName = MappedProductModel.COLUMN_NAME_PRODUCT_MODEL_ID,
@@ -192,7 +262,7 @@ public class Product extends MappedProduct {
     )
     private ProductModel productModel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID,
                 referencedColumnName = MappedProductSubcategory.COLUMN_NAME_PRODUCT_SUBCATEGORY_ID,

@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedVehicleTemperature.TABLE_SCHEMA, name = MappedVehicleTemperature.TABLE_NAME)
 public class VehicleTemperature extends MappedVehicleTemperature {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

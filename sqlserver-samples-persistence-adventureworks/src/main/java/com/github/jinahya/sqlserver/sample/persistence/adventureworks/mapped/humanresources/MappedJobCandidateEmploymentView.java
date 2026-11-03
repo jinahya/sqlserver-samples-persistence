@@ -51,7 +51,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String TABLE_NAME = "vJobCandidateEmployment";
 
-    // -------------------------------------------------------------------------------------------------- JobCandidateID
+    // ------------------------------------------------------------------------------ JobCandidateID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_JOB_CANDIDATE_ID = "jobCandidateId";
 
-    // --------------------------------------------------------------------------------------------------- Emp.StartDate
+    // ------------------------------------------------------------------------------- Emp.StartDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -75,7 +75,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_START_DATE = "empStartDate";
 
-    // ----------------------------------------------------------------------------------------------------- Emp.EndDate
+    // --------------------------------------------------------------------------------- Emp.EndDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_END_DATE = "empEndDate";
 
-    // ----------------------------------------------------------------------------------------------------- Emp.OrgName
+    // --------------------------------------------------------------------------------- Emp.OrgName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_ORG_NAME = "empOrgName";
 
-    // ---------------------------------------------------------------------------------------------------- Emp.JobTitle
+    // -------------------------------------------------------------------------------- Emp.JobTitle
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_JOB_TITLE = "empJobTitle";
 
-    // ---------------------------------------------------------------------------------------------- Emp.Responsibility
+    // -------------------------------------------------------------------------- Emp.Responsibility
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_RESPONSIBILITY = "empResponsibility";
 
-    // -------------------------------------------------------------------------------------------- Emp.FunctionCategory
+    // ------------------------------------------------------------------------ Emp.FunctionCategory
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -146,7 +146,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY = "empFunctionCategory";
 
-    // -------------------------------------------------------------------------------------------- Emp.IndustryCategory
+    // ------------------------------------------------------------------------ Emp.IndustryCategory
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -159,7 +159,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY = "empIndustryCategory";
 
-    // ------------------------------------------------------------------------------------------- Emp.Loc.CountryRegion
+    // ----------------------------------------------------------------------- Emp.Loc.CountryRegion
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION = "empLocCountryRegion";
 
-    // --------------------------------------------------------------------------------------------------- Emp.Loc.State
+    // ------------------------------------------------------------------------------- Emp.Loc.State
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_LOC_STATE = "empLocState";
 
-    // ---------------------------------------------------------------------------------------------------- Emp.Loc.City
+    // -------------------------------------------------------------------------------- Emp.Loc.City
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedJobCandidateEmploymentView {
      */
     public static final String ATTRIBUTE_NAME_EMP_LOC_CITY = "empLocCity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -205,7 +205,7 @@ public abstract class MappedJobCandidateEmploymentView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -224,7 +224,7 @@ public abstract class MappedJobCandidateEmploymentView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------- jobCandidateId
+    // ------------------------------------------------------------------------------ jobCandidateId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
@@ -244,7 +244,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.jobCandidateId = jobCandidateId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- empStartDate
+    // -------------------------------------------------------------------------------- empStartDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_START_DATE} attribute.
@@ -264,7 +264,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empStartDate = empStartDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------ empEndDate
+    // ---------------------------------------------------------------------------------- empEndDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_END_DATE} attribute.
@@ -284,7 +284,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empEndDate = empEndDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------ empOrgName
+    // ---------------------------------------------------------------------------------- empOrgName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_ORG_NAME} attribute.
@@ -304,7 +304,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empOrgName = empOrgName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- empJobTitle
+    // --------------------------------------------------------------------------------- empJobTitle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_JOB_TITLE} attribute.
@@ -324,7 +324,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empJobTitle = empJobTitle;
     }
 
-    // ----------------------------------------------------------------------------------------------- empResponsibility
+    // --------------------------------------------------------------------------- empResponsibility
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_RESPONSIBILITY} attribute.
@@ -344,7 +344,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empResponsibility = empResponsibility;
     }
 
-    // --------------------------------------------------------------------------------------------- empFunctionCategory
+    // ------------------------------------------------------------------------- empFunctionCategory
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY} attribute.
@@ -364,7 +364,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empFunctionCategory = empFunctionCategory;
     }
 
-    // --------------------------------------------------------------------------------------------- empIndustryCategory
+    // ------------------------------------------------------------------------- empIndustryCategory
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY} attribute.
@@ -384,7 +384,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empIndustryCategory = empIndustryCategory;
     }
 
-    // --------------------------------------------------------------------------------------------- empLocCountryRegion
+    // ------------------------------------------------------------------------- empLocCountryRegion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION} attribute.
@@ -404,7 +404,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empLocCountryRegion = empLocCountryRegion;
     }
 
-    // ----------------------------------------------------------------------------------------------------- empLocState
+    // --------------------------------------------------------------------------------- empLocState
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_LOC_STATE} attribute.
@@ -424,7 +424,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empLocState = empLocState;
     }
 
-    // ------------------------------------------------------------------------------------------------------ empLocCity
+    // ---------------------------------------------------------------------------------- empLocCity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMP_LOC_CITY} attribute.
@@ -444,7 +444,7 @@ public abstract class MappedJobCandidateEmploymentView {
         this.empLocCity = empLocCity;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID,
@@ -454,7 +454,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private Integer jobCandidateId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_START_DATE,
@@ -464,7 +464,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private LocalDateTime empStartDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_END_DATE,
@@ -474,7 +474,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private LocalDateTime empEndDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMP_ORG_NAME)
     @Basic(optional = true)
@@ -486,7 +486,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empOrgName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMP_JOB_TITLE)
     @Basic(optional = true)
@@ -498,7 +498,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empJobTitle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_RESPONSIBILITY,
@@ -508,7 +508,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empResponsibility;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_FUNCTION_CATEGORY,
@@ -518,7 +518,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empFunctionCategory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_INDUSTRY_CATEGORY,
@@ -528,7 +528,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empIndustryCategory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_LOC_COUNTRY_REGION,
@@ -538,7 +538,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empLocCountryRegion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_LOC_STATE,
@@ -548,7 +548,7 @@ public abstract class MappedJobCandidateEmploymentView {
     )
     private String empLocState;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMP_LOC_CITY,

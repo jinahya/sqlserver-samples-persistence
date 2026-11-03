@@ -27,7 +27,7 @@ public final class _Constants {
 
     static final String TABLE_SCHEMA = "Warehouse";
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private _Constants() {
         throw new AssertionError("instantiation is not allowed");
     }

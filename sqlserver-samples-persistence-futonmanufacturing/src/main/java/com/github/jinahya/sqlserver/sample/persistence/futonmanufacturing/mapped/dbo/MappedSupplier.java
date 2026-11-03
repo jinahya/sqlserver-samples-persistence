@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,19 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.Supplier} table.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.Supplier}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedSupplier {
@@ -50,7 +65,7 @@ public abstract class MappedSupplier {
      */
     public static final String TABLE_NAME = "Supplier";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -62,7 +77,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierCode
+    // -------------------------------------------------------------------------------- SupplierCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -79,7 +94,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_CODE = "supplierCode";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierName
+    // -------------------------------------------------------------------------------- SupplierName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -96,7 +111,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_NAME = "supplierName";
 
-    // ----------------------------------------------------------------------------------------------------- ContactName
+    // --------------------------------------------------------------------------------- ContactName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -113,7 +128,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_CONTACT_NAME = "contactName";
 
-    // ----------------------------------------------------------------------------------------------------------- Email
+    // --------------------------------------------------------------------------------------- Email
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -130,7 +145,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_EMAIL = "email";
 
-    // ----------------------------------------------------------------------------------------------------------- Phone
+    // --------------------------------------------------------------------------------------- Phone
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -147,7 +162,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PHONE = "phone";
 
-    // --------------------------------------------------------------------------------------------------------- Address
+    // ------------------------------------------------------------------------------------- Address
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -164,7 +179,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_ADDRESS = "address";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -181,7 +196,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ----------------------------------------------------------------------------------------------------------- State
+    // --------------------------------------------------------------------------------------- State
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -198,7 +213,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_STATE = "state";
 
-    // --------------------------------------------------------------------------------------------------------- ZipCode
+    // ------------------------------------------------------------------------------------- ZipCode
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -215,7 +230,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_ZIP_CODE = "zipCode";
 
-    // --------------------------------------------------------------------------------------------------------- Country
+    // ------------------------------------------------------------------------------------- Country
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -232,7 +247,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY = "country";
 
-    // ---------------------------------------------------------------------------------------------------- PaymentTerms
+    // -------------------------------------------------------------------------------- PaymentTerms
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -249,7 +264,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_TERMS = "paymentTerms";
 
-    // ---------------------------------------------------------------------------------------------------------- Rating
+    // -------------------------------------------------------------------------------------- Rating
 
     /**
      * The name of the {@code decimal(3, 2)} column. The value is {@value}.
@@ -271,7 +286,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_RATING = "rating";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -283,7 +298,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -295,7 +310,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -304,7 +319,7 @@ public abstract class MappedSupplier {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -356,7 +371,7 @@ public abstract class MappedSupplier {
         return Objects.hash(supplierId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -376,7 +391,7 @@ public abstract class MappedSupplier {
         this.supplierId = supplierId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierCode
+    // -------------------------------------------------------------------------------- supplierCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CODE} attribute.
@@ -396,7 +411,7 @@ public abstract class MappedSupplier {
         this.supplierCode = supplierCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierName
+    // -------------------------------------------------------------------------------- supplierName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_NAME} attribute.
@@ -416,7 +431,7 @@ public abstract class MappedSupplier {
         this.supplierName = supplierName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- contactName
+    // --------------------------------------------------------------------------------- contactName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONTACT_NAME} attribute.
@@ -436,7 +451,7 @@ public abstract class MappedSupplier {
         this.contactName = contactName;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- email
+    // --------------------------------------------------------------------------------------- email
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL} attribute.
@@ -456,7 +471,7 @@ public abstract class MappedSupplier {
         this.email = email;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- phone
+    // --------------------------------------------------------------------------------------- phone
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE} attribute.
@@ -476,7 +491,7 @@ public abstract class MappedSupplier {
         this.phone = phone;
     }
 
-    // --------------------------------------------------------------------------------------------------------- address
+    // ------------------------------------------------------------------------------------- address
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS} attribute.
@@ -496,7 +511,7 @@ public abstract class MappedSupplier {
         this.address = address;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -516,7 +531,7 @@ public abstract class MappedSupplier {
         this.city = city;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- state
+    // --------------------------------------------------------------------------------------- state
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE} attribute.
@@ -536,7 +551,7 @@ public abstract class MappedSupplier {
         this.state = state;
     }
 
-    // --------------------------------------------------------------------------------------------------------- zipCode
+    // ------------------------------------------------------------------------------------- zipCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ZIP_CODE} attribute.
@@ -556,7 +571,7 @@ public abstract class MappedSupplier {
         this.zipCode = zipCode;
     }
 
-    // --------------------------------------------------------------------------------------------------------- country
+    // ------------------------------------------------------------------------------------- country
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY} attribute.
@@ -576,7 +591,7 @@ public abstract class MappedSupplier {
         this.country = country;
     }
 
-    // ---------------------------------------------------------------------------------------------------- paymentTerms
+    // -------------------------------------------------------------------------------- paymentTerms
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_TERMS} attribute.
@@ -596,7 +611,7 @@ public abstract class MappedSupplier {
         this.paymentTerms = paymentTerms;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- rating
+    // -------------------------------------------------------------------------------------- rating
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RATING} attribute.
@@ -616,7 +631,7 @@ public abstract class MappedSupplier {
         this.rating = rating;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -636,7 +651,7 @@ public abstract class MappedSupplier {
         this.isActive = isActive;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -656,7 +671,7 @@ public abstract class MappedSupplier {
         this.createdDate = createdDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -668,7 +683,7 @@ public abstract class MappedSupplier {
     )
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_CODE)
     @NotNull
     @Basic(optional = false)
@@ -680,7 +695,7 @@ public abstract class MappedSupplier {
     )
     private String supplierCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
@@ -692,7 +707,7 @@ public abstract class MappedSupplier {
     )
     private String supplierName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CONTACT_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CONTACT_NAME,
@@ -703,7 +718,7 @@ public abstract class MappedSupplier {
     )
     private String contactName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMAIL,
@@ -714,7 +729,7 @@ public abstract class MappedSupplier {
     )
     private String email;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHONE,
@@ -725,7 +740,7 @@ public abstract class MappedSupplier {
     )
     private String phone;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDRESS,
@@ -736,7 +751,7 @@ public abstract class MappedSupplier {
     )
     private String address;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CITY,
@@ -747,7 +762,7 @@ public abstract class MappedSupplier {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STATE,
@@ -758,7 +773,7 @@ public abstract class MappedSupplier {
     )
     private String state;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ZIP_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ZIP_CODE,
@@ -769,7 +784,7 @@ public abstract class MappedSupplier {
     )
     private String zipCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COUNTRY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNTRY,
@@ -780,7 +795,7 @@ public abstract class MappedSupplier {
     )
     private String country;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PAYMENT_TERMS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PAYMENT_TERMS,
@@ -791,7 +806,7 @@ public abstract class MappedSupplier {
     )
     private String paymentTerms;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_RATING - COLUMN_SCALE_RATING, fraction = COLUMN_SCALE_RATING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RATING,
@@ -803,7 +818,7 @@ public abstract class MappedSupplier {
     )
     private BigDecimal rating;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -811,15 +826,17 @@ public abstract class MappedSupplier {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 }
 

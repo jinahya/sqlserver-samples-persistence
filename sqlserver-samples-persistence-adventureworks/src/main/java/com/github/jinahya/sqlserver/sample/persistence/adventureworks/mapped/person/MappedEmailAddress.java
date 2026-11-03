@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -35,8 +37,47 @@ import java.util.UUID;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Person.EmailAddress} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Person.EmailAddress}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Primary key. Person associated with this email address.  Foreign key to
+ *     Person.BusinessEntityID</td></tr>
+ * <tr><th scope="row">{@code EmailAddressID}</th>
+ *     <td>Primary key. ID of this email address.</td></tr>
+ * <tr><th scope="row">{@code EmailAddress}</th><td>E-mail address for the person.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Person.EmailAddress}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedEmailAddress.TABLE_SCHEMA,
+        table = MappedEmailAddress.TABLE_NAME,
+        value = "Where to send a person email."
+)
 public abstract class MappedEmailAddress {
 
     /**
@@ -49,7 +90,7 @@ public abstract class MappedEmailAddress {
      */
     public static final String TABLE_NAME = "EmailAddress";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -61,7 +102,7 @@ public abstract class MappedEmailAddress {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // -------------------------------------------------------------------------------------------------- EmailAddressID
+    // ------------------------------------------------------------------------------ EmailAddressID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -73,7 +114,7 @@ public abstract class MappedEmailAddress {
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS_ID = "emailAddressId";
 
-    // ---------------------------------------------------------------------------------------------------- EmailAddress
+    // -------------------------------------------------------------------------------- EmailAddress
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -90,7 +131,7 @@ public abstract class MappedEmailAddress {
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -102,7 +143,7 @@ public abstract class MappedEmailAddress {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -114,7 +155,7 @@ public abstract class MappedEmailAddress {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -123,7 +164,7 @@ public abstract class MappedEmailAddress {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -166,7 +207,7 @@ public abstract class MappedEmailAddress {
         return Objects.hash(businessEntityId, emailAddressId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -186,7 +227,7 @@ public abstract class MappedEmailAddress {
         this.businessEntityId = businessEntityId;
     }
 
-    // -------------------------------------------------------------------------------------------------- emailAddressId
+    // ------------------------------------------------------------------------------ emailAddressId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS_ID} attribute.
@@ -206,7 +247,7 @@ public abstract class MappedEmailAddress {
         this.emailAddressId = emailAddressId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- emailAddress
+    // -------------------------------------------------------------------------------- emailAddress
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
@@ -226,7 +267,7 @@ public abstract class MappedEmailAddress {
         this.emailAddress = emailAddress;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -246,7 +287,7 @@ public abstract class MappedEmailAddress {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -266,7 +307,7 @@ public abstract class MappedEmailAddress {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -275,9 +316,12 @@ public abstract class MappedEmailAddress {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Primary key. Person associated with this email address.  "
+                                  + "Foreign key to Person.BusinessEntityID")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -287,9 +331,11 @@ public abstract class MappedEmailAddress {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS_ID,
+                          value = "Primary key. ID of this email address.")
     private Integer emailAddressId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
@@ -298,19 +344,25 @@ public abstract class MappedEmailAddress {
             updatable = true,
             length = COLUMN_LENGTH_EMAIL_ADDRESS
     )
+    @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS,
+                          value = "E-mail address for the person.")
     private String emailAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_EmailAddress_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -319,6 +371,9 @@ public abstract class MappedEmailAddress {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_EmailAddress_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

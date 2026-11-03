@@ -35,7 +35,7 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
         super(DatabaseLog.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; the {@code ddlDatabaseTriggerLog} database trigger inserts every row of {@code dbo.DatabaseLog},
@@ -48,7 +48,7 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
         // empty
     }
 
-    // -------------------------------------------------------------------------------------------------------- xmlEvent
+    // ------------------------------------------------------------------------------------ xmlEvent
     @DisplayName("every xmlEvent is bound to the class of its event, and a flush with none of them changed writes nothing")
     @Test
     void xmlEvent() {

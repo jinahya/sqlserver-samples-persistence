@@ -24,6 +24,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderDetailId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderHeader;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSpecialOfferProduct;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -31,12 +32,37 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SalesOrderDetail} table.
  */
 @Entity(name = "SalesSalesOrderDetail")
-@Table(schema = MappedSalesOrderDetail.TABLE_SCHEMA, name = MappedSalesOrderDetail.TABLE_NAME)
+@Table(schema = MappedSalesOrderDetail.TABLE_SCHEMA,
+       name = MappedSalesOrderDetail.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SalesOrderDetail_rowguid",
+                       columnNames = {
+                               SalesOrderDetail.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SalesOrderDetail_OrderQty",
+                       constraint = "([OrderQty]>(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderDetail_UnitPrice",
+                       constraint = "([UnitPrice]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderDetail_UnitPriceDiscount",
+                       constraint = "([UnitPriceDiscount]>=(0.00))"
+               )
+       }
+)
 @IdClass(MappedSalesOrderDetailId.class)
 public class SalesOrderDetail extends MappedSalesOrderDetail {
 
@@ -52,7 +78,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_PRODUCT = "specialOfferProduct";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +87,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------ salesOrder
+    // ---------------------------------------------------------------------------------- salesOrder
 
     /**
      * Returns the {@code SalesOrderHeader} which the {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID} foreign
@@ -84,7 +110,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
         setSalesOrderId(salesOrder == null ? null : salesOrder.getSalesOrderId());
     }
 
-    // --------------------------------------------------------------------------------------------- specialOfferProduct
+    // ------------------------------------------------------------------------- specialOfferProduct
 
     /**
      * Returns the {@code SpecialOfferProduct} which the
@@ -109,7 +135,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
         setProductId(specialOfferProduct == null ? null : specialOfferProduct.getProductId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_ORDER_ID,
                 referencedColumnName = MappedSalesOrderHeader.COLUMN_NAME_SALES_ORDER_ID,
@@ -119,7 +145,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
     )
     private SalesOrderHeader salesOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = COLUMN_NAME_SPECIAL_OFFER_ID,

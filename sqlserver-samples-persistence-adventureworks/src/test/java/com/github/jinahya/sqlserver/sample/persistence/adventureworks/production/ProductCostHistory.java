@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductCostHistory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductCostHistoryId;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -34,7 +35,19 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Production.ProductCostHistory} table.
  */
 @Entity(name = "ProductionProductCostHistory")
-@Table(schema = MappedProductCostHistory.TABLE_SCHEMA, name = MappedProductCostHistory.TABLE_NAME)
+@Table(schema = MappedProductCostHistory.TABLE_SCHEMA,
+       name = MappedProductCostHistory.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_ProductCostHistory_EndDate",
+                       constraint = "([EndDate]>=[StartDate] OR [EndDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductCostHistory_StandardCost",
+                       constraint = "([StandardCost]>=(0.00))"
+               )
+       }
+)
 @IdClass(MappedProductCostHistoryId.class)
 public class ProductCostHistory extends MappedProductCostHistory {
 
@@ -44,7 +57,7 @@ public class ProductCostHistory extends MappedProductCostHistory {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -53,7 +66,7 @@ public class ProductCostHistory extends MappedProductCostHistory {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_ProductCostHistory_Product_ProductID} foreign key references.
@@ -75,7 +88,7 @@ public class ProductCostHistory extends MappedProductCostHistory {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,

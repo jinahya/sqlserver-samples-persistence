@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +44,44 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Application.PaymentMethods}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PaymentMethodID}</th>
+ *     <td>Numeric ID used for reference to a payment type within the database</td></tr>
+ * <tr><th scope="row">{@code PaymentMethodName}</th>
+ *     <td>Full name of ways that customers can make payments or that suppliers can be
+ *     paid</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Application.PaymentMethods}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PaymentMethodID}</th><td>{@code (NEXT VALUE FOR [Sequences].[PaymentMethodID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPaymentMethod.TABLE_SCHEMA,
+        table = MappedPaymentMethod.TABLE_NAME,
+        value = "Ways that payments can be made (ie: cash, check, EFT, etc."
+)
+@MsTemporal(
+        historyTable = "Application.PaymentMethods_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedPaymentMethod {
 
     /**
@@ -55,7 +94,7 @@ public abstract class MappedPaymentMethod {
      */
     public static final String TABLE_NAME = "PaymentMethods";
 
-    // ------------------------------------------------------------------------------------------------- PaymentMethodID
+    // ----------------------------------------------------------------------------- PaymentMethodID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.PaymentMethodID, NOT NULL} column. The value is {@value}.
@@ -67,7 +106,7 @@ public abstract class MappedPaymentMethod {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_METHOD_ID = "paymentMethodId";
 
-    // ----------------------------------------------------------------------------------------------- PaymentMethodName
+    // --------------------------------------------------------------------------- PaymentMethodName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -85,7 +124,7 @@ public abstract class MappedPaymentMethod {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_METHOD_NAME = "paymentMethodName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -97,7 +136,7 @@ public abstract class MappedPaymentMethod {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -109,7 +148,7 @@ public abstract class MappedPaymentMethod {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -121,7 +160,7 @@ public abstract class MappedPaymentMethod {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -130,7 +169,7 @@ public abstract class MappedPaymentMethod {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -172,7 +211,7 @@ public abstract class MappedPaymentMethod {
         return Objects.hash(paymentMethodId);
     }
 
-    // ------------------------------------------------------------------------------------------------- paymentMethodId
+    // ----------------------------------------------------------------------------- paymentMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute.
@@ -192,7 +231,7 @@ public abstract class MappedPaymentMethod {
         this.paymentMethodId = paymentMethodId;
     }
 
-    // ----------------------------------------------------------------------------------------------- paymentMethodName
+    // --------------------------------------------------------------------------- paymentMethodName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_NAME} attribute.
@@ -212,7 +251,7 @@ public abstract class MappedPaymentMethod {
         this.paymentMethodName = paymentMethodName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -234,7 +273,7 @@ public abstract class MappedPaymentMethod {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -255,7 +294,7 @@ public abstract class MappedPaymentMethod {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -276,7 +315,7 @@ public abstract class MappedPaymentMethod {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PaymentMethodID", schema = "Sequences",
@@ -288,9 +327,14 @@ public abstract class MappedPaymentMethod {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
+                          value = "Numeric ID used for reference to a payment type within the "
+                                  + "database")
+    @MsDefault(name = "DF_Application_PaymentMethods_PaymentMethodID",
+               value = "(NEXT VALUE FOR [Sequences].[PaymentMethodID])")
     private Integer paymentMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PAYMENT_METHOD_NAME)
     @NotNull
     @Basic(optional = false)
@@ -300,9 +344,12 @@ public abstract class MappedPaymentMethod {
             updatable = true,
             length = COLUMN_LENGTH_PAYMENT_METHOD_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_NAME,
+                          value = "Full name of ways that customers can make payments or that "
+                                  + "suppliers can be paid")
     private String paymentMethodName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -313,7 +360,7 @@ public abstract class MappedPaymentMethod {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -324,7 +371,7 @@ public abstract class MappedPaymentMethod {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

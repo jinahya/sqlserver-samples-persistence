@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -39,8 +41,42 @@ import java.util.Objects;
  * <p>
  * Read-only: the application writes this table only through {@code HumanResources.uspUpdateEmployeeHireInfo}, which
  * inserts a row, and nothing updates or deletes one; so no column of it is insertable, nor updatable.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code HumanResources.EmployeePayHistory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Employee identification number. Foreign key to Employee.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code RateChangeDate}</th><td>Date the change in pay is effective</td></tr>
+ * <tr><th scope="row">{@code Rate}</th><td>Salary hourly rate.</td></tr>
+ * <tr><th scope="row">{@code PayFrequency}</th>
+ *     <td>1 = Salary received monthly, 2 = Salary received biweekly</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code HumanResources.EmployeePayHistory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedEmployeePayHistory.TABLE_SCHEMA,
+        table = MappedEmployeePayHistory.TABLE_NAME,
+        value = "Employee pay history."
+)
 public abstract class MappedEmployeePayHistory {
 
     /**
@@ -53,7 +89,7 @@ public abstract class MappedEmployeePayHistory {
      */
     public static final String TABLE_NAME = "EmployeePayHistory";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +101,7 @@ public abstract class MappedEmployeePayHistory {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // -------------------------------------------------------------------------------------------------- RateChangeDate
+    // ------------------------------------------------------------------------------ RateChangeDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -77,7 +113,7 @@ public abstract class MappedEmployeePayHistory {
      */
     public static final String ATTRIBUTE_NAME_RATE_CHANGE_DATE = "rateChangeDate";
 
-    // ------------------------------------------------------------------------------------------------------------ Rate
+    // ---------------------------------------------------------------------------------------- Rate
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -101,7 +137,7 @@ public abstract class MappedEmployeePayHistory {
      */
     public static final String ATTRIBUTE_NAME_RATE = "rate";
 
-    // ---------------------------------------------------------------------------------------------------- PayFrequency
+    // -------------------------------------------------------------------------------- PayFrequency
 
     /**
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
@@ -127,7 +163,7 @@ public abstract class MappedEmployeePayHistory {
      */
     public static final String ATTRIBUTE_NAME_PAY_FREQUENCY = "payFrequency";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -139,7 +175,7 @@ public abstract class MappedEmployeePayHistory {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -148,7 +184,7 @@ public abstract class MappedEmployeePayHistory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -191,7 +227,7 @@ public abstract class MappedEmployeePayHistory {
         return Objects.hash(businessEntityId, rateChangeDate);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -211,7 +247,7 @@ public abstract class MappedEmployeePayHistory {
         this.businessEntityId = businessEntityId;
     }
 
-    // -------------------------------------------------------------------------------------------------- rateChangeDate
+    // ------------------------------------------------------------------------------ rateChangeDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RATE_CHANGE_DATE} attribute.
@@ -231,7 +267,7 @@ public abstract class MappedEmployeePayHistory {
         this.rateChangeDate = rateChangeDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ rate
+    // ---------------------------------------------------------------------------------------- rate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RATE} attribute.
@@ -251,7 +287,7 @@ public abstract class MappedEmployeePayHistory {
         this.rate = rate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- payFrequency
+    // -------------------------------------------------------------------------------- payFrequency
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute.
@@ -271,7 +307,7 @@ public abstract class MappedEmployeePayHistory {
         this.payFrequency = payFrequency;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -291,7 +327,7 @@ public abstract class MappedEmployeePayHistory {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     @NotNull
     @Id
@@ -300,9 +336,12 @@ public abstract class MappedEmployeePayHistory {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Employee identification number. Foreign key to "
+                                  + "Employee.BusinessEntityID.")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     @NotNull
     @Id
@@ -311,9 +350,11 @@ public abstract class MappedEmployeePayHistory {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_RATE_CHANGE_DATE,
+                          value = "Date the change in pay is effective")
     private LocalDateTime rateChangeDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     // CK_EmployeePayHistory_Rate: ([Rate]>=(6.50) AND [Rate]<=(200.00))
     @DecimalMax(COLUMN_MAX_RATE)
@@ -325,9 +366,10 @@ public abstract class MappedEmployeePayHistory {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_RATE, value = "Salary hourly rate.")
     private BigDecimal rate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     // CK_EmployeePayHistory_PayFrequency: ([PayFrequency]=(2) OR [PayFrequency]=(1))
     @Max(COLUMN_MAX_PAY_FREQUENCY)
@@ -339,9 +381,11 @@ public abstract class MappedEmployeePayHistory {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PAY_FREQUENCY,
+                          value = "1 = Salary received monthly, 2 = Salary received biweekly")
     private Integer payFrequency;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     // the database's DEFAULT (getdate()) fills it on the INSERT of the procedure
     @Basic(optional = false)
@@ -350,6 +394,9 @@ public abstract class MappedEmployeePayHistory {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_EmployeePayHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

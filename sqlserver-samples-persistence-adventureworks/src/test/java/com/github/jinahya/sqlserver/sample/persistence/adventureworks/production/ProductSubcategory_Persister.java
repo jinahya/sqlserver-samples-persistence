@@ -35,7 +35,7 @@ class ProductSubcategory_Persister
         super(ProductSubcategory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductSubcategory apply(final EntityManager entityManager, final ProductSubcategory entityInstance) {
         final var category = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductCategory.class);

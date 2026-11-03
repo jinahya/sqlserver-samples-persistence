@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -34,8 +36,41 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductListPriceHistory} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.ProductListPriceHistory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product identification number. Foreign key to Product.ProductID</td></tr>
+ * <tr><th scope="row">{@code StartDate}</th><td>List price start date.</td></tr>
+ * <tr><th scope="row">{@code EndDate}</th><td>List price end date</td></tr>
+ * <tr><th scope="row">{@code ListPrice}</th><td>Product list price.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.ProductListPriceHistory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProductListPriceHistory.TABLE_SCHEMA,
+        table = MappedProductListPriceHistory.TABLE_NAME,
+        value = "Changes in the list price of a product over time."
+)
 public abstract class MappedProductListPriceHistory {
 
     /**
@@ -48,7 +83,7 @@ public abstract class MappedProductListPriceHistory {
      */
     public static final String TABLE_NAME = "ProductListPriceHistory";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -60,7 +95,7 @@ public abstract class MappedProductListPriceHistory {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -72,7 +107,7 @@ public abstract class MappedProductListPriceHistory {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -84,7 +119,7 @@ public abstract class MappedProductListPriceHistory {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // ------------------------------------------------------------------------------------------------------- ListPrice
+    // ----------------------------------------------------------------------------------- ListPrice
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -103,7 +138,7 @@ public abstract class MappedProductListPriceHistory {
      */
     public static final String ATTRIBUTE_NAME_LIST_PRICE = "listPrice";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -115,7 +150,7 @@ public abstract class MappedProductListPriceHistory {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -124,7 +159,7 @@ public abstract class MappedProductListPriceHistory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -167,7 +202,7 @@ public abstract class MappedProductListPriceHistory {
         return Objects.hash(productId, startDate);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
@@ -190,7 +225,7 @@ public abstract class MappedProductListPriceHistory {
         return !endDate.isBefore(startDate);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -210,7 +245,7 @@ public abstract class MappedProductListPriceHistory {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -230,7 +265,7 @@ public abstract class MappedProductListPriceHistory {
         this.startDate = startDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -250,7 +285,7 @@ public abstract class MappedProductListPriceHistory {
         this.endDate = endDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- listPrice
+    // ----------------------------------------------------------------------------------- listPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute.
@@ -270,7 +305,7 @@ public abstract class MappedProductListPriceHistory {
         this.listPrice = listPrice;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -290,7 +325,7 @@ public abstract class MappedProductListPriceHistory {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -299,9 +334,11 @@ public abstract class MappedProductListPriceHistory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product identification number. Foreign key to Product.ProductID")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -310,18 +347,20 @@ public abstract class MappedProductListPriceHistory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_START_DATE, value = "List price start date.")
     private LocalDateTime startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_END_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_DATE, value = "List price end date")
     private LocalDateTime endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductListPriceHistory_ListPrice: ([ListPrice]>(0.00))
     @DecimalMin(value = COLUMN_MIN_LIST_PRICE_EXCLUSIVE, inclusive = false)
     @NotNull
@@ -331,9 +370,10 @@ public abstract class MappedProductListPriceHistory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LIST_PRICE, value = "Product list price.")
     private BigDecimal listPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -342,6 +382,9 @@ public abstract class MappedProductListPriceHistory {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ProductListPriceHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

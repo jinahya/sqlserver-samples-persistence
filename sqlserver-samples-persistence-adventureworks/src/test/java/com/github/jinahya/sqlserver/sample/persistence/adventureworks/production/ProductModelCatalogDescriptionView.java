@@ -34,7 +34,7 @@ import jakarta.persistence.Table;
        name = MappedProductModelCatalogDescriptionView.TABLE_NAME)
 public class ProductModelCatalogDescriptionView extends MappedProductModelCatalogDescriptionView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

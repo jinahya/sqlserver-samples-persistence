@@ -91,7 +91,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -100,7 +100,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------- stockItem
+    // ----------------------------------------------------------------------------------- stockItem
 
     /**
      * Returns the {@code StockItem} which the
@@ -124,7 +124,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setStockItemId(stockItem == null ? null : stockItem.getStockItemId());
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionType
+    // ----------------------------------------------------------------------------- transactionType
 
     /**
      * Returns the {@code TransactionType} which the
@@ -149,7 +149,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setTransactionTypeId(transactionType == null ? null : transactionType.getTransactionTypeId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- customer
+    // ------------------------------------------------------------------------------------ customer
 
     /**
      * Returns the {@code Customer} which the {@code FK_Warehouse_StockItemTransactions_CustomerID_Sales_Customers}
@@ -172,7 +172,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setCustomerId(customer == null ? null : customer.getCustomerId());
     }
 
-    // --------------------------------------------------------------------------------------------------------- invoice
+    // ------------------------------------------------------------------------------------- invoice
 
     /**
      * Returns the {@code Invoice} which the {@code FK_Warehouse_StockItemTransactions_InvoiceID_Sales_Invoices} foreign
@@ -195,7 +195,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setInvoiceId(invoice == null ? null : invoice.getInvoiceId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- supplier
+    // ------------------------------------------------------------------------------------ supplier
 
     /**
      * Returns the {@code Supplier} which the {@code FK_Warehouse_StockItemTransactions_SupplierID_Purchasing_Suppliers}
@@ -219,7 +219,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setSupplierId(supplier == null ? null : supplier.getSupplierId());
     }
 
-    // --------------------------------------------------------------------------------------------------- purchaseOrder
+    // ------------------------------------------------------------------------------- purchaseOrder
 
     /**
      * Returns the {@code PurchaseOrder} which the
@@ -243,7 +243,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setPurchaseOrderId(purchaseOrder == null ? null : purchaseOrder.getPurchaseOrderId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Warehouse_StockItemTransactions_Application_People} foreign key
@@ -266,7 +266,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_ITEM_ID,
                 referencedColumnName = MappedStockItem.COLUMN_NAME_STOCK_ITEM_ID,
@@ -276,7 +276,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
     )
     private StockItem stockItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
                 referencedColumnName = MappedTransactionType.COLUMN_NAME_TRANSACTION_TYPE_ID,
@@ -286,7 +286,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
     )
     private TransactionType transactionType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -296,7 +296,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
     )
     private Customer customer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_INVOICE_ID,
                 referencedColumnName = MappedInvoice.COLUMN_NAME_INVOICE_ID,
@@ -306,7 +306,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
     )
     private Invoice invoice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SUPPLIER_ID,
                 referencedColumnName = MappedSupplier.COLUMN_NAME_SUPPLIER_ID,
@@ -316,7 +316,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
     )
     private Supplier supplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                 referencedColumnName = MappedPurchaseOrder.COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -326,7 +326,7 @@ public class StockItemTransaction extends MappedStockItemTransaction {
     )
     private PurchaseOrder purchaseOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

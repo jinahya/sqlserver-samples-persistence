@@ -33,7 +33,7 @@ import java.math.BigDecimal;
  */
 public class BomExplosionView extends MappedBomExplosionView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

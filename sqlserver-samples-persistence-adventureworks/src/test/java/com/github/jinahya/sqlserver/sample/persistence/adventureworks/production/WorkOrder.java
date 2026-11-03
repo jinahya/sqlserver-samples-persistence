@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedScrapReason;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrder;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -33,7 +34,23 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Production.WorkOrder} table.
  */
 @Entity(name = "ProductionWorkOrder")
-@Table(schema = MappedWorkOrder.TABLE_SCHEMA, name = MappedWorkOrder.TABLE_NAME)
+@Table(schema = MappedWorkOrder.TABLE_SCHEMA,
+       name = MappedWorkOrder.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_WorkOrder_EndDate",
+                       constraint = "([EndDate]>=[StartDate] OR [EndDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_WorkOrder_OrderQty",
+                       constraint = "([OrderQty]>(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_WorkOrder_ScrappedQty",
+                       constraint = "([ScrappedQty]>=(0))"
+               )
+       }
+)
 public class WorkOrder extends MappedWorkOrder {
 
     /**
@@ -47,7 +64,7 @@ public class WorkOrder extends MappedWorkOrder {
      */
     public static final String ATTRIBUTE_NAME_SCRAP_REASON = "scrapReason";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -56,7 +73,7 @@ public class WorkOrder extends MappedWorkOrder {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_WorkOrder_Product_ProductID} foreign key references.
@@ -78,7 +95,7 @@ public class WorkOrder extends MappedWorkOrder {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- scrapReason
+    // --------------------------------------------------------------------------------- scrapReason
 
     /**
      * Returns the {@code ScrapReason} which the {@code FK_WorkOrder_ScrapReason_ScrapReasonID} foreign key references.
@@ -101,7 +118,7 @@ public class WorkOrder extends MappedWorkOrder {
                          ? null : scrapReason.getScrapReasonId().intValue());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -111,7 +128,7 @@ public class WorkOrder extends MappedWorkOrder {
     )
     private Product product;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SCRAP_REASON_ID,
                 referencedColumnName = MappedScrapReason.COLUMN_NAME_SCRAP_REASON_ID,

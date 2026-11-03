@@ -65,7 +65,7 @@ public class InvoiceLine extends MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -74,7 +74,7 @@ public class InvoiceLine extends MappedInvoiceLine {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- invoice
+    // ------------------------------------------------------------------------------------- invoice
 
     /**
      * Returns the {@code Invoice} which the {@code FK_Sales_InvoiceLines_InvoiceID_Sales_Invoices} foreign key
@@ -97,7 +97,7 @@ public class InvoiceLine extends MappedInvoiceLine {
         setInvoiceId(invoice == null ? null : invoice.getInvoiceId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- stockItem
+    // ----------------------------------------------------------------------------------- stockItem
 
     /**
      * Returns the {@code StockItem} which the {@code FK_Sales_InvoiceLines_StockItemID_Warehouse_StockItems} foreign
@@ -120,7 +120,7 @@ public class InvoiceLine extends MappedInvoiceLine {
         setStockItemId(stockItem == null ? null : stockItem.getStockItemId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- packageType
+    // --------------------------------------------------------------------------------- packageType
 
     /**
      * Returns the {@code PackageType} which the {@code FK_Sales_InvoiceLines_PackageTypeID_Warehouse_PackageTypes}
@@ -143,7 +143,7 @@ public class InvoiceLine extends MappedInvoiceLine {
         setPackageTypeId(packageType == null ? null : packageType.getPackageTypeId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_InvoiceLines_Application_People} foreign key references.
@@ -165,7 +165,7 @@ public class InvoiceLine extends MappedInvoiceLine {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_INVOICE_ID,
                 referencedColumnName = MappedInvoice.COLUMN_NAME_INVOICE_ID,
@@ -175,7 +175,7 @@ public class InvoiceLine extends MappedInvoiceLine {
     )
     private Invoice invoice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_ITEM_ID,
                 referencedColumnName = MappedStockItem.COLUMN_NAME_STOCK_ITEM_ID,
@@ -185,7 +185,7 @@ public class InvoiceLine extends MappedInvoiceLine {
     )
     private StockItem stockItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PACKAGE_TYPE_ID,
                 referencedColumnName = MappedPackageType.COLUMN_NAME_PACKAGE_TYPE_ID,
@@ -195,7 +195,7 @@ public class InvoiceLine extends MappedInvoiceLine {
     )
     private PackageType packageType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

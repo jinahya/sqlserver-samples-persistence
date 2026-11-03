@@ -33,7 +33,7 @@ import java.math.BigDecimal;
  */
 public class SalesPipelineView extends MappedSalesPipelineView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

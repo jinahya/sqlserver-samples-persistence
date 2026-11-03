@@ -53,7 +53,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String TABLE_NAME = "vw_SupplierPerformance";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierCode
+    // -------------------------------------------------------------------------------- SupplierCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_CODE = "supplierCode";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierName
+    // -------------------------------------------------------------------------------- SupplierName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_NAME = "supplierName";
 
-    // -------------------------------------------------------------------------------------------------- SupplierRating
+    // ------------------------------------------------------------------------------ SupplierRating
 
     /**
      * The name of the {@code decimal(3, 2)} column. The value is {@value}.
@@ -109,7 +109,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_RATING = "supplierRating";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ---------------------------------------------------------------------------------------------- TotalPurchaseValue
+    // -------------------------------------------------------------------------- TotalPurchaseValue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -144,7 +144,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_PURCHASE_VALUE = "totalPurchaseValue";
 
-    // ------------------------------------------------------------------------------------------------- AvgDeliveryDays
+    // ----------------------------------------------------------------------------- AvgDeliveryDays
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -156,7 +156,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DELIVERY_DAYS = "avgDeliveryDays";
 
-    // ------------------------------------------------------------------------------------------------ OnTimeDeliveries
+    // ---------------------------------------------------------------------------- OnTimeDeliveries
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -168,7 +168,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_ON_TIME_DELIVERIES = "onTimeDeliveries";
 
-    // --------------------------------------------------------------------------------------------- CompletedDeliveries
+    // ------------------------------------------------------------------------- CompletedDeliveries
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -181,7 +181,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_COMPLETED_DELIVERIES = "completedDeliveries";
 
-    // ---------------------------------------------------------------------------------------------- OnTimeDeliveryRate
+    // -------------------------------------------------------------------------- OnTimeDeliveryRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -204,7 +204,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_ON_TIME_DELIVERY_RATE = "onTimeDeliveryRate";
 
-    // ------------------------------------------------------------------------------------------------ PerformanceGrade
+    // ---------------------------------------------------------------------------- PerformanceGrade
 
     /**
      * The name of the {@code varchar(9), NOT NULL} column. The value is {@value}.
@@ -221,7 +221,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_PERFORMANCE_GRADE = "performanceGrade";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -230,7 +230,7 @@ public abstract class MappedSupplierPerformanceView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -277,7 +277,7 @@ public abstract class MappedSupplierPerformanceView {
         return Objects.hash(supplierCode);
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierCode
+    // -------------------------------------------------------------------------------- supplierCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CODE} attribute.
@@ -297,7 +297,7 @@ public abstract class MappedSupplierPerformanceView {
         this.supplierCode = supplierCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierName
+    // -------------------------------------------------------------------------------- supplierName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_NAME} attribute.
@@ -317,7 +317,7 @@ public abstract class MappedSupplierPerformanceView {
         this.supplierName = supplierName;
     }
 
-    // -------------------------------------------------------------------------------------------------- supplierRating
+    // ------------------------------------------------------------------------------ supplierRating
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_RATING} attribute.
@@ -337,7 +337,7 @@ public abstract class MappedSupplierPerformanceView {
         this.supplierRating = supplierRating;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -357,7 +357,7 @@ public abstract class MappedSupplierPerformanceView {
         this.totalOrders = totalOrders;
     }
 
-    // ---------------------------------------------------------------------------------------------- totalPurchaseValue
+    // -------------------------------------------------------------------------- totalPurchaseValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_VALUE} attribute.
@@ -377,7 +377,7 @@ public abstract class MappedSupplierPerformanceView {
         this.totalPurchaseValue = totalPurchaseValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- avgDeliveryDays
+    // ----------------------------------------------------------------------------- avgDeliveryDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DELIVERY_DAYS} attribute.
@@ -397,7 +397,7 @@ public abstract class MappedSupplierPerformanceView {
         this.avgDeliveryDays = avgDeliveryDays;
     }
 
-    // ------------------------------------------------------------------------------------------------ onTimeDeliveries
+    // ---------------------------------------------------------------------------- onTimeDeliveries
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERIES} attribute.
@@ -417,7 +417,7 @@ public abstract class MappedSupplierPerformanceView {
         this.onTimeDeliveries = onTimeDeliveries;
     }
 
-    // --------------------------------------------------------------------------------------------- completedDeliveries
+    // ------------------------------------------------------------------------- completedDeliveries
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETED_DELIVERIES} attribute.
@@ -437,7 +437,7 @@ public abstract class MappedSupplierPerformanceView {
         this.completedDeliveries = completedDeliveries;
     }
 
-    // ---------------------------------------------------------------------------------------------- onTimeDeliveryRate
+    // -------------------------------------------------------------------------- onTimeDeliveryRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERY_RATE} attribute.
@@ -457,7 +457,7 @@ public abstract class MappedSupplierPerformanceView {
         this.onTimeDeliveryRate = onTimeDeliveryRate;
     }
 
-    // ------------------------------------------------------------------------------------------------ performanceGrade
+    // ---------------------------------------------------------------------------- performanceGrade
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERFORMANCE_GRADE} attribute.
@@ -477,7 +477,7 @@ public abstract class MappedSupplierPerformanceView {
         this.performanceGrade = performanceGrade;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_CODE)
     @NotNull
@@ -490,7 +490,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private String supplierCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
@@ -503,7 +503,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private String supplierName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SUPPLIER_RATING - COLUMN_SCALE_SUPPLIER_RATING,
             fraction = COLUMN_SCALE_SUPPLIER_RATING)
@@ -517,7 +517,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private BigDecimal supplierRating;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -527,7 +527,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_PURCHASE_VALUE - COLUMN_SCALE_TOTAL_PURCHASE_VALUE,
             fraction = COLUMN_SCALE_TOTAL_PURCHASE_VALUE)
@@ -541,7 +541,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private BigDecimal totalPurchaseValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DELIVERY_DAYS,
@@ -551,7 +551,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private Integer avgDeliveryDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES,
@@ -561,7 +561,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private Integer onTimeDeliveries;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_DELIVERIES,
@@ -571,7 +571,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private Integer completedDeliveries;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE - COLUMN_SCALE_ON_TIME_DELIVERY_RATE,
             fraction = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
@@ -585,7 +585,7 @@ public abstract class MappedSupplierPerformanceView {
     )
     private BigDecimal onTimeDeliveryRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PERFORMANCE_GRADE)
     @NotNull

@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedShoppingCartItem;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Product;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -33,7 +34,15 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Sales.ShoppingCartItem} table.
  */
 @Entity(name = "SalesShoppingCartItem")
-@Table(schema = MappedShoppingCartItem.TABLE_SCHEMA, name = MappedShoppingCartItem.TABLE_NAME)
+@Table(schema = MappedShoppingCartItem.TABLE_SCHEMA,
+       name = MappedShoppingCartItem.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_ShoppingCartItem_Quantity",
+                       constraint = "([Quantity]>=(1))"
+               )
+       }
+)
 public class ShoppingCartItem extends MappedShoppingCartItem {
 
     /**
@@ -42,7 +51,7 @@ public class ShoppingCartItem extends MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -51,7 +60,7 @@ public class ShoppingCartItem extends MappedShoppingCartItem {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_ShoppingCartItem_Product_ProductID} foreign key references.
@@ -73,7 +82,7 @@ public class ShoppingCartItem extends MappedShoppingCartItem {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,

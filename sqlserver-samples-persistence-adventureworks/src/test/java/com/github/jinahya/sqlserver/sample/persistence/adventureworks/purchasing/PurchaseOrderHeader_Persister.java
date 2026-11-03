@@ -36,7 +36,7 @@ class PurchaseOrderHeader_Persister
         super(PurchaseOrderHeader.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public PurchaseOrderHeader apply(final EntityManager entityManager, final PurchaseOrderHeader entityInstance) {
         final var employee = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);

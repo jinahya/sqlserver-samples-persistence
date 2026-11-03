@@ -33,7 +33,7 @@ import java.util.Optional;
 public class HeirarchyidAttributeConverter
         implements AttributeConverter<Heirarchyid, byte[]> {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -42,7 +42,7 @@ public class HeirarchyidAttributeConverter
         super();
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public byte[] convertToDatabaseColumn(final Heirarchyid attribute) {
         return Optional.ofNullable(attribute).map(Heirarchyid::getBytes).orElse(null);

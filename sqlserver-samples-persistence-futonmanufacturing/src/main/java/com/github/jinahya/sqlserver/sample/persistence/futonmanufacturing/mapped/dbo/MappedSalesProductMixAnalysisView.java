@@ -53,7 +53,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_ProductMixAnalysis";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // ------------------------------------------------------------------------------------------------------ ProductMix
+    // ---------------------------------------------------------------------------------- ProductMix
 
     /**
      * The name of the {@code nvarchar(4000)} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MIX = "productMix";
 
-    // -------------------------------------------------------------------------------------------------- UniqueProducts
+    // ------------------------------------------------------------------------------ UniqueProducts
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_PRODUCTS = "uniqueProducts";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRevenue
+    // -------------------------------------------------------------------------------- TotalRevenue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // -------------------------------------------------------------------------------------------------------- AvgUnits
+    // ------------------------------------------------------------------------------------ AvgUnits
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -194,7 +194,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_UNITS = "avgUnits";
 
-    // -------------------------------------------------------------------------------------------------- PopularityRank
+    // ------------------------------------------------------------------------------ PopularityRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -206,7 +206,7 @@ public abstract class MappedSalesProductMixAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_POPULARITY_RANK = "popularityRank";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -215,7 +215,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -232,7 +232,7 @@ public abstract class MappedSalesProductMixAnalysisView {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -252,7 +252,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.channelName = channelName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -272,7 +272,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.customerType = customerType;
     }
 
-    // ------------------------------------------------------------------------------------------------------ productMix
+    // ---------------------------------------------------------------------------------- productMix
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_MIX} attribute.
@@ -292,7 +292,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.productMix = productMix;
     }
 
-    // -------------------------------------------------------------------------------------------------- uniqueProducts
+    // ------------------------------------------------------------------------------ uniqueProducts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_PRODUCTS} attribute.
@@ -312,7 +312,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.uniqueProducts = uniqueProducts;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -332,7 +332,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.orderCount = orderCount;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRevenue
+    // -------------------------------------------------------------------------------- totalRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute.
@@ -352,7 +352,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.totalRevenue = totalRevenue;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -372,7 +372,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // -------------------------------------------------------------------------------------------------------- avgUnits
+    // ------------------------------------------------------------------------------------ avgUnits
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_UNITS} attribute.
@@ -392,7 +392,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.avgUnits = avgUnits;
     }
 
-    // -------------------------------------------------------------------------------------------------- popularityRank
+    // ------------------------------------------------------------------------------ popularityRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POPULARITY_RANK} attribute.
@@ -412,7 +412,7 @@ public abstract class MappedSalesProductMixAnalysisView {
         this.popularityRank = popularityRank;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -425,7 +425,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -437,7 +437,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_MIX)
     @Basic(optional = true)
@@ -449,7 +449,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private String productMix;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_PRODUCTS,
@@ -459,7 +459,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private Integer uniqueProducts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -469,7 +469,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
@@ -483,7 +483,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private BigDecimal totalRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -497,7 +497,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_UNITS - COLUMN_SCALE_AVG_UNITS, fraction = COLUMN_SCALE_AVG_UNITS)
     @Basic(optional = true)
@@ -510,7 +510,7 @@ public abstract class MappedSalesProductMixAnalysisView {
     )
     private BigDecimal avgUnits;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POPULARITY_RANK,

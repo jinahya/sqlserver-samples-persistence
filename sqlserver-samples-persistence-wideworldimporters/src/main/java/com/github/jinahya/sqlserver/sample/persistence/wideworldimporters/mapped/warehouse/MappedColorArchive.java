@@ -51,7 +51,7 @@ public abstract class MappedColorArchive {
      */
     public static final String TABLE_NAME = "Colors_Archive";
 
-    // --------------------------------------------------------------------------------------------------------- ColorID
+    // ------------------------------------------------------------------------------------- ColorID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedColorArchive {
      */
     public static final String ATTRIBUTE_NAME_COLOR_ID = "colorId";
 
-    // ------------------------------------------------------------------------------------------------------- ColorName
+    // ----------------------------------------------------------------------------------- ColorName
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -80,7 +80,7 @@ public abstract class MappedColorArchive {
      */
     public static final String ATTRIBUTE_NAME_COLOR_NAME = "colorName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -92,7 +92,7 @@ public abstract class MappedColorArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedColorArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedColorArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -125,7 +125,7 @@ public abstract class MappedColorArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -138,7 +138,7 @@ public abstract class MappedColorArchive {
                + "}";
     }
 
-    // --------------------------------------------------------------------------------------------------------- colorId
+    // ------------------------------------------------------------------------------------- colorId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLOR_ID} attribute.
@@ -158,7 +158,7 @@ public abstract class MappedColorArchive {
         this.colorId = colorId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- colorName
+    // ----------------------------------------------------------------------------------- colorName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLOR_NAME} attribute.
@@ -178,7 +178,7 @@ public abstract class MappedColorArchive {
         this.colorName = colorName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -198,7 +198,7 @@ public abstract class MappedColorArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -218,7 +218,7 @@ public abstract class MappedColorArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -238,7 +238,7 @@ public abstract class MappedColorArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -249,7 +249,7 @@ public abstract class MappedColorArchive {
     )
     private Integer colorId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_COLOR_NAME)
     @NotNull
@@ -262,7 +262,7 @@ public abstract class MappedColorArchive {
     )
     private String colorName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -273,7 +273,7 @@ public abstract class MappedColorArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -284,7 +284,7 @@ public abstract class MappedColorArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

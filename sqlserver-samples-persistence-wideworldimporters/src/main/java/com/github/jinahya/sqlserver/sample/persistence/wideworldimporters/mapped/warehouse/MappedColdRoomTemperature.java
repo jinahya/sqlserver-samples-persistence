@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,8 +40,33 @@ import java.util.Objects;
  * <p>
  * The table is system-versioned: SQL Server writes its period columns, which are mapped read-only, and keeps every
  * former version of a row in {@code Warehouse.ColdRoomTemperatures_Archive}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.ColdRoomTemperatures}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ColdRoomTemperatureID}</th>
+ *     <td>Instantaneous temperature readings for cold rooms (chillers)</td></tr>
+ * <tr><th scope="row">{@code ColdRoomSensorNumber}</th><td>Cold room sensor number</td></tr>
+ * <tr><th scope="row">{@code RecordedWhen}</th>
+ *     <td>Time when this temperature recording was taken</td></tr>
+ * <tr><th scope="row">{@code Temperature}</th><td>Temperature at the time of recording</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedColdRoomTemperature.TABLE_SCHEMA,
+        table = MappedColdRoomTemperature.TABLE_NAME,
+        value = "Regularly recorded temperatures of cold room chillers"
+)
+@MsTemporal(
+        historyTable = "Warehouse.ColdRoomTemperatures_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedColdRoomTemperature {
 
     /**
@@ -52,7 +79,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String TABLE_NAME = "ColdRoomTemperatures";
 
-    // ------------------------------------------------------------------------------------------- ColdRoomTemperatureID
+    // ----------------------------------------------------------------------- ColdRoomTemperatureID
 
     /**
      * The name of the {@code bigint, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +92,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID = "coldRoomTemperatureId";
 
-    // -------------------------------------------------------------------------------------------- ColdRoomSensorNumber
+    // ------------------------------------------------------------------------ ColdRoomSensorNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -78,7 +105,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER = "coldRoomSensorNumber";
 
-    // ---------------------------------------------------------------------------------------------------- RecordedWhen
+    // -------------------------------------------------------------------------------- RecordedWhen
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -90,7 +117,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String ATTRIBUTE_NAME_RECORDED_WHEN = "recordedWhen";
 
-    // ----------------------------------------------------------------------------------------------------- Temperature
+    // --------------------------------------------------------------------------------- Temperature
 
     /**
      * The name of the {@code decimal(10, 2), NOT NULL} column. The value is {@value}.
@@ -112,7 +139,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String ATTRIBUTE_NAME_TEMPERATURE = "temperature";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -124,7 +151,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -136,7 +163,7 @@ public abstract class MappedColdRoomTemperature {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -145,7 +172,7 @@ public abstract class MappedColdRoomTemperature {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -188,7 +215,7 @@ public abstract class MappedColdRoomTemperature {
         return Objects.hash(coldRoomTemperatureId);
     }
 
-    // ------------------------------------------------------------------------------------------- coldRoomTemperatureId
+    // ----------------------------------------------------------------------- coldRoomTemperatureId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID} attribute.
@@ -208,7 +235,7 @@ public abstract class MappedColdRoomTemperature {
         this.coldRoomTemperatureId = coldRoomTemperatureId;
     }
 
-    // -------------------------------------------------------------------------------------------- coldRoomSensorNumber
+    // ------------------------------------------------------------------------ coldRoomSensorNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER} attribute.
@@ -228,7 +255,7 @@ public abstract class MappedColdRoomTemperature {
         this.coldRoomSensorNumber = coldRoomSensorNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- recordedWhen
+    // -------------------------------------------------------------------------------- recordedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECORDED_WHEN} attribute.
@@ -248,7 +275,7 @@ public abstract class MappedColdRoomTemperature {
         this.recordedWhen = recordedWhen;
     }
 
-    // ----------------------------------------------------------------------------------------------------- temperature
+    // --------------------------------------------------------------------------------- temperature
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute.
@@ -268,7 +295,7 @@ public abstract class MappedColdRoomTemperature {
         this.temperature = temperature;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -289,7 +316,7 @@ public abstract class MappedColdRoomTemperature {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -310,7 +337,7 @@ public abstract class MappedColdRoomTemperature {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -320,9 +347,11 @@ public abstract class MappedColdRoomTemperature {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID,
+                          value = "Instantaneous temperature readings for cold rooms (chillers)")
     private Long coldRoomTemperatureId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER,
@@ -330,9 +359,11 @@ public abstract class MappedColdRoomTemperature {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER,
+                          value = "Cold room sensor number")
     private Integer coldRoomSensorNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RECORDED_WHEN,
@@ -340,9 +371,11 @@ public abstract class MappedColdRoomTemperature {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_RECORDED_WHEN,
+                          value = "Time when this temperature recording was taken")
     private LocalDateTime recordedWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
@@ -353,9 +386,11 @@ public abstract class MappedColdRoomTemperature {
             precision = COLUMN_PRECISION_TEMPERATURE,
             scale = COLUMN_SCALE_TEMPERATURE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TEMPERATURE,
+                          value = "Temperature at the time of recording")
     private BigDecimal temperature;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -366,7 +401,7 @@ public abstract class MappedColdRoomTemperature {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

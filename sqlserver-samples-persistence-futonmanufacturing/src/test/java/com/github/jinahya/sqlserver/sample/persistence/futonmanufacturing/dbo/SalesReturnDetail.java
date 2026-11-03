@@ -52,7 +52,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM = "item";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +61,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
         super();
     }
 
-    // ----------------------------------------------------------------------------------------------- returnSalesReturn
+    // --------------------------------------------------------------------------- returnSalesReturn
 
     /**
      * Returns the {@code SalesReturn} which the {@code FK_ReturnDetail_Return} foreign key references.
@@ -83,7 +83,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
         setReturnId(returnSalesReturn == null ? null : returnSalesReturn.getReturnId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- soDetail
+    // ------------------------------------------------------------------------------------ soDetail
 
     /**
      * Returns the {@code SalesOrderDetail} which the {@code FK_ReturnDetail_SODetail} foreign key references.
@@ -105,7 +105,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
         setSoDetailId(soDetail == null ? null : soDetail.getSoDetailId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_ReturnDetail_Item} foreign key references.
@@ -127,7 +127,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_RETURN_ID,
                 referencedColumnName = MappedSalesReturn.COLUMN_NAME_RETURN_ID,
@@ -137,7 +137,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
     )
     private SalesReturn returnSalesReturn;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SO_DETAIL_ID,
                 referencedColumnName = MappedSalesOrderDetail.COLUMN_NAME_SO_DETAIL_ID,
@@ -147,7 +147,7 @@ public class SalesReturnDetail extends MappedSalesReturnDetail {
     )
     private SalesOrderDetail soDetail;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,

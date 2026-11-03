@@ -22,6 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -43,8 +46,71 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_OWNER} column is mapped read-only, as a foreign key; the extending entity owns the writable
  * mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.Document}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DocumentNode}</th><td>Primary key for Document records.</td></tr>
+ * <tr><th scope="row">{@code DocumentLevel}</th><td>Depth in the document hierarchy.</td></tr>
+ * <tr><th scope="row">{@code Title}</th><td>Title of the document.</td></tr>
+ * <tr><th scope="row">{@code Owner}</th>
+ *     <td>Employee who controls the document.  Foreign key to Employee.BusinessEntityID</td></tr>
+ * <tr><th scope="row">{@code FolderFlag}</th>
+ *     <td>0 = This is a folder, 1 = This is a document.</td></tr>
+ * <tr><th scope="row">{@code FileName}</th><td>File name of the document</td></tr>
+ * <tr><th scope="row">{@code FileExtension}</th>
+ *     <td>File extension indicating the document type. For example, .doc or .txt.</td></tr>
+ * <tr><th scope="row">{@code Revision}</th><td>Revision number of the document.</td></tr>
+ * <tr><th scope="row">{@code ChangeNumber}</th><td>Engineering change approval number.</td></tr>
+ * <tr><th scope="row">{@code Status}</th>
+ *     <td>1 = Pending approval, 2 = Approved, 3 = Obsolete</td></tr>
+ * <tr><th scope="row">{@code DocumentSummary}</th><td>Document abstract.</td></tr>
+ * <tr><th scope="row">{@code Document}</th><td>Complete document.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Required for FileStream.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.Document}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code FolderFlag}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code ChangeNumber}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Production.Document}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DocumentLevel}</th>
+ *     <td>{@code ([DocumentNode].[GetLevel]())}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
+ *      GetLevel (Database Engine)</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedDocument.TABLE_SCHEMA,
+        table = MappedDocument.TABLE_NAME,
+        value = "Product maintenance documents."
+)
 public abstract class MappedDocument {
 
     /**
@@ -57,7 +123,7 @@ public abstract class MappedDocument {
      */
     public static final String TABLE_NAME = "Document";
 
-    // ---------------------------------------------------------------------------------------------------- DocumentNode
+    // -------------------------------------------------------------------------------- DocumentNode
 
     /**
      * The name of the {@code hierarchyid, NOT NULL} column. The value is {@value}.
@@ -69,7 +135,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_NODE = "documentNode";
 
-    // --------------------------------------------------------------------------------------------------- DocumentLevel
+    // ------------------------------------------------------------------------------- DocumentLevel
 
     /**
      * The name of the {@code smallint, computed as ([DocumentNode].[GetLevel]())} column. The value is {@value}.
@@ -91,7 +157,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_LEVEL = "documentLevel";
 
-    // ----------------------------------------------------------------------------------------------------------- Title
+    // --------------------------------------------------------------------------------------- Title
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -108,7 +174,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
-    // ----------------------------------------------------------------------------------------------------------- Owner
+    // --------------------------------------------------------------------------------------- Owner
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -120,7 +186,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_OWNER = "owner";
 
-    // ------------------------------------------------------------------------------------------------------ FolderFlag
+    // ---------------------------------------------------------------------------------- FolderFlag
 
     /**
      * The name of the {@code bit, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -132,7 +198,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_FOLDER_FLAG = "folderFlag";
 
-    // -------------------------------------------------------------------------------------------------------- FileName
+    // ------------------------------------------------------------------------------------ FileName
 
     /**
      * The name of the {@code nvarchar(400), NOT NULL} column. The value is {@value}.
@@ -149,7 +215,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_FILE_NAME = "fileName";
 
-    // --------------------------------------------------------------------------------------------------- FileExtension
+    // ------------------------------------------------------------------------------- FileExtension
 
     /**
      * The name of the {@code nvarchar(8), NOT NULL} column. The value is {@value}.
@@ -166,7 +232,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_FILE_EXTENSION = "fileExtension";
 
-    // -------------------------------------------------------------------------------------------------------- Revision
+    // ------------------------------------------------------------------------------------ Revision
 
     /**
      * The name of the {@code nchar(5), NOT NULL} column. The value is {@value}.
@@ -183,7 +249,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_REVISION = "revision";
 
-    // ---------------------------------------------------------------------------------------------------- ChangeNumber
+    // -------------------------------------------------------------------------------- ChangeNumber
 
     /**
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -195,7 +261,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_CHANGE_NUMBER = "changeNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
@@ -219,7 +285,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // ------------------------------------------------------------------------------------------------- DocumentSummary
+    // ----------------------------------------------------------------------------- DocumentSummary
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -231,7 +297,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_SUMMARY = "documentSummary";
 
-    // -------------------------------------------------------------------------------------------------------- Document
+    // ------------------------------------------------------------------------------------ Document
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -243,7 +309,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT = "document";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier(36), DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -260,7 +326,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -272,7 +338,7 @@ public abstract class MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -281,7 +347,7 @@ public abstract class MappedDocument {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -332,7 +398,7 @@ public abstract class MappedDocument {
         return Objects.hash(rowguid);
     }
 
-    // ---------------------------------------------------------------------------------------------------- documentNode
+    // -------------------------------------------------------------------------------- documentNode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
@@ -352,7 +418,7 @@ public abstract class MappedDocument {
         this.documentNode = documentNode;
     }
 
-    // --------------------------------------------------------------------------------------------------- documentLevel
+    // ------------------------------------------------------------------------------- documentLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute.
@@ -373,7 +439,7 @@ public abstract class MappedDocument {
         this.documentLevel = documentLevel;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- title
+    // --------------------------------------------------------------------------------------- title
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TITLE} attribute.
@@ -393,7 +459,7 @@ public abstract class MappedDocument {
         this.title = title;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- owner
+    // --------------------------------------------------------------------------------------- owner
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OWNER} attribute.
@@ -414,7 +480,7 @@ public abstract class MappedDocument {
         this.owner = owner;
     }
 
-    // ------------------------------------------------------------------------------------------------------ folderFlag
+    // ---------------------------------------------------------------------------------- folderFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FOLDER_FLAG} attribute.
@@ -434,7 +500,7 @@ public abstract class MappedDocument {
         this.folderFlag = folderFlag;
     }
 
-    // -------------------------------------------------------------------------------------------------------- fileName
+    // ------------------------------------------------------------------------------------ fileName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FILE_NAME} attribute.
@@ -454,7 +520,7 @@ public abstract class MappedDocument {
         this.fileName = fileName;
     }
 
-    // --------------------------------------------------------------------------------------------------- fileExtension
+    // ------------------------------------------------------------------------------- fileExtension
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FILE_EXTENSION} attribute.
@@ -474,7 +540,7 @@ public abstract class MappedDocument {
         this.fileExtension = fileExtension;
     }
 
-    // -------------------------------------------------------------------------------------------------------- revision
+    // ------------------------------------------------------------------------------------ revision
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVISION} attribute.
@@ -494,7 +560,7 @@ public abstract class MappedDocument {
         this.revision = revision;
     }
 
-    // ---------------------------------------------------------------------------------------------------- changeNumber
+    // -------------------------------------------------------------------------------- changeNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute.
@@ -514,7 +580,7 @@ public abstract class MappedDocument {
         this.changeNumber = changeNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -534,7 +600,7 @@ public abstract class MappedDocument {
         this.status = status;
     }
 
-    // ------------------------------------------------------------------------------------------------- documentSummary
+    // ----------------------------------------------------------------------------- documentSummary
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DOCUMENT_SUMMARY} attribute.
@@ -554,7 +620,7 @@ public abstract class MappedDocument {
         this.documentSummary = documentSummary;
     }
 
-    // -------------------------------------------------------------------------------------------------------- document
+    // ------------------------------------------------------------------------------------ document
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DOCUMENT} attribute.
@@ -574,7 +640,7 @@ public abstract class MappedDocument {
         this.document = document;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -594,7 +660,7 @@ public abstract class MappedDocument {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -614,7 +680,7 @@ public abstract class MappedDocument {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
@@ -623,9 +689,11 @@ public abstract class MappedDocument {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
+                          value = "Primary key for Document records.")
     private Heirarchyid documentNode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Max(COLUMN_MAX_DOCUMENT_LEVEL)
     @Min(COLUMN_MIN_DOCUMENT_LEVEL)
@@ -635,9 +703,12 @@ public abstract class MappedDocument {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_LEVEL,
+                          value = "Depth in the document hierarchy.")
+    @MsComputedColumn("([DocumentNode].[GetLevel]())")
     private Integer documentLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TITLE)
     @NotNull
     @Basic(optional = false)
@@ -647,9 +718,10 @@ public abstract class MappedDocument {
             updatable = true,
             length = COLUMN_LENGTH_TITLE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TITLE, value = "Title of the document.")
     private String title;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -658,9 +730,12 @@ public abstract class MappedDocument {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_OWNER,
+                          value = "Employee who controls the document.  Foreign key to "
+                                  + "Employee.BusinessEntityID")
     private Integer owner;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FOLDER_FLAG,
@@ -668,9 +743,12 @@ public abstract class MappedDocument {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_FOLDER_FLAG,
+                          value = "0 = This is a folder, 1 = This is a document.")
+    @MsDefault(name = "DF_Document_FolderFlag", value = "((0))")
     private Boolean folderFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FILE_NAME)
     @NotNull
     @Basic(optional = false)
@@ -680,9 +758,10 @@ public abstract class MappedDocument {
             updatable = true,
             length = COLUMN_LENGTH_FILE_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_FILE_NAME, value = "File name of the document")
     private String fileName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FILE_EXTENSION)
     @NotNull
     @Basic(optional = false)
@@ -692,9 +771,12 @@ public abstract class MappedDocument {
             updatable = true,
             length = COLUMN_LENGTH_FILE_EXTENSION
     )
+    @MsDescription.Column(name = COLUMN_NAME_FILE_EXTENSION,
+                          value = "File extension indicating the document type. For example, "
+                                  + ".doc or .txt.")
     private String fileExtension;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REVISION)
     @NotNull
     @Basic(optional = false)
@@ -704,9 +786,10 @@ public abstract class MappedDocument {
             updatable = true,
             length = COLUMN_LENGTH_REVISION
     )
+    @MsDescription.Column(name = COLUMN_NAME_REVISION, value = "Revision number of the document.")
     private String revision;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHANGE_NUMBER,
@@ -714,9 +797,12 @@ public abstract class MappedDocument {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CHANGE_NUMBER,
+                          value = "Engineering change approval number.")
+    @MsDefault(name = "DF_Document_ChangeNumber", value = "((0))")
     private Integer changeNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Document_Status: ([Status]>=(1) AND [Status]<=(3))
     @Max(COLUMN_MAX_STATUS)
     @Min(COLUMN_MIN_STATUS)
@@ -727,27 +813,31 @@ public abstract class MappedDocument {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATUS,
+                          value = "1 = Pending approval, 2 = Approved, 3 = Obsolete")
     private Integer status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_SUMMARY,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, value = "Document abstract.")
     private String documentSummary;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT, value = "Complete document.")
     private byte[] document;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_ROWGUID)
     @NotNull
@@ -758,9 +848,13 @@ public abstract class MappedDocument {
             updatable = false,
             length = COLUMN_LENGTH_ROWGUID
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Required "
+                                  + "for FileStream.")
+    @MsDefault(name = "DF_Document_rowguid", value = "(newid())")
     private String rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -769,6 +863,9 @@ public abstract class MappedDocument {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Document_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

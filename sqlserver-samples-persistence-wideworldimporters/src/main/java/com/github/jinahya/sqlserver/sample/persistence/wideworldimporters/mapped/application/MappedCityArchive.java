@@ -54,7 +54,7 @@ public abstract class MappedCityArchive {
      */
     public static final String TABLE_NAME = "Cities_Archive";
 
-    // ---------------------------------------------------------------------------------------------------------- CityID
+    // -------------------------------------------------------------------------------------- CityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -66,7 +66,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_CITY_ID = "cityId";
 
-    // -------------------------------------------------------------------------------------------------------- CityName
+    // ------------------------------------------------------------------------------------ CityName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -83,7 +83,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_CITY_NAME = "cityName";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -95,7 +95,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // -------------------------------------------------------------------------------------------------------- Location
+    // ------------------------------------------------------------------------------------ Location
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -107,7 +107,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_LOCATION = "location";
 
-    // ---------------------------------------------------------------------------------------- LatestRecordedPopulation
+    // -------------------------------------------------------------------- LatestRecordedPopulation
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -120,7 +120,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION = "latestRecordedPopulation";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -132,7 +132,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -144,7 +144,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -156,7 +156,7 @@ public abstract class MappedCityArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -165,7 +165,7 @@ public abstract class MappedCityArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -181,7 +181,7 @@ public abstract class MappedCityArchive {
                + "}";
     }
 
-    // ---------------------------------------------------------------------------------------------------------- cityId
+    // -------------------------------------------------------------------------------------- cityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY_ID} attribute.
@@ -201,7 +201,7 @@ public abstract class MappedCityArchive {
         this.cityId = cityId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- cityName
+    // ------------------------------------------------------------------------------------ cityName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY_NAME} attribute.
@@ -221,7 +221,7 @@ public abstract class MappedCityArchive {
         this.cityName = cityName;
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -241,7 +241,7 @@ public abstract class MappedCityArchive {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- location
+    // ------------------------------------------------------------------------------------ location
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION} attribute.
@@ -261,7 +261,7 @@ public abstract class MappedCityArchive {
         this.location = location;
     }
 
-    // ---------------------------------------------------------------------------------------- latestRecordedPopulation
+    // -------------------------------------------------------------------- latestRecordedPopulation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute.
@@ -282,7 +282,7 @@ public abstract class MappedCityArchive {
         this.latestRecordedPopulation = latestRecordedPopulation;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -302,7 +302,7 @@ public abstract class MappedCityArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -322,7 +322,7 @@ public abstract class MappedCityArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -342,7 +342,7 @@ public abstract class MappedCityArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -353,7 +353,7 @@ public abstract class MappedCityArchive {
     )
     private Integer cityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @NotNull
@@ -366,7 +366,7 @@ public abstract class MappedCityArchive {
     )
     private String cityName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -377,7 +377,7 @@ public abstract class MappedCityArchive {
     )
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
@@ -388,7 +388,7 @@ public abstract class MappedCityArchive {
     )
     private Geography location;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
@@ -398,7 +398,7 @@ public abstract class MappedCityArchive {
     )
     private Long latestRecordedPopulation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -409,7 +409,7 @@ public abstract class MappedCityArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -420,7 +420,7 @@ public abstract class MappedCityArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

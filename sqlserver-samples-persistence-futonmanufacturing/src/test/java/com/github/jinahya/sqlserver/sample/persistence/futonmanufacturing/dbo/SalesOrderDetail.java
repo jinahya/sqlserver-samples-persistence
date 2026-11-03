@@ -46,7 +46,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM = "item";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +55,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------ salesOrder
+    // ---------------------------------------------------------------------------------- salesOrder
 
     /**
      * Returns the {@code SalesOrder} which the {@code FK_SODetail_SO} foreign key references.
@@ -77,7 +77,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
         setSalesOrderId(salesOrder == null ? null : salesOrder.getSalesOrderId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_SODetail_Item} foreign key references.
@@ -99,7 +99,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_ORDER_ID,
                 referencedColumnName = MappedSalesOrder.COLUMN_NAME_SALES_ORDER_ID,
@@ -109,7 +109,7 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
     )
     private SalesOrder salesOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,

@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedBillOfMaterials;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedItem;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedUnitOfMeasure;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -33,7 +34,15 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code dbo.BillOfMaterials} table.
  */
 @Entity(name = "DboBillOfMaterials")
-@Table(schema = MappedBillOfMaterials.TABLE_SCHEMA, name = MappedBillOfMaterials.TABLE_NAME)
+@Table(schema = MappedBillOfMaterials.TABLE_SCHEMA,
+       name = MappedBillOfMaterials.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CHK_BOM_NotSelf",
+                       constraint = "([ParentItemID]<>[ComponentItemID])"
+               )
+       }
+)
 public class BillOfMaterials extends MappedBillOfMaterials {
 
     /**
@@ -51,7 +60,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_UNIT = "unit";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +69,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------ parentItem
+    // ---------------------------------------------------------------------------------- parentItem
 
     /**
      * Returns the {@code Item} which the {@code FK_BOM_ParentItem} foreign key references.
@@ -82,7 +91,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         setParentItemId(parentItem == null ? null : parentItem.getItemId());
     }
 
-    // --------------------------------------------------------------------------------------------------- componentItem
+    // ------------------------------------------------------------------------------- componentItem
 
     /**
      * Returns the {@code Item} which the {@code FK_BOM_ComponentItem} foreign key references.
@@ -104,7 +113,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         setComponentItemId(componentItem == null ? null : componentItem.getItemId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ unit
+    // ---------------------------------------------------------------------------------------- unit
 
     /**
      * Returns the {@code UnitOfMeasure} which the {@code FK_BOM_Unit} foreign key references.
@@ -126,7 +135,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         setUnitId(unit == null ? null : unit.getUnitId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PARENT_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,
@@ -136,7 +145,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     )
     private Item parentItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COMPONENT_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,
@@ -146,7 +155,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     )
     private Item componentItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_UNIT_ID,
                 referencedColumnName = MappedUnitOfMeasure.COLUMN_NAME_UNIT_ID,

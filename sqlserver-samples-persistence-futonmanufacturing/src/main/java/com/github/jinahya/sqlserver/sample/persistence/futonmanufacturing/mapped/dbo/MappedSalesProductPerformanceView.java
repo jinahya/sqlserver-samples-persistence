@@ -53,7 +53,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String TABLE_NAME = "vw_Sales_ProductPerformance";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // -------------------------------------------------------------------------------------------------- TotalUnitsSold
+    // ------------------------------------------------------------------------------ TotalUnitsSold
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_UNITS_SOLD = "totalUnitsSold";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRevenue
+    // -------------------------------------------------------------------------------- TotalRevenue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -143,7 +143,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
 
-    // ------------------------------------------------------------------------------------------------- AvgSellingPrice
+    // ----------------------------------------------------------------------------- AvgSellingPrice
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -165,7 +165,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_SELLING_PRICE = "avgSellingPrice";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCost
+    // ------------------------------------------------------------------------------------ UnitCost
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -187,7 +187,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_COST = "unitCost";
 
-    // ------------------------------------------------------------------------------------------- AvgGrossProfitPerUnit
+    // ----------------------------------------------------------------------- AvgGrossProfitPerUnit
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -210,7 +210,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_GROSS_PROFIT_PER_UNIT = "avgGrossProfitPerUnit";
 
-    // ------------------------------------------------------------------------------------------------ TotalGrossProfit
+    // ---------------------------------------------------------------------------- TotalGrossProfit
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -232,7 +232,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_GROSS_PROFIT = "totalGrossProfit";
 
-    // ---------------------------------------------------------------------------------------------- GrossMarginPercent
+    // -------------------------------------------------------------------------- GrossMarginPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -255,7 +255,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT = "grossMarginPercent";
 
-    // ---------------------------------------------------------------------------------------------- AvgDiscountPercent
+    // -------------------------------------------------------------------------- AvgDiscountPercent
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -278,7 +278,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DISCOUNT_PERCENT = "avgDiscountPercent";
 
-    // ----------------------------------------------------------------------------------------------------- RetailUnits
+    // --------------------------------------------------------------------------------- RetailUnits
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -300,7 +300,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_RETAIL_UNITS = "retailUnits";
 
-    // ----------------------------------------------------------------------------------------------------- OnlineUnits
+    // --------------------------------------------------------------------------------- OnlineUnits
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -322,7 +322,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_ONLINE_UNITS = "onlineUnits";
 
-    // -------------------------------------------------------------------------------------------------- WholesaleUnits
+    // ------------------------------------------------------------------------------ WholesaleUnits
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -344,7 +344,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_WHOLESALE_UNITS = "wholesaleUnits";
 
-    // --------------------------------------------------------------------------------------------------- UnitSalesRank
+    // ------------------------------------------------------------------------------- UnitSalesRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -356,7 +356,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_SALES_RANK = "unitSalesRank";
 
-    // ----------------------------------------------------------------------------------------------------- RevenueRank
+    // --------------------------------------------------------------------------------- RevenueRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -368,7 +368,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_REVENUE_RANK = "revenueRank";
 
-    // ------------------------------------------------------------------------------------------------------ ProfitRank
+    // ---------------------------------------------------------------------------------- ProfitRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -380,7 +380,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_PROFIT_RANK = "profitRank";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -389,7 +389,7 @@ public abstract class MappedSalesProductPerformanceView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -443,7 +443,7 @@ public abstract class MappedSalesProductPerformanceView {
         return Objects.hash(itemCode);
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -463,7 +463,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -483,7 +483,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.itemName = itemName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -503,7 +503,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.orderCount = orderCount;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalUnitsSold
+    // ------------------------------------------------------------------------------ totalUnitsSold
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_UNITS_SOLD} attribute.
@@ -523,7 +523,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.totalUnitsSold = totalUnitsSold;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRevenue
+    // -------------------------------------------------------------------------------- totalRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute.
@@ -543,7 +543,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.totalRevenue = totalRevenue;
     }
 
-    // ------------------------------------------------------------------------------------------------- avgSellingPrice
+    // ----------------------------------------------------------------------------- avgSellingPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_SELLING_PRICE} attribute.
@@ -563,7 +563,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.avgSellingPrice = avgSellingPrice;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCost
+    // ------------------------------------------------------------------------------------ unitCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_COST} attribute.
@@ -583,7 +583,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.unitCost = unitCost;
     }
 
-    // ------------------------------------------------------------------------------------------- avgGrossProfitPerUnit
+    // ----------------------------------------------------------------------- avgGrossProfitPerUnit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_GROSS_PROFIT_PER_UNIT} attribute.
@@ -603,7 +603,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.avgGrossProfitPerUnit = avgGrossProfitPerUnit;
     }
 
-    // ------------------------------------------------------------------------------------------------ totalGrossProfit
+    // ---------------------------------------------------------------------------- totalGrossProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_GROSS_PROFIT} attribute.
@@ -623,7 +623,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.totalGrossProfit = totalGrossProfit;
     }
 
-    // ---------------------------------------------------------------------------------------------- grossMarginPercent
+    // -------------------------------------------------------------------------- grossMarginPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT} attribute.
@@ -643,7 +643,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.grossMarginPercent = grossMarginPercent;
     }
 
-    // ---------------------------------------------------------------------------------------------- avgDiscountPercent
+    // -------------------------------------------------------------------------- avgDiscountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DISCOUNT_PERCENT} attribute.
@@ -663,7 +663,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.avgDiscountPercent = avgDiscountPercent;
     }
 
-    // ----------------------------------------------------------------------------------------------------- retailUnits
+    // --------------------------------------------------------------------------------- retailUnits
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETAIL_UNITS} attribute.
@@ -683,7 +683,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.retailUnits = retailUnits;
     }
 
-    // ----------------------------------------------------------------------------------------------------- onlineUnits
+    // --------------------------------------------------------------------------------- onlineUnits
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ONLINE_UNITS} attribute.
@@ -703,7 +703,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.onlineUnits = onlineUnits;
     }
 
-    // -------------------------------------------------------------------------------------------------- wholesaleUnits
+    // ------------------------------------------------------------------------------ wholesaleUnits
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WHOLESALE_UNITS} attribute.
@@ -723,7 +723,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.wholesaleUnits = wholesaleUnits;
     }
 
-    // --------------------------------------------------------------------------------------------------- unitSalesRank
+    // ------------------------------------------------------------------------------- unitSalesRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_SALES_RANK} attribute.
@@ -743,7 +743,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.unitSalesRank = unitSalesRank;
     }
 
-    // ----------------------------------------------------------------------------------------------------- revenueRank
+    // --------------------------------------------------------------------------------- revenueRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVENUE_RANK} attribute.
@@ -763,7 +763,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.revenueRank = revenueRank;
     }
 
-    // ------------------------------------------------------------------------------------------------------ profitRank
+    // ---------------------------------------------------------------------------------- profitRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROFIT_RANK} attribute.
@@ -783,7 +783,7 @@ public abstract class MappedSalesProductPerformanceView {
         this.profitRank = profitRank;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -796,7 +796,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -809,7 +809,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -819,7 +819,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_UNITS_SOLD - COLUMN_SCALE_TOTAL_UNITS_SOLD,
             fraction = COLUMN_SCALE_TOTAL_UNITS_SOLD)
@@ -833,7 +833,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal totalUnitsSold;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
@@ -847,7 +847,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal totalRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_SELLING_PRICE - COLUMN_SCALE_AVG_SELLING_PRICE,
             fraction = COLUMN_SCALE_AVG_SELLING_PRICE)
@@ -861,7 +861,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal avgSellingPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNIT_COST - COLUMN_SCALE_UNIT_COST, fraction = COLUMN_SCALE_UNIT_COST)
     @NotNull
@@ -875,7 +875,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal unitCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_GROSS_PROFIT_PER_UNIT - COLUMN_SCALE_AVG_GROSS_PROFIT_PER_UNIT,
             fraction = COLUMN_SCALE_AVG_GROSS_PROFIT_PER_UNIT)
@@ -889,7 +889,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal avgGrossProfitPerUnit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_GROSS_PROFIT - COLUMN_SCALE_TOTAL_GROSS_PROFIT,
             fraction = COLUMN_SCALE_TOTAL_GROSS_PROFIT)
@@ -903,7 +903,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal totalGrossProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
@@ -917,7 +917,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal grossMarginPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT - COLUMN_SCALE_AVG_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_AVG_DISCOUNT_PERCENT)
@@ -931,7 +931,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal avgDiscountPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RETAIL_UNITS - COLUMN_SCALE_RETAIL_UNITS, fraction = COLUMN_SCALE_RETAIL_UNITS)
     @Basic(optional = true)
@@ -944,7 +944,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal retailUnits;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ONLINE_UNITS - COLUMN_SCALE_ONLINE_UNITS, fraction = COLUMN_SCALE_ONLINE_UNITS)
     @Basic(optional = true)
@@ -957,7 +957,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal onlineUnits;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_WHOLESALE_UNITS - COLUMN_SCALE_WHOLESALE_UNITS,
             fraction = COLUMN_SCALE_WHOLESALE_UNITS)
@@ -971,7 +971,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private BigDecimal wholesaleUnits;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_SALES_RANK,
@@ -981,7 +981,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private Long unitSalesRank;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REVENUE_RANK,
@@ -991,7 +991,7 @@ public abstract class MappedSalesProductPerformanceView {
     )
     private Long revenueRank;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PROFIT_RANK,

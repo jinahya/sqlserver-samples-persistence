@@ -46,7 +46,7 @@ public class ProductionCompletion extends MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER = "workCenter";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +55,7 @@ public class ProductionCompletion extends MappedProductionCompletion {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------- productionOrder
+    // ----------------------------------------------------------------------------- productionOrder
 
     /**
      * Returns the {@code ProductionOrder} which the {@code FK_Completion_ProdOrder} foreign key references.
@@ -77,7 +77,7 @@ public class ProductionCompletion extends MappedProductionCompletion {
         setProductionOrderId(productionOrder == null ? null : productionOrder.getProductionOrderId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ workCenter
+    // ---------------------------------------------------------------------------------- workCenter
 
     /**
      * Returns the {@code WorkCenter} which the {@code FK_Completion_WorkCenter} foreign key references.
@@ -99,7 +99,7 @@ public class ProductionCompletion extends MappedProductionCompletion {
         setWorkCenterId(workCenter == null ? null : workCenter.getWorkCenterId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCTION_ORDER_ID,
                 referencedColumnName = MappedProductionOrder.COLUMN_NAME_PRODUCTION_ORDER_ID,
@@ -109,7 +109,7 @@ public class ProductionCompletion extends MappedProductionCompletion {
     )
     private ProductionOrder productionOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WORK_CENTER_ID,
                 referencedColumnName = MappedWorkCenter.COLUMN_NAME_WORK_CENTER_ID,

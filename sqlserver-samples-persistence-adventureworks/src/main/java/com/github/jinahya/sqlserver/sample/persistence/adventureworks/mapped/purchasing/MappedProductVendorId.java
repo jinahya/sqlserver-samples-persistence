@@ -35,7 +35,7 @@ public class MappedProductVendorId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedProductVendorId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class MappedProductVendorId implements Serializable {
         return Objects.hash(productId, businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of the {@code productId} attribute.
@@ -91,7 +91,7 @@ public class MappedProductVendorId implements Serializable {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -111,9 +111,15 @@ public class MappedProductVendorId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code productId} attribute.
+     */
     private Integer productId;
 
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 }
 

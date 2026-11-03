@@ -28,12 +28,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.Items} table.
  */
 @Entity(name = "DboItem")
-@Table(schema = MappedItem.TABLE_SCHEMA, name = MappedItem.TABLE_NAME)
+@Table(schema = MappedItem.TABLE_SCHEMA,
+       name = MappedItem.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               Item.COLUMN_NAME_ITEM_CODE
+                       }
+               )
+       }
+)
 public class Item extends MappedItem {
 
     /**
@@ -46,7 +56,7 @@ public class Item extends MappedItem {
      */
     public static final String ATTRIBUTE_NAME_UNIT = "unit";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +65,7 @@ public class Item extends MappedItem {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns the {@code ItemType} which the {@code FK_Items_ItemType} foreign key references.
@@ -77,7 +87,7 @@ public class Item extends MappedItem {
         setItemTypeId(itemType == null ? null : itemType.getItemTypeId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ unit
+    // ---------------------------------------------------------------------------------------- unit
 
     /**
      * Returns the {@code UnitOfMeasure} which the {@code FK_Items_UnitOfMeasure} foreign key references.
@@ -99,7 +109,7 @@ public class Item extends MappedItem {
         setUnitId(unit == null ? null : unit.getUnitId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_TYPE_ID,
                 referencedColumnName = MappedItemType.COLUMN_NAME_ITEM_TYPE_ID,
@@ -109,7 +119,7 @@ public class Item extends MappedItem {
     )
     private ItemType itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_UNIT_ID,
                 referencedColumnName = MappedUnitOfMeasure.COLUMN_NAME_UNIT_ID,

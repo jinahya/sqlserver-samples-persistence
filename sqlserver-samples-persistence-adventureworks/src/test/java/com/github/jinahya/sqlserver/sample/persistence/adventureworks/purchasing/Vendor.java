@@ -23,17 +23,35 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedBusinessEntity;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedVendor;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.BusinessEntity;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Purchasing.Vendor} table.
  */
 @Entity(name = "PurchasingVendor")
-@Table(schema = MappedVendor.TABLE_SCHEMA, name = MappedVendor.TABLE_NAME)
+@Table(schema = MappedVendor.TABLE_SCHEMA,
+       name = MappedVendor.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Vendor_AccountNumber",
+                       columnNames = {
+                               Vendor.COLUMN_NAME_ACCOUNT_NUMBER
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_Vendor_CreditRating",
+                       constraint = "([CreditRating]>=(1) AND [CreditRating]<=(5))"
+               )
+       }
+)
 public class Vendor extends MappedVendor {
 
     /**
@@ -42,7 +60,7 @@ public class Vendor extends MappedVendor {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -51,7 +69,7 @@ public class Vendor extends MappedVendor {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code BusinessEntity} which the {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign key
@@ -74,7 +92,7 @@ public class Vendor extends MappedVendor {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedBusinessEntity.COLUMN_NAME_BUSINESS_ENTITY_ID,

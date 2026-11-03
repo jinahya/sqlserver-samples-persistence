@@ -35,7 +35,7 @@ class BusinessEntityAddress_Persister
         super(BusinessEntityAddress.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public BusinessEntityAddress apply(final EntityManager entityManager, final BusinessEntityAddress entityInstance) {
         final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);

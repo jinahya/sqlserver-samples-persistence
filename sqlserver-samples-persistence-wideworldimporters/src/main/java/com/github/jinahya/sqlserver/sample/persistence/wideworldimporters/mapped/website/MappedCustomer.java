@@ -53,7 +53,7 @@ public abstract class MappedCustomer {
      */
     public static final String TABLE_NAME = "Customers";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // -------------------------------------------------------------------------------------------- CustomerCategoryName
+    // ------------------------------------------------------------------------ CustomerCategoryName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -100,7 +100,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_NAME = "customerCategoryName";
 
-    // -------------------------------------------------------------------------------------------------- PrimaryContact
+    // ------------------------------------------------------------------------------ PrimaryContact
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -117,7 +117,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_PRIMARY_CONTACT = "primaryContact";
 
-    // ------------------------------------------------------------------------------------------------ AlternateContact
+    // ---------------------------------------------------------------------------- AlternateContact
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_ALTERNATE_CONTACT = "alternateContact";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -151,7 +151,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -168,7 +168,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ------------------------------------------------------------------------------------------------- BuyingGroupName
+    // ----------------------------------------------------------------------------- BuyingGroupName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -185,7 +185,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_BUYING_GROUP_NAME = "buyingGroupName";
 
-    // ------------------------------------------------------------------------------------------------------ WebsiteURL
+    // ---------------------------------------------------------------------------------- WebsiteURL
 
     /**
      * The name of the {@code nvarchar(256), NOT NULL} column. The value is {@value}.
@@ -202,7 +202,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_WEBSITE_URL = "websiteUrl";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryMethod
+    // ------------------------------------------------------------------------------ DeliveryMethod
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -219,7 +219,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD = "deliveryMethod";
 
-    // -------------------------------------------------------------------------------------------------------- CityName
+    // ------------------------------------------------------------------------------------ CityName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -236,7 +236,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CITY_NAME = "cityName";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryLocation
+    // ---------------------------------------------------------------------------- DeliveryLocation
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -248,7 +248,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_LOCATION = "deliveryLocation";
 
-    // ----------------------------------------------------------------------------------------------------- DeliveryRun
+    // --------------------------------------------------------------------------------- DeliveryRun
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -265,7 +265,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_RUN = "deliveryRun";
 
-    // ----------------------------------------------------------------------------------------------------- RunPosition
+    // --------------------------------------------------------------------------------- RunPosition
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -282,7 +282,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_RUN_POSITION = "runPosition";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -291,7 +291,7 @@ public abstract class MappedCustomer {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -342,7 +342,7 @@ public abstract class MappedCustomer {
         return Objects.hash(customerId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -362,7 +362,7 @@ public abstract class MappedCustomer {
         this.customerId = customerId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -382,7 +382,7 @@ public abstract class MappedCustomer {
         this.customerName = customerName;
     }
 
-    // -------------------------------------------------------------------------------------------- customerCategoryName
+    // ------------------------------------------------------------------------ customerCategoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_NAME} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedCustomer {
         this.customerCategoryName = customerCategoryName;
     }
 
-    // -------------------------------------------------------------------------------------------------- primaryContact
+    // ------------------------------------------------------------------------------ primaryContact
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT} attribute.
@@ -422,7 +422,7 @@ public abstract class MappedCustomer {
         this.primaryContact = primaryContact;
     }
 
-    // ------------------------------------------------------------------------------------------------ alternateContact
+    // ---------------------------------------------------------------------------- alternateContact
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT} attribute.
@@ -442,7 +442,7 @@ public abstract class MappedCustomer {
         this.alternateContact = alternateContact;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -462,7 +462,7 @@ public abstract class MappedCustomer {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -482,7 +482,7 @@ public abstract class MappedCustomer {
         this.faxNumber = faxNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------- buyingGroupName
+    // ----------------------------------------------------------------------------- buyingGroupName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_NAME} attribute.
@@ -502,7 +502,7 @@ public abstract class MappedCustomer {
         this.buyingGroupName = buyingGroupName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ websiteUrl
+    // ---------------------------------------------------------------------------------- websiteUrl
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEBSITE_URL} attribute.
@@ -522,7 +522,7 @@ public abstract class MappedCustomer {
         this.websiteUrl = websiteUrl;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryMethod
+    // ------------------------------------------------------------------------------ deliveryMethod
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD} attribute.
@@ -542,7 +542,7 @@ public abstract class MappedCustomer {
         this.deliveryMethod = deliveryMethod;
     }
 
-    // -------------------------------------------------------------------------------------------------------- cityName
+    // ------------------------------------------------------------------------------------ cityName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY_NAME} attribute.
@@ -562,7 +562,7 @@ public abstract class MappedCustomer {
         this.cityName = cityName;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryLocation
+    // ---------------------------------------------------------------------------- deliveryLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
@@ -582,7 +582,7 @@ public abstract class MappedCustomer {
         this.deliveryLocation = deliveryLocation;
     }
 
-    // ----------------------------------------------------------------------------------------------------- deliveryRun
+    // --------------------------------------------------------------------------------- deliveryRun
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_RUN} attribute.
@@ -602,7 +602,7 @@ public abstract class MappedCustomer {
         this.deliveryRun = deliveryRun;
     }
 
-    // ----------------------------------------------------------------------------------------------------- runPosition
+    // --------------------------------------------------------------------------------- runPosition
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RUN_POSITION} attribute.
@@ -622,7 +622,7 @@ public abstract class MappedCustomer {
         this.runPosition = runPosition;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -633,7 +633,7 @@ public abstract class MappedCustomer {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -646,7 +646,7 @@ public abstract class MappedCustomer {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @Basic(optional = true)
@@ -658,7 +658,7 @@ public abstract class MappedCustomer {
     )
     private String customerCategoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRIMARY_CONTACT)
     @Basic(optional = true)
@@ -670,7 +670,7 @@ public abstract class MappedCustomer {
     )
     private String primaryContact;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ALTERNATE_CONTACT)
     @Basic(optional = true)
@@ -682,7 +682,7 @@ public abstract class MappedCustomer {
     )
     private String alternateContact;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
@@ -695,7 +695,7 @@ public abstract class MappedCustomer {
     )
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
@@ -708,7 +708,7 @@ public abstract class MappedCustomer {
     )
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BUYING_GROUP_NAME)
     @Basic(optional = true)
@@ -720,7 +720,7 @@ public abstract class MappedCustomer {
     )
     private String buyingGroupName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
@@ -733,7 +733,7 @@ public abstract class MappedCustomer {
     )
     private String websiteUrl;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_METHOD)
     @Basic(optional = true)
@@ -745,7 +745,7 @@ public abstract class MappedCustomer {
     )
     private String deliveryMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @Basic(optional = true)
@@ -757,7 +757,7 @@ public abstract class MappedCustomer {
     )
     private String cityName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
@@ -768,7 +768,7 @@ public abstract class MappedCustomer {
     )
     private Geography deliveryLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
@@ -780,7 +780,7 @@ public abstract class MappedCustomer {
     )
     private String deliveryRun;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)

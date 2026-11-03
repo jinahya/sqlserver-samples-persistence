@@ -35,7 +35,7 @@ class SalesOrderDetail_Persister
         super(SalesOrderDetail.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesOrderDetail apply(final EntityManager entityManager, final SalesOrderDetail entityInstance) {
         final var salesOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesOrderHeader.class);

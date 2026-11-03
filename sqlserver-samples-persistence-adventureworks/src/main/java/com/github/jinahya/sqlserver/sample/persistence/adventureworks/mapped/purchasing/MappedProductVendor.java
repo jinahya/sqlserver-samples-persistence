@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -39,8 +41,54 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_UNIT_MEASURE_CODE} column is mapped read-only, as a foreign key; the extending entity owns
  * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Purchasing.ProductVendor}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Primary key. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Primary key. Foreign key to Vendor.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code AverageLeadTime}</th>
+ *     <td>The average span of time (in days) between placing an order with the vendor and receiving
+ *     the purchased product.</td></tr>
+ * <tr><th scope="row">{@code StandardPrice}</th><td>The vendor's usual selling price.</td></tr>
+ * <tr><th scope="row">{@code LastReceiptCost}</th>
+ *     <td>The selling price when last purchased.</td></tr>
+ * <tr><th scope="row">{@code LastReceiptDate}</th>
+ *     <td>Date the product was last received by the vendor.</td></tr>
+ * <tr><th scope="row">{@code MinOrderQty}</th>
+ *     <td>The maximum quantity that should be ordered.</td></tr>
+ * <tr><th scope="row">{@code MaxOrderQty}</th>
+ *     <td>The minimum quantity that should be ordered.</td></tr>
+ * <tr><th scope="row">{@code OnOrderQty}</th><td>The quantity currently on order.</td></tr>
+ * <tr><th scope="row">{@code UnitMeasureCode}</th><td>The product's unit of measure.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Purchasing.ProductVendor}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProductVendor.TABLE_SCHEMA,
+        table = MappedProductVendor.TABLE_NAME,
+        value = "Cross-reference table mapping vendors with the products they supply."
+)
 public abstract class MappedProductVendor {
 
     /**
@@ -53,7 +101,7 @@ public abstract class MappedProductVendor {
      */
     public static final String TABLE_NAME = "ProductVendor";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +113,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -77,7 +125,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------- AverageLeadTime
+    // ----------------------------------------------------------------------------- AverageLeadTime
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -101,7 +149,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_AVERAGE_LEAD_TIME = "averageLeadTime";
 
-    // --------------------------------------------------------------------------------------------------- StandardPrice
+    // ------------------------------------------------------------------------------- StandardPrice
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -120,7 +168,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_PRICE = "standardPrice";
 
-    // ------------------------------------------------------------------------------------------------- LastReceiptCost
+    // ----------------------------------------------------------------------------- LastReceiptCost
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -139,7 +187,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_LAST_RECEIPT_COST = "lastReceiptCost";
 
-    // ------------------------------------------------------------------------------------------------- LastReceiptDate
+    // ----------------------------------------------------------------------------- LastReceiptDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -151,7 +199,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_LAST_RECEIPT_DATE = "lastReceiptDate";
 
-    // ----------------------------------------------------------------------------------------------------- MinOrderQty
+    // --------------------------------------------------------------------------------- MinOrderQty
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -174,7 +222,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_MIN_ORDER_QTY = "minOrderQty";
 
-    // ----------------------------------------------------------------------------------------------------- MaxOrderQty
+    // --------------------------------------------------------------------------------- MaxOrderQty
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -197,7 +245,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_MAX_ORDER_QTY = "maxOrderQty";
 
-    // ------------------------------------------------------------------------------------------------------ OnOrderQty
+    // ---------------------------------------------------------------------------------- OnOrderQty
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -220,7 +268,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_ON_ORDER_QTY = "onOrderQty";
 
-    // ------------------------------------------------------------------------------------------------- UnitMeasureCode
+    // ----------------------------------------------------------------------------- UnitMeasureCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -237,7 +285,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_UNIT_MEASURE_CODE = "unitMeasureCode";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -249,7 +297,7 @@ public abstract class MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -258,7 +306,7 @@ public abstract class MappedProductVendor {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -307,7 +355,7 @@ public abstract class MappedProductVendor {
         return Objects.hash(productId, businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -327,7 +375,7 @@ public abstract class MappedProductVendor {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -347,7 +395,7 @@ public abstract class MappedProductVendor {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------- averageLeadTime
+    // ----------------------------------------------------------------------------- averageLeadTime
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVERAGE_LEAD_TIME} attribute.
@@ -367,7 +415,7 @@ public abstract class MappedProductVendor {
         this.averageLeadTime = averageLeadTime;
     }
 
-    // --------------------------------------------------------------------------------------------------- standardPrice
+    // ------------------------------------------------------------------------------- standardPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_PRICE} attribute.
@@ -387,7 +435,7 @@ public abstract class MappedProductVendor {
         this.standardPrice = standardPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------- lastReceiptCost
+    // ----------------------------------------------------------------------------- lastReceiptCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_COST} attribute.
@@ -407,7 +455,7 @@ public abstract class MappedProductVendor {
         this.lastReceiptCost = lastReceiptCost;
     }
 
-    // ------------------------------------------------------------------------------------------------- lastReceiptDate
+    // ----------------------------------------------------------------------------- lastReceiptDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_RECEIPT_DATE} attribute.
@@ -427,7 +475,7 @@ public abstract class MappedProductVendor {
         this.lastReceiptDate = lastReceiptDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- minOrderQty
+    // --------------------------------------------------------------------------------- minOrderQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MIN_ORDER_QTY} attribute.
@@ -447,7 +495,7 @@ public abstract class MappedProductVendor {
         this.minOrderQty = minOrderQty;
     }
 
-    // ----------------------------------------------------------------------------------------------------- maxOrderQty
+    // --------------------------------------------------------------------------------- maxOrderQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MAX_ORDER_QTY} attribute.
@@ -467,7 +515,7 @@ public abstract class MappedProductVendor {
         this.maxOrderQty = maxOrderQty;
     }
 
-    // ------------------------------------------------------------------------------------------------------ onOrderQty
+    // ---------------------------------------------------------------------------------- onOrderQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ON_ORDER_QTY} attribute.
@@ -487,7 +535,7 @@ public abstract class MappedProductVendor {
         this.onOrderQty = onOrderQty;
     }
 
-    // ------------------------------------------------------------------------------------------------- unitMeasureCode
+    // ----------------------------------------------------------------------------- unitMeasureCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
@@ -509,7 +557,7 @@ public abstract class MappedProductVendor {
         this.unitMeasureCode = unitMeasureCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -529,7 +577,7 @@ public abstract class MappedProductVendor {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -538,9 +586,11 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Primary key. Foreign key to Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -549,9 +599,11 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Primary key. Foreign key to Vendor.BusinessEntityID.")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_AverageLeadTime: ([AverageLeadTime]>=(1))
     @Max(COLUMN_MAX_AVERAGE_LEAD_TIME)
     @Min(COLUMN_MIN_AVERAGE_LEAD_TIME)
@@ -562,9 +614,12 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_AVERAGE_LEAD_TIME,
+                          value = "The average span of time (in days) between placing an order "
+                                  + "with the vendor and receiving the purchased product.")
     private Integer averageLeadTime;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_StandardPrice: ([StandardPrice]>(0.00))
     @DecimalMin(value = COLUMN_MIN_STANDARD_PRICE_EXCLUSIVE, inclusive = false)
     @NotNull
@@ -574,9 +629,11 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_STANDARD_PRICE,
+                          value = "The vendor's usual selling price.")
     private BigDecimal standardPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_LastReceiptCost: ([LastReceiptCost]>(0.00))
     @DecimalMin(value = COLUMN_MIN_LAST_RECEIPT_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
@@ -585,18 +642,22 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_COST,
+                          value = "The selling price when last purchased.")
     private BigDecimal lastReceiptCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
+                          value = "Date the product was last received by the vendor.")
     private LocalDateTime lastReceiptDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_MinOrderQty: ([MinOrderQty]>=(1))
     @Max(COLUMN_MAX_MIN_ORDER_QTY)
     @Min(COLUMN_MIN_MIN_ORDER_QTY)
@@ -607,9 +668,11 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MIN_ORDER_QTY,
+                          value = "The maximum quantity that should be ordered.")
     private Integer minOrderQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_MaxOrderQty: ([MaxOrderQty]>=(1))
     @Max(COLUMN_MAX_MAX_ORDER_QTY)
     @Min(COLUMN_MIN_MAX_ORDER_QTY)
@@ -620,9 +683,11 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MAX_ORDER_QTY,
+                          value = "The minimum quantity that should be ordered.")
     private Integer maxOrderQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductVendor_OnOrderQty: ([OnOrderQty]>=(0))
     @Max(COLUMN_MAX_ON_ORDER_QTY)
     @Min(COLUMN_MIN_ON_ORDER_QTY)
@@ -632,9 +697,11 @@ public abstract class MappedProductVendor {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ON_ORDER_QTY,
+                          value = "The quantity currently on order.")
     private Integer onOrderQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @NotNull
@@ -645,9 +712,11 @@ public abstract class MappedProductVendor {
             updatable = false,
             length = COLUMN_LENGTH_UNIT_MEASURE_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
+                          value = "The product's unit of measure.")
     private String unitMeasureCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -656,6 +725,9 @@ public abstract class MappedProductVendor {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ProductVendor_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

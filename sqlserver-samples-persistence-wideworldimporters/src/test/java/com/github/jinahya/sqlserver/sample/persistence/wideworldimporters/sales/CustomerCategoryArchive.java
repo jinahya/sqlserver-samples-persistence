@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class CustomerCategoryArchive extends MappedCustomerCategoryArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

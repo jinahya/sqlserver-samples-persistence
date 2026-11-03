@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedAwBuildVersion.TABLE_SCHEMA, name = MappedAwBuildVersion.TABLE_NAME)
 public class AwBuildVersion extends MappedAwBuildVersion {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

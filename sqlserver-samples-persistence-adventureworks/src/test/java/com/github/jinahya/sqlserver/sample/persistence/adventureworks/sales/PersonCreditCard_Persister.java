@@ -36,7 +36,7 @@ class PersonCreditCard_Persister
         super(PersonCreditCard.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public PersonCreditCard apply(final EntityManager entityManager, final PersonCreditCard entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);

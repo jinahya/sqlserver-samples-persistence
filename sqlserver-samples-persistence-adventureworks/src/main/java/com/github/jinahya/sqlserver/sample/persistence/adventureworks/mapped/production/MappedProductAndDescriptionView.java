@@ -51,7 +51,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     public static final String TABLE_NAME = "vProductAndDescription";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -80,7 +80,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ---------------------------------------------------------------------------------------------------- ProductModel
+    // -------------------------------------------------------------------------------- ProductModel
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -97,7 +97,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL = "productModel";
 
-    // ------------------------------------------------------------------------------------------------------- CultureID
+    // ----------------------------------------------------------------------------------- CultureID
 
     /**
      * The name of the {@code nchar(6), NOT NULL} column. The value is {@value}.
@@ -114,7 +114,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_CULTURE_ID = "cultureId";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(400), NOT NULL} column. The value is {@value}.
@@ -131,7 +131,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -140,7 +140,7 @@ public abstract class MappedProductAndDescriptionView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -183,7 +183,7 @@ public abstract class MappedProductAndDescriptionView {
         return Objects.hash(productId, cultureId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -203,7 +203,7 @@ public abstract class MappedProductAndDescriptionView {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -223,7 +223,7 @@ public abstract class MappedProductAndDescriptionView {
         this.name = name;
     }
 
-    // ---------------------------------------------------------------------------------------------------- productModel
+    // -------------------------------------------------------------------------------- productModel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL} attribute.
@@ -243,7 +243,7 @@ public abstract class MappedProductAndDescriptionView {
         this.productModel = productModel;
     }
 
-    // ------------------------------------------------------------------------------------------------------- cultureId
+    // ----------------------------------------------------------------------------------- cultureId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CULTURE_ID} attribute.
@@ -263,7 +263,7 @@ public abstract class MappedProductAndDescriptionView {
         this.cultureId = cultureId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -283,7 +283,7 @@ public abstract class MappedProductAndDescriptionView {
         this.description = description;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -294,7 +294,7 @@ public abstract class MappedProductAndDescriptionView {
     )
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
@@ -307,7 +307,7 @@ public abstract class MappedProductAndDescriptionView {
     )
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_MODEL)
     @NotNull
@@ -320,7 +320,7 @@ public abstract class MappedProductAndDescriptionView {
     )
     private String productModel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CULTURE_ID)
     @NotNull
@@ -333,7 +333,7 @@ public abstract class MappedProductAndDescriptionView {
     )
     private String cultureId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull

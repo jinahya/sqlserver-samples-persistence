@@ -35,7 +35,7 @@ class ProductModelIllustration_Persister
         super(ProductModelIllustration.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductModelIllustration apply(final EntityManager entityManager,
                                           final ProductModelIllustration entityInstance) {

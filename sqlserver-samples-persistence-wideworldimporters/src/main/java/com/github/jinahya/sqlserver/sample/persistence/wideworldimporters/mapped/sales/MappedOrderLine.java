@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +43,51 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_ORDER_ID}, {@value #COLUMN_NAME_STOCK_ITEM_ID}, {@value #COLUMN_NAME_PACKAGE_TYPE_ID},
  * {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.OrderLines}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrderLineID}</th>
+ *     <td>Numeric ID used for reference to a line on an Order within the database</td></tr>
+ * <tr><th scope="row">{@code OrderID}</th><td>Order that this line is associated with</td></tr>
+ * <tr><th scope="row">{@code StockItemID}</th>
+ *     <td>Stock item for this order line (FK not indexed as separate index exists)</td></tr>
+ * <tr><th scope="row">{@code Description}</th>
+ *     <td>Description of the item supplied (Usually the stock item name but can be
+ *     overridden)</td></tr>
+ * <tr><th scope="row">{@code PackageTypeID}</th><td>Type of package to be supplied</td></tr>
+ * <tr><th scope="row">{@code Quantity}</th><td>Quantity to be supplied</td></tr>
+ * <tr><th scope="row">{@code UnitPrice}</th><td>Unit price to be charged</td></tr>
+ * <tr><th scope="row">{@code TaxRate}</th><td>Tax rate to be applied</td></tr>
+ * <tr><th scope="row">{@code PickedQuantity}</th><td>Quantity picked from stock</td></tr>
+ * <tr><th scope="row">{@code PickingCompletedWhen}</th>
+ *     <td>When was picking of this line completed?</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.OrderLines}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrderLineID}</th><td>{@code (NEXT VALUE FOR [Sequences].[OrderLineID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedOrderLine.TABLE_SCHEMA,
+        table = MappedOrderLine.TABLE_NAME,
+        value = "Detail lines from customer orders"
+)
 public abstract class MappedOrderLine {
 
     /**
@@ -55,7 +100,7 @@ public abstract class MappedOrderLine {
      */
     public static final String TABLE_NAME = "OrderLines";
 
-    // ----------------------------------------------------------------------------------------------------- OrderLineID
+    // --------------------------------------------------------------------------------- OrderLineID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.OrderLineID, NOT NULL} column. The value is {@value}.
@@ -67,7 +112,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_ORDER_LINE_ID = "orderLineId";
 
-    // --------------------------------------------------------------------------------------------------------- OrderID
+    // ------------------------------------------------------------------------------------- OrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -79,7 +124,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_ORDER_ID = "orderId";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -91,7 +136,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -108,7 +153,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // --------------------------------------------------------------------------------------------------- PackageTypeID
+    // ------------------------------------------------------------------------------- PackageTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -120,7 +165,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_PACKAGE_TYPE_ID = "packageTypeId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -132,7 +177,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -154,7 +199,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // --------------------------------------------------------------------------------------------------------- TaxRate
+    // ------------------------------------------------------------------------------------- TaxRate
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -176,7 +221,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_TAX_RATE = "taxRate";
 
-    // -------------------------------------------------------------------------------------------------- PickedQuantity
+    // ------------------------------------------------------------------------------ PickedQuantity
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -188,7 +233,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_PICKED_QUANTITY = "pickedQuantity";
 
-    // -------------------------------------------------------------------------------------------- PickingCompletedWhen
+    // ------------------------------------------------------------------------ PickingCompletedWhen
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -201,7 +246,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_PICKING_COMPLETED_WHEN = "pickingCompletedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -213,7 +258,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -225,7 +270,7 @@ public abstract class MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -234,7 +279,7 @@ public abstract class MappedOrderLine {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -283,7 +328,7 @@ public abstract class MappedOrderLine {
         return Objects.hash(orderLineId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- orderLineId
+    // --------------------------------------------------------------------------------- orderLineId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_LINE_ID} attribute.
@@ -303,7 +348,7 @@ public abstract class MappedOrderLine {
         this.orderLineId = orderLineId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- orderId
+    // ------------------------------------------------------------------------------------- orderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_ID} attribute.
@@ -324,7 +369,7 @@ public abstract class MappedOrderLine {
         this.orderId = orderId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -346,7 +391,7 @@ public abstract class MappedOrderLine {
         this.stockItemId = stockItemId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -366,7 +411,7 @@ public abstract class MappedOrderLine {
         this.description = description;
     }
 
-    // --------------------------------------------------------------------------------------------------- packageTypeId
+    // ------------------------------------------------------------------------------- packageTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute.
@@ -388,7 +433,7 @@ public abstract class MappedOrderLine {
         this.packageTypeId = packageTypeId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -408,7 +453,7 @@ public abstract class MappedOrderLine {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -428,7 +473,7 @@ public abstract class MappedOrderLine {
         this.unitPrice = unitPrice;
     }
 
-    // --------------------------------------------------------------------------------------------------------- taxRate
+    // ------------------------------------------------------------------------------------- taxRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_RATE} attribute.
@@ -448,7 +493,7 @@ public abstract class MappedOrderLine {
         this.taxRate = taxRate;
     }
 
-    // -------------------------------------------------------------------------------------------------- pickedQuantity
+    // ------------------------------------------------------------------------------ pickedQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PICKED_QUANTITY} attribute.
@@ -468,7 +513,7 @@ public abstract class MappedOrderLine {
         this.pickedQuantity = pickedQuantity;
     }
 
-    // -------------------------------------------------------------------------------------------- pickingCompletedWhen
+    // ------------------------------------------------------------------------ pickingCompletedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PICKING_COMPLETED_WHEN} attribute.
@@ -488,7 +533,7 @@ public abstract class MappedOrderLine {
         this.pickingCompletedWhen = pickingCompletedWhen;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -510,7 +555,7 @@ public abstract class MappedOrderLine {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -530,7 +575,7 @@ public abstract class MappedOrderLine {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.OrderLineID", schema = "Sequences",
@@ -542,9 +587,13 @@ public abstract class MappedOrderLine {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_LINE_ID,
+                          value = "Numeric ID used for reference to a line on an Order within "
+                                  + "the database")
+    @MsDefault(name = "DF_Sales_OrderLines_OrderLineID", value = "(NEXT VALUE FOR [Sequences].[OrderLineID])")
     private Integer orderLineId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -553,9 +602,11 @@ public abstract class MappedOrderLine {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
+                          value = "Order that this line is associated with")
     private Integer orderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -564,9 +615,12 @@ public abstract class MappedOrderLine {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "Stock item for this order line (FK not indexed as separate "
+                                  + "index exists)")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
@@ -576,9 +630,12 @@ public abstract class MappedOrderLine {
             updatable = true,
             length = COLUMN_LENGTH_DESCRIPTION
     )
+    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
+                          value = "Description of the item supplied (Usually the stock item "
+                                  + "name but can be overridden)")
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -587,9 +644,11 @@ public abstract class MappedOrderLine {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
+                          value = "Type of package to be supplied")
     private Integer packageTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY,
@@ -597,9 +656,10 @@ public abstract class MappedOrderLine {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Quantity to be supplied")
     private Integer quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_PRICE,
@@ -609,9 +669,10 @@ public abstract class MappedOrderLine {
             precision = COLUMN_PRECISION_UNIT_PRICE,
             scale = COLUMN_SCALE_UNIT_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price to be charged")
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
@@ -622,9 +683,10 @@ public abstract class MappedOrderLine {
             precision = COLUMN_PRECISION_TAX_RATE,
             scale = COLUMN_SCALE_TAX_RATE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
     private BigDecimal taxRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PICKED_QUANTITY,
@@ -632,18 +694,21 @@ public abstract class MappedOrderLine {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PICKED_QUANTITY, value = "Quantity picked from stock")
     private Integer pickedQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
+                          value = "When was picking of this line completed?")
     private LocalDateTime pickingCompletedWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -654,7 +719,7 @@ public abstract class MappedOrderLine {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -662,6 +727,7 @@ public abstract class MappedOrderLine {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Sales_OrderLines_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

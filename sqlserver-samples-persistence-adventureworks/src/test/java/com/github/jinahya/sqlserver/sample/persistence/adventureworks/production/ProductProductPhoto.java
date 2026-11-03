@@ -51,7 +51,7 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO = "productPhoto";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +60,7 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_ProductProductPhoto_Product_ProductID} foreign key references.
@@ -82,7 +82,7 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- productPhoto
+    // -------------------------------------------------------------------------------- productPhoto
 
     /**
      * Returns the {@code ProductPhoto} which the {@code FK_ProductProductPhoto_ProductPhoto_ProductPhotoID} foreign key
@@ -105,7 +105,7 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
         setProductPhotoId(productPhoto == null ? null : productPhoto.getProductPhotoId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -115,7 +115,7 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
     )
     private Product product;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
                 referencedColumnName = MappedProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID,

@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class PaymentMethodArchive extends MappedPaymentMethodArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

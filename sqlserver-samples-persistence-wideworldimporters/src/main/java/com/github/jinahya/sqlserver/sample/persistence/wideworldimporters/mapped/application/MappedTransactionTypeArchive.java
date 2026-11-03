@@ -51,7 +51,7 @@ public abstract class MappedTransactionTypeArchive {
      */
     public static final String TABLE_NAME = "TransactionTypes_Archive";
 
-    // ----------------------------------------------------------------------------------------------- TransactionTypeID
+    // --------------------------------------------------------------------------- TransactionTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -64,7 +64,7 @@ public abstract class MappedTransactionTypeArchive {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE_ID = "transactionTypeId";
 
-    // --------------------------------------------------------------------------------------------- TransactionTypeName
+    // ------------------------------------------------------------------------- TransactionTypeName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedTransactionTypeArchive {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE_NAME = "transactionTypeName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedTransactionTypeArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedTransactionTypeArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedTransactionTypeArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -127,7 +127,7 @@ public abstract class MappedTransactionTypeArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -140,7 +140,7 @@ public abstract class MappedTransactionTypeArchive {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------- transactionTypeId
+    // --------------------------------------------------------------------------- transactionTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
@@ -160,7 +160,7 @@ public abstract class MappedTransactionTypeArchive {
         this.transactionTypeId = transactionTypeId;
     }
 
-    // --------------------------------------------------------------------------------------------- transactionTypeName
+    // ------------------------------------------------------------------------- transactionTypeName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_NAME} attribute.
@@ -180,7 +180,7 @@ public abstract class MappedTransactionTypeArchive {
         this.transactionTypeName = transactionTypeName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -200,7 +200,7 @@ public abstract class MappedTransactionTypeArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -220,7 +220,7 @@ public abstract class MappedTransactionTypeArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -240,7 +240,7 @@ public abstract class MappedTransactionTypeArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -251,7 +251,7 @@ public abstract class MappedTransactionTypeArchive {
     )
     private Integer transactionTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_TRANSACTION_TYPE_NAME)
     @NotNull
@@ -264,7 +264,7 @@ public abstract class MappedTransactionTypeArchive {
     )
     private String transactionTypeName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -275,7 +275,7 @@ public abstract class MappedTransactionTypeArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -286,7 +286,7 @@ public abstract class MappedTransactionTypeArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

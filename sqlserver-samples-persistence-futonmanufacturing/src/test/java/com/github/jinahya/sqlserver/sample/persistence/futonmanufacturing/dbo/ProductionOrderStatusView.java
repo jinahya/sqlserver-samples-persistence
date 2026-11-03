@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
  */
 public class ProductionOrderStatusView extends MappedProductionOrderStatusView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

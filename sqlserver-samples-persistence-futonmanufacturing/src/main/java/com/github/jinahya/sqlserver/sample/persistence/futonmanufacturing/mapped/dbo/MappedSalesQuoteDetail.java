@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +41,27 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_QUOTE_ID}, {@value #COLUMN_NAME_ITEM_ID} columns are mapped read-only, as a foreign key; the
  * extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SalesQuoteDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DiscountPercent}</th><td>{@code ((0))}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code dbo.SalesQuoteDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LineTotal}</th>
+ *     <td>{@code (([Quantity]*[UnitPrice])*((1)-[DiscountPercent]/(100)))}</td><td>{@code true}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedSalesQuoteDetail {
@@ -52,7 +76,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String TABLE_NAME = "SalesQuoteDetail";
 
-    // --------------------------------------------------------------------------------------------------- QuoteDetailID
+    // ------------------------------------------------------------------------------- QuoteDetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -64,7 +88,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_DETAIL_ID = "quoteDetailId";
 
-    // --------------------------------------------------------------------------------------------------------- QuoteID
+    // ------------------------------------------------------------------------------------- QuoteID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -76,7 +100,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_ID = "quoteId";
 
-    // ------------------------------------------------------------------------------------------------------ LineNumber
+    // ---------------------------------------------------------------------------------- LineNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -88,7 +112,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_NUMBER = "lineNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -100,7 +124,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -122,7 +146,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -144,7 +168,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------------- DiscountPercent
+    // ----------------------------------------------------------------------------- DiscountPercent
 
     /**
      * The name of the {@code decimal(5, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -166,7 +190,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENT = "discountPercent";
 
-    // ------------------------------------------------------------------------------------------------------- LineTotal
+    // ----------------------------------------------------------------------------------- LineTotal
 
     /**
      * The name of the {@code decimal(38, 6), computed as (([Quantity]*[UnitPrice])*((1)-[DiscountPercent]/(100)))}
@@ -189,7 +213,7 @@ public abstract class MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_TOTAL = "lineTotal";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -198,7 +222,7 @@ public abstract class MappedSalesQuoteDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -243,7 +267,7 @@ public abstract class MappedSalesQuoteDetail {
         return Objects.hash(quoteDetailId);
     }
 
-    // --------------------------------------------------------------------------------------------------- quoteDetailId
+    // ------------------------------------------------------------------------------- quoteDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_DETAIL_ID} attribute.
@@ -263,7 +287,7 @@ public abstract class MappedSalesQuoteDetail {
         this.quoteDetailId = quoteDetailId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- quoteId
+    // ------------------------------------------------------------------------------------- quoteId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_ID} attribute.
@@ -284,7 +308,7 @@ public abstract class MappedSalesQuoteDetail {
         this.quoteId = quoteId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ lineNumber
+    // ---------------------------------------------------------------------------------- lineNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_NUMBER} attribute.
@@ -304,7 +328,7 @@ public abstract class MappedSalesQuoteDetail {
         this.lineNumber = lineNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -325,7 +349,7 @@ public abstract class MappedSalesQuoteDetail {
         this.itemId = itemId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -345,7 +369,7 @@ public abstract class MappedSalesQuoteDetail {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -365,7 +389,7 @@ public abstract class MappedSalesQuoteDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------- discountPercent
+    // ----------------------------------------------------------------------------- discountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute.
@@ -385,7 +409,7 @@ public abstract class MappedSalesQuoteDetail {
         this.discountPercent = discountPercent;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineTotal
+    // ----------------------------------------------------------------------------------- lineTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute.
@@ -406,7 +430,7 @@ public abstract class MappedSalesQuoteDetail {
         this.lineTotal = lineTotal;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -418,7 +442,7 @@ public abstract class MappedSalesQuoteDetail {
     )
     private Integer quoteDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -429,7 +453,7 @@ public abstract class MappedSalesQuoteDetail {
     )
     private Integer quoteId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_NUMBER,
@@ -439,7 +463,7 @@ public abstract class MappedSalesQuoteDetail {
     )
     private Integer lineNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -450,7 +474,7 @@ public abstract class MappedSalesQuoteDetail {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
@@ -463,7 +487,7 @@ public abstract class MappedSalesQuoteDetail {
     )
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -476,7 +500,7 @@ public abstract class MappedSalesQuoteDetail {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
     @Basic(optional = true)
@@ -487,9 +511,10 @@ public abstract class MappedSalesQuoteDetail {
             precision = COLUMN_PRECISION_DISCOUNT_PERCENT,
             scale = COLUMN_SCALE_DISCOUNT_PERCENT
     )
+    @MsDefault("((0))")
     private BigDecimal discountPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = true)
@@ -500,6 +525,7 @@ public abstract class MappedSalesQuoteDetail {
             precision = COLUMN_PRECISION_LINE_TOTAL,
             scale = COLUMN_SCALE_LINE_TOTAL
     )
+    @MsComputedColumn(value = "(([Quantity]*[UnitPrice])*((1)-[DiscountPercent]/(100)))", persisted = true)
     private BigDecimal lineTotal;
 }
 

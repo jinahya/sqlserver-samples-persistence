@@ -30,7 +30,7 @@ class StateProvinceCountryRegionView_PersistenceIT extends _Entity_PersistenceIT
         super(StateProvinceCountryRegionView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Person.vStateProvinceCountryRegion} is a view, which no row is inserted into.

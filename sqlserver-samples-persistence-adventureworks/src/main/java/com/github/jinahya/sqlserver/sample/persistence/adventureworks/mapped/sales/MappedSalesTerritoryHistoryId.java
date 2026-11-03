@@ -36,7 +36,7 @@ public class MappedSalesTerritoryHistoryId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -45,7 +45,7 @@ public class MappedSalesTerritoryHistoryId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -74,7 +74,7 @@ public class MappedSalesTerritoryHistoryId implements Serializable {
         return Objects.hash(businessEntityId, startDate, territoryId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -94,7 +94,7 @@ public class MappedSalesTerritoryHistoryId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of the {@code startDate} attribute.
@@ -114,7 +114,7 @@ public class MappedSalesTerritoryHistoryId implements Serializable {
         this.startDate = startDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of the {@code territoryId} attribute.
@@ -134,11 +134,20 @@ public class MappedSalesTerritoryHistoryId implements Serializable {
         this.territoryId = territoryId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 
+    /**
+     * The value of the {@code startDate} attribute.
+     */
     private LocalDateTime startDate;
 
+    /**
+     * The value of the {@code territoryId} attribute.
+     */
     private Integer territoryId;
 }
 

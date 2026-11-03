@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -49,8 +51,79 @@ import java.util.UUID;
  * {@value #COLUMN_NAME_PRODUCT_SUBCATEGORY_ID}, {@value #COLUMN_NAME_PRODUCT_MODEL_ID} columns are mapped read-only, as
  * a foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.Product}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductID}</th><td>Primary key for Product records.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Name of the product.</td></tr>
+ * <tr><th scope="row">{@code ProductNumber}</th><td>Unique product identification number.</td></tr>
+ * <tr><th scope="row">{@code MakeFlag}</th>
+ *     <td>0 = Product is purchased, 1 = Product is manufactured in-house.</td></tr>
+ * <tr><th scope="row">{@code FinishedGoodsFlag}</th>
+ *     <td>0 = Product is not a salable item. 1 = Product is salable.</td></tr>
+ * <tr><th scope="row">{@code Color}</th><td>Product color.</td></tr>
+ * <tr><th scope="row">{@code SafetyStockLevel}</th><td>Minimum inventory quantity.</td></tr>
+ * <tr><th scope="row">{@code ReorderPoint}</th>
+ *     <td>Inventory level that triggers a purchase order or work order.</td></tr>
+ * <tr><th scope="row">{@code StandardCost}</th><td>Standard cost of the product.</td></tr>
+ * <tr><th scope="row">{@code ListPrice}</th><td>Selling price.</td></tr>
+ * <tr><th scope="row">{@code Size}</th><td>Product size.</td></tr>
+ * <tr><th scope="row">{@code SizeUnitMeasureCode}</th>
+ *     <td>Unit of measure for Size column.</td></tr>
+ * <tr><th scope="row">{@code WeightUnitMeasureCode}</th>
+ *     <td>Unit of measure for Weight column.</td></tr>
+ * <tr><th scope="row">{@code Weight}</th><td>Product weight.</td></tr>
+ * <tr><th scope="row">{@code DaysToManufacture}</th>
+ *     <td>Number of days required to manufacture the product.</td></tr>
+ * <tr><th scope="row">{@code ProductLine}</th>
+ *     <td>R = Road, M = Mountain, T = Touring, S = Standard</td></tr>
+ * <tr><th scope="row">{@code Class}</th><td>H = High, M = Medium, L = Low</td></tr>
+ * <tr><th scope="row">{@code Style}</th><td>W = Womens, M = Mens, U = Universal</td></tr>
+ * <tr><th scope="row">{@code ProductSubcategoryID}</th>
+ *     <td>Product is a member of this product subcategory. Foreign key to
+ *     ProductSubCategory.ProductSubCategoryID.</td></tr>
+ * <tr><th scope="row">{@code ProductModelID}</th>
+ *     <td>Product is a member of this product model. Foreign key to
+ *     ProductModel.ProductModelID.</td></tr>
+ * <tr><th scope="row">{@code SellStartDate}</th>
+ *     <td>Date the product was available for sale.</td></tr>
+ * <tr><th scope="row">{@code SellEndDate}</th>
+ *     <td>Date the product was no longer available for sale.</td></tr>
+ * <tr><th scope="row">{@code DiscontinuedDate}</th><td>Date the product was discontinued.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.Product}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code MakeFlag}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code FinishedGoodsFlag}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProduct.TABLE_SCHEMA,
+        table = MappedProduct.TABLE_NAME,
+        value = "Products sold or used in the manfacturing of sold products."
+)
 public abstract class MappedProduct {
 
     /**
@@ -63,7 +136,7 @@ public abstract class MappedProduct {
      */
     public static final String TABLE_NAME = "Product";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -75,7 +148,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -92,7 +165,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // --------------------------------------------------------------------------------------------------- ProductNumber
+    // ------------------------------------------------------------------------------- ProductNumber
 
     /**
      * The name of the {@code nvarchar(25), NOT NULL} column. The value is {@value}.
@@ -109,7 +182,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_NUMBER = "productNumber";
 
-    // -------------------------------------------------------------------------------------------------------- MakeFlag
+    // ------------------------------------------------------------------------------------ MakeFlag
 
     /**
      * The name of the {@code Flag (bit), DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -121,7 +194,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_MAKE_FLAG = "makeFlag";
 
-    // ----------------------------------------------------------------------------------------------- FinishedGoodsFlag
+    // --------------------------------------------------------------------------- FinishedGoodsFlag
 
     /**
      * The name of the {@code Flag (bit), DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -134,7 +207,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_FINISHED_GOODS_FLAG = "finishedGoodsFlag";
 
-    // ----------------------------------------------------------------------------------------------------------- Color
+    // --------------------------------------------------------------------------------------- Color
 
     /**
      * The name of the {@code nvarchar(15)} column. The value is {@value}.
@@ -151,7 +224,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_COLOR = "color";
 
-    // ------------------------------------------------------------------------------------------------ SafetyStockLevel
+    // ---------------------------------------------------------------------------- SafetyStockLevel
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -175,7 +248,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_SAFETY_STOCK_LEVEL = "safetyStockLevel";
 
-    // ---------------------------------------------------------------------------------------------------- ReorderPoint
+    // -------------------------------------------------------------------------------- ReorderPoint
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -198,7 +271,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_REORDER_POINT = "reorderPoint";
 
-    // ---------------------------------------------------------------------------------------------------- StandardCost
+    // -------------------------------------------------------------------------------- StandardCost
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -216,7 +289,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
 
-    // ------------------------------------------------------------------------------------------------------- ListPrice
+    // ----------------------------------------------------------------------------------- ListPrice
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -234,7 +307,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_LIST_PRICE = "listPrice";
 
-    // ------------------------------------------------------------------------------------------------------------ Size
+    // ---------------------------------------------------------------------------------------- Size
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -251,7 +324,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_SIZE = "size";
 
-    // --------------------------------------------------------------------------------------------- SizeUnitMeasureCode
+    // ------------------------------------------------------------------------- SizeUnitMeasureCode
 
     /**
      * The name of the {@code nchar(3)} column. The value is {@value}.
@@ -269,7 +342,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_SIZE_UNIT_MEASURE_CODE = "sizeUnitMeasureCode";
 
-    // ------------------------------------------------------------------------------------------- WeightUnitMeasureCode
+    // ----------------------------------------------------------------------- WeightUnitMeasureCode
 
     /**
      * The name of the {@code nchar(3)} column. The value is {@value}.
@@ -287,7 +360,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_WEIGHT_UNIT_MEASURE_CODE = "weightUnitMeasureCode";
 
-    // ---------------------------------------------------------------------------------------------------------- Weight
+    // -------------------------------------------------------------------------------------- Weight
 
     /**
      * The name of the {@code decimal(8, 2)} column. The value is {@value}.
@@ -315,7 +388,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_WEIGHT = "weight";
 
-    // ----------------------------------------------------------------------------------------------- DaysToManufacture
+    // --------------------------------------------------------------------------- DaysToManufacture
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -340,7 +413,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_DAYS_TO_MANUFACTURE = "daysToManufacture";
 
-    // ----------------------------------------------------------------------------------------------------- ProductLine
+    // --------------------------------------------------------------------------------- ProductLine
 
     /**
      * The name of the {@code nchar(2)} column. The value is {@value}.
@@ -452,7 +525,7 @@ public abstract class MappedProduct {
         }
     }
 
-    // ----------------------------------------------------------------------------------------------------------- Class
+    // --------------------------------------------------------------------------------------- Class
 
     /**
      * The name of the {@code nchar(2)} column. The value is {@value}.
@@ -553,7 +626,7 @@ public abstract class MappedProduct {
         }
     }
 
-    // ----------------------------------------------------------------------------------------------------------- Style
+    // --------------------------------------------------------------------------------------- Style
 
     /**
      * The name of the {@code nchar(2)} column. The value is {@value}.
@@ -653,7 +726,7 @@ public abstract class MappedProduct {
         }
     }
 
-    // -------------------------------------------------------------------------------------------- ProductSubcategoryID
+    // ------------------------------------------------------------------------ ProductSubcategoryID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -666,7 +739,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_SUBCATEGORY_ID = "productSubcategoryId";
 
-    // -------------------------------------------------------------------------------------------------- ProductModelID
+    // ------------------------------------------------------------------------------ ProductModelID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -678,7 +751,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
 
-    // --------------------------------------------------------------------------------------------------- SellStartDate
+    // ------------------------------------------------------------------------------- SellStartDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -690,7 +763,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_SELL_START_DATE = "sellStartDate";
 
-    // ----------------------------------------------------------------------------------------------------- SellEndDate
+    // --------------------------------------------------------------------------------- SellEndDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -702,7 +775,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_SELL_END_DATE = "sellEndDate";
 
-    // ------------------------------------------------------------------------------------------------ DiscontinuedDate
+    // ---------------------------------------------------------------------------- DiscontinuedDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -714,7 +787,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_DISCONTINUED_DATE = "discontinuedDate";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -726,7 +799,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -738,7 +811,7 @@ public abstract class MappedProduct {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -747,7 +820,7 @@ public abstract class MappedProduct {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -809,7 +882,7 @@ public abstract class MappedProduct {
         return Objects.hash(productId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_SELL_END_DATE} attribute is {@code null} or not before the
@@ -832,7 +905,7 @@ public abstract class MappedProduct {
         return !sellEndDate.isBefore(sellStartDate);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -852,7 +925,7 @@ public abstract class MappedProduct {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -872,7 +945,7 @@ public abstract class MappedProduct {
         this.name = name;
     }
 
-    // --------------------------------------------------------------------------------------------------- productNumber
+    // ------------------------------------------------------------------------------- productNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_NUMBER} attribute.
@@ -892,7 +965,7 @@ public abstract class MappedProduct {
         this.productNumber = productNumber;
     }
 
-    // -------------------------------------------------------------------------------------------------------- makeFlag
+    // ------------------------------------------------------------------------------------ makeFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MAKE_FLAG} attribute.
@@ -912,7 +985,7 @@ public abstract class MappedProduct {
         this.makeFlag = makeFlag;
     }
 
-    // ----------------------------------------------------------------------------------------------- finishedGoodsFlag
+    // --------------------------------------------------------------------------- finishedGoodsFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FINISHED_GOODS_FLAG} attribute.
@@ -932,7 +1005,7 @@ public abstract class MappedProduct {
         this.finishedGoodsFlag = finishedGoodsFlag;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- color
+    // --------------------------------------------------------------------------------------- color
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLOR} attribute.
@@ -952,7 +1025,7 @@ public abstract class MappedProduct {
         this.color = color;
     }
 
-    // ------------------------------------------------------------------------------------------------ safetyStockLevel
+    // ---------------------------------------------------------------------------- safetyStockLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SAFETY_STOCK_LEVEL} attribute.
@@ -972,7 +1045,7 @@ public abstract class MappedProduct {
         this.safetyStockLevel = safetyStockLevel;
     }
 
-    // ---------------------------------------------------------------------------------------------------- reorderPoint
+    // -------------------------------------------------------------------------------- reorderPoint
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute.
@@ -992,7 +1065,7 @@ public abstract class MappedProduct {
         this.reorderPoint = reorderPoint;
     }
 
-    // ---------------------------------------------------------------------------------------------------- standardCost
+    // -------------------------------------------------------------------------------- standardCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute.
@@ -1012,7 +1085,7 @@ public abstract class MappedProduct {
         this.standardCost = standardCost;
     }
 
-    // ------------------------------------------------------------------------------------------------------- listPrice
+    // ----------------------------------------------------------------------------------- listPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute.
@@ -1032,7 +1105,7 @@ public abstract class MappedProduct {
         this.listPrice = listPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ size
+    // ---------------------------------------------------------------------------------------- size
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SIZE} attribute.
@@ -1052,7 +1125,7 @@ public abstract class MappedProduct {
         this.size = size;
     }
 
-    // --------------------------------------------------------------------------------------------- sizeUnitMeasureCode
+    // ------------------------------------------------------------------------- sizeUnitMeasureCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SIZE_UNIT_MEASURE_CODE} attribute.
@@ -1074,7 +1147,7 @@ public abstract class MappedProduct {
         this.sizeUnitMeasureCode = sizeUnitMeasureCode;
     }
 
-    // ------------------------------------------------------------------------------------------- weightUnitMeasureCode
+    // ----------------------------------------------------------------------- weightUnitMeasureCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEIGHT_UNIT_MEASURE_CODE} attribute.
@@ -1096,7 +1169,7 @@ public abstract class MappedProduct {
         this.weightUnitMeasureCode = weightUnitMeasureCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- weight
+    // -------------------------------------------------------------------------------------- weight
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEIGHT} attribute.
@@ -1116,7 +1189,7 @@ public abstract class MappedProduct {
         this.weight = weight;
     }
 
-    // ----------------------------------------------------------------------------------------------- daysToManufacture
+    // --------------------------------------------------------------------------- daysToManufacture
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_TO_MANUFACTURE} attribute.
@@ -1136,7 +1209,7 @@ public abstract class MappedProduct {
         this.daysToManufacture = daysToManufacture;
     }
 
-    // ----------------------------------------------------------------------------------------------------- productLine
+    // --------------------------------------------------------------------------------- productLine
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_LINE} attribute.
@@ -1156,7 +1229,7 @@ public abstract class MappedProduct {
         this.productLine = productLine;
     }
 
-    // ---------------------------------------------------------------------------------------------------- productClass
+    // -------------------------------------------------------------------------------- productClass
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_CLASS} attribute.
@@ -1176,7 +1249,7 @@ public abstract class MappedProduct {
         this.productClass = productClass;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- style
+    // --------------------------------------------------------------------------------------- style
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STYLE} attribute.
@@ -1196,7 +1269,7 @@ public abstract class MappedProduct {
         this.style = style;
     }
 
-    // -------------------------------------------------------------------------------------------- productSubcategoryId
+    // ------------------------------------------------------------------------ productSubcategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_SUBCATEGORY_ID} attribute.
@@ -1218,7 +1291,7 @@ public abstract class MappedProduct {
         this.productSubcategoryId = productSubcategoryId;
     }
 
-    // -------------------------------------------------------------------------------------------------- productModelId
+    // ------------------------------------------------------------------------------ productModelId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
@@ -1240,7 +1313,7 @@ public abstract class MappedProduct {
         this.productModelId = productModelId;
     }
 
-    // --------------------------------------------------------------------------------------------------- sellStartDate
+    // ------------------------------------------------------------------------------- sellStartDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SELL_START_DATE} attribute.
@@ -1260,7 +1333,7 @@ public abstract class MappedProduct {
         this.sellStartDate = sellStartDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- sellEndDate
+    // --------------------------------------------------------------------------------- sellEndDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SELL_END_DATE} attribute.
@@ -1280,7 +1353,7 @@ public abstract class MappedProduct {
         this.sellEndDate = sellEndDate;
     }
 
-    // ------------------------------------------------------------------------------------------------ discontinuedDate
+    // ---------------------------------------------------------------------------- discontinuedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCONTINUED_DATE} attribute.
@@ -1300,7 +1373,7 @@ public abstract class MappedProduct {
         this.discontinuedDate = discontinuedDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -1320,7 +1393,7 @@ public abstract class MappedProduct {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -1340,7 +1413,7 @@ public abstract class MappedProduct {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -1350,9 +1423,10 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID, value = "Primary key for Product records.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -1362,9 +1436,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the product.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PRODUCT_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -1374,9 +1449,11 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_PRODUCT_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_NUMBER,
+                          value = "Unique product identification number.")
     private String productNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MAKE_FLAG,
@@ -1384,9 +1461,12 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MAKE_FLAG,
+                          value = "0 = Product is purchased, 1 = Product is manufactured in-house.")
+    @MsDefault(name = "DF_Product_MakeFlag", value = "((1))")
     private Boolean makeFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FINISHED_GOODS_FLAG,
@@ -1394,9 +1474,12 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_FINISHED_GOODS_FLAG,
+                          value = "0 = Product is not a salable item. 1 = Product is salable.")
+    @MsDefault(name = "DF_Product_FinishedGoodsFlag", value = "((1))")
     private Boolean finishedGoodsFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COLOR)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COLOR,
@@ -1405,9 +1488,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_COLOR
     )
+    @MsDescription.Column(name = COLUMN_NAME_COLOR, value = "Product color.")
     private String color;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Product_SafetyStockLevel: ([SafetyStockLevel]>(0)); smallint's upper bound
     @Max(COLUMN_MAX_SAFETY_STOCK_LEVEL)
     @Min(COLUMN_MIN_SAFETY_STOCK_LEVEL)
@@ -1418,9 +1502,11 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SAFETY_STOCK_LEVEL,
+                          value = "Minimum inventory quantity.")
     private Integer safetyStockLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Product_ReorderPoint: ([ReorderPoint]>(0)); smallint's upper bound
     @Max(COLUMN_MAX_REORDER_POINT)
     @Min(COLUMN_MIN_REORDER_POINT)
@@ -1431,9 +1517,11 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_REORDER_POINT,
+                          value = "Inventory level that triggers a purchase order or work order.")
     private Integer reorderPoint;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Product_StandardCost: ([StandardCost]>=(0.00))
     @DecimalMin(COLUMN_MIN_STANDARD_COST)
     @NotNull
@@ -1443,9 +1531,10 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_STANDARD_COST, value = "Standard cost of the product.")
     private BigDecimal standardCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Product_ListPrice: ([ListPrice]>=(0.00))
     @DecimalMin(COLUMN_MIN_LIST_PRICE)
     @NotNull
@@ -1455,9 +1544,10 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LIST_PRICE, value = "Selling price.")
     private BigDecimal listPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SIZE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SIZE,
@@ -1466,9 +1556,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_SIZE
     )
+    @MsDescription.Column(name = COLUMN_NAME_SIZE, value = "Product size.")
     private String size;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_SIZE_UNIT_MEASURE_CODE)
     @Basic(optional = true)
@@ -1478,9 +1569,11 @@ public abstract class MappedProduct {
             updatable = false,
             length = COLUMN_LENGTH_SIZE_UNIT_MEASURE_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_SIZE_UNIT_MEASURE_CODE,
+                          value = "Unit of measure for Size column.")
     private String sizeUnitMeasureCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_WEIGHT_UNIT_MEASURE_CODE)
     @Basic(optional = true)
@@ -1490,9 +1583,11 @@ public abstract class MappedProduct {
             updatable = false,
             length = COLUMN_LENGTH_WEIGHT_UNIT_MEASURE_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_WEIGHT_UNIT_MEASURE_CODE,
+                          value = "Unit of measure for Weight column.")
     private String weightUnitMeasureCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Product_Weight: ([Weight]>(0.00))
     @DecimalMin(value = COLUMN_MIN_WEIGHT_EXCLUSIVE, inclusive = false)
     @Digits(integer = COLUMN_PRECISION_WEIGHT - COLUMN_SCALE_WEIGHT, fraction = COLUMN_SCALE_WEIGHT)
@@ -1504,9 +1599,10 @@ public abstract class MappedProduct {
             precision = COLUMN_PRECISION_WEIGHT,
             scale = COLUMN_SCALE_WEIGHT
     )
+    @MsDescription.Column(name = COLUMN_NAME_WEIGHT, value = "Product weight.")
     private BigDecimal weight;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Product_DaysToManufacture: ([DaysToManufacture]>=(0)); int's upper bound
     @Max(COLUMN_MAX_DAYS_TO_MANUFACTURE)
     @Min(COLUMN_MIN_DAYS_TO_MANUFACTURE)
@@ -1517,9 +1613,11 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DAYS_TO_MANUFACTURE,
+                          value = "Number of days required to manufacture the product.")
     private Integer daysToManufacture;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = ProductLineConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_LINE,
@@ -1528,9 +1626,11 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_PRODUCT_LINE
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_LINE,
+                          value = "R = Road, M = Mountain, T = Touring, S = Standard")
     private ProductLine productLine;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = ProductClassConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_CLASS,
@@ -1539,9 +1639,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_PRODUCT_CLASS
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_CLASS, value = "H = High, M = Medium, L = Low")
     private ProductClass productClass;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = ProductStyleConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STYLE,
@@ -1550,9 +1651,10 @@ public abstract class MappedProduct {
             updatable = true,
             length = COLUMN_LENGTH_STYLE
     )
+    @MsDescription.Column(name = COLUMN_NAME_STYLE, value = "W = Womens, M = Mens, U = Universal")
     private ProductStyle style;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID,
@@ -1560,9 +1662,12 @@ public abstract class MappedProduct {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID,
+                          value = "Product is a member of this product subcategory. Foreign key "
+                                  + "to ProductSubCategory.ProductSubCategoryID.")
     private Integer productSubcategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
@@ -1570,9 +1675,12 @@ public abstract class MappedProduct {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
+                          value = "Product is a member of this product model. Foreign key to "
+                                  + "ProductModel.ProductModelID.")
     private Integer productModelId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SELL_START_DATE,
@@ -1580,37 +1688,47 @@ public abstract class MappedProduct {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SELL_START_DATE,
+                          value = "Date the product was available for sale.")
     private LocalDateTime sellStartDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SELL_END_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SELL_END_DATE,
+                          value = "Date the product was no longer available for sale.")
     private LocalDateTime sellEndDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISCONTINUED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DISCONTINUED_DATE,
+                          value = "Date the product was discontinued.")
     private LocalDateTime discontinuedDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_Product_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -1619,6 +1737,9 @@ public abstract class MappedProduct {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Product_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

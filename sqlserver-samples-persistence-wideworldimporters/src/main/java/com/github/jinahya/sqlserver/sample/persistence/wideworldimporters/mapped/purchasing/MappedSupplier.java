@@ -22,6 +22,10 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsMasking;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -47,8 +51,98 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_DELIVERY_CITY_ID}, {@value #COLUMN_NAME_POSTAL_CITY_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Purchasing.Suppliers}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SupplierID}</th>
+ *     <td>Numeric ID used for reference to a supplier within the database</td></tr>
+ * <tr><th scope="row">{@code SupplierName}</th>
+ *     <td>Supplier's full name (usually a trading name)</td></tr>
+ * <tr><th scope="row">{@code SupplierCategoryID}</th><td>Supplier's category</td></tr>
+ * <tr><th scope="row">{@code PrimaryContactPersonID}</th><td>Primary contact</td></tr>
+ * <tr><th scope="row">{@code AlternateContactPersonID}</th><td>Alternate contact</td></tr>
+ * <tr><th scope="row">{@code DeliveryMethodID}</th>
+ *     <td>Standard delivery method for stock items received from this supplier</td></tr>
+ * <tr><th scope="row">{@code DeliveryCityID}</th>
+ *     <td>ID of the delivery city for this address</td></tr>
+ * <tr><th scope="row">{@code PostalCityID}</th>
+ *     <td>ID of the mailing city for this address</td></tr>
+ * <tr><th scope="row">{@code SupplierReference}</th>
+ *     <td>Supplier reference for our organization (might be our account number at the
+ *     supplier)</td></tr>
+ * <tr><th scope="row">{@code BankAccountName}</th>
+ *     <td>Supplier's bank account name (ie name on the account)</td></tr>
+ * <tr><th scope="row">{@code BankAccountBranch}</th><td>Supplier's bank branch</td></tr>
+ * <tr><th scope="row">{@code BankAccountCode}</th>
+ *     <td>Supplier's bank account code (usually a numeric reference for the bank branch)</td></tr>
+ * <tr><th scope="row">{@code BankAccountNumber}</th><td>Supplier's bank account number</td></tr>
+ * <tr><th scope="row">{@code BankInternationalCode}</th>
+ *     <td>Supplier's bank's international code (such as a SWIFT code)</td></tr>
+ * <tr><th scope="row">{@code PaymentDays}</th>
+ *     <td>Number of days for payment of an invoice (ie payment terms)</td></tr>
+ * <tr><th scope="row">{@code InternalComments}</th>
+ *     <td>Internal comments (not exposed outside organization)</td></tr>
+ * <tr><th scope="row">{@code PhoneNumber}</th><td>Phone number</td></tr>
+ * <tr><th scope="row">{@code FaxNumber}</th><td>Fax number</td></tr>
+ * <tr><th scope="row">{@code WebsiteURL}</th><td>URL for the website for this supplier</td></tr>
+ * <tr><th scope="row">{@code DeliveryAddressLine1}</th>
+ *     <td>First delivery address line for the supplier</td></tr>
+ * <tr><th scope="row">{@code DeliveryAddressLine2}</th>
+ *     <td>Second delivery address line for the supplier</td></tr>
+ * <tr><th scope="row">{@code DeliveryPostalCode}</th>
+ *     <td>Delivery postal code for the supplier</td></tr>
+ * <tr><th scope="row">{@code DeliveryLocation}</th>
+ *     <td>Geographic location for the supplier's office/warehouse</td></tr>
+ * <tr><th scope="row">{@code PostalAddressLine1}</th>
+ *     <td>First postal address line for the supplier</td></tr>
+ * <tr><th scope="row">{@code PostalAddressLine2}</th>
+ *     <td>Second postal address line for the supplier</td></tr>
+ * <tr><th scope="row">{@code PostalPostalCode}</th>
+ *     <td>Postal code for the supplier when sending by mail</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Purchasing.Suppliers}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SupplierID}</th><td>{@code (NEXT VALUE FOR [Sequences].[SupplierID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Masked columns of {@code Purchasing.Suppliers}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Masking function</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BankAccountName}</th><td>{@code default()}</td></tr>
+ * <tr><th scope="row">{@code BankAccountBranch}</th><td>{@code default()}</td></tr>
+ * <tr><th scope="row">{@code BankAccountCode}</th><td>{@code default()}</td></tr>
+ * <tr><th scope="row">{@code BankAccountNumber}</th><td>{@code default()}</td></tr>
+ * <tr><th scope="row">{@code BankInternationalCode}</th><td>{@code default()}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSupplier.TABLE_SCHEMA,
+        table = MappedSupplier.TABLE_NAME,
+        value = "Main entity table for suppliers (organizations)"
+)
+@MsTemporal(
+        historyTable = "Purchasing.Suppliers_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedSupplier {
 
     /**
@@ -61,7 +155,7 @@ public abstract class MappedSupplier {
      */
     public static final String TABLE_NAME = "Suppliers";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.SupplierID, NOT NULL} column. The value is {@value}.
@@ -73,7 +167,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierName
+    // -------------------------------------------------------------------------------- SupplierName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -90,7 +184,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_NAME = "supplierName";
 
-    // ---------------------------------------------------------------------------------------------- SupplierCategoryID
+    // -------------------------------------------------------------------------- SupplierCategoryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -103,7 +197,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_CATEGORY_ID = "supplierCategoryId";
 
-    // ------------------------------------------------------------------------------------------ PrimaryContactPersonID
+    // ---------------------------------------------------------------------- PrimaryContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -116,7 +210,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID = "primaryContactPersonId";
 
-    // ---------------------------------------------------------------------------------------- AlternateContactPersonID
+    // -------------------------------------------------------------------- AlternateContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -129,7 +223,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID = "alternateContactPersonId";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryMethodID
+    // ---------------------------------------------------------------------------- DeliveryMethodID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -141,7 +235,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryCityID
+    // ------------------------------------------------------------------------------ DeliveryCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -153,7 +247,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_CITY_ID = "deliveryCityId";
 
-    // ---------------------------------------------------------------------------------------------------- PostalCityID
+    // -------------------------------------------------------------------------------- PostalCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -165,7 +259,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CITY_ID = "postalCityId";
 
-    // ----------------------------------------------------------------------------------------------- SupplierReference
+    // --------------------------------------------------------------------------- SupplierReference
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -182,7 +276,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_REFERENCE = "supplierReference";
 
-    // ------------------------------------------------------------------------------------------------- BankAccountName
+    // ----------------------------------------------------------------------------- BankAccountName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -199,7 +293,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_BANK_ACCOUNT_NAME = "bankAccountName";
 
-    // ----------------------------------------------------------------------------------------------- BankAccountBranch
+    // --------------------------------------------------------------------------- BankAccountBranch
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -217,7 +311,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_BANK_ACCOUNT_BRANCH = "bankAccountBranch";
 
-    // ------------------------------------------------------------------------------------------------- BankAccountCode
+    // ----------------------------------------------------------------------------- BankAccountCode
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -234,7 +328,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_BANK_ACCOUNT_CODE = "bankAccountCode";
 
-    // ----------------------------------------------------------------------------------------------- BankAccountNumber
+    // --------------------------------------------------------------------------- BankAccountNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -252,7 +346,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_BANK_ACCOUNT_NUMBER = "bankAccountNumber";
 
-    // ------------------------------------------------------------------------------------------- BankInternationalCode
+    // ----------------------------------------------------------------------- BankInternationalCode
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -270,7 +364,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_BANK_INTERNATIONAL_CODE = "bankInternationalCode";
 
-    // ----------------------------------------------------------------------------------------------------- PaymentDays
+    // --------------------------------------------------------------------------------- PaymentDays
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -282,7 +376,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_DAYS = "paymentDays";
 
-    // ------------------------------------------------------------------------------------------------ InternalComments
+    // ---------------------------------------------------------------------------- InternalComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -294,7 +388,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_INTERNAL_COMMENTS = "internalComments";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -311,7 +405,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -328,7 +422,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ------------------------------------------------------------------------------------------------------ WebsiteURL
+    // ---------------------------------------------------------------------------------- WebsiteURL
 
     /**
      * The name of the {@code nvarchar(256), NOT NULL} column. The value is {@value}.
@@ -345,7 +439,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_WEBSITE_URL = "websiteUrl";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine1
+    // ------------------------------------------------------------------------ DeliveryAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -363,7 +457,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1 = "deliveryAddressLine1";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine2
+    // ------------------------------------------------------------------------ DeliveryAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -381,7 +475,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2 = "deliveryAddressLine2";
 
-    // ---------------------------------------------------------------------------------------------- DeliveryPostalCode
+    // -------------------------------------------------------------------------- DeliveryPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -399,7 +493,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE = "deliveryPostalCode";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryLocation
+    // ---------------------------------------------------------------------------- DeliveryLocation
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -411,7 +505,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_LOCATION = "deliveryLocation";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine1
+    // -------------------------------------------------------------------------- PostalAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -429,7 +523,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1 = "postalAddressLine1";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine2
+    // -------------------------------------------------------------------------- PostalAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -447,7 +541,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2 = "postalAddressLine2";
 
-    // ------------------------------------------------------------------------------------------------ PostalPostalCode
+    // ---------------------------------------------------------------------------- PostalPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -464,7 +558,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_POSTAL_CODE = "postalPostalCode";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -476,7 +570,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -488,7 +582,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -500,7 +594,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -509,7 +603,7 @@ public abstract class MappedSupplier {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -575,7 +669,7 @@ public abstract class MappedSupplier {
         return Objects.hash(supplierId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -595,7 +689,7 @@ public abstract class MappedSupplier {
         this.supplierId = supplierId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierName
+    // -------------------------------------------------------------------------------- supplierName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_NAME} attribute.
@@ -615,7 +709,7 @@ public abstract class MappedSupplier {
         this.supplierName = supplierName;
     }
 
-    // ---------------------------------------------------------------------------------------------- supplierCategoryId
+    // -------------------------------------------------------------------------- supplierCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CATEGORY_ID} attribute.
@@ -637,7 +731,7 @@ public abstract class MappedSupplier {
         this.supplierCategoryId = supplierCategoryId;
     }
 
-    // ------------------------------------------------------------------------------------------ primaryContactPersonId
+    // ---------------------------------------------------------------------- primaryContactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID} attribute.
@@ -659,7 +753,7 @@ public abstract class MappedSupplier {
         this.primaryContactPersonId = primaryContactPersonId;
     }
 
-    // ---------------------------------------------------------------------------------------- alternateContactPersonId
+    // -------------------------------------------------------------------- alternateContactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID} attribute.
@@ -681,7 +775,7 @@ public abstract class MappedSupplier {
         this.alternateContactPersonId = alternateContactPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryMethodId
+    // ---------------------------------------------------------------------------- deliveryMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
@@ -703,7 +797,7 @@ public abstract class MappedSupplier {
         this.deliveryMethodId = deliveryMethodId;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryCityId
+    // ------------------------------------------------------------------------------ deliveryCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
@@ -725,7 +819,7 @@ public abstract class MappedSupplier {
         this.deliveryCityId = deliveryCityId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- postalCityId
+    // -------------------------------------------------------------------------------- postalCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
@@ -747,7 +841,7 @@ public abstract class MappedSupplier {
         this.postalCityId = postalCityId;
     }
 
-    // ----------------------------------------------------------------------------------------------- supplierReference
+    // --------------------------------------------------------------------------- supplierReference
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_REFERENCE} attribute.
@@ -767,7 +861,7 @@ public abstract class MappedSupplier {
         this.supplierReference = supplierReference;
     }
 
-    // ------------------------------------------------------------------------------------------------- bankAccountName
+    // ----------------------------------------------------------------------------- bankAccountName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BANK_ACCOUNT_NAME} attribute.
@@ -787,7 +881,7 @@ public abstract class MappedSupplier {
         this.bankAccountName = bankAccountName;
     }
 
-    // ----------------------------------------------------------------------------------------------- bankAccountBranch
+    // --------------------------------------------------------------------------- bankAccountBranch
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BANK_ACCOUNT_BRANCH} attribute.
@@ -807,7 +901,7 @@ public abstract class MappedSupplier {
         this.bankAccountBranch = bankAccountBranch;
     }
 
-    // ------------------------------------------------------------------------------------------------- bankAccountCode
+    // ----------------------------------------------------------------------------- bankAccountCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BANK_ACCOUNT_CODE} attribute.
@@ -827,7 +921,7 @@ public abstract class MappedSupplier {
         this.bankAccountCode = bankAccountCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- bankAccountNumber
+    // --------------------------------------------------------------------------- bankAccountNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BANK_ACCOUNT_NUMBER} attribute.
@@ -847,7 +941,7 @@ public abstract class MappedSupplier {
         this.bankAccountNumber = bankAccountNumber;
     }
 
-    // ------------------------------------------------------------------------------------------- bankInternationalCode
+    // ----------------------------------------------------------------------- bankInternationalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BANK_INTERNATIONAL_CODE} attribute.
@@ -867,7 +961,7 @@ public abstract class MappedSupplier {
         this.bankInternationalCode = bankInternationalCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------- paymentDays
+    // --------------------------------------------------------------------------------- paymentDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_DAYS} attribute.
@@ -887,7 +981,7 @@ public abstract class MappedSupplier {
         this.paymentDays = paymentDays;
     }
 
-    // ------------------------------------------------------------------------------------------------ internalComments
+    // ---------------------------------------------------------------------------- internalComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNAL_COMMENTS} attribute.
@@ -907,7 +1001,7 @@ public abstract class MappedSupplier {
         this.internalComments = internalComments;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -927,7 +1021,7 @@ public abstract class MappedSupplier {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -947,7 +1041,7 @@ public abstract class MappedSupplier {
         this.faxNumber = faxNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------ websiteUrl
+    // ---------------------------------------------------------------------------------- websiteUrl
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEBSITE_URL} attribute.
@@ -967,7 +1061,7 @@ public abstract class MappedSupplier {
         this.websiteUrl = websiteUrl;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine1
+    // ------------------------------------------------------------------------ deliveryAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1} attribute.
@@ -987,7 +1081,7 @@ public abstract class MappedSupplier {
         this.deliveryAddressLine1 = deliveryAddressLine1;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine2
+    // ------------------------------------------------------------------------ deliveryAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2} attribute.
@@ -1007,7 +1101,7 @@ public abstract class MappedSupplier {
         this.deliveryAddressLine2 = deliveryAddressLine2;
     }
 
-    // ---------------------------------------------------------------------------------------------- deliveryPostalCode
+    // -------------------------------------------------------------------------- deliveryPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE} attribute.
@@ -1027,7 +1121,7 @@ public abstract class MappedSupplier {
         this.deliveryPostalCode = deliveryPostalCode;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryLocation
+    // ---------------------------------------------------------------------------- deliveryLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
@@ -1047,7 +1141,7 @@ public abstract class MappedSupplier {
         this.deliveryLocation = deliveryLocation;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine1
+    // -------------------------------------------------------------------------- postalAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1} attribute.
@@ -1067,7 +1161,7 @@ public abstract class MappedSupplier {
         this.postalAddressLine1 = postalAddressLine1;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine2
+    // -------------------------------------------------------------------------- postalAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2} attribute.
@@ -1087,7 +1181,7 @@ public abstract class MappedSupplier {
         this.postalAddressLine2 = postalAddressLine2;
     }
 
-    // ------------------------------------------------------------------------------------------------ postalPostalCode
+    // ---------------------------------------------------------------------------- postalPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_POSTAL_CODE} attribute.
@@ -1107,7 +1201,7 @@ public abstract class MappedSupplier {
         this.postalPostalCode = postalPostalCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -1129,7 +1223,7 @@ public abstract class MappedSupplier {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -1150,7 +1244,7 @@ public abstract class MappedSupplier {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -1171,7 +1265,7 @@ public abstract class MappedSupplier {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SupplierID", schema = "Sequences",
@@ -1183,9 +1277,12 @@ public abstract class MappedSupplier {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
+                          value = "Numeric ID used for reference to a supplier within the database")
+    @MsDefault(name = "DF_Purchasing_Suppliers_SupplierID", value = "(NEXT VALUE FOR [Sequences].[SupplierID])")
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
@@ -1195,9 +1292,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_SUPPLIER_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_NAME,
+                          value = "Supplier's full name (usually a trading name)")
     private String supplierName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1206,9 +1305,10 @@ public abstract class MappedSupplier {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, value = "Supplier's category")
     private Integer supplierCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1217,9 +1317,10 @@ public abstract class MappedSupplier {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, value = "Primary contact")
     private Integer primaryContactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1228,9 +1329,11 @@ public abstract class MappedSupplier {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
+                          value = "Alternate contact")
     private Integer alternateContactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
@@ -1238,9 +1341,12 @@ public abstract class MappedSupplier {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
+                          value = "Standard delivery method for stock items received from this "
+                                  + "supplier")
     private Integer deliveryMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1249,9 +1355,11 @@ public abstract class MappedSupplier {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
+                          value = "ID of the delivery city for this address")
     private Integer deliveryCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1260,9 +1368,11 @@ public abstract class MappedSupplier {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_CITY_ID,
+                          value = "ID of the mailing city for this address")
     private Integer postalCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
@@ -1271,9 +1381,12 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_SUPPLIER_REFERENCE
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
+                          value = "Supplier reference for our organization (might be our "
+                                  + "account number at the supplier)")
     private String supplierReference;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME,
@@ -1282,9 +1395,12 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_BANK_ACCOUNT_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME,
+                          value = "Supplier's bank account name (ie name on the account)")
+    @MsMasking("default()")
     private String bankAccountName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH,
@@ -1293,9 +1409,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH
     )
+    @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH, value = "Supplier's bank branch")
+    @MsMasking("default()")
     private String bankAccountBranch;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE,
@@ -1304,9 +1422,13 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_BANK_ACCOUNT_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE,
+                          value = "Supplier's bank account code (usually a numeric reference "
+                                  + "for the bank branch)")
+    @MsMasking("default()")
     private String bankAccountCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER,
@@ -1315,9 +1437,12 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER,
+                          value = "Supplier's bank account number")
+    @MsMasking("default()")
     private String bankAccountNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE,
@@ -1326,9 +1451,12 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE,
+                          value = "Supplier's bank's international code (such as a SWIFT code)")
+    @MsMasking("default()")
     private String bankInternationalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAYMENT_DAYS,
@@ -1336,18 +1464,22 @@ public abstract class MappedSupplier {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_DAYS,
+                          value = "Number of days for payment of an invoice (ie payment terms)")
     private Integer paymentDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
+                          value = "Internal comments (not exposed outside organization)")
     private String internalComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -1357,9 +1489,10 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_PHONE_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER, value = "Phone number")
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -1369,9 +1502,10 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_FAX_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_FAX_NUMBER, value = "Fax number")
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
@@ -1381,9 +1515,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_WEBSITE_URL
     )
+    @MsDescription.Column(name = COLUMN_NAME_WEBSITE_URL,
+                          value = "URL for the website for this supplier")
     private String websiteUrl;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -1393,9 +1529,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
+                          value = "First delivery address line for the supplier")
     private String deliveryAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
@@ -1404,9 +1542,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
+                          value = "Second delivery address line for the supplier")
     private String deliveryAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -1416,9 +1556,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
+                          value = "Delivery postal code for the supplier")
     private String deliveryPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
@@ -1426,9 +1568,11 @@ public abstract class MappedSupplier {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_LOCATION,
+                          value = "Geographic location for the supplier's office/warehouse")
     private Geography deliveryLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -1438,9 +1582,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
+                          value = "First postal address line for the supplier")
     private String postalAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
@@ -1449,9 +1595,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
+                          value = "Second postal address line for the supplier")
     private String postalAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -1461,9 +1609,11 @@ public abstract class MappedSupplier {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
+                          value = "Postal code for the supplier when sending by mail")
     private String postalPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1474,7 +1624,7 @@ public abstract class MappedSupplier {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -1485,7 +1635,7 @@ public abstract class MappedSupplier {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

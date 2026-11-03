@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +42,18 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_ITEM_ID}, {@value #COLUMN_NAME_WAREHOUSE_ID}, {@value #COLUMN_NAME_TRANSACTION_TYPE_ID}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.InventoryTransaction}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code TransactionDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedInventoryTransaction {
@@ -54,7 +68,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String TABLE_NAME = "InventoryTransaction";
 
-    // --------------------------------------------------------------------------------------------------- TransactionID
+    // ------------------------------------------------------------------------------- TransactionID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +80,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_ID = "transactionId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -78,7 +92,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ----------------------------------------------------------------------------------------------------- WarehouseID
+    // --------------------------------------------------------------------------------- WarehouseID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -90,7 +104,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
 
-    // ----------------------------------------------------------------------------------------------- TransactionTypeID
+    // --------------------------------------------------------------------------- TransactionTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -103,7 +117,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE_ID = "transactionTypeId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -125,7 +139,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCost
+    // ------------------------------------------------------------------------------------ UnitCost
 
     /**
      * The name of the {@code decimal(18, 4)} column. The value is {@value}.
@@ -147,7 +161,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_UNIT_COST = "unitCost";
 
-    // ------------------------------------------------------------------------------------------------- ReferenceNumber
+    // ----------------------------------------------------------------------------- ReferenceNumber
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -164,7 +178,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_NUMBER = "referenceNumber";
 
-    // --------------------------------------------------------------------------------------------------- ReferenceType
+    // ------------------------------------------------------------------------------- ReferenceType
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -181,7 +195,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_TYPE = "referenceType";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -193,7 +207,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ------------------------------------------------------------------------------------------------- TransactionDate
+    // ----------------------------------------------------------------------------- TransactionDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -205,7 +219,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_DATE = "transactionDate";
 
-    // ------------------------------------------------------------------------------------------------------- CreatedBy
+    // ----------------------------------------------------------------------------------- CreatedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -222,7 +236,7 @@ public abstract class MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_CREATED_BY = "createdBy";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -231,7 +245,7 @@ public abstract class MappedInventoryTransaction {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -279,7 +293,7 @@ public abstract class MappedInventoryTransaction {
         return Objects.hash(transactionId);
     }
 
-    // --------------------------------------------------------------------------------------------------- transactionId
+    // ------------------------------------------------------------------------------- transactionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute.
@@ -299,7 +313,7 @@ public abstract class MappedInventoryTransaction {
         this.transactionId = transactionId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -320,7 +334,7 @@ public abstract class MappedInventoryTransaction {
         this.itemId = itemId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- warehouseId
+    // --------------------------------------------------------------------------------- warehouseId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
@@ -341,7 +355,7 @@ public abstract class MappedInventoryTransaction {
         this.warehouseId = warehouseId;
     }
 
-    // ----------------------------------------------------------------------------------------------- transactionTypeId
+    // --------------------------------------------------------------------------- transactionTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
@@ -363,7 +377,7 @@ public abstract class MappedInventoryTransaction {
         this.transactionTypeId = transactionTypeId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -383,7 +397,7 @@ public abstract class MappedInventoryTransaction {
         this.quantity = quantity;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCost
+    // ------------------------------------------------------------------------------------ unitCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_COST} attribute.
@@ -403,7 +417,7 @@ public abstract class MappedInventoryTransaction {
         this.unitCost = unitCost;
     }
 
-    // ------------------------------------------------------------------------------------------------- referenceNumber
+    // ----------------------------------------------------------------------------- referenceNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFERENCE_NUMBER} attribute.
@@ -423,7 +437,7 @@ public abstract class MappedInventoryTransaction {
         this.referenceNumber = referenceNumber;
     }
 
-    // --------------------------------------------------------------------------------------------------- referenceType
+    // ------------------------------------------------------------------------------- referenceType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFERENCE_TYPE} attribute.
@@ -443,7 +457,7 @@ public abstract class MappedInventoryTransaction {
         this.referenceType = referenceType;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -463,7 +477,7 @@ public abstract class MappedInventoryTransaction {
         this.notes = notes;
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionDate
+    // ----------------------------------------------------------------------------- transactionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute.
@@ -483,7 +497,7 @@ public abstract class MappedInventoryTransaction {
         this.transactionDate = transactionDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- createdBy
+    // ----------------------------------------------------------------------------------- createdBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_BY} attribute.
@@ -503,7 +517,7 @@ public abstract class MappedInventoryTransaction {
         this.createdBy = createdBy;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -515,7 +529,7 @@ public abstract class MappedInventoryTransaction {
     )
     private Integer transactionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -526,7 +540,7 @@ public abstract class MappedInventoryTransaction {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -537,7 +551,7 @@ public abstract class MappedInventoryTransaction {
     )
     private Integer warehouseId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -548,7 +562,7 @@ public abstract class MappedInventoryTransaction {
     )
     private Integer transactionTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
@@ -561,7 +575,7 @@ public abstract class MappedInventoryTransaction {
     )
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_COST - COLUMN_SCALE_UNIT_COST, fraction = COLUMN_SCALE_UNIT_COST)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_COST,
@@ -573,7 +587,7 @@ public abstract class MappedInventoryTransaction {
     )
     private BigDecimal unitCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REFERENCE_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REFERENCE_NUMBER,
@@ -584,7 +598,7 @@ public abstract class MappedInventoryTransaction {
     )
     private String referenceNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REFERENCE_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REFERENCE_TYPE,
@@ -595,7 +609,7 @@ public abstract class MappedInventoryTransaction {
     )
     private String referenceType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -604,16 +618,17 @@ public abstract class MappedInventoryTransaction {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TRANSACTION_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime transactionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_BY,

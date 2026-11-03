@@ -23,15 +23,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedWarehouse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.Warehouse} table.
  */
 @Entity(name = "DboWarehouse")
-@Table(schema = MappedWarehouse.TABLE_SCHEMA, name = MappedWarehouse.TABLE_NAME)
+@Table(schema = MappedWarehouse.TABLE_SCHEMA,
+       name = MappedWarehouse.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               Warehouse.COLUMN_NAME_WAREHOUSE_CODE
+                       }
+               )
+       }
+)
 public class Warehouse extends MappedWarehouse {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

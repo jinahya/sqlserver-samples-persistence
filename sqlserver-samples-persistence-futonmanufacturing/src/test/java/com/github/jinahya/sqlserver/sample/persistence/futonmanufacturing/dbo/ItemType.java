@@ -23,15 +23,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedItemType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.ItemType} table.
  */
 @Entity(name = "DboItemType")
-@Table(schema = MappedItemType.TABLE_SCHEMA, name = MappedItemType.TABLE_NAME)
+@Table(schema = MappedItemType.TABLE_SCHEMA,
+       name = MappedItemType.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               ItemType.COLUMN_NAME_TYPE_CODE
+                       }
+               )
+       }
+)
 public class ItemType extends MappedItemType {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

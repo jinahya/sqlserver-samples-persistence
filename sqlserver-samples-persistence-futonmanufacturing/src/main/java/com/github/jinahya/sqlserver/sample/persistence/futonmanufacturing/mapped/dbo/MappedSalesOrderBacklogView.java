@@ -54,7 +54,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String TABLE_NAME = "vw_SalesOrderBacklog";
 
-    // ----------------------------------------------------------------------------------------------------- OrderNumber
+    // --------------------------------------------------------------------------------- OrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_NUMBER = "orderNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerCode
+    // -------------------------------------------------------------------------------- CustomerCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CODE = "customerCode";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseName
+    // ------------------------------------------------------------------------------- WarehouseName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_NAME = "warehouseName";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -151,7 +151,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // ------------------------------------------------------------------------------------------- RequestedDeliveryDate
+    // ----------------------------------------------------------------------- RequestedDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -164,7 +164,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_REQUESTED_DELIVERY_DATE = "requestedDeliveryDate";
 
-    // -------------------------------------------------------------------------------------------------------- ShipDate
+    // ------------------------------------------------------------------------------------ ShipDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -176,7 +176,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_SHIP_DATE = "shipDate";
 
-    // -------------------------------------------------------------------------------------------------------- DaysOpen
+    // ------------------------------------------------------------------------------------ DaysOpen
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -188,7 +188,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_OPEN = "daysOpen";
 
-    // ---------------------------------------------------------------------------------------------------- DaysUntilDue
+    // -------------------------------------------------------------------------------- DaysUntilDue
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -200,7 +200,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_UNTIL_DUE = "daysUntilDue";
 
-    // ------------------------------------------------------------------------------------------------------- LineItems
+    // ----------------------------------------------------------------------------------- LineItems
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -212,7 +212,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_LINE_ITEMS = "lineItems";
 
-    // -------------------------------------------------------------------------------------------- TotalQuantityOrdered
+    // ------------------------------------------------------------------------ TotalQuantityOrdered
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_QUANTITY_ORDERED = "totalQuantityOrdered";
 
-    // -------------------------------------------------------------------------------------------- TotalQuantityShipped
+    // ------------------------------------------------------------------------ TotalQuantityShipped
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -258,7 +258,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_QUANTITY_SHIPPED = "totalQuantityShipped";
 
-    // ------------------------------------------------------------------------------------------------- QuantityBacklog
+    // ----------------------------------------------------------------------------- QuantityBacklog
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -280,7 +280,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_BACKLOG = "quantityBacklog";
 
-    // ----------------------------------------------------------------------------------------------------- TotalAmount
+    // --------------------------------------------------------------------------------- TotalAmount
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -302,7 +302,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_AMOUNT = "totalAmount";
 
-    // ------------------------------------------------------------------------------------------------------ OrderValue
+    // ---------------------------------------------------------------------------------- OrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -324,7 +324,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_VALUE = "orderValue";
 
-    // ---------------------------------------------------------------------------------------------------- BacklogValue
+    // -------------------------------------------------------------------------------- BacklogValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -346,7 +346,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_BACKLOG_VALUE = "backlogValue";
 
-    // ------------------------------------------------------------------------------------------------- PercentComplete
+    // ----------------------------------------------------------------------------- PercentComplete
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -368,7 +368,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_PERCENT_COMPLETE = "percentComplete";
 
-    // ----------------------------------------------------------------------------------------------- FulfillmentStatus
+    // --------------------------------------------------------------------------- FulfillmentStatus
 
     /**
      * The name of the {@code varchar(9), NOT NULL} column. The value is {@value}.
@@ -385,7 +385,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     public static final String ATTRIBUTE_NAME_FULFILLMENT_STATUS = "fulfillmentStatus";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -394,7 +394,7 @@ public abstract class MappedSalesOrderBacklogView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -450,7 +450,7 @@ public abstract class MappedSalesOrderBacklogView {
         return Objects.hash(orderNumber);
     }
 
-    // ----------------------------------------------------------------------------------------------------- orderNumber
+    // --------------------------------------------------------------------------------- orderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_NUMBER} attribute.
@@ -470,7 +470,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.orderNumber = orderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -490,7 +490,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.status = status;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -510,7 +510,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.customerName = customerName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerCode
+    // -------------------------------------------------------------------------------- customerCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CODE} attribute.
@@ -530,7 +530,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.customerCode = customerCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseName
+    // ------------------------------------------------------------------------------- warehouseName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_NAME} attribute.
@@ -550,7 +550,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.warehouseName = warehouseName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -570,7 +570,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.orderDate = orderDate;
     }
 
-    // ------------------------------------------------------------------------------------------- requestedDeliveryDate
+    // ----------------------------------------------------------------------- requestedDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REQUESTED_DELIVERY_DATE} attribute.
@@ -590,7 +590,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.requestedDeliveryDate = requestedDeliveryDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- shipDate
+    // ------------------------------------------------------------------------------------ shipDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute.
@@ -610,7 +610,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.shipDate = shipDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- daysOpen
+    // ------------------------------------------------------------------------------------ daysOpen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_OPEN} attribute.
@@ -630,7 +630,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.daysOpen = daysOpen;
     }
 
-    // ---------------------------------------------------------------------------------------------------- daysUntilDue
+    // -------------------------------------------------------------------------------- daysUntilDue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_UNTIL_DUE} attribute.
@@ -650,7 +650,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.daysUntilDue = daysUntilDue;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineItems
+    // ----------------------------------------------------------------------------------- lineItems
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute.
@@ -670,7 +670,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.lineItems = lineItems;
     }
 
-    // -------------------------------------------------------------------------------------------- totalQuantityOrdered
+    // ------------------------------------------------------------------------ totalQuantityOrdered
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_ORDERED} attribute.
@@ -690,7 +690,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.totalQuantityOrdered = totalQuantityOrdered;
     }
 
-    // -------------------------------------------------------------------------------------------- totalQuantityShipped
+    // ------------------------------------------------------------------------ totalQuantityShipped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_QUANTITY_SHIPPED} attribute.
@@ -710,7 +710,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.totalQuantityShipped = totalQuantityShipped;
     }
 
-    // ------------------------------------------------------------------------------------------------- quantityBacklog
+    // ----------------------------------------------------------------------------- quantityBacklog
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_BACKLOG} attribute.
@@ -730,7 +730,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.quantityBacklog = quantityBacklog;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalAmount
+    // --------------------------------------------------------------------------------- totalAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute.
@@ -750,7 +750,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.totalAmount = totalAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderValue
+    // ---------------------------------------------------------------------------------- orderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_VALUE} attribute.
@@ -770,7 +770,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.orderValue = orderValue;
     }
 
-    // ---------------------------------------------------------------------------------------------------- backlogValue
+    // -------------------------------------------------------------------------------- backlogValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BACKLOG_VALUE} attribute.
@@ -790,7 +790,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.backlogValue = backlogValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- percentComplete
+    // ----------------------------------------------------------------------------- percentComplete
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERCENT_COMPLETE} attribute.
@@ -810,7 +810,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.percentComplete = percentComplete;
     }
 
-    // ----------------------------------------------------------------------------------------------- fulfillmentStatus
+    // --------------------------------------------------------------------------- fulfillmentStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULFILLMENT_STATUS} attribute.
@@ -830,7 +830,7 @@ public abstract class MappedSalesOrderBacklogView {
         this.fulfillmentStatus = fulfillmentStatus;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ORDER_NUMBER)
     @NotNull
@@ -843,7 +843,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private String orderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
@@ -856,7 +856,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -869,7 +869,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
@@ -882,7 +882,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private String customerCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
@@ -895,7 +895,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private String warehouseName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -906,7 +906,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private LocalDate orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REQUESTED_DELIVERY_DATE,
@@ -916,7 +916,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private LocalDate requestedDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHIP_DATE,
@@ -926,7 +926,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private LocalDate shipDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_OPEN,
@@ -936,7 +936,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private Integer daysOpen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_DUE,
@@ -946,7 +946,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private Integer daysUntilDue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LINE_ITEMS,
@@ -956,7 +956,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private Integer lineItems;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED - COLUMN_SCALE_TOTAL_QUANTITY_ORDERED,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED)
@@ -970,7 +970,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal totalQuantityOrdered;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED - COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED)
@@ -984,7 +984,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal totalQuantityShipped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_BACKLOG - COLUMN_SCALE_QUANTITY_BACKLOG,
             fraction = COLUMN_SCALE_QUANTITY_BACKLOG)
@@ -998,7 +998,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal quantityBacklog;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
@@ -1011,7 +1011,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal totalAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_VALUE - COLUMN_SCALE_ORDER_VALUE, fraction = COLUMN_SCALE_ORDER_VALUE)
     @Basic(optional = true)
@@ -1024,7 +1024,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal orderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_BACKLOG_VALUE - COLUMN_SCALE_BACKLOG_VALUE,
             fraction = COLUMN_SCALE_BACKLOG_VALUE)
@@ -1038,7 +1038,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal backlogValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
             fraction = COLUMN_SCALE_PERCENT_COMPLETE)
@@ -1052,7 +1052,7 @@ public abstract class MappedSalesOrderBacklogView {
     )
     private BigDecimal percentComplete;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULFILLMENT_STATUS)
     @NotNull

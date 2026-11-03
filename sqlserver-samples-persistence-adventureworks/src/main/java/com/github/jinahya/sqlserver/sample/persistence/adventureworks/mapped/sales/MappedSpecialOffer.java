@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -40,8 +42,54 @@ import java.util.UUID;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SpecialOffer} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SpecialOffer}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SpecialOfferID}</th>
+ *     <td>Primary key for SpecialOffer records.</td></tr>
+ * <tr><th scope="row">{@code Description}</th><td>Discount description.</td></tr>
+ * <tr><th scope="row">{@code DiscountPct}</th><td>Discount precentage.</td></tr>
+ * <tr><th scope="row">{@code Type}</th><td>Discount type category.</td></tr>
+ * <tr><th scope="row">{@code Category}</th>
+ *     <td>Group the discount applies to such as Reseller or Customer.</td></tr>
+ * <tr><th scope="row">{@code StartDate}</th><td>Discount start date.</td></tr>
+ * <tr><th scope="row">{@code EndDate}</th><td>Discount end date.</td></tr>
+ * <tr><th scope="row">{@code MinQty}</th><td>Minimum discount percent allowed.</td></tr>
+ * <tr><th scope="row">{@code MaxQty}</th><td>Maximum discount percent allowed.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SpecialOffer}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DiscountPct}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code MinQty}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSpecialOffer.TABLE_SCHEMA,
+        table = MappedSpecialOffer.TABLE_NAME,
+        value = "Sale discounts lookup table."
+)
 public abstract class MappedSpecialOffer {
 
     /**
@@ -54,7 +102,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String TABLE_NAME = "SpecialOffer";
 
-    // -------------------------------------------------------------------------------------------------- SpecialOfferID
+    // ------------------------------------------------------------------------------ SpecialOfferID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +114,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_ID = "specialOfferId";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -83,7 +131,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // ----------------------------------------------------------------------------------------------------- DiscountPct
+    // --------------------------------------------------------------------------------- DiscountPct
 
     /**
      * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -101,7 +149,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PCT = "discountPct";
 
-    // ------------------------------------------------------------------------------------------------------------ Type
+    // ---------------------------------------------------------------------------------------- Type
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -118,7 +166,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_TYPE = "type";
 
-    // -------------------------------------------------------------------------------------------------------- Category
+    // ------------------------------------------------------------------------------------ Category
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -135,7 +183,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_CATEGORY = "category";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -147,7 +195,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -159,7 +207,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // ---------------------------------------------------------------------------------------------------------- MinQty
+    // -------------------------------------------------------------------------------------- MinQty
 
     /**
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -182,7 +230,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_MIN_QTY = "minQty";
 
-    // ---------------------------------------------------------------------------------------------------------- MaxQty
+    // -------------------------------------------------------------------------------------- MaxQty
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -205,7 +253,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_MAX_QTY = "maxQty";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -217,7 +265,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -229,7 +277,7 @@ public abstract class MappedSpecialOffer {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -238,7 +286,7 @@ public abstract class MappedSpecialOffer {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -286,7 +334,7 @@ public abstract class MappedSpecialOffer {
         return Objects.hash(specialOfferId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
@@ -308,7 +356,7 @@ public abstract class MappedSpecialOffer {
         return !endDate.isBefore(startDate);
     }
 
-    // -------------------------------------------------------------------------------------------------- specialOfferId
+    // ------------------------------------------------------------------------------ specialOfferId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
@@ -328,7 +376,7 @@ public abstract class MappedSpecialOffer {
         this.specialOfferId = specialOfferId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -348,7 +396,7 @@ public abstract class MappedSpecialOffer {
         this.description = description;
     }
 
-    // ----------------------------------------------------------------------------------------------------- discountPct
+    // --------------------------------------------------------------------------------- discountPct
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute.
@@ -368,7 +416,7 @@ public abstract class MappedSpecialOffer {
         this.discountPct = discountPct;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ type
+    // ---------------------------------------------------------------------------------------- type
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TYPE} attribute.
@@ -388,7 +436,7 @@ public abstract class MappedSpecialOffer {
         this.type = type;
     }
 
-    // -------------------------------------------------------------------------------------------------------- category
+    // ------------------------------------------------------------------------------------ category
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CATEGORY} attribute.
@@ -408,7 +456,7 @@ public abstract class MappedSpecialOffer {
         this.category = category;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -428,7 +476,7 @@ public abstract class MappedSpecialOffer {
         this.startDate = startDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -448,7 +496,7 @@ public abstract class MappedSpecialOffer {
         this.endDate = endDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- minQty
+    // -------------------------------------------------------------------------------------- minQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MIN_QTY} attribute.
@@ -468,7 +516,7 @@ public abstract class MappedSpecialOffer {
         this.minQty = minQty;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- maxQty
+    // -------------------------------------------------------------------------------------- maxQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MAX_QTY} attribute.
@@ -488,7 +536,7 @@ public abstract class MappedSpecialOffer {
         this.maxQty = maxQty;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -508,7 +556,7 @@ public abstract class MappedSpecialOffer {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -528,7 +576,7 @@ public abstract class MappedSpecialOffer {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -538,9 +586,11 @@ public abstract class MappedSpecialOffer {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
+                          value = "Primary key for SpecialOffer records.")
     private Integer specialOfferId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
@@ -550,9 +600,10 @@ public abstract class MappedSpecialOffer {
             updatable = true,
             length = COLUMN_LENGTH_DESCRIPTION
     )
+    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION, value = "Discount description.")
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_DiscountPct: ([DiscountPct]>=(0.00))
     @DecimalMin(COLUMN_MIN_DISCOUNT_PCT)
     @NotNull
@@ -562,9 +613,11 @@ public abstract class MappedSpecialOffer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PCT, value = "Discount precentage.")
+    @MsDefault(name = "DF_SpecialOffer_DiscountPct", value = "((0.00))")
     private BigDecimal discountPct;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TYPE)
     @NotNull
     @Basic(optional = false)
@@ -574,9 +627,10 @@ public abstract class MappedSpecialOffer {
             updatable = true,
             length = COLUMN_LENGTH_TYPE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TYPE, value = "Discount type category.")
     private String type;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CATEGORY)
     @NotNull
     @Basic(optional = false)
@@ -586,9 +640,11 @@ public abstract class MappedSpecialOffer {
             updatable = true,
             length = COLUMN_LENGTH_CATEGORY
     )
+    @MsDescription.Column(name = COLUMN_NAME_CATEGORY,
+                          value = "Group the discount applies to such as Reseller or Customer.")
     private String category;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_START_DATE,
@@ -596,9 +652,10 @@ public abstract class MappedSpecialOffer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_START_DATE, value = "Discount start date.")
     private LocalDateTime startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_END_DATE,
@@ -606,9 +663,10 @@ public abstract class MappedSpecialOffer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_DATE, value = "Discount end date.")
     private LocalDateTime endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_MinQty: ([MinQty]>=(0))
     @Max(COLUMN_MAX_MIN_QTY)
     @Min(COLUMN_MIN_MIN_QTY)
@@ -619,9 +677,11 @@ public abstract class MappedSpecialOffer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MIN_QTY, value = "Minimum discount percent allowed.")
+    @MsDefault(name = "DF_SpecialOffer_MinQty", value = "((0))")
     private Integer minQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_MaxQty: ([MaxQty]>=(0))
     @Max(COLUMN_MAX_MAX_QTY)
     @Min(COLUMN_MIN_MAX_QTY)
@@ -631,19 +691,24 @@ public abstract class MappedSpecialOffer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MAX_QTY, value = "Maximum discount percent allowed.")
     private Integer maxQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_SpecialOffer_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -652,6 +717,9 @@ public abstract class MappedSpecialOffer {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_SpecialOffer_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

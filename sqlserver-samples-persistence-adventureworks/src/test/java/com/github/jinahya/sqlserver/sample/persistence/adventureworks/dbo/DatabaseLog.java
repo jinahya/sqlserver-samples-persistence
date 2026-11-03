@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedDatabaseLog.TABLE_SCHEMA, name = MappedDatabaseLog.TABLE_NAME)
 public class DatabaseLog extends MappedDatabaseLog {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

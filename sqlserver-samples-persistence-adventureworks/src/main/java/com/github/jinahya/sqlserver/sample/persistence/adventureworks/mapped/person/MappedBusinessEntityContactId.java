@@ -35,7 +35,7 @@ public class MappedBusinessEntityContactId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedBusinessEntityContactId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -73,7 +73,7 @@ public class MappedBusinessEntityContactId implements Serializable {
         return Objects.hash(businessEntityId, personId, contactTypeId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -93,7 +93,7 @@ public class MappedBusinessEntityContactId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- personId
+    // ------------------------------------------------------------------------------------ personId
 
     /**
      * Returns current value of the {@code personId} attribute.
@@ -113,7 +113,7 @@ public class MappedBusinessEntityContactId implements Serializable {
         this.personId = personId;
     }
 
-    // --------------------------------------------------------------------------------------------------- contactTypeId
+    // ------------------------------------------------------------------------------- contactTypeId
 
     /**
      * Returns current value of the {@code contactTypeId} attribute.
@@ -133,11 +133,20 @@ public class MappedBusinessEntityContactId implements Serializable {
         this.contactTypeId = contactTypeId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 
+    /**
+     * The value of the {@code personId} attribute.
+     */
     private Integer personId;
 
+    /**
+     * The value of the {@code contactTypeId} attribute.
+     */
     private Integer contactTypeId;
 }
 

@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +45,72 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_PAYMENT_METHOD_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.CustomerTransactions}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CustomerTransactionID}</th>
+ *     <td>Numeric ID used to refer to a customer transaction within the database</td></tr>
+ * <tr><th scope="row">{@code CustomerID}</th><td>Customer for this transaction</td></tr>
+ * <tr><th scope="row">{@code TransactionTypeID}</th><td>Type of transaction</td></tr>
+ * <tr><th scope="row">{@code InvoiceID}</th>
+ *     <td>ID of an invoice (for transactions associated with an invoice)</td></tr>
+ * <tr><th scope="row">{@code PaymentMethodID}</th>
+ *     <td>ID of a payment method (for transactions involving payments)</td></tr>
+ * <tr><th scope="row">{@code TransactionDate}</th><td>Date for the transaction</td></tr>
+ * <tr><th scope="row">{@code AmountExcludingTax}</th>
+ *     <td>Transaction amount (excluding tax)</td></tr>
+ * <tr><th scope="row">{@code TaxAmount}</th><td>Tax amount calculated</td></tr>
+ * <tr><th scope="row">{@code TransactionAmount}</th>
+ *     <td>Transaction amount (including tax)</td></tr>
+ * <tr><th scope="row">{@code OutstandingBalance}</th>
+ *     <td>Amount still outstanding for this transaction</td></tr>
+ * <tr><th scope="row">{@code FinalizationDate}</th>
+ *     <td>Date that this transaction was finalized (if it has been)</td></tr>
+ * <tr><th scope="row">{@code IsFinalized}</th>
+ *     <td>Is this transaction finalized (invoices, credits and payments have been
+ *     matched)</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.CustomerTransactions}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CustomerTransactionID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[TransactionID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Sales.CustomerTransactions}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsFinalized}</th>
+ *     <td>{@code (case when [FinalizationDate] IS NULL then CONVERT([bit],(0)) else CONVERT([bit],(1)) end)}</td>
+ *     <td>{@code true}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCustomerTransaction.TABLE_SCHEMA,
+        table = MappedCustomerTransaction.TABLE_NAME,
+        value = "All financial transactions that are customer-related"
+)
 public abstract class MappedCustomerTransaction {
 
     /**
@@ -56,7 +123,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String TABLE_NAME = "CustomerTransactions";
 
-    // ------------------------------------------------------------------------------------------- CustomerTransactionID
+    // ----------------------------------------------------------------------- CustomerTransactionID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.TransactionID, NOT NULL} column. The value is {@value}.
@@ -69,7 +136,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TRANSACTION_ID = "customerTransactionId";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -81,7 +148,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ----------------------------------------------------------------------------------------------- TransactionTypeID
+    // --------------------------------------------------------------------------- TransactionTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +161,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE_ID = "transactionTypeId";
 
-    // ------------------------------------------------------------------------------------------------------- InvoiceID
+    // ----------------------------------------------------------------------------------- InvoiceID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +173,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_INVOICE_ID = "invoiceId";
 
-    // ------------------------------------------------------------------------------------------------- PaymentMethodID
+    // ----------------------------------------------------------------------------- PaymentMethodID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -118,7 +185,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_METHOD_ID = "paymentMethodId";
 
-    // ------------------------------------------------------------------------------------------------- TransactionDate
+    // ----------------------------------------------------------------------------- TransactionDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -130,7 +197,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_DATE = "transactionDate";
 
-    // ---------------------------------------------------------------------------------------------- AmountExcludingTax
+    // -------------------------------------------------------------------------- AmountExcludingTax
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -153,7 +220,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_AMOUNT_EXCLUDING_TAX = "amountExcludingTax";
 
-    // ------------------------------------------------------------------------------------------------------- TaxAmount
+    // ----------------------------------------------------------------------------------- TaxAmount
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -175,7 +242,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_TAX_AMOUNT = "taxAmount";
 
-    // ----------------------------------------------------------------------------------------------- TransactionAmount
+    // --------------------------------------------------------------------------- TransactionAmount
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -197,7 +264,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_AMOUNT = "transactionAmount";
 
-    // ---------------------------------------------------------------------------------------------- OutstandingBalance
+    // -------------------------------------------------------------------------- OutstandingBalance
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -220,7 +287,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_OUTSTANDING_BALANCE = "outstandingBalance";
 
-    // ------------------------------------------------------------------------------------------------ FinalizationDate
+    // ---------------------------------------------------------------------------- FinalizationDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -232,12 +299,12 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_FINALIZATION_DATE = "finalizationDate";
 
-    // ----------------------------------------------------------------------------------------------------- IsFinalized
+    // --------------------------------------------------------------------------------- IsFinalized
 
     /**
      * The name of the
-     * {@code bit, computed as (case when [FinalizationDate] IS NULL then CONVERT([bit],(0)) else CONVERT([bit],(1))
-     * end)} column. The value is {@value}.
+     * {@code bit, computed as (case when [FinalizationDate] IS NULL then CONVERT([bit],(0))
+     * else CONVERT([bit],(1)) end)} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_IS_FINALIZED = "IsFinalized";
 
@@ -246,7 +313,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_IS_FINALIZED = "isFinalized";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -258,7 +325,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -270,7 +337,7 @@ public abstract class MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -279,7 +346,7 @@ public abstract class MappedCustomerTransaction {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -330,7 +397,7 @@ public abstract class MappedCustomerTransaction {
         return Objects.hash(customerTransactionId);
     }
 
-    // ------------------------------------------------------------------------------------------- customerTransactionId
+    // ----------------------------------------------------------------------- customerTransactionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TRANSACTION_ID} attribute.
@@ -350,7 +417,7 @@ public abstract class MappedCustomerTransaction {
         this.customerTransactionId = customerTransactionId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -371,7 +438,7 @@ public abstract class MappedCustomerTransaction {
         this.customerId = customerId;
     }
 
-    // ----------------------------------------------------------------------------------------------- transactionTypeId
+    // --------------------------------------------------------------------------- transactionTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
@@ -393,7 +460,7 @@ public abstract class MappedCustomerTransaction {
         this.transactionTypeId = transactionTypeId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- invoiceId
+    // ----------------------------------------------------------------------------------- invoiceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute.
@@ -414,7 +481,7 @@ public abstract class MappedCustomerTransaction {
         this.invoiceId = invoiceId;
     }
 
-    // ------------------------------------------------------------------------------------------------- paymentMethodId
+    // ----------------------------------------------------------------------------- paymentMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute.
@@ -436,7 +503,7 @@ public abstract class MappedCustomerTransaction {
         this.paymentMethodId = paymentMethodId;
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionDate
+    // ----------------------------------------------------------------------------- transactionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute.
@@ -456,7 +523,7 @@ public abstract class MappedCustomerTransaction {
         this.transactionDate = transactionDate;
     }
 
-    // ---------------------------------------------------------------------------------------------- amountExcludingTax
+    // -------------------------------------------------------------------------- amountExcludingTax
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AMOUNT_EXCLUDING_TAX} attribute.
@@ -476,7 +543,7 @@ public abstract class MappedCustomerTransaction {
         this.amountExcludingTax = amountExcludingTax;
     }
 
-    // ------------------------------------------------------------------------------------------------------- taxAmount
+    // ----------------------------------------------------------------------------------- taxAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute.
@@ -496,7 +563,7 @@ public abstract class MappedCustomerTransaction {
         this.taxAmount = taxAmount;
     }
 
-    // ----------------------------------------------------------------------------------------------- transactionAmount
+    // --------------------------------------------------------------------------- transactionAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_AMOUNT} attribute.
@@ -516,7 +583,7 @@ public abstract class MappedCustomerTransaction {
         this.transactionAmount = transactionAmount;
     }
 
-    // ---------------------------------------------------------------------------------------------- outstandingBalance
+    // -------------------------------------------------------------------------- outstandingBalance
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OUTSTANDING_BALANCE} attribute.
@@ -536,7 +603,7 @@ public abstract class MappedCustomerTransaction {
         this.outstandingBalance = outstandingBalance;
     }
 
-    // ------------------------------------------------------------------------------------------------ finalizationDate
+    // ---------------------------------------------------------------------------- finalizationDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FINALIZATION_DATE} attribute.
@@ -556,7 +623,7 @@ public abstract class MappedCustomerTransaction {
         this.finalizationDate = finalizationDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- isFinalized
+    // --------------------------------------------------------------------------------- isFinalized
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_FINALIZED} attribute.
@@ -577,7 +644,7 @@ public abstract class MappedCustomerTransaction {
         this.isFinalized = isFinalized;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -599,7 +666,7 @@ public abstract class MappedCustomerTransaction {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -619,7 +686,7 @@ public abstract class MappedCustomerTransaction {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.TransactionID", schema = "Sequences",
@@ -631,9 +698,14 @@ public abstract class MappedCustomerTransaction {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID,
+                          value = "Numeric ID used to refer to a customer transaction within "
+                                  + "the database")
+    @MsDefault(name = "DF_Sales_CustomerTransactions_CustomerTransactionID",
+               value = "(NEXT VALUE FOR [Sequences].[TransactionID])")
     private Integer customerTransactionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -642,9 +714,10 @@ public abstract class MappedCustomerTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this transaction")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -653,9 +726,10 @@ public abstract class MappedCustomerTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, value = "Type of transaction")
     private Integer transactionTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVOICE_ID,
@@ -663,9 +737,11 @@ public abstract class MappedCustomerTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
+                          value = "ID of an invoice (for transactions associated with an invoice)")
     private Integer invoiceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
@@ -673,9 +749,11 @@ public abstract class MappedCustomerTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
+                          value = "ID of a payment method (for transactions involving payments)")
     private Integer paymentMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_DATE,
@@ -683,9 +761,10 @@ public abstract class MappedCustomerTransaction {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE, value = "Date for the transaction")
     private LocalDate transactionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX - COLUMN_SCALE_AMOUNT_EXCLUDING_TAX,
             fraction = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX)
     @NotNull
@@ -697,9 +776,11 @@ public abstract class MappedCustomerTransaction {
             precision = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX,
             scale = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX
     )
+    @MsDescription.Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX,
+                          value = "Transaction amount (excluding tax)")
     private BigDecimal amountExcludingTax;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
@@ -710,9 +791,10 @@ public abstract class MappedCustomerTransaction {
             precision = COLUMN_PRECISION_TAX_AMOUNT,
             scale = COLUMN_SCALE_TAX_AMOUNT
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAX_AMOUNT, value = "Tax amount calculated")
     private BigDecimal taxAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TRANSACTION_AMOUNT - COLUMN_SCALE_TRANSACTION_AMOUNT,
             fraction = COLUMN_SCALE_TRANSACTION_AMOUNT)
     @NotNull
@@ -724,9 +806,11 @@ public abstract class MappedCustomerTransaction {
             precision = COLUMN_PRECISION_TRANSACTION_AMOUNT,
             scale = COLUMN_SCALE_TRANSACTION_AMOUNT
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_AMOUNT,
+                          value = "Transaction amount (including tax)")
     private BigDecimal transactionAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_OUTSTANDING_BALANCE - COLUMN_SCALE_OUTSTANDING_BALANCE,
             fraction = COLUMN_SCALE_OUTSTANDING_BALANCE)
     @NotNull
@@ -738,18 +822,22 @@ public abstract class MappedCustomerTransaction {
             precision = COLUMN_PRECISION_OUTSTANDING_BALANCE,
             scale = COLUMN_SCALE_OUTSTANDING_BALANCE
     )
+    @MsDescription.Column(name = COLUMN_NAME_OUTSTANDING_BALANCE,
+                          value = "Amount still outstanding for this transaction")
     private BigDecimal outstandingBalance;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FINALIZATION_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_FINALIZATION_DATE,
+                          value = "Date that this transaction was finalized (if it has been)")
     private LocalDate finalizationDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_IS_FINALIZED,
@@ -757,9 +845,15 @@ public abstract class MappedCustomerTransaction {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_FINALIZED,
+                          value = "Is this transaction finalized (invoices, credits and "
+                                  + "payments have been matched)")
+    @MsComputedColumn(value = "(case when [FinalizationDate] IS NULL then CONVERT([bit],(0)) else CONVERT([bit],(1)) "
+                              + "end)",
+                      persisted = true)
     private Boolean isFinalized;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -770,7 +864,7 @@ public abstract class MappedCustomerTransaction {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -778,6 +872,7 @@ public abstract class MappedCustomerTransaction {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Sales_CustomerTransactions_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

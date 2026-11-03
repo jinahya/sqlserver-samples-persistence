@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -32,8 +34,41 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.CountryRegionCurrency} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.CountryRegionCurrency}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CountryRegionCode}</th>
+ *     <td>ISO code for countries and regions. Foreign key to
+ *     CountryRegion.CountryRegionCode.</td></tr>
+ * <tr><th scope="row">{@code CurrencyCode}</th>
+ *     <td>ISO standard currency code. Foreign key to Currency.CurrencyCode.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.CountryRegionCurrency}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCountryRegionCurrency.TABLE_SCHEMA,
+        table = MappedCountryRegionCurrency.TABLE_NAME,
+        value = "Cross-reference table mapping ISO currency codes to a country or region."
+)
 public abstract class MappedCountryRegionCurrency {
 
     /**
@@ -46,7 +81,7 @@ public abstract class MappedCountryRegionCurrency {
      */
     public static final String TABLE_NAME = "CountryRegionCurrency";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionCode
+    // --------------------------------------------------------------------------- CountryRegionCode
 
     /**
      * The name of the {@code nvarchar(3), NOT NULL} column. The value is {@value}.
@@ -64,7 +99,7 @@ public abstract class MappedCountryRegionCurrency {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
-    // ---------------------------------------------------------------------------------------------------- CurrencyCode
+    // -------------------------------------------------------------------------------- CurrencyCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -81,7 +116,7 @@ public abstract class MappedCountryRegionCurrency {
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_CODE = "currencyCode";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -93,7 +128,7 @@ public abstract class MappedCountryRegionCurrency {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -102,7 +137,7 @@ public abstract class MappedCountryRegionCurrency {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -143,7 +178,7 @@ public abstract class MappedCountryRegionCurrency {
         return Objects.hash(countryRegionCode, currencyCode);
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionCode
+    // --------------------------------------------------------------------------- countryRegionCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
@@ -163,7 +198,7 @@ public abstract class MappedCountryRegionCurrency {
         this.countryRegionCode = countryRegionCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- currencyCode
+    // -------------------------------------------------------------------------------- currencyCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENCY_CODE} attribute.
@@ -183,7 +218,7 @@ public abstract class MappedCountryRegionCurrency {
         this.currencyCode = currencyCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -203,7 +238,7 @@ public abstract class MappedCountryRegionCurrency {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
@@ -214,9 +249,12 @@ public abstract class MappedCountryRegionCurrency {
             updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
+                          value = "ISO code for countries and regions. Foreign key to "
+                                  + "CountryRegion.CountryRegionCode.")
     private String countryRegionCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_CURRENCY_CODE)
     @NotNull
@@ -227,9 +265,12 @@ public abstract class MappedCountryRegionCurrency {
             updatable = false,
             length = COLUMN_LENGTH_CURRENCY_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_CODE,
+                          value = "ISO standard currency code. Foreign key to "
+                                  + "Currency.CurrencyCode.")
     private String currencyCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -238,6 +279,9 @@ public abstract class MappedCountryRegionCurrency {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_CountryRegionCurrency_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

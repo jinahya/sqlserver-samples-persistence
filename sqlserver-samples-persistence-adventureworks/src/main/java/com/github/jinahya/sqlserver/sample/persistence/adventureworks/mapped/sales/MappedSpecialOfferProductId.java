@@ -35,7 +35,7 @@ public class MappedSpecialOfferProductId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedSpecialOfferProductId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class MappedSpecialOfferProductId implements Serializable {
         return Objects.hash(specialOfferId, productId);
     }
 
-    // -------------------------------------------------------------------------------------------------- specialOfferId
+    // ------------------------------------------------------------------------------ specialOfferId
 
     /**
      * Returns current value of the {@code specialOfferId} attribute.
@@ -91,7 +91,7 @@ public class MappedSpecialOfferProductId implements Serializable {
         this.specialOfferId = specialOfferId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of the {@code productId} attribute.
@@ -111,9 +111,15 @@ public class MappedSpecialOfferProductId implements Serializable {
         this.productId = productId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code specialOfferId} attribute.
+     */
     private Integer specialOfferId;
 
+    /**
+     * The value of the {@code productId} attribute.
+     */
     private Integer productId;
 }
 

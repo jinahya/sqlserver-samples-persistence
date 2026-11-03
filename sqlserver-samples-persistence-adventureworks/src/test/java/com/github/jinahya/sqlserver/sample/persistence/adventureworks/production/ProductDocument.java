@@ -36,7 +36,7 @@ import java.util.Optional;
  */
 public class ProductDocument extends MappedProductDocument {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

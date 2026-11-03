@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -39,8 +41,56 @@ import java.util.UUID;
  * The {@value #COLUMN_NAME_COUNTRY_REGION_CODE}, {@value #COLUMN_NAME_TERRITORY_ID} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Person.StateProvince}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StateProvinceID}</th>
+ *     <td>Primary key for StateProvince records.</td></tr>
+ * <tr><th scope="row">{@code StateProvinceCode}</th>
+ *     <td>ISO standard state or province code.</td></tr>
+ * <tr><th scope="row">{@code CountryRegionCode}</th>
+ *     <td>ISO standard country or region code. Foreign key to
+ *     CountryRegion.CountryRegionCode.</td></tr>
+ * <tr><th scope="row">{@code IsOnlyStateProvinceFlag}</th>
+ *     <td>0 = StateProvinceCode exists. 1 = StateProvinceCode unavailable, using
+ *     CountryRegionCode.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>State or province description.</td></tr>
+ * <tr><th scope="row">{@code TerritoryID}</th>
+ *     <td>ID of the territory in which the state or province is located. Foreign key to
+ *     SalesTerritory.SalesTerritoryID.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Person.StateProvince}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsOnlyStateProvinceFlag}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedStateProvince.TABLE_SCHEMA,
+        table = MappedStateProvince.TABLE_NAME,
+        value = "State and province lookup table."
+)
 public abstract class MappedStateProvince {
 
     /**
@@ -53,7 +103,7 @@ public abstract class MappedStateProvince {
      */
     public static final String TABLE_NAME = "StateProvince";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +115,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceCode
+    // --------------------------------------------------------------------------- StateProvinceCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -83,7 +133,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_CODE = "stateProvinceCode";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionCode
+    // --------------------------------------------------------------------------- CountryRegionCode
 
     /**
      * The name of the {@code nvarchar(3), NOT NULL} column. The value is {@value}.
@@ -101,7 +151,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
-    // ----------------------------------------------------------------------------------------- IsOnlyStateProvinceFlag
+    // --------------------------------------------------------------------- IsOnlyStateProvinceFlag
 
     /**
      * The name of the {@code Flag (bit), DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -114,7 +164,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_IS_ONLY_STATE_PROVINCE_FLAG = "isOnlyStateProvinceFlag";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -131,7 +181,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ----------------------------------------------------------------------------------------------------- TerritoryID
+    // --------------------------------------------------------------------------------- TerritoryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -143,7 +193,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -155,7 +205,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -167,7 +217,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -176,7 +226,7 @@ public abstract class MappedStateProvince {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -221,7 +271,7 @@ public abstract class MappedStateProvince {
         return Objects.hash(stateProvinceId);
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -241,7 +291,7 @@ public abstract class MappedStateProvince {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceCode
+    // --------------------------------------------------------------------------- stateProvinceCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_CODE} attribute.
@@ -261,7 +311,7 @@ public abstract class MappedStateProvince {
         this.stateProvinceCode = stateProvinceCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionCode
+    // --------------------------------------------------------------------------- countryRegionCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
@@ -283,7 +333,7 @@ public abstract class MappedStateProvince {
         this.countryRegionCode = countryRegionCode;
     }
 
-    // ----------------------------------------------------------------------------------------- isOnlyStateProvinceFlag
+    // --------------------------------------------------------------------- isOnlyStateProvinceFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ONLY_STATE_PROVINCE_FLAG} attribute.
@@ -304,7 +354,7 @@ public abstract class MappedStateProvince {
         this.isOnlyStateProvinceFlag = isOnlyStateProvinceFlag;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -324,7 +374,7 @@ public abstract class MappedStateProvince {
         this.name = name;
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
@@ -345,7 +395,7 @@ public abstract class MappedStateProvince {
         this.territoryId = territoryId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -365,7 +415,7 @@ public abstract class MappedStateProvince {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -385,7 +435,7 @@ public abstract class MappedStateProvince {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -395,9 +445,11 @@ public abstract class MappedStateProvince {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
+                          value = "Primary key for StateProvince records.")
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
@@ -407,9 +459,11 @@ public abstract class MappedStateProvince {
             updatable = true,
             length = COLUMN_LENGTH_STATE_PROVINCE_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
+                          value = "ISO standard state or province code.")
     private String stateProvinceCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
@@ -420,9 +474,12 @@ public abstract class MappedStateProvince {
             updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
+                          value = "ISO standard country or region code. Foreign key to "
+                                  + "CountryRegion.CountryRegionCode.")
     private String countryRegionCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
@@ -430,9 +487,13 @@ public abstract class MappedStateProvince {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
+                          value = "0 = StateProvinceCode exists. 1 = StateProvinceCode "
+                                  + "unavailable, using CountryRegionCode.")
+    @MsDefault(name = "DF_StateProvince_IsOnlyStateProvinceFlag", value = "((1))")
     private Boolean isOnlyStateProvinceFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -442,9 +503,10 @@ public abstract class MappedStateProvince {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "State or province description.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -453,19 +515,26 @@ public abstract class MappedStateProvince {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
+                          value = "ID of the territory in which the state or province is "
+                                  + "located. Foreign key to SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_StateProvince_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -474,6 +543,9 @@ public abstract class MappedStateProvince {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_StateProvince_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

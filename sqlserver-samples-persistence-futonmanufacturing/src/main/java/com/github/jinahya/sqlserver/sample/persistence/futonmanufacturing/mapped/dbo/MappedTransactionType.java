@@ -47,7 +47,7 @@ public abstract class MappedTransactionType {
      */
     public static final String TABLE_NAME = "TransactionType";
 
-    // ----------------------------------------------------------------------------------------------- TransactionTypeID
+    // --------------------------------------------------------------------------- TransactionTypeID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -60,7 +60,7 @@ public abstract class MappedTransactionType {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE_ID = "transactionTypeId";
 
-    // -------------------------------------------------------------------------------------------------------- TypeCode
+    // ------------------------------------------------------------------------------------ TypeCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -77,7 +77,7 @@ public abstract class MappedTransactionType {
      */
     public static final String ATTRIBUTE_NAME_TYPE_CODE = "typeCode";
 
-    // -------------------------------------------------------------------------------------------------------- TypeName
+    // ------------------------------------------------------------------------------------ TypeName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedTransactionType {
      */
     public static final String ATTRIBUTE_NAME_TYPE_NAME = "typeName";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -111,7 +111,7 @@ public abstract class MappedTransactionType {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -120,7 +120,7 @@ public abstract class MappedTransactionType {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -161,7 +161,7 @@ public abstract class MappedTransactionType {
         return Objects.hash(transactionTypeId);
     }
 
-    // ----------------------------------------------------------------------------------------------- transactionTypeId
+    // --------------------------------------------------------------------------- transactionTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
@@ -181,7 +181,7 @@ public abstract class MappedTransactionType {
         this.transactionTypeId = transactionTypeId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- typeCode
+    // ------------------------------------------------------------------------------------ typeCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TYPE_CODE} attribute.
@@ -201,7 +201,7 @@ public abstract class MappedTransactionType {
         this.typeCode = typeCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- typeName
+    // ------------------------------------------------------------------------------------ typeName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TYPE_NAME} attribute.
@@ -221,7 +221,7 @@ public abstract class MappedTransactionType {
         this.typeName = typeName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -241,7 +241,7 @@ public abstract class MappedTransactionType {
         this.description = description;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -253,7 +253,7 @@ public abstract class MappedTransactionType {
     )
     private Integer transactionTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TYPE_CODE)
     @NotNull
     @Basic(optional = false)
@@ -265,7 +265,7 @@ public abstract class MappedTransactionType {
     )
     private String typeCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TYPE_NAME)
     @NotNull
     @Basic(optional = false)
@@ -277,7 +277,7 @@ public abstract class MappedTransactionType {
     )
     private String typeName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION,

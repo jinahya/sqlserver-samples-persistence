@@ -27,12 +27,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.SalesRep} table.
  */
 @Entity(name = "DboSalesRep")
-@Table(schema = MappedSalesRep.TABLE_SCHEMA, name = MappedSalesRep.TABLE_NAME)
+@Table(schema = MappedSalesRep.TABLE_SCHEMA,
+       name = MappedSalesRep.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               SalesRep.COLUMN_NAME_EMPLOYEE_CODE
+                       }
+               )
+       }
+)
 public class SalesRep extends MappedSalesRep {
 
     /**
@@ -40,7 +50,7 @@ public class SalesRep extends MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -49,7 +59,7 @@ public class SalesRep extends MappedSalesRep {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------- territory
+    // ----------------------------------------------------------------------------------- territory
 
     /**
      * Returns the {@code SalesTerritory} which the {@code FK_SalesRep_Territory} foreign key references.
@@ -71,7 +81,7 @@ public class SalesRep extends MappedSalesRep {
         setTerritoryId(territory == null ? null : territory.getTerritoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

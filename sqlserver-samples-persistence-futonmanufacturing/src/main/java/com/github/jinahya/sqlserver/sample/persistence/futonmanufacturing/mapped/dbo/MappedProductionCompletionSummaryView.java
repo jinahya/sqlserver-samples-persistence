@@ -54,7 +54,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String TABLE_NAME = "vw_ProductionCompletionSummary";
 
-    // -------------------------------------------------------------------------------------------------- CompletionDate
+    // ------------------------------------------------------------------------------ CompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -66,7 +66,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_DATE = "completionDate";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -78,7 +78,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -90,7 +90,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // ------------------------------------------------------------------------------------------------------------ Week
+    // ---------------------------------------------------------------------------------------- Week
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -102,7 +102,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_WEEK = "week";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterName
+    // ------------------------------------------------------------------------------ WorkCenterName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -119,7 +119,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_NAME = "workCenterName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -136,7 +136,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -153,7 +153,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -170,7 +170,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // --------------------------------------------------------------------------------------------- NumberOfCompletions
+    // ------------------------------------------------------------------------- NumberOfCompletions
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -183,7 +183,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_OF_COMPLETIONS = "numberOfCompletions";
 
-    // -------------------------------------------------------------------------------------------------- TotalCompleted
+    // ------------------------------------------------------------------------------ TotalCompleted
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -205,7 +205,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_COMPLETED = "totalCompleted";
 
-    // --------------------------------------------------------------------------------------------------- TotalScrapped
+    // ------------------------------------------------------------------------------- TotalScrapped
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -227,7 +227,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_SCRAPPED = "totalScrapped";
 
-    // ------------------------------------------------------------------------------------------------------- ScrapRate
+    // ----------------------------------------------------------------------------------- ScrapRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -249,7 +249,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_SCRAP_RATE = "scrapRate";
 
-    // ------------------------------------------------------------------------------------------------- ProductionValue
+    // ----------------------------------------------------------------------------- ProductionValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -271,7 +271,7 @@ public abstract class MappedProductionCompletionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCTION_VALUE = "productionValue";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -280,7 +280,7 @@ public abstract class MappedProductionCompletionSummaryView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -301,7 +301,7 @@ public abstract class MappedProductionCompletionSummaryView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------- completionDate
+    // ------------------------------------------------------------------------------ completionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETION_DATE} attribute.
@@ -321,7 +321,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.completionDate = completionDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -341,7 +341,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -361,7 +361,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.month = month;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ week
+    // ---------------------------------------------------------------------------------------- week
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEEK} attribute.
@@ -381,7 +381,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.week = week;
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterName
+    // ------------------------------------------------------------------------------ workCenterName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_NAME} attribute.
@@ -401,7 +401,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.workCenterName = workCenterName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -421,7 +421,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -441,7 +441,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -461,7 +461,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.itemType = itemType;
     }
 
-    // --------------------------------------------------------------------------------------------- numberOfCompletions
+    // ------------------------------------------------------------------------- numberOfCompletions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_OF_COMPLETIONS} attribute.
@@ -481,7 +481,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.numberOfCompletions = numberOfCompletions;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalCompleted
+    // ------------------------------------------------------------------------------ totalCompleted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_COMPLETED} attribute.
@@ -501,7 +501,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.totalCompleted = totalCompleted;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalScrapped
+    // ------------------------------------------------------------------------------- totalScrapped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_SCRAPPED} attribute.
@@ -521,7 +521,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.totalScrapped = totalScrapped;
     }
 
-    // ------------------------------------------------------------------------------------------------------- scrapRate
+    // ----------------------------------------------------------------------------------- scrapRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute.
@@ -541,7 +541,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.scrapRate = scrapRate;
     }
 
-    // ------------------------------------------------------------------------------------------------- productionValue
+    // ----------------------------------------------------------------------------- productionValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCTION_VALUE} attribute.
@@ -561,7 +561,7 @@ public abstract class MappedProductionCompletionSummaryView {
         this.productionValue = productionValue;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETION_DATE,
@@ -571,7 +571,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private LocalDate completionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -581,7 +581,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -591,7 +591,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WEEK,
@@ -601,7 +601,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private Integer week;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
@@ -613,7 +613,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private String workCenterName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -626,7 +626,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -639,7 +639,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -652,7 +652,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_COMPLETIONS,
@@ -662,7 +662,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private Integer numberOfCompletions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_COMPLETED - COLUMN_SCALE_TOTAL_COMPLETED,
             fraction = COLUMN_SCALE_TOTAL_COMPLETED)
@@ -676,7 +676,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private BigDecimal totalCompleted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_SCRAPPED - COLUMN_SCALE_TOTAL_SCRAPPED,
             fraction = COLUMN_SCALE_TOTAL_SCRAPPED)
@@ -690,7 +690,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private BigDecimal totalScrapped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
     @Basic(optional = true)
@@ -703,7 +703,7 @@ public abstract class MappedProductionCompletionSummaryView {
     )
     private BigDecimal scrapRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRODUCTION_VALUE - COLUMN_SCALE_PRODUCTION_VALUE,
             fraction = COLUMN_SCALE_PRODUCTION_VALUE)

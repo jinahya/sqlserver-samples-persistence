@@ -36,7 +36,7 @@ class Address_PersistenceIT extends _Entity_PersistenceIT<Address> {
         super(Address.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private static Object storedSpatialLocation(final EntityManager entityManager, final Address address) {
         return entityManager.createNativeQuery("""
                         SELECT CAST(a.SpatialLocation AS varbinary(max))

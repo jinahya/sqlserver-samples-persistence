@@ -36,7 +36,7 @@ class ProductModelProductDescriptionCulture_Persister
         super(ProductModelProductDescriptionCulture.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductModelProductDescriptionCulture apply(final EntityManager entityManager,
                                                        final ProductModelProductDescriptionCulture entityInstance) {

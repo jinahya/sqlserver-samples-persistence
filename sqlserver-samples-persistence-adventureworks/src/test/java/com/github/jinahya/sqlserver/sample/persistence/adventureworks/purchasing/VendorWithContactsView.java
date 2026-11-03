@@ -31,7 +31,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pur
  */
 public class VendorWithContactsView extends MappedVendorWithContactsView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

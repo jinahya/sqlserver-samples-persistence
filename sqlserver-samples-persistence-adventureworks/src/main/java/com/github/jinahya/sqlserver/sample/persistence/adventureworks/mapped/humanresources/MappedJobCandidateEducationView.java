@@ -51,7 +51,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String TABLE_NAME = "vJobCandidateEducation";
 
-    // -------------------------------------------------------------------------------------------------- JobCandidateID
+    // ------------------------------------------------------------------------------ JobCandidateID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_JOB_CANDIDATE_ID = "jobCandidateId";
 
-    // ------------------------------------------------------------------------------------------------------- Edu.Level
+    // ----------------------------------------------------------------------------------- Edu.Level
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -75,7 +75,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_LEVEL = "eduLevel";
 
-    // --------------------------------------------------------------------------------------------------- Edu.StartDate
+    // ------------------------------------------------------------------------------- Edu.StartDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_START_DATE = "eduStartDate";
 
-    // ----------------------------------------------------------------------------------------------------- Edu.EndDate
+    // --------------------------------------------------------------------------------- Edu.EndDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_END_DATE = "eduEndDate";
 
-    // ------------------------------------------------------------------------------------------------------ Edu.Degree
+    // ---------------------------------------------------------------------------------- Edu.Degree
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_DEGREE = "eduDegree";
 
-    // ------------------------------------------------------------------------------------------------------- Edu.Major
+    // ----------------------------------------------------------------------------------- Edu.Major
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_MAJOR = "eduMajor";
 
-    // ------------------------------------------------------------------------------------------------------- Edu.Minor
+    // ----------------------------------------------------------------------------------- Edu.Minor
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_MINOR = "eduMinor";
 
-    // --------------------------------------------------------------------------------------------------------- Edu.GPA
+    // ------------------------------------------------------------------------------------- Edu.GPA
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_GPA = "eduGpa";
 
-    // ---------------------------------------------------------------------------------------------------- Edu.GPAScale
+    // -------------------------------------------------------------------------------- Edu.GPAScale
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_GPA_SCALE = "eduGpaScale";
 
-    // ------------------------------------------------------------------------------------------------------ Edu.School
+    // ---------------------------------------------------------------------------------- Edu.School
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -201,7 +201,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_SCHOOL = "eduSchool";
 
-    // ------------------------------------------------------------------------------------------- Edu.Loc.CountryRegion
+    // ----------------------------------------------------------------------- Edu.Loc.CountryRegion
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -219,7 +219,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION = "eduLocCountryRegion";
 
-    // --------------------------------------------------------------------------------------------------- Edu.Loc.State
+    // ------------------------------------------------------------------------------- Edu.Loc.State
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -236,7 +236,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_LOC_STATE = "eduLocState";
 
-    // ---------------------------------------------------------------------------------------------------- Edu.Loc.City
+    // -------------------------------------------------------------------------------- Edu.Loc.City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -253,7 +253,7 @@ public abstract class MappedJobCandidateEducationView {
      */
     public static final String ATTRIBUTE_NAME_EDU_LOC_CITY = "eduLocCity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -262,7 +262,7 @@ public abstract class MappedJobCandidateEducationView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -283,7 +283,7 @@ public abstract class MappedJobCandidateEducationView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------- jobCandidateId
+    // ------------------------------------------------------------------------------ jobCandidateId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
@@ -303,7 +303,7 @@ public abstract class MappedJobCandidateEducationView {
         this.jobCandidateId = jobCandidateId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- eduLevel
+    // ------------------------------------------------------------------------------------ eduLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_LEVEL} attribute.
@@ -323,7 +323,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduLevel = eduLevel;
     }
 
-    // ---------------------------------------------------------------------------------------------------- eduStartDate
+    // -------------------------------------------------------------------------------- eduStartDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_START_DATE} attribute.
@@ -343,7 +343,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduStartDate = eduStartDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------ eduEndDate
+    // ---------------------------------------------------------------------------------- eduEndDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_END_DATE} attribute.
@@ -363,7 +363,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduEndDate = eduEndDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- eduDegree
+    // ----------------------------------------------------------------------------------- eduDegree
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_DEGREE} attribute.
@@ -383,7 +383,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduDegree = eduDegree;
     }
 
-    // -------------------------------------------------------------------------------------------------------- eduMajor
+    // ------------------------------------------------------------------------------------ eduMajor
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_MAJOR} attribute.
@@ -403,7 +403,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduMajor = eduMajor;
     }
 
-    // -------------------------------------------------------------------------------------------------------- eduMinor
+    // ------------------------------------------------------------------------------------ eduMinor
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_MINOR} attribute.
@@ -423,7 +423,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduMinor = eduMinor;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- eduGpa
+    // -------------------------------------------------------------------------------------- eduGpa
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_GPA} attribute.
@@ -443,7 +443,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduGpa = eduGpa;
     }
 
-    // ----------------------------------------------------------------------------------------------------- eduGpaScale
+    // --------------------------------------------------------------------------------- eduGpaScale
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_GPA_SCALE} attribute.
@@ -463,7 +463,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduGpaScale = eduGpaScale;
     }
 
-    // ------------------------------------------------------------------------------------------------------- eduSchool
+    // ----------------------------------------------------------------------------------- eduSchool
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_SCHOOL} attribute.
@@ -483,7 +483,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduSchool = eduSchool;
     }
 
-    // --------------------------------------------------------------------------------------------- eduLocCountryRegion
+    // ------------------------------------------------------------------------- eduLocCountryRegion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION} attribute.
@@ -503,7 +503,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduLocCountryRegion = eduLocCountryRegion;
     }
 
-    // ----------------------------------------------------------------------------------------------------- eduLocState
+    // --------------------------------------------------------------------------------- eduLocState
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_LOC_STATE} attribute.
@@ -523,7 +523,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduLocState = eduLocState;
     }
 
-    // ------------------------------------------------------------------------------------------------------ eduLocCity
+    // ---------------------------------------------------------------------------------- eduLocCity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDU_LOC_CITY} attribute.
@@ -543,7 +543,7 @@ public abstract class MappedJobCandidateEducationView {
         this.eduLocCity = eduLocCity;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID,
@@ -553,7 +553,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private Integer jobCandidateId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EDU_LEVEL,
@@ -563,7 +563,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EDU_START_DATE,
@@ -573,7 +573,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private LocalDateTime eduStartDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EDU_END_DATE,
@@ -583,7 +583,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private LocalDateTime eduEndDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_DEGREE)
     @Basic(optional = true)
@@ -595,7 +595,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduDegree;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_MAJOR)
     @Basic(optional = true)
@@ -607,7 +607,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduMajor;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_MINOR)
     @Basic(optional = true)
@@ -619,7 +619,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduMinor;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_GPA)
     @Basic(optional = true)
@@ -631,7 +631,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduGpa;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_GPA_SCALE)
     @Basic(optional = true)
@@ -643,7 +643,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduGpaScale;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_SCHOOL)
     @Basic(optional = true)
@@ -655,7 +655,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduSchool;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION)
     @Basic(optional = true)
@@ -667,7 +667,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduLocCountryRegion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_STATE)
     @Basic(optional = true)
@@ -679,7 +679,7 @@ public abstract class MappedJobCandidateEducationView {
     )
     private String eduLocState;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_CITY)
     @Basic(optional = true)

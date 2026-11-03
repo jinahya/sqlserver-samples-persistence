@@ -48,7 +48,7 @@ public class City extends MappedCity {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -57,7 +57,7 @@ public class City extends MappedCity {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- stateProvince
+    // ------------------------------------------------------------------------------- stateProvince
 
     /**
      * Returns the {@code StateProvince} which the
@@ -81,7 +81,7 @@ public class City extends MappedCity {
         setStateProvinceId(stateProvince == null ? null : stateProvince.getStateProvinceId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Application_Cities_Application_People} foreign key references.
@@ -103,7 +103,7 @@ public class City extends MappedCity {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STATE_PROVINCE_ID,
                 referencedColumnName = MappedStateProvince.COLUMN_NAME_STATE_PROVINCE_ID,
@@ -113,7 +113,7 @@ public class City extends MappedCity {
     )
     private StateProvince stateProvince;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

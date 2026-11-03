@@ -35,7 +35,7 @@ public class MappedProductModelProductDescriptionCultureId implements Serializab
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedProductModelProductDescriptionCultureId implements Serializab
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -73,7 +73,7 @@ public class MappedProductModelProductDescriptionCultureId implements Serializab
         return Objects.hash(productModelId, productDescriptionId, cultureId);
     }
 
-    // -------------------------------------------------------------------------------------------------- productModelId
+    // ------------------------------------------------------------------------------ productModelId
 
     /**
      * Returns current value of the {@code productModelId} attribute.
@@ -93,7 +93,7 @@ public class MappedProductModelProductDescriptionCultureId implements Serializab
         this.productModelId = productModelId;
     }
 
-    // -------------------------------------------------------------------------------------------- productDescriptionId
+    // ------------------------------------------------------------------------ productDescriptionId
 
     /**
      * Returns current value of the {@code productDescriptionId} attribute.
@@ -113,7 +113,7 @@ public class MappedProductModelProductDescriptionCultureId implements Serializab
         this.productDescriptionId = productDescriptionId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- cultureId
+    // ----------------------------------------------------------------------------------- cultureId
 
     /**
      * Returns current value of the {@code cultureId} attribute.
@@ -133,11 +133,20 @@ public class MappedProductModelProductDescriptionCultureId implements Serializab
         this.cultureId = cultureId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code productModelId} attribute.
+     */
     private Integer productModelId;
 
+    /**
+     * The value of the {@code productDescriptionId} attribute.
+     */
     private Integer productDescriptionId;
 
+    /**
+     * The value of the {@code cultureId} attribute.
+     */
     private String cultureId;
 }
 

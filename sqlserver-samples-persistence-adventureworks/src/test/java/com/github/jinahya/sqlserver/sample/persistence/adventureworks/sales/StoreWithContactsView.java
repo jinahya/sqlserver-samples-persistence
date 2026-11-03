@@ -31,7 +31,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
  */
 public class StoreWithContactsView extends MappedStoreWithContactsView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

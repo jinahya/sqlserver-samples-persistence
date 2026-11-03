@@ -21,17 +21,47 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSpecialOffer;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SpecialOffer} table.
  */
 @Entity(name = "SalesSpecialOffer")
-@Table(schema = MappedSpecialOffer.TABLE_SCHEMA, name = MappedSpecialOffer.TABLE_NAME)
+@Table(schema = MappedSpecialOffer.TABLE_SCHEMA,
+       name = MappedSpecialOffer.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SpecialOffer_rowguid",
+                       columnNames = {
+                               SpecialOffer.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SpecialOffer_DiscountPct",
+                       constraint = "([DiscountPct]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SpecialOffer_EndDate",
+                       constraint = "([EndDate]>=[StartDate])"
+               ),
+               @CheckConstraint(
+                       name = "CK_SpecialOffer_MaxQty",
+                       constraint = "([MaxQty]>=(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SpecialOffer_MinQty",
+                       constraint = "([MinQty]>=(0))"
+               )
+       }
+)
 public class SpecialOffer extends MappedSpecialOffer {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

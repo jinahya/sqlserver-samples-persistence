@@ -28,12 +28,23 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Warehouse.PackageTypes} table.
  */
 @Entity(name = "WarehousePackageType")
-@Table(schema = MappedPackageType.TABLE_SCHEMA, name = MappedPackageType.TABLE_NAME)
+@Table(schema = MappedPackageType.TABLE_SCHEMA,
+       name = MappedPackageType.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_Warehouse_PackageTypes_PackageTypeName",
+                       columnNames = {
+                               PackageType.COLUMN_NAME_PACKAGE_TYPE_NAME
+                       }
+               )
+       }
+)
 public class PackageType extends MappedPackageType {
 
     /**
@@ -42,7 +53,7 @@ public class PackageType extends MappedPackageType {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -51,7 +62,7 @@ public class PackageType extends MappedPackageType {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Warehouse_PackageTypes_Application_People} foreign key
@@ -74,7 +85,7 @@ public class PackageType extends MappedPackageType {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

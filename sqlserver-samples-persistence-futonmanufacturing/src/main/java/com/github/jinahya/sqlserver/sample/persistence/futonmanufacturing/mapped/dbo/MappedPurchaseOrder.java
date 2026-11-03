@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,27 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_SUPPLIER_ID}, {@value #COLUMN_NAME_WAREHOUSE_ID} columns are mapped read-only, as a foreign
  * key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.PurchaseOrder}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrderDate}</th><td>{@code (CONVERT([date],getdate()))}</td></tr>
+ * <tr><th scope="row">{@code Status}</th><td>{@code ('Draft')}</td></tr>
+ * <tr><th scope="row">{@code Subtotal}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code TaxAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code ShippingAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code TotalAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedPurchaseOrder {
@@ -55,7 +78,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String TABLE_NAME = "PurchaseOrder";
 
-    // ------------------------------------------------------------------------------------------------- PurchaseOrderID
+    // ----------------------------------------------------------------------------- PurchaseOrderID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -67,7 +90,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
-    // -------------------------------------------------------------------------------------------------------- PONumber
+    // ------------------------------------------------------------------------------------ PONumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +107,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_PO_NUMBER = "poNumber";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -96,7 +119,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ----------------------------------------------------------------------------------------------------- WarehouseID
+    // --------------------------------------------------------------------------------- WarehouseID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -108,7 +131,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code date, DEFAULT (CONVERT([date],getdate())), NOT NULL} column. The value is {@value}.
@@ -120,7 +143,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // -------------------------------------------------------------------------------------------- ExpectedDeliveryDate
+    // ------------------------------------------------------------------------ ExpectedDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -133,7 +156,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE = "expectedDeliveryDate";
 
-    // ---------------------------------------------------------------------------------------------- ActualDeliveryDate
+    // -------------------------------------------------------------------------- ActualDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -146,7 +169,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_DELIVERY_DATE = "actualDeliveryDate";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), DEFAULT ('Draft'), NOT NULL} column. The value is {@value}.
@@ -163,7 +186,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // -------------------------------------------------------------------------------------------------------- Subtotal
+    // ------------------------------------------------------------------------------------ Subtotal
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -185,7 +208,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_SUBTOTAL = "subtotal";
 
-    // ------------------------------------------------------------------------------------------------------- TaxAmount
+    // ----------------------------------------------------------------------------------- TaxAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -207,7 +230,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_TAX_AMOUNT = "taxAmount";
 
-    // -------------------------------------------------------------------------------------------------- ShippingAmount
+    // ------------------------------------------------------------------------------ ShippingAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -229,7 +252,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_SHIPPING_AMOUNT = "shippingAmount";
 
-    // ----------------------------------------------------------------------------------------------------- TotalAmount
+    // --------------------------------------------------------------------------------- TotalAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -251,7 +274,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_AMOUNT = "totalAmount";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -263,7 +286,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ------------------------------------------------------------------------------------------------------- CreatedBy
+    // ----------------------------------------------------------------------------------- CreatedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -280,7 +303,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_CREATED_BY = "createdBy";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -292,7 +315,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -304,7 +327,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -313,7 +336,7 @@ public abstract class MappedPurchaseOrder {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -366,7 +389,7 @@ public abstract class MappedPurchaseOrder {
         return Objects.hash(purchaseOrderId);
     }
 
-    // ------------------------------------------------------------------------------------------------- purchaseOrderId
+    // ----------------------------------------------------------------------------- purchaseOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
@@ -386,7 +409,7 @@ public abstract class MappedPurchaseOrder {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- poNumber
+    // ------------------------------------------------------------------------------------ poNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PO_NUMBER} attribute.
@@ -406,7 +429,7 @@ public abstract class MappedPurchaseOrder {
         this.poNumber = poNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -427,7 +450,7 @@ public abstract class MappedPurchaseOrder {
         this.supplierId = supplierId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- warehouseId
+    // --------------------------------------------------------------------------------- warehouseId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
@@ -448,7 +471,7 @@ public abstract class MappedPurchaseOrder {
         this.warehouseId = warehouseId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -468,7 +491,7 @@ public abstract class MappedPurchaseOrder {
         this.orderDate = orderDate;
     }
 
-    // -------------------------------------------------------------------------------------------- expectedDeliveryDate
+    // ------------------------------------------------------------------------ expectedDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE} attribute.
@@ -488,7 +511,7 @@ public abstract class MappedPurchaseOrder {
         this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
-    // ---------------------------------------------------------------------------------------------- actualDeliveryDate
+    // -------------------------------------------------------------------------- actualDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTUAL_DELIVERY_DATE} attribute.
@@ -508,7 +531,7 @@ public abstract class MappedPurchaseOrder {
         this.actualDeliveryDate = actualDeliveryDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -528,7 +551,7 @@ public abstract class MappedPurchaseOrder {
         this.status = status;
     }
 
-    // -------------------------------------------------------------------------------------------------------- subtotal
+    // ------------------------------------------------------------------------------------ subtotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUBTOTAL} attribute.
@@ -548,7 +571,7 @@ public abstract class MappedPurchaseOrder {
         this.subtotal = subtotal;
     }
 
-    // ------------------------------------------------------------------------------------------------------- taxAmount
+    // ----------------------------------------------------------------------------------- taxAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute.
@@ -568,7 +591,7 @@ public abstract class MappedPurchaseOrder {
         this.taxAmount = taxAmount;
     }
 
-    // -------------------------------------------------------------------------------------------------- shippingAmount
+    // ------------------------------------------------------------------------------ shippingAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIPPING_AMOUNT} attribute.
@@ -588,7 +611,7 @@ public abstract class MappedPurchaseOrder {
         this.shippingAmount = shippingAmount;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalAmount
+    // --------------------------------------------------------------------------------- totalAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute.
@@ -608,7 +631,7 @@ public abstract class MappedPurchaseOrder {
         this.totalAmount = totalAmount;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -628,7 +651,7 @@ public abstract class MappedPurchaseOrder {
         this.notes = notes;
     }
 
-    // ------------------------------------------------------------------------------------------------------- createdBy
+    // ----------------------------------------------------------------------------------- createdBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_BY} attribute.
@@ -648,7 +671,7 @@ public abstract class MappedPurchaseOrder {
         this.createdBy = createdBy;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -668,7 +691,7 @@ public abstract class MappedPurchaseOrder {
         this.createdDate = createdDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -688,7 +711,7 @@ public abstract class MappedPurchaseOrder {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -700,7 +723,7 @@ public abstract class MappedPurchaseOrder {
     )
     private Integer purchaseOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PO_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -712,7 +735,7 @@ public abstract class MappedPurchaseOrder {
     )
     private String poNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -723,7 +746,7 @@ public abstract class MappedPurchaseOrder {
     )
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -734,7 +757,7 @@ public abstract class MappedPurchaseOrder {
     )
     private Integer warehouseId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_DATE,
@@ -742,9 +765,10 @@ public abstract class MappedPurchaseOrder {
             insertable = true,
             updatable = true
     )
+    @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
             nullable = true,
@@ -753,7 +777,7 @@ public abstract class MappedPurchaseOrder {
     )
     private LocalDate expectedDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTUAL_DELIVERY_DATE,
             nullable = true,
@@ -762,7 +786,7 @@ public abstract class MappedPurchaseOrder {
     )
     private LocalDate actualDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
@@ -772,9 +796,10 @@ public abstract class MappedPurchaseOrder {
             updatable = true,
             length = COLUMN_LENGTH_STATUS
     )
+    @MsDefault("('Draft')")
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SUBTOTAL - COLUMN_SCALE_SUBTOTAL, fraction = COLUMN_SCALE_SUBTOTAL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUBTOTAL,
@@ -784,9 +809,10 @@ public abstract class MappedPurchaseOrder {
             precision = COLUMN_PRECISION_SUBTOTAL,
             scale = COLUMN_SCALE_SUBTOTAL
     )
+    @MsDefault("((0))")
     private BigDecimal subtotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAX_AMOUNT,
@@ -796,9 +822,10 @@ public abstract class MappedPurchaseOrder {
             precision = COLUMN_PRECISION_TAX_AMOUNT,
             scale = COLUMN_SCALE_TAX_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal taxAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SHIPPING_AMOUNT - COLUMN_SCALE_SHIPPING_AMOUNT,
             fraction = COLUMN_SCALE_SHIPPING_AMOUNT)
     @Basic(optional = true)
@@ -809,9 +836,10 @@ public abstract class MappedPurchaseOrder {
             precision = COLUMN_PRECISION_SHIPPING_AMOUNT,
             scale = COLUMN_SCALE_SHIPPING_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal shippingAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_AMOUNT,
@@ -821,9 +849,10 @@ public abstract class MappedPurchaseOrder {
             precision = COLUMN_PRECISION_TOTAL_AMOUNT,
             scale = COLUMN_SCALE_TOTAL_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal totalAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -832,7 +861,7 @@ public abstract class MappedPurchaseOrder {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_BY,
@@ -843,22 +872,24 @@ public abstract class MappedPurchaseOrder {
     )
     private String createdBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 }
 

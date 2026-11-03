@@ -34,7 +34,7 @@ import jakarta.persistence.Table;
        name = MappedStateProvinceCountryRegionView.TABLE_NAME)
 public class StateProvinceCountryRegionView extends MappedStateProvinceCountryRegionView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

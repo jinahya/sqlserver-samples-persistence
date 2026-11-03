@@ -33,4 +33,8 @@ module com.github.jinahya.sqlserver.sample.persistence.common {
     exports com.github.jinahya.sqlserver.sample.persistence.common;
 
     opens com.github.jinahya.sqlserver.sample.persistence.common;
+    opens com.github.jinahya.sqlserver.sample.persistence.common.mapped;
+    exports com.github.jinahya.sqlserver.sample.persistence.common.mapped;
+    exports com.github.jinahya.sqlserver.sample.persistence.common.annotation;
+    opens com.github.jinahya.sqlserver.sample.persistence.common.annotation;
 }

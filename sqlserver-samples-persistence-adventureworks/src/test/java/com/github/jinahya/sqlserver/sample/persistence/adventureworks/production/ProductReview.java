@@ -22,6 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductReview;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -32,7 +33,15 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Production.ProductReview} table.
  */
 @Entity(name = "ProductionProductReview")
-@Table(schema = MappedProductReview.TABLE_SCHEMA, name = MappedProductReview.TABLE_NAME)
+@Table(schema = MappedProductReview.TABLE_SCHEMA,
+       name = MappedProductReview.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_ProductReview_Rating",
+                       constraint = "([Rating]>=(1) AND [Rating]<=(5))"
+               )
+       }
+)
 public class ProductReview extends MappedProductReview {
 
     /**
@@ -40,7 +49,7 @@ public class ProductReview extends MappedProductReview {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -49,7 +58,7 @@ public class ProductReview extends MappedProductReview {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_ProductReview_Product_ProductID} foreign key references.
@@ -71,7 +80,7 @@ public class ProductReview extends MappedProductReview {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,

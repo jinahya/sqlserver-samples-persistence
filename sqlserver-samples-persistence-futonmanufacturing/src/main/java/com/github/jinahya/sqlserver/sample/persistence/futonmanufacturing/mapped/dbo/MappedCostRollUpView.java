@@ -53,7 +53,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String TABLE_NAME = "vw_CostRollUp";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // --------------------------------------------------------------------------------------------- CurrentStandardCost
+    // ------------------------------------------------------------------------- CurrentStandardCost
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -127,7 +127,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_CURRENT_STANDARD_COST = "currentStandardCost";
 
-    // ------------------------------------------------------------------------------------------ CalculatedMaterialCost
+    // ---------------------------------------------------------------------- CalculatedMaterialCost
 
     /**
      * The name of the {@code decimal(38, 4), NOT NULL} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_CALCULATED_MATERIAL_COST = "calculatedMaterialCost";
 
-    // ------------------------------------------------------------------------------------------------ LaborAndOverhead
+    // ---------------------------------------------------------------------------- LaborAndOverhead
 
     /**
      * The name of the {@code decimal(38, 4)} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_LABOR_AND_OVERHEAD = "laborAndOverhead";
 
-    // -------------------------------------------------------------------------------------------------- ComponentCount
+    // ------------------------------------------------------------------------------ ComponentCount
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_COUNT = "componentCount";
 
-    // ------------------------------------------------------------------------------------------------------- ListPrice
+    // ----------------------------------------------------------------------------------- ListPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -206,7 +206,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_LIST_PRICE = "listPrice";
 
-    // ----------------------------------------------------------------------------------------------------- GrossProfit
+    // --------------------------------------------------------------------------------- GrossProfit
 
     /**
      * The name of the {@code decimal(19, 4)} column. The value is {@value}.
@@ -228,7 +228,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_PROFIT = "grossProfit";
 
-    // ---------------------------------------------------------------------------------------------- GrossMarginPercent
+    // -------------------------------------------------------------------------- GrossMarginPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -251,7 +251,7 @@ public abstract class MappedCostRollUpView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT = "grossMarginPercent";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -260,7 +260,7 @@ public abstract class MappedCostRollUpView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -307,7 +307,7 @@ public abstract class MappedCostRollUpView {
         return Objects.hash(itemCode);
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -327,7 +327,7 @@ public abstract class MappedCostRollUpView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -347,7 +347,7 @@ public abstract class MappedCostRollUpView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -367,7 +367,7 @@ public abstract class MappedCostRollUpView {
         this.itemType = itemType;
     }
 
-    // --------------------------------------------------------------------------------------------- currentStandardCost
+    // ------------------------------------------------------------------------- currentStandardCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENT_STANDARD_COST} attribute.
@@ -387,7 +387,7 @@ public abstract class MappedCostRollUpView {
         this.currentStandardCost = currentStandardCost;
     }
 
-    // ------------------------------------------------------------------------------------------ calculatedMaterialCost
+    // ---------------------------------------------------------------------- calculatedMaterialCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CALCULATED_MATERIAL_COST} attribute.
@@ -407,7 +407,7 @@ public abstract class MappedCostRollUpView {
         this.calculatedMaterialCost = calculatedMaterialCost;
     }
 
-    // ------------------------------------------------------------------------------------------------ laborAndOverhead
+    // ---------------------------------------------------------------------------- laborAndOverhead
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LABOR_AND_OVERHEAD} attribute.
@@ -427,7 +427,7 @@ public abstract class MappedCostRollUpView {
         this.laborAndOverhead = laborAndOverhead;
     }
 
-    // -------------------------------------------------------------------------------------------------- componentCount
+    // ------------------------------------------------------------------------------ componentCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_COUNT} attribute.
@@ -447,7 +447,7 @@ public abstract class MappedCostRollUpView {
         this.componentCount = componentCount;
     }
 
-    // ------------------------------------------------------------------------------------------------------- listPrice
+    // ----------------------------------------------------------------------------------- listPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute.
@@ -467,7 +467,7 @@ public abstract class MappedCostRollUpView {
         this.listPrice = listPrice;
     }
 
-    // ----------------------------------------------------------------------------------------------------- grossProfit
+    // --------------------------------------------------------------------------------- grossProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_PROFIT} attribute.
@@ -487,7 +487,7 @@ public abstract class MappedCostRollUpView {
         this.grossProfit = grossProfit;
     }
 
-    // ---------------------------------------------------------------------------------------------- grossMarginPercent
+    // -------------------------------------------------------------------------- grossMarginPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT} attribute.
@@ -507,7 +507,7 @@ public abstract class MappedCostRollUpView {
         this.grossMarginPercent = grossMarginPercent;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -520,7 +520,7 @@ public abstract class MappedCostRollUpView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -533,7 +533,7 @@ public abstract class MappedCostRollUpView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -546,7 +546,7 @@ public abstract class MappedCostRollUpView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CURRENT_STANDARD_COST - COLUMN_SCALE_CURRENT_STANDARD_COST,
             fraction = COLUMN_SCALE_CURRENT_STANDARD_COST)
@@ -561,7 +561,7 @@ public abstract class MappedCostRollUpView {
     )
     private BigDecimal currentStandardCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CALCULATED_MATERIAL_COST - COLUMN_SCALE_CALCULATED_MATERIAL_COST,
             fraction = COLUMN_SCALE_CALCULATED_MATERIAL_COST)
@@ -576,7 +576,7 @@ public abstract class MappedCostRollUpView {
     )
     private BigDecimal calculatedMaterialCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LABOR_AND_OVERHEAD - COLUMN_SCALE_LABOR_AND_OVERHEAD,
             fraction = COLUMN_SCALE_LABOR_AND_OVERHEAD)
@@ -590,7 +590,7 @@ public abstract class MappedCostRollUpView {
     )
     private BigDecimal laborAndOverhead;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -601,7 +601,7 @@ public abstract class MappedCostRollUpView {
     )
     private Integer componentCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
     @NotNull
@@ -615,7 +615,7 @@ public abstract class MappedCostRollUpView {
     )
     private BigDecimal listPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
@@ -628,7 +628,7 @@ public abstract class MappedCostRollUpView {
     )
     private BigDecimal grossProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)

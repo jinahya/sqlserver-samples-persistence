@@ -30,7 +30,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 })
 final class __Utils {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     private __Utils() {
         throw new AssertionError("instantiation is not allowed");

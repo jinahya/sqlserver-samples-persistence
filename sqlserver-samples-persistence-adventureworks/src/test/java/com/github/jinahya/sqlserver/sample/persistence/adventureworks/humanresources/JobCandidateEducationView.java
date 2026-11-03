@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class JobCandidateEducationView extends MappedJobCandidateEducationView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

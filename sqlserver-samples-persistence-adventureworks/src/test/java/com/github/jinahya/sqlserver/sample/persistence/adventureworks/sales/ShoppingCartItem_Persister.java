@@ -36,7 +36,7 @@ class ShoppingCartItem_Persister
         super(ShoppingCartItem.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ShoppingCartItem apply(final EntityManager entityManager, final ShoppingCartItem entityInstance) {
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

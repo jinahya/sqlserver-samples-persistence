@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hum
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedPurchaseOrderHeader;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedShipMethod;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedVendor;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -35,7 +36,31 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Purchasing.PurchaseOrderHeader} table.
  */
 @Entity(name = "PurchasingPurchaseOrderHeader")
-@Table(schema = MappedPurchaseOrderHeader.TABLE_SCHEMA, name = MappedPurchaseOrderHeader.TABLE_NAME)
+@Table(schema = MappedPurchaseOrderHeader.TABLE_SCHEMA,
+       name = MappedPurchaseOrderHeader.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_PurchaseOrderHeader_Freight",
+                       constraint = "([Freight]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_PurchaseOrderHeader_ShipDate",
+                       constraint = "([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_PurchaseOrderHeader_Status",
+                       constraint = "([Status]>=(1) AND [Status]<=(4))"
+               ),
+               @CheckConstraint(
+                       name = "CK_PurchaseOrderHeader_SubTotal",
+                       constraint = "([SubTotal]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_PurchaseOrderHeader_TaxAmt",
+                       constraint = "([TaxAmt]>=(0.00))"
+               )
+       }
+)
 public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
 
     /**
@@ -56,7 +81,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SHIP_METHOD = "shipMethod";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -65,7 +90,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- employee
+    // ------------------------------------------------------------------------------------ employee
 
     /**
      * Returns the {@code Employee} which the {@code FK_PurchaseOrderHeader_Employee_EmployeeID} foreign key
@@ -88,7 +113,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
         setEmployeeId(employee == null ? null : employee.getBusinessEntityId());
     }
 
-    // ---------------------------------------------------------------------------------------------------------- vendor
+    // -------------------------------------------------------------------------------------- vendor
 
     /**
      * Returns the {@code Vendor} which the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign key references.
@@ -110,7 +135,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
         setVendorId(vendor == null ? null : vendor.getBusinessEntityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ shipMethod
+    // ---------------------------------------------------------------------------------- shipMethod
 
     /**
      * Returns the {@code ShipMethod} which the {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID} foreign key
@@ -133,7 +158,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
         setShipMethodId(shipMethod == null ? null : shipMethod.getShipMethodId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_EMPLOYEE_ID,
                 referencedColumnName = MappedEmployee.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -143,7 +168,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     )
     private Employee employee;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_VENDOR_ID,
                 referencedColumnName = MappedVendor.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -153,7 +178,7 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     )
     private Vendor vendor;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SHIP_METHOD_ID,
                 referencedColumnName = MappedShipMethod.COLUMN_NAME_SHIP_METHOD_ID,

@@ -34,7 +34,7 @@ import java.time.LocalDateTime;
  */
 public class StockItemArchive extends MappedStockItemArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

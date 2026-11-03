@@ -35,7 +35,7 @@ class SalesPersonQuotaHistory_Persister
         super(SalesPersonQuotaHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesPersonQuotaHistory apply(final EntityManager entityManager,
                                          final SalesPersonQuotaHistory entityInstance) {

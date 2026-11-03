@@ -44,7 +44,7 @@ public class EmailAddress extends MappedEmailAddress {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -53,7 +53,7 @@ public class EmailAddress extends MappedEmailAddress {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Person} which the {@code FK_EmailAddress_Person_BusinessEntityID} foreign key references.
@@ -75,7 +75,7 @@ public class EmailAddress extends MappedEmailAddress {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,

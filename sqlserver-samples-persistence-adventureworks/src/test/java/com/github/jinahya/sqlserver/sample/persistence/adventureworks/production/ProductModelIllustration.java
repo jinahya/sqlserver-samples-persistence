@@ -51,7 +51,7 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
      */
     public static final String ATTRIBUTE_NAME_ILLUSTRATION = "illustration";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +60,7 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------- productModel
+    // -------------------------------------------------------------------------------- productModel
 
     /**
      * Returns the {@code ProductModel} which the {@code FK_ProductModelIllustration_ProductModel_ProductModelID}
@@ -83,7 +83,7 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
         setProductModelId(productModel == null ? null : productModel.getProductModelId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- illustration
+    // -------------------------------------------------------------------------------- illustration
 
     /**
      * Returns the {@code Illustration} which the {@code FK_ProductModelIllustration_Illustration_IllustrationID}
@@ -106,7 +106,7 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
         setIllustrationId(illustration == null ? null : illustration.getIllustrationId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_MODEL_ID,
                 referencedColumnName = MappedProductModel.COLUMN_NAME_PRODUCT_MODEL_ID,
@@ -116,7 +116,7 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
     )
     private ProductModel productModel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ILLUSTRATION_ID,
                 referencedColumnName = MappedIllustration.COLUMN_NAME_ILLUSTRATION_ID,

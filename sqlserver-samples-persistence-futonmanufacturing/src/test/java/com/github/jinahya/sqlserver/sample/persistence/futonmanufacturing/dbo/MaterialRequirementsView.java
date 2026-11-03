@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class MaterialRequirementsView extends MappedMaterialRequirementsView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

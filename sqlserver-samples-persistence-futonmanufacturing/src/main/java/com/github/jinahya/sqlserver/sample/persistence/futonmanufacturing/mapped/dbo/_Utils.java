@@ -25,7 +25,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  */
 final class _Utils {
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private _Utils() {
         throw new AssertionError("instantiation is not allowed");
     }

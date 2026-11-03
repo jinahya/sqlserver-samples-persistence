@@ -46,7 +46,7 @@ public class SalesQuoteDetail extends MappedSalesQuoteDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM = "item";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +55,7 @@ public class SalesQuoteDetail extends MappedSalesQuoteDetail {
         super();
     }
 
-    // ----------------------------------------------------------------------------------------------------------- quote
+    // --------------------------------------------------------------------------------------- quote
 
     /**
      * Returns the {@code SalesQuote} which the {@code FK_QuoteDetail_Quote} foreign key references.
@@ -77,7 +77,7 @@ public class SalesQuoteDetail extends MappedSalesQuoteDetail {
         setQuoteId(quote == null ? null : quote.getQuoteId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_QuoteDetail_Item} foreign key references.
@@ -99,7 +99,7 @@ public class SalesQuoteDetail extends MappedSalesQuoteDetail {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_QUOTE_ID,
                 referencedColumnName = MappedSalesQuote.COLUMN_NAME_QUOTE_ID,
@@ -109,7 +109,7 @@ public class SalesQuoteDetail extends MappedSalesQuoteDetail {
     )
     private SalesQuote quote;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,

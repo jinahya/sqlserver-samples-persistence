@@ -23,15 +23,26 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedContactType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Person.ContactType} table.
  */
 @Entity(name = "PersonContactType")
-@Table(schema = MappedContactType.TABLE_SCHEMA, name = MappedContactType.TABLE_NAME)
+@Table(schema = MappedContactType.TABLE_SCHEMA,
+       name = MappedContactType.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_ContactType_Name",
+                       columnNames = {
+                               ContactType.COLUMN_NAME_NAME
+                       }
+               )
+       }
+)
 public class ContactType extends MappedContactType {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

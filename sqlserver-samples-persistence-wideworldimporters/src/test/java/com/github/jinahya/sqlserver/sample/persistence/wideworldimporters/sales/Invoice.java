@@ -27,6 +27,7 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.sales.MappedCustomer;
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.sales.MappedInvoice;
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mapped.sales.MappedOrder;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -37,7 +38,16 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Sales.Invoices} table.
  */
 @Entity(name = "SalesInvoice")
-@Table(schema = MappedInvoice.TABLE_SCHEMA, name = MappedInvoice.TABLE_NAME)
+@Table(schema = MappedInvoice.TABLE_SCHEMA,
+       name = MappedInvoice.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_Sales_Invoices_ReturnedDeliveryData_Must_Be_Valid_JSON",
+                       constraint = "([ReturnedDeliveryData] IS NULL OR "
+                               + "isjson([ReturnedDeliveryData])<>(0))"
+               )
+       }
+)
 public class Invoice extends MappedInvoice {
 
     /**
@@ -94,7 +104,7 @@ public class Invoice extends MappedInvoice {
      */
     public static final String ATTRIBUTE_NAME_ACCOUNTS_PERSON = "accountsPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -103,7 +113,7 @@ public class Invoice extends MappedInvoice {
         super();
     }
 
-    // ----------------------------------------------------------------------------------------------- salespersonPerson
+    // --------------------------------------------------------------------------- salespersonPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Invoices_SalespersonPersonID_Application_People} foreign key
@@ -126,7 +136,7 @@ public class Invoice extends MappedInvoice {
         setSalespersonPersonId(salespersonPerson == null ? null : salespersonPerson.getPersonId());
     }
 
-    // -------------------------------------------------------------------------------------------------- packedByPerson
+    // ------------------------------------------------------------------------------ packedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Invoices_PackedByPersonID_Application_People} foreign key
@@ -149,7 +159,7 @@ public class Invoice extends MappedInvoice {
         setPackedByPersonId(packedByPerson == null ? null : packedByPerson.getPersonId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Invoices_Application_People} foreign key references.
@@ -171,7 +181,7 @@ public class Invoice extends MappedInvoice {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- customer
+    // ------------------------------------------------------------------------------------ customer
 
     /**
      * Returns the {@code Customer} which the {@code FK_Sales_Invoices_CustomerID_Sales_Customers} foreign key
@@ -194,7 +204,7 @@ public class Invoice extends MappedInvoice {
         setCustomerId(customer == null ? null : customer.getCustomerId());
     }
 
-    // -------------------------------------------------------------------------------------------------- billToCustomer
+    // ------------------------------------------------------------------------------ billToCustomer
 
     /**
      * Returns the {@code Customer} which the {@code FK_Sales_Invoices_BillToCustomerID_Sales_Customers} foreign key
@@ -217,7 +227,7 @@ public class Invoice extends MappedInvoice {
         setBillToCustomerId(billToCustomer == null ? null : billToCustomer.getCustomerId());
     }
 
-    // ----------------------------------------------------------------------------------------------------------- order
+    // --------------------------------------------------------------------------------------- order
 
     /**
      * Returns the {@code Order} which the {@code FK_Sales_Invoices_OrderID_Sales_Orders} foreign key references.
@@ -239,7 +249,7 @@ public class Invoice extends MappedInvoice {
         setOrderId(order == null ? null : order.getOrderId());
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryMethod
+    // ------------------------------------------------------------------------------ deliveryMethod
 
     /**
      * Returns the {@code DeliveryMethod} which the
@@ -263,7 +273,7 @@ public class Invoice extends MappedInvoice {
         setDeliveryMethodId(deliveryMethod == null ? null : deliveryMethod.getDeliveryMethodId());
     }
 
-    // --------------------------------------------------------------------------------------------------- contactPerson
+    // ------------------------------------------------------------------------------- contactPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Invoices_ContactPersonID_Application_People} foreign key
@@ -286,7 +296,7 @@ public class Invoice extends MappedInvoice {
         setContactPersonId(contactPerson == null ? null : contactPerson.getPersonId());
     }
 
-    // -------------------------------------------------------------------------------------------------- accountsPerson
+    // ------------------------------------------------------------------------------ accountsPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_Invoices_AccountsPersonID_Application_People} foreign key
@@ -309,7 +319,7 @@ public class Invoice extends MappedInvoice {
         setAccountsPersonId(accountsPerson == null ? null : accountsPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -319,7 +329,7 @@ public class Invoice extends MappedInvoice {
     )
     private Person salespersonPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PACKED_BY_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -329,7 +339,7 @@ public class Invoice extends MappedInvoice {
     )
     private Person packedByPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -339,7 +349,7 @@ public class Invoice extends MappedInvoice {
     )
     private Person lastEditedByPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -349,7 +359,7 @@ public class Invoice extends MappedInvoice {
     )
     private Customer customer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -359,7 +369,7 @@ public class Invoice extends MappedInvoice {
     )
     private Customer billToCustomer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ORDER_ID,
                 referencedColumnName = MappedOrder.COLUMN_NAME_ORDER_ID,
@@ -369,7 +379,7 @@ public class Invoice extends MappedInvoice {
     )
     private Order order;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_DELIVERY_METHOD_ID,
                 referencedColumnName = MappedDeliveryMethod.COLUMN_NAME_DELIVERY_METHOD_ID,
@@ -379,7 +389,7 @@ public class Invoice extends MappedInvoice {
     )
     private DeliveryMethod deliveryMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CONTACT_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -389,7 +399,7 @@ public class Invoice extends MappedInvoice {
     )
     private Person contactPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ACCOUNTS_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

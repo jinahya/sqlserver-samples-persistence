@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedInventoryValuationView.TABLE_SCHEMA, name = MappedInventoryValuationView.TABLE_NAME)
 public class InventoryValuationView extends MappedInventoryValuationView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

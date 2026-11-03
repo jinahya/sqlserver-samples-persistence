@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +43,51 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_INVOICE_ID}, {@value #COLUMN_NAME_STOCK_ITEM_ID}, {@value #COLUMN_NAME_PACKAGE_TYPE_ID},
  * {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.InvoiceLines}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code InvoiceLineID}</th>
+ *     <td>Numeric ID used for reference to a line on an invoice within the database</td></tr>
+ * <tr><th scope="row">{@code InvoiceID}</th><td>Invoice that this line is associated with</td></tr>
+ * <tr><th scope="row">{@code StockItemID}</th><td>Stock item for this invoice line</td></tr>
+ * <tr><th scope="row">{@code Description}</th>
+ *     <td>Description of the item supplied (Usually the stock item name but can be
+ *     overridden)</td></tr>
+ * <tr><th scope="row">{@code PackageTypeID}</th><td>Type of package supplied</td></tr>
+ * <tr><th scope="row">{@code Quantity}</th><td>Quantity supplied</td></tr>
+ * <tr><th scope="row">{@code UnitPrice}</th><td>Unit price charged</td></tr>
+ * <tr><th scope="row">{@code TaxRate}</th><td>Tax rate to be applied</td></tr>
+ * <tr><th scope="row">{@code TaxAmount}</th><td>Tax amount calculated</td></tr>
+ * <tr><th scope="row">{@code LineProfit}</th>
+ *     <td>Profit made on this line item at current cost price</td></tr>
+ * <tr><th scope="row">{@code ExtendedPrice}</th><td>Extended line price charged</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.InvoiceLines}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code InvoiceLineID}</th><td>{@code (NEXT VALUE FOR [Sequences].[InvoiceLineID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedInvoiceLine.TABLE_SCHEMA,
+        table = MappedInvoiceLine.TABLE_NAME,
+        value = "Detail lines from customer invoices"
+)
 public abstract class MappedInvoiceLine {
 
     /**
@@ -55,7 +100,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String TABLE_NAME = "InvoiceLines";
 
-    // --------------------------------------------------------------------------------------------------- InvoiceLineID
+    // ------------------------------------------------------------------------------- InvoiceLineID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.InvoiceLineID, NOT NULL} column. The value is {@value}.
@@ -67,7 +112,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_INVOICE_LINE_ID = "invoiceLineId";
 
-    // ------------------------------------------------------------------------------------------------------- InvoiceID
+    // ----------------------------------------------------------------------------------- InvoiceID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -79,7 +124,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_INVOICE_ID = "invoiceId";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -91,7 +136,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -108,7 +153,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // --------------------------------------------------------------------------------------------------- PackageTypeID
+    // ------------------------------------------------------------------------------- PackageTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -120,7 +165,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_PACKAGE_TYPE_ID = "packageTypeId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -132,7 +177,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -154,7 +199,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // --------------------------------------------------------------------------------------------------------- TaxRate
+    // ------------------------------------------------------------------------------------- TaxRate
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -176,7 +221,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_TAX_RATE = "taxRate";
 
-    // ------------------------------------------------------------------------------------------------------- TaxAmount
+    // ----------------------------------------------------------------------------------- TaxAmount
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -198,7 +243,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_TAX_AMOUNT = "taxAmount";
 
-    // ------------------------------------------------------------------------------------------------------ LineProfit
+    // ---------------------------------------------------------------------------------- LineProfit
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -220,7 +265,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_LINE_PROFIT = "lineProfit";
 
-    // --------------------------------------------------------------------------------------------------- ExtendedPrice
+    // ------------------------------------------------------------------------------- ExtendedPrice
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -242,7 +287,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_EXTENDED_PRICE = "extendedPrice";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -254,7 +299,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -266,7 +311,7 @@ public abstract class MappedInvoiceLine {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -275,7 +320,7 @@ public abstract class MappedInvoiceLine {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -325,7 +370,7 @@ public abstract class MappedInvoiceLine {
         return Objects.hash(invoiceLineId);
     }
 
-    // --------------------------------------------------------------------------------------------------- invoiceLineId
+    // ------------------------------------------------------------------------------- invoiceLineId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVOICE_LINE_ID} attribute.
@@ -345,7 +390,7 @@ public abstract class MappedInvoiceLine {
         this.invoiceLineId = invoiceLineId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- invoiceId
+    // ----------------------------------------------------------------------------------- invoiceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute.
@@ -366,7 +411,7 @@ public abstract class MappedInvoiceLine {
         this.invoiceId = invoiceId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -388,7 +433,7 @@ public abstract class MappedInvoiceLine {
         this.stockItemId = stockItemId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -408,7 +453,7 @@ public abstract class MappedInvoiceLine {
         this.description = description;
     }
 
-    // --------------------------------------------------------------------------------------------------- packageTypeId
+    // ------------------------------------------------------------------------------- packageTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute.
@@ -430,7 +475,7 @@ public abstract class MappedInvoiceLine {
         this.packageTypeId = packageTypeId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -450,7 +495,7 @@ public abstract class MappedInvoiceLine {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -470,7 +515,7 @@ public abstract class MappedInvoiceLine {
         this.unitPrice = unitPrice;
     }
 
-    // --------------------------------------------------------------------------------------------------------- taxRate
+    // ------------------------------------------------------------------------------------- taxRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_RATE} attribute.
@@ -490,7 +535,7 @@ public abstract class MappedInvoiceLine {
         this.taxRate = taxRate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- taxAmount
+    // ----------------------------------------------------------------------------------- taxAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_AMOUNT} attribute.
@@ -510,7 +555,7 @@ public abstract class MappedInvoiceLine {
         this.taxAmount = taxAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------------ lineProfit
+    // ---------------------------------------------------------------------------------- lineProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_PROFIT} attribute.
@@ -530,7 +575,7 @@ public abstract class MappedInvoiceLine {
         this.lineProfit = lineProfit;
     }
 
-    // --------------------------------------------------------------------------------------------------- extendedPrice
+    // ------------------------------------------------------------------------------- extendedPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXTENDED_PRICE} attribute.
@@ -550,7 +595,7 @@ public abstract class MappedInvoiceLine {
         this.extendedPrice = extendedPrice;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -572,7 +617,7 @@ public abstract class MappedInvoiceLine {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -592,7 +637,7 @@ public abstract class MappedInvoiceLine {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.InvoiceLineID", schema = "Sequences",
@@ -604,9 +649,13 @@ public abstract class MappedInvoiceLine {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_INVOICE_LINE_ID,
+                          value = "Numeric ID used for reference to a line on an invoice within "
+                                  + "the database")
+    @MsDefault(name = "DF_Sales_InvoiceLines_InvoiceLineID", value = "(NEXT VALUE FOR [Sequences].[InvoiceLineID])")
     private Integer invoiceLineId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -615,9 +664,11 @@ public abstract class MappedInvoiceLine {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
+                          value = "Invoice that this line is associated with")
     private Integer invoiceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -626,9 +677,11 @@ public abstract class MappedInvoiceLine {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "Stock item for this invoice line")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
@@ -638,9 +691,12 @@ public abstract class MappedInvoiceLine {
             updatable = true,
             length = COLUMN_LENGTH_DESCRIPTION
     )
+    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
+                          value = "Description of the item supplied (Usually the stock item "
+                                  + "name but can be overridden)")
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -649,9 +705,10 @@ public abstract class MappedInvoiceLine {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, value = "Type of package supplied")
     private Integer packageTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY,
@@ -659,9 +716,10 @@ public abstract class MappedInvoiceLine {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Quantity supplied")
     private Integer quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_PRICE,
@@ -671,9 +729,10 @@ public abstract class MappedInvoiceLine {
             precision = COLUMN_PRECISION_UNIT_PRICE,
             scale = COLUMN_SCALE_UNIT_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price charged")
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
@@ -684,9 +743,10 @@ public abstract class MappedInvoiceLine {
             precision = COLUMN_PRECISION_TAX_RATE,
             scale = COLUMN_SCALE_TAX_RATE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
     private BigDecimal taxRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
@@ -697,9 +757,10 @@ public abstract class MappedInvoiceLine {
             precision = COLUMN_PRECISION_TAX_AMOUNT,
             scale = COLUMN_SCALE_TAX_AMOUNT
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAX_AMOUNT, value = "Tax amount calculated")
     private BigDecimal taxAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_LINE_PROFIT - COLUMN_SCALE_LINE_PROFIT, fraction = COLUMN_SCALE_LINE_PROFIT)
     @NotNull
     @Basic(optional = false)
@@ -710,9 +771,11 @@ public abstract class MappedInvoiceLine {
             precision = COLUMN_PRECISION_LINE_PROFIT,
             scale = COLUMN_SCALE_LINE_PROFIT
     )
+    @MsDescription.Column(name = COLUMN_NAME_LINE_PROFIT,
+                          value = "Profit made on this line item at current cost price")
     private BigDecimal lineProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_EXTENDED_PRICE - COLUMN_SCALE_EXTENDED_PRICE,
             fraction = COLUMN_SCALE_EXTENDED_PRICE)
     @NotNull
@@ -724,9 +787,10 @@ public abstract class MappedInvoiceLine {
             precision = COLUMN_PRECISION_EXTENDED_PRICE,
             scale = COLUMN_SCALE_EXTENDED_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_EXTENDED_PRICE, value = "Extended line price charged")
     private BigDecimal extendedPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -737,7 +801,7 @@ public abstract class MappedInvoiceLine {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -745,6 +809,7 @@ public abstract class MappedInvoiceLine {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Sales_InvoiceLines_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

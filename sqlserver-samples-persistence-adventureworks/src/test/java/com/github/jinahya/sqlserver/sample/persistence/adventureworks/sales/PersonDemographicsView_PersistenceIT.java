@@ -30,7 +30,7 @@ class PersonDemographicsView_PersistenceIT extends _Entity_PersistenceIT<PersonD
         super(PersonDemographicsView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Sales.vPersonDemographics} is a view, which no row is inserted into.

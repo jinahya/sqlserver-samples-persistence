@@ -1,4 +1,4 @@
-package com.github.jinahya.sqlserver.sample.persistence.common;
+package com.github.jinahya.sqlserver.sample.persistence.common.mapped;
 
 /*-
  * #%L
@@ -45,7 +45,7 @@ public abstract class MappedWithIdentityId {
      */
     public static final String ATTRIBUTE_NAME_ID_ = "id_";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -54,7 +54,7 @@ public abstract class MappedWithIdentityId {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------------- id_
+    // ----------------------------------------------------------------------------------------- id_
     // not final, for a lazy proxy overrides it
 
     /**
@@ -75,7 +75,7 @@ public abstract class MappedWithIdentityId {
         this.id_ = id_;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_;

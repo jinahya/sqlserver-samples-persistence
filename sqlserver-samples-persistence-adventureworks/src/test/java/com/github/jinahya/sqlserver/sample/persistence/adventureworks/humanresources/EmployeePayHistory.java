@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeePayHistory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeePayHistoryId;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -36,7 +37,19 @@ import jakarta.persistence.Table;
  * The application adds a row through {@link Employee#NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}.
  */
 @Entity(name = "HumanResourcesEmployeePayHistory")
-@Table(schema = MappedEmployeePayHistory.TABLE_SCHEMA, name = MappedEmployeePayHistory.TABLE_NAME)
+@Table(schema = MappedEmployeePayHistory.TABLE_SCHEMA,
+       name = MappedEmployeePayHistory.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_EmployeePayHistory_PayFrequency",
+                       constraint = "([PayFrequency]=(2) OR [PayFrequency]=(1))"
+               ),
+               @CheckConstraint(
+                       name = "CK_EmployeePayHistory_Rate",
+                       constraint = "([Rate]>=(6.50) AND [Rate]<=(200.00))"
+               )
+       }
+)
 @IdClass(MappedEmployeePayHistoryId.class)
 public class EmployeePayHistory extends MappedEmployeePayHistory {
 
@@ -46,7 +59,7 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +68,7 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Employee} which the {@code FK_EmployeePayHistory_Employee_BusinessEntityID} foreign key
@@ -78,7 +91,7 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedEmployee.COLUMN_NAME_BUSINESS_ENTITY_ID,

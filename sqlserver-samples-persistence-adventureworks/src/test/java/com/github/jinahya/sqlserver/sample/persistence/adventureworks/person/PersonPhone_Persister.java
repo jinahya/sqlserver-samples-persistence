@@ -35,7 +35,7 @@ class PersonPhone_Persister
         super(PersonPhone.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public PersonPhone apply(final EntityManager entityManager, final PersonPhone entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);

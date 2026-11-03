@@ -34,7 +34,7 @@ import jakarta.persistence.Table;
        name = MappedSalesCustomerLifetimeValueView.TABLE_NAME)
 public class SalesCustomerLifetimeValueView extends MappedSalesCustomerLifetimeValueView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

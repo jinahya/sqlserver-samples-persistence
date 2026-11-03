@@ -35,7 +35,7 @@ public class MappedSalesOrderHeaderSalesReasonId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedSalesOrderHeaderSalesReasonId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class MappedSalesOrderHeaderSalesReasonId implements Serializable {
         return Objects.hash(salesOrderId, salesReasonId);
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesOrderId
+    // -------------------------------------------------------------------------------- salesOrderId
 
     /**
      * Returns current value of the {@code salesOrderId} attribute.
@@ -91,7 +91,7 @@ public class MappedSalesOrderHeaderSalesReasonId implements Serializable {
         this.salesOrderId = salesOrderId;
     }
 
-    // --------------------------------------------------------------------------------------------------- salesReasonId
+    // ------------------------------------------------------------------------------- salesReasonId
 
     /**
      * Returns current value of the {@code salesReasonId} attribute.
@@ -111,9 +111,15 @@ public class MappedSalesOrderHeaderSalesReasonId implements Serializable {
         this.salesReasonId = salesReasonId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code salesOrderId} attribute.
+     */
     private Integer salesOrderId;
 
+    /**
+     * The value of the {@code salesReasonId} attribute.
+     */
     private Integer salesReasonId;
 }
 

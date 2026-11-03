@@ -27,12 +27,29 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.ProductSubcategory} table.
  */
 @Entity(name = "ProductionProductSubcategory")
-@Table(schema = MappedProductSubcategory.TABLE_SCHEMA, name = MappedProductSubcategory.TABLE_NAME)
+@Table(schema = MappedProductSubcategory.TABLE_SCHEMA,
+       name = MappedProductSubcategory.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_ProductSubcategory_Name",
+                       columnNames = {
+                               ProductSubcategory.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_ProductSubcategory_rowguid",
+                       columnNames = {
+                               ProductSubcategory.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 public class ProductSubcategory extends MappedProductSubcategory {
 
     /**
@@ -41,7 +58,7 @@ public class ProductSubcategory extends MappedProductSubcategory {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_CATEGORY = "productCategory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -50,7 +67,7 @@ public class ProductSubcategory extends MappedProductSubcategory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------- productCategory
+    // ----------------------------------------------------------------------------- productCategory
 
     /**
      * Returns the {@code ProductCategory} which the {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID}
@@ -73,7 +90,7 @@ public class ProductSubcategory extends MappedProductSubcategory {
         setProductCategoryId(productCategory == null ? null : productCategory.getProductCategoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_CATEGORY_ID,
                 referencedColumnName = MappedProductCategory.COLUMN_NAME_PRODUCT_CATEGORY_ID,

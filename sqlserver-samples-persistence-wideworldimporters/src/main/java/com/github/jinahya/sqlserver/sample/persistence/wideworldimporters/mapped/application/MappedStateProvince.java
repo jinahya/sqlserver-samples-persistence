@@ -22,6 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -46,8 +49,51 @@ import java.util.Optional;
  * The {@value #COLUMN_NAME_COUNTRY_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a foreign
  * key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Application.StateProvinces}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StateProvinceID}</th>
+ *     <td>Numeric ID used for reference to a state or province within the database</td></tr>
+ * <tr><th scope="row">{@code StateProvinceCode}</th>
+ *     <td>Common code for this state or province (such as WA - Washington for the USA)</td></tr>
+ * <tr><th scope="row">{@code StateProvinceName}</th>
+ *     <td>Formal name of the state or province</td></tr>
+ * <tr><th scope="row">{@code CountryID}</th><td>Country for this StateProvince</td></tr>
+ * <tr><th scope="row">{@code SalesTerritory}</th>
+ *     <td>Sales territory for this StateProvince</td></tr>
+ * <tr><th scope="row">{@code Border}</th><td>Geographic boundary of the state or province</td></tr>
+ * <tr><th scope="row">{@code LatestRecordedPopulation}</th>
+ *     <td>Latest available population for the StateProvince</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Application.StateProvinces}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StateProvinceID}</th><td>{@code (NEXT VALUE FOR [Sequences].[StateProvinceID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedStateProvince.TABLE_SCHEMA,
+        table = MappedStateProvince.TABLE_NAME,
+        value = "States or provinces that contain cities (including geographic location)"
+)
+@MsTemporal(
+        historyTable = "Application.StateProvinces_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedStateProvince {
 
     /**
@@ -60,7 +106,7 @@ public abstract class MappedStateProvince {
      */
     public static final String TABLE_NAME = "StateProvinces";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.StateProvinceID, NOT NULL} column. The value is {@value}.
@@ -72,7 +118,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceCode
+    // --------------------------------------------------------------------------- StateProvinceCode
 
     /**
      * The name of the {@code nvarchar(5), NOT NULL} column. The value is {@value}.
@@ -90,7 +136,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_CODE = "stateProvinceCode";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceName
+    // --------------------------------------------------------------------------- StateProvinceName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -108,7 +154,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_NAME = "stateProvinceName";
 
-    // ------------------------------------------------------------------------------------------------------- CountryID
+    // ----------------------------------------------------------------------------------- CountryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -120,7 +166,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_ID = "countryId";
 
-    // -------------------------------------------------------------------------------------------------- SalesTerritory
+    // ------------------------------------------------------------------------------ SalesTerritory
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -137,7 +183,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_SALES_TERRITORY = "salesTerritory";
 
-    // ---------------------------------------------------------------------------------------------------------- Border
+    // -------------------------------------------------------------------------------------- Border
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -149,7 +195,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_BORDER = "border";
 
-    // ---------------------------------------------------------------------------------------- LatestRecordedPopulation
+    // -------------------------------------------------------------------- LatestRecordedPopulation
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -162,7 +208,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION = "latestRecordedPopulation";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -174,7 +220,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -186,7 +232,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -198,7 +244,7 @@ public abstract class MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -207,7 +253,7 @@ public abstract class MappedStateProvince {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -254,7 +300,7 @@ public abstract class MappedStateProvince {
         return Objects.hash(stateProvinceId);
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -274,7 +320,7 @@ public abstract class MappedStateProvince {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceCode
+    // --------------------------------------------------------------------------- stateProvinceCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_CODE} attribute.
@@ -294,7 +340,7 @@ public abstract class MappedStateProvince {
         this.stateProvinceCode = stateProvinceCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceName
+    // --------------------------------------------------------------------------- stateProvinceName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute.
@@ -314,7 +360,7 @@ public abstract class MappedStateProvince {
         this.stateProvinceName = stateProvinceName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- countryId
+    // ----------------------------------------------------------------------------------- countryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute.
@@ -335,7 +381,7 @@ public abstract class MappedStateProvince {
         this.countryId = countryId;
     }
 
-    // -------------------------------------------------------------------------------------------------- salesTerritory
+    // ------------------------------------------------------------------------------ salesTerritory
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_TERRITORY} attribute.
@@ -355,7 +401,7 @@ public abstract class MappedStateProvince {
         this.salesTerritory = salesTerritory;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- border
+    // -------------------------------------------------------------------------------------- border
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BORDER} attribute.
@@ -375,7 +421,7 @@ public abstract class MappedStateProvince {
         this.border = border;
     }
 
-    // ---------------------------------------------------------------------------------------- latestRecordedPopulation
+    // -------------------------------------------------------------------- latestRecordedPopulation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute.
@@ -396,7 +442,7 @@ public abstract class MappedStateProvince {
         this.latestRecordedPopulation = latestRecordedPopulation;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -418,7 +464,7 @@ public abstract class MappedStateProvince {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -439,7 +485,7 @@ public abstract class MappedStateProvince {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -460,7 +506,7 @@ public abstract class MappedStateProvince {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StateProvinceID", schema = "Sequences",
@@ -472,9 +518,14 @@ public abstract class MappedStateProvince {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
+                          value = "Numeric ID used for reference to a state or province within "
+                                  + "the database")
+    @MsDefault(name = "DF_Application_StateProvinces_StateProvinceID",
+               value = "(NEXT VALUE FOR [Sequences].[StateProvinceID])")
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
@@ -484,9 +535,12 @@ public abstract class MappedStateProvince {
             updatable = true,
             length = COLUMN_LENGTH_STATE_PROVINCE_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
+                          value = "Common code for this state or province (such as WA - "
+                                  + "Washington for the USA)")
     private String stateProvinceCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
@@ -496,9 +550,11 @@ public abstract class MappedStateProvince {
             updatable = true,
             length = COLUMN_LENGTH_STATE_PROVINCE_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
+                          value = "Formal name of the state or province")
     private String stateProvinceName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -507,9 +563,10 @@ public abstract class MappedStateProvince {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_ID, value = "Country for this StateProvince")
     private Integer countryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
     @Basic(optional = false)
@@ -519,9 +576,11 @@ public abstract class MappedStateProvince {
             updatable = true,
             length = COLUMN_LENGTH_SALES_TERRITORY
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_TERRITORY,
+                          value = "Sales territory for this StateProvince")
     private String salesTerritory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BORDER,
@@ -529,18 +588,22 @@ public abstract class MappedStateProvince {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_BORDER,
+                          value = "Geographic boundary of the state or province")
     private Geography border;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
+                          value = "Latest available population for the StateProvince")
     private Long latestRecordedPopulation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -551,7 +614,7 @@ public abstract class MappedStateProvince {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -562,7 +625,7 @@ public abstract class MappedStateProvince {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

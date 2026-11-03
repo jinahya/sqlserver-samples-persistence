@@ -54,7 +54,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String TABLE_NAME = "vw_InventoryTurnover";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // -------------------------------------------------------------------------------------------------- QuantityOnHand
+    // ------------------------------------------------------------------------------ QuantityOnHand
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -127,7 +127,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
 
-    // ----------------------------------------------------------------------------------------------- QuantityAvailable
+    // --------------------------------------------------------------------------- QuantityAvailable
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -149,7 +149,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_AVAILABLE = "quantityAvailable";
 
-    // ---------------------------------------------------------------------------------------------------- Annual Usage
+    // -------------------------------------------------------------------------------- Annual Usage
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -171,7 +171,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_USAGE = "annualUsage";
 
-    // -------------------------------------------------------------------------------------------------- AnnualReceipts
+    // ------------------------------------------------------------------------------ AnnualReceipts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -193,7 +193,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_RECEIPTS = "annualReceipts";
 
-    // ------------------------------------------------------------------------------------------------ TransactionCount
+    // ---------------------------------------------------------------------------- TransactionCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -205,7 +205,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_COUNT = "transactionCount";
 
-    // --------------------------------------------------------------------------------------------------- TurnoverRatio
+    // ------------------------------------------------------------------------------- TurnoverRatio
 
     /**
      * The name of the {@code decimal(10, 2)} column. The value is {@value}.
@@ -227,7 +227,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_TURNOVER_RATIO = "turnoverRatio";
 
-    // ------------------------------------------------------------------------------------------------------ DaysOnHand
+    // ---------------------------------------------------------------------------------- DaysOnHand
 
     /**
      * The name of the {@code decimal(10, 1)} column. The value is {@value}.
@@ -249,7 +249,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_ON_HAND = "daysOnHand";
 
-    // -------------------------------------------------------------------------------------------------- InventoryValue
+    // ------------------------------------------------------------------------------ InventoryValue
 
     /**
      * The name of the {@code decimal(37, 6)} column. The value is {@value}.
@@ -271,7 +271,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_INVENTORY_VALUE = "inventoryValue";
 
-    // ------------------------------------------------------------------------------------------------ FirstTransaction
+    // ---------------------------------------------------------------------------- FirstTransaction
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -283,7 +283,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_TRANSACTION = "firstTransaction";
 
-    // ------------------------------------------------------------------------------------------------- LastTransaction
+    // ----------------------------------------------------------------------------- LastTransaction
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -295,7 +295,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_LAST_TRANSACTION = "lastTransaction";
 
-    // ------------------------------------------------------------------------------------------- DaysSinceLastActivity
+    // ----------------------------------------------------------------------- DaysSinceLastActivity
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -308,7 +308,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_LAST_ACTIVITY = "daysSinceLastActivity";
 
-    // --------------------------------------------------------------------------------------------------- MovementClass
+    // ------------------------------------------------------------------------------- MovementClass
 
     /**
      * The name of the {@code varchar(11), NOT NULL} column. The value is {@value}.
@@ -325,7 +325,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     public static final String ATTRIBUTE_NAME_MOVEMENT_CLASS = "movementClass";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -334,7 +334,7 @@ public abstract class MappedInventoryTurnoverView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -386,7 +386,7 @@ public abstract class MappedInventoryTurnoverView {
         return Objects.hash(itemCode);
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -406,7 +406,7 @@ public abstract class MappedInventoryTurnoverView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -426,7 +426,7 @@ public abstract class MappedInventoryTurnoverView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -446,7 +446,7 @@ public abstract class MappedInventoryTurnoverView {
         this.itemType = itemType;
     }
 
-    // -------------------------------------------------------------------------------------------------- quantityOnHand
+    // ------------------------------------------------------------------------------ quantityOnHand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute.
@@ -466,7 +466,7 @@ public abstract class MappedInventoryTurnoverView {
         this.quantityOnHand = quantityOnHand;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityAvailable
+    // --------------------------------------------------------------------------- quantityAvailable
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute.
@@ -486,7 +486,7 @@ public abstract class MappedInventoryTurnoverView {
         this.quantityAvailable = quantityAvailable;
     }
 
-    // ----------------------------------------------------------------------------------------------------- annualUsage
+    // --------------------------------------------------------------------------------- annualUsage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ANNUAL_USAGE} attribute.
@@ -506,7 +506,7 @@ public abstract class MappedInventoryTurnoverView {
         this.annualUsage = annualUsage;
     }
 
-    // -------------------------------------------------------------------------------------------------- annualReceipts
+    // ------------------------------------------------------------------------------ annualReceipts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ANNUAL_RECEIPTS} attribute.
@@ -526,7 +526,7 @@ public abstract class MappedInventoryTurnoverView {
         this.annualReceipts = annualReceipts;
     }
 
-    // ------------------------------------------------------------------------------------------------ transactionCount
+    // ---------------------------------------------------------------------------- transactionCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_COUNT} attribute.
@@ -546,7 +546,7 @@ public abstract class MappedInventoryTurnoverView {
         this.transactionCount = transactionCount;
     }
 
-    // --------------------------------------------------------------------------------------------------- turnoverRatio
+    // ------------------------------------------------------------------------------- turnoverRatio
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TURNOVER_RATIO} attribute.
@@ -566,7 +566,7 @@ public abstract class MappedInventoryTurnoverView {
         this.turnoverRatio = turnoverRatio;
     }
 
-    // ------------------------------------------------------------------------------------------------------ daysOnHand
+    // ---------------------------------------------------------------------------------- daysOnHand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_ON_HAND} attribute.
@@ -586,7 +586,7 @@ public abstract class MappedInventoryTurnoverView {
         this.daysOnHand = daysOnHand;
     }
 
-    // -------------------------------------------------------------------------------------------------- inventoryValue
+    // ------------------------------------------------------------------------------ inventoryValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVENTORY_VALUE} attribute.
@@ -606,7 +606,7 @@ public abstract class MappedInventoryTurnoverView {
         this.inventoryValue = inventoryValue;
     }
 
-    // ------------------------------------------------------------------------------------------------ firstTransaction
+    // ---------------------------------------------------------------------------- firstTransaction
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_TRANSACTION} attribute.
@@ -626,7 +626,7 @@ public abstract class MappedInventoryTurnoverView {
         this.firstTransaction = firstTransaction;
     }
 
-    // ------------------------------------------------------------------------------------------------- lastTransaction
+    // ----------------------------------------------------------------------------- lastTransaction
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_TRANSACTION} attribute.
@@ -646,7 +646,7 @@ public abstract class MappedInventoryTurnoverView {
         this.lastTransaction = lastTransaction;
     }
 
-    // ------------------------------------------------------------------------------------------- daysSinceLastActivity
+    // ----------------------------------------------------------------------- daysSinceLastActivity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_ACTIVITY} attribute.
@@ -666,7 +666,7 @@ public abstract class MappedInventoryTurnoverView {
         this.daysSinceLastActivity = daysSinceLastActivity;
     }
 
-    // --------------------------------------------------------------------------------------------------- movementClass
+    // ------------------------------------------------------------------------------- movementClass
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MOVEMENT_CLASS} attribute.
@@ -686,7 +686,7 @@ public abstract class MappedInventoryTurnoverView {
         this.movementClass = movementClass;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -699,7 +699,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -712,7 +712,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -725,7 +725,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
@@ -740,7 +740,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal quantityOnHand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
@@ -754,7 +754,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal quantityAvailable;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ANNUAL_USAGE - COLUMN_SCALE_ANNUAL_USAGE, fraction = COLUMN_SCALE_ANNUAL_USAGE)
     @Basic(optional = true)
@@ -767,7 +767,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal annualUsage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ANNUAL_RECEIPTS - COLUMN_SCALE_ANNUAL_RECEIPTS,
             fraction = COLUMN_SCALE_ANNUAL_RECEIPTS)
@@ -781,7 +781,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal annualReceipts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TRANSACTION_COUNT,
@@ -791,7 +791,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private Integer transactionCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TURNOVER_RATIO - COLUMN_SCALE_TURNOVER_RATIO,
             fraction = COLUMN_SCALE_TURNOVER_RATIO)
@@ -805,7 +805,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal turnoverRatio;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DAYS_ON_HAND - COLUMN_SCALE_DAYS_ON_HAND, fraction = COLUMN_SCALE_DAYS_ON_HAND)
     @Basic(optional = true)
@@ -818,7 +818,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal daysOnHand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
             fraction = COLUMN_SCALE_INVENTORY_VALUE)
@@ -832,7 +832,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private BigDecimal inventoryValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FIRST_TRANSACTION,
@@ -842,7 +842,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private LocalDateTime firstTransaction;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_TRANSACTION,
@@ -852,7 +852,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private LocalDateTime lastTransaction;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_ACTIVITY,
@@ -862,7 +862,7 @@ public abstract class MappedInventoryTurnoverView {
     )
     private Integer daysSinceLastActivity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MOVEMENT_CLASS)
     @NotNull

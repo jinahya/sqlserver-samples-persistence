@@ -53,7 +53,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String TABLE_NAME = "StockItems_Archive";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // --------------------------------------------------------------------------------------------------- StockItemName
+    // ------------------------------------------------------------------------------- StockItemName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_NAME = "stockItemName";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // --------------------------------------------------------------------------------------------------------- ColorID
+    // ------------------------------------------------------------------------------------- ColorID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_COLOR_ID = "colorId";
 
-    // --------------------------------------------------------------------------------------------------- UnitPackageID
+    // ------------------------------------------------------------------------------- UnitPackageID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PACKAGE_ID = "unitPackageId";
 
-    // -------------------------------------------------------------------------------------------------- OuterPackageID
+    // ------------------------------------------------------------------------------ OuterPackageID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -130,7 +130,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_OUTER_PACKAGE_ID = "outerPackageId";
 
-    // ----------------------------------------------------------------------------------------------------------- Brand
+    // --------------------------------------------------------------------------------------- Brand
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -147,7 +147,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_BRAND = "brand";
 
-    // ------------------------------------------------------------------------------------------------------------ Size
+    // ---------------------------------------------------------------------------------------- Size
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -164,7 +164,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_SIZE = "size";
 
-    // ---------------------------------------------------------------------------------------------------- LeadTimeDays
+    // -------------------------------------------------------------------------------- LeadTimeDays
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -176,7 +176,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
 
-    // ------------------------------------------------------------------------------------------------ QuantityPerOuter
+    // ---------------------------------------------------------------------------- QuantityPerOuter
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -188,7 +188,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_PER_OUTER = "quantityPerOuter";
 
-    // -------------------------------------------------------------------------------------------------- IsChillerStock
+    // ------------------------------------------------------------------------------ IsChillerStock
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -200,7 +200,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_CHILLER_STOCK = "isChillerStock";
 
-    // --------------------------------------------------------------------------------------------------------- Barcode
+    // ------------------------------------------------------------------------------------- Barcode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -217,7 +217,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_BARCODE = "barcode";
 
-    // --------------------------------------------------------------------------------------------------------- TaxRate
+    // ------------------------------------------------------------------------------------- TaxRate
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -239,7 +239,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_TAX_RATE = "taxRate";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -261,7 +261,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------ RecommendedRetailPrice
+    // ---------------------------------------------------------------------- RecommendedRetailPrice
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -284,7 +284,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_RECOMMENDED_RETAIL_PRICE = "recommendedRetailPrice";
 
-    // -------------------------------------------------------------------------------------------- TypicalWeightPerUnit
+    // ------------------------------------------------------------------------ TypicalWeightPerUnit
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -307,7 +307,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_TYPICAL_WEIGHT_PER_UNIT = "typicalWeightPerUnit";
 
-    // ----------------------------------------------------------------------------------------------- MarketingComments
+    // --------------------------------------------------------------------------- MarketingComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -319,7 +319,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_MARKETING_COMMENTS = "marketingComments";
 
-    // ------------------------------------------------------------------------------------------------ InternalComments
+    // ---------------------------------------------------------------------------- InternalComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -331,7 +331,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_INTERNAL_COMMENTS = "internalComments";
 
-    // ----------------------------------------------------------------------------------------------------------- Photo
+    // --------------------------------------------------------------------------------------- Photo
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -343,7 +343,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_PHOTO = "photo";
 
-    // ---------------------------------------------------------------------------------------------------- CustomFields
+    // -------------------------------------------------------------------------------- CustomFields
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -355,7 +355,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOM_FIELDS = "customFields";
 
-    // ------------------------------------------------------------------------------------------------------------ Tags
+    // ---------------------------------------------------------------------------------------- Tags
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -367,7 +367,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_TAGS = "tags";
 
-    // --------------------------------------------------------------------------------------------------- SearchDetails
+    // ------------------------------------------------------------------------------- SearchDetails
 
     /**
      * The name of the {@code nvarchar(max), NOT NULL} column. The value is {@value}.
@@ -379,7 +379,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_SEARCH_DETAILS = "searchDetails";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -391,7 +391,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -403,7 +403,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -415,7 +415,7 @@ public abstract class MappedStockItemArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -424,7 +424,7 @@ public abstract class MappedStockItemArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -457,7 +457,7 @@ public abstract class MappedStockItemArchive {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -477,7 +477,7 @@ public abstract class MappedStockItemArchive {
         this.stockItemId = stockItemId;
     }
 
-    // --------------------------------------------------------------------------------------------------- stockItemName
+    // ------------------------------------------------------------------------------- stockItemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_NAME} attribute.
@@ -497,7 +497,7 @@ public abstract class MappedStockItemArchive {
         this.stockItemName = stockItemName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -517,7 +517,7 @@ public abstract class MappedStockItemArchive {
         this.supplierId = supplierId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- colorId
+    // ------------------------------------------------------------------------------------- colorId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLOR_ID} attribute.
@@ -537,7 +537,7 @@ public abstract class MappedStockItemArchive {
         this.colorId = colorId;
     }
 
-    // --------------------------------------------------------------------------------------------------- unitPackageId
+    // ------------------------------------------------------------------------------- unitPackageId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute.
@@ -557,7 +557,7 @@ public abstract class MappedStockItemArchive {
         this.unitPackageId = unitPackageId;
     }
 
-    // -------------------------------------------------------------------------------------------------- outerPackageId
+    // ------------------------------------------------------------------------------ outerPackageId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute.
@@ -577,7 +577,7 @@ public abstract class MappedStockItemArchive {
         this.outerPackageId = outerPackageId;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- brand
+    // --------------------------------------------------------------------------------------- brand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BRAND} attribute.
@@ -597,7 +597,7 @@ public abstract class MappedStockItemArchive {
         this.brand = brand;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ size
+    // ---------------------------------------------------------------------------------------- size
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SIZE} attribute.
@@ -617,7 +617,7 @@ public abstract class MappedStockItemArchive {
         this.size = size;
     }
 
-    // ---------------------------------------------------------------------------------------------------- leadTimeDays
+    // -------------------------------------------------------------------------------- leadTimeDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute.
@@ -637,7 +637,7 @@ public abstract class MappedStockItemArchive {
         this.leadTimeDays = leadTimeDays;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityPerOuter
+    // ---------------------------------------------------------------------------- quantityPerOuter
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_PER_OUTER} attribute.
@@ -657,7 +657,7 @@ public abstract class MappedStockItemArchive {
         this.quantityPerOuter = quantityPerOuter;
     }
 
-    // -------------------------------------------------------------------------------------------------- isChillerStock
+    // ------------------------------------------------------------------------------ isChillerStock
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_CHILLER_STOCK} attribute.
@@ -677,7 +677,7 @@ public abstract class MappedStockItemArchive {
         this.isChillerStock = isChillerStock;
     }
 
-    // --------------------------------------------------------------------------------------------------------- barcode
+    // ------------------------------------------------------------------------------------- barcode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BARCODE} attribute.
@@ -697,7 +697,7 @@ public abstract class MappedStockItemArchive {
         this.barcode = barcode;
     }
 
-    // --------------------------------------------------------------------------------------------------------- taxRate
+    // ------------------------------------------------------------------------------------- taxRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_RATE} attribute.
@@ -717,7 +717,7 @@ public abstract class MappedStockItemArchive {
         this.taxRate = taxRate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -737,7 +737,7 @@ public abstract class MappedStockItemArchive {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------ recommendedRetailPrice
+    // ---------------------------------------------------------------------- recommendedRetailPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECOMMENDED_RETAIL_PRICE} attribute.
@@ -757,7 +757,7 @@ public abstract class MappedStockItemArchive {
         this.recommendedRetailPrice = recommendedRetailPrice;
     }
 
-    // -------------------------------------------------------------------------------------------- typicalWeightPerUnit
+    // ------------------------------------------------------------------------ typicalWeightPerUnit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TYPICAL_WEIGHT_PER_UNIT} attribute.
@@ -777,7 +777,7 @@ public abstract class MappedStockItemArchive {
         this.typicalWeightPerUnit = typicalWeightPerUnit;
     }
 
-    // ----------------------------------------------------------------------------------------------- marketingComments
+    // --------------------------------------------------------------------------- marketingComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MARKETING_COMMENTS} attribute.
@@ -797,7 +797,7 @@ public abstract class MappedStockItemArchive {
         this.marketingComments = marketingComments;
     }
 
-    // ------------------------------------------------------------------------------------------------ internalComments
+    // ---------------------------------------------------------------------------- internalComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNAL_COMMENTS} attribute.
@@ -817,7 +817,7 @@ public abstract class MappedStockItemArchive {
         this.internalComments = internalComments;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- photo
+    // --------------------------------------------------------------------------------------- photo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHOTO} attribute.
@@ -837,7 +837,7 @@ public abstract class MappedStockItemArchive {
         this.photo = photo;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customFields
+    // -------------------------------------------------------------------------------- customFields
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOM_FIELDS} attribute.
@@ -857,7 +857,7 @@ public abstract class MappedStockItemArchive {
         this.customFields = customFields;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ tags
+    // ---------------------------------------------------------------------------------------- tags
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAGS} attribute.
@@ -877,7 +877,7 @@ public abstract class MappedStockItemArchive {
         this.tags = tags;
     }
 
-    // --------------------------------------------------------------------------------------------------- searchDetails
+    // ------------------------------------------------------------------------------- searchDetails
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SEARCH_DETAILS} attribute.
@@ -897,7 +897,7 @@ public abstract class MappedStockItemArchive {
         this.searchDetails = searchDetails;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -917,7 +917,7 @@ public abstract class MappedStockItemArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -937,7 +937,7 @@ public abstract class MappedStockItemArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -957,7 +957,7 @@ public abstract class MappedStockItemArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -968,7 +968,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_STOCK_ITEM_NAME)
     @NotNull
@@ -981,7 +981,7 @@ public abstract class MappedStockItemArchive {
     )
     private String stockItemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -992,7 +992,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COLOR_ID,
@@ -1002,7 +1002,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer colorId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1013,7 +1013,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer unitPackageId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1024,7 +1024,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer outerPackageId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BRAND)
     @Basic(optional = true)
@@ -1036,7 +1036,7 @@ public abstract class MappedStockItemArchive {
     )
     private String brand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SIZE)
     @Basic(optional = true)
@@ -1048,7 +1048,7 @@ public abstract class MappedStockItemArchive {
     )
     private String size;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1059,7 +1059,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer leadTimeDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1070,7 +1070,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer quantityPerOuter;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1081,7 +1081,7 @@ public abstract class MappedStockItemArchive {
     )
     private Boolean isChillerStock;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BARCODE)
     @Basic(optional = true)
@@ -1093,7 +1093,7 @@ public abstract class MappedStockItemArchive {
     )
     private String barcode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
@@ -1107,7 +1107,7 @@ public abstract class MappedStockItemArchive {
     )
     private BigDecimal taxRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
@@ -1121,7 +1121,7 @@ public abstract class MappedStockItemArchive {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE - COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE,
             fraction = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
@@ -1135,7 +1135,7 @@ public abstract class MappedStockItemArchive {
     )
     private BigDecimal recommendedRetailPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT - COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT,
             fraction = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
@@ -1150,7 +1150,7 @@ public abstract class MappedStockItemArchive {
     )
     private BigDecimal typicalWeightPerUnit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MARKETING_COMMENTS,
@@ -1160,7 +1160,7 @@ public abstract class MappedStockItemArchive {
     )
     private String marketingComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
@@ -1170,7 +1170,7 @@ public abstract class MappedStockItemArchive {
     )
     private String internalComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO,
@@ -1180,7 +1180,7 @@ public abstract class MappedStockItemArchive {
     )
     private byte[] photo;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
@@ -1190,7 +1190,7 @@ public abstract class MappedStockItemArchive {
     )
     private String customFields;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAGS,
@@ -1200,7 +1200,7 @@ public abstract class MappedStockItemArchive {
     )
     private String tags;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1211,7 +1211,7 @@ public abstract class MappedStockItemArchive {
     )
     private String searchDetails;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1222,7 +1222,7 @@ public abstract class MappedStockItemArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1233,7 +1233,7 @@ public abstract class MappedStockItemArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

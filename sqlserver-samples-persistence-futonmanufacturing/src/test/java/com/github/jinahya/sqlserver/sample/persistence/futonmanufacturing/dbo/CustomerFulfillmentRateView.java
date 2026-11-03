@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedCustomerFulfillmentRateView.TABLE_SCHEMA, name = MappedCustomerFulfillmentRateView.TABLE_NAME)
 public class CustomerFulfillmentRateView extends MappedCustomerFulfillmentRateView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

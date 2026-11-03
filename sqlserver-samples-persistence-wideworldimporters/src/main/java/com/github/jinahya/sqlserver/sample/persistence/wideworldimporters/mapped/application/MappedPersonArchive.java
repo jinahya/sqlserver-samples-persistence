@@ -51,7 +51,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String TABLE_NAME = "People_Archive";
 
-    // -------------------------------------------------------------------------------------------------------- PersonID
+    // ------------------------------------------------------------------------------------ PersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_PERSON_ID = "personId";
 
-    // -------------------------------------------------------------------------------------------------------- FullName
+    // ------------------------------------------------------------------------------------ FullName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -80,7 +80,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_FULL_NAME = "fullName";
 
-    // --------------------------------------------------------------------------------------------------- PreferredName
+    // ------------------------------------------------------------------------------- PreferredName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -97,7 +97,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_PREFERRED_NAME = "preferredName";
 
-    // ------------------------------------------------------------------------------------------------------ SearchName
+    // ---------------------------------------------------------------------------------- SearchName
 
     /**
      * The name of the {@code nvarchar(101), NOT NULL} column. The value is {@value}.
@@ -114,7 +114,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_SEARCH_NAME = "searchName";
 
-    // ---------------------------------------------------------------------------------------------- IsPermittedToLogon
+    // -------------------------------------------------------------------------- IsPermittedToLogon
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -127,7 +127,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_PERMITTED_TO_LOGON = "isPermittedToLogon";
 
-    // ------------------------------------------------------------------------------------------------------- LogonName
+    // ----------------------------------------------------------------------------------- LogonName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -144,7 +144,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_LOGON_NAME = "logonName";
 
-    // ----------------------------------------------------------------------------------------- IsExternalLogonProvider
+    // --------------------------------------------------------------------- IsExternalLogonProvider
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -157,7 +157,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_EXTERNAL_LOGON_PROVIDER = "isExternalLogonProvider";
 
-    // -------------------------------------------------------------------------------------------------- HashedPassword
+    // ------------------------------------------------------------------------------ HashedPassword
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -169,7 +169,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_HASHED_PASSWORD = "hashedPassword";
 
-    // ---------------------------------------------------------------------------------------------------- IsSystemUser
+    // -------------------------------------------------------------------------------- IsSystemUser
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -181,7 +181,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_SYSTEM_USER = "isSystemUser";
 
-    // ------------------------------------------------------------------------------------------------------ IsEmployee
+    // ---------------------------------------------------------------------------------- IsEmployee
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -193,7 +193,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_EMPLOYEE = "isEmployee";
 
-    // --------------------------------------------------------------------------------------------------- IsSalesperson
+    // ------------------------------------------------------------------------------- IsSalesperson
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -205,7 +205,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_SALESPERSON = "isSalesperson";
 
-    // ------------------------------------------------------------------------------------------------- UserPreferences
+    // ----------------------------------------------------------------------------- UserPreferences
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -217,7 +217,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_USER_PREFERENCES = "userPreferences";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -234,7 +234,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -251,7 +251,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ---------------------------------------------------------------------------------------------------- EmailAddress
+    // -------------------------------------------------------------------------------- EmailAddress
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -268,7 +268,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
 
-    // ----------------------------------------------------------------------------------------------------------- Photo
+    // --------------------------------------------------------------------------------------- Photo
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -280,7 +280,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_PHOTO = "photo";
 
-    // ---------------------------------------------------------------------------------------------------- CustomFields
+    // -------------------------------------------------------------------------------- CustomFields
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -292,7 +292,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOM_FIELDS = "customFields";
 
-    // -------------------------------------------------------------------------------------------------- OtherLanguages
+    // ------------------------------------------------------------------------------ OtherLanguages
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -304,7 +304,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_OTHER_LANGUAGES = "otherLanguages";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -316,7 +316,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -328,7 +328,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -340,7 +340,7 @@ public abstract class MappedPersonArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -349,7 +349,7 @@ public abstract class MappedPersonArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -378,7 +378,7 @@ public abstract class MappedPersonArchive {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------------- personId
+    // ------------------------------------------------------------------------------------ personId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERSON_ID} attribute.
@@ -398,7 +398,7 @@ public abstract class MappedPersonArchive {
         this.personId = personId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- fullName
+    // ------------------------------------------------------------------------------------ fullName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULL_NAME} attribute.
@@ -418,7 +418,7 @@ public abstract class MappedPersonArchive {
         this.fullName = fullName;
     }
 
-    // --------------------------------------------------------------------------------------------------- preferredName
+    // ------------------------------------------------------------------------------- preferredName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PREFERRED_NAME} attribute.
@@ -438,7 +438,7 @@ public abstract class MappedPersonArchive {
         this.preferredName = preferredName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ searchName
+    // ---------------------------------------------------------------------------------- searchName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SEARCH_NAME} attribute.
@@ -458,7 +458,7 @@ public abstract class MappedPersonArchive {
         this.searchName = searchName;
     }
 
-    // ---------------------------------------------------------------------------------------------- isPermittedToLogon
+    // -------------------------------------------------------------------------- isPermittedToLogon
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_PERMITTED_TO_LOGON} attribute.
@@ -478,7 +478,7 @@ public abstract class MappedPersonArchive {
         this.isPermittedToLogon = isPermittedToLogon;
     }
 
-    // ------------------------------------------------------------------------------------------------------- logonName
+    // ----------------------------------------------------------------------------------- logonName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOGON_NAME} attribute.
@@ -498,7 +498,7 @@ public abstract class MappedPersonArchive {
         this.logonName = logonName;
     }
 
-    // ----------------------------------------------------------------------------------------- isExternalLogonProvider
+    // --------------------------------------------------------------------- isExternalLogonProvider
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_EXTERNAL_LOGON_PROVIDER} attribute.
@@ -519,7 +519,7 @@ public abstract class MappedPersonArchive {
         this.isExternalLogonProvider = isExternalLogonProvider;
     }
 
-    // -------------------------------------------------------------------------------------------------- hashedPassword
+    // ------------------------------------------------------------------------------ hashedPassword
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HASHED_PASSWORD} attribute.
@@ -539,7 +539,7 @@ public abstract class MappedPersonArchive {
         this.hashedPassword = hashedPassword;
     }
 
-    // ---------------------------------------------------------------------------------------------------- isSystemUser
+    // -------------------------------------------------------------------------------- isSystemUser
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_SYSTEM_USER} attribute.
@@ -559,7 +559,7 @@ public abstract class MappedPersonArchive {
         this.isSystemUser = isSystemUser;
     }
 
-    // ------------------------------------------------------------------------------------------------------ isEmployee
+    // ---------------------------------------------------------------------------------- isEmployee
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_EMPLOYEE} attribute.
@@ -579,7 +579,7 @@ public abstract class MappedPersonArchive {
         this.isEmployee = isEmployee;
     }
 
-    // --------------------------------------------------------------------------------------------------- isSalesperson
+    // ------------------------------------------------------------------------------- isSalesperson
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_SALESPERSON} attribute.
@@ -599,7 +599,7 @@ public abstract class MappedPersonArchive {
         this.isSalesperson = isSalesperson;
     }
 
-    // ------------------------------------------------------------------------------------------------- userPreferences
+    // ----------------------------------------------------------------------------- userPreferences
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_USER_PREFERENCES} attribute.
@@ -619,7 +619,7 @@ public abstract class MappedPersonArchive {
         this.userPreferences = userPreferences;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -639,7 +639,7 @@ public abstract class MappedPersonArchive {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -659,7 +659,7 @@ public abstract class MappedPersonArchive {
         this.faxNumber = faxNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- emailAddress
+    // -------------------------------------------------------------------------------- emailAddress
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
@@ -679,7 +679,7 @@ public abstract class MappedPersonArchive {
         this.emailAddress = emailAddress;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- photo
+    // --------------------------------------------------------------------------------------- photo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHOTO} attribute.
@@ -699,7 +699,7 @@ public abstract class MappedPersonArchive {
         this.photo = photo;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customFields
+    // -------------------------------------------------------------------------------- customFields
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOM_FIELDS} attribute.
@@ -719,7 +719,7 @@ public abstract class MappedPersonArchive {
         this.customFields = customFields;
     }
 
-    // -------------------------------------------------------------------------------------------------- otherLanguages
+    // ------------------------------------------------------------------------------ otherLanguages
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OTHER_LANGUAGES} attribute.
@@ -739,7 +739,7 @@ public abstract class MappedPersonArchive {
         this.otherLanguages = otherLanguages;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -759,7 +759,7 @@ public abstract class MappedPersonArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -779,7 +779,7 @@ public abstract class MappedPersonArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -799,7 +799,7 @@ public abstract class MappedPersonArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -810,7 +810,7 @@ public abstract class MappedPersonArchive {
     )
     private Integer personId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @NotNull
@@ -823,7 +823,7 @@ public abstract class MappedPersonArchive {
     )
     private String fullName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PREFERRED_NAME)
     @NotNull
@@ -836,7 +836,7 @@ public abstract class MappedPersonArchive {
     )
     private String preferredName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SEARCH_NAME)
     @NotNull
@@ -849,7 +849,7 @@ public abstract class MappedPersonArchive {
     )
     private String searchName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -860,7 +860,7 @@ public abstract class MappedPersonArchive {
     )
     private Boolean isPermittedToLogon;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_LOGON_NAME)
     @Basic(optional = true)
@@ -872,7 +872,7 @@ public abstract class MappedPersonArchive {
     )
     private String logonName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -883,7 +883,7 @@ public abstract class MappedPersonArchive {
     )
     private Boolean isExternalLogonProvider;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HASHED_PASSWORD,
@@ -893,7 +893,7 @@ public abstract class MappedPersonArchive {
     )
     private byte[] hashedPassword;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -904,7 +904,7 @@ public abstract class MappedPersonArchive {
     )
     private Boolean isSystemUser;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -915,7 +915,7 @@ public abstract class MappedPersonArchive {
     )
     private Boolean isEmployee;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -926,7 +926,7 @@ public abstract class MappedPersonArchive {
     )
     private Boolean isSalesperson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_USER_PREFERENCES,
@@ -936,7 +936,7 @@ public abstract class MappedPersonArchive {
     )
     private String userPreferences;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
@@ -948,7 +948,7 @@ public abstract class MappedPersonArchive {
     )
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @Basic(optional = true)
@@ -960,7 +960,7 @@ public abstract class MappedPersonArchive {
     )
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
@@ -972,7 +972,7 @@ public abstract class MappedPersonArchive {
     )
     private String emailAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO,
@@ -982,7 +982,7 @@ public abstract class MappedPersonArchive {
     )
     private byte[] photo;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
@@ -992,7 +992,7 @@ public abstract class MappedPersonArchive {
     )
     private String customFields;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_OTHER_LANGUAGES,
@@ -1002,7 +1002,7 @@ public abstract class MappedPersonArchive {
     )
     private String otherLanguages;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1013,7 +1013,7 @@ public abstract class MappedPersonArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1024,7 +1024,7 @@ public abstract class MappedPersonArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

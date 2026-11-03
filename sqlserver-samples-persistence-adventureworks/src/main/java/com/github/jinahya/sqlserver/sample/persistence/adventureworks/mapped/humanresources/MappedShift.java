@@ -20,7 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.MappedWithIdentityId;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
@@ -35,6 +37,33 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.Shift} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code HumanResources.Shift}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ShiftID}</th><td>Primary key for Shift records.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Shift description.</td></tr>
+ * <tr><th scope="row">{@code StartTime}</th><td>Shift start time.</td></tr>
+ * <tr><th scope="row">{@code EndTime}</th><td>Shift end time.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code HumanResources.Shift}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
 // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
@@ -46,6 +75,11 @@ import java.util.Objects;
                    )
 )
 @MappedSuperclass
+@MsDescription(
+        schema = MappedShift.TABLE_SCHEMA,
+        table = MappedShift.TABLE_NAME,
+        value = "Work shift lookup table."
+)
 public abstract class MappedShift
         extends MappedWithIdentityId {
 
@@ -59,14 +93,14 @@ public abstract class MappedShift
      */
     public static final String TABLE_NAME = "Shift";
 
-    // --------------------------------------------------------------------------------------------------------- ShiftID
+    // ------------------------------------------------------------------------------------- ShiftID
 
     /**
      * The name of the {@code tinyint, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SHIFT_ID = "ShiftID";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -83,7 +117,7 @@ public abstract class MappedShift
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ------------------------------------------------------------------------------------------------------- StartTime
+    // ----------------------------------------------------------------------------------- StartTime
 
     /**
      * The name of the {@code time, NOT NULL} column. The value is {@value}.
@@ -95,7 +129,7 @@ public abstract class MappedShift
      */
     public static final String ATTRIBUTE_NAME_START_TIME = "startTime";
 
-    // --------------------------------------------------------------------------------------------------------- EndTime
+    // ------------------------------------------------------------------------------------- EndTime
 
     /**
      * The name of the {@code time, NOT NULL} column. The value is {@value}.
@@ -107,7 +141,7 @@ public abstract class MappedShift
      */
     public static final String ATTRIBUTE_NAME_END_TIME = "endTime";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -119,7 +153,7 @@ public abstract class MappedShift
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -128,7 +162,7 @@ public abstract class MappedShift
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -170,7 +204,7 @@ public abstract class MappedShift
         return Objects.hash(getId_());
     }
 
-    // --------------------------------------------------------------------------------------------------------- shiftId
+    // ------------------------------------------------------------------------------------- shiftId
 
     /**
      * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_SHIFT_ID} column.
@@ -181,7 +215,7 @@ public abstract class MappedShift
         return getId_();
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -201,7 +235,7 @@ public abstract class MappedShift
         this.name = name;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startTime
+    // ----------------------------------------------------------------------------------- startTime
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_TIME} attribute.
@@ -221,7 +255,7 @@ public abstract class MappedShift
         this.startTime = startTime;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endTime
+    // ------------------------------------------------------------------------------------- endTime
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_TIME} attribute.
@@ -241,7 +275,7 @@ public abstract class MappedShift
         this.endTime = endTime;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -261,7 +295,7 @@ public abstract class MappedShift
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -271,9 +305,10 @@ public abstract class MappedShift
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Shift description.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_START_TIME,
@@ -281,9 +316,10 @@ public abstract class MappedShift
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_START_TIME, value = "Shift start time.")
     private LocalTime startTime;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_END_TIME,
@@ -291,9 +327,10 @@ public abstract class MappedShift
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_TIME, value = "Shift end time.")
     private LocalTime endTime;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -302,6 +339,9 @@ public abstract class MappedShift
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Shift_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

@@ -33,7 +33,7 @@ import java.math.BigDecimal;
  */
 public class RawMaterialUsageView extends MappedRawMaterialUsageView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

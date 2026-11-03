@@ -65,7 +65,7 @@ public class OrderLine extends MappedOrderLine {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -74,7 +74,7 @@ public class OrderLine extends MappedOrderLine {
         super();
     }
 
-    // ----------------------------------------------------------------------------------------------------------- order
+    // --------------------------------------------------------------------------------------- order
 
     /**
      * Returns the {@code Order} which the {@code FK_Sales_OrderLines_OrderID_Sales_Orders} foreign key references.
@@ -96,7 +96,7 @@ public class OrderLine extends MappedOrderLine {
         setOrderId(order == null ? null : order.getOrderId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- stockItem
+    // ----------------------------------------------------------------------------------- stockItem
 
     /**
      * Returns the {@code StockItem} which the {@code FK_Sales_OrderLines_StockItemID_Warehouse_StockItems} foreign key
@@ -119,7 +119,7 @@ public class OrderLine extends MappedOrderLine {
         setStockItemId(stockItem == null ? null : stockItem.getStockItemId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- packageType
+    // --------------------------------------------------------------------------------- packageType
 
     /**
      * Returns the {@code PackageType} which the {@code FK_Sales_OrderLines_PackageTypeID_Warehouse_PackageTypes}
@@ -142,7 +142,7 @@ public class OrderLine extends MappedOrderLine {
         setPackageTypeId(packageType == null ? null : packageType.getPackageTypeId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_OrderLines_Application_People} foreign key references.
@@ -164,7 +164,7 @@ public class OrderLine extends MappedOrderLine {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ORDER_ID,
                 referencedColumnName = MappedOrder.COLUMN_NAME_ORDER_ID,
@@ -174,7 +174,7 @@ public class OrderLine extends MappedOrderLine {
     )
     private Order order;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_ITEM_ID,
                 referencedColumnName = MappedStockItem.COLUMN_NAME_STOCK_ITEM_ID,
@@ -184,7 +184,7 @@ public class OrderLine extends MappedOrderLine {
     )
     private StockItem stockItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PACKAGE_TYPE_ID,
                 referencedColumnName = MappedPackageType.COLUMN_NAME_PACKAGE_TYPE_ID,
@@ -194,7 +194,7 @@ public class OrderLine extends MappedOrderLine {
     )
     private PackageType packageType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

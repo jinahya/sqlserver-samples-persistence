@@ -75,7 +75,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -84,7 +84,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- supplier
+    // ------------------------------------------------------------------------------------ supplier
 
     /**
      * Returns the {@code Supplier} which the {@code FK_Purchasing_SupplierTransactions_SupplierID_Purchasing_Suppliers}
@@ -108,7 +108,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
         setSupplierId(supplier == null ? null : supplier.getSupplierId());
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionType
+    // ----------------------------------------------------------------------------- transactionType
 
     /**
      * Returns the {@code TransactionType} which the
@@ -133,7 +133,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
         setTransactionTypeId(transactionType == null ? null : transactionType.getTransactionTypeId());
     }
 
-    // --------------------------------------------------------------------------------------------------- purchaseOrder
+    // ------------------------------------------------------------------------------- purchaseOrder
 
     /**
      * Returns the {@code PurchaseOrder} which the
@@ -157,7 +157,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
         setPurchaseOrderId(purchaseOrder == null ? null : purchaseOrder.getPurchaseOrderId());
     }
 
-    // --------------------------------------------------------------------------------------------------- paymentMethod
+    // ------------------------------------------------------------------------------- paymentMethod
 
     /**
      * Returns the {@code PaymentMethod} which the
@@ -181,7 +181,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
         setPaymentMethodId(paymentMethod == null ? null : paymentMethod.getPaymentMethodId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Purchasing_SupplierTransactions_Application_People} foreign key
@@ -204,7 +204,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SUPPLIER_ID,
                 referencedColumnName = MappedSupplier.COLUMN_NAME_SUPPLIER_ID,
@@ -214,7 +214,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
     )
     private Supplier supplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
                 referencedColumnName = MappedTransactionType.COLUMN_NAME_TRANSACTION_TYPE_ID,
@@ -224,7 +224,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
     )
     private TransactionType transactionType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                 referencedColumnName = MappedPurchaseOrder.COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -234,7 +234,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
     )
     private PurchaseOrder purchaseOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PAYMENT_METHOD_ID,
                 referencedColumnName = MappedPaymentMethod.COLUMN_NAME_PAYMENT_METHOD_ID,
@@ -244,7 +244,7 @@ public class SupplierTransaction extends MappedSupplierTransaction {
     )
     private PaymentMethod paymentMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

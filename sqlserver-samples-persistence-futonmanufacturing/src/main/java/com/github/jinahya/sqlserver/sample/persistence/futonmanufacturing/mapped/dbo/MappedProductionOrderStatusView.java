@@ -55,7 +55,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String TABLE_NAME = "vw_ProductionOrderStatus";
 
-    // ------------------------------------------------------------------------------------------------- WorkOrderNumber
+    // ----------------------------------------------------------------------------- WorkOrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -72,7 +72,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_NUMBER = "workOrderNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -89,7 +89,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // --------------------------------------------------------------------------------------------------- OrderQuantity
+    // ------------------------------------------------------------------------------- OrderQuantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_QUANTITY = "orderQuantity";
 
-    // ----------------------------------------------------------------------------------------------- QuantityCompleted
+    // --------------------------------------------------------------------------- QuantityCompleted
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_COMPLETED = "quantityCompleted";
 
-    // ------------------------------------------------------------------------------------------------ QuantityScrapped
+    // ---------------------------------------------------------------------------- QuantityScrapped
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -206,7 +206,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_SCRAPPED = "quantityScrapped";
 
-    // ----------------------------------------------------------------------------------------------- QuantityRemaining
+    // --------------------------------------------------------------------------- QuantityRemaining
 
     /**
      * The name of the {@code decimal(20, 2)} column. The value is {@value}.
@@ -228,7 +228,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_REMAINING = "quantityRemaining";
 
-    // ------------------------------------------------------------------------------------------------- PercentComplete
+    // ----------------------------------------------------------------------------- PercentComplete
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -250,7 +250,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_PERCENT_COMPLETE = "percentComplete";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterName
+    // ------------------------------------------------------------------------------ WorkCenterName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -267,7 +267,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_NAME = "workCenterName";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseName
+    // ------------------------------------------------------------------------------- WarehouseName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -284,7 +284,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_NAME = "warehouseName";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -296,7 +296,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // ------------------------------------------------------------------------------------------- PlannedCompletionDate
+    // ----------------------------------------------------------------------- PlannedCompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -309,7 +309,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE = "plannedCompletionDate";
 
-    // -------------------------------------------------------------------------------------------- ActualCompletionDate
+    // ------------------------------------------------------------------------ ActualCompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -322,7 +322,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_COMPLETION_DATE = "actualCompletionDate";
 
-    // ---------------------------------------------------------------------------------------------------- DaysVariance
+    // -------------------------------------------------------------------------------- DaysVariance
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -334,7 +334,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_VARIANCE = "daysVariance";
 
-    // -------------------------------------------------------------------------------------------------- ScheduleStatus
+    // ------------------------------------------------------------------------------ ScheduleStatus
 
     /**
      * The name of the {@code varchar(8), NOT NULL} column. The value is {@value}.
@@ -351,7 +351,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_SCHEDULE_STATUS = "scheduleStatus";
 
-    // -------------------------------------------------------------------------------------------------------- Priority
+    // ------------------------------------------------------------------------------------ Priority
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -363,7 +363,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_PRIORITY = "priority";
 
-    // ------------------------------------------------------------------------------------------------------- CreatedBy
+    // ----------------------------------------------------------------------------------- CreatedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -380,7 +380,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_CREATED_BY = "createdBy";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -392,7 +392,7 @@ public abstract class MappedProductionOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -401,7 +401,7 @@ public abstract class MappedProductionOrderStatusView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -429,7 +429,7 @@ public abstract class MappedProductionOrderStatusView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------- workOrderNumber
+    // ----------------------------------------------------------------------------- workOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_NUMBER} attribute.
@@ -449,7 +449,7 @@ public abstract class MappedProductionOrderStatusView {
         this.workOrderNumber = workOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -469,7 +469,7 @@ public abstract class MappedProductionOrderStatusView {
         this.status = status;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -489,7 +489,7 @@ public abstract class MappedProductionOrderStatusView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -509,7 +509,7 @@ public abstract class MappedProductionOrderStatusView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -529,7 +529,7 @@ public abstract class MappedProductionOrderStatusView {
         this.itemType = itemType;
     }
 
-    // --------------------------------------------------------------------------------------------------- orderQuantity
+    // ------------------------------------------------------------------------------- orderQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute.
@@ -549,7 +549,7 @@ public abstract class MappedProductionOrderStatusView {
         this.orderQuantity = orderQuantity;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityCompleted
+    // --------------------------------------------------------------------------- quantityCompleted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute.
@@ -569,7 +569,7 @@ public abstract class MappedProductionOrderStatusView {
         this.quantityCompleted = quantityCompleted;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityScrapped
+    // ---------------------------------------------------------------------------- quantityScrapped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute.
@@ -589,7 +589,7 @@ public abstract class MappedProductionOrderStatusView {
         this.quantityScrapped = quantityScrapped;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityRemaining
+    // --------------------------------------------------------------------------- quantityRemaining
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_REMAINING} attribute.
@@ -609,7 +609,7 @@ public abstract class MappedProductionOrderStatusView {
         this.quantityRemaining = quantityRemaining;
     }
 
-    // ------------------------------------------------------------------------------------------------- percentComplete
+    // ----------------------------------------------------------------------------- percentComplete
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERCENT_COMPLETE} attribute.
@@ -629,7 +629,7 @@ public abstract class MappedProductionOrderStatusView {
         this.percentComplete = percentComplete;
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterName
+    // ------------------------------------------------------------------------------ workCenterName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_NAME} attribute.
@@ -649,7 +649,7 @@ public abstract class MappedProductionOrderStatusView {
         this.workCenterName = workCenterName;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseName
+    // ------------------------------------------------------------------------------- warehouseName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_NAME} attribute.
@@ -669,7 +669,7 @@ public abstract class MappedProductionOrderStatusView {
         this.warehouseName = warehouseName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -689,7 +689,7 @@ public abstract class MappedProductionOrderStatusView {
         this.startDate = startDate;
     }
 
-    // ------------------------------------------------------------------------------------------- plannedCompletionDate
+    // ----------------------------------------------------------------------- plannedCompletionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE} attribute.
@@ -709,7 +709,7 @@ public abstract class MappedProductionOrderStatusView {
         this.plannedCompletionDate = plannedCompletionDate;
     }
 
-    // -------------------------------------------------------------------------------------------- actualCompletionDate
+    // ------------------------------------------------------------------------ actualCompletionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTUAL_COMPLETION_DATE} attribute.
@@ -729,7 +729,7 @@ public abstract class MappedProductionOrderStatusView {
         this.actualCompletionDate = actualCompletionDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- daysVariance
+    // -------------------------------------------------------------------------------- daysVariance
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute.
@@ -749,7 +749,7 @@ public abstract class MappedProductionOrderStatusView {
         this.daysVariance = daysVariance;
     }
 
-    // -------------------------------------------------------------------------------------------------- scheduleStatus
+    // ------------------------------------------------------------------------------ scheduleStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCHEDULE_STATUS} attribute.
@@ -769,7 +769,7 @@ public abstract class MappedProductionOrderStatusView {
         this.scheduleStatus = scheduleStatus;
     }
 
-    // -------------------------------------------------------------------------------------------------------- priority
+    // ------------------------------------------------------------------------------------ priority
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIORITY} attribute.
@@ -789,7 +789,7 @@ public abstract class MappedProductionOrderStatusView {
         this.priority = priority;
     }
 
-    // ------------------------------------------------------------------------------------------------------- createdBy
+    // ----------------------------------------------------------------------------------- createdBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_BY} attribute.
@@ -809,7 +809,7 @@ public abstract class MappedProductionOrderStatusView {
         this.createdBy = createdBy;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -829,7 +829,7 @@ public abstract class MappedProductionOrderStatusView {
         this.createdDate = createdDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
@@ -842,7 +842,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String workOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
@@ -855,7 +855,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -868,7 +868,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -881,7 +881,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -894,7 +894,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_QUANTITY - COLUMN_SCALE_ORDER_QUANTITY,
             fraction = COLUMN_SCALE_ORDER_QUANTITY)
@@ -909,7 +909,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private BigDecimal orderQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
@@ -923,7 +923,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private BigDecimal quantityCompleted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
             fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
@@ -937,7 +937,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private BigDecimal quantityScrapped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_REMAINING - COLUMN_SCALE_QUANTITY_REMAINING,
             fraction = COLUMN_SCALE_QUANTITY_REMAINING)
@@ -951,7 +951,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private BigDecimal quantityRemaining;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
             fraction = COLUMN_SCALE_PERCENT_COMPLETE)
@@ -965,7 +965,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private BigDecimal percentComplete;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
@@ -977,7 +977,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String workCenterName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
@@ -990,7 +990,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String warehouseName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_START_DATE,
@@ -1000,7 +1000,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private LocalDate startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
@@ -1010,7 +1010,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private LocalDate plannedCompletionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTUAL_COMPLETION_DATE,
@@ -1020,7 +1020,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private LocalDate actualCompletionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_VARIANCE,
@@ -1030,7 +1030,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private Integer daysVariance;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SCHEDULE_STATUS)
     @NotNull
@@ -1043,7 +1043,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String scheduleStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY,
@@ -1053,7 +1053,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private Integer priority;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
@@ -1065,7 +1065,7 @@ public abstract class MappedProductionOrderStatusView {
     )
     private String createdBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,

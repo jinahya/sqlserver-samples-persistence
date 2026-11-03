@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,16 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_SALES_CHANNEL_ID} column is mapped read-only, as a foreign key; the extending entity owns
  * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.Store}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedStore {
@@ -51,7 +63,7 @@ public abstract class MappedStore {
      */
     public static final String TABLE_NAME = "Store";
 
-    // --------------------------------------------------------------------------------------------------------- StoreID
+    // ------------------------------------------------------------------------------------- StoreID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,7 +75,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_STORE_ID = "storeId";
 
-    // ------------------------------------------------------------------------------------------------------- StoreCode
+    // ----------------------------------------------------------------------------------- StoreCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -80,7 +92,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_STORE_CODE = "storeCode";
 
-    // ------------------------------------------------------------------------------------------------------- StoreName
+    // ----------------------------------------------------------------------------------- StoreName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -97,7 +109,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_STORE_NAME = "storeName";
 
-    // -------------------------------------------------------------------------------------------------- SalesChannelID
+    // ------------------------------------------------------------------------------ SalesChannelID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -109,7 +121,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL_ID = "salesChannelId";
 
-    // --------------------------------------------------------------------------------------------------------- Manager
+    // ------------------------------------------------------------------------------------- Manager
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -126,7 +138,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_MANAGER = "manager";
 
-    // ----------------------------------------------------------------------------------------------------------- Phone
+    // --------------------------------------------------------------------------------------- Phone
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -143,7 +155,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_PHONE = "phone";
 
-    // ----------------------------------------------------------------------------------------------------------- Email
+    // --------------------------------------------------------------------------------------- Email
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -160,7 +172,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_EMAIL = "email";
 
-    // --------------------------------------------------------------------------------------------------------- Address
+    // ------------------------------------------------------------------------------------- Address
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -177,7 +189,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_ADDRESS = "address";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -194,7 +206,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ----------------------------------------------------------------------------------------------------------- State
+    // --------------------------------------------------------------------------------------- State
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -211,7 +223,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_STATE = "state";
 
-    // --------------------------------------------------------------------------------------------------------- ZipCode
+    // ------------------------------------------------------------------------------------- ZipCode
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -228,7 +240,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_ZIP_CODE = "zipCode";
 
-    // -------------------------------------------------------------------------------------------------------- OpenDate
+    // ------------------------------------------------------------------------------------ OpenDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -240,7 +252,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_OPEN_DATE = "openDate";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -252,7 +264,7 @@ public abstract class MappedStore {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -261,7 +273,7 @@ public abstract class MappedStore {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -311,7 +323,7 @@ public abstract class MappedStore {
         return Objects.hash(storeId);
     }
 
-    // --------------------------------------------------------------------------------------------------------- storeId
+    // ------------------------------------------------------------------------------------- storeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STORE_ID} attribute.
@@ -331,7 +343,7 @@ public abstract class MappedStore {
         this.storeId = storeId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- storeCode
+    // ----------------------------------------------------------------------------------- storeCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STORE_CODE} attribute.
@@ -351,7 +363,7 @@ public abstract class MappedStore {
         this.storeCode = storeCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------- storeName
+    // ----------------------------------------------------------------------------------- storeName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STORE_NAME} attribute.
@@ -371,7 +383,7 @@ public abstract class MappedStore {
         this.storeName = storeName;
     }
 
-    // -------------------------------------------------------------------------------------------------- salesChannelId
+    // ------------------------------------------------------------------------------ salesChannelId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute.
@@ -393,7 +405,7 @@ public abstract class MappedStore {
         this.salesChannelId = salesChannelId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- manager
+    // ------------------------------------------------------------------------------------- manager
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MANAGER} attribute.
@@ -413,7 +425,7 @@ public abstract class MappedStore {
         this.manager = manager;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- phone
+    // --------------------------------------------------------------------------------------- phone
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE} attribute.
@@ -433,7 +445,7 @@ public abstract class MappedStore {
         this.phone = phone;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- email
+    // --------------------------------------------------------------------------------------- email
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL} attribute.
@@ -453,7 +465,7 @@ public abstract class MappedStore {
         this.email = email;
     }
 
-    // --------------------------------------------------------------------------------------------------------- address
+    // ------------------------------------------------------------------------------------- address
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS} attribute.
@@ -473,7 +485,7 @@ public abstract class MappedStore {
         this.address = address;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -493,7 +505,7 @@ public abstract class MappedStore {
         this.city = city;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- state
+    // --------------------------------------------------------------------------------------- state
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE} attribute.
@@ -513,7 +525,7 @@ public abstract class MappedStore {
         this.state = state;
     }
 
-    // --------------------------------------------------------------------------------------------------------- zipCode
+    // ------------------------------------------------------------------------------------- zipCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ZIP_CODE} attribute.
@@ -533,7 +545,7 @@ public abstract class MappedStore {
         this.zipCode = zipCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- openDate
+    // ------------------------------------------------------------------------------------ openDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OPEN_DATE} attribute.
@@ -553,7 +565,7 @@ public abstract class MappedStore {
         this.openDate = openDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -573,7 +585,7 @@ public abstract class MappedStore {
         this.isActive = isActive;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -585,7 +597,7 @@ public abstract class MappedStore {
     )
     private Integer storeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STORE_CODE)
     @NotNull
     @Basic(optional = false)
@@ -597,7 +609,7 @@ public abstract class MappedStore {
     )
     private String storeCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STORE_NAME)
     @NotNull
     @Basic(optional = false)
@@ -609,7 +621,7 @@ public abstract class MappedStore {
     )
     private String storeName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -620,7 +632,7 @@ public abstract class MappedStore {
     )
     private Integer salesChannelId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_MANAGER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MANAGER,
@@ -631,7 +643,7 @@ public abstract class MappedStore {
     )
     private String manager;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHONE,
@@ -642,7 +654,7 @@ public abstract class MappedStore {
     )
     private String phone;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMAIL,
@@ -653,7 +665,7 @@ public abstract class MappedStore {
     )
     private String email;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDRESS,
@@ -664,7 +676,7 @@ public abstract class MappedStore {
     )
     private String address;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CITY,
@@ -675,7 +687,7 @@ public abstract class MappedStore {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STATE,
@@ -686,7 +698,7 @@ public abstract class MappedStore {
     )
     private String state;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ZIP_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ZIP_CODE,
@@ -697,7 +709,7 @@ public abstract class MappedStore {
     )
     private String zipCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_OPEN_DATE,
             nullable = true,
@@ -706,7 +718,7 @@ public abstract class MappedStore {
     )
     private LocalDate openDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -714,6 +726,7 @@ public abstract class MappedStore {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 }
 

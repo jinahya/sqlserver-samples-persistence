@@ -31,12 +31,23 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SpecialOfferProduct} table.
  */
 @Entity(name = "SalesSpecialOfferProduct")
-@Table(schema = MappedSpecialOfferProduct.TABLE_SCHEMA, name = MappedSpecialOfferProduct.TABLE_NAME)
+@Table(schema = MappedSpecialOfferProduct.TABLE_SCHEMA,
+       name = MappedSpecialOfferProduct.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SpecialOfferProduct_rowguid",
+                       columnNames = {
+                               SpecialOfferProduct.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 @IdClass(MappedSpecialOfferProductId.class)
 public class SpecialOfferProduct extends MappedSpecialOfferProduct {
 
@@ -52,7 +63,7 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER = "specialOffer";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +72,7 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_SpecialOfferProduct_Product_ProductID} foreign key references.
@@ -83,7 +94,7 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- specialOffer
+    // -------------------------------------------------------------------------------- specialOffer
 
     /**
      * Returns the {@code SpecialOffer} which the {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID} foreign key
@@ -106,7 +117,7 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
         setSpecialOfferId(specialOffer == null ? null : specialOffer.getSpecialOfferId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -116,7 +127,7 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
     )
     private Product product;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SPECIAL_OFFER_ID,
                 referencedColumnName = MappedSpecialOffer.COLUMN_NAME_SPECIAL_OFFER_ID,

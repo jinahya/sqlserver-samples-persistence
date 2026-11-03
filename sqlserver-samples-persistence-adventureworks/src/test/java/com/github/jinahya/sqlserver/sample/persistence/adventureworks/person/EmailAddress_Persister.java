@@ -35,7 +35,7 @@ class EmailAddress_Persister
         super(EmailAddress.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public EmailAddress apply(final EntityManager entityManager, final EmailAddress entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);

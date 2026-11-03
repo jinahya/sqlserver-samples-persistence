@@ -52,7 +52,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE = "transactionType";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +61,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_InvTrans_Item} foreign key references.
@@ -83,7 +83,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- warehouse
+    // ----------------------------------------------------------------------------------- warehouse
 
     /**
      * Returns the {@code Warehouse} which the {@code FK_InvTrans_Warehouse} foreign key references.
@@ -105,7 +105,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
         setWarehouseId(warehouse == null ? null : warehouse.getWarehouseId());
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionType
+    // ----------------------------------------------------------------------------- transactionType
 
     /**
      * Returns the {@code TransactionType} which the {@code FK_InvTrans_Type} foreign key references.
@@ -127,7 +127,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
         setTransactionTypeId(transactionType == null ? null : transactionType.getTransactionTypeId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,
@@ -137,7 +137,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
     )
     private Item item;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WAREHOUSE_ID,
                 referencedColumnName = MappedWarehouse.COLUMN_NAME_WAREHOUSE_ID,
@@ -147,7 +147,7 @@ public class InventoryTransaction extends MappedInventoryTransaction {
     )
     private Warehouse warehouse;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
                 referencedColumnName = MappedTransactionType.COLUMN_NAME_TRANSACTION_TYPE_ID,

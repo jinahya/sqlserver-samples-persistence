@@ -27,12 +27,29 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Application.Countries} table.
  */
 @Entity(name = "ApplicationCountry")
-@Table(schema = MappedCountry.TABLE_SCHEMA, name = MappedCountry.TABLE_NAME)
+@Table(schema = MappedCountry.TABLE_SCHEMA,
+       name = MappedCountry.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_Application_Countries_CountryName",
+                       columnNames = {
+                               Country.COLUMN_NAME_COUNTRY_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "UQ_Application_Countries_FormalName",
+                       columnNames = {
+                               Country.COLUMN_NAME_FORMAL_NAME
+                       }
+               )
+       }
+)
 public class Country extends MappedCountry {
 
     /**
@@ -41,7 +58,7 @@ public class Country extends MappedCountry {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -50,7 +67,7 @@ public class Country extends MappedCountry {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Application_Countries_Application_People} foreign key references.
@@ -72,7 +89,7 @@ public class Country extends MappedCountry {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

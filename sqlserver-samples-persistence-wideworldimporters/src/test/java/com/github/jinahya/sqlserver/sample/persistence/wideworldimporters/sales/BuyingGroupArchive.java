@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class BuyingGroupArchive extends MappedBuyingGroupArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

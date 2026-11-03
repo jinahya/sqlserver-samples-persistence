@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +41,32 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_SALES_ORDER_ID}, {@value #COLUMN_NAME_ITEM_ID} columns are mapped read-only, as a foreign
  * key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SalesOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code QuantityShipped}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code DiscountPercent}</th><td>{@code ((0))}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code dbo.SalesOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LineTotal}</th><td>{@code ([Quantity]*[UnitPrice])}</td><td>{@code true}</td></tr>
+ * <tr><th scope="row">{@code DiscountAmount}</th>
+ *     <td>{@code ((([Quantity]*[UnitPrice])*[DiscountPercent])/(100))}</td><td>{@code true}</td></tr>
+ * <tr><th scope="row">{@code NetAmount}</th>
+ *     <td>{@code ([Quantity]*[UnitPrice]-(([Quantity]*[UnitPrice])*[DiscountPercent])/(100))}</td>
+ *     <td>{@code true}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedSalesOrderDetail {
@@ -52,7 +81,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String TABLE_NAME = "SalesOrderDetail";
 
-    // ------------------------------------------------------------------------------------------------------ SODetailID
+    // ---------------------------------------------------------------------------------- SODetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -64,7 +93,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_SO_DETAIL_ID = "soDetailId";
 
-    // ---------------------------------------------------------------------------------------------------- SalesOrderID
+    // -------------------------------------------------------------------------------- SalesOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -76,7 +105,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
-    // ------------------------------------------------------------------------------------------------------ LineNumber
+    // ---------------------------------------------------------------------------------- LineNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -88,7 +117,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_NUMBER = "lineNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -100,7 +129,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -122,7 +151,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -144,7 +173,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------------- QuantityShipped
+    // ----------------------------------------------------------------------------- QuantityShipped
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -166,7 +195,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_SHIPPED = "quantityShipped";
 
-    // ------------------------------------------------------------------------------------------------------- LineTotal
+    // ----------------------------------------------------------------------------------- LineTotal
 
     /**
      * The name of the {@code decimal(37, 6), computed as ([Quantity]*[UnitPrice])} column. The value is {@value}.
@@ -188,7 +217,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_TOTAL = "lineTotal";
 
-    // ------------------------------------------------------------------------------------------------- DiscountPercent
+    // ----------------------------------------------------------------------------- DiscountPercent
 
     /**
      * The name of the {@code decimal(5, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -210,7 +239,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENT = "discountPercent";
 
-    // -------------------------------------------------------------------------------------------------- DiscountAmount
+    // ------------------------------------------------------------------------------ DiscountAmount
 
     /**
      * The name of the {@code decimal(38, 6), computed as ((([Quantity]*[UnitPrice])*[DiscountPercent])/(100))} column.
@@ -233,7 +262,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_AMOUNT = "discountAmount";
 
-    // ------------------------------------------------------------------------------------------------------- NetAmount
+    // ----------------------------------------------------------------------------------- NetAmount
 
     /**
      * The name of the
@@ -257,7 +286,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_NET_AMOUNT = "netAmount";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -266,7 +295,7 @@ public abstract class MappedSalesOrderDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -314,7 +343,7 @@ public abstract class MappedSalesOrderDetail {
         return Objects.hash(soDetailId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ soDetailId
+    // ---------------------------------------------------------------------------------- soDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SO_DETAIL_ID} attribute.
@@ -334,7 +363,7 @@ public abstract class MappedSalesOrderDetail {
         this.soDetailId = soDetailId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesOrderId
+    // -------------------------------------------------------------------------------- salesOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
@@ -356,7 +385,7 @@ public abstract class MappedSalesOrderDetail {
         this.salesOrderId = salesOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ lineNumber
+    // ---------------------------------------------------------------------------------- lineNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_NUMBER} attribute.
@@ -376,7 +405,7 @@ public abstract class MappedSalesOrderDetail {
         this.lineNumber = lineNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -397,7 +426,7 @@ public abstract class MappedSalesOrderDetail {
         this.itemId = itemId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -417,7 +446,7 @@ public abstract class MappedSalesOrderDetail {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -437,7 +466,7 @@ public abstract class MappedSalesOrderDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------- quantityShipped
+    // ----------------------------------------------------------------------------- quantityShipped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_SHIPPED} attribute.
@@ -457,7 +486,7 @@ public abstract class MappedSalesOrderDetail {
         this.quantityShipped = quantityShipped;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineTotal
+    // ----------------------------------------------------------------------------------- lineTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute.
@@ -478,7 +507,7 @@ public abstract class MappedSalesOrderDetail {
         this.lineTotal = lineTotal;
     }
 
-    // ------------------------------------------------------------------------------------------------- discountPercent
+    // ----------------------------------------------------------------------------- discountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute.
@@ -498,7 +527,7 @@ public abstract class MappedSalesOrderDetail {
         this.discountPercent = discountPercent;
     }
 
-    // -------------------------------------------------------------------------------------------------- discountAmount
+    // ------------------------------------------------------------------------------ discountAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute.
@@ -519,7 +548,7 @@ public abstract class MappedSalesOrderDetail {
         this.discountAmount = discountAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------------- netAmount
+    // ----------------------------------------------------------------------------------- netAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_AMOUNT} attribute.
@@ -540,7 +569,7 @@ public abstract class MappedSalesOrderDetail {
         this.netAmount = netAmount;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -552,7 +581,7 @@ public abstract class MappedSalesOrderDetail {
     )
     private Integer soDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -563,7 +592,7 @@ public abstract class MappedSalesOrderDetail {
     )
     private Integer salesOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_NUMBER,
@@ -573,7 +602,7 @@ public abstract class MappedSalesOrderDetail {
     )
     private Integer lineNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -584,7 +613,7 @@ public abstract class MappedSalesOrderDetail {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
@@ -597,7 +626,7 @@ public abstract class MappedSalesOrderDetail {
     )
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -610,7 +639,7 @@ public abstract class MappedSalesOrderDetail {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SHIPPED - COLUMN_SCALE_QUANTITY_SHIPPED,
             fraction = COLUMN_SCALE_QUANTITY_SHIPPED)
     @Basic(optional = true)
@@ -621,9 +650,10 @@ public abstract class MappedSalesOrderDetail {
             precision = COLUMN_PRECISION_QUANTITY_SHIPPED,
             scale = COLUMN_SCALE_QUANTITY_SHIPPED
     )
+    @MsDefault("((0))")
     private BigDecimal quantityShipped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = true)
@@ -634,9 +664,10 @@ public abstract class MappedSalesOrderDetail {
             precision = COLUMN_PRECISION_LINE_TOTAL,
             scale = COLUMN_SCALE_LINE_TOTAL
     )
+    @MsComputedColumn(value = "([Quantity]*[UnitPrice])", persisted = true)
     private BigDecimal lineTotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
     @Basic(optional = true)
@@ -647,9 +678,10 @@ public abstract class MappedSalesOrderDetail {
             precision = COLUMN_PRECISION_DISCOUNT_PERCENT,
             scale = COLUMN_SCALE_DISCOUNT_PERCENT
     )
+    @MsDefault("((0))")
     private BigDecimal discountPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
@@ -661,9 +693,10 @@ public abstract class MappedSalesOrderDetail {
             precision = COLUMN_PRECISION_DISCOUNT_AMOUNT,
             scale = COLUMN_SCALE_DISCOUNT_AMOUNT
     )
+    @MsComputedColumn(value = "((([Quantity]*[UnitPrice])*[DiscountPercent])/(100))", persisted = true)
     private BigDecimal discountAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_NET_AMOUNT - COLUMN_SCALE_NET_AMOUNT, fraction = COLUMN_SCALE_NET_AMOUNT)
     @Basic(optional = true)
@@ -674,6 +707,8 @@ public abstract class MappedSalesOrderDetail {
             precision = COLUMN_PRECISION_NET_AMOUNT,
             scale = COLUMN_SCALE_NET_AMOUNT
     )
+    @MsComputedColumn(value = "([Quantity]*[UnitPrice]-(([Quantity]*[UnitPrice])*[DiscountPercent])/(100))",
+                      persisted = true)
     private BigDecimal netAmount;
 }
 

@@ -53,7 +53,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String TABLE_NAME = "vw_Sales_ChannelProfitability";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelCode
+    // --------------------------------------------------------------------------------- ChannelCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_CODE = "channelCode";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ------------------------------------------------------------------------------------------------------ TotalUnits
+    // ---------------------------------------------------------------------------------- TotalUnits
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_UNITS = "totalUnits";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -143,7 +143,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // ------------------------------------------------------------------------------------------------------- Discounts
+    // ----------------------------------------------------------------------------------- Discounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -165,7 +165,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNTS = "discounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -187,7 +187,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // ------------------------------------------------------------------------------------------------- ShippingRevenue
+    // ----------------------------------------------------------------------------- ShippingRevenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -209,7 +209,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_SHIPPING_REVENUE = "shippingRevenue";
 
-    // ------------------------------------------------------------------------------------------------------------ COGS
+    // ---------------------------------------------------------------------------------------- COGS
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -231,7 +231,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_COGS = "cogs";
 
-    // ----------------------------------------------------------------------------------------------------- GrossProfit
+    // --------------------------------------------------------------------------------- GrossProfit
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -253,7 +253,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_PROFIT = "grossProfit";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -275,7 +275,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ---------------------------------------------------------------------------------------------- GrossMarginPercent
+    // -------------------------------------------------------------------------- GrossMarginPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -298,7 +298,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT = "grossMarginPercent";
 
-    // ------------------------------------------------------------------------------------------------- DiscountPercent
+    // ----------------------------------------------------------------------------- DiscountPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -320,7 +320,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENT = "discountPercent";
 
-    // -------------------------------------------------------------------------------------------------- ProfitPerOrder
+    // ------------------------------------------------------------------------------ ProfitPerOrder
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -342,7 +342,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_PROFIT_PER_ORDER = "profitPerOrder";
 
-    // --------------------------------------------------------------------------------------------------- ProfitPerUnit
+    // ------------------------------------------------------------------------------- ProfitPerUnit
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -364,7 +364,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_PROFIT_PER_UNIT = "profitPerUnit";
 
-    // ----------------------------------------------------------------------------------------------- ProfitabilityRank
+    // --------------------------------------------------------------------------- ProfitabilityRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -376,7 +376,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     public static final String ATTRIBUTE_NAME_PROFITABILITY_RANK = "profitabilityRank";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -385,7 +385,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -438,7 +438,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         return Objects.hash(channelCode);
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelCode
+    // --------------------------------------------------------------------------------- channelCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_CODE} attribute.
@@ -458,7 +458,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.channelCode = channelCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -478,7 +478,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.channelName = channelName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -498,7 +498,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.orderCount = orderCount;
     }
 
-    // ------------------------------------------------------------------------------------------------------ totalUnits
+    // ---------------------------------------------------------------------------------- totalUnits
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_UNITS} attribute.
@@ -518,7 +518,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.totalUnits = totalUnits;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -538,7 +538,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.grossSales = grossSales;
     }
 
-    // ------------------------------------------------------------------------------------------------------- discounts
+    // ----------------------------------------------------------------------------------- discounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNTS} attribute.
@@ -558,7 +558,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.discounts = discounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -578,7 +578,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.netSales = netSales;
     }
 
-    // ------------------------------------------------------------------------------------------------- shippingRevenue
+    // ----------------------------------------------------------------------------- shippingRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIPPING_REVENUE} attribute.
@@ -598,7 +598,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.shippingRevenue = shippingRevenue;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ cogs
+    // ---------------------------------------------------------------------------------------- cogs
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COGS} attribute.
@@ -618,7 +618,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.cogs = cogs;
     }
 
-    // ----------------------------------------------------------------------------------------------------- grossProfit
+    // --------------------------------------------------------------------------------- grossProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_PROFIT} attribute.
@@ -638,7 +638,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.grossProfit = grossProfit;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -658,7 +658,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ---------------------------------------------------------------------------------------------- grossMarginPercent
+    // -------------------------------------------------------------------------- grossMarginPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT} attribute.
@@ -678,7 +678,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.grossMarginPercent = grossMarginPercent;
     }
 
-    // ------------------------------------------------------------------------------------------------- discountPercent
+    // ----------------------------------------------------------------------------- discountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute.
@@ -698,7 +698,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.discountPercent = discountPercent;
     }
 
-    // -------------------------------------------------------------------------------------------------- profitPerOrder
+    // ------------------------------------------------------------------------------ profitPerOrder
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROFIT_PER_ORDER} attribute.
@@ -718,7 +718,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.profitPerOrder = profitPerOrder;
     }
 
-    // --------------------------------------------------------------------------------------------------- profitPerUnit
+    // ------------------------------------------------------------------------------- profitPerUnit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROFIT_PER_UNIT} attribute.
@@ -738,7 +738,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.profitPerUnit = profitPerUnit;
     }
 
-    // ----------------------------------------------------------------------------------------------- profitabilityRank
+    // --------------------------------------------------------------------------- profitabilityRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROFITABILITY_RANK} attribute.
@@ -758,7 +758,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         this.profitabilityRank = profitabilityRank;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_CODE)
     @NotNull
@@ -771,7 +771,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private String channelCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -784,7 +784,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -794,7 +794,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_UNITS - COLUMN_SCALE_TOTAL_UNITS, fraction = COLUMN_SCALE_TOTAL_UNITS)
     @Basic(optional = true)
@@ -807,7 +807,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal totalUnits;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -820,7 +820,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNTS - COLUMN_SCALE_DISCOUNTS, fraction = COLUMN_SCALE_DISCOUNTS)
     @Basic(optional = true)
@@ -833,7 +833,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal discounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -846,7 +846,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SHIPPING_REVENUE - COLUMN_SCALE_SHIPPING_REVENUE,
             fraction = COLUMN_SCALE_SHIPPING_REVENUE)
@@ -860,7 +860,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal shippingRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_COGS - COLUMN_SCALE_COGS, fraction = COLUMN_SCALE_COGS)
     @Basic(optional = true)
@@ -873,7 +873,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal cogs;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
@@ -886,7 +886,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal grossProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -900,7 +900,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
@@ -914,7 +914,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal grossMarginPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
@@ -928,7 +928,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal discountPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PROFIT_PER_ORDER - COLUMN_SCALE_PROFIT_PER_ORDER,
             fraction = COLUMN_SCALE_PROFIT_PER_ORDER)
@@ -942,7 +942,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal profitPerOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PROFIT_PER_UNIT - COLUMN_SCALE_PROFIT_PER_UNIT,
             fraction = COLUMN_SCALE_PROFIT_PER_UNIT)
@@ -956,7 +956,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     )
     private BigDecimal profitPerUnit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PROFITABILITY_RANK,

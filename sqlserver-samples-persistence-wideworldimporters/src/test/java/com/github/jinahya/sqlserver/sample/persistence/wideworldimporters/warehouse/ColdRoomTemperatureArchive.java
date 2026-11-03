@@ -34,7 +34,7 @@ import java.time.LocalDateTime;
  */
 public class ColdRoomTemperatureArchive extends MappedColdRoomTemperatureArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

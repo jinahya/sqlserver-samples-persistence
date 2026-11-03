@@ -49,7 +49,7 @@ public abstract class _Keyless_PersistenceIT<T> {
         this.targetClass = Objects.requireNonNull(targetClass, "targetClass is null");
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private String constant(final String name) {
         try {
             return (String) targetClass.getSuperclass().getField(name).get(null);
@@ -66,7 +66,7 @@ public abstract class _Keyless_PersistenceIT<T> {
                 .toArray(String[]::new);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @DisplayName("every column the mapped superclass names is read by a native query")
     @Test
     void columns() {
@@ -92,6 +92,6 @@ public abstract class _Keyless_PersistenceIT<T> {
         assertThat(constructors.getFirst().getParameterCount()).isEqualTo(columns.length);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     protected final Class<T> targetClass;
 }

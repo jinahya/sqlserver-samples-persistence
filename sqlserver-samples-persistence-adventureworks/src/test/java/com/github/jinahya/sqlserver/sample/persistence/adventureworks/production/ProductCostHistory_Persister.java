@@ -35,7 +35,7 @@ class ProductCostHistory_Persister
         super(ProductCostHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductCostHistory apply(final EntityManager entityManager, final ProductCostHistory entityInstance) {
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

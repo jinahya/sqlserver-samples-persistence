@@ -38,7 +38,77 @@ import java.util.stream.IntStream;
  * {@link #getBytes()} returns what {@link #decode(byte[])} read. {@link #toString()} returns the Well-Known Text, as
  * {@code STAsText} does, longitude first.
  *
+ * <h2>Why the class parses the specification itself</h2>
+ * The class reads and writes the serialized form directly, as the specification states it, instead
+ * of using what the dependency stack provides: Hibernate Spatial's {@code SqlServerGeographyType}
+ * and the SQL Server codec of geolatte-geom, beneath it. That stack reads and writes a
+ * {@code geography} with its latitude and longitude swapped. As checked against
+ * {@code Person.Address.SpatialLocation} with Hibernate ORM 7.4.12, geolatte-geom 1.11 and
+ * mssql-jdbc 13.4.0:
+ * <ul>
+ * <li>A {@code Point<G2D>} (geolatte) or a {@code Point} (JTS), mapped with
+ * {@code @JdbcType(SqlServerGeographyType.class)} or {@code @JdbcTypeCode(SqlTypes.GEOGRAPHY)}, is
+ * read with its axes swapped: {@code getLat()}, or JTS's {@code getY()}, is the column's
+ * {@code Long}, and the other its {@code Lat}. A native query with no declared type returns a
+ * geolatte {@code Point}, swapped too.</li>
+ * <li>A point bound as a parameter, {@code st_distance(a.spatialLocation, :p)}, is bound swapped: a
+ * latitude out of range is rejected with a {@code System.FormatException}, and one within it is
+ * another, wrong, point.</li>
+ * <li>A round trip through Hibernate alone hides the swap: what it writes swapped, it reads back
+ * swapped.</li>
+ * <li>A curve, or {@code FULLGLOBE}, which needs version 2 of the serialized form, is not decoded
+ * at all.</li>
+ * </ul>
+ * What SQL Server computes on the stored bytes ({@code st_srid}, {@code st_astext}, and
+ * {@code st_distance} of two columns) is right.
+ * <p>
+ * The swap is geolatte's. Its SQL Server codec, which {@code SqlServerGeographyType} uses for both
+ * its binder and its extractor, reads every value as a {@code geometry}, x before y, while a
+ * {@code geography} point is serialized latitude first (section 2.1, GEOGRAPHY POINT).
+ * <ul>
+ * <li><a href="https://github.com/GeoLatte/geolatte-geom/issues/58">geolatte-geom #58</a>, "SQL
+ * Server: Lat/Lon ordering is wrong when doing encoding/decoding", open since 2018: the maintainer
+ * answers that the codec is for {@code geometry}, not for {@code geography}.</li>
+ * <li><a href="https://github.com/GeoLatte/geolatte-geom/issues/50">geolatte-geom #50</a>, "MS SQL
+ * binary format Version 2 should be supported", open since 2017.</li>
+ * <li><a href="https://github.com/microsoft/mssql-jdbc/issues/851">mssql-jdbc #851</a>, the same
+ * swap in the driver's own {@code microsoft.sql.Geography}, fixed in 7.1.3
+ * (<a href="https://github.com/microsoft/mssql-jdbc/pull/853">#853</a>); Hibernate Spatial does not
+ * use that class.</li>
+ * <li><a href="https://hibernate.atlassian.net/browse/HHH-21058">HHH-21058</a>,
+ * "SqlServerGeographyType reads and binds SQL Server geography values with latitude and longitude
+ * swapped", this project's report to Hibernate. The type came with
+ * <a href="https://hibernate.atlassian.net/browse/HHH-15165">HHH-15165</a>
+ * (<a href="https://github.com/hibernate/hibernate-orm/pull/4938">#4938</a>), and Hibernate's
+ * package documentation still says that only {@code geometry} is supported on SQL Server.</li>
+ * <li><a href="https://github.com/hibernate/hibernate-orm/pull/13803">hibernate-orm #13803</a>,
+ * "HHH-21058 Swap the axes of a SQL Server geography value in SqlServerGeographyType", this
+ * project's fix, open; its review was
+ * <a href="https://github.com/hibernate/hibernate-orm/pull/13803#issuecomment-6578813030">asked of
+ * Hibernate Spatial's maintainer</a> on 2026-11-02.</li>
+ * </ul>
+ *
+ * <h2>When the stack is fixed</h2>
+ * Once #13803 is merged and released, a {@code geography} column can be mapped with what the stack
+ * provides, and this class, with its converter, retired. Even then, the pull request leaves three
+ * things as they are:
+ * <ul>
+ * <li>A spatial parameter bound by its value alone, {@code setParameter("p", point)}, is still
+ * bound as a {@code geometry}, unswapped: the bind type derived from the value takes precedence
+ * over the one the function's argument would infer, in Hibernate's core. It is right when bound
+ * with a geography type, {@code setParameter("p", point, geographyType)}.</li>
+ * <li>Data written through {@code SqlServerGeographyType} before the fix is stored with its axes
+ * swapped, and reads back swapped after it.</li>
+ * <li>Curves and {@code FULLGLOBE}, version 2 of the serialized form, are still not decoded, until
+ * geolatte-geom #50 is.</li>
+ * </ul>
+ *
  * @see <a href="https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/">[MS-SSCLRT]</a>
+ * @see <a href="https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/77460aa9-8c2f-4449-a65e-1d649ebd77fa">
+ *      [MS-SSCLRT], the specification's page, with its revisions</a>
+ * @see GeographyAttributeConverter
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/spatial-geography/stastext-geography-data-type">
+ *      STAsText (geography Data Type)</a>
  */
 public final class Geography {
 
@@ -92,7 +162,7 @@ public final class Geography {
 
     private static final int TYPE_FULL_GLOBE = 11;
 
-    // ---------------------------------------------------------------------------------------------------- NESTED TYPES
+    // -------------------------------------------------------------------------------- NESTED TYPES
 
     private record Figure(int attribute, int pointOffset) {
 
@@ -102,7 +172,7 @@ public final class Geography {
 
     }
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Returns a point of the specified spatial reference identifier, as {@code geography::Point} does.
@@ -218,7 +288,7 @@ public final class Geography {
         this.bytes = encode();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     /**
      * Returns the Well-Known Text of this value, as {@code STAsText} does: longitude first, without Z and M values.
@@ -253,7 +323,7 @@ public final class Geography {
         return Arrays.hashCode(bytes);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private byte[] encode() {
         final var single = (properties & (PROPERTY_P | PROPERTY_L)) != 0;
         final var count = latitudes.length;
@@ -286,7 +356,7 @@ public final class Geography {
         return buffer.array();
     }
 
-    // ------------------------------------------------------------------------------------------------------------- WKT
+    // ----------------------------------------------------------------------------------------- WKT
 
     private void appendShape(final StringBuilder builder, final int index, final boolean tagged, final boolean zm) {
         final var shape = shapes.get(index);
@@ -442,7 +512,7 @@ public final class Geography {
         return segment == SEGMENT_FIRST_LINE || segment == SEGMENT_FIRST_ARC;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Returns the Well-Known Text of this value with its Z and M values, as {@code AsTextZM} does; a missing Z value
@@ -503,7 +573,7 @@ public final class Geography {
         return longitudes[index];
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private final int srid;
 
     private final int version;

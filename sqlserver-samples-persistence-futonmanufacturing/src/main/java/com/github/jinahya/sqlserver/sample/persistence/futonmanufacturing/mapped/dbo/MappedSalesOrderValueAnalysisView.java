@@ -53,7 +53,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_OrderValueAnalysis";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // --------------------------------------------------------------------------------------------------- TerritoryName
+    // ------------------------------------------------------------------------------- TerritoryName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_NAME = "territoryName";
 
-    // ---------------------------------------------------------------------------------------------------------- Region
+    // -------------------------------------------------------------------------------------- Region
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_REGION = "region";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ----------------------------------------------------------------------------------------------------- AvgSubtotal
+    // --------------------------------------------------------------------------------- AvgSubtotal
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -155,7 +155,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_SUBTOTAL = "avgSubtotal";
 
-    // ----------------------------------------------------------------------------------------------------- AvgDiscount
+    // --------------------------------------------------------------------------------- AvgDiscount
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -177,7 +177,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DISCOUNT = "avgDiscount";
 
-    // ---------------------------------------------------------------------------------------------------- AvgNetAmount
+    // -------------------------------------------------------------------------------- AvgNetAmount
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -199,7 +199,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_NET_AMOUNT = "avgNetAmount";
 
-    // ---------------------------------------------------------------------------------------------------------- AvgTax
+    // -------------------------------------------------------------------------------------- AvgTax
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -221,7 +221,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_TAX = "avgTax";
 
-    // ----------------------------------------------------------------------------------------------------- AvgShipping
+    // --------------------------------------------------------------------------------- AvgShipping
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -243,7 +243,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_SHIPPING = "avgShipping";
 
-    // --------------------------------------------------------------------------------------------------- MinOrderValue
+    // ------------------------------------------------------------------------------- MinOrderValue
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -265,7 +265,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MIN_ORDER_VALUE = "minOrderValue";
 
-    // --------------------------------------------------------------------------------------------------- MaxOrderValue
+    // ------------------------------------------------------------------------------- MaxOrderValue
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -287,7 +287,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MAX_ORDER_VALUE = "maxOrderValue";
 
-    // ------------------------------------------------------------------------------------------------ StdDevOrderValue
+    // ---------------------------------------------------------------------------- StdDevOrderValue
 
     /**
      * The name of the {@code float} column. The value is {@value}.
@@ -300,7 +300,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_STD_DEV_ORDER_VALUE = "stdDevOrderValue";
 
-    // ----------------------------------------------------------------------------------------------------- SmallOrders
+    // --------------------------------------------------------------------------------- SmallOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -312,7 +312,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_SMALL_ORDERS = "smallOrders";
 
-    // ---------------------------------------------------------------------------------------------------- MediumOrders
+    // -------------------------------------------------------------------------------- MediumOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -324,7 +324,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MEDIUM_ORDERS = "mediumOrders";
 
-    // ----------------------------------------------------------------------------------------------------- LargeOrders
+    // --------------------------------------------------------------------------------- LargeOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -336,7 +336,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_LARGE_ORDERS = "largeOrders";
 
-    // ------------------------------------------------------------------------------------------------ EnterpriseOrders
+    // ---------------------------------------------------------------------------- EnterpriseOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -348,7 +348,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ENTERPRISE_ORDERS = "enterpriseOrders";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -357,7 +357,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -382,7 +382,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.channelName = channelName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -422,7 +422,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.customerType = customerType;
     }
 
-    // --------------------------------------------------------------------------------------------------- territoryName
+    // ------------------------------------------------------------------------------- territoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute.
@@ -442,7 +442,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.territoryName = territoryName;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- region
+    // -------------------------------------------------------------------------------------- region
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REGION} attribute.
@@ -462,7 +462,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.region = region;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -482,7 +482,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.orderCount = orderCount;
     }
 
-    // ----------------------------------------------------------------------------------------------------- avgSubtotal
+    // --------------------------------------------------------------------------------- avgSubtotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_SUBTOTAL} attribute.
@@ -502,7 +502,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.avgSubtotal = avgSubtotal;
     }
 
-    // ----------------------------------------------------------------------------------------------------- avgDiscount
+    // --------------------------------------------------------------------------------- avgDiscount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DISCOUNT} attribute.
@@ -522,7 +522,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.avgDiscount = avgDiscount;
     }
 
-    // ---------------------------------------------------------------------------------------------------- avgNetAmount
+    // -------------------------------------------------------------------------------- avgNetAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_NET_AMOUNT} attribute.
@@ -542,7 +542,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.avgNetAmount = avgNetAmount;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- avgTax
+    // -------------------------------------------------------------------------------------- avgTax
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_TAX} attribute.
@@ -562,7 +562,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.avgTax = avgTax;
     }
 
-    // ----------------------------------------------------------------------------------------------------- avgShipping
+    // --------------------------------------------------------------------------------- avgShipping
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_SHIPPING} attribute.
@@ -582,7 +582,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.avgShipping = avgShipping;
     }
 
-    // --------------------------------------------------------------------------------------------------- minOrderValue
+    // ------------------------------------------------------------------------------- minOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MIN_ORDER_VALUE} attribute.
@@ -602,7 +602,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.minOrderValue = minOrderValue;
     }
 
-    // --------------------------------------------------------------------------------------------------- maxOrderValue
+    // ------------------------------------------------------------------------------- maxOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MAX_ORDER_VALUE} attribute.
@@ -622,7 +622,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.maxOrderValue = maxOrderValue;
     }
 
-    // ------------------------------------------------------------------------------------------------ stdDevOrderValue
+    // ---------------------------------------------------------------------------- stdDevOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STD_DEV_ORDER_VALUE} attribute.
@@ -642,7 +642,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.stdDevOrderValue = stdDevOrderValue;
     }
 
-    // ----------------------------------------------------------------------------------------------------- smallOrders
+    // --------------------------------------------------------------------------------- smallOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SMALL_ORDERS} attribute.
@@ -662,7 +662,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.smallOrders = smallOrders;
     }
 
-    // ---------------------------------------------------------------------------------------------------- mediumOrders
+    // -------------------------------------------------------------------------------- mediumOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MEDIUM_ORDERS} attribute.
@@ -682,7 +682,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.mediumOrders = mediumOrders;
     }
 
-    // ----------------------------------------------------------------------------------------------------- largeOrders
+    // --------------------------------------------------------------------------------- largeOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LARGE_ORDERS} attribute.
@@ -702,7 +702,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.largeOrders = largeOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------ enterpriseOrders
+    // ---------------------------------------------------------------------------- enterpriseOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ENTERPRISE_ORDERS} attribute.
@@ -722,7 +722,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
         this.enterpriseOrders = enterpriseOrders;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -735,7 +735,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -747,7 +747,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
@@ -759,7 +759,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private String territoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @Basic(optional = true)
@@ -771,7 +771,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private String region;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -781,7 +781,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_SUBTOTAL - COLUMN_SCALE_AVG_SUBTOTAL, fraction = COLUMN_SCALE_AVG_SUBTOTAL)
     @Basic(optional = true)
@@ -794,7 +794,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal avgSubtotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT - COLUMN_SCALE_AVG_DISCOUNT, fraction = COLUMN_SCALE_AVG_DISCOUNT)
     @Basic(optional = true)
@@ -807,7 +807,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal avgDiscount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_NET_AMOUNT - COLUMN_SCALE_AVG_NET_AMOUNT,
             fraction = COLUMN_SCALE_AVG_NET_AMOUNT)
@@ -821,7 +821,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal avgNetAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_TAX - COLUMN_SCALE_AVG_TAX, fraction = COLUMN_SCALE_AVG_TAX)
     @Basic(optional = true)
@@ -834,7 +834,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal avgTax;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_SHIPPING - COLUMN_SCALE_AVG_SHIPPING, fraction = COLUMN_SCALE_AVG_SHIPPING)
     @Basic(optional = true)
@@ -847,7 +847,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal avgShipping;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MIN_ORDER_VALUE - COLUMN_SCALE_MIN_ORDER_VALUE,
             fraction = COLUMN_SCALE_MIN_ORDER_VALUE)
@@ -861,7 +861,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal minOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MAX_ORDER_VALUE - COLUMN_SCALE_MAX_ORDER_VALUE,
             fraction = COLUMN_SCALE_MAX_ORDER_VALUE)
@@ -875,7 +875,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private BigDecimal maxOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STD_DEV_ORDER_VALUE,
@@ -885,7 +885,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private Double stdDevOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SMALL_ORDERS,
@@ -895,7 +895,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private Integer smallOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MEDIUM_ORDERS,
@@ -905,7 +905,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private Integer mediumOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LARGE_ORDERS,
@@ -915,7 +915,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     )
     private Integer largeOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ENTERPRISE_ORDERS,

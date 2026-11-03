@@ -54,7 +54,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String TABLE_NAME = "vw_LateProductionOrders";
 
-    // ------------------------------------------------------------------------------------------------- WorkOrderNumber
+    // ----------------------------------------------------------------------------- WorkOrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_NUMBER = "workOrderNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // --------------------------------------------------------------------------------------------------- OrderQuantity
+    // ------------------------------------------------------------------------------- OrderQuantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -161,7 +161,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_QUANTITY = "orderQuantity";
 
-    // ----------------------------------------------------------------------------------------------- QuantityCompleted
+    // --------------------------------------------------------------------------- QuantityCompleted
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -183,7 +183,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_COMPLETED = "quantityCompleted";
 
-    // ----------------------------------------------------------------------------------------------- QuantityRemaining
+    // --------------------------------------------------------------------------- QuantityRemaining
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -205,7 +205,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_REMAINING = "quantityRemaining";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterName
+    // ------------------------------------------------------------------------------ WorkCenterName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -222,7 +222,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_NAME = "workCenterName";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -234,7 +234,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // ------------------------------------------------------------------------------------------- PlannedCompletionDate
+    // ----------------------------------------------------------------------- PlannedCompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -247,7 +247,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE = "plannedCompletionDate";
 
-    // -------------------------------------------------------------------------------------------------------- DaysLate
+    // ------------------------------------------------------------------------------------ DaysLate
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -259,7 +259,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_LATE = "daysLate";
 
-    // -------------------------------------------------------------------------------------------------------- Priority
+    // ------------------------------------------------------------------------------------ Priority
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -271,7 +271,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_PRIORITY = "priority";
 
-    // ------------------------------------------------------------------------------------------------ LatenessSeverity
+    // ---------------------------------------------------------------------------- LatenessSeverity
 
     /**
      * The name of the {@code varchar(8), NOT NULL} column. The value is {@value}.
@@ -288,7 +288,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_LATENESS_SEVERITY = "latenessSeverity";
 
-    // ----------------------------------------------------------------------------------------------------- ValueAtRisk
+    // --------------------------------------------------------------------------------- ValueAtRisk
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -310,7 +310,7 @@ public abstract class MappedLateProductionOrdersView {
      */
     public static final String ATTRIBUTE_NAME_VALUE_AT_RISK = "valueAtRisk";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -319,7 +319,7 @@ public abstract class MappedLateProductionOrdersView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -342,7 +342,7 @@ public abstract class MappedLateProductionOrdersView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------- workOrderNumber
+    // ----------------------------------------------------------------------------- workOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_NUMBER} attribute.
@@ -362,7 +362,7 @@ public abstract class MappedLateProductionOrdersView {
         this.workOrderNumber = workOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -382,7 +382,7 @@ public abstract class MappedLateProductionOrdersView {
         this.status = status;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedLateProductionOrdersView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -422,7 +422,7 @@ public abstract class MappedLateProductionOrdersView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -442,7 +442,7 @@ public abstract class MappedLateProductionOrdersView {
         this.itemType = itemType;
     }
 
-    // --------------------------------------------------------------------------------------------------- orderQuantity
+    // ------------------------------------------------------------------------------- orderQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute.
@@ -462,7 +462,7 @@ public abstract class MappedLateProductionOrdersView {
         this.orderQuantity = orderQuantity;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityCompleted
+    // --------------------------------------------------------------------------- quantityCompleted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute.
@@ -482,7 +482,7 @@ public abstract class MappedLateProductionOrdersView {
         this.quantityCompleted = quantityCompleted;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityRemaining
+    // --------------------------------------------------------------------------- quantityRemaining
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_REMAINING} attribute.
@@ -502,7 +502,7 @@ public abstract class MappedLateProductionOrdersView {
         this.quantityRemaining = quantityRemaining;
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterName
+    // ------------------------------------------------------------------------------ workCenterName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_NAME} attribute.
@@ -522,7 +522,7 @@ public abstract class MappedLateProductionOrdersView {
         this.workCenterName = workCenterName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -542,7 +542,7 @@ public abstract class MappedLateProductionOrdersView {
         this.startDate = startDate;
     }
 
-    // ------------------------------------------------------------------------------------------- plannedCompletionDate
+    // ----------------------------------------------------------------------- plannedCompletionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE} attribute.
@@ -562,7 +562,7 @@ public abstract class MappedLateProductionOrdersView {
         this.plannedCompletionDate = plannedCompletionDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- daysLate
+    // ------------------------------------------------------------------------------------ daysLate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_LATE} attribute.
@@ -582,7 +582,7 @@ public abstract class MappedLateProductionOrdersView {
         this.daysLate = daysLate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- priority
+    // ------------------------------------------------------------------------------------ priority
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIORITY} attribute.
@@ -602,7 +602,7 @@ public abstract class MappedLateProductionOrdersView {
         this.priority = priority;
     }
 
-    // ------------------------------------------------------------------------------------------------ latenessSeverity
+    // ---------------------------------------------------------------------------- latenessSeverity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATENESS_SEVERITY} attribute.
@@ -622,7 +622,7 @@ public abstract class MappedLateProductionOrdersView {
         this.latenessSeverity = latenessSeverity;
     }
 
-    // ----------------------------------------------------------------------------------------------------- valueAtRisk
+    // --------------------------------------------------------------------------------- valueAtRisk
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALUE_AT_RISK} attribute.
@@ -642,7 +642,7 @@ public abstract class MappedLateProductionOrdersView {
         this.valueAtRisk = valueAtRisk;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
@@ -655,7 +655,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String workOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
@@ -668,7 +668,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -681,7 +681,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -694,7 +694,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -707,7 +707,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_QUANTITY - COLUMN_SCALE_ORDER_QUANTITY,
             fraction = COLUMN_SCALE_ORDER_QUANTITY)
@@ -722,7 +722,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private BigDecimal orderQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
@@ -736,7 +736,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private BigDecimal quantityCompleted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_REMAINING - COLUMN_SCALE_QUANTITY_REMAINING,
             fraction = COLUMN_SCALE_QUANTITY_REMAINING)
@@ -750,7 +750,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private BigDecimal quantityRemaining;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
@@ -762,7 +762,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String workCenterName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_START_DATE,
@@ -772,7 +772,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private LocalDate startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
@@ -782,7 +782,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private LocalDate plannedCompletionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_LATE,
@@ -792,7 +792,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private Integer daysLate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY,
@@ -802,7 +802,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private Integer priority;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_LATENESS_SEVERITY)
     @NotNull
@@ -815,7 +815,7 @@ public abstract class MappedLateProductionOrdersView {
     )
     private String latenessSeverity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE_AT_RISK - COLUMN_SCALE_VALUE_AT_RISK,
             fraction = COLUMN_SCALE_VALUE_AT_RISK)

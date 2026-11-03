@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -32,8 +34,38 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.Currency} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.Currency}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CurrencyCode}</th><td>The ISO code for the Currency.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Currency name.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.Currency}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCurrency.TABLE_SCHEMA,
+        table = MappedCurrency.TABLE_NAME,
+        value = "Lookup table containing standard ISO currencies."
+)
 public abstract class MappedCurrency {
 
     /**
@@ -46,7 +78,7 @@ public abstract class MappedCurrency {
      */
     public static final String TABLE_NAME = "Currency";
 
-    // ---------------------------------------------------------------------------------------------------- CurrencyCode
+    // -------------------------------------------------------------------------------- CurrencyCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -63,7 +95,7 @@ public abstract class MappedCurrency {
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_CODE = "currencyCode";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -80,7 +112,7 @@ public abstract class MappedCurrency {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -92,7 +124,7 @@ public abstract class MappedCurrency {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -101,7 +133,7 @@ public abstract class MappedCurrency {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -141,7 +173,7 @@ public abstract class MappedCurrency {
         return Objects.hash(currencyCode);
     }
 
-    // ---------------------------------------------------------------------------------------------------- currencyCode
+    // -------------------------------------------------------------------------------- currencyCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENCY_CODE} attribute.
@@ -161,7 +193,7 @@ public abstract class MappedCurrency {
         this.currencyCode = currencyCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -181,7 +213,7 @@ public abstract class MappedCurrency {
         this.name = name;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -201,7 +233,7 @@ public abstract class MappedCurrency {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_CURRENCY_CODE)
     @NotNull
@@ -212,9 +244,11 @@ public abstract class MappedCurrency {
             updatable = false,
             length = COLUMN_LENGTH_CURRENCY_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_CODE,
+                          value = "The ISO code for the Currency.")
     private String currencyCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -224,9 +258,10 @@ public abstract class MappedCurrency {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Currency name.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -235,6 +270,9 @@ public abstract class MappedCurrency {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Currency_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

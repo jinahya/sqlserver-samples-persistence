@@ -30,7 +30,7 @@ class AwBuildVersion_PersistenceIT extends _Entity_PersistenceIT<AwBuildVersion>
         super(AwBuildVersion.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; the installer inserts the one row of {@code dbo.AWBuildVersion}, and nothing else inserts into it.

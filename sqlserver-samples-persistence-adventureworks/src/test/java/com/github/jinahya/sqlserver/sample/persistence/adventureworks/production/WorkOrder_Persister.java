@@ -35,7 +35,7 @@ class WorkOrder_Persister
         super(WorkOrder.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public WorkOrder apply(final EntityManager entityManager, final WorkOrder entityInstance) {
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

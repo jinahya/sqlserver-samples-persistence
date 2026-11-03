@@ -23,15 +23,26 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedCreditCard;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.CreditCard} table.
  */
 @Entity(name = "SalesCreditCard")
-@Table(schema = MappedCreditCard.TABLE_SCHEMA, name = MappedCreditCard.TABLE_NAME)
+@Table(schema = MappedCreditCard.TABLE_SCHEMA,
+       name = MappedCreditCard.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_CreditCard_CardNumber",
+                       columnNames = {
+                               CreditCard.COLUMN_NAME_CARD_NUMBER
+                       }
+               )
+       }
+)
 public class CreditCard extends MappedCreditCard {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

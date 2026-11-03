@@ -35,7 +35,7 @@ public class MappedPersonPhoneId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedPersonPhoneId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -73,7 +73,7 @@ public class MappedPersonPhoneId implements Serializable {
         return Objects.hash(businessEntityId, phoneNumber, phoneNumberTypeId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -93,7 +93,7 @@ public class MappedPersonPhoneId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of the {@code phoneNumber} attribute.
@@ -113,7 +113,7 @@ public class MappedPersonPhoneId implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------- phoneNumberTypeId
+    // --------------------------------------------------------------------------- phoneNumberTypeId
 
     /**
      * Returns current value of the {@code phoneNumberTypeId} attribute.
@@ -133,11 +133,20 @@ public class MappedPersonPhoneId implements Serializable {
         this.phoneNumberTypeId = phoneNumberTypeId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 
+    /**
+     * The value of the {@code phoneNumber} attribute.
+     */
     private String phoneNumber;
 
+    /**
+     * The value of the {@code phoneNumberTypeId} attribute.
+     */
     private Integer phoneNumberTypeId;
 }
 

@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class StockGroupArchive extends MappedStockGroupArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

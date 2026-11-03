@@ -53,7 +53,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String TABLE_NAME = "SalesReturnDetail";
 
-    // -------------------------------------------------------------------------------------------------- ReturnDetailID
+    // ------------------------------------------------------------------------------ ReturnDetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_RETURN_DETAIL_ID = "returnDetailId";
 
-    // -------------------------------------------------------------------------------------------------------- ReturnID
+    // ------------------------------------------------------------------------------------ ReturnID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -77,7 +77,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_RETURN_ID = "returnId";
 
-    // ------------------------------------------------------------------------------------------------------ SODetailID
+    // ---------------------------------------------------------------------------------- SODetailID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -89,7 +89,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_SO_DETAIL_ID = "soDetailId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -101,7 +101,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ------------------------------------------------------------------------------------------------ QuantityReturned
+    // ---------------------------------------------------------------------------- QuantityReturned
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_RETURNED = "quantityReturned";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ---------------------------------------------------------------------------------------------------- RefundAmount
+    // -------------------------------------------------------------------------------- RefundAmount
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_REFUND_AMOUNT = "refundAmount";
 
-    // ----------------------------------------------------------------------------------------------------- Disposition
+    // --------------------------------------------------------------------------------- Disposition
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedSalesReturnDetail {
      */
     public static final String ATTRIBUTE_NAME_DISPOSITION = "disposition";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -193,7 +193,7 @@ public abstract class MappedSalesReturnDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -238,7 +238,7 @@ public abstract class MappedSalesReturnDetail {
         return Objects.hash(returnDetailId);
     }
 
-    // -------------------------------------------------------------------------------------------------- returnDetailId
+    // ------------------------------------------------------------------------------ returnDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_DETAIL_ID} attribute.
@@ -258,7 +258,7 @@ public abstract class MappedSalesReturnDetail {
         this.returnDetailId = returnDetailId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- returnId
+    // ------------------------------------------------------------------------------------ returnId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_ID} attribute.
@@ -279,7 +279,7 @@ public abstract class MappedSalesReturnDetail {
         this.returnId = returnId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ soDetailId
+    // ---------------------------------------------------------------------------------- soDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SO_DETAIL_ID} attribute.
@@ -300,7 +300,7 @@ public abstract class MappedSalesReturnDetail {
         this.soDetailId = soDetailId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -321,7 +321,7 @@ public abstract class MappedSalesReturnDetail {
         this.itemId = itemId;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityReturned
+    // ---------------------------------------------------------------------------- quantityReturned
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_RETURNED} attribute.
@@ -341,7 +341,7 @@ public abstract class MappedSalesReturnDetail {
         this.quantityReturned = quantityReturned;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -361,7 +361,7 @@ public abstract class MappedSalesReturnDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ---------------------------------------------------------------------------------------------------- refundAmount
+    // -------------------------------------------------------------------------------- refundAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFUND_AMOUNT} attribute.
@@ -381,7 +381,7 @@ public abstract class MappedSalesReturnDetail {
         this.refundAmount = refundAmount;
     }
 
-    // ----------------------------------------------------------------------------------------------------- disposition
+    // --------------------------------------------------------------------------------- disposition
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISPOSITION} attribute.
@@ -401,7 +401,7 @@ public abstract class MappedSalesReturnDetail {
         this.disposition = disposition;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -413,7 +413,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private Integer returnDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -424,7 +424,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private Integer returnId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -435,7 +435,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private Integer soDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -446,7 +446,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_RETURNED - COLUMN_SCALE_QUANTITY_RETURNED,
             fraction = COLUMN_SCALE_QUANTITY_RETURNED)
     @NotNull
@@ -460,7 +460,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private BigDecimal quantityReturned;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -473,7 +473,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_REFUND_AMOUNT - COLUMN_SCALE_REFUND_AMOUNT,
             fraction = COLUMN_SCALE_REFUND_AMOUNT)
     @NotNull
@@ -487,7 +487,7 @@ public abstract class MappedSalesReturnDetail {
     )
     private BigDecimal refundAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DISPOSITION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DISPOSITION,

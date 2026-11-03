@@ -29,12 +29,23 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.Store} table.
  */
 @Entity(name = "SalesStore")
-@Table(schema = MappedStore.TABLE_SCHEMA, name = MappedStore.TABLE_NAME)
+@Table(schema = MappedStore.TABLE_SCHEMA,
+       name = MappedStore.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Store_rowguid",
+                       columnNames = {
+                               Store.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 public class Store extends MappedStore {
 
     /**
@@ -48,7 +59,7 @@ public class Store extends MappedStore {
      */
     public static final String ATTRIBUTE_NAME_SALES_PERSON = "salesPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -57,7 +68,7 @@ public class Store extends MappedStore {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code BusinessEntity} which the {@code FK_Store_BusinessEntity_BusinessEntityID} foreign key
@@ -80,7 +91,7 @@ public class Store extends MappedStore {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- salesPerson
+    // --------------------------------------------------------------------------------- salesPerson
 
     /**
      * Returns the {@code SalesPerson} which the {@code FK_Store_SalesPerson_SalesPersonID} foreign key references.
@@ -102,7 +113,7 @@ public class Store extends MappedStore {
         setSalesPersonId(salesPerson == null ? null : salesPerson.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedBusinessEntity.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -112,7 +123,7 @@ public class Store extends MappedStore {
     )
     private BusinessEntity businessEntity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_PERSON_ID,
                 referencedColumnName = MappedSalesPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,

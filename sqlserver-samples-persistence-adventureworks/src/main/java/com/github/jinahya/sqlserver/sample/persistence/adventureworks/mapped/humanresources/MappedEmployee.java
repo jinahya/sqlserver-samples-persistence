@@ -22,6 +22,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -42,8 +46,96 @@ import java.util.UUID;
 
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.Employee} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code HumanResources.Employee}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Primary key for Employee records.  Foreign key to
+ *     BusinessEntity.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code NationalIDNumber}</th>
+ *     <td>Unique national identification number such as a social security number.</td></tr>
+ * <tr><th scope="row">{@code LoginID}</th><td>Network login.</td></tr>
+ * <tr><th scope="row">{@code OrganizationNode}</th>
+ *     <td>Where the employee is located in corporate hierarchy.</td></tr>
+ * <tr><th scope="row">{@code OrganizationLevel}</th>
+ *     <td>The depth of the employee in the corporate hierarchy.</td></tr>
+ * <tr><th scope="row">{@code JobTitle}</th>
+ *     <td>Work title such as Buyer or Sales Representative.</td></tr>
+ * <tr><th scope="row">{@code BirthDate}</th><td>Date of birth.</td></tr>
+ * <tr><th scope="row">{@code MaritalStatus}</th><td>M = Married, S = Single</td></tr>
+ * <tr><th scope="row">{@code Gender}</th><td>M = Male, F = Female</td></tr>
+ * <tr><th scope="row">{@code HireDate}</th><td>Employee hired on this date.</td></tr>
+ * <tr><th scope="row">{@code SalariedFlag}</th>
+ *     <td>Job classification. 0 = Hourly, not exempt from collective bargaining. 1 = Salaried,
+ *     exempt from collective bargaining.</td></tr>
+ * <tr><th scope="row">{@code VacationHours}</th><td>Number of available vacation hours.</td></tr>
+ * <tr><th scope="row">{@code SickLeaveHours}</th>
+ *     <td>Number of available sick leave hours.</td></tr>
+ * <tr><th scope="row">{@code CurrentFlag}</th><td>0 = Inactive, 1 = Active</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code HumanResources.Employee}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SalariedFlag}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code VacationHours}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code SickLeaveHours}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code CurrentFlag}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code HumanResources.Employee}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrganizationLevel}</th>
+ *     <td>{@code ([OrganizationNode].[GetLevel]())}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Triggers on {@code HumanResources.Employee}</caption>
+ * <thead>
+ * <tr><th scope="col">Trigger</th><th scope="col">Timing</th><th scope="col">Events</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code dEmployee}</th><td>{@code INSTEAD OF}</td><td>{@code DELETE}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
+ *      GetLevel (Database Engine)</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedEmployee.TABLE_SCHEMA,
+        table = MappedEmployee.TABLE_NAME,
+        value = "Employee information such as salary, department, and title."
+)
+@MsTrigger(
+        name = "dEmployee",
+        timing = MsTrigger.Timing.INSTEAD_OF,
+        events = MsTrigger.Event.DELETE
+)
 public abstract class MappedEmployee {
 
     /**
@@ -56,7 +148,7 @@ public abstract class MappedEmployee {
      */
     public static final String TABLE_NAME = "Employee";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -69,7 +161,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------ NationalIDNumber
+    // ---------------------------------------------------------------------------- NationalIDNumber
 
     /**
      * The name of the {@code nvarchar(15), NOT NULL} column. The value is {@value}.
@@ -87,7 +179,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_NATIONAL_ID_NUMBER = "nationalIdNumber";
 
-    // --------------------------------------------------------------------------------------------------------- LoginID
+    // ------------------------------------------------------------------------------------- LoginID
 
     /**
      * The name of the {@code nvarchar(256), NOT NULL} column. The value is {@value}.
@@ -105,7 +197,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_LOGIN_ID = "loginId";
 
-    // ------------------------------------------------------------------------------------------------ OrganizationNode
+    // ---------------------------------------------------------------------------- OrganizationNode
 
     /**
      * The name of the {@code hierarchyid} column. The value is {@value}.
@@ -118,7 +210,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_ORGANIZATION_NODE = "organizationNode";
 
-    // ----------------------------------------------------------------------------------------------- OrganizationLevel
+    // --------------------------------------------------------------------------- OrganizationLevel
 
     /**
      * The name of the {@code smallint, computed as ([OrganizationNode].[GetLevel]())} column. The
@@ -144,7 +236,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_ORGANIZATION_LEVEL = "organizationLevel";
 
-    // -------------------------------------------------------------------------------------------------------- JobTitle
+    // ------------------------------------------------------------------------------------ JobTitle
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -162,7 +254,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
-    // ------------------------------------------------------------------------------------------------------- BirthDate
+    // ----------------------------------------------------------------------------------- BirthDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -227,7 +319,7 @@ public abstract class MappedEmployee {
         M
     }
 
-    // ---------------------------------------------------------------------------------------------------------- Gender
+    // -------------------------------------------------------------------------------------- Gender
 
     /**
      * The name of the {@code nchar(1), NOT NULL} column. The value is {@value}.
@@ -279,7 +371,7 @@ public abstract class MappedEmployee {
         M
     }
 
-    // -------------------------------------------------------------------------------------------------------- HireDate
+    // ------------------------------------------------------------------------------------ HireDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -292,7 +384,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_HIRE_DATE = "hireDate";
 
-    // ---------------------------------------------------------------------------------------------------- SalariedFlag
+    // -------------------------------------------------------------------------------- SalariedFlag
 
     /**
      * The name of the {@code Flag (bit), DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -305,7 +397,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_SALARIED_FLAG = "salariedFlag";
 
-    // --------------------------------------------------------------------------------------------------- VacationHours
+    // ------------------------------------------------------------------------------- VacationHours
 
     /**
      * The name of the {@code smallint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -332,7 +424,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_VACATION_HOURS = "vacationHours";
 
-    // -------------------------------------------------------------------------------------------------- SickLeaveHours
+    // ------------------------------------------------------------------------------ SickLeaveHours
 
     /**
      * The name of the {@code smallint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -359,7 +451,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_SICK_LEAVE_HOURS = "sickLeaveHours";
 
-    // ----------------------------------------------------------------------------------------------------- CurrentFlag
+    // --------------------------------------------------------------------------------- CurrentFlag
 
     /**
      * The name of the {@code Flag (bit), DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -372,7 +464,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_CURRENT_FLAG = "currentFlag";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
@@ -386,7 +478,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
@@ -400,7 +492,7 @@ public abstract class MappedEmployee {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -409,7 +501,7 @@ public abstract class MappedEmployee {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -527,7 +619,7 @@ public abstract class MappedEmployee {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------ nationalIdNumber
+    // ---------------------------------------------------------------------------- nationalIdNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NATIONAL_ID_NUMBER} attribute.
@@ -548,7 +640,7 @@ public abstract class MappedEmployee {
         this.nationalIdNumber = nationalIdNumber;
     }
 
-    // --------------------------------------------------------------------------------------------------------- loginId
+    // ------------------------------------------------------------------------------------- loginId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOGIN_ID} attribute.
@@ -569,7 +661,7 @@ public abstract class MappedEmployee {
         this.loginId = loginId;
     }
 
-    // ------------------------------------------------------------------------------------------------ organizationNode
+    // ---------------------------------------------------------------------------- organizationNode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_NODE} attribute.
@@ -590,7 +682,7 @@ public abstract class MappedEmployee {
         this.organizationNode = organizationNode;
     }
 
-    // ----------------------------------------------------------------------------------------------- organizationLevel
+    // --------------------------------------------------------------------------- organizationLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORGANIZATION_LEVEL} attribute.
@@ -613,7 +705,7 @@ public abstract class MappedEmployee {
         this.organizationLevel = organizationLevel;
     }
 
-    // -------------------------------------------------------------------------------------------------------- jobTitle
+    // ------------------------------------------------------------------------------------ jobTitle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
@@ -634,7 +726,7 @@ public abstract class MappedEmployee {
         this.jobTitle = jobTitle;
     }
 
-    // ------------------------------------------------------------------------------------------------------- birthDate
+    // ----------------------------------------------------------------------------------- birthDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
@@ -676,7 +768,7 @@ public abstract class MappedEmployee {
         this.maritalStatus = maritalStatus;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- gender
+    // -------------------------------------------------------------------------------------- gender
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GENDER} attribute.
@@ -697,7 +789,7 @@ public abstract class MappedEmployee {
         this.gender = gender;
     }
 
-    // -------------------------------------------------------------------------------------------------------- hireDate
+    // ------------------------------------------------------------------------------------ hireDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute.
@@ -718,7 +810,7 @@ public abstract class MappedEmployee {
         this.hireDate = hireDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- salariedFlag
+    // -------------------------------------------------------------------------------- salariedFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALARIED_FLAG} attribute.
@@ -739,7 +831,7 @@ public abstract class MappedEmployee {
         this.salariedFlag = salariedFlag;
     }
 
-    // --------------------------------------------------------------------------------------------------- vacationHours
+    // ------------------------------------------------------------------------------- vacationHours
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VACATION_HOURS} attribute.
@@ -760,7 +852,7 @@ public abstract class MappedEmployee {
         this.vacationHours = vacationHours;
     }
 
-    // -------------------------------------------------------------------------------------------------- sickLeaveHours
+    // ------------------------------------------------------------------------------ sickLeaveHours
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SICK_LEAVE_HOURS} attribute.
@@ -781,7 +873,7 @@ public abstract class MappedEmployee {
         this.sickLeaveHours = sickLeaveHours;
     }
 
-    // ----------------------------------------------------------------------------------------------------- currentFlag
+    // --------------------------------------------------------------------------------- currentFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENT_FLAG} attribute.
@@ -802,7 +894,7 @@ public abstract class MappedEmployee {
         this.currentFlag = currentFlag;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -823,7 +915,7 @@ public abstract class MappedEmployee {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -844,7 +936,7 @@ public abstract class MappedEmployee {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
     @NotNull
@@ -854,9 +946,12 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Primary key for Employee records.  Foreign key to "
+                                  + "BusinessEntity.BusinessEntityID.")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NATIONAL_ID_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -866,9 +961,12 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_NATIONAL_ID_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_NATIONAL_ID_NUMBER,
+                          value = "Unique national identification number such as a social "
+                                  + "security number.")
     private String nationalIdNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LOGIN_ID)
     @NotNull
     @Basic(optional = false)
@@ -878,9 +976,10 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_LOGIN_ID
     )
+    @MsDescription.Column(name = COLUMN_NAME_LOGIN_ID, value = "Network login.")
     private String loginId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_NODE,
@@ -888,9 +987,11 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORGANIZATION_NODE,
+                          value = "Where the employee is located in corporate hierarchy.")
     private Heirarchyid organizationNode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Max(COLUMN_MAX_ORGANIZATION_LEVEL)
     @Min(COLUMN_MIN_ORGANIZATION_LEVEL)
@@ -900,9 +1001,12 @@ public abstract class MappedEmployee {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORGANIZATION_LEVEL,
+                          value = "The depth of the employee in the corporate hierarchy.")
+    @MsComputedColumn("([OrganizationNode].[GetLevel]())")
     private Integer organizationLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
@@ -912,9 +1016,11 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_JOB_TITLE
     )
+    @MsDescription.Column(name = COLUMN_NAME_JOB_TITLE,
+                          value = "Work title such as Buyer or Sales Representative.")
     private String jobTitle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BIRTH_DATE,
@@ -922,9 +1028,10 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_BIRTH_DATE, value = "Date of birth.")
     private LocalDate birthDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
@@ -934,9 +1041,10 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_MARITAL_STATUS
     )
+    @MsDescription.Column(name = COLUMN_NAME_MARITAL_STATUS, value = "M = Married, S = Single")
     private MaritalStatus maritalStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
@@ -946,9 +1054,10 @@ public abstract class MappedEmployee {
             updatable = true,
             length = COLUMN_LENGTH_GENDER
     )
+    @MsDescription.Column(name = COLUMN_NAME_GENDER, value = "M = Male, F = Female")
     private Gender gender;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_HIRE_DATE,
@@ -956,9 +1065,10 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_HIRE_DATE, value = "Employee hired on this date.")
     private LocalDate hireDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALARIED_FLAG,
@@ -966,9 +1076,13 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALARIED_FLAG,
+                          value = "Job classification. 0 = Hourly, not exempt from collective "
+                                  + "bargaining. 1 = Salaried, exempt from collective bargaining.")
+    @MsDefault(name = "DF_Employee_SalariedFlag", value = "((1))")
     private Boolean salariedFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Employee_VacationHours: ([VacationHours]>=(-40) AND [VacationHours]<=(240))
     @Max(COLUMN_MAX_VACATION_HOURS)
     @Min(COLUMN_MIN_VACATION_HOURS)
@@ -979,9 +1093,12 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_VACATION_HOURS,
+                          value = "Number of available vacation hours.")
+    @MsDefault(name = "DF_Employee_VacationHours", value = "((0))")
     private Integer vacationHours;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Employee_SickLeaveHours: ([SickLeaveHours]>=(0) AND [SickLeaveHours]<=(120))
     @Max(COLUMN_MAX_SICK_LEAVE_HOURS)
     @Min(COLUMN_MIN_SICK_LEAVE_HOURS)
@@ -992,9 +1109,12 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SICK_LEAVE_HOURS,
+                          value = "Number of available sick leave hours.")
+    @MsDefault(name = "DF_Employee_SickLeaveHours", value = "((0))")
     private Integer sickLeaveHours;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CURRENT_FLAG,
@@ -1002,19 +1122,25 @@ public abstract class MappedEmployee {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CURRENT_FLAG, value = "0 = Inactive, 1 = Active")
+    @MsDefault(name = "DF_Employee_CurrentFlag", value = "((1))")
     private Boolean currentFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_Employee_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
     // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
@@ -1024,6 +1150,9 @@ public abstract class MappedEmployee {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Employee_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

@@ -23,15 +23,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedReturnReason;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.ReturnReason} table.
  */
 @Entity(name = "DboReturnReason")
-@Table(schema = MappedReturnReason.TABLE_SCHEMA, name = MappedReturnReason.TABLE_NAME)
+@Table(schema = MappedReturnReason.TABLE_SCHEMA,
+       name = MappedReturnReason.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               ReturnReason.COLUMN_NAME_REASON_CODE
+                       }
+               )
+       }
+)
 public class ReturnReason extends MappedReturnReason {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

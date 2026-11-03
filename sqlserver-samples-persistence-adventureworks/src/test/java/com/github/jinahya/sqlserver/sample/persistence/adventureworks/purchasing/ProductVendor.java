@@ -27,6 +27,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pur
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedVendor;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Product;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.UnitMeasure;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -38,7 +39,35 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Purchasing.ProductVendor} table.
  */
 @Entity(name = "PurchasingProductVendor")
-@Table(schema = MappedProductVendor.TABLE_SCHEMA, name = MappedProductVendor.TABLE_NAME)
+@Table(schema = MappedProductVendor.TABLE_SCHEMA,
+       name = MappedProductVendor.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_ProductVendor_AverageLeadTime",
+                       constraint = "([AverageLeadTime]>=(1))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductVendor_LastReceiptCost",
+                       constraint = "([LastReceiptCost]>(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductVendor_MaxOrderQty",
+                       constraint = "([MaxOrderQty]>=(1))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductVendor_MinOrderQty",
+                       constraint = "([MinOrderQty]>=(1))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductVendor_OnOrderQty",
+                       constraint = "([OnOrderQty]>=(0))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductVendor_StandardPrice",
+                       constraint = "([StandardPrice]>(0.00))"
+               )
+       }
+)
 @IdClass(MappedProductVendorId.class)
 public class ProductVendor extends MappedProductVendor {
 
@@ -59,7 +88,7 @@ public class ProductVendor extends MappedProductVendor {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -68,7 +97,7 @@ public class ProductVendor extends MappedProductVendor {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_ProductVendor_Product_ProductID} foreign key references.
@@ -90,7 +119,7 @@ public class ProductVendor extends MappedProductVendor {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- unitMeasure
+    // --------------------------------------------------------------------------------- unitMeasure
 
     /**
      * Returns the {@code UnitMeasure} which the {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign key
@@ -113,7 +142,7 @@ public class ProductVendor extends MappedProductVendor {
         setUnitMeasureCode(unitMeasure == null ? null : unitMeasure.getUnitMeasureCode());
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Vendor} which the {@code FK_ProductVendor_Vendor_BusinessEntityID} foreign key references.
@@ -135,7 +164,7 @@ public class ProductVendor extends MappedProductVendor {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -145,7 +174,7 @@ public class ProductVendor extends MappedProductVendor {
     )
     private Product product;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_UNIT_MEASURE_CODE,
                 referencedColumnName = MappedUnitMeasure.COLUMN_NAME_UNIT_MEASURE_CODE,
@@ -155,7 +184,7 @@ public class ProductVendor extends MappedProductVendor {
     )
     private UnitMeasure unitMeasure;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedVendor.COLUMN_NAME_BUSINESS_ENTITY_ID,

@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class ColorArchive extends MappedColorArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

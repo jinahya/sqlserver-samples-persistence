@@ -20,6 +20,10 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +45,82 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Application.People}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PersonID}</th>
+ *     <td>Numeric ID used for reference to a person within the database</td></tr>
+ * <tr><th scope="row">{@code FullName}</th><td>Full name for this person</td></tr>
+ * <tr><th scope="row">{@code PreferredName}</th>
+ *     <td>Name that this person prefers to be called</td></tr>
+ * <tr><th scope="row">{@code SearchName}</th>
+ *     <td>Name to build full text search on (computed column)</td></tr>
+ * <tr><th scope="row">{@code IsPermittedToLogon}</th>
+ *     <td>Is this person permitted to log on?</td></tr>
+ * <tr><th scope="row">{@code LogonName}</th><td>Person's system logon name</td></tr>
+ * <tr><th scope="row">{@code IsExternalLogonProvider}</th>
+ *     <td>Is logon token provided by an external system?</td></tr>
+ * <tr><th scope="row">{@code HashedPassword}</th>
+ *     <td>Hash of password for users without external logon tokens</td></tr>
+ * <tr><th scope="row">{@code IsSystemUser}</th>
+ *     <td>Is the currently permitted to make online access?</td></tr>
+ * <tr><th scope="row">{@code IsEmployee}</th><td>Is this person an employee?</td></tr>
+ * <tr><th scope="row">{@code IsSalesperson}</th><td>Is this person a staff salesperson?</td></tr>
+ * <tr><th scope="row">{@code UserPreferences}</th>
+ *     <td>User preferences related to the website (holds JSON data)</td></tr>
+ * <tr><th scope="row">{@code PhoneNumber}</th><td>Phone number</td></tr>
+ * <tr><th scope="row">{@code FaxNumber}</th><td>Fax number</td></tr>
+ * <tr><th scope="row">{@code EmailAddress}</th><td>Email address for this person</td></tr>
+ * <tr><th scope="row">{@code Photo}</th><td>Photo of this person</td></tr>
+ * <tr><th scope="row">{@code CustomFields}</th>
+ *     <td>Custom fields for employees and salespeople</td></tr>
+ * <tr><th scope="row">{@code OtherLanguages}</th>
+ *     <td>Other languages spoken (computed column from custom fields)</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Application.People}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PersonID}</th><td>{@code (NEXT VALUE FOR [Sequences].[PersonID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Application.People}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SearchName}</th>
+ *     <td>{@code (concat([PreferredName],N' ',[FullName]))}</td><td>{@code true}</td></tr>
+ * <tr><th scope="row">{@code OtherLanguages}</th>
+ *     <td>{@code (json_query([CustomFields],N'$.OtherLanguages'))}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/concat-transact-sql">CONCAT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/json-query-transact-sql">JSON_QUERY</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPerson.TABLE_SCHEMA,
+        table = MappedPerson.TABLE_NAME,
+        value = "People known to the application (staff, customer contacts, supplier contacts)"
+)
+@MsTemporal(
+        historyTable = "Application.People_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedPerson {
 
     /**
@@ -55,7 +133,7 @@ public abstract class MappedPerson {
      */
     public static final String TABLE_NAME = "People";
 
-    // -------------------------------------------------------------------------------------------------------- PersonID
+    // ------------------------------------------------------------------------------------ PersonID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.PersonID, NOT NULL} column. The value is {@value}.
@@ -67,7 +145,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_PERSON_ID = "personId";
 
-    // -------------------------------------------------------------------------------------------------------- FullName
+    // ------------------------------------------------------------------------------------ FullName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +162,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_FULL_NAME = "fullName";
 
-    // --------------------------------------------------------------------------------------------------- PreferredName
+    // ------------------------------------------------------------------------------- PreferredName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -101,7 +179,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_PREFERRED_NAME = "preferredName";
 
-    // ------------------------------------------------------------------------------------------------------ SearchName
+    // ---------------------------------------------------------------------------------- SearchName
 
     /**
      * The name of the {@code nvarchar(101), computed as (concat([PreferredName],N' ',[FullName])), NOT NULL} column.
@@ -119,7 +197,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_SEARCH_NAME = "searchName";
 
-    // ---------------------------------------------------------------------------------------------- IsPermittedToLogon
+    // -------------------------------------------------------------------------- IsPermittedToLogon
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -132,7 +210,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_IS_PERMITTED_TO_LOGON = "isPermittedToLogon";
 
-    // ------------------------------------------------------------------------------------------------------- LogonName
+    // ----------------------------------------------------------------------------------- LogonName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -149,7 +227,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_LOGON_NAME = "logonName";
 
-    // ----------------------------------------------------------------------------------------- IsExternalLogonProvider
+    // --------------------------------------------------------------------- IsExternalLogonProvider
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -162,7 +240,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_IS_EXTERNAL_LOGON_PROVIDER = "isExternalLogonProvider";
 
-    // -------------------------------------------------------------------------------------------------- HashedPassword
+    // ------------------------------------------------------------------------------ HashedPassword
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -174,7 +252,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_HASHED_PASSWORD = "hashedPassword";
 
-    // ---------------------------------------------------------------------------------------------------- IsSystemUser
+    // -------------------------------------------------------------------------------- IsSystemUser
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -186,7 +264,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_IS_SYSTEM_USER = "isSystemUser";
 
-    // ------------------------------------------------------------------------------------------------------ IsEmployee
+    // ---------------------------------------------------------------------------------- IsEmployee
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -198,7 +276,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_IS_EMPLOYEE = "isEmployee";
 
-    // --------------------------------------------------------------------------------------------------- IsSalesperson
+    // ------------------------------------------------------------------------------- IsSalesperson
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -210,7 +288,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_IS_SALESPERSON = "isSalesperson";
 
-    // ------------------------------------------------------------------------------------------------- UserPreferences
+    // ----------------------------------------------------------------------------- UserPreferences
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -222,7 +300,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_USER_PREFERENCES = "userPreferences";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -239,7 +317,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -256,7 +334,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ---------------------------------------------------------------------------------------------------- EmailAddress
+    // -------------------------------------------------------------------------------- EmailAddress
 
     /**
      * The name of the {@code nvarchar(256)} column. The value is {@value}.
@@ -273,7 +351,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
 
-    // ----------------------------------------------------------------------------------------------------------- Photo
+    // --------------------------------------------------------------------------------------- Photo
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -285,7 +363,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_PHOTO = "photo";
 
-    // ---------------------------------------------------------------------------------------------------- CustomFields
+    // -------------------------------------------------------------------------------- CustomFields
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -297,7 +375,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_CUSTOM_FIELDS = "customFields";
 
-    // -------------------------------------------------------------------------------------------------- OtherLanguages
+    // ------------------------------------------------------------------------------ OtherLanguages
 
     /**
      * The name of the {@code nvarchar(max), computed as (json_query([CustomFields],N'$.OtherLanguages'))} column. The
@@ -310,7 +388,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_OTHER_LANGUAGES = "otherLanguages";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -322,7 +400,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -334,7 +412,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -346,7 +424,7 @@ public abstract class MappedPerson {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -355,7 +433,7 @@ public abstract class MappedPerson {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -413,7 +491,7 @@ public abstract class MappedPerson {
         return Objects.hash(personId);
     }
 
-    // -------------------------------------------------------------------------------------------------------- personId
+    // ------------------------------------------------------------------------------------ personId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERSON_ID} attribute.
@@ -433,7 +511,7 @@ public abstract class MappedPerson {
         this.personId = personId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- fullName
+    // ------------------------------------------------------------------------------------ fullName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULL_NAME} attribute.
@@ -453,7 +531,7 @@ public abstract class MappedPerson {
         this.fullName = fullName;
     }
 
-    // --------------------------------------------------------------------------------------------------- preferredName
+    // ------------------------------------------------------------------------------- preferredName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PREFERRED_NAME} attribute.
@@ -473,7 +551,7 @@ public abstract class MappedPerson {
         this.preferredName = preferredName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ searchName
+    // ---------------------------------------------------------------------------------- searchName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SEARCH_NAME} attribute.
@@ -494,7 +572,7 @@ public abstract class MappedPerson {
         this.searchName = searchName;
     }
 
-    // ---------------------------------------------------------------------------------------------- isPermittedToLogon
+    // -------------------------------------------------------------------------- isPermittedToLogon
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_PERMITTED_TO_LOGON} attribute.
@@ -514,7 +592,7 @@ public abstract class MappedPerson {
         this.isPermittedToLogon = isPermittedToLogon;
     }
 
-    // ------------------------------------------------------------------------------------------------------- logonName
+    // ----------------------------------------------------------------------------------- logonName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOGON_NAME} attribute.
@@ -534,7 +612,7 @@ public abstract class MappedPerson {
         this.logonName = logonName;
     }
 
-    // ----------------------------------------------------------------------------------------- isExternalLogonProvider
+    // --------------------------------------------------------------------- isExternalLogonProvider
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_EXTERNAL_LOGON_PROVIDER} attribute.
@@ -555,7 +633,7 @@ public abstract class MappedPerson {
         this.isExternalLogonProvider = isExternalLogonProvider;
     }
 
-    // -------------------------------------------------------------------------------------------------- hashedPassword
+    // ------------------------------------------------------------------------------ hashedPassword
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HASHED_PASSWORD} attribute.
@@ -575,7 +653,7 @@ public abstract class MappedPerson {
         this.hashedPassword = hashedPassword;
     }
 
-    // ---------------------------------------------------------------------------------------------------- isSystemUser
+    // -------------------------------------------------------------------------------- isSystemUser
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_SYSTEM_USER} attribute.
@@ -595,7 +673,7 @@ public abstract class MappedPerson {
         this.isSystemUser = isSystemUser;
     }
 
-    // ------------------------------------------------------------------------------------------------------ isEmployee
+    // ---------------------------------------------------------------------------------- isEmployee
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_EMPLOYEE} attribute.
@@ -615,7 +693,7 @@ public abstract class MappedPerson {
         this.isEmployee = isEmployee;
     }
 
-    // --------------------------------------------------------------------------------------------------- isSalesperson
+    // ------------------------------------------------------------------------------- isSalesperson
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_SALESPERSON} attribute.
@@ -635,7 +713,7 @@ public abstract class MappedPerson {
         this.isSalesperson = isSalesperson;
     }
 
-    // ------------------------------------------------------------------------------------------------- userPreferences
+    // ----------------------------------------------------------------------------- userPreferences
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_USER_PREFERENCES} attribute.
@@ -655,7 +733,7 @@ public abstract class MappedPerson {
         this.userPreferences = userPreferences;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -675,7 +753,7 @@ public abstract class MappedPerson {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -695,7 +773,7 @@ public abstract class MappedPerson {
         this.faxNumber = faxNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- emailAddress
+    // -------------------------------------------------------------------------------- emailAddress
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
@@ -715,7 +793,7 @@ public abstract class MappedPerson {
         this.emailAddress = emailAddress;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- photo
+    // --------------------------------------------------------------------------------------- photo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHOTO} attribute.
@@ -735,7 +813,7 @@ public abstract class MappedPerson {
         this.photo = photo;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customFields
+    // -------------------------------------------------------------------------------- customFields
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOM_FIELDS} attribute.
@@ -755,7 +833,7 @@ public abstract class MappedPerson {
         this.customFields = customFields;
     }
 
-    // -------------------------------------------------------------------------------------------------- otherLanguages
+    // ------------------------------------------------------------------------------ otherLanguages
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OTHER_LANGUAGES} attribute.
@@ -776,7 +854,7 @@ public abstract class MappedPerson {
         this.otherLanguages = otherLanguages;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -798,7 +876,7 @@ public abstract class MappedPerson {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -819,7 +897,7 @@ public abstract class MappedPerson {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -840,7 +918,7 @@ public abstract class MappedPerson {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PersonID", schema = "Sequences", sequenceName = "PersonID",
@@ -851,9 +929,12 @@ public abstract class MappedPerson {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PERSON_ID,
+                          value = "Numeric ID used for reference to a person within the database")
+    @MsDefault(name = "DF_Application_People_PersonID", value = "(NEXT VALUE FOR [Sequences].[PersonID])")
     private Integer personId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @NotNull
     @Basic(optional = false)
@@ -863,9 +944,10 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_FULL_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_FULL_NAME, value = "Full name for this person")
     private String fullName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PREFERRED_NAME)
     @NotNull
     @Basic(optional = false)
@@ -875,9 +957,11 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_PREFERRED_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_PREFERRED_NAME,
+                          value = "Name that this person prefers to be called")
     private String preferredName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_SEARCH_NAME)
     @Basic(optional = false)
@@ -887,9 +971,12 @@ public abstract class MappedPerson {
             updatable = false,
             length = COLUMN_LENGTH_SEARCH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_SEARCH_NAME,
+                          value = "Name to build full text search on (computed column)")
+    @MsComputedColumn(value = "(concat([PreferredName],N' ',[FullName]))", persisted = true)
     private String searchName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON,
@@ -897,9 +984,11 @@ public abstract class MappedPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON,
+                          value = "Is this person permitted to log on?")
     private Boolean isPermittedToLogon;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LOGON_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOGON_NAME,
@@ -908,9 +997,10 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_LOGON_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_LOGON_NAME, value = "Person's system logon name")
     private String logonName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER,
@@ -918,18 +1008,22 @@ public abstract class MappedPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER,
+                          value = "Is logon token provided by an external system?")
     private Boolean isExternalLogonProvider;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HASHED_PASSWORD,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_HASHED_PASSWORD,
+                          value = "Hash of password for users without external logon tokens")
     private byte[] hashedPassword;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_SYSTEM_USER,
@@ -937,9 +1031,11 @@ public abstract class MappedPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_SYSTEM_USER,
+                          value = "Is the currently permitted to make online access?")
     private Boolean isSystemUser;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_EMPLOYEE,
@@ -947,9 +1043,10 @@ public abstract class MappedPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_EMPLOYEE, value = "Is this person an employee?")
     private Boolean isEmployee;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_SALESPERSON,
@@ -957,18 +1054,22 @@ public abstract class MappedPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_SALESPERSON,
+                          value = "Is this person a staff salesperson?")
     private Boolean isSalesperson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_USER_PREFERENCES,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_USER_PREFERENCES,
+                          value = "User preferences related to the website (holds JSON data)")
     private String userPreferences;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHONE_NUMBER,
@@ -977,9 +1078,10 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_PHONE_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER, value = "Phone number")
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FAX_NUMBER,
@@ -988,9 +1090,10 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_FAX_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_FAX_NUMBER, value = "Fax number")
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
@@ -999,27 +1102,31 @@ public abstract class MappedPerson {
             updatable = true,
             length = COLUMN_LENGTH_EMAIL_ADDRESS
     )
+    @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS, value = "Email address for this person")
     private String emailAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHOTO, value = "Photo of this person")
     private byte[] photo;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOM_FIELDS,
+                          value = "Custom fields for employees and salespeople")
     private String customFields;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_OTHER_LANGUAGES,
@@ -1027,9 +1134,12 @@ public abstract class MappedPerson {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_OTHER_LANGUAGES,
+                          value = "Other languages spoken (computed column from custom fields)")
+    @MsComputedColumn("(json_query([CustomFields],N'$.OtherLanguages'))")
     private String otherLanguages;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1040,7 +1150,7 @@ public abstract class MappedPerson {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -1051,7 +1161,7 @@ public abstract class MappedPerson {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

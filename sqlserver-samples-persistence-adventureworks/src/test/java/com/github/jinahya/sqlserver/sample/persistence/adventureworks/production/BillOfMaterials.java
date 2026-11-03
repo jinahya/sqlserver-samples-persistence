@@ -23,17 +23,51 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedBillOfMaterials;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedUnitMeasure;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.BillOfMaterials} table.
  */
 @Entity(name = "ProductionBillOfMaterials")
-@Table(schema = MappedBillOfMaterials.TABLE_SCHEMA, name = MappedBillOfMaterials.TABLE_NAME)
+@Table(schema = MappedBillOfMaterials.TABLE_SCHEMA,
+       name = MappedBillOfMaterials.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_BillOfMaterials_ProductAssemblyID_ComponentID_StartDate",
+                       columnNames = {
+                               BillOfMaterials.COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
+                               BillOfMaterials.COLUMN_NAME_COMPONENT_ID,
+                               BillOfMaterials.COLUMN_NAME_START_DATE
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_BillOfMaterials_BOMLevel",
+                       constraint = "([ProductAssemblyID] IS NULL AND [BOMLevel]=(0) AND "
+                               + "[PerAssemblyQty]=(1.00) OR [ProductAssemblyID] IS NOT NULL AND "
+                               + "[BOMLevel]>=(1))"
+               ),
+               @CheckConstraint(
+                       name = "CK_BillOfMaterials_EndDate",
+                       constraint = "([EndDate]>[StartDate] OR [EndDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_BillOfMaterials_PerAssemblyQty",
+                       constraint = "([PerAssemblyQty]>=(1.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_BillOfMaterials_ProductAssemblyID",
+                       constraint = "([ProductAssemblyID]<>[ComponentID])"
+               )
+       }
+)
 public class BillOfMaterials extends MappedBillOfMaterials {
 
     /**
@@ -54,7 +88,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_UNIT_MEASURE = "unitMeasure";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -63,7 +97,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------- productAssembly
+    // ----------------------------------------------------------------------------- productAssembly
 
     /**
      * Returns the {@code Product} which the {@code FK_BillOfMaterials_Product_ProductAssemblyID} foreign key
@@ -86,7 +120,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         setProductAssemblyId(productAssembly == null ? null : productAssembly.getProductId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- component
+    // ----------------------------------------------------------------------------------- component
 
     /**
      * Returns the {@code Product} which the {@code FK_BillOfMaterials_Product_ComponentID} foreign key references.
@@ -108,7 +142,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         setComponentId(component == null ? null : component.getProductId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- unitMeasure
+    // --------------------------------------------------------------------------------- unitMeasure
 
     /**
      * Returns the {@code UnitMeasure} which the {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode} foreign key
@@ -131,7 +165,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
         setUnitMeasureCode(unitMeasure == null ? null : unitMeasure.getUnitMeasureCode());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -141,7 +175,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     )
     private Product productAssembly;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COMPONENT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -151,7 +185,7 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     )
     private Product component;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_UNIT_MEASURE_CODE,
                 referencedColumnName = MappedUnitMeasure.COLUMN_NAME_UNIT_MEASURE_CODE,

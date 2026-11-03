@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -33,8 +35,45 @@ import java.util.UUID;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Person.Password} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Person.Password}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PasswordHash}</th><td>Password for the e-mail account.</td></tr>
+ * <tr><th scope="row">{@code PasswordSalt}</th>
+ *     <td>Random value concatenated with the password string before the password is
+ *     hashed.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Person.Password}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPassword.TABLE_SCHEMA,
+        table = MappedPassword.TABLE_NAME,
+        value = "One way hashed authentication information"
+)
 public abstract class MappedPassword {
 
     /**
@@ -47,7 +86,7 @@ public abstract class MappedPassword {
      */
     public static final String TABLE_NAME = "Password";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -59,7 +98,7 @@ public abstract class MappedPassword {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ---------------------------------------------------------------------------------------------------- PasswordHash
+    // -------------------------------------------------------------------------------- PasswordHash
 
     /**
      * The name of the {@code varchar(128), NOT NULL} column. The value is {@value}.
@@ -76,7 +115,7 @@ public abstract class MappedPassword {
      */
     public static final String ATTRIBUTE_NAME_PASSWORD_HASH = "passwordHash";
 
-    // ---------------------------------------------------------------------------------------------------- PasswordSalt
+    // -------------------------------------------------------------------------------- PasswordSalt
 
     /**
      * The name of the {@code varchar(10), NOT NULL} column. The value is {@value}.
@@ -93,7 +132,7 @@ public abstract class MappedPassword {
      */
     public static final String ATTRIBUTE_NAME_PASSWORD_SALT = "passwordSalt";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -105,7 +144,7 @@ public abstract class MappedPassword {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -117,7 +156,7 @@ public abstract class MappedPassword {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -126,7 +165,7 @@ public abstract class MappedPassword {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -168,7 +207,7 @@ public abstract class MappedPassword {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -188,7 +227,7 @@ public abstract class MappedPassword {
         this.businessEntityId = businessEntityId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- passwordHash
+    // -------------------------------------------------------------------------------- passwordHash
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PASSWORD_HASH} attribute.
@@ -208,7 +247,7 @@ public abstract class MappedPassword {
         this.passwordHash = passwordHash;
     }
 
-    // ---------------------------------------------------------------------------------------------------- passwordSalt
+    // -------------------------------------------------------------------------------- passwordSalt
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PASSWORD_SALT} attribute.
@@ -228,7 +267,7 @@ public abstract class MappedPassword {
         this.passwordSalt = passwordSalt;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -248,7 +287,7 @@ public abstract class MappedPassword {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -268,7 +307,7 @@ public abstract class MappedPassword {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -279,7 +318,7 @@ public abstract class MappedPassword {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PASSWORD_HASH)
     @NotNull
     @Basic(optional = false)
@@ -289,9 +328,11 @@ public abstract class MappedPassword {
             updatable = true,
             length = COLUMN_LENGTH_PASSWORD_HASH
     )
+    @MsDescription.Column(name = COLUMN_NAME_PASSWORD_HASH,
+                          value = "Password for the e-mail account.")
     private String passwordHash;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PASSWORD_SALT)
     @NotNull
     @Basic(optional = false)
@@ -301,19 +342,26 @@ public abstract class MappedPassword {
             updatable = true,
             length = COLUMN_LENGTH_PASSWORD_SALT
     )
+    @MsDescription.Column(name = COLUMN_NAME_PASSWORD_SALT,
+                          value = "Random value concatenated with the password string before "
+                                  + "the password is hashed.")
     private String passwordSalt;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_Password_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -322,6 +370,9 @@ public abstract class MappedPassword {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Password_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

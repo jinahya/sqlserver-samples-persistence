@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +42,31 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_ITEM_ID}, {@value #COLUMN_NAME_WAREHOUSE_ID} columns are mapped read-only, as a foreign key;
  * the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.Inventory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code QuantityOnHand}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code QuantityAllocated}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code LastUpdated}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code dbo.Inventory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code QuantityAvailable}</th>
+ *     <td>{@code ([QuantityOnHand]-[QuantityAllocated])}</td><td>{@code true}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedInventory {
@@ -53,7 +81,7 @@ public abstract class MappedInventory {
      */
     public static final String TABLE_NAME = "Inventory";
 
-    // ----------------------------------------------------------------------------------------------------- InventoryID
+    // --------------------------------------------------------------------------------- InventoryID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +93,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_INVENTORY_ID = "inventoryId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -77,7 +105,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ----------------------------------------------------------------------------------------------------- WarehouseID
+    // --------------------------------------------------------------------------------- WarehouseID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -89,7 +117,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
 
-    // -------------------------------------------------------------------------------------------------- QuantityOnHand
+    // ------------------------------------------------------------------------------ QuantityOnHand
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -111,7 +139,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
 
-    // ----------------------------------------------------------------------------------------------- QuantityAllocated
+    // --------------------------------------------------------------------------- QuantityAllocated
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -133,7 +161,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ALLOCATED = "quantityAllocated";
 
-    // ----------------------------------------------------------------------------------------------- QuantityAvailable
+    // --------------------------------------------------------------------------- QuantityAvailable
 
     /**
      * The name of the {@code decimal(19, 2), computed as ([QuantityOnHand]-[QuantityAllocated])} column. The value is
@@ -156,7 +184,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_AVAILABLE = "quantityAvailable";
 
-    // --------------------------------------------------------------------------------------------------- LastCountDate
+    // ------------------------------------------------------------------------------- LastCountDate
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -168,7 +196,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_LAST_COUNT_DATE = "lastCountDate";
 
-    // ----------------------------------------------------------------------------------------------------- LastUpdated
+    // --------------------------------------------------------------------------------- LastUpdated
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -180,7 +208,7 @@ public abstract class MappedInventory {
      */
     public static final String ATTRIBUTE_NAME_LAST_UPDATED = "lastUpdated";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -189,7 +217,7 @@ public abstract class MappedInventory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -234,7 +262,7 @@ public abstract class MappedInventory {
         return Objects.hash(inventoryId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- inventoryId
+    // --------------------------------------------------------------------------------- inventoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INVENTORY_ID} attribute.
@@ -254,7 +282,7 @@ public abstract class MappedInventory {
         this.inventoryId = inventoryId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -275,7 +303,7 @@ public abstract class MappedInventory {
         this.itemId = itemId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- warehouseId
+    // --------------------------------------------------------------------------------- warehouseId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
@@ -296,7 +324,7 @@ public abstract class MappedInventory {
         this.warehouseId = warehouseId;
     }
 
-    // -------------------------------------------------------------------------------------------------- quantityOnHand
+    // ------------------------------------------------------------------------------ quantityOnHand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute.
@@ -316,7 +344,7 @@ public abstract class MappedInventory {
         this.quantityOnHand = quantityOnHand;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityAllocated
+    // --------------------------------------------------------------------------- quantityAllocated
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ALLOCATED} attribute.
@@ -336,7 +364,7 @@ public abstract class MappedInventory {
         this.quantityAllocated = quantityAllocated;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityAvailable
+    // --------------------------------------------------------------------------- quantityAvailable
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute.
@@ -357,7 +385,7 @@ public abstract class MappedInventory {
         this.quantityAvailable = quantityAvailable;
     }
 
-    // --------------------------------------------------------------------------------------------------- lastCountDate
+    // ------------------------------------------------------------------------------- lastCountDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_COUNT_DATE} attribute.
@@ -377,7 +405,7 @@ public abstract class MappedInventory {
         this.lastCountDate = lastCountDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- lastUpdated
+    // --------------------------------------------------------------------------------- lastUpdated
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_UPDATED} attribute.
@@ -397,7 +425,7 @@ public abstract class MappedInventory {
         this.lastUpdated = lastUpdated;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -409,7 +437,7 @@ public abstract class MappedInventory {
     )
     private Integer inventoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -420,7 +448,7 @@ public abstract class MappedInventory {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -431,7 +459,7 @@ public abstract class MappedInventory {
     )
     private Integer warehouseId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ON_HAND - COLUMN_SCALE_QUANTITY_ON_HAND,
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
     @NotNull
@@ -443,9 +471,10 @@ public abstract class MappedInventory {
             precision = COLUMN_PRECISION_QUANTITY_ON_HAND,
             scale = COLUMN_SCALE_QUANTITY_ON_HAND
     )
+    @MsDefault("((0))")
     private BigDecimal quantityOnHand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ALLOCATED - COLUMN_SCALE_QUANTITY_ALLOCATED,
             fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
     @NotNull
@@ -457,9 +486,10 @@ public abstract class MappedInventory {
             precision = COLUMN_PRECISION_QUANTITY_ALLOCATED,
             scale = COLUMN_SCALE_QUANTITY_ALLOCATED
     )
+    @MsDefault("((0))")
     private BigDecimal quantityAllocated;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
@@ -471,9 +501,10 @@ public abstract class MappedInventory {
             precision = COLUMN_PRECISION_QUANTITY_AVAILABLE,
             scale = COLUMN_SCALE_QUANTITY_AVAILABLE
     )
+    @MsComputedColumn(value = "([QuantityOnHand]-[QuantityAllocated])", persisted = true)
     private BigDecimal quantityAvailable;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_COUNT_DATE,
             nullable = true,
@@ -482,13 +513,14 @@ public abstract class MappedInventory {
     )
     private LocalDateTime lastCountDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_UPDATED,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime lastUpdated;
 }
 

@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedPerson;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Person;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -30,6 +31,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedStoredProcedureQuery;
 import jakarta.persistence.StoredProcedureParameter;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -82,7 +84,57 @@ import java.time.LocalDateTime;
         }
 )
 @Entity(name = "HumanResourcesEmployee")
-@Table(schema = MappedEmployee.TABLE_SCHEMA, name = MappedEmployee.TABLE_NAME)
+@Table(schema = MappedEmployee.TABLE_SCHEMA,
+       name = MappedEmployee.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Employee_LoginID",
+                       columnNames = {
+                               Employee.COLUMN_NAME_LOGIN_ID
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Employee_NationalIDNumber",
+                       columnNames = {
+                               Employee.COLUMN_NAME_NATIONAL_ID_NUMBER
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Employee_rowguid",
+                       columnNames = {
+                               Employee.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_Employee_BirthDate",
+                       constraint = "([BirthDate]>='1930-01-01' AND "
+                               + "[BirthDate]<=dateadd(year,(-18),getdate()))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Employee_Gender",
+                       constraint = "(upper([Gender])='F' OR upper([Gender])='M')"
+               ),
+               @CheckConstraint(
+                       name = "CK_Employee_HireDate",
+                       constraint = "([HireDate]>='1996-07-01' AND "
+                               + "[HireDate]<=dateadd(day,(1),getdate()))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Employee_MaritalStatus",
+                       constraint = "(upper([MaritalStatus])='S' OR upper([MaritalStatus])='M')"
+               ),
+               @CheckConstraint(
+                       name = "CK_Employee_SickLeaveHours",
+                       constraint = "([SickLeaveHours]>=(0) AND [SickLeaveHours]<=(120))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Employee_VacationHours",
+                       constraint = "([VacationHours]>=(-40) AND [VacationHours]<=(240))"
+               )
+       }
+)
 public class Employee extends MappedEmployee {
 
     /**
@@ -112,7 +164,7 @@ public class Employee extends MappedEmployee {
     public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO =
             "HumanResourcesEmployee.uspUpdateEmployeePersonalInfo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -121,7 +173,7 @@ public class Employee extends MappedEmployee {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Person} which the {@code FK_Employee_Person_BusinessEntityID} foreign key references.
@@ -143,7 +195,7 @@ public class Employee extends MappedEmployee {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,

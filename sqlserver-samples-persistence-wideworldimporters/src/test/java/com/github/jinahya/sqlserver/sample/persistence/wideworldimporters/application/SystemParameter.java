@@ -54,7 +54,7 @@ public class SystemParameter extends MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -63,7 +63,7 @@ public class SystemParameter extends MappedSystemParameter {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------- deliveryCity
+    // -------------------------------------------------------------------------------- deliveryCity
 
     /**
      * Returns the {@code City} which the {@code FK_Application_SystemParameters_DeliveryCityID_Application_Cities}
@@ -86,7 +86,7 @@ public class SystemParameter extends MappedSystemParameter {
         setDeliveryCityId(deliveryCity == null ? null : deliveryCity.getCityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ postalCity
+    // ---------------------------------------------------------------------------------- postalCity
 
     /**
      * Returns the {@code City} which the {@code FK_Application_SystemParameters_PostalCityID_Application_Cities}
@@ -109,7 +109,7 @@ public class SystemParameter extends MappedSystemParameter {
         setPostalCityId(postalCity == null ? null : postalCity.getCityId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Application_SystemParameters_Application_People} foreign key
@@ -132,7 +132,7 @@ public class SystemParameter extends MappedSystemParameter {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_DELIVERY_CITY_ID,
                 referencedColumnName = MappedCity.COLUMN_NAME_CITY_ID,
@@ -142,7 +142,7 @@ public class SystemParameter extends MappedSystemParameter {
     )
     private City deliveryCity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_POSTAL_CITY_ID,
                 referencedColumnName = MappedCity.COLUMN_NAME_CITY_ID,
@@ -152,7 +152,7 @@ public class SystemParameter extends MappedSystemParameter {
     )
     private City postalCity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

@@ -57,7 +57,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String TABLE_NAME = "Customers_Archive";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -69,7 +69,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -86,7 +86,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ------------------------------------------------------------------------------------------------ BillToCustomerID
+    // ---------------------------------------------------------------------------- BillToCustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID = "billToCustomerId";
 
-    // ---------------------------------------------------------------------------------------------- CustomerCategoryID
+    // -------------------------------------------------------------------------- CustomerCategoryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -112,7 +112,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID = "customerCategoryId";
 
-    // --------------------------------------------------------------------------------------------------- BuyingGroupID
+    // ------------------------------------------------------------------------------- BuyingGroupID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -124,7 +124,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_BUYING_GROUP_ID = "buyingGroupId";
 
-    // ------------------------------------------------------------------------------------------ PrimaryContactPersonID
+    // ---------------------------------------------------------------------- PrimaryContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -137,7 +137,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID = "primaryContactPersonId";
 
-    // ---------------------------------------------------------------------------------------- AlternateContactPersonID
+    // -------------------------------------------------------------------- AlternateContactPersonID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID = "alternateContactPersonId";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryMethodID
+    // ---------------------------------------------------------------------------- DeliveryMethodID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryCityID
+    // ------------------------------------------------------------------------------ DeliveryCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_CITY_ID = "deliveryCityId";
 
-    // ---------------------------------------------------------------------------------------------------- PostalCityID
+    // -------------------------------------------------------------------------------- PostalCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -186,7 +186,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CITY_ID = "postalCityId";
 
-    // ----------------------------------------------------------------------------------------------------- CreditLimit
+    // --------------------------------------------------------------------------------- CreditLimit
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -208,7 +208,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_LIMIT = "creditLimit";
 
-    // ----------------------------------------------------------------------------------------------- AccountOpenedDate
+    // --------------------------------------------------------------------------- AccountOpenedDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -221,7 +221,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_ACCOUNT_OPENED_DATE = "accountOpenedDate";
 
-    // -------------------------------------------------------------------------------------- StandardDiscountPercentage
+    // ------------------------------------------------------------------ StandardDiscountPercentage
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -244,7 +244,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_DISCOUNT_PERCENTAGE = "standardDiscountPercentage";
 
-    // ------------------------------------------------------------------------------------------------- IsStatementSent
+    // ----------------------------------------------------------------------------- IsStatementSent
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -256,7 +256,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_STATEMENT_SENT = "isStatementSent";
 
-    // -------------------------------------------------------------------------------------------------- IsOnCreditHold
+    // ------------------------------------------------------------------------------ IsOnCreditHold
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -268,7 +268,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_IS_ON_CREDIT_HOLD = "isOnCreditHold";
 
-    // ----------------------------------------------------------------------------------------------------- PaymentDays
+    // --------------------------------------------------------------------------------- PaymentDays
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -280,7 +280,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_DAYS = "paymentDays";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -297,7 +297,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -314,7 +314,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ----------------------------------------------------------------------------------------------------- DeliveryRun
+    // --------------------------------------------------------------------------------- DeliveryRun
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -331,7 +331,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_RUN = "deliveryRun";
 
-    // ----------------------------------------------------------------------------------------------------- RunPosition
+    // --------------------------------------------------------------------------------- RunPosition
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -348,7 +348,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_RUN_POSITION = "runPosition";
 
-    // ------------------------------------------------------------------------------------------------------ WebsiteURL
+    // ---------------------------------------------------------------------------------- WebsiteURL
 
     /**
      * The name of the {@code nvarchar(256), NOT NULL} column. The value is {@value}.
@@ -365,7 +365,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_WEBSITE_URL = "websiteUrl";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine1
+    // ------------------------------------------------------------------------ DeliveryAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -383,7 +383,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1 = "deliveryAddressLine1";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine2
+    // ------------------------------------------------------------------------ DeliveryAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -401,7 +401,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2 = "deliveryAddressLine2";
 
-    // ---------------------------------------------------------------------------------------------- DeliveryPostalCode
+    // -------------------------------------------------------------------------- DeliveryPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -419,7 +419,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE = "deliveryPostalCode";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryLocation
+    // ---------------------------------------------------------------------------- DeliveryLocation
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -431,7 +431,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_LOCATION = "deliveryLocation";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine1
+    // -------------------------------------------------------------------------- PostalAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -449,7 +449,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1 = "postalAddressLine1";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine2
+    // -------------------------------------------------------------------------- PostalAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -467,7 +467,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2 = "postalAddressLine2";
 
-    // ------------------------------------------------------------------------------------------------ PostalPostalCode
+    // ---------------------------------------------------------------------------- PostalPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -484,7 +484,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_POSTAL_CODE = "postalPostalCode";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -496,7 +496,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -508,7 +508,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -520,7 +520,7 @@ public abstract class MappedCustomerArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -529,7 +529,7 @@ public abstract class MappedCustomerArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -568,7 +568,7 @@ public abstract class MappedCustomerArchive {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -588,7 +588,7 @@ public abstract class MappedCustomerArchive {
         this.customerId = customerId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -608,7 +608,7 @@ public abstract class MappedCustomerArchive {
         this.customerName = customerName;
     }
 
-    // ------------------------------------------------------------------------------------------------ billToCustomerId
+    // ---------------------------------------------------------------------------- billToCustomerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute.
@@ -628,7 +628,7 @@ public abstract class MappedCustomerArchive {
         this.billToCustomerId = billToCustomerId;
     }
 
-    // ---------------------------------------------------------------------------------------------- customerCategoryId
+    // -------------------------------------------------------------------------- customerCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
@@ -648,7 +648,7 @@ public abstract class MappedCustomerArchive {
         this.customerCategoryId = customerCategoryId;
     }
 
-    // --------------------------------------------------------------------------------------------------- buyingGroupId
+    // ------------------------------------------------------------------------------- buyingGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute.
@@ -668,7 +668,7 @@ public abstract class MappedCustomerArchive {
         this.buyingGroupId = buyingGroupId;
     }
 
-    // ------------------------------------------------------------------------------------------ primaryContactPersonId
+    // ---------------------------------------------------------------------- primaryContactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID} attribute.
@@ -688,7 +688,7 @@ public abstract class MappedCustomerArchive {
         this.primaryContactPersonId = primaryContactPersonId;
     }
 
-    // ---------------------------------------------------------------------------------------- alternateContactPersonId
+    // -------------------------------------------------------------------- alternateContactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID} attribute.
@@ -709,7 +709,7 @@ public abstract class MappedCustomerArchive {
         this.alternateContactPersonId = alternateContactPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryMethodId
+    // ---------------------------------------------------------------------------- deliveryMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
@@ -729,7 +729,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryMethodId = deliveryMethodId;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryCityId
+    // ------------------------------------------------------------------------------ deliveryCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
@@ -749,7 +749,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryCityId = deliveryCityId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- postalCityId
+    // -------------------------------------------------------------------------------- postalCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
@@ -769,7 +769,7 @@ public abstract class MappedCustomerArchive {
         this.postalCityId = postalCityId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- creditLimit
+    // --------------------------------------------------------------------------------- creditLimit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREDIT_LIMIT} attribute.
@@ -789,7 +789,7 @@ public abstract class MappedCustomerArchive {
         this.creditLimit = creditLimit;
     }
 
-    // ----------------------------------------------------------------------------------------------- accountOpenedDate
+    // --------------------------------------------------------------------------- accountOpenedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACCOUNT_OPENED_DATE} attribute.
@@ -809,7 +809,7 @@ public abstract class MappedCustomerArchive {
         this.accountOpenedDate = accountOpenedDate;
     }
 
-    // -------------------------------------------------------------------------------------- standardDiscountPercentage
+    // ------------------------------------------------------------------ standardDiscountPercentage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_DISCOUNT_PERCENTAGE} attribute.
@@ -830,7 +830,7 @@ public abstract class MappedCustomerArchive {
         this.standardDiscountPercentage = standardDiscountPercentage;
     }
 
-    // ------------------------------------------------------------------------------------------------- isStatementSent
+    // ----------------------------------------------------------------------------- isStatementSent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_STATEMENT_SENT} attribute.
@@ -850,7 +850,7 @@ public abstract class MappedCustomerArchive {
         this.isStatementSent = isStatementSent;
     }
 
-    // -------------------------------------------------------------------------------------------------- isOnCreditHold
+    // ------------------------------------------------------------------------------ isOnCreditHold
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ON_CREDIT_HOLD} attribute.
@@ -870,7 +870,7 @@ public abstract class MappedCustomerArchive {
         this.isOnCreditHold = isOnCreditHold;
     }
 
-    // ----------------------------------------------------------------------------------------------------- paymentDays
+    // --------------------------------------------------------------------------------- paymentDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_DAYS} attribute.
@@ -890,7 +890,7 @@ public abstract class MappedCustomerArchive {
         this.paymentDays = paymentDays;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -910,7 +910,7 @@ public abstract class MappedCustomerArchive {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -930,7 +930,7 @@ public abstract class MappedCustomerArchive {
         this.faxNumber = faxNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------------- deliveryRun
+    // --------------------------------------------------------------------------------- deliveryRun
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_RUN} attribute.
@@ -950,7 +950,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryRun = deliveryRun;
     }
 
-    // ----------------------------------------------------------------------------------------------------- runPosition
+    // --------------------------------------------------------------------------------- runPosition
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RUN_POSITION} attribute.
@@ -970,7 +970,7 @@ public abstract class MappedCustomerArchive {
         this.runPosition = runPosition;
     }
 
-    // ------------------------------------------------------------------------------------------------------ websiteUrl
+    // ---------------------------------------------------------------------------------- websiteUrl
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEBSITE_URL} attribute.
@@ -990,7 +990,7 @@ public abstract class MappedCustomerArchive {
         this.websiteUrl = websiteUrl;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine1
+    // ------------------------------------------------------------------------ deliveryAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1} attribute.
@@ -1010,7 +1010,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryAddressLine1 = deliveryAddressLine1;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine2
+    // ------------------------------------------------------------------------ deliveryAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2} attribute.
@@ -1030,7 +1030,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryAddressLine2 = deliveryAddressLine2;
     }
 
-    // ---------------------------------------------------------------------------------------------- deliveryPostalCode
+    // -------------------------------------------------------------------------- deliveryPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE} attribute.
@@ -1050,7 +1050,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryPostalCode = deliveryPostalCode;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryLocation
+    // ---------------------------------------------------------------------------- deliveryLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
@@ -1070,7 +1070,7 @@ public abstract class MappedCustomerArchive {
         this.deliveryLocation = deliveryLocation;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine1
+    // -------------------------------------------------------------------------- postalAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1} attribute.
@@ -1090,7 +1090,7 @@ public abstract class MappedCustomerArchive {
         this.postalAddressLine1 = postalAddressLine1;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine2
+    // -------------------------------------------------------------------------- postalAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2} attribute.
@@ -1110,7 +1110,7 @@ public abstract class MappedCustomerArchive {
         this.postalAddressLine2 = postalAddressLine2;
     }
 
-    // ------------------------------------------------------------------------------------------------ postalPostalCode
+    // ---------------------------------------------------------------------------- postalPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_POSTAL_CODE} attribute.
@@ -1130,7 +1130,7 @@ public abstract class MappedCustomerArchive {
         this.postalPostalCode = postalPostalCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -1150,7 +1150,7 @@ public abstract class MappedCustomerArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -1170,7 +1170,7 @@ public abstract class MappedCustomerArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -1190,7 +1190,7 @@ public abstract class MappedCustomerArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1201,7 +1201,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -1214,7 +1214,7 @@ public abstract class MappedCustomerArchive {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1225,7 +1225,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer billToCustomerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1236,7 +1236,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer customerCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUYING_GROUP_ID,
@@ -1246,7 +1246,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer buyingGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1257,7 +1257,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer primaryContactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
@@ -1267,7 +1267,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer alternateContactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1278,7 +1278,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer deliveryMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1289,7 +1289,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer deliveryCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1300,7 +1300,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer postalCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CREDIT_LIMIT - COLUMN_SCALE_CREDIT_LIMIT, fraction = COLUMN_SCALE_CREDIT_LIMIT)
     @Basic(optional = true)
@@ -1313,7 +1313,7 @@ public abstract class MappedCustomerArchive {
     )
     private BigDecimal creditLimit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1324,7 +1324,7 @@ public abstract class MappedCustomerArchive {
     )
     private LocalDate accountOpenedDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_STANDARD_DISCOUNT_PERCENTAGE - COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE,
             fraction = COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE)
@@ -1339,7 +1339,7 @@ public abstract class MappedCustomerArchive {
     )
     private BigDecimal standardDiscountPercentage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1350,7 +1350,7 @@ public abstract class MappedCustomerArchive {
     )
     private Boolean isStatementSent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1361,7 +1361,7 @@ public abstract class MappedCustomerArchive {
     )
     private Boolean isOnCreditHold;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1372,7 +1372,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer paymentDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
@@ -1385,7 +1385,7 @@ public abstract class MappedCustomerArchive {
     )
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
@@ -1398,7 +1398,7 @@ public abstract class MappedCustomerArchive {
     )
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
@@ -1410,7 +1410,7 @@ public abstract class MappedCustomerArchive {
     )
     private String deliveryRun;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
@@ -1422,7 +1422,7 @@ public abstract class MappedCustomerArchive {
     )
     private String runPosition;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
@@ -1435,7 +1435,7 @@ public abstract class MappedCustomerArchive {
     )
     private String websiteUrl;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
@@ -1448,7 +1448,7 @@ public abstract class MappedCustomerArchive {
     )
     private String deliveryAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
@@ -1460,7 +1460,7 @@ public abstract class MappedCustomerArchive {
     )
     private String deliveryAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
@@ -1473,7 +1473,7 @@ public abstract class MappedCustomerArchive {
     )
     private String deliveryPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
@@ -1484,7 +1484,7 @@ public abstract class MappedCustomerArchive {
     )
     private Geography deliveryLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
@@ -1497,7 +1497,7 @@ public abstract class MappedCustomerArchive {
     )
     private String postalAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
@@ -1509,7 +1509,7 @@ public abstract class MappedCustomerArchive {
     )
     private String postalAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
@@ -1522,7 +1522,7 @@ public abstract class MappedCustomerArchive {
     )
     private String postalPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1533,7 +1533,7 @@ public abstract class MappedCustomerArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1544,7 +1544,7 @@ public abstract class MappedCustomerArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

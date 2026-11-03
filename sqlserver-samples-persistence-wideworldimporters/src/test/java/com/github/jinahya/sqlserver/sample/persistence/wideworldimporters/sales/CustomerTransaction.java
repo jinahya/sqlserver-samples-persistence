@@ -73,7 +73,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -82,7 +82,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- customer
+    // ------------------------------------------------------------------------------------ customer
 
     /**
      * Returns the {@code Customer} which the {@code FK_Sales_CustomerTransactions_CustomerID_Sales_Customers} foreign
@@ -105,7 +105,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
         setCustomerId(customer == null ? null : customer.getCustomerId());
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionType
+    // ----------------------------------------------------------------------------- transactionType
 
     /**
      * Returns the {@code TransactionType} which the
@@ -129,7 +129,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
         setTransactionTypeId(transactionType == null ? null : transactionType.getTransactionTypeId());
     }
 
-    // --------------------------------------------------------------------------------------------------------- invoice
+    // ------------------------------------------------------------------------------------- invoice
 
     /**
      * Returns the {@code Invoice} which the {@code FK_Sales_CustomerTransactions_InvoiceID_Sales_Invoices} foreign key
@@ -152,7 +152,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
         setInvoiceId(invoice == null ? null : invoice.getInvoiceId());
     }
 
-    // --------------------------------------------------------------------------------------------------- paymentMethod
+    // ------------------------------------------------------------------------------- paymentMethod
 
     /**
      * Returns the {@code PaymentMethod} which the
@@ -176,7 +176,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
         setPaymentMethodId(paymentMethod == null ? null : paymentMethod.getPaymentMethodId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Sales_CustomerTransactions_Application_People} foreign key
@@ -199,7 +199,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -209,7 +209,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
     )
     private Customer customer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
                 referencedColumnName = MappedTransactionType.COLUMN_NAME_TRANSACTION_TYPE_ID,
@@ -219,7 +219,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
     )
     private TransactionType transactionType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_INVOICE_ID,
                 referencedColumnName = MappedInvoice.COLUMN_NAME_INVOICE_ID,
@@ -229,7 +229,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
     )
     private Invoice invoice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PAYMENT_METHOD_ID,
                 referencedColumnName = MappedPaymentMethod.COLUMN_NAME_PAYMENT_METHOD_ID,
@@ -239,7 +239,7 @@ public class CustomerTransaction extends MappedCustomerTransaction {
     )
     private PaymentMethod paymentMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

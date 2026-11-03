@@ -49,7 +49,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String TABLE_NAME = "vStoreWithAddresses";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -61,7 +61,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -78,7 +78,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ----------------------------------------------------------------------------------------------------- AddressType
+    // --------------------------------------------------------------------------------- AddressType
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -95,7 +95,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_TYPE = "addressType";
 
-    // ---------------------------------------------------------------------------------------------------- AddressLine1
+    // -------------------------------------------------------------------------------- AddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -112,7 +112,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_1 = "addressLine1";
 
-    // ---------------------------------------------------------------------------------------------------- AddressLine2
+    // -------------------------------------------------------------------------------- AddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -129,7 +129,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_2 = "addressLine2";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(30), NOT NULL} column. The value is {@value}.
@@ -146,7 +146,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceName
+    // --------------------------------------------------------------------------- StateProvinceName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -164,7 +164,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_NAME = "stateProvinceName";
 
-    // ------------------------------------------------------------------------------------------------------ PostalCode
+    // ---------------------------------------------------------------------------------- PostalCode
 
     /**
      * The name of the {@code nvarchar(15), NOT NULL} column. The value is {@value}.
@@ -181,7 +181,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CODE = "postalCode";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionName
+    // --------------------------------------------------------------------------- CountryRegionName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -199,7 +199,7 @@ public abstract class MappedStoreWithAddressesView {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_NAME = "countryRegionName";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -208,7 +208,7 @@ public abstract class MappedStoreWithAddressesView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -225,7 +225,7 @@ public abstract class MappedStoreWithAddressesView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -245,7 +245,7 @@ public abstract class MappedStoreWithAddressesView {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -265,7 +265,7 @@ public abstract class MappedStoreWithAddressesView {
         this.name = name;
     }
 
-    // ----------------------------------------------------------------------------------------------------- addressType
+    // --------------------------------------------------------------------------------- addressType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_TYPE} attribute.
@@ -285,7 +285,7 @@ public abstract class MappedStoreWithAddressesView {
         this.addressType = addressType;
     }
 
-    // ---------------------------------------------------------------------------------------------------- addressLine1
+    // -------------------------------------------------------------------------------- addressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute.
@@ -305,7 +305,7 @@ public abstract class MappedStoreWithAddressesView {
         this.addressLine1 = addressLine1;
     }
 
-    // ---------------------------------------------------------------------------------------------------- addressLine2
+    // -------------------------------------------------------------------------------- addressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute.
@@ -325,7 +325,7 @@ public abstract class MappedStoreWithAddressesView {
         this.addressLine2 = addressLine2;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -345,7 +345,7 @@ public abstract class MappedStoreWithAddressesView {
         this.city = city;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceName
+    // --------------------------------------------------------------------------- stateProvinceName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute.
@@ -365,7 +365,7 @@ public abstract class MappedStoreWithAddressesView {
         this.stateProvinceName = stateProvinceName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ postalCode
+    // ---------------------------------------------------------------------------------- postalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute.
@@ -385,7 +385,7 @@ public abstract class MappedStoreWithAddressesView {
         this.postalCode = postalCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionName
+    // --------------------------------------------------------------------------- countryRegionName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute.
@@ -405,7 +405,7 @@ public abstract class MappedStoreWithAddressesView {
         this.countryRegionName = countryRegionName;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -416,7 +416,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
@@ -429,7 +429,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_TYPE)
     @NotNull
@@ -442,7 +442,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String addressType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
@@ -455,7 +455,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String addressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
@@ -467,7 +467,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String addressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
@@ -480,7 +480,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
@@ -493,7 +493,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String stateProvinceName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
@@ -506,7 +506,7 @@ public abstract class MappedStoreWithAddressesView {
     )
     private String postalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull

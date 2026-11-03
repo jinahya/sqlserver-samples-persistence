@@ -27,12 +27,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.PriceList} table.
  */
 @Entity(name = "DboPriceList")
-@Table(schema = MappedPriceList.TABLE_SCHEMA, name = MappedPriceList.TABLE_NAME)
+@Table(schema = MappedPriceList.TABLE_SCHEMA,
+       name = MappedPriceList.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               PriceList.COLUMN_NAME_PRICE_LIST_CODE
+                       }
+               )
+       }
+)
 public class PriceList extends MappedPriceList {
 
     /**
@@ -40,7 +50,7 @@ public class PriceList extends MappedPriceList {
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL = "salesChannel";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -49,7 +59,7 @@ public class PriceList extends MappedPriceList {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesChannel
+    // -------------------------------------------------------------------------------- salesChannel
 
     /**
      * Returns the {@code SalesChannel} which the {@code FK_PriceList_SalesChannel} foreign key references.
@@ -71,7 +81,7 @@ public class PriceList extends MappedPriceList {
         setSalesChannelId(salesChannel == null ? null : salesChannel.getSalesChannelId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_CHANNEL_ID,
                 referencedColumnName = MappedSalesChannel.COLUMN_NAME_SALES_CHANNEL_ID,

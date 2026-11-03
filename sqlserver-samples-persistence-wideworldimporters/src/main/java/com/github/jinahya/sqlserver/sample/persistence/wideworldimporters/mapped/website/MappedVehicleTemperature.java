@@ -56,7 +56,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String TABLE_NAME = "VehicleTemperatures";
 
-    // -------------------------------------------------------------------------------------------- VehicleTemperatureID
+    // ------------------------------------------------------------------------ VehicleTemperatureID
 
     /**
      * The name of the {@code bigint, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -69,7 +69,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_VEHICLE_TEMPERATURE_ID = "vehicleTemperatureId";
 
-    // --------------------------------------------------------------------------------------------- VehicleRegistration
+    // ------------------------------------------------------------------------- VehicleRegistration
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_VEHICLE_REGISTRATION = "vehicleRegistration";
 
-    // --------------------------------------------------------------------------------------------- ChillerSensorNumber
+    // ------------------------------------------------------------------------- ChillerSensorNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -100,7 +100,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_CHILLER_SENSOR_NUMBER = "chillerSensorNumber";
 
-    // ---------------------------------------------------------------------------------------------------- RecordedWhen
+    // -------------------------------------------------------------------------------- RecordedWhen
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -112,7 +112,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_RECORDED_WHEN = "recordedWhen";
 
-    // ----------------------------------------------------------------------------------------------------- Temperature
+    // --------------------------------------------------------------------------------- Temperature
 
     /**
      * The name of the {@code decimal(10, 2), NOT NULL} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_TEMPERATURE = "temperature";
 
-    // -------------------------------------------------------------------------------------------------- FullSensorData
+    // ------------------------------------------------------------------------------ FullSensorData
 
     /**
      * The name of the {@code nvarchar(1000)} column. The value is {@value}.
@@ -151,7 +151,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_FULL_SENSOR_DATA = "fullSensorData";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -160,7 +160,7 @@ public abstract class MappedVehicleTemperature {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -203,7 +203,7 @@ public abstract class MappedVehicleTemperature {
         return Objects.hash(vehicleTemperatureId);
     }
 
-    // -------------------------------------------------------------------------------------------- vehicleTemperatureId
+    // ------------------------------------------------------------------------ vehicleTemperatureId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VEHICLE_TEMPERATURE_ID} attribute.
@@ -223,7 +223,7 @@ public abstract class MappedVehicleTemperature {
         this.vehicleTemperatureId = vehicleTemperatureId;
     }
 
-    // --------------------------------------------------------------------------------------------- vehicleRegistration
+    // ------------------------------------------------------------------------- vehicleRegistration
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VEHICLE_REGISTRATION} attribute.
@@ -243,7 +243,7 @@ public abstract class MappedVehicleTemperature {
         this.vehicleRegistration = vehicleRegistration;
     }
 
-    // --------------------------------------------------------------------------------------------- chillerSensorNumber
+    // ------------------------------------------------------------------------- chillerSensorNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHILLER_SENSOR_NUMBER} attribute.
@@ -263,7 +263,7 @@ public abstract class MappedVehicleTemperature {
         this.chillerSensorNumber = chillerSensorNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- recordedWhen
+    // -------------------------------------------------------------------------------- recordedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECORDED_WHEN} attribute.
@@ -283,7 +283,7 @@ public abstract class MappedVehicleTemperature {
         this.recordedWhen = recordedWhen;
     }
 
-    // ----------------------------------------------------------------------------------------------------- temperature
+    // --------------------------------------------------------------------------------- temperature
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute.
@@ -303,7 +303,7 @@ public abstract class MappedVehicleTemperature {
         this.temperature = temperature;
     }
 
-    // -------------------------------------------------------------------------------------------------- fullSensorData
+    // ------------------------------------------------------------------------------ fullSensorData
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULL_SENSOR_DATA} attribute.
@@ -323,7 +323,7 @@ public abstract class MappedVehicleTemperature {
         this.fullSensorData = fullSensorData;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -334,7 +334,7 @@ public abstract class MappedVehicleTemperature {
     )
     private Long vehicleTemperatureId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     @NotNull
@@ -347,7 +347,7 @@ public abstract class MappedVehicleTemperature {
     )
     private String vehicleRegistration;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -358,7 +358,7 @@ public abstract class MappedVehicleTemperature {
     )
     private Integer chillerSensorNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -369,7 +369,7 @@ public abstract class MappedVehicleTemperature {
     )
     private LocalDateTime recordedWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
@@ -383,7 +383,7 @@ public abstract class MappedVehicleTemperature {
     )
     private BigDecimal temperature;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_SENSOR_DATA)
     @Basic(optional = true)

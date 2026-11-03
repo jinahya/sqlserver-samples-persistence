@@ -53,7 +53,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String TABLE_NAME = "vw_DailyProductionSchedule";
 
-    // --------------------------------------------------------------------------------------------------- ScheduledDate
+    // ------------------------------------------------------------------------------- ScheduledDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_SCHEDULED_DATE = "scheduledDate";
 
-    // ------------------------------------------------------------------------------------------------------- DayOfWeek
+    // ----------------------------------------------------------------------------------- DayOfWeek
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_DAY_OF_WEEK = "dayOfWeek";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterName
+    // ------------------------------------------------------------------------------ WorkCenterName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_NAME = "workCenterName";
 
-    // ------------------------------------------------------------------------------------------------- WorkOrderNumber
+    // ----------------------------------------------------------------------------- WorkOrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_NUMBER = "workOrderNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // ----------------------------------------------------------------------------------------------- QuantityToProduce
+    // --------------------------------------------------------------------------- QuantityToProduce
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -190,7 +190,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_TO_PRODUCE = "quantityToProduce";
 
-    // -------------------------------------------------------------------------------------------------------- Priority
+    // ------------------------------------------------------------------------------------ Priority
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -202,7 +202,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_PRIORITY = "priority";
 
-    // --------------------------------------------------------------------------------------------------- EstimatedDays
+    // ------------------------------------------------------------------------------- EstimatedDays
 
     /**
      * The name of the {@code decimal(10, 2)} column. The value is {@value}.
@@ -224,7 +224,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_ESTIMATED_DAYS = "estimatedDays";
 
-    // ------------------------------------------------------------------------------------------------- ProductionValue
+    // ----------------------------------------------------------------------------- ProductionValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -246,7 +246,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCTION_VALUE = "productionValue";
 
-    // ------------------------------------------------------------------------------------------------ ProductionStatus
+    // ---------------------------------------------------------------------------- ProductionStatus
 
     /**
      * The name of the {@code varchar(17), NOT NULL} column. The value is {@value}.
@@ -263,7 +263,7 @@ public abstract class MappedDailyProductionScheduleView {
      */
     public static final String ATTRIBUTE_NAME_PRODUCTION_STATUS = "productionStatus";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -272,7 +272,7 @@ public abstract class MappedDailyProductionScheduleView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -292,7 +292,7 @@ public abstract class MappedDailyProductionScheduleView {
                + "}";
     }
 
-    // --------------------------------------------------------------------------------------------------- scheduledDate
+    // ------------------------------------------------------------------------------- scheduledDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCHEDULED_DATE} attribute.
@@ -312,7 +312,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.scheduledDate = scheduledDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- dayOfWeek
+    // ----------------------------------------------------------------------------------- dayOfWeek
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAY_OF_WEEK} attribute.
@@ -332,7 +332,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.dayOfWeek = dayOfWeek;
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterName
+    // ------------------------------------------------------------------------------ workCenterName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_NAME} attribute.
@@ -352,7 +352,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.workCenterName = workCenterName;
     }
 
-    // ------------------------------------------------------------------------------------------------- workOrderNumber
+    // ----------------------------------------------------------------------------- workOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_NUMBER} attribute.
@@ -372,7 +372,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.workOrderNumber = workOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -392,7 +392,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.status = status;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -412,7 +412,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -432,7 +432,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.itemName = itemName;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityToProduce
+    // --------------------------------------------------------------------------- quantityToProduce
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_TO_PRODUCE} attribute.
@@ -452,7 +452,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.quantityToProduce = quantityToProduce;
     }
 
-    // -------------------------------------------------------------------------------------------------------- priority
+    // ------------------------------------------------------------------------------------ priority
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIORITY} attribute.
@@ -472,7 +472,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.priority = priority;
     }
 
-    // --------------------------------------------------------------------------------------------------- estimatedDays
+    // ------------------------------------------------------------------------------- estimatedDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ESTIMATED_DAYS} attribute.
@@ -492,7 +492,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.estimatedDays = estimatedDays;
     }
 
-    // ------------------------------------------------------------------------------------------------- productionValue
+    // ----------------------------------------------------------------------------- productionValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCTION_VALUE} attribute.
@@ -512,7 +512,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.productionValue = productionValue;
     }
 
-    // ------------------------------------------------------------------------------------------------ productionStatus
+    // ---------------------------------------------------------------------------- productionStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCTION_STATUS} attribute.
@@ -532,7 +532,7 @@ public abstract class MappedDailyProductionScheduleView {
         this.productionStatus = productionStatus;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCHEDULED_DATE,
@@ -542,7 +542,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private LocalDate scheduledDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DAY_OF_WEEK)
     @Basic(optional = true)
@@ -554,7 +554,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private String dayOfWeek;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
@@ -566,7 +566,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private String workCenterName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
@@ -579,7 +579,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private String workOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
@@ -592,7 +592,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -605,7 +605,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -618,7 +618,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_TO_PRODUCE - COLUMN_SCALE_QUANTITY_TO_PRODUCE,
             fraction = COLUMN_SCALE_QUANTITY_TO_PRODUCE)
@@ -632,7 +632,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private BigDecimal quantityToProduce;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY,
@@ -642,7 +642,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private Integer priority;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ESTIMATED_DAYS - COLUMN_SCALE_ESTIMATED_DAYS,
             fraction = COLUMN_SCALE_ESTIMATED_DAYS)
@@ -656,7 +656,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private BigDecimal estimatedDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRODUCTION_VALUE - COLUMN_SCALE_PRODUCTION_VALUE,
             fraction = COLUMN_SCALE_PRODUCTION_VALUE)
@@ -670,7 +670,7 @@ public abstract class MappedDailyProductionScheduleView {
     )
     private BigDecimal productionValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCTION_STATUS)
     @NotNull

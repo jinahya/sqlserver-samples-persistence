@@ -75,7 +75,7 @@ class Geography_PersistenceIT {
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private static <T> Arguments entity(final String table, final String idColumn, final String column,
                                         final Class<T> entityClass, final Function<T, Integer> id,
                                         final Function<T, Geography> geography) {

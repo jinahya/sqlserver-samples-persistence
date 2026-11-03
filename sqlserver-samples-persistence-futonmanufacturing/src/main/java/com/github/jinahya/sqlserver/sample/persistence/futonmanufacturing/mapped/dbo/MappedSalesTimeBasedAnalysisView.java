@@ -53,7 +53,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_TimeBasedAnalysis";
 
-    // ------------------------------------------------------------------------------------------------------- DayOfWeek
+    // ----------------------------------------------------------------------------------- DayOfWeek
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DAY_OF_WEEK = "dayOfWeek";
 
-    // ------------------------------------------------------------------------------------------------------- DayNumber
+    // ----------------------------------------------------------------------------------- DayNumber
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DAY_NUMBER = "dayNumber";
 
-    // ------------------------------------------------------------------------------------------------------- HourOfDay
+    // ----------------------------------------------------------------------------------- HourOfDay
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_HOUR_OF_DAY = "hourOfDay";
 
-    // ------------------------------------------------------------------------------------------------------- TimeOfDay
+    // ----------------------------------------------------------------------------------- TimeOfDay
 
     /**
      * The name of the {@code varchar(17), NOT NULL} column. The value is {@value}.
@@ -111,7 +111,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TIME_OF_DAY = "timeOfDay";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRevenue
+    // -------------------------------------------------------------------------------- TotalRevenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ------------------------------------------------------------------------------------------------- UniqueCustomers
+    // ----------------------------------------------------------------------------- UniqueCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_CUSTOMERS = "uniqueCustomers";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -205,7 +205,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -222,7 +222,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------- dayOfWeek
+    // ----------------------------------------------------------------------------------- dayOfWeek
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAY_OF_WEEK} attribute.
@@ -242,7 +242,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.dayOfWeek = dayOfWeek;
     }
 
-    // ------------------------------------------------------------------------------------------------------- dayNumber
+    // ----------------------------------------------------------------------------------- dayNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAY_NUMBER} attribute.
@@ -262,7 +262,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.dayNumber = dayNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- hourOfDay
+    // ----------------------------------------------------------------------------------- hourOfDay
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HOUR_OF_DAY} attribute.
@@ -282,7 +282,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.hourOfDay = hourOfDay;
     }
 
-    // ------------------------------------------------------------------------------------------------------- timeOfDay
+    // ----------------------------------------------------------------------------------- timeOfDay
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TIME_OF_DAY} attribute.
@@ -302,7 +302,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.timeOfDay = timeOfDay;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -322,7 +322,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.channelName = channelName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -342,7 +342,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.orderCount = orderCount;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRevenue
+    // -------------------------------------------------------------------------------- totalRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute.
@@ -362,7 +362,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.totalRevenue = totalRevenue;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -382,7 +382,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- uniqueCustomers
+    // ----------------------------------------------------------------------------- uniqueCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
         this.uniqueCustomers = uniqueCustomers;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DAY_OF_WEEK)
     @Basic(optional = true)
@@ -414,7 +414,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private String dayOfWeek;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAY_NUMBER,
@@ -424,7 +424,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private Integer dayNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOUR_OF_DAY,
@@ -434,7 +434,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private Integer hourOfDay;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TIME_OF_DAY)
     @NotNull
@@ -447,7 +447,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private String timeOfDay;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -460,7 +460,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -470,7 +470,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
@@ -484,7 +484,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private BigDecimal totalRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -498,7 +498,7 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,

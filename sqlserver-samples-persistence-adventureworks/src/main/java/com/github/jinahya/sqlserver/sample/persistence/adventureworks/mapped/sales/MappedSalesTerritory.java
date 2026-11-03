@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -40,8 +42,59 @@ import java.util.UUID;
  * <p>
  * The {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column is mapped read-only, as a foreign key; the extending entity owns
  * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SalesTerritory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code TerritoryID}</th><td>Primary key for SalesTerritory records.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Sales territory description</td></tr>
+ * <tr><th scope="row">{@code CountryRegionCode}</th>
+ *     <td>ISO standard country or region code. Foreign key to
+ *     CountryRegion.CountryRegionCode.</td></tr>
+ * <tr><th scope="row">{@code Group}</th>
+ *     <td>Geographic area to which the sales territory belong.</td></tr>
+ * <tr><th scope="row">{@code SalesYTD}</th><td>Sales in the territory year to date.</td></tr>
+ * <tr><th scope="row">{@code SalesLastYear}</th>
+ *     <td>Sales in the territory the previous year.</td></tr>
+ * <tr><th scope="row">{@code CostYTD}</th>
+ *     <td>Business costs in the territory year to date.</td></tr>
+ * <tr><th scope="row">{@code CostLastYear}</th>
+ *     <td>Business costs in the territory the previous year.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SalesTerritory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SalesYTD}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code SalesLastYear}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code CostYTD}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code CostLastYear}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSalesTerritory.TABLE_SCHEMA,
+        table = MappedSalesTerritory.TABLE_NAME,
+        value = "Sales territory lookup table."
+)
 public abstract class MappedSalesTerritory {
 
     /**
@@ -54,7 +107,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String TABLE_NAME = "SalesTerritory";
 
-    // ----------------------------------------------------------------------------------------------------- TerritoryID
+    // --------------------------------------------------------------------------------- TerritoryID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +119,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -83,7 +136,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionCode
+    // --------------------------------------------------------------------------- CountryRegionCode
 
     /**
      * The name of the {@code nvarchar(3), NOT NULL} column. The value is {@value}.
@@ -101,7 +154,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
-    // ----------------------------------------------------------------------------------------------------------- Group
+    // --------------------------------------------------------------------------------------- Group
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -118,7 +171,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_GROUP = "group";
 
-    // -------------------------------------------------------------------------------------------------------- SalesYTD
+    // ------------------------------------------------------------------------------------ SalesYTD
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -136,7 +189,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
 
-    // --------------------------------------------------------------------------------------------------- SalesLastYear
+    // ------------------------------------------------------------------------------- SalesLastYear
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -155,7 +208,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_SALES_LAST_YEAR = "salesLastYear";
 
-    // --------------------------------------------------------------------------------------------------------- CostYTD
+    // ------------------------------------------------------------------------------------- CostYTD
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -173,7 +226,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_COST_YTD = "costYtd";
 
-    // ---------------------------------------------------------------------------------------------------- CostLastYear
+    // -------------------------------------------------------------------------------- CostLastYear
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -192,7 +245,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_COST_LAST_YEAR = "costLastYear";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -204,7 +257,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -216,7 +269,7 @@ public abstract class MappedSalesTerritory {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -225,7 +278,7 @@ public abstract class MappedSalesTerritory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -272,7 +325,7 @@ public abstract class MappedSalesTerritory {
         return Objects.hash(territoryId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
@@ -292,7 +345,7 @@ public abstract class MappedSalesTerritory {
         this.territoryId = territoryId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -312,7 +365,7 @@ public abstract class MappedSalesTerritory {
         this.name = name;
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionCode
+    // --------------------------------------------------------------------------- countryRegionCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
@@ -334,7 +387,7 @@ public abstract class MappedSalesTerritory {
         this.countryRegionCode = countryRegionCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- group
+    // --------------------------------------------------------------------------------------- group
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROUP} attribute.
@@ -354,7 +407,7 @@ public abstract class MappedSalesTerritory {
         this.group = group;
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesYtd
+    // ------------------------------------------------------------------------------------ salesYtd
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute.
@@ -374,7 +427,7 @@ public abstract class MappedSalesTerritory {
         this.salesYtd = salesYtd;
     }
 
-    // --------------------------------------------------------------------------------------------------- salesLastYear
+    // ------------------------------------------------------------------------------- salesLastYear
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute.
@@ -394,7 +447,7 @@ public abstract class MappedSalesTerritory {
         this.salesLastYear = salesLastYear;
     }
 
-    // --------------------------------------------------------------------------------------------------------- costYtd
+    // ------------------------------------------------------------------------------------- costYtd
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COST_YTD} attribute.
@@ -414,7 +467,7 @@ public abstract class MappedSalesTerritory {
         this.costYtd = costYtd;
     }
 
-    // ---------------------------------------------------------------------------------------------------- costLastYear
+    // -------------------------------------------------------------------------------- costLastYear
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COST_LAST_YEAR} attribute.
@@ -434,7 +487,7 @@ public abstract class MappedSalesTerritory {
         this.costLastYear = costLastYear;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -454,7 +507,7 @@ public abstract class MappedSalesTerritory {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -474,7 +527,7 @@ public abstract class MappedSalesTerritory {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -484,9 +537,11 @@ public abstract class MappedSalesTerritory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
+                          value = "Primary key for SalesTerritory records.")
     private Integer territoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -496,9 +551,10 @@ public abstract class MappedSalesTerritory {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Sales territory description")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
@@ -509,9 +565,12 @@ public abstract class MappedSalesTerritory {
             updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
+                          value = "ISO standard country or region code. Foreign key to "
+                                  + "CountryRegion.CountryRegionCode.")
     private String countryRegionCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_GROUP)
     @NotNull
     @Basic(optional = false)
@@ -521,9 +580,11 @@ public abstract class MappedSalesTerritory {
             updatable = true,
             length = COLUMN_LENGTH_GROUP
     )
+    @MsDescription.Column(name = COLUMN_NAME_GROUP,
+                          value = "Geographic area to which the sales territory belong.")
     private String group;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_SalesYTD: ([SalesYTD]>=(0.00))
     @DecimalMin(COLUMN_MIN_SALES_YTD)
     @NotNull
@@ -533,9 +594,12 @@ public abstract class MappedSalesTerritory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_YTD,
+                          value = "Sales in the territory year to date.")
+    @MsDefault(name = "DF_SalesTerritory_SalesYTD", value = "((0.00))")
     private BigDecimal salesYtd;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_SalesLastYear: ([SalesLastYear]>=(0.00))
     @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
@@ -545,9 +609,12 @@ public abstract class MappedSalesTerritory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
+                          value = "Sales in the territory the previous year.")
+    @MsDefault(name = "DF_SalesTerritory_SalesLastYear", value = "((0.00))")
     private BigDecimal salesLastYear;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_CostYTD: ([CostYTD]>=(0.00))
     @DecimalMin(COLUMN_MIN_COST_YTD)
     @NotNull
@@ -557,9 +624,12 @@ public abstract class MappedSalesTerritory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COST_YTD,
+                          value = "Business costs in the territory year to date.")
+    @MsDefault(name = "DF_SalesTerritory_CostYTD", value = "((0.00))")
     private BigDecimal costYtd;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesTerritory_CostLastYear: ([CostLastYear]>=(0.00))
     @DecimalMin(COLUMN_MIN_COST_LAST_YEAR)
     @NotNull
@@ -569,19 +639,26 @@ public abstract class MappedSalesTerritory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COST_LAST_YEAR,
+                          value = "Business costs in the territory the previous year.")
+    @MsDefault(name = "DF_SalesTerritory_CostLastYear", value = "((0.00))")
     private BigDecimal costLastYear;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_SalesTerritory_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -590,6 +667,9 @@ public abstract class MappedSalesTerritory {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_SalesTerritory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

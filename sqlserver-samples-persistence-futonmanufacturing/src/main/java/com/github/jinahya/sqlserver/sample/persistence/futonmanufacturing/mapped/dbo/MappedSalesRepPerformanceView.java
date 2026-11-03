@@ -53,7 +53,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String TABLE_NAME = "vw_Sales_RepPerformance";
 
-    // ---------------------------------------------------------------------------------------------------- EmployeeCode
+    // -------------------------------------------------------------------------------- EmployeeCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_EMPLOYEE_CODE = "employeeCode";
 
-    // ---------------------------------------------------------------------------------------------------- SalesRepName
+    // -------------------------------------------------------------------------------- SalesRepName
 
     /**
      * The name of the {@code nvarchar(101), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP_NAME = "salesRepName";
 
-    // --------------------------------------------------------------------------------------------------- TerritoryName
+    // ------------------------------------------------------------------------------- TerritoryName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_NAME = "territoryName";
 
-    // ---------------------------------------------------------------------------------------------------------- Region
+    // -------------------------------------------------------------------------------------- Region
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_REGION = "region";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ------------------------------------------------------------------------------------------------- UniqueCustomers
+    // ----------------------------------------------------------------------------- UniqueCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_CUSTOMERS = "uniqueCustomers";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // -------------------------------------------------------------------------------------------------- TotalDiscounts
+    // ------------------------------------------------------------------------------ TotalDiscounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -189,7 +189,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DISCOUNTS = "totalDiscounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -211,7 +211,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -233,7 +233,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // -------------------------------------------------------------------------------------------------- DeliveredSales
+    // ------------------------------------------------------------------------------ DeliveredSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -255,7 +255,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_DELIVERED_SALES = "deliveredSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgDaysToShip
+    // ------------------------------------------------------------------------------- AvgDaysToShip
 
     /**
      * The name of the {@code decimal(10, 1)} column. The value is {@value}.
@@ -277,7 +277,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP = "avgDaysToShip";
 
-    // --------------------------------------------------------------------------------------------------- QuotesCreated
+    // ------------------------------------------------------------------------------- QuotesCreated
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -289,7 +289,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_QUOTES_CREATED = "quotesCreated";
 
-    // -------------------------------------------------------------------------------------------------- QuotesAccepted
+    // ------------------------------------------------------------------------------ QuotesAccepted
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -301,7 +301,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_QUOTES_ACCEPTED = "quotesAccepted";
 
-    // ---------------------------------------------------------------------------------------------------- QuoteWinRate
+    // -------------------------------------------------------------------------------- QuoteWinRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -323,7 +323,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_WIN_RATE = "quoteWinRate";
 
-    // ------------------------------------------------------------------------------------------------------- SalesRank
+    // ----------------------------------------------------------------------------------- SalesRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -335,7 +335,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     public static final String ATTRIBUTE_NAME_SALES_RANK = "salesRank";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -344,7 +344,7 @@ public abstract class MappedSalesRepPerformanceView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -397,7 +397,7 @@ public abstract class MappedSalesRepPerformanceView {
         return Objects.hash(employeeCode);
     }
 
-    // ---------------------------------------------------------------------------------------------------- employeeCode
+    // -------------------------------------------------------------------------------- employeeCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMPLOYEE_CODE} attribute.
@@ -417,7 +417,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.employeeCode = employeeCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesRepName
+    // -------------------------------------------------------------------------------- salesRepName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REP_NAME} attribute.
@@ -437,7 +437,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.salesRepName = salesRepName;
     }
 
-    // --------------------------------------------------------------------------------------------------- territoryName
+    // ------------------------------------------------------------------------------- territoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute.
@@ -457,7 +457,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.territoryName = territoryName;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- region
+    // -------------------------------------------------------------------------------------- region
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REGION} attribute.
@@ -477,7 +477,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.region = region;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -497,7 +497,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.totalOrders = totalOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------- uniqueCustomers
+    // ----------------------------------------------------------------------------- uniqueCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute.
@@ -517,7 +517,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.uniqueCustomers = uniqueCustomers;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -537,7 +537,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.grossSales = grossSales;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalDiscounts
+    // ------------------------------------------------------------------------------ totalDiscounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_DISCOUNTS} attribute.
@@ -557,7 +557,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.totalDiscounts = totalDiscounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -577,7 +577,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.netSales = netSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -597,7 +597,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveredSales
+    // ------------------------------------------------------------------------------ deliveredSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERED_SALES} attribute.
@@ -617,7 +617,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.deliveredSales = deliveredSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgDaysToShip
+    // ------------------------------------------------------------------------------- avgDaysToShip
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP} attribute.
@@ -637,7 +637,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.avgDaysToShip = avgDaysToShip;
     }
 
-    // --------------------------------------------------------------------------------------------------- quotesCreated
+    // ------------------------------------------------------------------------------- quotesCreated
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTES_CREATED} attribute.
@@ -657,7 +657,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.quotesCreated = quotesCreated;
     }
 
-    // -------------------------------------------------------------------------------------------------- quotesAccepted
+    // ------------------------------------------------------------------------------ quotesAccepted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTES_ACCEPTED} attribute.
@@ -677,7 +677,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.quotesAccepted = quotesAccepted;
     }
 
-    // ---------------------------------------------------------------------------------------------------- quoteWinRate
+    // -------------------------------------------------------------------------------- quoteWinRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_WIN_RATE} attribute.
@@ -697,7 +697,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.quoteWinRate = quoteWinRate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- salesRank
+    // ----------------------------------------------------------------------------------- salesRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_RANK} attribute.
@@ -717,7 +717,7 @@ public abstract class MappedSalesRepPerformanceView {
         this.salesRank = salesRank;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMPLOYEE_CODE)
     @NotNull
@@ -730,7 +730,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private String employeeCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP_NAME)
     @NotNull
@@ -743,7 +743,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private String salesRepName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
@@ -755,7 +755,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private String territoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @Basic(optional = true)
@@ -767,7 +767,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private String region;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -777,7 +777,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
@@ -787,7 +787,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private Integer uniqueCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -800,7 +800,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
@@ -814,7 +814,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal totalDiscounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -827,7 +827,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -841,7 +841,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DELIVERED_SALES - COLUMN_SCALE_DELIVERED_SALES,
             fraction = COLUMN_SCALE_DELIVERED_SALES)
@@ -855,7 +855,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal deliveredSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DAYS_TO_SHIP - COLUMN_SCALE_AVG_DAYS_TO_SHIP,
             fraction = COLUMN_SCALE_AVG_DAYS_TO_SHIP)
@@ -869,7 +869,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal avgDaysToShip;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_CREATED,
@@ -879,7 +879,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private Integer quotesCreated;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_ACCEPTED,
@@ -889,7 +889,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private Integer quotesAccepted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUOTE_WIN_RATE - COLUMN_SCALE_QUOTE_WIN_RATE,
             fraction = COLUMN_SCALE_QUOTE_WIN_RATE)
@@ -903,7 +903,7 @@ public abstract class MappedSalesRepPerformanceView {
     )
     private BigDecimal quoteWinRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_RANK,

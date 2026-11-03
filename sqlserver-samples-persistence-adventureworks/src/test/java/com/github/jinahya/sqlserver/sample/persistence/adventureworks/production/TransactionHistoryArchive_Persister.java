@@ -36,7 +36,7 @@ class TransactionHistoryArchive_Persister
         super(TransactionHistoryArchive.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // TransactionID is neither an identity nor generated: the archive takes the identifiers of the rows moved to it
     @Override
     public TransactionHistoryArchive apply(final EntityManager entityManager,

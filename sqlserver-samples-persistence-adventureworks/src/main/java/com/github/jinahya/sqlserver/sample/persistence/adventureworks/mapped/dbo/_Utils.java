@@ -25,7 +25,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.db
  */
 final class _Utils {
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private _Utils() {
         throw new AssertionError("instantiation is not allowed");
     }

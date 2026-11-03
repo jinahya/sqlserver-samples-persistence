@@ -20,6 +20,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -46,8 +50,125 @@ import java.util.UUID;
  * {@value #COLUMN_NAME_SHIP_METHOD_ID}, {@value #COLUMN_NAME_CREDIT_CARD_ID}, {@value #COLUMN_NAME_CURRENCY_RATE_ID}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SalesOrderHeader}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SalesOrderID}</th><td>Primary key.</td></tr>
+ * <tr><th scope="row">{@code RevisionNumber}</th>
+ *     <td>Incremental number to track changes to the sales order over time.</td></tr>
+ * <tr><th scope="row">{@code OrderDate}</th><td>Dates the sales order was created.</td></tr>
+ * <tr><th scope="row">{@code DueDate}</th><td>Date the order is due to the customer.</td></tr>
+ * <tr><th scope="row">{@code ShipDate}</th>
+ *     <td>Date the order was shipped to the customer.</td></tr>
+ * <tr><th scope="row">{@code Status}</th>
+ *     <td>Order current status. 1 = In process; 2 = Approved; 3 = Backordered; 4 = Rejected; 5 =
+ *     Shipped; 6 = Cancelled</td></tr>
+ * <tr><th scope="row">{@code OnlineOrderFlag}</th>
+ *     <td>0 = Order placed by sales person. 1 = Order placed online by customer.</td></tr>
+ * <tr><th scope="row">{@code SalesOrderNumber}</th>
+ *     <td>Unique sales order identification number.</td></tr>
+ * <tr><th scope="row">{@code PurchaseOrderNumber}</th>
+ *     <td>Customer purchase order number reference.</td></tr>
+ * <tr><th scope="row">{@code AccountNumber}</th>
+ *     <td>Financial accounting number reference.</td></tr>
+ * <tr><th scope="row">{@code CustomerID}</th>
+ *     <td>Customer identification number. Foreign key to Customer.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code SalesPersonID}</th>
+ *     <td>Sales person who created the sales order. Foreign key to
+ *     SalesPerson.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code TerritoryID}</th>
+ *     <td>Territory in which the sale was made. Foreign key to
+ *     SalesTerritory.SalesTerritoryID.</td></tr>
+ * <tr><th scope="row">{@code BillToAddressID}</th>
+ *     <td>Customer billing address. Foreign key to Address.AddressID.</td></tr>
+ * <tr><th scope="row">{@code ShipToAddressID}</th>
+ *     <td>Customer shipping address. Foreign key to Address.AddressID.</td></tr>
+ * <tr><th scope="row">{@code ShipMethodID}</th>
+ *     <td>Shipping method. Foreign key to ShipMethod.ShipMethodID.</td></tr>
+ * <tr><th scope="row">{@code CreditCardID}</th>
+ *     <td>Credit card identification number. Foreign key to CreditCard.CreditCardID.</td></tr>
+ * <tr><th scope="row">{@code CreditCardApprovalCode}</th>
+ *     <td>Approval code provided by the credit card company.</td></tr>
+ * <tr><th scope="row">{@code CurrencyRateID}</th>
+ *     <td>Currency exchange rate used. Foreign key to CurrencyRate.CurrencyRateID.</td></tr>
+ * <tr><th scope="row">{@code SubTotal}</th>
+ *     <td>Sales subtotal. Computed as SUM(SalesOrderDetail.LineTotal)for the appropriate
+ *     SalesOrderID.</td></tr>
+ * <tr><th scope="row">{@code TaxAmt}</th><td>Tax amount.</td></tr>
+ * <tr><th scope="row">{@code Freight}</th><td>Shipping cost.</td></tr>
+ * <tr><th scope="row">{@code TotalDue}</th>
+ *     <td>Total due from customer. Computed as Subtotal + TaxAmt + Freight.</td></tr>
+ * <tr><th scope="row">{@code Comment}</th><td>Sales representative comments.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SalesOrderHeader}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code RevisionNumber}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code OrderDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code Status}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code OnlineOrderFlag}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code SubTotal}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code TaxAmt}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code Freight}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Sales.SalesOrderHeader}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SalesOrderNumber}</th>
+ *     <td>{@code (isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID]),N'*** ERROR ***'))}</td>
+ *     <td>{@code false}</td></tr>
+ * <tr><th scope="row">{@code TotalDue}</th>
+ *     <td>{@code (isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Triggers on {@code Sales.SalesOrderHeader}</caption>
+ * <thead>
+ * <tr><th scope="col">Trigger</th><th scope="col">Timing</th><th scope="col">Events</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code uSalesOrderHeader}</th><td>{@code AFTER}</td><td>{@code UPDATE}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSalesOrderHeader.TABLE_SCHEMA,
+        table = MappedSalesOrderHeader.TABLE_NAME,
+        value = "General sales order information."
+)
+@MsTrigger(
+        name = "uSalesOrderHeader",
+        events = MsTrigger.Event.UPDATE
+)
 public abstract class MappedSalesOrderHeader {
 
     /**
@@ -60,7 +181,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String TABLE_NAME = "SalesOrderHeader";
 
-    // ---------------------------------------------------------------------------------------------------- SalesOrderID
+    // -------------------------------------------------------------------------------- SalesOrderID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -72,7 +193,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
-    // -------------------------------------------------------------------------------------------------- RevisionNumber
+    // ------------------------------------------------------------------------------ RevisionNumber
 
     /**
      * The name of the {@code tinyint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -94,7 +215,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_REVISION_NUMBER = "revisionNumber";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -106,7 +227,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // --------------------------------------------------------------------------------------------------------- DueDate
+    // ------------------------------------------------------------------------------------- DueDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -118,7 +239,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_DUE_DATE = "dueDate";
 
-    // -------------------------------------------------------------------------------------------------------- ShipDate
+    // ------------------------------------------------------------------------------------ ShipDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -130,7 +251,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SHIP_DATE = "shipDate";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code tinyint, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -154,7 +275,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // ------------------------------------------------------------------------------------------------- OnlineOrderFlag
+    // ----------------------------------------------------------------------------- OnlineOrderFlag
 
     /**
      * The name of the {@code Flag (bit), DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -166,7 +287,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_ONLINE_ORDER_FLAG = "onlineOrderFlag";
 
-    // ------------------------------------------------------------------------------------------------ SalesOrderNumber
+    // ---------------------------------------------------------------------------- SalesOrderNumber
 
     /**
      * The name of the
@@ -185,7 +306,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_NUMBER = "salesOrderNumber";
 
-    // --------------------------------------------------------------------------------------------- PurchaseOrderNumber
+    // ------------------------------------------------------------------------- PurchaseOrderNumber
 
     /**
      * The name of the {@code OrderNumber (nvarchar)(25)} column. The value is {@value}.
@@ -203,7 +324,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_NUMBER = "purchaseOrderNumber";
 
-    // --------------------------------------------------------------------------------------------------- AccountNumber
+    // ------------------------------------------------------------------------------- AccountNumber
 
     /**
      * The name of the {@code AccountNumber (nvarchar)(15)} column. The value is {@value}.
@@ -220,7 +341,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_ACCOUNT_NUMBER = "accountNumber";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -232,7 +353,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // --------------------------------------------------------------------------------------------------- SalesPersonID
+    // ------------------------------------------------------------------------------- SalesPersonID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -244,7 +365,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SALES_PERSON_ID = "salesPersonId";
 
-    // ----------------------------------------------------------------------------------------------------- TerritoryID
+    // --------------------------------------------------------------------------------- TerritoryID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -256,7 +377,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
-    // ------------------------------------------------------------------------------------------------- BillToAddressID
+    // ----------------------------------------------------------------------------- BillToAddressID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -268,7 +389,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_BILL_TO_ADDRESS_ID = "billToAddressId";
 
-    // ------------------------------------------------------------------------------------------------- ShipToAddressID
+    // ----------------------------------------------------------------------------- ShipToAddressID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -280,7 +401,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SHIP_TO_ADDRESS_ID = "shipToAddressId";
 
-    // ---------------------------------------------------------------------------------------------------- ShipMethodID
+    // -------------------------------------------------------------------------------- ShipMethodID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -292,7 +413,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SHIP_METHOD_ID = "shipMethodId";
 
-    // ---------------------------------------------------------------------------------------------------- CreditCardID
+    // -------------------------------------------------------------------------------- CreditCardID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -304,7 +425,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_CARD_ID = "creditCardId";
 
-    // ------------------------------------------------------------------------------------------ CreditCardApprovalCode
+    // ---------------------------------------------------------------------- CreditCardApprovalCode
 
     /**
      * The name of the {@code varchar(15)} column. The value is {@value}.
@@ -322,7 +443,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_CARD_APPROVAL_CODE = "creditCardApprovalCode";
 
-    // -------------------------------------------------------------------------------------------------- CurrencyRateID
+    // ------------------------------------------------------------------------------ CurrencyRateID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -334,7 +455,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_RATE_ID = "currencyRateId";
 
-    // -------------------------------------------------------------------------------------------------------- SubTotal
+    // ------------------------------------------------------------------------------------ SubTotal
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -352,7 +473,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_SUB_TOTAL = "subTotal";
 
-    // ---------------------------------------------------------------------------------------------------------- TaxAmt
+    // -------------------------------------------------------------------------------------- TaxAmt
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -370,7 +491,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_TAX_AMT = "taxAmt";
 
-    // --------------------------------------------------------------------------------------------------------- Freight
+    // ------------------------------------------------------------------------------------- Freight
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -388,7 +509,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_FREIGHT = "freight";
 
-    // -------------------------------------------------------------------------------------------------------- TotalDue
+    // ------------------------------------------------------------------------------------ TotalDue
 
     /**
      * The name of the {@code money, computed as (isnull(([SubTotal]+[TaxAmt])+[Freight],(0))), NOT NULL} column. The
@@ -401,7 +522,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DUE = "totalDue";
 
-    // --------------------------------------------------------------------------------------------------------- Comment
+    // ------------------------------------------------------------------------------------- Comment
 
     /**
      * The name of the {@code nvarchar(128)} column. The value is {@value}.
@@ -418,7 +539,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_COMMENT = "comment";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -430,7 +551,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -442,7 +563,7 @@ public abstract class MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -451,7 +572,7 @@ public abstract class MappedSalesOrderHeader {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -514,7 +635,7 @@ public abstract class MappedSalesOrderHeader {
         return Objects.hash(salesOrderId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_DUE_DATE} attribute is not before the
@@ -556,7 +677,7 @@ public abstract class MappedSalesOrderHeader {
         return !shipDate.isBefore(orderDate);
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesOrderId
+    // -------------------------------------------------------------------------------- salesOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
@@ -576,7 +697,7 @@ public abstract class MappedSalesOrderHeader {
         this.salesOrderId = salesOrderId;
     }
 
-    // -------------------------------------------------------------------------------------------------- revisionNumber
+    // ------------------------------------------------------------------------------ revisionNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute.
@@ -596,7 +717,7 @@ public abstract class MappedSalesOrderHeader {
         this.revisionNumber = revisionNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -616,7 +737,7 @@ public abstract class MappedSalesOrderHeader {
         this.orderDate = orderDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- dueDate
+    // ------------------------------------------------------------------------------------- dueDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DUE_DATE} attribute.
@@ -636,7 +757,7 @@ public abstract class MappedSalesOrderHeader {
         this.dueDate = dueDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- shipDate
+    // ------------------------------------------------------------------------------------ shipDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute.
@@ -656,7 +777,7 @@ public abstract class MappedSalesOrderHeader {
         this.shipDate = shipDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -676,7 +797,7 @@ public abstract class MappedSalesOrderHeader {
         this.status = status;
     }
 
-    // ------------------------------------------------------------------------------------------------- onlineOrderFlag
+    // ----------------------------------------------------------------------------- onlineOrderFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ONLINE_ORDER_FLAG} attribute.
@@ -696,7 +817,7 @@ public abstract class MappedSalesOrderHeader {
         this.onlineOrderFlag = onlineOrderFlag;
     }
 
-    // ------------------------------------------------------------------------------------------------ salesOrderNumber
+    // ---------------------------------------------------------------------------- salesOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_NUMBER} attribute.
@@ -717,7 +838,7 @@ public abstract class MappedSalesOrderHeader {
         this.salesOrderNumber = salesOrderNumber;
     }
 
-    // --------------------------------------------------------------------------------------------- purchaseOrderNumber
+    // ------------------------------------------------------------------------- purchaseOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_NUMBER} attribute.
@@ -737,7 +858,7 @@ public abstract class MappedSalesOrderHeader {
         this.purchaseOrderNumber = purchaseOrderNumber;
     }
 
-    // --------------------------------------------------------------------------------------------------- accountNumber
+    // ------------------------------------------------------------------------------- accountNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute.
@@ -757,7 +878,7 @@ public abstract class MappedSalesOrderHeader {
         this.accountNumber = accountNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -778,7 +899,7 @@ public abstract class MappedSalesOrderHeader {
         this.customerId = customerId;
     }
 
-    // --------------------------------------------------------------------------------------------------- salesPersonId
+    // ------------------------------------------------------------------------------- salesPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute.
@@ -800,7 +921,7 @@ public abstract class MappedSalesOrderHeader {
         this.salesPersonId = salesPersonId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
@@ -821,7 +942,7 @@ public abstract class MappedSalesOrderHeader {
         this.territoryId = territoryId;
     }
 
-    // ------------------------------------------------------------------------------------------------- billToAddressId
+    // ----------------------------------------------------------------------------- billToAddressId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BILL_TO_ADDRESS_ID} attribute.
@@ -843,7 +964,7 @@ public abstract class MappedSalesOrderHeader {
         this.billToAddressId = billToAddressId;
     }
 
-    // ------------------------------------------------------------------------------------------------- shipToAddressId
+    // ----------------------------------------------------------------------------- shipToAddressId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIP_TO_ADDRESS_ID} attribute.
@@ -865,7 +986,7 @@ public abstract class MappedSalesOrderHeader {
         this.shipToAddressId = shipToAddressId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- shipMethodId
+    // -------------------------------------------------------------------------------- shipMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute.
@@ -887,7 +1008,7 @@ public abstract class MappedSalesOrderHeader {
         this.shipMethodId = shipMethodId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- creditCardId
+    // -------------------------------------------------------------------------------- creditCardId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute.
@@ -909,7 +1030,7 @@ public abstract class MappedSalesOrderHeader {
         this.creditCardId = creditCardId;
     }
 
-    // ------------------------------------------------------------------------------------------ creditCardApprovalCode
+    // ---------------------------------------------------------------------- creditCardApprovalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREDIT_CARD_APPROVAL_CODE} attribute.
@@ -929,7 +1050,7 @@ public abstract class MappedSalesOrderHeader {
         this.creditCardApprovalCode = creditCardApprovalCode;
     }
 
-    // -------------------------------------------------------------------------------------------------- currencyRateId
+    // ------------------------------------------------------------------------------ currencyRateId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute.
@@ -951,7 +1072,7 @@ public abstract class MappedSalesOrderHeader {
         this.currencyRateId = currencyRateId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- subTotal
+    // ------------------------------------------------------------------------------------ subTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUB_TOTAL} attribute.
@@ -971,7 +1092,7 @@ public abstract class MappedSalesOrderHeader {
         this.subTotal = subTotal;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- taxAmt
+    // -------------------------------------------------------------------------------------- taxAmt
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_AMT} attribute.
@@ -991,7 +1112,7 @@ public abstract class MappedSalesOrderHeader {
         this.taxAmt = taxAmt;
     }
 
-    // --------------------------------------------------------------------------------------------------------- freight
+    // ------------------------------------------------------------------------------------- freight
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FREIGHT} attribute.
@@ -1011,7 +1132,7 @@ public abstract class MappedSalesOrderHeader {
         this.freight = freight;
     }
 
-    // -------------------------------------------------------------------------------------------------------- totalDue
+    // ------------------------------------------------------------------------------------ totalDue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_DUE} attribute.
@@ -1032,7 +1153,7 @@ public abstract class MappedSalesOrderHeader {
         this.totalDue = totalDue;
     }
 
-    // --------------------------------------------------------------------------------------------------------- comment
+    // ------------------------------------------------------------------------------------- comment
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMMENT} attribute.
@@ -1052,7 +1173,7 @@ public abstract class MappedSalesOrderHeader {
         this.comment = comment;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -1072,7 +1193,7 @@ public abstract class MappedSalesOrderHeader {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -1092,7 +1213,7 @@ public abstract class MappedSalesOrderHeader {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -1102,9 +1223,10 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID, value = "Primary key.")
     private Integer salesOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Max(COLUMN_MAX_REVISION_NUMBER)
     @Min(COLUMN_MIN_REVISION_NUMBER)
     @NotNull
@@ -1114,9 +1236,13 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_REVISION_NUMBER,
+                          value = "Incremental number to track changes to the sales order over "
+                                  + "time.")
+    @MsDefault(name = "DF_SalesOrderHeader_RevisionNumber", value = "((0))")
     private Integer revisionNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_DATE,
@@ -1124,9 +1250,12 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE,
+                          value = "Dates the sales order was created.")
+    @MsDefault(name = "DF_SalesOrderHeader_OrderDate", value = "(getdate())")
     private LocalDateTime orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DUE_DATE,
@@ -1134,18 +1263,22 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DUE_DATE,
+                          value = "Date the order is due to the customer.")
     private LocalDateTime dueDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SHIP_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHIP_DATE,
+                          value = "Date the order was shipped to the customer.")
     private LocalDateTime shipDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderHeader_Status: ([Status]>=(0) AND [Status]<=(8))
     @Max(COLUMN_MAX_STATUS)
     @Min(COLUMN_MIN_STATUS)
@@ -1156,9 +1289,13 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATUS,
+                          value = "Order current status. 1 = In process; 2 = Approved; 3 = "
+                                  + "Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled")
+    @MsDefault(name = "DF_SalesOrderHeader_Status", value = "((1))")
     private Integer status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ONLINE_ORDER_FLAG,
@@ -1166,9 +1303,13 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ONLINE_ORDER_FLAG,
+                          value = "0 = Order placed by sales person. 1 = Order placed online by "
+                                  + "customer.")
+    @MsDefault(name = "DF_SalesOrderHeader_OnlineOrderFlag", value = "((1))")
     private Boolean onlineOrderFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_SALES_ORDER_NUMBER)
     @Basic(optional = false)
@@ -1178,9 +1319,12 @@ public abstract class MappedSalesOrderHeader {
             updatable = false,
             length = COLUMN_LENGTH_SALES_ORDER_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_NUMBER,
+                          value = "Unique sales order identification number.")
+    @MsComputedColumn("(isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID]),N'*** ERROR ***'))")
     private String salesOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_NUMBER,
@@ -1189,9 +1333,11 @@ public abstract class MappedSalesOrderHeader {
             updatable = true,
             length = COLUMN_LENGTH_PURCHASE_ORDER_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_NUMBER,
+                          value = "Customer purchase order number reference.")
     private String purchaseOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
@@ -1200,9 +1346,11 @@ public abstract class MappedSalesOrderHeader {
             updatable = true,
             length = COLUMN_LENGTH_ACCOUNT_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
+                          value = "Financial accounting number reference.")
     private String accountNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1211,9 +1359,12 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
+                          value = "Customer identification number. Foreign key to "
+                                  + "Customer.BusinessEntityID.")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_PERSON_ID,
@@ -1221,9 +1372,12 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_PERSON_ID,
+                          value = "Sales person who created the sales order. Foreign key to "
+                                  + "SalesPerson.BusinessEntityID.")
     private Integer salesPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -1231,9 +1385,12 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
+                          value = "Territory in which the sale was made. Foreign key to "
+                                  + "SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1242,9 +1399,11 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BILL_TO_ADDRESS_ID,
+                          value = "Customer billing address. Foreign key to Address.AddressID.")
     private Integer billToAddressId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1253,9 +1412,11 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHIP_TO_ADDRESS_ID,
+                          value = "Customer shipping address. Foreign key to Address.AddressID.")
     private Integer shipToAddressId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1264,9 +1425,11 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHIP_METHOD_ID,
+                          value = "Shipping method. Foreign key to ShipMethod.ShipMethodID.")
     private Integer shipMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREDIT_CARD_ID,
@@ -1274,9 +1437,12 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CREDIT_CARD_ID,
+                          value = "Credit card identification number. Foreign key to "
+                                  + "CreditCard.CreditCardID.")
     private Integer creditCardId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREDIT_CARD_APPROVAL_CODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREDIT_CARD_APPROVAL_CODE,
@@ -1285,9 +1451,11 @@ public abstract class MappedSalesOrderHeader {
             updatable = true,
             length = COLUMN_LENGTH_CREDIT_CARD_APPROVAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_CREDIT_CARD_APPROVAL_CODE,
+                          value = "Approval code provided by the credit card company.")
     private String creditCardApprovalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
@@ -1295,9 +1463,12 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
+                          value = "Currency exchange rate used. Foreign key to "
+                                  + "CurrencyRate.CurrencyRateID.")
     private Integer currencyRateId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderHeader_SubTotal: ([SubTotal]>=(0.00))
     @DecimalMin(COLUMN_MIN_SUB_TOTAL)
     @NotNull
@@ -1307,9 +1478,14 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUB_TOTAL,
+                          value = "Sales subtotal. Computed as "
+                                  + "SUM(SalesOrderDetail.LineTotal)for the appropriate "
+                                  + "SalesOrderID.")
+    @MsDefault(name = "DF_SalesOrderHeader_SubTotal", value = "((0.00))")
     private BigDecimal subTotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderHeader_TaxAmt: ([TaxAmt]>=(0.00))
     @DecimalMin(COLUMN_MIN_TAX_AMT)
     @NotNull
@@ -1319,9 +1495,11 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAX_AMT, value = "Tax amount.")
+    @MsDefault(name = "DF_SalesOrderHeader_TaxAmt", value = "((0.00))")
     private BigDecimal taxAmt;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderHeader_Freight: ([Freight]>=(0.00))
     @DecimalMin(COLUMN_MIN_FREIGHT)
     @NotNull
@@ -1331,9 +1509,11 @@ public abstract class MappedSalesOrderHeader {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_FREIGHT, value = "Shipping cost.")
+    @MsDefault(name = "DF_SalesOrderHeader_Freight", value = "((0.00))")
     private BigDecimal freight;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_DUE,
@@ -1341,9 +1521,13 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TOTAL_DUE,
+                          value = "Total due from customer. Computed as Subtotal + TaxAmt + "
+                                  + "Freight.")
+    @MsComputedColumn("(isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))")
     private BigDecimal totalDue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COMMENT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMMENT,
@@ -1352,19 +1536,24 @@ public abstract class MappedSalesOrderHeader {
             updatable = true,
             length = COLUMN_LENGTH_COMMENT
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMMENT, value = "Sales representative comments.")
     private String comment;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_SalesOrderHeader_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -1373,6 +1562,9 @@ public abstract class MappedSalesOrderHeader {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_SalesOrderHeader_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

@@ -51,7 +51,7 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER = "salesOrder";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +60,7 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
         super();
     }
 
-    // ----------------------------------------------------------------------------------------------------- salesReason
+    // --------------------------------------------------------------------------------- salesReason
 
     /**
      * Returns the {@code SalesReason} which the {@code FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID}
@@ -83,7 +83,7 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
         setSalesReasonId(salesReason == null ? null : salesReason.getSalesReasonId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ salesOrder
+    // ---------------------------------------------------------------------------------- salesOrder
 
     /**
      * Returns the {@code SalesOrderHeader} which the
@@ -107,7 +107,7 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
         setSalesOrderId(salesOrder == null ? null : salesOrder.getSalesOrderId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_REASON_ID,
                 referencedColumnName = MappedSalesReason.COLUMN_NAME_SALES_REASON_ID,
@@ -117,7 +117,7 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
     )
     private SalesReason salesReason;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_ORDER_ID,
                 referencedColumnName = MappedSalesOrderHeader.COLUMN_NAME_SALES_ORDER_ID,

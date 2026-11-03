@@ -21,17 +21,39 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedLocation;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.Location} table.
  */
 @Entity(name = "ProductionLocation")
-@Table(schema = MappedLocation.TABLE_SCHEMA, name = MappedLocation.TABLE_NAME)
+@Table(schema = MappedLocation.TABLE_SCHEMA,
+       name = MappedLocation.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Location_Name",
+                       columnNames = {
+                               Location.COLUMN_NAME_NAME
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_Location_Availability",
+                       constraint = "([Availability]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_Location_CostRate",
+                       constraint = "([CostRate]>=(0.00))"
+               )
+       }
+)
 public class Location extends MappedLocation {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

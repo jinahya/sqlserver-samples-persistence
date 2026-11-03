@@ -28,12 +28,23 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Purchasing.SupplierCategories} table.
  */
 @Entity(name = "PurchasingSupplierCategory")
-@Table(schema = MappedSupplierCategory.TABLE_SCHEMA, name = MappedSupplierCategory.TABLE_NAME)
+@Table(schema = MappedSupplierCategory.TABLE_SCHEMA,
+       name = MappedSupplierCategory.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_Purchasing_SupplierCategories_SupplierCategoryName",
+                       columnNames = {
+                               SupplierCategory.COLUMN_NAME_SUPPLIER_CATEGORY_NAME
+                       }
+               )
+       }
+)
 public class SupplierCategory extends MappedSupplierCategory {
 
     /**
@@ -42,7 +53,7 @@ public class SupplierCategory extends MappedSupplierCategory {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -51,7 +62,7 @@ public class SupplierCategory extends MappedSupplierCategory {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Purchasing_SupplierCategories_Application_People} foreign key
@@ -74,7 +85,7 @@ public class SupplierCategory extends MappedSupplierCategory {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

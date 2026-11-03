@@ -32,12 +32,23 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Warehouse.StockItems} table.
  */
 @Entity(name = "WarehouseStockItem")
-@Table(schema = MappedStockItem.TABLE_SCHEMA, name = MappedStockItem.TABLE_NAME)
+@Table(schema = MappedStockItem.TABLE_SCHEMA,
+       name = MappedStockItem.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_Warehouse_StockItems_StockItemName",
+                       columnNames = {
+                               StockItem.COLUMN_NAME_STOCK_ITEM_NAME
+                       }
+               )
+       }
+)
 public class StockItem extends MappedStockItem {
 
     /**
@@ -70,7 +81,7 @@ public class StockItem extends MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -79,7 +90,7 @@ public class StockItem extends MappedStockItem {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- supplier
+    // ------------------------------------------------------------------------------------ supplier
 
     /**
      * Returns the {@code Supplier} which the {@code FK_Warehouse_StockItems_SupplierID_Purchasing_Suppliers} foreign
@@ -102,7 +113,7 @@ public class StockItem extends MappedStockItem {
         setSupplierId(supplier == null ? null : supplier.getSupplierId());
     }
 
-    // ----------------------------------------------------------------------------------------------------------- color
+    // --------------------------------------------------------------------------------------- color
 
     /**
      * Returns the {@code Color} which the {@code FK_Warehouse_StockItems_ColorID_Warehouse_Colors} foreign key
@@ -125,7 +136,7 @@ public class StockItem extends MappedStockItem {
         setColorId(color == null ? null : color.getColorId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- unitPackage
+    // --------------------------------------------------------------------------------- unitPackage
 
     /**
      * Returns the {@code PackageType} which the {@code FK_Warehouse_StockItems_UnitPackageID_Warehouse_PackageTypes}
@@ -148,7 +159,7 @@ public class StockItem extends MappedStockItem {
         setUnitPackageId(unitPackage == null ? null : unitPackage.getPackageTypeId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- outerPackage
+    // -------------------------------------------------------------------------------- outerPackage
 
     /**
      * Returns the {@code PackageType} which the {@code FK_Warehouse_StockItems_OuterPackageID_Warehouse_PackageTypes}
@@ -171,7 +182,7 @@ public class StockItem extends MappedStockItem {
         setOuterPackageId(outerPackage == null ? null : outerPackage.getPackageTypeId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Warehouse_StockItems_Application_People} foreign key references.
@@ -193,7 +204,7 @@ public class StockItem extends MappedStockItem {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SUPPLIER_ID,
                 referencedColumnName = MappedSupplier.COLUMN_NAME_SUPPLIER_ID,
@@ -203,7 +214,7 @@ public class StockItem extends MappedStockItem {
     )
     private Supplier supplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COLOR_ID,
                 referencedColumnName = MappedColor.COLUMN_NAME_COLOR_ID,
@@ -213,7 +224,7 @@ public class StockItem extends MappedStockItem {
     )
     private Color color;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_UNIT_PACKAGE_ID,
                 referencedColumnName = MappedPackageType.COLUMN_NAME_PACKAGE_TYPE_ID,
@@ -223,7 +234,7 @@ public class StockItem extends MappedStockItem {
     )
     private PackageType unitPackage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_OUTER_PACKAGE_ID,
                 referencedColumnName = MappedPackageType.COLUMN_NAME_PACKAGE_TYPE_ID,
@@ -233,7 +244,7 @@ public class StockItem extends MappedStockItem {
     )
     private PackageType outerPackage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

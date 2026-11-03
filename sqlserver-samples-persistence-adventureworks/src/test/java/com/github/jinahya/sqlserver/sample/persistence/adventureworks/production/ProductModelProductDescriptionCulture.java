@@ -60,7 +60,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL = "productModel";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -69,7 +69,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------- productDescription
+    // -------------------------------------------------------------------------- productDescription
 
     /**
      * Returns the {@code ProductDescription} which the
@@ -93,7 +93,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
         setProductDescriptionId(productDescription == null ? null : productDescription.getProductDescriptionId());
     }
 
-    // --------------------------------------------------------------------------------------------------------- culture
+    // ------------------------------------------------------------------------------------- culture
 
     /**
      * Returns the {@code Culture} which the {@code FK_ProductModelProductDescriptionCulture_Culture_CultureID} foreign
@@ -116,7 +116,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
         setCultureId(culture == null ? null : culture.getCultureId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- productModel
+    // -------------------------------------------------------------------------------- productModel
 
     /**
      * Returns the {@code ProductModel} which the
@@ -140,7 +140,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
         setProductModelId(productModel == null ? null : productModel.getProductModelId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
                 referencedColumnName = MappedProductDescription.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
@@ -150,7 +150,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
     )
     private ProductDescription productDescription;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CULTURE_ID,
                 referencedColumnName = MappedCulture.COLUMN_NAME_CULTURE_ID,
@@ -160,7 +160,7 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
     )
     private Culture culture;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_MODEL_ID,
                 referencedColumnName = MappedProductModel.COLUMN_NAME_PRODUCT_MODEL_ID,

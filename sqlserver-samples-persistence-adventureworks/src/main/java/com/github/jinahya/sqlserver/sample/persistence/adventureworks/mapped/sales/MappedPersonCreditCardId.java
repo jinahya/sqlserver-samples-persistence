@@ -35,7 +35,7 @@ public class MappedPersonCreditCardId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedPersonCreditCardId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class MappedPersonCreditCardId implements Serializable {
         return Objects.hash(businessEntityId, creditCardId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -91,7 +91,7 @@ public class MappedPersonCreditCardId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- creditCardId
+    // -------------------------------------------------------------------------------- creditCardId
 
     /**
      * Returns current value of the {@code creditCardId} attribute.
@@ -111,9 +111,15 @@ public class MappedPersonCreditCardId implements Serializable {
         this.creditCardId = creditCardId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 
+    /**
+     * The value of the {@code creditCardId} attribute.
+     */
     private Integer creditCardId;
 }
 

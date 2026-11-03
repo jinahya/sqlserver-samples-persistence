@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +44,44 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.CustomerCategories}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CustomerCategoryID}</th>
+ *     <td>Numeric ID used for reference to a customer category within the database</td></tr>
+ * <tr><th scope="row">{@code CustomerCategoryName}</th>
+ *     <td>Full name of the category that customers can be assigned to</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.CustomerCategories}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CustomerCategoryID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[CustomerCategoryID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCustomerCategory.TABLE_SCHEMA,
+        table = MappedCustomerCategory.TABLE_NAME,
+        value = "Categories for customers (ie restaurants, cafes, supermarkets, etc.)"
+)
+@MsTemporal(
+        historyTable = "Sales.CustomerCategories_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedCustomerCategory {
 
     /**
@@ -55,7 +94,7 @@ public abstract class MappedCustomerCategory {
      */
     public static final String TABLE_NAME = "CustomerCategories";
 
-    // ---------------------------------------------------------------------------------------------- CustomerCategoryID
+    // -------------------------------------------------------------------------- CustomerCategoryID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.CustomerCategoryID, NOT NULL} column. The value is
@@ -69,7 +108,7 @@ public abstract class MappedCustomerCategory {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID = "customerCategoryId";
 
-    // -------------------------------------------------------------------------------------------- CustomerCategoryName
+    // ------------------------------------------------------------------------ CustomerCategoryName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -87,7 +126,7 @@ public abstract class MappedCustomerCategory {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_NAME = "customerCategoryName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -99,7 +138,7 @@ public abstract class MappedCustomerCategory {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -111,7 +150,7 @@ public abstract class MappedCustomerCategory {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -123,7 +162,7 @@ public abstract class MappedCustomerCategory {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -132,7 +171,7 @@ public abstract class MappedCustomerCategory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -174,7 +213,7 @@ public abstract class MappedCustomerCategory {
         return Objects.hash(customerCategoryId);
     }
 
-    // ---------------------------------------------------------------------------------------------- customerCategoryId
+    // -------------------------------------------------------------------------- customerCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
@@ -194,7 +233,7 @@ public abstract class MappedCustomerCategory {
         this.customerCategoryId = customerCategoryId;
     }
 
-    // -------------------------------------------------------------------------------------------- customerCategoryName
+    // ------------------------------------------------------------------------ customerCategoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_NAME} attribute.
@@ -214,7 +253,7 @@ public abstract class MappedCustomerCategory {
         this.customerCategoryName = customerCategoryName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -236,7 +275,7 @@ public abstract class MappedCustomerCategory {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -257,7 +296,7 @@ public abstract class MappedCustomerCategory {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -278,7 +317,7 @@ public abstract class MappedCustomerCategory {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.CustomerCategoryID", schema = "Sequences",
@@ -290,9 +329,14 @@ public abstract class MappedCustomerCategory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
+                          value = "Numeric ID used for reference to a customer category within "
+                                  + "the database")
+    @MsDefault(name = "DF_Sales_CustomerCategories_CustomerCategoryID",
+               value = "(NEXT VALUE FOR [Sequences].[CustomerCategoryID])")
     private Integer customerCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @NotNull
     @Basic(optional = false)
@@ -302,9 +346,11 @@ public abstract class MappedCustomerCategory {
             updatable = true,
             length = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME,
+                          value = "Full name of the category that customers can be assigned to")
     private String customerCategoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -315,7 +361,7 @@ public abstract class MappedCustomerCategory {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -326,7 +372,7 @@ public abstract class MappedCustomerCategory {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

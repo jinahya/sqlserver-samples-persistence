@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,16 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_TERRITORY_ID} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SalesRep}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedSalesRep {
@@ -51,7 +63,7 @@ public abstract class MappedSalesRep {
      */
     public static final String TABLE_NAME = "SalesRep";
 
-    // ------------------------------------------------------------------------------------------------------ SalesRepID
+    // ---------------------------------------------------------------------------------- SalesRepID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,7 +75,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP_ID = "salesRepId";
 
-    // ---------------------------------------------------------------------------------------------------- EmployeeCode
+    // -------------------------------------------------------------------------------- EmployeeCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -80,7 +92,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_EMPLOYEE_CODE = "employeeCode";
 
-    // ------------------------------------------------------------------------------------------------------- FirstName
+    // ----------------------------------------------------------------------------------- FirstName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -97,7 +109,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
-    // -------------------------------------------------------------------------------------------------------- LastName
+    // ------------------------------------------------------------------------------------ LastName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -114,7 +126,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
-    // ----------------------------------------------------------------------------------------------------------- Email
+    // --------------------------------------------------------------------------------------- Email
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -131,7 +143,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_EMAIL = "email";
 
-    // ----------------------------------------------------------------------------------------------------------- Phone
+    // --------------------------------------------------------------------------------------- Phone
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -148,7 +160,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_PHONE = "phone";
 
-    // ----------------------------------------------------------------------------------------------------- TerritoryID
+    // --------------------------------------------------------------------------------- TerritoryID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -160,7 +172,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
-    // -------------------------------------------------------------------------------------------------------- HireDate
+    // ------------------------------------------------------------------------------------ HireDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -172,7 +184,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_HIRE_DATE = "hireDate";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -184,7 +196,7 @@ public abstract class MappedSalesRep {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -193,7 +205,7 @@ public abstract class MappedSalesRep {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -239,7 +251,7 @@ public abstract class MappedSalesRep {
         return Objects.hash(salesRepId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ salesRepId
+    // ---------------------------------------------------------------------------------- salesRepId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute.
@@ -259,7 +271,7 @@ public abstract class MappedSalesRep {
         this.salesRepId = salesRepId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- employeeCode
+    // -------------------------------------------------------------------------------- employeeCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMPLOYEE_CODE} attribute.
@@ -279,7 +291,7 @@ public abstract class MappedSalesRep {
         this.employeeCode = employeeCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------- firstName
+    // ----------------------------------------------------------------------------------- firstName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
@@ -299,7 +311,7 @@ public abstract class MappedSalesRep {
         this.firstName = firstName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- lastName
+    // ------------------------------------------------------------------------------------ lastName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
@@ -319,7 +331,7 @@ public abstract class MappedSalesRep {
         this.lastName = lastName;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- email
+    // --------------------------------------------------------------------------------------- email
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EMAIL} attribute.
@@ -339,7 +351,7 @@ public abstract class MappedSalesRep {
         this.email = email;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- phone
+    // --------------------------------------------------------------------------------------- phone
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE} attribute.
@@ -359,7 +371,7 @@ public abstract class MappedSalesRep {
         this.phone = phone;
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
@@ -380,7 +392,7 @@ public abstract class MappedSalesRep {
         this.territoryId = territoryId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- hireDate
+    // ------------------------------------------------------------------------------------ hireDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HIRE_DATE} attribute.
@@ -400,7 +412,7 @@ public abstract class MappedSalesRep {
         this.hireDate = hireDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -420,7 +432,7 @@ public abstract class MappedSalesRep {
         this.isActive = isActive;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -432,7 +444,7 @@ public abstract class MappedSalesRep {
     )
     private Integer salesRepId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMPLOYEE_CODE)
     @NotNull
     @Basic(optional = false)
@@ -444,7 +456,7 @@ public abstract class MappedSalesRep {
     )
     private String employeeCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
@@ -456,7 +468,7 @@ public abstract class MappedSalesRep {
     )
     private String firstName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
@@ -468,7 +480,7 @@ public abstract class MappedSalesRep {
     )
     private String lastName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMAIL,
@@ -479,7 +491,7 @@ public abstract class MappedSalesRep {
     )
     private String email;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHONE,
@@ -490,7 +502,7 @@ public abstract class MappedSalesRep {
     )
     private String phone;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -500,7 +512,7 @@ public abstract class MappedSalesRep {
     )
     private Integer territoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HIRE_DATE,
             nullable = true,
@@ -509,7 +521,7 @@ public abstract class MappedSalesRep {
     )
     private LocalDate hireDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -517,6 +529,7 @@ public abstract class MappedSalesRep {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 }
 

@@ -33,7 +33,7 @@ import java.time.LocalDate;
  */
 public class EmployeeDepartmentHistoryView extends MappedEmployeeDepartmentHistoryView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

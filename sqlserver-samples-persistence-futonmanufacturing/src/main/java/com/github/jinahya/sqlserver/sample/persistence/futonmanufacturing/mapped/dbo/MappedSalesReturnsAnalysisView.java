@@ -53,7 +53,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_ReturnsAnalysis";
 
-    // -------------------------------------------------------------------------------------------------------- ReturnID
+    // ------------------------------------------------------------------------------------ ReturnID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_RETURN_ID = "returnId";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -77,7 +77,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -89,7 +89,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // ------------------------------------------------------------------------------------------------------ ReasonCode
+    // ---------------------------------------------------------------------------------- ReasonCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_REASON_CODE = "reasonCode";
 
-    // ----------------------------------------------------------------------------------------------- ReasonDescription
+    // --------------------------------------------------------------------------- ReasonDescription
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_REASON_DESCRIPTION = "reasonDescription";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -157,7 +157,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRefunds
+    // -------------------------------------------------------------------------------- TotalRefunds
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REFUNDS = "totalRefunds";
 
-    // ------------------------------------------------------------------------------------------------- AvgRefundAmount
+    // ----------------------------------------------------------------------------- AvgRefundAmount
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -218,7 +218,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_REFUND_AMOUNT = "avgRefundAmount";
 
-    // --------------------------------------------------------------------------------------------- TotalRestockingFees
+    // ------------------------------------------------------------------------- TotalRestockingFees
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -241,7 +241,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_RESTOCKING_FEES = "totalRestockingFees";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -258,7 +258,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -275,7 +275,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // --------------------------------------------------------------------------------------------------- UnitsReturned
+    // ------------------------------------------------------------------------------- UnitsReturned
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -297,7 +297,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_UNITS_RETURNED = "unitsReturned";
 
-    // ----------------------------------------------------------------------------------------------------- Disposition
+    // --------------------------------------------------------------------------------- Disposition
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -314,7 +314,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DISPOSITION = "disposition";
 
-    // ----------------------------------------------------------------------------------------------- ReturnRatePercent
+    // --------------------------------------------------------------------------- ReturnRatePercent
 
     /**
      * The name of the {@code numeric(26, 12)} column. The value is {@value}.
@@ -337,7 +337,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_RETURN_RATE_PERCENT = "returnRatePercent";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -346,7 +346,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -399,7 +399,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         return Objects.hash(returnId);
     }
 
-    // -------------------------------------------------------------------------------------------------------- returnId
+    // ------------------------------------------------------------------------------------ returnId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_ID} attribute.
@@ -419,7 +419,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.returnId = returnId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -439,7 +439,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -459,7 +459,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.month = month;
     }
 
-    // ------------------------------------------------------------------------------------------------------ reasonCode
+    // ---------------------------------------------------------------------------------- reasonCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REASON_CODE} attribute.
@@ -479,7 +479,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.reasonCode = reasonCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- reasonDescription
+    // --------------------------------------------------------------------------- reasonDescription
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REASON_DESCRIPTION} attribute.
@@ -499,7 +499,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.reasonDescription = reasonDescription;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -519,7 +519,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.customerName = customerName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -539,7 +539,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.customerType = customerType;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -559,7 +559,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.channelName = channelName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRefunds
+    // -------------------------------------------------------------------------------- totalRefunds
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REFUNDS} attribute.
@@ -579,7 +579,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.totalRefunds = totalRefunds;
     }
 
-    // ------------------------------------------------------------------------------------------------- avgRefundAmount
+    // ----------------------------------------------------------------------------- avgRefundAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_REFUND_AMOUNT} attribute.
@@ -599,7 +599,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.avgRefundAmount = avgRefundAmount;
     }
 
-    // --------------------------------------------------------------------------------------------- totalRestockingFees
+    // ------------------------------------------------------------------------- totalRestockingFees
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_RESTOCKING_FEES} attribute.
@@ -619,7 +619,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.totalRestockingFees = totalRestockingFees;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -639,7 +639,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -659,7 +659,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.itemName = itemName;
     }
 
-    // --------------------------------------------------------------------------------------------------- unitsReturned
+    // ------------------------------------------------------------------------------- unitsReturned
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNITS_RETURNED} attribute.
@@ -679,7 +679,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.unitsReturned = unitsReturned;
     }
 
-    // ----------------------------------------------------------------------------------------------------- disposition
+    // --------------------------------------------------------------------------------- disposition
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISPOSITION} attribute.
@@ -699,7 +699,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.disposition = disposition;
     }
 
-    // ----------------------------------------------------------------------------------------------- returnRatePercent
+    // --------------------------------------------------------------------------- returnRatePercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_RATE_PERCENT} attribute.
@@ -719,7 +719,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         this.returnRatePercent = returnRatePercent;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -730,7 +730,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private Integer returnId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -740,7 +740,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -750,7 +750,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REASON_CODE)
     @NotNull
@@ -763,7 +763,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String reasonCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REASON_DESCRIPTION)
     @NotNull
@@ -776,7 +776,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String reasonDescription;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -789,7 +789,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -801,7 +801,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -814,7 +814,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REFUNDS - COLUMN_SCALE_TOTAL_REFUNDS,
             fraction = COLUMN_SCALE_TOTAL_REFUNDS)
@@ -828,7 +828,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private BigDecimal totalRefunds;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_REFUND_AMOUNT - COLUMN_SCALE_AVG_REFUND_AMOUNT,
             fraction = COLUMN_SCALE_AVG_REFUND_AMOUNT)
@@ -842,7 +842,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private BigDecimal avgRefundAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES - COLUMN_SCALE_TOTAL_RESTOCKING_FEES,
             fraction = COLUMN_SCALE_TOTAL_RESTOCKING_FEES)
@@ -856,7 +856,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private BigDecimal totalRestockingFees;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -869,7 +869,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -882,7 +882,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNITS_RETURNED - COLUMN_SCALE_UNITS_RETURNED,
             fraction = COLUMN_SCALE_UNITS_RETURNED)
@@ -896,7 +896,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private BigDecimal unitsReturned;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DISPOSITION)
     @Basic(optional = true)
@@ -908,7 +908,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     )
     private String disposition;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RETURN_RATE_PERCENT - COLUMN_SCALE_RETURN_RATE_PERCENT,
             fraction = COLUMN_SCALE_RETURN_RATE_PERCENT)

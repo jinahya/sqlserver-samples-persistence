@@ -22,6 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -42,8 +44,56 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_DELIVERY_CITY_ID}, {@value #COLUMN_NAME_POSTAL_CITY_ID},
  * {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Application.SystemParameters}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SystemParameterID}</th>
+ *     <td>Numeric ID used for row holding system parameters</td></tr>
+ * <tr><th scope="row">{@code DeliveryAddressLine1}</th>
+ *     <td>First address line for the company</td></tr>
+ * <tr><th scope="row">{@code DeliveryAddressLine2}</th>
+ *     <td>Second address line for the company</td></tr>
+ * <tr><th scope="row">{@code DeliveryCityID}</th><td>ID of the city for this address</td></tr>
+ * <tr><th scope="row">{@code DeliveryPostalCode}</th><td>Postal code for the company</td></tr>
+ * <tr><th scope="row">{@code DeliveryLocation}</th>
+ *     <td>Geographic location for the company office</td></tr>
+ * <tr><th scope="row">{@code PostalAddressLine1}</th>
+ *     <td>First postal address line for the company</td></tr>
+ * <tr><th scope="row">{@code PostalAddressLine2}</th>
+ *     <td>Second postaladdress line for the company</td></tr>
+ * <tr><th scope="row">{@code PostalCityID}</th><td>ID of the city for this postaladdress</td></tr>
+ * <tr><th scope="row">{@code PostalPostalCode}</th>
+ *     <td>Postal code for the company when sending via mail</td></tr>
+ * <tr><th scope="row">{@code ApplicationSettings}</th>
+ *     <td>JSON-structured application settings</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Application.SystemParameters}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SystemParameterID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[SystemParameterID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSystemParameter.TABLE_SCHEMA,
+        table = MappedSystemParameter.TABLE_NAME,
+        value = "Any configurable parameters for the whole system"
+)
 public abstract class MappedSystemParameter {
 
     /**
@@ -56,7 +106,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String TABLE_NAME = "SystemParameters";
 
-    // ----------------------------------------------------------------------------------------------- SystemParameterID
+    // --------------------------------------------------------------------------- SystemParameterID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.SystemParameterID, NOT NULL} column. The value is {@value}.
@@ -69,7 +119,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_SYSTEM_PARAMETER_ID = "systemParameterId";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine1
+    // ------------------------------------------------------------------------ DeliveryAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -87,7 +137,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1 = "deliveryAddressLine1";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine2
+    // ------------------------------------------------------------------------ DeliveryAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -105,7 +155,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2 = "deliveryAddressLine2";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryCityID
+    // ------------------------------------------------------------------------------ DeliveryCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -117,7 +167,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_CITY_ID = "deliveryCityId";
 
-    // ---------------------------------------------------------------------------------------------- DeliveryPostalCode
+    // -------------------------------------------------------------------------- DeliveryPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -135,7 +185,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE = "deliveryPostalCode";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryLocation
+    // ---------------------------------------------------------------------------- DeliveryLocation
 
     /**
      * The name of the {@code geography, NOT NULL} column. The value is {@value}.
@@ -147,7 +197,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_LOCATION = "deliveryLocation";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine1
+    // -------------------------------------------------------------------------- PostalAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -165,7 +215,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1 = "postalAddressLine1";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine2
+    // -------------------------------------------------------------------------- PostalAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -183,7 +233,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2 = "postalAddressLine2";
 
-    // ---------------------------------------------------------------------------------------------------- PostalCityID
+    // -------------------------------------------------------------------------------- PostalCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -195,7 +245,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CITY_ID = "postalCityId";
 
-    // ------------------------------------------------------------------------------------------------ PostalPostalCode
+    // ---------------------------------------------------------------------------- PostalPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -212,7 +262,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_POSTAL_CODE = "postalPostalCode";
 
-    // --------------------------------------------------------------------------------------------- ApplicationSettings
+    // ------------------------------------------------------------------------- ApplicationSettings
 
     /**
      * The name of the {@code nvarchar(max), NOT NULL} column. The value is {@value}.
@@ -225,7 +275,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_APPLICATION_SETTINGS = "applicationSettings";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -237,7 +287,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -249,7 +299,7 @@ public abstract class MappedSystemParameter {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -258,7 +308,7 @@ public abstract class MappedSystemParameter {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -308,7 +358,7 @@ public abstract class MappedSystemParameter {
         return Objects.hash(systemParameterId);
     }
 
-    // ----------------------------------------------------------------------------------------------- systemParameterId
+    // --------------------------------------------------------------------------- systemParameterId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SYSTEM_PARAMETER_ID} attribute.
@@ -328,7 +378,7 @@ public abstract class MappedSystemParameter {
         this.systemParameterId = systemParameterId;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine1
+    // ------------------------------------------------------------------------ deliveryAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1} attribute.
@@ -348,7 +398,7 @@ public abstract class MappedSystemParameter {
         this.deliveryAddressLine1 = deliveryAddressLine1;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine2
+    // ------------------------------------------------------------------------ deliveryAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2} attribute.
@@ -368,7 +418,7 @@ public abstract class MappedSystemParameter {
         this.deliveryAddressLine2 = deliveryAddressLine2;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryCityId
+    // ------------------------------------------------------------------------------ deliveryCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
@@ -390,7 +440,7 @@ public abstract class MappedSystemParameter {
         this.deliveryCityId = deliveryCityId;
     }
 
-    // ---------------------------------------------------------------------------------------------- deliveryPostalCode
+    // -------------------------------------------------------------------------- deliveryPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE} attribute.
@@ -410,7 +460,7 @@ public abstract class MappedSystemParameter {
         this.deliveryPostalCode = deliveryPostalCode;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryLocation
+    // ---------------------------------------------------------------------------- deliveryLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
@@ -430,7 +480,7 @@ public abstract class MappedSystemParameter {
         this.deliveryLocation = deliveryLocation;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine1
+    // -------------------------------------------------------------------------- postalAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1} attribute.
@@ -450,7 +500,7 @@ public abstract class MappedSystemParameter {
         this.postalAddressLine1 = postalAddressLine1;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine2
+    // -------------------------------------------------------------------------- postalAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2} attribute.
@@ -470,7 +520,7 @@ public abstract class MappedSystemParameter {
         this.postalAddressLine2 = postalAddressLine2;
     }
 
-    // ---------------------------------------------------------------------------------------------------- postalCityId
+    // -------------------------------------------------------------------------------- postalCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
@@ -492,7 +542,7 @@ public abstract class MappedSystemParameter {
         this.postalCityId = postalCityId;
     }
 
-    // ------------------------------------------------------------------------------------------------ postalPostalCode
+    // ---------------------------------------------------------------------------- postalPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_POSTAL_CODE} attribute.
@@ -512,7 +562,7 @@ public abstract class MappedSystemParameter {
         this.postalPostalCode = postalPostalCode;
     }
 
-    // --------------------------------------------------------------------------------------------- applicationSettings
+    // ------------------------------------------------------------------------- applicationSettings
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_APPLICATION_SETTINGS} attribute.
@@ -532,7 +582,7 @@ public abstract class MappedSystemParameter {
         this.applicationSettings = applicationSettings;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -554,7 +604,7 @@ public abstract class MappedSystemParameter {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -574,7 +624,7 @@ public abstract class MappedSystemParameter {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SystemParameterID", schema = "Sequences",
@@ -586,9 +636,13 @@ public abstract class MappedSystemParameter {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SYSTEM_PARAMETER_ID,
+                          value = "Numeric ID used for row holding system parameters")
+    @MsDefault(name = "DF_Application_SystemParameters_SystemParameterID",
+               value = "(NEXT VALUE FOR [Sequences].[SystemParameterID])")
     private Integer systemParameterId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -598,9 +652,11 @@ public abstract class MappedSystemParameter {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
+                          value = "First address line for the company")
     private String deliveryAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
@@ -609,9 +665,11 @@ public abstract class MappedSystemParameter {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
+                          value = "Second address line for the company")
     private String deliveryAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -620,9 +678,11 @@ public abstract class MappedSystemParameter {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
+                          value = "ID of the city for this address")
     private Integer deliveryCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -632,9 +692,11 @@ public abstract class MappedSystemParameter {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
+                          value = "Postal code for the company")
     private String deliveryPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = false)
@@ -643,9 +705,11 @@ public abstract class MappedSystemParameter {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_LOCATION,
+                          value = "Geographic location for the company office")
     private Geography deliveryLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -655,9 +719,11 @@ public abstract class MappedSystemParameter {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
+                          value = "First postal address line for the company")
     private String postalAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
@@ -666,9 +732,11 @@ public abstract class MappedSystemParameter {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
+                          value = "Second postaladdress line for the company")
     private String postalAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -677,9 +745,11 @@ public abstract class MappedSystemParameter {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_CITY_ID,
+                          value = "ID of the city for this postaladdress")
     private Integer postalCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -689,9 +759,11 @@ public abstract class MappedSystemParameter {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
+                          value = "Postal code for the company when sending via mail")
     private String postalPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_APPLICATION_SETTINGS,
@@ -699,9 +771,11 @@ public abstract class MappedSystemParameter {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_APPLICATION_SETTINGS,
+                          value = "JSON-structured application settings")
     private String applicationSettings;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -712,7 +786,7 @@ public abstract class MappedSystemParameter {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -720,6 +794,7 @@ public abstract class MappedSystemParameter {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Application_SystemParameters_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

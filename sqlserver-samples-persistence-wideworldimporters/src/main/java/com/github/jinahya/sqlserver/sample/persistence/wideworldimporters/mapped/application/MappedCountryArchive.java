@@ -55,7 +55,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String TABLE_NAME = "Countries_Archive";
 
-    // ------------------------------------------------------------------------------------------------------- CountryID
+    // ----------------------------------------------------------------------------------- CountryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -67,7 +67,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_ID = "countryId";
 
-    // ----------------------------------------------------------------------------------------------------- CountryName
+    // --------------------------------------------------------------------------------- CountryName
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -84,7 +84,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_NAME = "countryName";
 
-    // ------------------------------------------------------------------------------------------------------ FormalName
+    // ---------------------------------------------------------------------------------- FormalName
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -101,7 +101,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_FORMAL_NAME = "formalName";
 
-    // --------------------------------------------------------------------------------------------------- IsoAlpha3Code
+    // ------------------------------------------------------------------------------- IsoAlpha3Code
 
     /**
      * The name of the {@code nvarchar(3)} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_ISO_ALPHA_3_CODE = "isoAlpha3Code";
 
-    // -------------------------------------------------------------------------------------------------- IsoNumericCode
+    // ------------------------------------------------------------------------------ IsoNumericCode
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -130,7 +130,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_ISO_NUMERIC_CODE = "isoNumericCode";
 
-    // ----------------------------------------------------------------------------------------------------- CountryType
+    // --------------------------------------------------------------------------------- CountryType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -147,7 +147,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_TYPE = "countryType";
 
-    // ---------------------------------------------------------------------------------------- LatestRecordedPopulation
+    // -------------------------------------------------------------------- LatestRecordedPopulation
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -160,7 +160,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION = "latestRecordedPopulation";
 
-    // ------------------------------------------------------------------------------------------------------- Continent
+    // ----------------------------------------------------------------------------------- Continent
 
     /**
      * The name of the {@code nvarchar(30), NOT NULL} column. The value is {@value}.
@@ -177,7 +177,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_CONTINENT = "continent";
 
-    // ---------------------------------------------------------------------------------------------------------- Region
+    // -------------------------------------------------------------------------------------- Region
 
     /**
      * The name of the {@code nvarchar(30), NOT NULL} column. The value is {@value}.
@@ -194,7 +194,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_REGION = "region";
 
-    // ------------------------------------------------------------------------------------------------------- Subregion
+    // ----------------------------------------------------------------------------------- Subregion
 
     /**
      * The name of the {@code nvarchar(30), NOT NULL} column. The value is {@value}.
@@ -211,7 +211,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_SUBREGION = "subregion";
 
-    // ---------------------------------------------------------------------------------------------------------- Border
+    // -------------------------------------------------------------------------------------- Border
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -223,7 +223,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_BORDER = "border";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -247,7 +247,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -259,7 +259,7 @@ public abstract class MappedCountryArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -268,7 +268,7 @@ public abstract class MappedCountryArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -290,7 +290,7 @@ public abstract class MappedCountryArchive {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------- countryId
+    // ----------------------------------------------------------------------------------- countryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute.
@@ -310,7 +310,7 @@ public abstract class MappedCountryArchive {
         this.countryId = countryId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- countryName
+    // --------------------------------------------------------------------------------- countryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_NAME} attribute.
@@ -330,7 +330,7 @@ public abstract class MappedCountryArchive {
         this.countryName = countryName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ formalName
+    // ---------------------------------------------------------------------------------- formalName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FORMAL_NAME} attribute.
@@ -350,7 +350,7 @@ public abstract class MappedCountryArchive {
         this.formalName = formalName;
     }
 
-    // --------------------------------------------------------------------------------------------------- isoAlpha3Code
+    // ------------------------------------------------------------------------------- isoAlpha3Code
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ISO_ALPHA_3_CODE} attribute.
@@ -370,7 +370,7 @@ public abstract class MappedCountryArchive {
         this.isoAlpha3Code = isoAlpha3Code;
     }
 
-    // -------------------------------------------------------------------------------------------------- isoNumericCode
+    // ------------------------------------------------------------------------------ isoNumericCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ISO_NUMERIC_CODE} attribute.
@@ -390,7 +390,7 @@ public abstract class MappedCountryArchive {
         this.isoNumericCode = isoNumericCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------- countryType
+    // --------------------------------------------------------------------------------- countryType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_TYPE} attribute.
@@ -410,7 +410,7 @@ public abstract class MappedCountryArchive {
         this.countryType = countryType;
     }
 
-    // ---------------------------------------------------------------------------------------- latestRecordedPopulation
+    // -------------------------------------------------------------------- latestRecordedPopulation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute.
@@ -431,7 +431,7 @@ public abstract class MappedCountryArchive {
         this.latestRecordedPopulation = latestRecordedPopulation;
     }
 
-    // ------------------------------------------------------------------------------------------------------- continent
+    // ----------------------------------------------------------------------------------- continent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONTINENT} attribute.
@@ -451,7 +451,7 @@ public abstract class MappedCountryArchive {
         this.continent = continent;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- region
+    // -------------------------------------------------------------------------------------- region
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REGION} attribute.
@@ -471,7 +471,7 @@ public abstract class MappedCountryArchive {
         this.region = region;
     }
 
-    // ------------------------------------------------------------------------------------------------------- subregion
+    // ----------------------------------------------------------------------------------- subregion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUBREGION} attribute.
@@ -491,7 +491,7 @@ public abstract class MappedCountryArchive {
         this.subregion = subregion;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- border
+    // -------------------------------------------------------------------------------------- border
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BORDER} attribute.
@@ -511,7 +511,7 @@ public abstract class MappedCountryArchive {
         this.border = border;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -531,7 +531,7 @@ public abstract class MappedCountryArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -551,7 +551,7 @@ public abstract class MappedCountryArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -571,7 +571,7 @@ public abstract class MappedCountryArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -582,7 +582,7 @@ public abstract class MappedCountryArchive {
     )
     private Integer countryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_NAME)
     @NotNull
@@ -595,7 +595,7 @@ public abstract class MappedCountryArchive {
     )
     private String countryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FORMAL_NAME)
     @NotNull
@@ -608,7 +608,7 @@ public abstract class MappedCountryArchive {
     )
     private String formalName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_ISO_ALPHA_3_CODE)
     @Basic(optional = true)
@@ -620,7 +620,7 @@ public abstract class MappedCountryArchive {
     )
     private String isoAlpha3Code;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE,
@@ -630,7 +630,7 @@ public abstract class MappedCountryArchive {
     )
     private Integer isoNumericCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_TYPE)
     @Basic(optional = true)
@@ -642,7 +642,7 @@ public abstract class MappedCountryArchive {
     )
     private String countryType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
@@ -652,7 +652,7 @@ public abstract class MappedCountryArchive {
     )
     private Long latestRecordedPopulation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_CONTINENT)
     @NotNull
@@ -665,7 +665,7 @@ public abstract class MappedCountryArchive {
     )
     private String continent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @NotNull
@@ -678,7 +678,7 @@ public abstract class MappedCountryArchive {
     )
     private String region;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SUBREGION)
     @NotNull
@@ -691,7 +691,7 @@ public abstract class MappedCountryArchive {
     )
     private String subregion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
@@ -702,7 +702,7 @@ public abstract class MappedCountryArchive {
     )
     private Geography border;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -713,7 +713,7 @@ public abstract class MappedCountryArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -724,7 +724,7 @@ public abstract class MappedCountryArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

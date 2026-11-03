@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedWorkCenterCapacityView.TABLE_SCHEMA, name = MappedWorkCenterCapacityView.TABLE_NAME)
 public class WorkCenterCapacityView extends MappedWorkCenterCapacityView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

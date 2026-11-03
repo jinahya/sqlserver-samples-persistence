@@ -36,7 +36,7 @@ public class MappedSalesPersonQuotaHistoryId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -45,7 +45,7 @@ public class MappedSalesPersonQuotaHistoryId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -72,7 +72,7 @@ public class MappedSalesPersonQuotaHistoryId implements Serializable {
         return Objects.hash(businessEntityId, quotaDate);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -92,7 +92,7 @@ public class MappedSalesPersonQuotaHistoryId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- quotaDate
+    // ----------------------------------------------------------------------------------- quotaDate
 
     /**
      * Returns current value of the {@code quotaDate} attribute.
@@ -112,9 +112,15 @@ public class MappedSalesPersonQuotaHistoryId implements Serializable {
         this.quotaDate = quotaDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 
+    /**
+     * The value of the {@code quotaDate} attribute.
+     */
     private LocalDateTime quotaDate;
 }
 

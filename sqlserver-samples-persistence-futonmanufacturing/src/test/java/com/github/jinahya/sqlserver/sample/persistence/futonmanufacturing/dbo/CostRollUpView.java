@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedCostRollUpView.TABLE_SCHEMA, name = MappedCostRollUpView.TABLE_NAME)
 public class CostRollUpView extends MappedCostRollUpView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

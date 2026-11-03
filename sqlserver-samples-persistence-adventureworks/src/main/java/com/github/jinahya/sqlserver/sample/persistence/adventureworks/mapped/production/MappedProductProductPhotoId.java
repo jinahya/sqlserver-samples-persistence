@@ -35,7 +35,7 @@ public class MappedProductProductPhotoId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedProductProductPhotoId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class MappedProductProductPhotoId implements Serializable {
         return Objects.hash(productId, productPhotoId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of the {@code productId} attribute.
@@ -91,7 +91,7 @@ public class MappedProductProductPhotoId implements Serializable {
         this.productId = productId;
     }
 
-    // -------------------------------------------------------------------------------------------------- productPhotoId
+    // ------------------------------------------------------------------------------ productPhotoId
 
     /**
      * Returns current value of the {@code productPhotoId} attribute.
@@ -111,9 +111,15 @@ public class MappedProductProductPhotoId implements Serializable {
         this.productPhotoId = productPhotoId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code productId} attribute.
+     */
     private Integer productId;
 
+    /**
+     * The value of the {@code productPhotoId} attribute.
+     */
     private Integer productPhotoId;
 }
 

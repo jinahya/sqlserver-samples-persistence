@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedVendorWithAddressesView.TABLE_SCHEMA, name = MappedVendorWithAddressesView.TABLE_NAME)
 public class VendorWithAddressesView extends MappedVendorWithAddressesView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

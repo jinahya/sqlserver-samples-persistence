@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedSupplier.TABLE_SCHEMA, name = MappedSupplier.TABLE_NAME)
 public class Supplier extends MappedSupplier {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

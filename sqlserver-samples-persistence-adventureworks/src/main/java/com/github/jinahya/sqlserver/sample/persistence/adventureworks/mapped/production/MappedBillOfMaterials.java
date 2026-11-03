@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -44,8 +46,55 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID}, {@value #COLUMN_NAME_COMPONENT_ID},
  * {@value #COLUMN_NAME_UNIT_MEASURE_CODE} columns are mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.BillOfMaterials}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BillOfMaterialsID}</th>
+ *     <td>Primary key for BillOfMaterials records.</td></tr>
+ * <tr><th scope="row">{@code ProductAssemblyID}</th>
+ *     <td>Parent product identification number. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code ComponentID}</th>
+ *     <td>Component identification number. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code StartDate}</th>
+ *     <td>Date the component started being used in the assembly item.</td></tr>
+ * <tr><th scope="row">{@code EndDate}</th>
+ *     <td>Date the component stopped being used in the assembly item.</td></tr>
+ * <tr><th scope="row">{@code UnitMeasureCode}</th>
+ *     <td>Standard code identifying the unit of measure for the quantity.</td></tr>
+ * <tr><th scope="row">{@code BOMLevel}</th>
+ *     <td>Indicates the depth the component is from its parent (AssemblyID).</td></tr>
+ * <tr><th scope="row">{@code PerAssemblyQty}</th>
+ *     <td>Quantity of the component needed to create the assembly.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.BillOfMaterials}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StartDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code PerAssemblyQty}</th><td>{@code ((1.00))}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedBillOfMaterials.TABLE_SCHEMA,
+        table = MappedBillOfMaterials.TABLE_NAME,
+        value = "Items required to make bicycles and bicycle subassemblies. It identifies the "
+                + "heirarchical relationship between a parent product and its components."
+)
 public abstract class MappedBillOfMaterials {
 
     /**
@@ -58,7 +107,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String TABLE_NAME = "BillOfMaterials";
 
-    // ----------------------------------------------------------------------------------------------- BillOfMaterialsID
+    // --------------------------------------------------------------------------- BillOfMaterialsID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -71,7 +120,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID = "billOfMaterialsId";
 
-    // ----------------------------------------------------------------------------------------------- ProductAssemblyID
+    // --------------------------------------------------------------------------- ProductAssemblyID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -84,7 +133,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID = "productAssemblyId";
 
-    // ----------------------------------------------------------------------------------------------------- ComponentID
+    // --------------------------------------------------------------------------------- ComponentID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -96,7 +145,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ID = "componentId";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -108,7 +157,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -120,7 +169,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // ------------------------------------------------------------------------------------------------- UnitMeasureCode
+    // ----------------------------------------------------------------------------- UnitMeasureCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -137,7 +186,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_UNIT_MEASURE_CODE = "unitMeasureCode";
 
-    // -------------------------------------------------------------------------------------------------------- BOMLevel
+    // ------------------------------------------------------------------------------------ BOMLevel
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -162,7 +211,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_BOM_LEVEL = "bomLevel";
 
-    // -------------------------------------------------------------------------------------------------- PerAssemblyQty
+    // ------------------------------------------------------------------------------ PerAssemblyQty
 
     /**
      * The name of the {@code decimal(8, 2), DEFAULT ((1.00)), NOT NULL} column. The value is {@value}.
@@ -191,7 +240,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_PER_ASSEMBLY_QTY = "perAssemblyQty";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -203,7 +252,7 @@ public abstract class MappedBillOfMaterials {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -212,7 +261,7 @@ public abstract class MappedBillOfMaterials {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -258,7 +307,7 @@ public abstract class MappedBillOfMaterials {
         return Objects.hash(billOfMaterialsId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null} or not equal to the
@@ -329,7 +378,7 @@ public abstract class MappedBillOfMaterials {
         return bomLevel == null || bomLevel >= 1;
     }
 
-    // ----------------------------------------------------------------------------------------------- billOfMaterialsId
+    // --------------------------------------------------------------------------- billOfMaterialsId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID} attribute.
@@ -349,7 +398,7 @@ public abstract class MappedBillOfMaterials {
         this.billOfMaterialsId = billOfMaterialsId;
     }
 
-    // ----------------------------------------------------------------------------------------------- productAssemblyId
+    // --------------------------------------------------------------------------- productAssemblyId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute.
@@ -371,7 +420,7 @@ public abstract class MappedBillOfMaterials {
         this.productAssemblyId = productAssemblyId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- componentId
+    // --------------------------------------------------------------------------------- componentId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute.
@@ -392,7 +441,7 @@ public abstract class MappedBillOfMaterials {
         this.componentId = componentId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -412,7 +461,7 @@ public abstract class MappedBillOfMaterials {
         this.startDate = startDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -432,7 +481,7 @@ public abstract class MappedBillOfMaterials {
         this.endDate = endDate;
     }
 
-    // ------------------------------------------------------------------------------------------------- unitMeasureCode
+    // ----------------------------------------------------------------------------- unitMeasureCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
@@ -454,7 +503,7 @@ public abstract class MappedBillOfMaterials {
         this.unitMeasureCode = unitMeasureCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- bomLevel
+    // ------------------------------------------------------------------------------------ bomLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute.
@@ -474,7 +523,7 @@ public abstract class MappedBillOfMaterials {
         this.bomLevel = bomLevel;
     }
 
-    // -------------------------------------------------------------------------------------------------- perAssemblyQty
+    // ------------------------------------------------------------------------------ perAssemblyQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute.
@@ -494,7 +543,7 @@ public abstract class MappedBillOfMaterials {
         this.perAssemblyQty = perAssemblyQty;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -514,7 +563,7 @@ public abstract class MappedBillOfMaterials {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -524,9 +573,11 @@ public abstract class MappedBillOfMaterials {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID,
+                          value = "Primary key for BillOfMaterials records.")
     private Integer billOfMaterialsId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
@@ -534,9 +585,12 @@ public abstract class MappedBillOfMaterials {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
+                          value = "Parent product identification number. Foreign key to "
+                                  + "Product.ProductID.")
     private Integer productAssemblyId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -545,9 +599,12 @@ public abstract class MappedBillOfMaterials {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMPONENT_ID,
+                          value = "Component identification number. Foreign key to "
+                                  + "Product.ProductID.")
     private Integer componentId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_START_DATE,
@@ -555,18 +612,23 @@ public abstract class MappedBillOfMaterials {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
+                          value = "Date the component started being used in the assembly item.")
+    @MsDefault(name = "DF_BillOfMaterials_StartDate", value = "(getdate())")
     private LocalDateTime startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_END_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
+                          value = "Date the component stopped being used in the assembly item.")
     private LocalDateTime endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @NotNull
@@ -577,9 +639,11 @@ public abstract class MappedBillOfMaterials {
             updatable = false,
             length = COLUMN_LENGTH_UNIT_MEASURE_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
+                          value = "Standard code identifying the unit of measure for the quantity.")
     private String unitMeasureCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_BillOfMaterials_BOMLevel, of the table: 0 for an assembly with no ProductAssemblyID, 1 or more for any other;
     // smallint's upper bound
     @Max(COLUMN_MAX_BOM_LEVEL)
@@ -591,9 +655,12 @@ public abstract class MappedBillOfMaterials {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_BOM_LEVEL,
+                          value = "Indicates the depth the component is from its parent "
+                                  + "(AssemblyID).")
     private Integer bomLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_BillOfMaterials_PerAssemblyQty: ([PerAssemblyQty]>=(1.00))
     @DecimalMin(COLUMN_MIN_PER_ASSEMBLY_QTY)
     @Digits(integer = COLUMN_PRECISION_PER_ASSEMBLY_QTY - COLUMN_SCALE_PER_ASSEMBLY_QTY,
@@ -607,9 +674,12 @@ public abstract class MappedBillOfMaterials {
             precision = COLUMN_PRECISION_PER_ASSEMBLY_QTY,
             scale = COLUMN_SCALE_PER_ASSEMBLY_QTY
     )
+    @MsDescription.Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY,
+                          value = "Quantity of the component needed to create the assembly.")
+    @MsDefault(name = "DF_BillOfMaterials_PerAssemblyQty", value = "((1.00))")
     private BigDecimal perAssemblyQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -618,6 +688,9 @@ public abstract class MappedBillOfMaterials {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_BillOfMaterials_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

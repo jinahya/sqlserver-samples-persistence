@@ -64,7 +64,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -73,7 +73,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- supplier
+    // ------------------------------------------------------------------------------------ supplier
 
     /**
      * Returns the {@code Supplier} which the {@code FK_Purchasing_PurchaseOrders_SupplierID_Purchasing_Suppliers}
@@ -96,7 +96,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         setSupplierId(supplier == null ? null : supplier.getSupplierId());
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryMethod
+    // ------------------------------------------------------------------------------ deliveryMethod
 
     /**
      * Returns the {@code DeliveryMethod} which the
@@ -120,7 +120,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         setDeliveryMethodId(deliveryMethod == null ? null : deliveryMethod.getDeliveryMethodId());
     }
 
-    // --------------------------------------------------------------------------------------------------- contactPerson
+    // ------------------------------------------------------------------------------- contactPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Purchasing_PurchaseOrders_ContactPersonID_Application_People}
@@ -143,7 +143,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         setContactPersonId(contactPerson == null ? null : contactPerson.getPersonId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Purchasing_PurchaseOrders_Application_People} foreign key
@@ -166,7 +166,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SUPPLIER_ID,
                 referencedColumnName = MappedSupplier.COLUMN_NAME_SUPPLIER_ID,
@@ -176,7 +176,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
     )
     private Supplier supplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_DELIVERY_METHOD_ID,
                 referencedColumnName = MappedDeliveryMethod.COLUMN_NAME_DELIVERY_METHOD_ID,
@@ -186,7 +186,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
     )
     private DeliveryMethod deliveryMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CONTACT_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,
@@ -196,7 +196,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
     )
     private Person contactPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

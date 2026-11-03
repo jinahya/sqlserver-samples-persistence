@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class DailyProductionScheduleView extends MappedDailyProductionScheduleView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

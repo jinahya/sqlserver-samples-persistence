@@ -54,7 +54,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String TABLE_NAME = "vw_MaterialRequirements";
 
-    // ------------------------------------------------------------------------------------------------- WorkOrderNumber
+    // ----------------------------------------------------------------------------- WorkOrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_NUMBER = "workOrderNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // ------------------------------------------------------------------------------------------- PlannedCompletionDate
+    // ----------------------------------------------------------------------- PlannedCompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -101,7 +101,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE = "plannedCompletionDate";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -135,7 +135,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -152,7 +152,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // ------------------------------------------------------------------------------------------------ RequiredQuantity
+    // ---------------------------------------------------------------------------- RequiredQuantity
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_REQUIRED_QUANTITY = "requiredQuantity";
 
-    // ----------------------------------------------------------------------------------------------- AvailableQuantity
+    // --------------------------------------------------------------------------- AvailableQuantity
 
     /**
      * The name of the {@code decimal(38, 2), NOT NULL} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_AVAILABLE_QUANTITY = "availableQuantity";
 
-    // ------------------------------------------------------------------------------------------------ ShortageQuantity
+    // ---------------------------------------------------------------------------- ShortageQuantity
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -218,7 +218,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_SHORTAGE_QUANTITY = "shortageQuantity";
 
-    // ---------------------------------------------------------------------------------------------- AvailabilityStatus
+    // -------------------------------------------------------------------------- AvailabilityStatus
 
     /**
      * The name of the {@code varchar(12), NOT NULL} column. The value is {@value}.
@@ -236,7 +236,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_AVAILABILITY_STATUS = "availabilityStatus";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -253,7 +253,7 @@ public abstract class MappedMaterialRequirementsView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -262,7 +262,7 @@ public abstract class MappedMaterialRequirementsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -281,7 +281,7 @@ public abstract class MappedMaterialRequirementsView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------- workOrderNumber
+    // ----------------------------------------------------------------------------- workOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_NUMBER} attribute.
@@ -301,7 +301,7 @@ public abstract class MappedMaterialRequirementsView {
         this.workOrderNumber = workOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -321,7 +321,7 @@ public abstract class MappedMaterialRequirementsView {
         this.status = status;
     }
 
-    // ------------------------------------------------------------------------------------------- plannedCompletionDate
+    // ----------------------------------------------------------------------- plannedCompletionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE} attribute.
@@ -341,7 +341,7 @@ public abstract class MappedMaterialRequirementsView {
         this.plannedCompletionDate = plannedCompletionDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -361,7 +361,7 @@ public abstract class MappedMaterialRequirementsView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -381,7 +381,7 @@ public abstract class MappedMaterialRequirementsView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -401,7 +401,7 @@ public abstract class MappedMaterialRequirementsView {
         this.itemType = itemType;
     }
 
-    // ------------------------------------------------------------------------------------------------ requiredQuantity
+    // ---------------------------------------------------------------------------- requiredQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute.
@@ -421,7 +421,7 @@ public abstract class MappedMaterialRequirementsView {
         this.requiredQuantity = requiredQuantity;
     }
 
-    // ----------------------------------------------------------------------------------------------- availableQuantity
+    // --------------------------------------------------------------------------- availableQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVAILABLE_QUANTITY} attribute.
@@ -441,7 +441,7 @@ public abstract class MappedMaterialRequirementsView {
         this.availableQuantity = availableQuantity;
     }
 
-    // ------------------------------------------------------------------------------------------------ shortageQuantity
+    // ---------------------------------------------------------------------------- shortageQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute.
@@ -461,7 +461,7 @@ public abstract class MappedMaterialRequirementsView {
         this.shortageQuantity = shortageQuantity;
     }
 
-    // ---------------------------------------------------------------------------------------------- availabilityStatus
+    // -------------------------------------------------------------------------- availabilityStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVAILABILITY_STATUS} attribute.
@@ -481,7 +481,7 @@ public abstract class MappedMaterialRequirementsView {
         this.availabilityStatus = availabilityStatus;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -501,7 +501,7 @@ public abstract class MappedMaterialRequirementsView {
         this.unitCode = unitCode;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
@@ -514,7 +514,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private String workOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
@@ -527,7 +527,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
@@ -537,7 +537,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private LocalDate plannedCompletionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -550,7 +550,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -563,7 +563,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -576,7 +576,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
@@ -590,7 +590,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private BigDecimal requiredQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVAILABLE_QUANTITY - COLUMN_SCALE_AVAILABLE_QUANTITY,
             fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
@@ -605,7 +605,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private BigDecimal availableQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
@@ -619,7 +619,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private BigDecimal shortageQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_AVAILABILITY_STATUS)
     @NotNull
@@ -632,7 +632,7 @@ public abstract class MappedMaterialRequirementsView {
     )
     private String availabilityStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull

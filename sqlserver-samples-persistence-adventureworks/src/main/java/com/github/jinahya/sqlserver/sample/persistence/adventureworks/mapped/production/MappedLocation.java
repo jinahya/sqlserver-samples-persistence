@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -37,8 +39,44 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.Location} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.Location}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LocationID}</th><td>Primary key for Location records.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Location description.</td></tr>
+ * <tr><th scope="row">{@code CostRate}</th>
+ *     <td>Standard hourly cost of the manufacturing location.</td></tr>
+ * <tr><th scope="row">{@code Availability}</th>
+ *     <td>Work capacity (in hours) of the manufacturing location.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.Location}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CostRate}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code Availability}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedLocation.TABLE_SCHEMA,
+        table = MappedLocation.TABLE_NAME,
+        value = "Product inventory and manufacturing locations."
+)
 public abstract class MappedLocation {
 
     /**
@@ -51,7 +89,7 @@ public abstract class MappedLocation {
      */
     public static final String TABLE_NAME = "Location";
 
-    // ------------------------------------------------------------------------------------------------------ LocationID
+    // ---------------------------------------------------------------------------------- LocationID
 
     /**
      * The name of the {@code smallint, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,7 +101,7 @@ public abstract class MappedLocation {
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -80,7 +118,7 @@ public abstract class MappedLocation {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // -------------------------------------------------------------------------------------------------------- CostRate
+    // ------------------------------------------------------------------------------------ CostRate
 
     /**
      * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -98,7 +136,7 @@ public abstract class MappedLocation {
      */
     public static final String ATTRIBUTE_NAME_COST_RATE = "costRate";
 
-    // ---------------------------------------------------------------------------------------------------- Availability
+    // -------------------------------------------------------------------------------- Availability
 
     /**
      * The name of the {@code decimal(8, 2), DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -126,7 +164,7 @@ public abstract class MappedLocation {
      */
     public static final String ATTRIBUTE_NAME_AVAILABILITY = "availability";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -138,7 +176,7 @@ public abstract class MappedLocation {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -147,7 +185,7 @@ public abstract class MappedLocation {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -189,7 +227,7 @@ public abstract class MappedLocation {
         return Objects.hash(locationId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ locationId
+    // ---------------------------------------------------------------------------------- locationId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
@@ -209,7 +247,7 @@ public abstract class MappedLocation {
         this.locationId = locationId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -229,7 +267,7 @@ public abstract class MappedLocation {
         this.name = name;
     }
 
-    // -------------------------------------------------------------------------------------------------------- costRate
+    // ------------------------------------------------------------------------------------ costRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COST_RATE} attribute.
@@ -249,7 +287,7 @@ public abstract class MappedLocation {
         this.costRate = costRate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- availability
+    // -------------------------------------------------------------------------------- availability
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVAILABILITY} attribute.
@@ -269,7 +307,7 @@ public abstract class MappedLocation {
         this.availability = availability;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -289,7 +327,7 @@ public abstract class MappedLocation {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -299,9 +337,11 @@ public abstract class MappedLocation {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_LOCATION_ID,
+                          value = "Primary key for Location records.")
     private Short locationId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -311,9 +351,10 @@ public abstract class MappedLocation {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Location description.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Location_CostRate: ([CostRate]>=(0.00))
     @DecimalMin(COLUMN_MIN_COST_RATE)
     @NotNull
@@ -323,9 +364,12 @@ public abstract class MappedLocation {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COST_RATE,
+                          value = "Standard hourly cost of the manufacturing location.")
+    @MsDefault(name = "DF_Location_CostRate", value = "((0.00))")
     private BigDecimal costRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_Location_Availability: ([Availability]>=(0.00))
     @DecimalMin(COLUMN_MIN_AVAILABILITY)
     @Digits(integer = COLUMN_PRECISION_AVAILABILITY - COLUMN_SCALE_AVAILABILITY, fraction = COLUMN_SCALE_AVAILABILITY)
@@ -338,9 +382,12 @@ public abstract class MappedLocation {
             precision = COLUMN_PRECISION_AVAILABILITY,
             scale = COLUMN_SCALE_AVAILABILITY
     )
+    @MsDescription.Column(name = COLUMN_NAME_AVAILABILITY,
+                          value = "Work capacity (in hours) of the manufacturing location.")
+    @MsDefault(name = "DF_Location_Availability", value = "((0.00))")
     private BigDecimal availability;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -349,6 +396,9 @@ public abstract class MappedLocation {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Location_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

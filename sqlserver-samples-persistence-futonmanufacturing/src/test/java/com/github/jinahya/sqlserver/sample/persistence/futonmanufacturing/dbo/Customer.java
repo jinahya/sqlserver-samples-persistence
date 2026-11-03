@@ -28,12 +28,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.Customer} table.
  */
 @Entity(name = "DboCustomer")
-@Table(schema = MappedCustomer.TABLE_SCHEMA, name = MappedCustomer.TABLE_NAME)
+@Table(schema = MappedCustomer.TABLE_SCHEMA,
+       name = MappedCustomer.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               Customer.COLUMN_NAME_CUSTOMER_CODE
+                       }
+               )
+       }
+)
 public class Customer extends MappedCustomer {
 
     /**
@@ -46,7 +56,7 @@ public class Customer extends MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +65,7 @@ public class Customer extends MappedCustomer {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesRep
+    // ------------------------------------------------------------------------------------ salesRep
 
     /**
      * Returns the {@code SalesRep} which the {@code FK_Customer_SalesRep} foreign key references.
@@ -77,7 +87,7 @@ public class Customer extends MappedCustomer {
         setSalesRepId(salesRep == null ? null : salesRep.getSalesRepId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- territory
+    // ----------------------------------------------------------------------------------- territory
 
     /**
      * Returns the {@code SalesTerritory} which the {@code FK_Customer_Territory} foreign key references.
@@ -99,7 +109,7 @@ public class Customer extends MappedCustomer {
         setTerritoryId(territory == null ? null : territory.getTerritoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_REP_ID,
                 referencedColumnName = MappedSalesRep.COLUMN_NAME_SALES_REP_ID,
@@ -109,7 +119,7 @@ public class Customer extends MappedCustomer {
     )
     private SalesRep salesRep;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

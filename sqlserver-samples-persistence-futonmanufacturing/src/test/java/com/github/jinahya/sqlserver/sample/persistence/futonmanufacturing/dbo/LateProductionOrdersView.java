@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class LateProductionOrdersView extends MappedLateProductionOrdersView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

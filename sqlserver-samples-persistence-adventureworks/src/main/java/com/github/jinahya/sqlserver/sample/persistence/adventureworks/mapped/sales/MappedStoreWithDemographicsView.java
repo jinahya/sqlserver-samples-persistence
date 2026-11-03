@@ -51,7 +51,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String TABLE_NAME = "vStoreWithDemographics";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -80,7 +80,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ----------------------------------------------------------------------------------------------------- AnnualSales
+    // --------------------------------------------------------------------------------- AnnualSales
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -92,7 +92,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_SALES = "annualSales";
 
-    // --------------------------------------------------------------------------------------------------- AnnualRevenue
+    // ------------------------------------------------------------------------------- AnnualRevenue
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_REVENUE = "annualRevenue";
 
-    // -------------------------------------------------------------------------------------------------------- BankName
+    // ------------------------------------------------------------------------------------ BankName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_BANK_NAME = "bankName";
 
-    // ---------------------------------------------------------------------------------------------------- BusinessType
+    // -------------------------------------------------------------------------------- BusinessType
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -138,7 +138,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_TYPE = "businessType";
 
-    // ------------------------------------------------------------------------------------------------------ YearOpened
+    // ---------------------------------------------------------------------------------- YearOpened
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_YEAR_OPENED = "yearOpened";
 
-    // ------------------------------------------------------------------------------------------------------- Specialty
+    // ----------------------------------------------------------------------------------- Specialty
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_SPECIALTY = "specialty";
 
-    // ------------------------------------------------------------------------------------------------------ SquareFeet
+    // ---------------------------------------------------------------------------------- SquareFeet
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -179,7 +179,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_SQUARE_FEET = "squareFeet";
 
-    // ---------------------------------------------------------------------------------------------------------- Brands
+    // -------------------------------------------------------------------------------------- Brands
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_BRANDS = "brands";
 
-    // -------------------------------------------------------------------------------------------------------- Internet
+    // ------------------------------------------------------------------------------------ Internet
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -213,7 +213,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_INTERNET = "internet";
 
-    // ------------------------------------------------------------------------------------------------- NumberEmployees
+    // ----------------------------------------------------------------------------- NumberEmployees
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -225,7 +225,7 @@ public abstract class MappedStoreWithDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_EMPLOYEES = "numberEmployees";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -234,7 +234,7 @@ public abstract class MappedStoreWithDemographicsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -283,7 +283,7 @@ public abstract class MappedStoreWithDemographicsView {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -303,7 +303,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -323,7 +323,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.name = name;
     }
 
-    // ----------------------------------------------------------------------------------------------------- annualSales
+    // --------------------------------------------------------------------------------- annualSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ANNUAL_SALES} attribute.
@@ -343,7 +343,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.annualSales = annualSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- annualRevenue
+    // ------------------------------------------------------------------------------- annualRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ANNUAL_REVENUE} attribute.
@@ -363,7 +363,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.annualRevenue = annualRevenue;
     }
 
-    // -------------------------------------------------------------------------------------------------------- bankName
+    // ------------------------------------------------------------------------------------ bankName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BANK_NAME} attribute.
@@ -383,7 +383,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.bankName = bankName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- businessType
+    // -------------------------------------------------------------------------------- businessType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_TYPE} attribute.
@@ -403,7 +403,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.businessType = businessType;
     }
 
-    // ------------------------------------------------------------------------------------------------------ yearOpened
+    // ---------------------------------------------------------------------------------- yearOpened
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR_OPENED} attribute.
@@ -423,7 +423,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.yearOpened = yearOpened;
     }
 
-    // ------------------------------------------------------------------------------------------------------- specialty
+    // ----------------------------------------------------------------------------------- specialty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SPECIALTY} attribute.
@@ -443,7 +443,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.specialty = specialty;
     }
 
-    // ------------------------------------------------------------------------------------------------------ squareFeet
+    // ---------------------------------------------------------------------------------- squareFeet
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SQUARE_FEET} attribute.
@@ -463,7 +463,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.squareFeet = squareFeet;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- brands
+    // -------------------------------------------------------------------------------------- brands
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BRANDS} attribute.
@@ -483,7 +483,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.brands = brands;
     }
 
-    // -------------------------------------------------------------------------------------------------------- internet
+    // ------------------------------------------------------------------------------------ internet
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNET} attribute.
@@ -503,7 +503,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.internet = internet;
     }
 
-    // ------------------------------------------------------------------------------------------------- numberEmployees
+    // ----------------------------------------------------------------------------- numberEmployees
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_EMPLOYEES} attribute.
@@ -523,7 +523,7 @@ public abstract class MappedStoreWithDemographicsView {
         this.numberEmployees = numberEmployees;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -534,7 +534,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
@@ -547,7 +547,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_SALES,
@@ -557,7 +557,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private BigDecimal annualSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_REVENUE,
@@ -567,7 +567,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private BigDecimal annualRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_NAME)
     @Basic(optional = true)
@@ -579,7 +579,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private String bankName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BUSINESS_TYPE)
     @Basic(optional = true)
@@ -591,7 +591,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private String businessType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_OPENED,
@@ -601,7 +601,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private Integer yearOpened;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SPECIALTY)
     @Basic(optional = true)
@@ -613,7 +613,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private String specialty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SQUARE_FEET,
@@ -623,7 +623,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private Integer squareFeet;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BRANDS)
     @Basic(optional = true)
@@ -635,7 +635,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private String brands;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_INTERNET)
     @Basic(optional = true)
@@ -647,7 +647,7 @@ public abstract class MappedStoreWithDemographicsView {
     )
     private String internet;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_EMPLOYEES,

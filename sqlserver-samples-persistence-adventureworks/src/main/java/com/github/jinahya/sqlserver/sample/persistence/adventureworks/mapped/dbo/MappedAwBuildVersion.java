@@ -20,7 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.db
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.MappedWithIdentityId;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
@@ -34,6 +36,35 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.AWBuildVersion} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code dbo.AWBuildVersion}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SystemInformationID}</th>
+ *     <td>Primary key for AWBuildVersion records.</td></tr>
+ * <tr><th scope="row">{@code Database Version}</th>
+ *     <td>Version number of the database in 9.yy.mm.dd.00 format.</td></tr>
+ * <tr><th scope="row">{@code VersionDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.AWBuildVersion}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedAwBuildVersion.COLUMN_NAME_SYSTEM_INFORMATION_ID,
@@ -43,6 +74,11 @@ import java.util.Objects;
                    )
 )
 @MappedSuperclass
+@MsDescription(
+        schema = MappedAwBuildVersion.TABLE_SCHEMA,
+        table = MappedAwBuildVersion.TABLE_NAME,
+        value = "Current version number of the AdventureWorks 2025 sample database."
+)
 public abstract class MappedAwBuildVersion
         extends MappedWithIdentityId {
 
@@ -56,14 +92,14 @@ public abstract class MappedAwBuildVersion
      */
     public static final String TABLE_NAME = "AWBuildVersion";
 
-    // --------------------------------------------------------------------------------------------- SystemInformationID
+    // ------------------------------------------------------------------------- SystemInformationID
 
     /**
      * The name of the {@code tinyint, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SYSTEM_INFORMATION_ID = "SystemInformationID";
 
-    // ------------------------------------------------------------------------------------------------ Database Version
+    // ---------------------------------------------------------------------------- Database Version
 
     /**
      * The name of the {@code nvarchar(25), NOT NULL} column. The value is {@value}.
@@ -80,7 +116,7 @@ public abstract class MappedAwBuildVersion
      */
     public static final String ATTRIBUTE_NAME_DATABASE_VERSION = "databaseVersion";
 
-    // ----------------------------------------------------------------------------------------------------- VersionDate
+    // --------------------------------------------------------------------------------- VersionDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -92,7 +128,7 @@ public abstract class MappedAwBuildVersion
      */
     public static final String ATTRIBUTE_NAME_VERSION_DATE = "versionDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -104,7 +140,7 @@ public abstract class MappedAwBuildVersion
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -113,7 +149,7 @@ public abstract class MappedAwBuildVersion
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -154,7 +190,7 @@ public abstract class MappedAwBuildVersion
         return Objects.hash(getId_());
     }
 
-    // --------------------------------------------------------------------------------------------- systemInformationId
+    // ------------------------------------------------------------------------- systemInformationId
 
     /**
      * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_SYSTEM_INFORMATION_ID} column.
@@ -165,7 +201,7 @@ public abstract class MappedAwBuildVersion
         return getId_();
     }
 
-    // ------------------------------------------------------------------------------------------------- databaseVersion
+    // ----------------------------------------------------------------------------- databaseVersion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DATABASE_VERSION} attribute.
@@ -185,7 +221,7 @@ public abstract class MappedAwBuildVersion
         this.databaseVersion = databaseVersion;
     }
 
-    // ----------------------------------------------------------------------------------------------------- versionDate
+    // --------------------------------------------------------------------------------- versionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VERSION_DATE} attribute.
@@ -205,7 +241,7 @@ public abstract class MappedAwBuildVersion
         this.versionDate = versionDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -225,7 +261,7 @@ public abstract class MappedAwBuildVersion
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DATABASE_VERSION)
     @NotNull
     @Basic(optional = false)
@@ -235,9 +271,11 @@ public abstract class MappedAwBuildVersion
             updatable = true,
             length = COLUMN_LENGTH_DATABASE_VERSION
     )
+    @MsDescription.Column(name = COLUMN_NAME_DATABASE_VERSION,
+                          value = "Version number of the database in 9.yy.mm.dd.00 format.")
     private String databaseVersion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VERSION_DATE,
@@ -245,9 +283,11 @@ public abstract class MappedAwBuildVersion
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_VERSION_DATE,
+                          value = "Date and time the record was last updated.")
     private LocalDateTime versionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -256,6 +296,9 @@ public abstract class MappedAwBuildVersion
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_AWBuildVersion_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

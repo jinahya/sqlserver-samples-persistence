@@ -51,7 +51,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String TABLE_NAME = "vw_WhereUsed";
 
-    // ------------------------------------------------------------------------------------------------- ComponentItemID
+    // ----------------------------------------------------------------------------- ComponentItemID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_ID = "componentItemId";
 
-    // ----------------------------------------------------------------------------------------------- ComponentItemCode
+    // --------------------------------------------------------------------------- ComponentItemCode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -81,7 +81,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_CODE = "componentItemCode";
 
-    // ----------------------------------------------------------------------------------------------- ComponentItemName
+    // --------------------------------------------------------------------------- ComponentItemName
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_NAME = "componentItemName";
 
-    // ---------------------------------------------------------------------------------------------------- ParentItemID
+    // -------------------------------------------------------------------------------- ParentItemID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -111,7 +111,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_ID = "parentItemId";
 
-    // -------------------------------------------------------------------------------------------------- ParentItemCode
+    // ------------------------------------------------------------------------------ ParentItemCode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_CODE = "parentItemCode";
 
-    // -------------------------------------------------------------------------------------------------- ParentItemName
+    // ------------------------------------------------------------------------------ ParentItemName
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_NAME = "parentItemName";
 
-    // ------------------------------------------------------------------------------------------------------ ParentType
+    // ---------------------------------------------------------------------------------- ParentType
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_TYPE = "parentType";
 
-    // ----------------------------------------------------------------------------------------------------------- Level
+    // --------------------------------------------------------------------------------------- Level
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_LEVEL = "level";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 4)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10)} column. The value is {@value}.
@@ -213,7 +213,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // ------------------------------------------------------------------------------------------------------- UsagePath
+    // ----------------------------------------------------------------------------------- UsagePath
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -225,7 +225,7 @@ public abstract class MappedWhereUsedView {
      */
     public static final String ATTRIBUTE_NAME_USAGE_PATH = "usagePath";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -234,7 +234,7 @@ public abstract class MappedWhereUsedView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -253,7 +253,7 @@ public abstract class MappedWhereUsedView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------- componentItemId
+    // ----------------------------------------------------------------------------- componentItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute.
@@ -273,7 +273,7 @@ public abstract class MappedWhereUsedView {
         this.componentItemId = componentItemId;
     }
 
-    // ----------------------------------------------------------------------------------------------- componentItemCode
+    // --------------------------------------------------------------------------- componentItemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_CODE} attribute.
@@ -293,7 +293,7 @@ public abstract class MappedWhereUsedView {
         this.componentItemCode = componentItemCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- componentItemName
+    // --------------------------------------------------------------------------- componentItemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_NAME} attribute.
@@ -313,7 +313,7 @@ public abstract class MappedWhereUsedView {
         this.componentItemName = componentItemName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- parentItemId
+    // -------------------------------------------------------------------------------- parentItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute.
@@ -333,7 +333,7 @@ public abstract class MappedWhereUsedView {
         this.parentItemId = parentItemId;
     }
 
-    // -------------------------------------------------------------------------------------------------- parentItemCode
+    // ------------------------------------------------------------------------------ parentItemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_CODE} attribute.
@@ -353,7 +353,7 @@ public abstract class MappedWhereUsedView {
         this.parentItemCode = parentItemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------- parentItemName
+    // ------------------------------------------------------------------------------ parentItemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_NAME} attribute.
@@ -373,7 +373,7 @@ public abstract class MappedWhereUsedView {
         this.parentItemName = parentItemName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ parentType
+    // ---------------------------------------------------------------------------------- parentType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_TYPE} attribute.
@@ -393,7 +393,7 @@ public abstract class MappedWhereUsedView {
         this.parentType = parentType;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- level
+    // --------------------------------------------------------------------------------------- level
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEVEL} attribute.
@@ -413,7 +413,7 @@ public abstract class MappedWhereUsedView {
         this.level = level;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -433,7 +433,7 @@ public abstract class MappedWhereUsedView {
         this.quantity = quantity;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -453,7 +453,7 @@ public abstract class MappedWhereUsedView {
         this.unitCode = unitCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------- usagePath
+    // ----------------------------------------------------------------------------------- usagePath
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_USAGE_PATH} attribute.
@@ -473,7 +473,7 @@ public abstract class MappedWhereUsedView {
         this.usagePath = usagePath;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID,
@@ -483,7 +483,7 @@ public abstract class MappedWhereUsedView {
     )
     private Integer componentItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_CODE)
     @Basic(optional = true)
@@ -495,7 +495,7 @@ public abstract class MappedWhereUsedView {
     )
     private String componentItemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_NAME)
     @Basic(optional = true)
@@ -507,7 +507,7 @@ public abstract class MappedWhereUsedView {
     )
     private String componentItemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PARENT_ITEM_ID,
@@ -517,7 +517,7 @@ public abstract class MappedWhereUsedView {
     )
     private Integer parentItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_CODE)
     @Basic(optional = true)
@@ -529,7 +529,7 @@ public abstract class MappedWhereUsedView {
     )
     private String parentItemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_NAME)
     @Basic(optional = true)
@@ -541,7 +541,7 @@ public abstract class MappedWhereUsedView {
     )
     private String parentItemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_TYPE)
     @Basic(optional = true)
@@ -553,7 +553,7 @@ public abstract class MappedWhereUsedView {
     )
     private String parentType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEVEL,
@@ -563,7 +563,7 @@ public abstract class MappedWhereUsedView {
     )
     private Integer level;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @Basic(optional = true)
@@ -576,7 +576,7 @@ public abstract class MappedWhereUsedView {
     )
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @Basic(optional = true)
@@ -588,7 +588,7 @@ public abstract class MappedWhereUsedView {
     )
     private String unitCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_USAGE_PATH,

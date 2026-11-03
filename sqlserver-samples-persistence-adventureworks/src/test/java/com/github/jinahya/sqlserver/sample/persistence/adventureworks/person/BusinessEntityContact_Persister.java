@@ -35,7 +35,7 @@ class BusinessEntityContact_Persister
         super(BusinessEntityContact.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public BusinessEntityContact apply(final EntityManager entityManager, final BusinessEntityContact entityInstance) {
         final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);

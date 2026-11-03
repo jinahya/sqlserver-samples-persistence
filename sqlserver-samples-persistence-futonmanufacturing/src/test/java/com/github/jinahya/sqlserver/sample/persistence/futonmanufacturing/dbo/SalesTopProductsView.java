@@ -33,7 +33,7 @@ import java.math.BigDecimal;
  */
 public class SalesTopProductsView extends MappedSalesTopProductsView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

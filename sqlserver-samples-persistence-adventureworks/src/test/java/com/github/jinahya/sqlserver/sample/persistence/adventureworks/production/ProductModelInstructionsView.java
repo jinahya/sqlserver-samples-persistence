@@ -35,7 +35,7 @@ import java.util.UUID;
  */
 public class ProductModelInstructionsView extends MappedProductModelInstructionsView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

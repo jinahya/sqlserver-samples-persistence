@@ -54,7 +54,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String TABLE_NAME = "vw_QualityInspectionSummary";
 
-    // -------------------------------------------------------------------------------------------------- InspectionDate
+    // ------------------------------------------------------------------------------ InspectionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -66,7 +66,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_INSPECTION_DATE = "inspectionDate";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -78,7 +78,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -90,7 +90,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // -------------------------------------------------------------------------------------------------- InspectionType
+    // ------------------------------------------------------------------------------ InspectionType
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -107,7 +107,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_INSPECTION_TYPE = "inspectionType";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -124,7 +124,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -141,7 +141,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -158,7 +158,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // --------------------------------------------------------------------------------------------- NumberOfInspections
+    // ------------------------------------------------------------------------- NumberOfInspections
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -171,7 +171,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_OF_INSPECTIONS = "numberOfInspections";
 
-    // -------------------------------------------------------------------------------------------------- TotalInspected
+    // ------------------------------------------------------------------------------ TotalInspected
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -193,7 +193,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_INSPECTED = "totalInspected";
 
-    // --------------------------------------------------------------------------------------------------- TotalAccepted
+    // ------------------------------------------------------------------------------- TotalAccepted
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -215,7 +215,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ACCEPTED = "totalAccepted";
 
-    // --------------------------------------------------------------------------------------------------- TotalRejected
+    // ------------------------------------------------------------------------------- TotalRejected
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -237,7 +237,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REJECTED = "totalRejected";
 
-    // -------------------------------------------------------------------------------------------------- AcceptanceRate
+    // ------------------------------------------------------------------------------ AcceptanceRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -259,7 +259,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_ACCEPTANCE_RATE = "acceptanceRate";
 
-    // --------------------------------------------------------------------------------------------------- RejectionRate
+    // ------------------------------------------------------------------------------- RejectionRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -281,7 +281,7 @@ public abstract class MappedQualityInspectionSummaryView {
      */
     public static final String ATTRIBUTE_NAME_REJECTION_RATE = "rejectionRate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -290,7 +290,7 @@ public abstract class MappedQualityInspectionSummaryView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -311,7 +311,7 @@ public abstract class MappedQualityInspectionSummaryView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------- inspectionDate
+    // ------------------------------------------------------------------------------ inspectionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSPECTION_DATE} attribute.
@@ -331,7 +331,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.inspectionDate = inspectionDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -351,7 +351,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -371,7 +371,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.month = month;
     }
 
-    // -------------------------------------------------------------------------------------------------- inspectionType
+    // ------------------------------------------------------------------------------ inspectionType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSPECTION_TYPE} attribute.
@@ -391,7 +391,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.inspectionType = inspectionType;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -411,7 +411,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -431,7 +431,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -451,7 +451,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.itemType = itemType;
     }
 
-    // --------------------------------------------------------------------------------------------- numberOfInspections
+    // ------------------------------------------------------------------------- numberOfInspections
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_OF_INSPECTIONS} attribute.
@@ -471,7 +471,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.numberOfInspections = numberOfInspections;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalInspected
+    // ------------------------------------------------------------------------------ totalInspected
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_INSPECTED} attribute.
@@ -491,7 +491,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.totalInspected = totalInspected;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalAccepted
+    // ------------------------------------------------------------------------------- totalAccepted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ACCEPTED} attribute.
@@ -511,7 +511,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.totalAccepted = totalAccepted;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalRejected
+    // ------------------------------------------------------------------------------- totalRejected
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REJECTED} attribute.
@@ -531,7 +531,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.totalRejected = totalRejected;
     }
 
-    // -------------------------------------------------------------------------------------------------- acceptanceRate
+    // ------------------------------------------------------------------------------ acceptanceRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACCEPTANCE_RATE} attribute.
@@ -551,7 +551,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.acceptanceRate = acceptanceRate;
     }
 
-    // --------------------------------------------------------------------------------------------------- rejectionRate
+    // ------------------------------------------------------------------------------- rejectionRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REJECTION_RATE} attribute.
@@ -571,7 +571,7 @@ public abstract class MappedQualityInspectionSummaryView {
         this.rejectionRate = rejectionRate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSPECTION_DATE,
@@ -581,7 +581,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private LocalDate inspectionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -591,7 +591,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -601,7 +601,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_INSPECTION_TYPE)
     @NotNull
@@ -614,7 +614,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private String inspectionType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -627,7 +627,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -640,7 +640,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -653,7 +653,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_INSPECTIONS,
@@ -663,7 +663,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private Integer numberOfInspections;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_INSPECTED - COLUMN_SCALE_TOTAL_INSPECTED,
             fraction = COLUMN_SCALE_TOTAL_INSPECTED)
@@ -677,7 +677,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private BigDecimal totalInspected;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_ACCEPTED - COLUMN_SCALE_TOTAL_ACCEPTED,
             fraction = COLUMN_SCALE_TOTAL_ACCEPTED)
@@ -691,7 +691,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private BigDecimal totalAccepted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REJECTED - COLUMN_SCALE_TOTAL_REJECTED,
             fraction = COLUMN_SCALE_TOTAL_REJECTED)
@@ -705,7 +705,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private BigDecimal totalRejected;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ACCEPTANCE_RATE - COLUMN_SCALE_ACCEPTANCE_RATE,
             fraction = COLUMN_SCALE_ACCEPTANCE_RATE)
@@ -719,7 +719,7 @@ public abstract class MappedQualityInspectionSummaryView {
     )
     private BigDecimal acceptanceRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REJECTION_RATE - COLUMN_SCALE_REJECTION_RATE,
             fraction = COLUMN_SCALE_REJECTION_RATE)

@@ -52,7 +52,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String TABLE_NAME = "vPersonDemographics";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -64,7 +64,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------ TotalPurchaseYTD
+    // ---------------------------------------------------------------------------- TotalPurchaseYTD
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -76,7 +76,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD = "totalPurchaseYtd";
 
-    // ----------------------------------------------------------------------------------------------- DateFirstPurchase
+    // --------------------------------------------------------------------------- DateFirstPurchase
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -89,7 +89,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_DATE_FIRST_PURCHASE = "dateFirstPurchase";
 
-    // ------------------------------------------------------------------------------------------------------- BirthDate
+    // ----------------------------------------------------------------------------------- BirthDate
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -101,7 +101,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_BIRTH_DATE = "birthDate";
 
-    // --------------------------------------------------------------------------------------------------- MaritalStatus
+    // ------------------------------------------------------------------------------- MaritalStatus
 
     /**
      * The name of the {@code nvarchar(1)} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_MARITAL_STATUS = "maritalStatus";
 
-    // ---------------------------------------------------------------------------------------------------- YearlyIncome
+    // -------------------------------------------------------------------------------- YearlyIncome
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -135,7 +135,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_YEARLY_INCOME = "yearlyIncome";
 
-    // ---------------------------------------------------------------------------------------------------------- Gender
+    // -------------------------------------------------------------------------------------- Gender
 
     /**
      * The name of the {@code nvarchar(1)} column. The value is {@value}.
@@ -152,7 +152,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_GENDER = "gender";
 
-    // --------------------------------------------------------------------------------------------------- TotalChildren
+    // ------------------------------------------------------------------------------- TotalChildren
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -164,7 +164,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_CHILDREN = "totalChildren";
 
-    // -------------------------------------------------------------------------------------------- NumberChildrenAtHome
+    // ------------------------------------------------------------------------ NumberChildrenAtHome
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -177,7 +177,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME = "numberChildrenAtHome";
 
-    // ------------------------------------------------------------------------------------------------------- Education
+    // ----------------------------------------------------------------------------------- Education
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -194,7 +194,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_EDUCATION = "education";
 
-    // ------------------------------------------------------------------------------------------------------ Occupation
+    // ---------------------------------------------------------------------------------- Occupation
 
     /**
      * The name of the {@code nvarchar(30)} column. The value is {@value}.
@@ -211,7 +211,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_OCCUPATION = "occupation";
 
-    // --------------------------------------------------------------------------------------------------- HomeOwnerFlag
+    // ------------------------------------------------------------------------------- HomeOwnerFlag
 
     /**
      * The name of the {@code bit} column. The value is {@value}.
@@ -223,7 +223,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_HOME_OWNER_FLAG = "homeOwnerFlag";
 
-    // ------------------------------------------------------------------------------------------------- NumberCarsOwned
+    // ----------------------------------------------------------------------------- NumberCarsOwned
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedPersonDemographicsView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_CARS_OWNED = "numberCarsOwned";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -244,7 +244,7 @@ public abstract class MappedPersonDemographicsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -294,7 +294,7 @@ public abstract class MappedPersonDemographicsView {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -314,7 +314,7 @@ public abstract class MappedPersonDemographicsView {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------ totalPurchaseYtd
+    // ---------------------------------------------------------------------------- totalPurchaseYtd
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute.
@@ -334,7 +334,7 @@ public abstract class MappedPersonDemographicsView {
         this.totalPurchaseYtd = totalPurchaseYtd;
     }
 
-    // ----------------------------------------------------------------------------------------------- dateFirstPurchase
+    // --------------------------------------------------------------------------- dateFirstPurchase
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute.
@@ -354,7 +354,7 @@ public abstract class MappedPersonDemographicsView {
         this.dateFirstPurchase = dateFirstPurchase;
     }
 
-    // ------------------------------------------------------------------------------------------------------- birthDate
+    // ----------------------------------------------------------------------------------- birthDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
@@ -374,7 +374,7 @@ public abstract class MappedPersonDemographicsView {
         this.birthDate = birthDate;
     }
 
-    // --------------------------------------------------------------------------------------------------- maritalStatus
+    // ------------------------------------------------------------------------------- maritalStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
@@ -394,7 +394,7 @@ public abstract class MappedPersonDemographicsView {
         this.maritalStatus = maritalStatus;
     }
 
-    // ---------------------------------------------------------------------------------------------------- yearlyIncome
+    // -------------------------------------------------------------------------------- yearlyIncome
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute.
@@ -414,7 +414,7 @@ public abstract class MappedPersonDemographicsView {
         this.yearlyIncome = yearlyIncome;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- gender
+    // -------------------------------------------------------------------------------------- gender
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GENDER} attribute.
@@ -434,7 +434,7 @@ public abstract class MappedPersonDemographicsView {
         this.gender = gender;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalChildren
+    // ------------------------------------------------------------------------------- totalChildren
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute.
@@ -454,7 +454,7 @@ public abstract class MappedPersonDemographicsView {
         this.totalChildren = totalChildren;
     }
 
-    // -------------------------------------------------------------------------------------------- numberChildrenAtHome
+    // ------------------------------------------------------------------------ numberChildrenAtHome
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute.
@@ -474,7 +474,7 @@ public abstract class MappedPersonDemographicsView {
         this.numberChildrenAtHome = numberChildrenAtHome;
     }
 
-    // ------------------------------------------------------------------------------------------------------- education
+    // ----------------------------------------------------------------------------------- education
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EDUCATION} attribute.
@@ -494,7 +494,7 @@ public abstract class MappedPersonDemographicsView {
         this.education = education;
     }
 
-    // ------------------------------------------------------------------------------------------------------ occupation
+    // ---------------------------------------------------------------------------------- occupation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OCCUPATION} attribute.
@@ -514,7 +514,7 @@ public abstract class MappedPersonDemographicsView {
         this.occupation = occupation;
     }
 
-    // --------------------------------------------------------------------------------------------------- homeOwnerFlag
+    // ------------------------------------------------------------------------------- homeOwnerFlag
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute.
@@ -534,7 +534,7 @@ public abstract class MappedPersonDemographicsView {
         this.homeOwnerFlag = homeOwnerFlag;
     }
 
-    // ------------------------------------------------------------------------------------------------- numberCarsOwned
+    // ----------------------------------------------------------------------------- numberCarsOwned
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute.
@@ -554,7 +554,7 @@ public abstract class MappedPersonDemographicsView {
         this.numberCarsOwned = numberCarsOwned;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -565,7 +565,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_PURCHASE_YTD,
@@ -575,7 +575,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private BigDecimal totalPurchaseYtd;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DATE_FIRST_PURCHASE,
@@ -585,7 +585,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private LocalDateTime dateFirstPurchase;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BIRTH_DATE,
@@ -595,7 +595,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private LocalDateTime birthDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MARITAL_STATUS)
     @Basic(optional = true)
@@ -607,7 +607,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private String maritalStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_YEARLY_INCOME)
     @Basic(optional = true)
@@ -619,7 +619,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private String yearlyIncome;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_GENDER)
     @Basic(optional = true)
@@ -631,7 +631,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private String gender;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_CHILDREN,
@@ -641,7 +641,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private Integer totalChildren;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_CHILDREN_AT_HOME,
@@ -651,7 +651,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private Integer numberChildrenAtHome;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDUCATION)
     @Basic(optional = true)
@@ -663,7 +663,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private String education;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_OCCUPATION)
     @Basic(optional = true)
@@ -675,7 +675,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private String occupation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOME_OWNER_FLAG,
@@ -685,7 +685,7 @@ public abstract class MappedPersonDemographicsView {
     )
     private Boolean homeOwnerFlag;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_CARS_OWNED,

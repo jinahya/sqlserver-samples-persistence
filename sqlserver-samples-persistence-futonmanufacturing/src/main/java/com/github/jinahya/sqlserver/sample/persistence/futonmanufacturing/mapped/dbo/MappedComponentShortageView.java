@@ -55,7 +55,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String TABLE_NAME = "vw_ComponentShortage";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -72,7 +72,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -89,7 +89,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // ------------------------------------------------------------------------------------------------ RequiredQuantity
+    // ---------------------------------------------------------------------------- RequiredQuantity
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_REQUIRED_QUANTITY = "requiredQuantity";
 
-    // ----------------------------------------------------------------------------------------------- AvailableQuantity
+    // --------------------------------------------------------------------------- AvailableQuantity
 
     /**
      * The name of the {@code decimal(38, 2), NOT NULL} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_AVAILABLE_QUANTITY = "availableQuantity";
 
-    // ------------------------------------------------------------------------------------------------ ShortageQuantity
+    // ---------------------------------------------------------------------------- ShortageQuantity
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_SHORTAGE_QUANTITY = "shortageQuantity";
 
-    // ------------------------------------------------------------------------------------------------ EarliestNeedDate
+    // ---------------------------------------------------------------------------- EarliestNeedDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_EARLIEST_NEED_DATE = "earliestNeedDate";
 
-    // ------------------------------------------------------------------------------------------------- DaysUntilNeeded
+    // ----------------------------------------------------------------------------- DaysUntilNeeded
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED = "daysUntilNeeded";
 
-    // -------------------------------------------------------------------------------------------------- AffectedOrders
+    // ------------------------------------------------------------------------------ AffectedOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -208,7 +208,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_AFFECTED_ORDERS = "affectedOrders";
 
-    // ---------------------------------------------------------------------------------------------------- UrgencyLevel
+    // -------------------------------------------------------------------------------- UrgencyLevel
 
     /**
      * The name of the {@code varchar(6), NOT NULL} column. The value is {@value}.
@@ -225,7 +225,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_URGENCY_LEVEL = "urgencyLevel";
 
-    // ----------------------------------------------------------------------------------------------- PreferredSupplier
+    // --------------------------------------------------------------------------- PreferredSupplier
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -242,7 +242,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_PREFERRED_SUPPLIER = "preferredSupplier";
 
-    // ---------------------------------------------------------------------------------------------------- LeadTimeDays
+    // -------------------------------------------------------------------------------- LeadTimeDays
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -254,7 +254,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
 
-    // ------------------------------------------------------------------------------------------------- PossibleArrival
+    // ----------------------------------------------------------------------------- PossibleArrival
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -266,7 +266,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_POSSIBLE_ARRIVAL = "possibleArrival";
 
-    // ---------------------------------------------------------------------------------------------------- SupplyStatus
+    // -------------------------------------------------------------------------------- SupplyStatus
 
     /**
      * The name of the {@code varchar(12), NOT NULL} column. The value is {@value}.
@@ -283,7 +283,7 @@ public abstract class MappedComponentShortageView {
      */
     public static final String ATTRIBUTE_NAME_SUPPLY_STATUS = "supplyStatus";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -292,7 +292,7 @@ public abstract class MappedComponentShortageView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -314,7 +314,7 @@ public abstract class MappedComponentShortageView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -334,7 +334,7 @@ public abstract class MappedComponentShortageView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -354,7 +354,7 @@ public abstract class MappedComponentShortageView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -374,7 +374,7 @@ public abstract class MappedComponentShortageView {
         this.itemType = itemType;
     }
 
-    // ------------------------------------------------------------------------------------------------ requiredQuantity
+    // ---------------------------------------------------------------------------- requiredQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute.
@@ -394,7 +394,7 @@ public abstract class MappedComponentShortageView {
         this.requiredQuantity = requiredQuantity;
     }
 
-    // ----------------------------------------------------------------------------------------------- availableQuantity
+    // --------------------------------------------------------------------------- availableQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVAILABLE_QUANTITY} attribute.
@@ -414,7 +414,7 @@ public abstract class MappedComponentShortageView {
         this.availableQuantity = availableQuantity;
     }
 
-    // ------------------------------------------------------------------------------------------------ shortageQuantity
+    // ---------------------------------------------------------------------------- shortageQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute.
@@ -434,7 +434,7 @@ public abstract class MappedComponentShortageView {
         this.shortageQuantity = shortageQuantity;
     }
 
-    // ------------------------------------------------------------------------------------------------ earliestNeedDate
+    // ---------------------------------------------------------------------------- earliestNeedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EARLIEST_NEED_DATE} attribute.
@@ -454,7 +454,7 @@ public abstract class MappedComponentShortageView {
         this.earliestNeedDate = earliestNeedDate;
     }
 
-    // ------------------------------------------------------------------------------------------------- daysUntilNeeded
+    // ----------------------------------------------------------------------------- daysUntilNeeded
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED} attribute.
@@ -474,7 +474,7 @@ public abstract class MappedComponentShortageView {
         this.daysUntilNeeded = daysUntilNeeded;
     }
 
-    // -------------------------------------------------------------------------------------------------- affectedOrders
+    // ------------------------------------------------------------------------------ affectedOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AFFECTED_ORDERS} attribute.
@@ -494,7 +494,7 @@ public abstract class MappedComponentShortageView {
         this.affectedOrders = affectedOrders;
     }
 
-    // ---------------------------------------------------------------------------------------------------- urgencyLevel
+    // -------------------------------------------------------------------------------- urgencyLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_URGENCY_LEVEL} attribute.
@@ -514,7 +514,7 @@ public abstract class MappedComponentShortageView {
         this.urgencyLevel = urgencyLevel;
     }
 
-    // ----------------------------------------------------------------------------------------------- preferredSupplier
+    // --------------------------------------------------------------------------- preferredSupplier
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PREFERRED_SUPPLIER} attribute.
@@ -534,7 +534,7 @@ public abstract class MappedComponentShortageView {
         this.preferredSupplier = preferredSupplier;
     }
 
-    // ---------------------------------------------------------------------------------------------------- leadTimeDays
+    // -------------------------------------------------------------------------------- leadTimeDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute.
@@ -554,7 +554,7 @@ public abstract class MappedComponentShortageView {
         this.leadTimeDays = leadTimeDays;
     }
 
-    // ------------------------------------------------------------------------------------------------- possibleArrival
+    // ----------------------------------------------------------------------------- possibleArrival
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSSIBLE_ARRIVAL} attribute.
@@ -574,7 +574,7 @@ public abstract class MappedComponentShortageView {
         this.possibleArrival = possibleArrival;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplyStatus
+    // -------------------------------------------------------------------------------- supplyStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLY_STATUS} attribute.
@@ -594,7 +594,7 @@ public abstract class MappedComponentShortageView {
         this.supplyStatus = supplyStatus;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -607,7 +607,7 @@ public abstract class MappedComponentShortageView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -620,7 +620,7 @@ public abstract class MappedComponentShortageView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -633,7 +633,7 @@ public abstract class MappedComponentShortageView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
@@ -647,7 +647,7 @@ public abstract class MappedComponentShortageView {
     )
     private BigDecimal requiredQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVAILABLE_QUANTITY - COLUMN_SCALE_AVAILABLE_QUANTITY,
             fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
@@ -662,7 +662,7 @@ public abstract class MappedComponentShortageView {
     )
     private BigDecimal availableQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
@@ -676,7 +676,7 @@ public abstract class MappedComponentShortageView {
     )
     private BigDecimal shortageQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EARLIEST_NEED_DATE,
@@ -686,7 +686,7 @@ public abstract class MappedComponentShortageView {
     )
     private LocalDate earliestNeedDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_NEEDED,
@@ -696,7 +696,7 @@ public abstract class MappedComponentShortageView {
     )
     private Integer daysUntilNeeded;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AFFECTED_ORDERS,
@@ -706,7 +706,7 @@ public abstract class MappedComponentShortageView {
     )
     private Integer affectedOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_URGENCY_LEVEL)
     @NotNull
@@ -719,7 +719,7 @@ public abstract class MappedComponentShortageView {
     )
     private String urgencyLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     @Basic(optional = true)
@@ -731,7 +731,7 @@ public abstract class MappedComponentShortageView {
     )
     private String preferredSupplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
@@ -741,7 +741,7 @@ public abstract class MappedComponentShortageView {
     )
     private Integer leadTimeDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSSIBLE_ARRIVAL,
@@ -751,7 +751,7 @@ public abstract class MappedComponentShortageView {
     )
     private LocalDateTime possibleArrival;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLY_STATUS)
     @NotNull

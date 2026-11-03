@@ -53,7 +53,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String TABLE_NAME = "vw_CustomerFulfillmentRate";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerCode
+    // -------------------------------------------------------------------------------- CustomerCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CODE = "customerCode";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ------------------------------------------------------------------------------------------------- TotalOrderValue
+    // ----------------------------------------------------------------------------- TotalOrderValue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDER_VALUE = "totalOrderValue";
 
-    // ------------------------------------------------------------------------------------------------- DeliveredOrders
+    // ----------------------------------------------------------------------------- DeliveredOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_DELIVERED_ORDERS = "deliveredOrders";
 
-    // ------------------------------------------------------------------------------------------------ OnTimeDeliveries
+    // ---------------------------------------------------------------------------- OnTimeDeliveries
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_ON_TIME_DELIVERIES = "onTimeDeliveries";
 
-    // -------------------------------------------------------------------------------------------------- DeliveredValue
+    // ------------------------------------------------------------------------------ DeliveredValue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_DELIVERED_VALUE = "deliveredValue";
 
-    // --------------------------------------------------------------------------------------------------- PendingOrders
+    // ------------------------------------------------------------------------------- PendingOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -179,7 +179,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_PENDING_ORDERS = "pendingOrders";
 
-    // ---------------------------------------------------------------------------------------------------- PendingValue
+    // -------------------------------------------------------------------------------- PendingValue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -201,7 +201,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_PENDING_VALUE = "pendingValue";
 
-    // ------------------------------------------------------------------------------------------------- FulfillmentRate
+    // ----------------------------------------------------------------------------- FulfillmentRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -223,7 +223,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_FULFILLMENT_RATE = "fulfillmentRate";
 
-    // ---------------------------------------------------------------------------------------------- OnTimeDeliveryRate
+    // -------------------------------------------------------------------------- OnTimeDeliveryRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -246,7 +246,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_ON_TIME_DELIVERY_RATE = "onTimeDeliveryRate";
 
-    // --------------------------------------------------------------------------------------------------- AvgDaysToShip
+    // ------------------------------------------------------------------------------- AvgDaysToShip
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -258,7 +258,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP = "avgDaysToShip";
 
-    // --------------------------------------------------------------------------------------------- AvgDeliveryVariance
+    // ------------------------------------------------------------------------- AvgDeliveryVariance
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -271,7 +271,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DELIVERY_VARIANCE = "avgDeliveryVariance";
 
-    // ---------------------------------------------------------------------------------------------------- ServiceLevel
+    // -------------------------------------------------------------------------------- ServiceLevel
 
     /**
      * The name of the {@code varchar(9), NOT NULL} column. The value is {@value}.
@@ -288,7 +288,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     public static final String ATTRIBUTE_NAME_SERVICE_LEVEL = "serviceLevel";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -297,7 +297,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -348,7 +348,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         return Objects.hash(customerCode);
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerCode
+    // -------------------------------------------------------------------------------- customerCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CODE} attribute.
@@ -368,7 +368,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.customerCode = customerCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -388,7 +388,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.customerName = customerName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -408,7 +408,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.totalOrders = totalOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------- totalOrderValue
+    // ----------------------------------------------------------------------------- totalOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDER_VALUE} attribute.
@@ -428,7 +428,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.totalOrderValue = totalOrderValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- deliveredOrders
+    // ----------------------------------------------------------------------------- deliveredOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERED_ORDERS} attribute.
@@ -448,7 +448,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.deliveredOrders = deliveredOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------ onTimeDeliveries
+    // ---------------------------------------------------------------------------- onTimeDeliveries
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERIES} attribute.
@@ -468,7 +468,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.onTimeDeliveries = onTimeDeliveries;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveredValue
+    // ------------------------------------------------------------------------------ deliveredValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERED_VALUE} attribute.
@@ -488,7 +488,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.deliveredValue = deliveredValue;
     }
 
-    // --------------------------------------------------------------------------------------------------- pendingOrders
+    // ------------------------------------------------------------------------------- pendingOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PENDING_ORDERS} attribute.
@@ -508,7 +508,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.pendingOrders = pendingOrders;
     }
 
-    // ---------------------------------------------------------------------------------------------------- pendingValue
+    // -------------------------------------------------------------------------------- pendingValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PENDING_VALUE} attribute.
@@ -528,7 +528,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.pendingValue = pendingValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- fulfillmentRate
+    // ----------------------------------------------------------------------------- fulfillmentRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULFILLMENT_RATE} attribute.
@@ -548,7 +548,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.fulfillmentRate = fulfillmentRate;
     }
 
-    // ---------------------------------------------------------------------------------------------- onTimeDeliveryRate
+    // -------------------------------------------------------------------------- onTimeDeliveryRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERY_RATE} attribute.
@@ -568,7 +568,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.onTimeDeliveryRate = onTimeDeliveryRate;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgDaysToShip
+    // ------------------------------------------------------------------------------- avgDaysToShip
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DAYS_TO_SHIP} attribute.
@@ -588,7 +588,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.avgDaysToShip = avgDaysToShip;
     }
 
-    // --------------------------------------------------------------------------------------------- avgDeliveryVariance
+    // ------------------------------------------------------------------------- avgDeliveryVariance
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DELIVERY_VARIANCE} attribute.
@@ -608,7 +608,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.avgDeliveryVariance = avgDeliveryVariance;
     }
 
-    // ---------------------------------------------------------------------------------------------------- serviceLevel
+    // -------------------------------------------------------------------------------- serviceLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SERVICE_LEVEL} attribute.
@@ -628,7 +628,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         this.serviceLevel = serviceLevel;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
@@ -641,7 +641,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private String customerCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -654,7 +654,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -664,7 +664,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_ORDER_VALUE - COLUMN_SCALE_TOTAL_ORDER_VALUE,
             fraction = COLUMN_SCALE_TOTAL_ORDER_VALUE)
@@ -678,7 +678,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private BigDecimal totalOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERED_ORDERS,
@@ -688,7 +688,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private Integer deliveredOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES,
@@ -698,7 +698,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private Integer onTimeDeliveries;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DELIVERED_VALUE - COLUMN_SCALE_DELIVERED_VALUE,
             fraction = COLUMN_SCALE_DELIVERED_VALUE)
@@ -712,7 +712,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private BigDecimal deliveredValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PENDING_ORDERS,
@@ -722,7 +722,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private Integer pendingOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PENDING_VALUE - COLUMN_SCALE_PENDING_VALUE,
             fraction = COLUMN_SCALE_PENDING_VALUE)
@@ -736,7 +736,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private BigDecimal pendingValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_FULFILLMENT_RATE - COLUMN_SCALE_FULFILLMENT_RATE,
             fraction = COLUMN_SCALE_FULFILLMENT_RATE)
@@ -750,7 +750,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private BigDecimal fulfillmentRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE - COLUMN_SCALE_ON_TIME_DELIVERY_RATE,
             fraction = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
@@ -764,7 +764,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private BigDecimal onTimeDeliveryRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DAYS_TO_SHIP,
@@ -774,7 +774,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private Integer avgDaysToShip;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DELIVERY_VARIANCE,
@@ -784,7 +784,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     )
     private Integer avgDeliveryVariance;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SERVICE_LEVEL)
     @NotNull

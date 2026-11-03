@@ -35,7 +35,7 @@ class Person_Persister
         super(Person.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public Person apply(final EntityManager entityManager, final Person entityInstance) {
         final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);

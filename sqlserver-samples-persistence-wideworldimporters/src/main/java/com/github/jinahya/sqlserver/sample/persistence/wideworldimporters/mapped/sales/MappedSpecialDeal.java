@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -44,8 +46,59 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_CUSTOMER_CATEGORY_ID}, {@value #COLUMN_NAME_STOCK_GROUP_ID},
  * {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SpecialDeals}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SpecialDealID}</th>
+ *     <td>ID (sequence based) for a special deal</td></tr>
+ * <tr><th scope="row">{@code StockItemID}</th>
+ *     <td>Stock item that the deal applies to (if NULL, then only discounts are permitted not unit
+ *     prices)</td></tr>
+ * <tr><th scope="row">{@code CustomerID}</th>
+ *     <td>ID of the customer that the special pricing applies to (if NULL then all
+ *     customers)</td></tr>
+ * <tr><th scope="row">{@code BuyingGroupID}</th>
+ *     <td>ID of the buying group that the special pricing applies to (optional)</td></tr>
+ * <tr><th scope="row">{@code CustomerCategoryID}</th>
+ *     <td>ID of the customer category that the special pricing applies to (optional)</td></tr>
+ * <tr><th scope="row">{@code StockGroupID}</th>
+ *     <td>ID of the stock group that the special pricing applies to (optional)</td></tr>
+ * <tr><th scope="row">{@code DealDescription}</th><td>Description of the special deal</td></tr>
+ * <tr><th scope="row">{@code StartDate}</th><td>Date that the special pricing starts from</td></tr>
+ * <tr><th scope="row">{@code EndDate}</th><td>Date that the special pricing ends on</td></tr>
+ * <tr><th scope="row">{@code DiscountAmount}</th>
+ *     <td>Discount per unit to be applied to sale price (optional)</td></tr>
+ * <tr><th scope="row">{@code DiscountPercentage}</th>
+ *     <td>Discount percentage per unit to be applied to sale price (optional)</td></tr>
+ * <tr><th scope="row">{@code UnitPrice}</th>
+ *     <td>Special price per unit to be applied instead of sale price (optional)</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SpecialDeals}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SpecialDealID}</th><td>{@code (NEXT VALUE FOR [Sequences].[SpecialDealID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSpecialDeal.TABLE_SCHEMA,
+        table = MappedSpecialDeal.TABLE_NAME,
+        value = "Special pricing (can include fixed prices, discount $ or discount %)"
+)
 public abstract class MappedSpecialDeal {
 
     /**
@@ -58,7 +111,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String TABLE_NAME = "SpecialDeals";
 
-    // --------------------------------------------------------------------------------------------------- SpecialDealID
+    // ------------------------------------------------------------------------------- SpecialDealID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.SpecialDealID, NOT NULL} column. The value is {@value}.
@@ -70,7 +123,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_DEAL_ID = "specialDealId";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -82,7 +135,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -94,7 +147,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // --------------------------------------------------------------------------------------------------- BuyingGroupID
+    // ------------------------------------------------------------------------------- BuyingGroupID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +159,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_BUYING_GROUP_ID = "buyingGroupId";
 
-    // ---------------------------------------------------------------------------------------------- CustomerCategoryID
+    // -------------------------------------------------------------------------- CustomerCategoryID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -119,7 +172,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID = "customerCategoryId";
 
-    // ---------------------------------------------------------------------------------------------------- StockGroupID
+    // -------------------------------------------------------------------------------- StockGroupID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -131,7 +184,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_STOCK_GROUP_ID = "stockGroupId";
 
-    // ------------------------------------------------------------------------------------------------- DealDescription
+    // ----------------------------------------------------------------------------- DealDescription
 
     /**
      * The name of the {@code nvarchar(30), NOT NULL} column. The value is {@value}.
@@ -148,7 +201,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_DEAL_DESCRIPTION = "dealDescription";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -160,7 +213,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -172,7 +225,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // -------------------------------------------------------------------------------------------------- DiscountAmount
+    // ------------------------------------------------------------------------------ DiscountAmount
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -194,7 +247,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_AMOUNT = "discountAmount";
 
-    // ---------------------------------------------------------------------------------------------- DiscountPercentage
+    // -------------------------------------------------------------------------- DiscountPercentage
 
     /**
      * The name of the {@code decimal(18, 3)} column. The value is {@value}.
@@ -217,7 +270,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENTAGE = "discountPercentage";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -239,7 +292,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -251,7 +304,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -263,7 +316,7 @@ public abstract class MappedSpecialDeal {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -272,7 +325,7 @@ public abstract class MappedSpecialDeal {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -323,7 +376,7 @@ public abstract class MappedSpecialDeal {
         return Objects.hash(specialDealId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether exactly one of the {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT},
@@ -362,7 +415,7 @@ public abstract class MappedSpecialDeal {
         return unitPrice == null || stockItemId != null;
     }
 
-    // --------------------------------------------------------------------------------------------------- specialDealId
+    // ------------------------------------------------------------------------------- specialDealId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SPECIAL_DEAL_ID} attribute.
@@ -382,7 +435,7 @@ public abstract class MappedSpecialDeal {
         this.specialDealId = specialDealId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -404,7 +457,7 @@ public abstract class MappedSpecialDeal {
         this.stockItemId = stockItemId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -425,7 +478,7 @@ public abstract class MappedSpecialDeal {
         this.customerId = customerId;
     }
 
-    // --------------------------------------------------------------------------------------------------- buyingGroupId
+    // ------------------------------------------------------------------------------- buyingGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute.
@@ -447,7 +500,7 @@ public abstract class MappedSpecialDeal {
         this.buyingGroupId = buyingGroupId;
     }
 
-    // ---------------------------------------------------------------------------------------------- customerCategoryId
+    // -------------------------------------------------------------------------- customerCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
@@ -469,7 +522,7 @@ public abstract class MappedSpecialDeal {
         this.customerCategoryId = customerCategoryId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- stockGroupId
+    // -------------------------------------------------------------------------------- stockGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute.
@@ -491,7 +544,7 @@ public abstract class MappedSpecialDeal {
         this.stockGroupId = stockGroupId;
     }
 
-    // ------------------------------------------------------------------------------------------------- dealDescription
+    // ----------------------------------------------------------------------------- dealDescription
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DEAL_DESCRIPTION} attribute.
@@ -511,7 +564,7 @@ public abstract class MappedSpecialDeal {
         this.dealDescription = dealDescription;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -531,7 +584,7 @@ public abstract class MappedSpecialDeal {
         this.startDate = startDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -551,7 +604,7 @@ public abstract class MappedSpecialDeal {
         this.endDate = endDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- discountAmount
+    // ------------------------------------------------------------------------------ discountAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute.
@@ -571,7 +624,7 @@ public abstract class MappedSpecialDeal {
         this.discountAmount = discountAmount;
     }
 
-    // ---------------------------------------------------------------------------------------------- discountPercentage
+    // -------------------------------------------------------------------------- discountPercentage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENTAGE} attribute.
@@ -591,7 +644,7 @@ public abstract class MappedSpecialDeal {
         this.discountPercentage = discountPercentage;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -611,7 +664,7 @@ public abstract class MappedSpecialDeal {
         this.unitPrice = unitPrice;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -633,7 +686,7 @@ public abstract class MappedSpecialDeal {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -653,7 +706,7 @@ public abstract class MappedSpecialDeal {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.SpecialDealID", schema = "Sequences",
@@ -665,9 +718,12 @@ public abstract class MappedSpecialDeal {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SPECIAL_DEAL_ID,
+                          value = "ID (sequence based) for a special deal")
+    @MsDefault(name = "DF_Sales_SpecialDeals_SpecialDealID", value = "(NEXT VALUE FOR [Sequences].[SpecialDealID])")
     private Integer specialDealId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
@@ -675,9 +731,12 @@ public abstract class MappedSpecialDeal {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "Stock item that the deal applies to (if NULL, then only "
+                                  + "discounts are permitted not unit prices)")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_ID,
@@ -685,9 +744,12 @@ public abstract class MappedSpecialDeal {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
+                          value = "ID of the customer that the special pricing applies to (if "
+                                  + "NULL then all customers)")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUYING_GROUP_ID,
@@ -695,9 +757,12 @@ public abstract class MappedSpecialDeal {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
+                          value = "ID of the buying group that the special pricing applies to "
+                                  + "(optional)")
     private Integer buyingGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
@@ -705,9 +770,12 @@ public abstract class MappedSpecialDeal {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
+                          value = "ID of the customer category that the special pricing applies "
+                                  + "to (optional)")
     private Integer customerCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STOCK_GROUP_ID,
@@ -715,9 +783,12 @@ public abstract class MappedSpecialDeal {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
+                          value = "ID of the stock group that the special pricing applies to "
+                                  + "(optional)")
     private Integer stockGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DEAL_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
@@ -727,9 +798,11 @@ public abstract class MappedSpecialDeal {
             updatable = true,
             length = COLUMN_LENGTH_DEAL_DESCRIPTION
     )
+    @MsDescription.Column(name = COLUMN_NAME_DEAL_DESCRIPTION,
+                          value = "Description of the special deal")
     private String dealDescription;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_START_DATE,
@@ -737,9 +810,11 @@ public abstract class MappedSpecialDeal {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
+                          value = "Date that the special pricing starts from")
     private LocalDate startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_END_DATE,
@@ -747,9 +822,11 @@ public abstract class MappedSpecialDeal {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
+                          value = "Date that the special pricing ends on")
     private LocalDate endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @Basic(optional = true)
@@ -760,9 +837,11 @@ public abstract class MappedSpecialDeal {
             precision = COLUMN_PRECISION_DISCOUNT_AMOUNT,
             scale = COLUMN_SCALE_DISCOUNT_AMOUNT
     )
+    @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
+                          value = "Discount per unit to be applied to sale price (optional)")
     private BigDecimal discountAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENTAGE - COLUMN_SCALE_DISCOUNT_PERCENTAGE,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENTAGE)
     @Basic(optional = true)
@@ -773,9 +852,12 @@ public abstract class MappedSpecialDeal {
             precision = COLUMN_PRECISION_DISCOUNT_PERCENTAGE,
             scale = COLUMN_SCALE_DISCOUNT_PERCENTAGE
     )
+    @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE,
+                          value = "Discount percentage per unit to be applied to sale price "
+                                  + "(optional)")
     private BigDecimal discountPercentage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_PRICE,
@@ -785,9 +867,12 @@ public abstract class MappedSpecialDeal {
             precision = COLUMN_PRECISION_UNIT_PRICE,
             scale = COLUMN_SCALE_UNIT_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
+                          value = "Special price per unit to be applied instead of sale price "
+                                  + "(optional)")
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -798,7 +883,7 @@ public abstract class MappedSpecialDeal {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -806,6 +891,7 @@ public abstract class MappedSpecialDeal {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Sales_SpecialDeals_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

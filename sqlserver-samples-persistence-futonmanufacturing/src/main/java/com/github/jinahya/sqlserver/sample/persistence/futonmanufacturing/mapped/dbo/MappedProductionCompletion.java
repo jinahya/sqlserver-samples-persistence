@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +42,19 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_PRODUCTION_ORDER_ID}, {@value #COLUMN_NAME_WORK_CENTER_ID} columns are mapped read-only, as
  * a foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.ProductionCompletion}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code QuantityScrapped}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code CompletionDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedProductionCompletion {
@@ -54,7 +69,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String TABLE_NAME = "ProductionCompletion";
 
-    // ---------------------------------------------------------------------------------------------------- CompletionID
+    // -------------------------------------------------------------------------------- CompletionID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +81,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_ID = "completionId";
 
-    // ----------------------------------------------------------------------------------------------- ProductionOrderID
+    // --------------------------------------------------------------------------- ProductionOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -79,7 +94,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_PRODUCTION_ORDER_ID = "productionOrderId";
 
-    // ----------------------------------------------------------------------------------------------- QuantityCompleted
+    // --------------------------------------------------------------------------- QuantityCompleted
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -101,7 +116,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_COMPLETED = "quantityCompleted";
 
-    // ------------------------------------------------------------------------------------------------ QuantityScrapped
+    // ---------------------------------------------------------------------------- QuantityScrapped
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -123,7 +138,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_SCRAPPED = "quantityScrapped";
 
-    // -------------------------------------------------------------------------------------------------- CompletionDate
+    // ------------------------------------------------------------------------------ CompletionDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -135,7 +150,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_DATE = "completionDate";
 
-    // ---------------------------------------------------------------------------------------------------- WorkCenterID
+    // -------------------------------------------------------------------------------- WorkCenterID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -147,7 +162,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_ID = "workCenterId";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -159,7 +174,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ----------------------------------------------------------------------------------------------------- CompletedBy
+    // --------------------------------------------------------------------------------- CompletedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -176,7 +191,7 @@ public abstract class MappedProductionCompletion {
      */
     public static final String ATTRIBUTE_NAME_COMPLETED_BY = "completedBy";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -185,7 +200,7 @@ public abstract class MappedProductionCompletion {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -230,7 +245,7 @@ public abstract class MappedProductionCompletion {
         return Objects.hash(completionId);
     }
 
-    // ---------------------------------------------------------------------------------------------------- completionId
+    // -------------------------------------------------------------------------------- completionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETION_ID} attribute.
@@ -250,7 +265,7 @@ public abstract class MappedProductionCompletion {
         this.completionId = completionId;
     }
 
-    // ----------------------------------------------------------------------------------------------- productionOrderId
+    // --------------------------------------------------------------------------- productionOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute.
@@ -272,7 +287,7 @@ public abstract class MappedProductionCompletion {
         this.productionOrderId = productionOrderId;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityCompleted
+    // --------------------------------------------------------------------------- quantityCompleted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute.
@@ -292,7 +307,7 @@ public abstract class MappedProductionCompletion {
         this.quantityCompleted = quantityCompleted;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityScrapped
+    // ---------------------------------------------------------------------------- quantityScrapped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute.
@@ -312,7 +327,7 @@ public abstract class MappedProductionCompletion {
         this.quantityScrapped = quantityScrapped;
     }
 
-    // -------------------------------------------------------------------------------------------------- completionDate
+    // ------------------------------------------------------------------------------ completionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETION_DATE} attribute.
@@ -332,7 +347,7 @@ public abstract class MappedProductionCompletion {
         this.completionDate = completionDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- workCenterId
+    // -------------------------------------------------------------------------------- workCenterId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute.
@@ -354,7 +369,7 @@ public abstract class MappedProductionCompletion {
         this.workCenterId = workCenterId;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -374,7 +389,7 @@ public abstract class MappedProductionCompletion {
         this.notes = notes;
     }
 
-    // ----------------------------------------------------------------------------------------------------- completedBy
+    // --------------------------------------------------------------------------------- completedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETED_BY} attribute.
@@ -394,7 +409,7 @@ public abstract class MappedProductionCompletion {
         this.completedBy = completedBy;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -406,7 +421,7 @@ public abstract class MappedProductionCompletion {
     )
     private Integer completionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -417,7 +432,7 @@ public abstract class MappedProductionCompletion {
     )
     private Integer productionOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
     @NotNull
@@ -431,7 +446,7 @@ public abstract class MappedProductionCompletion {
     )
     private BigDecimal quantityCompleted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
             fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @Basic(optional = true)
@@ -442,18 +457,20 @@ public abstract class MappedProductionCompletion {
             precision = COLUMN_PRECISION_QUANTITY_SCRAPPED,
             scale = COLUMN_SCALE_QUANTITY_SCRAPPED
     )
+    @MsDefault("((0))")
     private BigDecimal quantityScrapped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETION_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime completionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_ID,
@@ -463,7 +480,7 @@ public abstract class MappedProductionCompletion {
     )
     private Integer workCenterId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -472,7 +489,7 @@ public abstract class MappedProductionCompletion {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COMPLETED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_BY,

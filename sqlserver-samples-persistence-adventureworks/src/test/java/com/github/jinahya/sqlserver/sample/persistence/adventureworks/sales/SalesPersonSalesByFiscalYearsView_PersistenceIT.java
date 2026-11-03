@@ -30,7 +30,7 @@ class SalesPersonSalesByFiscalYearsView_PersistenceIT extends _Entity_Persistenc
         super(SalesPersonSalesByFiscalYearsView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Sales.vSalesPersonSalesByFiscalYears} is a view, which no row is inserted into.

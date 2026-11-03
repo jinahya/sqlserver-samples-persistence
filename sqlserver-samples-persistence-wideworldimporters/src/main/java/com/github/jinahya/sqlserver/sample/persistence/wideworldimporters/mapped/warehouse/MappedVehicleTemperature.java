@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -36,8 +37,34 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Warehouse.VehicleTemperatures} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.VehicleTemperatures}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code VehicleTemperatureID}</th>
+ *     <td>Instantaneous temperature readings for vehicle freezers and chillers</td></tr>
+ * <tr><th scope="row">{@code VehicleRegistration}</th><td>Vehicle registration number</td></tr>
+ * <tr><th scope="row">{@code ChillerSensorNumber}</th><td>Cold room sensor number</td></tr>
+ * <tr><th scope="row">{@code RecordedWhen}</th>
+ *     <td>Time when this temperature recording was taken</td></tr>
+ * <tr><th scope="row">{@code Temperature}</th><td>Temperature at the time of recording</td></tr>
+ * <tr><th scope="row">{@code IsCompressed}</th>
+ *     <td>Is the sensor data compressed for archival storage?</td></tr>
+ * <tr><th scope="row">{@code FullSensorData}</th><td>Full JSON data received from sensor</td></tr>
+ * <tr><th scope="row">{@code CompressedSensorData}</th>
+ *     <td>Compressed JSON data for archival purposes</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedVehicleTemperature.TABLE_SCHEMA,
+        table = MappedVehicleTemperature.TABLE_NAME,
+        value = "Regularly recorded temperatures of vehicle chillers"
+)
 public abstract class MappedVehicleTemperature {
 
     /**
@@ -50,7 +77,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String TABLE_NAME = "VehicleTemperatures";
 
-    // -------------------------------------------------------------------------------------------- VehicleTemperatureID
+    // ------------------------------------------------------------------------ VehicleTemperatureID
 
     /**
      * The name of the {@code bigint, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -63,7 +90,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_VEHICLE_TEMPERATURE_ID = "vehicleTemperatureId";
 
-    // --------------------------------------------------------------------------------------------- VehicleRegistration
+    // ------------------------------------------------------------------------- VehicleRegistration
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -81,7 +108,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_VEHICLE_REGISTRATION = "vehicleRegistration";
 
-    // --------------------------------------------------------------------------------------------- ChillerSensorNumber
+    // ------------------------------------------------------------------------- ChillerSensorNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +121,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_CHILLER_SENSOR_NUMBER = "chillerSensorNumber";
 
-    // ---------------------------------------------------------------------------------------------------- RecordedWhen
+    // -------------------------------------------------------------------------------- RecordedWhen
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -106,7 +133,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_RECORDED_WHEN = "recordedWhen";
 
-    // ----------------------------------------------------------------------------------------------------- Temperature
+    // --------------------------------------------------------------------------------- Temperature
 
     /**
      * The name of the {@code decimal(10, 2), NOT NULL} column. The value is {@value}.
@@ -128,7 +155,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_TEMPERATURE = "temperature";
 
-    // ---------------------------------------------------------------------------------------------------- IsCompressed
+    // -------------------------------------------------------------------------------- IsCompressed
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -140,7 +167,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_IS_COMPRESSED = "isCompressed";
 
-    // -------------------------------------------------------------------------------------------------- FullSensorData
+    // ------------------------------------------------------------------------------ FullSensorData
 
     /**
      * The name of the {@code nvarchar(1000)} column. The value is {@value}.
@@ -157,7 +184,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_FULL_SENSOR_DATA = "fullSensorData";
 
-    // -------------------------------------------------------------------------------------------- CompressedSensorData
+    // ------------------------------------------------------------------------ CompressedSensorData
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -170,7 +197,7 @@ public abstract class MappedVehicleTemperature {
      */
     public static final String ATTRIBUTE_NAME_COMPRESSED_SENSOR_DATA = "compressedSensorData";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -179,7 +206,7 @@ public abstract class MappedVehicleTemperature {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -226,7 +253,7 @@ public abstract class MappedVehicleTemperature {
         return Objects.hash(vehicleTemperatureId);
     }
 
-    // -------------------------------------------------------------------------------------------- vehicleTemperatureId
+    // ------------------------------------------------------------------------ vehicleTemperatureId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VEHICLE_TEMPERATURE_ID} attribute.
@@ -246,7 +273,7 @@ public abstract class MappedVehicleTemperature {
         this.vehicleTemperatureId = vehicleTemperatureId;
     }
 
-    // --------------------------------------------------------------------------------------------- vehicleRegistration
+    // ------------------------------------------------------------------------- vehicleRegistration
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VEHICLE_REGISTRATION} attribute.
@@ -266,7 +293,7 @@ public abstract class MappedVehicleTemperature {
         this.vehicleRegistration = vehicleRegistration;
     }
 
-    // --------------------------------------------------------------------------------------------- chillerSensorNumber
+    // ------------------------------------------------------------------------- chillerSensorNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHILLER_SENSOR_NUMBER} attribute.
@@ -286,7 +313,7 @@ public abstract class MappedVehicleTemperature {
         this.chillerSensorNumber = chillerSensorNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- recordedWhen
+    // -------------------------------------------------------------------------------- recordedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECORDED_WHEN} attribute.
@@ -306,7 +333,7 @@ public abstract class MappedVehicleTemperature {
         this.recordedWhen = recordedWhen;
     }
 
-    // ----------------------------------------------------------------------------------------------------- temperature
+    // --------------------------------------------------------------------------------- temperature
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute.
@@ -326,7 +353,7 @@ public abstract class MappedVehicleTemperature {
         this.temperature = temperature;
     }
 
-    // ---------------------------------------------------------------------------------------------------- isCompressed
+    // -------------------------------------------------------------------------------- isCompressed
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_COMPRESSED} attribute.
@@ -346,7 +373,7 @@ public abstract class MappedVehicleTemperature {
         this.isCompressed = isCompressed;
     }
 
-    // -------------------------------------------------------------------------------------------------- fullSensorData
+    // ------------------------------------------------------------------------------ fullSensorData
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULL_SENSOR_DATA} attribute.
@@ -366,7 +393,7 @@ public abstract class MappedVehicleTemperature {
         this.fullSensorData = fullSensorData;
     }
 
-    // -------------------------------------------------------------------------------------------- compressedSensorData
+    // ------------------------------------------------------------------------ compressedSensorData
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPRESSED_SENSOR_DATA} attribute.
@@ -386,7 +413,7 @@ public abstract class MappedVehicleTemperature {
         this.compressedSensorData = compressedSensorData;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -396,9 +423,12 @@ public abstract class MappedVehicleTemperature {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID,
+                          value = "Instantaneous temperature readings for vehicle freezers and "
+                                  + "chillers")
     private Long vehicleTemperatureId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     @NotNull
     @Basic(optional = false)
@@ -408,9 +438,11 @@ public abstract class MappedVehicleTemperature {
             updatable = true,
             length = COLUMN_LENGTH_VEHICLE_REGISTRATION
     )
+    @MsDescription.Column(name = COLUMN_NAME_VEHICLE_REGISTRATION,
+                          value = "Vehicle registration number")
     private String vehicleRegistration;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER,
@@ -418,9 +450,11 @@ public abstract class MappedVehicleTemperature {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER,
+                          value = "Cold room sensor number")
     private Integer chillerSensorNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RECORDED_WHEN,
@@ -428,9 +462,11 @@ public abstract class MappedVehicleTemperature {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_RECORDED_WHEN,
+                          value = "Time when this temperature recording was taken")
     private LocalDateTime recordedWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
@@ -441,9 +477,11 @@ public abstract class MappedVehicleTemperature {
             precision = COLUMN_PRECISION_TEMPERATURE,
             scale = COLUMN_SCALE_TEMPERATURE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TEMPERATURE,
+                          value = "Temperature at the time of recording")
     private BigDecimal temperature;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_COMPRESSED,
@@ -451,9 +489,11 @@ public abstract class MappedVehicleTemperature {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_COMPRESSED,
+                          value = "Is the sensor data compressed for archival storage?")
     private Boolean isCompressed;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FULL_SENSOR_DATA)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FULL_SENSOR_DATA,
@@ -462,15 +502,19 @@ public abstract class MappedVehicleTemperature {
             updatable = true,
             length = COLUMN_LENGTH_FULL_SENSOR_DATA
     )
+    @MsDescription.Column(name = COLUMN_NAME_FULL_SENSOR_DATA,
+                          value = "Full JSON data received from sensor")
     private String fullSensorData;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPRESSED_SENSOR_DATA,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMPRESSED_SENSOR_DATA,
+                          value = "Compressed JSON data for archival purposes")
     private byte[] compressedSensorData;
 }
 

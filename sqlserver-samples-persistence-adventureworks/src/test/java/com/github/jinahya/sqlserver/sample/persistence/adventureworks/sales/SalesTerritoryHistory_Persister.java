@@ -35,7 +35,7 @@ class SalesTerritoryHistory_Persister
         super(SalesTerritoryHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesTerritoryHistory apply(final EntityManager entityManager, final SalesTerritoryHistory entityInstance) {
         final var salesPerson = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);

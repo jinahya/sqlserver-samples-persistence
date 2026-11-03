@@ -23,15 +23,32 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductCategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.ProductCategory} table.
  */
 @Entity(name = "ProductionProductCategory")
-@Table(schema = MappedProductCategory.TABLE_SCHEMA, name = MappedProductCategory.TABLE_NAME)
+@Table(schema = MappedProductCategory.TABLE_SCHEMA,
+       name = MappedProductCategory.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_ProductCategory_Name",
+                       columnNames = {
+                               ProductCategory.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_ProductCategory_rowguid",
+                       columnNames = {
+                               ProductCategory.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 public class ProductCategory extends MappedProductCategory {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

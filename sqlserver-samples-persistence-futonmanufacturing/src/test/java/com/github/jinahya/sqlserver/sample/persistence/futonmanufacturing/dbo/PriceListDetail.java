@@ -46,7 +46,7 @@ public class PriceListDetail extends MappedPriceListDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM = "item";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +55,7 @@ public class PriceListDetail extends MappedPriceListDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------- priceList
+    // ----------------------------------------------------------------------------------- priceList
 
     /**
      * Returns the {@code PriceList} which the {@code FK_PriceListDetail_PriceList} foreign key references.
@@ -77,7 +77,7 @@ public class PriceListDetail extends MappedPriceListDetail {
         setPriceListId(priceList == null ? null : priceList.getPriceListId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_PriceListDetail_Item} foreign key references.
@@ -99,7 +99,7 @@ public class PriceListDetail extends MappedPriceListDetail {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRICE_LIST_ID,
                 referencedColumnName = MappedPriceList.COLUMN_NAME_PRICE_LIST_ID,
@@ -109,7 +109,7 @@ public class PriceListDetail extends MappedPriceListDetail {
     )
     private PriceList priceList;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,

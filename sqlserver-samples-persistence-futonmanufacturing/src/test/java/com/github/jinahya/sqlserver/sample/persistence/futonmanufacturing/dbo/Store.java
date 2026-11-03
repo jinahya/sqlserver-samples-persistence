@@ -27,12 +27,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.Store} table.
  */
 @Entity(name = "DboStore")
-@Table(schema = MappedStore.TABLE_SCHEMA, name = MappedStore.TABLE_NAME)
+@Table(schema = MappedStore.TABLE_SCHEMA,
+       name = MappedStore.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               Store.COLUMN_NAME_STORE_CODE
+                       }
+               )
+       }
+)
 public class Store extends MappedStore {
 
     /**
@@ -40,7 +50,7 @@ public class Store extends MappedStore {
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL = "salesChannel";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -49,7 +59,7 @@ public class Store extends MappedStore {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesChannel
+    // -------------------------------------------------------------------------------- salesChannel
 
     /**
      * Returns the {@code SalesChannel} which the {@code FK_Store_SalesChannel} foreign key references.
@@ -71,7 +81,7 @@ public class Store extends MappedStore {
         setSalesChannelId(salesChannel == null ? null : salesChannel.getSalesChannelId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_CHANNEL_ID,
                 referencedColumnName = MappedSalesChannel.COLUMN_NAME_SALES_CHANNEL_ID,

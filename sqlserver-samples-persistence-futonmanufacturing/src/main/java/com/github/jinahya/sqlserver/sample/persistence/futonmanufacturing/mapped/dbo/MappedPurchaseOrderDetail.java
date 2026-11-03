@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +41,26 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_PURCHASE_ORDER_ID}, {@value #COLUMN_NAME_ITEM_ID} columns are mapped read-only, as a foreign
  * key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.PurchaseOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code QuantityReceived}</th><td>{@code ((0))}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code dbo.PurchaseOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LineTotal}</th><td>{@code ([Quantity]*[UnitPrice])}</td><td>{@code true}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedPurchaseOrderDetail {
@@ -52,7 +75,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String TABLE_NAME = "PurchaseOrderDetail";
 
-    // ------------------------------------------------------------------------------------------------------ PODetailID
+    // ---------------------------------------------------------------------------------- PODetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -64,7 +87,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_PO_DETAIL_ID = "poDetailId";
 
-    // ------------------------------------------------------------------------------------------------- PurchaseOrderID
+    // ----------------------------------------------------------------------------- PurchaseOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -76,7 +99,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
-    // ------------------------------------------------------------------------------------------------------ LineNumber
+    // ---------------------------------------------------------------------------------- LineNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -88,7 +111,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_NUMBER = "lineNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -100,7 +123,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -122,7 +145,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -144,7 +167,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------------ QuantityReceived
+    // ---------------------------------------------------------------------------- QuantityReceived
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -166,7 +189,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_RECEIVED = "quantityReceived";
 
-    // ------------------------------------------------------------------------------------------------------- LineTotal
+    // ----------------------------------------------------------------------------------- LineTotal
 
     /**
      * The name of the {@code decimal(37, 6), computed as ([Quantity]*[UnitPrice])} column. The value is {@value}.
@@ -188,7 +211,7 @@ public abstract class MappedPurchaseOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_TOTAL = "lineTotal";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -197,7 +220,7 @@ public abstract class MappedPurchaseOrderDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -242,7 +265,7 @@ public abstract class MappedPurchaseOrderDetail {
         return Objects.hash(poDetailId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ poDetailId
+    // ---------------------------------------------------------------------------------- poDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PO_DETAIL_ID} attribute.
@@ -262,7 +285,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.poDetailId = poDetailId;
     }
 
-    // ------------------------------------------------------------------------------------------------- purchaseOrderId
+    // ----------------------------------------------------------------------------- purchaseOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
@@ -284,7 +307,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ lineNumber
+    // ---------------------------------------------------------------------------------- lineNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_NUMBER} attribute.
@@ -304,7 +327,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.lineNumber = lineNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -325,7 +348,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.itemId = itemId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -345,7 +368,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -365,7 +388,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityReceived
+    // ---------------------------------------------------------------------------- quantityReceived
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_RECEIVED} attribute.
@@ -385,7 +408,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.quantityReceived = quantityReceived;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineTotal
+    // ----------------------------------------------------------------------------------- lineTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute.
@@ -406,7 +429,7 @@ public abstract class MappedPurchaseOrderDetail {
         this.lineTotal = lineTotal;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -418,7 +441,7 @@ public abstract class MappedPurchaseOrderDetail {
     )
     private Integer poDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -429,7 +452,7 @@ public abstract class MappedPurchaseOrderDetail {
     )
     private Integer purchaseOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_NUMBER,
@@ -439,7 +462,7 @@ public abstract class MappedPurchaseOrderDetail {
     )
     private Integer lineNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -450,7 +473,7 @@ public abstract class MappedPurchaseOrderDetail {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
@@ -463,7 +486,7 @@ public abstract class MappedPurchaseOrderDetail {
     )
     private BigDecimal quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -476,7 +499,7 @@ public abstract class MappedPurchaseOrderDetail {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_RECEIVED - COLUMN_SCALE_QUANTITY_RECEIVED,
             fraction = COLUMN_SCALE_QUANTITY_RECEIVED)
     @Basic(optional = true)
@@ -487,9 +510,10 @@ public abstract class MappedPurchaseOrderDetail {
             precision = COLUMN_PRECISION_QUANTITY_RECEIVED,
             scale = COLUMN_SCALE_QUANTITY_RECEIVED
     )
+    @MsDefault("((0))")
     private BigDecimal quantityReceived;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = true)
@@ -500,6 +524,7 @@ public abstract class MappedPurchaseOrderDetail {
             precision = COLUMN_PRECISION_LINE_TOTAL,
             scale = COLUMN_SCALE_LINE_TOTAL
     )
+    @MsComputedColumn(value = "([Quantity]*[UnitPrice])", persisted = true)
     private BigDecimal lineTotal;
 }
 

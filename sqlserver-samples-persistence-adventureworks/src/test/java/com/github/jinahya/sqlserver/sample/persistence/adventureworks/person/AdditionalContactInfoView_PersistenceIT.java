@@ -30,7 +30,7 @@ class AdditionalContactInfoView_PersistenceIT extends _Entity_PersistenceIT<Addi
         super(AdditionalContactInfoView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Person.vAdditionalContactInfo} is a view, which no row is inserted into.

@@ -78,7 +78,7 @@ class FutonManufacturing_Exercises_PersistenceIT {
         return new BigDecimal(String.valueOf(value)).setScale(4, RoundingMode.HALF_UP);
     }
 
-    // ------------------------------------------------------------------------------------------------------------ BOM
+    // ----------------------------------------------------------------------------------------- BOM
 
     @DisplayName("FUTON_DBO_B_01: the direct components of FG-FUT-003")
     @Nested
@@ -419,7 +419,7 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    // ------------------------------------------------------------------------------------------------------ INVENTORY
+    // ----------------------------------------------------------------------------------- INVENTORY
 
     @DisplayName("FUTON_DBO_B_03: the finished goods in WH-MAIN, the fewest available first")
     @Nested
@@ -577,7 +577,7 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    // ----------------------------------------------------------------------------------------------------- PURCHASING
+    // ---------------------------------------------------------------------------------- PURCHASING
 
     @DisplayName("FUTON_DBO_B_04: the items SUP-002 supplies, with its price and the standard cost")
     @Nested
@@ -677,7 +677,7 @@ class FutonManufacturing_Exercises_PersistenceIT {
         }
     }
 
-    // ---------------------------------------------------------------------------------------------------------- SALES
+    // --------------------------------------------------------------------------------------- SALES
 
     @DisplayName("FUTON_DBO_B_05: the orders not delivered yet")
     @Nested

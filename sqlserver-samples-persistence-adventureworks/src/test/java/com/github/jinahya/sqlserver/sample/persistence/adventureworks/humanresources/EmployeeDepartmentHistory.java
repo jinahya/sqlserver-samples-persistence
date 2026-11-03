@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hum
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeeDepartmentHistory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeeDepartmentHistoryId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedShift;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -36,7 +37,15 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code HumanResources.EmployeeDepartmentHistory} table.
  */
 @Entity(name = "HumanResourcesEmployeeDepartmentHistory")
-@Table(schema = MappedEmployeeDepartmentHistory.TABLE_SCHEMA, name = MappedEmployeeDepartmentHistory.TABLE_NAME)
+@Table(schema = MappedEmployeeDepartmentHistory.TABLE_SCHEMA,
+       name = MappedEmployeeDepartmentHistory.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_EmployeeDepartmentHistory_EndDate",
+                       constraint = "([EndDate]>=[StartDate] OR [EndDate] IS NULL)"
+               )
+       }
+)
 @IdClass(MappedEmployeeDepartmentHistoryId.class)
 public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
 
@@ -58,7 +67,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_SHIFT = "shift";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -67,7 +76,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------ department
+    // ---------------------------------------------------------------------------------- department
 
     /**
      * Returns the {@code Department} which the {@code FK_EmployeeDepartmentHistory_Department_DepartmentID} foreign key
@@ -91,7 +100,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
                         ? null : department.getDepartmentId().intValue());
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Employee} which the {@code FK_EmployeeDepartmentHistory_Employee_BusinessEntityID} foreign key
@@ -114,7 +123,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // ----------------------------------------------------------------------------------------------------------- shift
+    // --------------------------------------------------------------------------------------- shift
 
     /**
      * Returns the {@code Shift} which the {@code FK_EmployeeDepartmentHistory_Shift_ShiftID} foreign key references.
@@ -136,7 +145,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
         setShiftId(shift == null || shift.getShiftId() == null ? null : shift.getShiftId().intValue());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_DEPARTMENT_ID,
                 referencedColumnName = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID,
@@ -146,7 +155,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
     )
     private Department department;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedEmployee.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -156,7 +165,7 @@ public class EmployeeDepartmentHistory extends MappedEmployeeDepartmentHistory {
     )
     private Employee businessEntity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SHIFT_ID,
                 referencedColumnName = MappedShift.COLUMN_NAME_SHIFT_ID,

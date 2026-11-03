@@ -45,6 +45,8 @@ import javax.xml.transform.Source;
  * of, and the value is written as an {@code EVENT_INSTANCE} element of its own class, with a context of that class
  * alone; in a context which knows the declaration of the root, the element would carry an {@code xsi:type}, which
  * {@code EVENTDATA()} does not write.
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
  */
 @Converter(autoApply = false)
 public class EventInstanceStringAttributeConverter extends JaxbAttributeConverter.OfString<EventInstance> {

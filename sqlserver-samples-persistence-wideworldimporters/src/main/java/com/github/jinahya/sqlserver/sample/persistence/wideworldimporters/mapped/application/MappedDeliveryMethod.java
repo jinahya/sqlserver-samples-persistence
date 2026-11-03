@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +44,44 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Application.DeliveryMethods}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DeliveryMethodID}</th>
+ *     <td>Numeric ID used for reference to a delivery method within the database</td></tr>
+ * <tr><th scope="row">{@code DeliveryMethodName}</th>
+ *     <td>Full name of methods that can be used for delivery of customer orders</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Application.DeliveryMethods}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code DeliveryMethodID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[DeliveryMethodID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedDeliveryMethod.TABLE_SCHEMA,
+        table = MappedDeliveryMethod.TABLE_NAME,
+        value = "Ways that stock items can be delivered (ie: truck/van, post, pickup, courier, etc."
+)
+@MsTemporal(
+        historyTable = "Application.DeliveryMethods_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedDeliveryMethod {
 
     /**
@@ -55,7 +94,7 @@ public abstract class MappedDeliveryMethod {
      */
     public static final String TABLE_NAME = "DeliveryMethods";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryMethodID
+    // ---------------------------------------------------------------------------- DeliveryMethodID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.DeliveryMethodID, NOT NULL} column. The value is {@value}.
@@ -67,7 +106,7 @@ public abstract class MappedDeliveryMethod {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
 
-    // ---------------------------------------------------------------------------------------------- DeliveryMethodName
+    // -------------------------------------------------------------------------- DeliveryMethodName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -85,7 +124,7 @@ public abstract class MappedDeliveryMethod {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_NAME = "deliveryMethodName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -97,7 +136,7 @@ public abstract class MappedDeliveryMethod {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -109,7 +148,7 @@ public abstract class MappedDeliveryMethod {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -121,7 +160,7 @@ public abstract class MappedDeliveryMethod {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -130,7 +169,7 @@ public abstract class MappedDeliveryMethod {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -172,7 +211,7 @@ public abstract class MappedDeliveryMethod {
         return Objects.hash(deliveryMethodId);
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryMethodId
+    // ---------------------------------------------------------------------------- deliveryMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
@@ -192,7 +231,7 @@ public abstract class MappedDeliveryMethod {
         this.deliveryMethodId = deliveryMethodId;
     }
 
-    // ---------------------------------------------------------------------------------------------- deliveryMethodName
+    // -------------------------------------------------------------------------- deliveryMethodName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_NAME} attribute.
@@ -212,7 +251,7 @@ public abstract class MappedDeliveryMethod {
         this.deliveryMethodName = deliveryMethodName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -234,7 +273,7 @@ public abstract class MappedDeliveryMethod {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -255,7 +294,7 @@ public abstract class MappedDeliveryMethod {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -276,7 +315,7 @@ public abstract class MappedDeliveryMethod {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.DeliveryMethodID", schema = "Sequences",
@@ -288,9 +327,14 @@ public abstract class MappedDeliveryMethod {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
+                          value = "Numeric ID used for reference to a delivery method within "
+                                  + "the database")
+    @MsDefault(name = "DF_Application_DeliveryMethods_DeliveryMethodID",
+               value = "(NEXT VALUE FOR [Sequences].[DeliveryMethodID])")
     private Integer deliveryMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_METHOD_NAME)
     @NotNull
     @Basic(optional = false)
@@ -300,9 +344,12 @@ public abstract class MappedDeliveryMethod {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_METHOD_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_NAME,
+                          value = "Full name of methods that can be used for delivery of "
+                                  + "customer orders")
     private String deliveryMethodName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -313,7 +360,7 @@ public abstract class MappedDeliveryMethod {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -324,7 +371,7 @@ public abstract class MappedDeliveryMethod {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

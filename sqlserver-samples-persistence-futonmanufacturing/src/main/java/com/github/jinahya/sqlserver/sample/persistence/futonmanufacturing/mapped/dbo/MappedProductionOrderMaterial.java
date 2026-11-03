@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +40,16 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_PRODUCTION_ORDER_ID}, {@value #COLUMN_NAME_ITEM_ID} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.ProductionOrderMaterial}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IssuedQuantity}</th><td>{@code ((0))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedProductionOrderMaterial {
@@ -52,7 +64,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     public static final String TABLE_NAME = "ProductionOrderMaterial";
 
-    // --------------------------------------------------------------------------------------------- ProdOrderMaterialID
+    // ------------------------------------------------------------------------- ProdOrderMaterialID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +77,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     public static final String ATTRIBUTE_NAME_PROD_ORDER_MATERIAL_ID = "prodOrderMaterialId";
 
-    // ----------------------------------------------------------------------------------------------- ProductionOrderID
+    // --------------------------------------------------------------------------- ProductionOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -78,7 +90,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     public static final String ATTRIBUTE_NAME_PRODUCTION_ORDER_ID = "productionOrderId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -90,7 +102,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ------------------------------------------------------------------------------------------------ RequiredQuantity
+    // ---------------------------------------------------------------------------- RequiredQuantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -112,7 +124,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     public static final String ATTRIBUTE_NAME_REQUIRED_QUANTITY = "requiredQuantity";
 
-    // -------------------------------------------------------------------------------------------------- IssuedQuantity
+    // ------------------------------------------------------------------------------ IssuedQuantity
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -134,7 +146,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     public static final String ATTRIBUTE_NAME_ISSUED_QUANTITY = "issuedQuantity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -143,7 +155,7 @@ public abstract class MappedProductionOrderMaterial {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -185,7 +197,7 @@ public abstract class MappedProductionOrderMaterial {
         return Objects.hash(prodOrderMaterialId);
     }
 
-    // --------------------------------------------------------------------------------------------- prodOrderMaterialId
+    // ------------------------------------------------------------------------- prodOrderMaterialId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROD_ORDER_MATERIAL_ID} attribute.
@@ -205,7 +217,7 @@ public abstract class MappedProductionOrderMaterial {
         this.prodOrderMaterialId = prodOrderMaterialId;
     }
 
-    // ----------------------------------------------------------------------------------------------- productionOrderId
+    // --------------------------------------------------------------------------- productionOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute.
@@ -227,7 +239,7 @@ public abstract class MappedProductionOrderMaterial {
         this.productionOrderId = productionOrderId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -248,7 +260,7 @@ public abstract class MappedProductionOrderMaterial {
         this.itemId = itemId;
     }
 
-    // ------------------------------------------------------------------------------------------------ requiredQuantity
+    // ---------------------------------------------------------------------------- requiredQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REQUIRED_QUANTITY} attribute.
@@ -268,7 +280,7 @@ public abstract class MappedProductionOrderMaterial {
         this.requiredQuantity = requiredQuantity;
     }
 
-    // -------------------------------------------------------------------------------------------------- issuedQuantity
+    // ------------------------------------------------------------------------------ issuedQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ISSUED_QUANTITY} attribute.
@@ -288,7 +300,7 @@ public abstract class MappedProductionOrderMaterial {
         this.issuedQuantity = issuedQuantity;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -300,7 +312,7 @@ public abstract class MappedProductionOrderMaterial {
     )
     private Integer prodOrderMaterialId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -311,7 +323,7 @@ public abstract class MappedProductionOrderMaterial {
     )
     private Integer productionOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -322,7 +334,7 @@ public abstract class MappedProductionOrderMaterial {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
     @NotNull
@@ -336,7 +348,7 @@ public abstract class MappedProductionOrderMaterial {
     )
     private BigDecimal requiredQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_ISSUED_QUANTITY - COLUMN_SCALE_ISSUED_QUANTITY,
             fraction = COLUMN_SCALE_ISSUED_QUANTITY)
     @Basic(optional = true)
@@ -347,6 +359,7 @@ public abstract class MappedProductionOrderMaterial {
             precision = COLUMN_PRECISION_ISSUED_QUANTITY,
             scale = COLUMN_SCALE_ISSUED_QUANTITY
     )
+    @MsDefault("((0))")
     private BigDecimal issuedQuantity;
 }
 

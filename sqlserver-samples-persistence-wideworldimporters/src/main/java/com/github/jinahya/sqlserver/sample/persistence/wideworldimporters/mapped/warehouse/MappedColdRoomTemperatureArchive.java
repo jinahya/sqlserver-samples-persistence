@@ -52,7 +52,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String TABLE_NAME = "ColdRoomTemperatures_Archive";
 
-    // ------------------------------------------------------------------------------------------- ColdRoomTemperatureID
+    // ----------------------------------------------------------------------- ColdRoomTemperatureID
 
     /**
      * The name of the {@code bigint, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID = "coldRoomTemperatureId";
 
-    // -------------------------------------------------------------------------------------------- ColdRoomSensorNumber
+    // ------------------------------------------------------------------------ ColdRoomSensorNumber
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -78,7 +78,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER = "coldRoomSensorNumber";
 
-    // ---------------------------------------------------------------------------------------------------- RecordedWhen
+    // -------------------------------------------------------------------------------- RecordedWhen
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -90,7 +90,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String ATTRIBUTE_NAME_RECORDED_WHEN = "recordedWhen";
 
-    // ----------------------------------------------------------------------------------------------------- Temperature
+    // --------------------------------------------------------------------------------- Temperature
 
     /**
      * The name of the {@code decimal(10, 2), NOT NULL} column. The value is {@value}.
@@ -112,7 +112,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String ATTRIBUTE_NAME_TEMPERATURE = "temperature";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -124,7 +124,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -136,7 +136,7 @@ public abstract class MappedColdRoomTemperatureArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -145,7 +145,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -159,7 +159,7 @@ public abstract class MappedColdRoomTemperatureArchive {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------- coldRoomTemperatureId
+    // ----------------------------------------------------------------------- coldRoomTemperatureId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLD_ROOM_TEMPERATURE_ID} attribute.
@@ -179,7 +179,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         this.coldRoomTemperatureId = coldRoomTemperatureId;
     }
 
-    // -------------------------------------------------------------------------------------------- coldRoomSensorNumber
+    // ------------------------------------------------------------------------ coldRoomSensorNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLD_ROOM_SENSOR_NUMBER} attribute.
@@ -199,7 +199,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         this.coldRoomSensorNumber = coldRoomSensorNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- recordedWhen
+    // -------------------------------------------------------------------------------- recordedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECORDED_WHEN} attribute.
@@ -219,7 +219,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         this.recordedWhen = recordedWhen;
     }
 
-    // ----------------------------------------------------------------------------------------------------- temperature
+    // --------------------------------------------------------------------------------- temperature
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TEMPERATURE} attribute.
@@ -239,7 +239,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         this.temperature = temperature;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -259,7 +259,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -279,7 +279,7 @@ public abstract class MappedColdRoomTemperatureArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -290,7 +290,7 @@ public abstract class MappedColdRoomTemperatureArchive {
     )
     private Long coldRoomTemperatureId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -301,7 +301,7 @@ public abstract class MappedColdRoomTemperatureArchive {
     )
     private Integer coldRoomSensorNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -312,7 +312,7 @@ public abstract class MappedColdRoomTemperatureArchive {
     )
     private LocalDateTime recordedWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
@@ -326,7 +326,7 @@ public abstract class MappedColdRoomTemperatureArchive {
     )
     private BigDecimal temperature;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -337,7 +337,7 @@ public abstract class MappedColdRoomTemperatureArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

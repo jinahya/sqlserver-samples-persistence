@@ -51,7 +51,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_TrendAnalysis";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -75,7 +75,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // --------------------------------------------------------------------------------------------------------- Quarter
+    // ------------------------------------------------------------------------------------- Quarter
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_QUARTER = "quarter";
 
-    // ------------------------------------------------------------------------------------------------------ MonthStart
+    // ---------------------------------------------------------------------------------- MonthStart
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MONTH_START = "monthStart";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -111,7 +111,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ------------------------------------------------------------------------------------------------- UniqueCustomers
+    // ----------------------------------------------------------------------------- UniqueCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_CUSTOMERS = "uniqueCustomers";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // ------------------------------------------------------------------------------------------------------- Discounts
+    // ----------------------------------------------------------------------------------- Discounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNTS = "discounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -189,7 +189,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -211,7 +211,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ------------------------------------------------------------------------------------------------- PriorMonthSales
+    // ----------------------------------------------------------------------------- PriorMonthSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -233,7 +233,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_PRIOR_MONTH_SALES = "priorMonthSales";
 
-    // ------------------------------------------------------------------------------------------------------- MoMChange
+    // ----------------------------------------------------------------------------------- MoMChange
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -255,7 +255,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MO_M_CHANGE = "moMChange";
 
-    // ------------------------------------------------------------------------------------------------ MoMChangePercent
+    // ---------------------------------------------------------------------------- MoMChangePercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -278,7 +278,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MO_M_CHANGE_PERCENT = "moMChangePercent";
 
-    // -------------------------------------------------------------------------------------------------- PriorYearSales
+    // ------------------------------------------------------------------------------ PriorYearSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -300,7 +300,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_PRIOR_YEAR_SALES = "priorYearSales";
 
-    // ------------------------------------------------------------------------------------------------------- YoYChange
+    // ----------------------------------------------------------------------------------- YoYChange
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -322,7 +322,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YO_Y_CHANGE = "yoYChange";
 
-    // ------------------------------------------------------------------------------------------------ YoYChangePercent
+    // ---------------------------------------------------------------------------- YoYChangePercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -345,7 +345,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YO_Y_CHANGE_PERCENT = "yoYChangePercent";
 
-    // --------------------------------------------------------------------------------------------------- ThreeMonthAvg
+    // ------------------------------------------------------------------------------- ThreeMonthAvg
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -367,7 +367,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_THREE_MONTH_AVG = "threeMonthAvg";
 
-    // ----------------------------------------------------------------------------------------------------- SixMonthAvg
+    // --------------------------------------------------------------------------------- SixMonthAvg
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -389,7 +389,7 @@ public abstract class MappedSalesTrendAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_SIX_MONTH_AVG = "sixMonthAvg";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -398,7 +398,7 @@ public abstract class MappedSalesTrendAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -424,7 +424,7 @@ public abstract class MappedSalesTrendAnalysisView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -444,7 +444,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -464,7 +464,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.month = month;
     }
 
-    // --------------------------------------------------------------------------------------------------------- quarter
+    // ------------------------------------------------------------------------------------- quarter
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUARTER} attribute.
@@ -484,7 +484,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.quarter = quarter;
     }
 
-    // ------------------------------------------------------------------------------------------------------ monthStart
+    // ---------------------------------------------------------------------------------- monthStart
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH_START} attribute.
@@ -504,7 +504,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.monthStart = monthStart;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -524,7 +524,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.orderCount = orderCount;
     }
 
-    // ------------------------------------------------------------------------------------------------- uniqueCustomers
+    // ----------------------------------------------------------------------------- uniqueCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute.
@@ -544,7 +544,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.uniqueCustomers = uniqueCustomers;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -564,7 +564,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.grossSales = grossSales;
     }
 
-    // ------------------------------------------------------------------------------------------------------- discounts
+    // ----------------------------------------------------------------------------------- discounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNTS} attribute.
@@ -584,7 +584,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.discounts = discounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -604,7 +604,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.netSales = netSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -624,7 +624,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- priorMonthSales
+    // ----------------------------------------------------------------------------- priorMonthSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIOR_MONTH_SALES} attribute.
@@ -644,7 +644,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.priorMonthSales = priorMonthSales;
     }
 
-    // ------------------------------------------------------------------------------------------------------- moMChange
+    // ----------------------------------------------------------------------------------- moMChange
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MO_M_CHANGE} attribute.
@@ -664,7 +664,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.moMChange = moMChange;
     }
 
-    // ------------------------------------------------------------------------------------------------ moMChangePercent
+    // ---------------------------------------------------------------------------- moMChangePercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MO_M_CHANGE_PERCENT} attribute.
@@ -684,7 +684,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.moMChangePercent = moMChangePercent;
     }
 
-    // -------------------------------------------------------------------------------------------------- priorYearSales
+    // ------------------------------------------------------------------------------ priorYearSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIOR_YEAR_SALES} attribute.
@@ -704,7 +704,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.priorYearSales = priorYearSales;
     }
 
-    // ------------------------------------------------------------------------------------------------------- yoYChange
+    // ----------------------------------------------------------------------------------- yoYChange
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YO_Y_CHANGE} attribute.
@@ -724,7 +724,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.yoYChange = yoYChange;
     }
 
-    // ------------------------------------------------------------------------------------------------ yoYChangePercent
+    // ---------------------------------------------------------------------------- yoYChangePercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YO_Y_CHANGE_PERCENT} attribute.
@@ -744,7 +744,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.yoYChangePercent = yoYChangePercent;
     }
 
-    // --------------------------------------------------------------------------------------------------- threeMonthAvg
+    // ------------------------------------------------------------------------------- threeMonthAvg
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_THREE_MONTH_AVG} attribute.
@@ -764,7 +764,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.threeMonthAvg = threeMonthAvg;
     }
 
-    // ----------------------------------------------------------------------------------------------------- sixMonthAvg
+    // --------------------------------------------------------------------------------- sixMonthAvg
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SIX_MONTH_AVG} attribute.
@@ -784,7 +784,7 @@ public abstract class MappedSalesTrendAnalysisView {
         this.sixMonthAvg = sixMonthAvg;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -794,7 +794,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -804,7 +804,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUARTER,
@@ -814,7 +814,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private Integer quarter;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH_START,
@@ -824,7 +824,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private LocalDate monthStart;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -834,7 +834,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
@@ -844,7 +844,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private Integer uniqueCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -857,7 +857,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNTS - COLUMN_SCALE_DISCOUNTS, fraction = COLUMN_SCALE_DISCOUNTS)
     @Basic(optional = true)
@@ -870,7 +870,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal discounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -883,7 +883,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -897,7 +897,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRIOR_MONTH_SALES - COLUMN_SCALE_PRIOR_MONTH_SALES,
             fraction = COLUMN_SCALE_PRIOR_MONTH_SALES)
@@ -911,7 +911,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal priorMonthSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MO_M_CHANGE - COLUMN_SCALE_MO_M_CHANGE, fraction = COLUMN_SCALE_MO_M_CHANGE)
     @Basic(optional = true)
@@ -924,7 +924,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal moMChange;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MO_M_CHANGE_PERCENT - COLUMN_SCALE_MO_M_CHANGE_PERCENT,
             fraction = COLUMN_SCALE_MO_M_CHANGE_PERCENT)
@@ -938,7 +938,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal moMChangePercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRIOR_YEAR_SALES - COLUMN_SCALE_PRIOR_YEAR_SALES,
             fraction = COLUMN_SCALE_PRIOR_YEAR_SALES)
@@ -952,7 +952,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal priorYearSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_YO_Y_CHANGE - COLUMN_SCALE_YO_Y_CHANGE, fraction = COLUMN_SCALE_YO_Y_CHANGE)
     @Basic(optional = true)
@@ -965,7 +965,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal yoYChange;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_YO_Y_CHANGE_PERCENT - COLUMN_SCALE_YO_Y_CHANGE_PERCENT,
             fraction = COLUMN_SCALE_YO_Y_CHANGE_PERCENT)
@@ -979,7 +979,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal yoYChangePercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_THREE_MONTH_AVG - COLUMN_SCALE_THREE_MONTH_AVG,
             fraction = COLUMN_SCALE_THREE_MONTH_AVG)
@@ -993,7 +993,7 @@ public abstract class MappedSalesTrendAnalysisView {
     )
     private BigDecimal threeMonthAvg;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SIX_MONTH_AVG - COLUMN_SCALE_SIX_MONTH_AVG,
             fraction = COLUMN_SCALE_SIX_MONTH_AVG)

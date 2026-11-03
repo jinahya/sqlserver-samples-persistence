@@ -30,12 +30,31 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Warehouse.StockItemStockGroups} table.
  */
 @Entity(name = "WarehouseStockItemStockGroup")
-@Table(schema = MappedStockItemStockGroup.TABLE_SCHEMA, name = MappedStockItemStockGroup.TABLE_NAME)
+@Table(schema = MappedStockItemStockGroup.TABLE_SCHEMA,
+       name = MappedStockItemStockGroup.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_StockItemStockGroups_StockGroupID_Lookup",
+                       columnNames = {
+                               StockItemStockGroup.COLUMN_NAME_STOCK_GROUP_ID,
+                               StockItemStockGroup.COLUMN_NAME_STOCK_ITEM_ID
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "UQ_StockItemStockGroups_StockItemID_Lookup",
+                       columnNames = {
+                               StockItemStockGroup.COLUMN_NAME_STOCK_ITEM_ID,
+                               StockItemStockGroup.COLUMN_NAME_STOCK_GROUP_ID
+                       }
+               )
+       }
+)
 public class StockItemStockGroup extends MappedStockItemStockGroup {
 
     /**
@@ -56,7 +75,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -65,7 +84,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------- stockItem
+    // ----------------------------------------------------------------------------------- stockItem
 
     /**
      * Returns the {@code StockItem} which the
@@ -89,7 +108,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
         setStockItemId(stockItem == null ? null : stockItem.getStockItemId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ stockGroup
+    // ---------------------------------------------------------------------------------- stockGroup
 
     /**
      * Returns the {@code StockGroup} which the
@@ -113,7 +132,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
         setStockGroupId(stockGroup == null ? null : stockGroup.getStockGroupId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Warehouse_StockItemStockGroups_Application_People} foreign key
@@ -136,7 +155,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_ITEM_ID,
                 referencedColumnName = MappedStockItem.COLUMN_NAME_STOCK_ITEM_ID,
@@ -146,7 +165,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
     )
     private StockItem stockItem;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STOCK_GROUP_ID,
                 referencedColumnName = MappedStockGroup.COLUMN_NAME_STOCK_GROUP_ID,
@@ -156,7 +175,7 @@ public class StockItemStockGroup extends MappedStockItemStockGroup {
     )
     private StockGroup stockGroup;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

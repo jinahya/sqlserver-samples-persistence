@@ -46,7 +46,7 @@ public class ProductionOrderMaterial extends MappedProductionOrderMaterial {
      */
     public static final String ATTRIBUTE_NAME_ITEM = "item";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +55,7 @@ public class ProductionOrderMaterial extends MappedProductionOrderMaterial {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------- productionOrder
+    // ----------------------------------------------------------------------------- productionOrder
 
     /**
      * Returns the {@code ProductionOrder} which the {@code FK_ProdMaterial_ProdOrder} foreign key references.
@@ -77,7 +77,7 @@ public class ProductionOrderMaterial extends MappedProductionOrderMaterial {
         setProductionOrderId(productionOrder == null ? null : productionOrder.getProductionOrderId());
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_ProdMaterial_Item} foreign key references.
@@ -99,7 +99,7 @@ public class ProductionOrderMaterial extends MappedProductionOrderMaterial {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCTION_ORDER_ID,
                 referencedColumnName = MappedProductionOrder.COLUMN_NAME_PRODUCTION_ORDER_ID,
@@ -109,7 +109,7 @@ public class ProductionOrderMaterial extends MappedProductionOrderMaterial {
     )
     private ProductionOrder productionOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,

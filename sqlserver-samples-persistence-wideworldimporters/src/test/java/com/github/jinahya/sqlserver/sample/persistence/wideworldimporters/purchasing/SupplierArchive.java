@@ -35,7 +35,7 @@ import java.util.Optional;
  */
 public class SupplierArchive extends MappedSupplierArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

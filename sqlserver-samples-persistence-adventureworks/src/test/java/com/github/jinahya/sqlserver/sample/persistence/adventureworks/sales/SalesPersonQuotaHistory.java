@@ -23,18 +23,36 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPerson;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPersonQuotaHistory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPersonQuotaHistoryId;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SalesPersonQuotaHistory} table.
  */
 @Entity(name = "SalesSalesPersonQuotaHistory")
-@Table(schema = MappedSalesPersonQuotaHistory.TABLE_SCHEMA, name = MappedSalesPersonQuotaHistory.TABLE_NAME)
+@Table(schema = MappedSalesPersonQuotaHistory.TABLE_SCHEMA,
+       name = MappedSalesPersonQuotaHistory.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SalesPersonQuotaHistory_rowguid",
+                       columnNames = {
+                               SalesPersonQuotaHistory.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SalesPersonQuotaHistory_SalesQuota",
+                       constraint = "([SalesQuota]>(0.00))"
+               )
+       }
+)
 @IdClass(MappedSalesPersonQuotaHistoryId.class)
 public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
 
@@ -44,7 +62,7 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -53,7 +71,7 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code SalesPerson} which the {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID} foreign
@@ -76,7 +94,7 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedSalesPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,

@@ -35,7 +35,7 @@ class SalesTerritory_Persister
         super(SalesTerritory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesTerritory apply(final EntityManager entityManager, final SalesTerritory entityInstance) {
         entityInstance.setCountryRegion(

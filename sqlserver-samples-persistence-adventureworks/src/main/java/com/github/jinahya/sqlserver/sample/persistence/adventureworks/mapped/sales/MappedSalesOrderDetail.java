@@ -20,6 +20,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -44,8 +48,85 @@ import java.util.UUID;
  * The {@value #COLUMN_NAME_PRODUCT_ID}, {@value #COLUMN_NAME_SPECIAL_OFFER_ID} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SalesOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code SalesOrderID}</th>
+ *     <td>Primary key. Foreign key to SalesOrderHeader.SalesOrderID.</td></tr>
+ * <tr><th scope="row">{@code SalesOrderDetailID}</th>
+ *     <td>Primary key. One incremental unique number per product sold.</td></tr>
+ * <tr><th scope="row">{@code CarrierTrackingNumber}</th>
+ *     <td>Shipment tracking number supplied by the shipper.</td></tr>
+ * <tr><th scope="row">{@code OrderQty}</th><td>Quantity ordered per product.</td></tr>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product sold to customer. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code SpecialOfferID}</th>
+ *     <td>Promotional code. Foreign key to SpecialOffer.SpecialOfferID.</td></tr>
+ * <tr><th scope="row">{@code UnitPrice}</th><td>Selling price of a single product.</td></tr>
+ * <tr><th scope="row">{@code UnitPriceDiscount}</th><td>Discount amount.</td></tr>
+ * <tr><th scope="row">{@code LineTotal}</th>
+ *     <td>Per product subtotal. Computed as UnitPrice * (1 - UnitPriceDiscount) *
+ *     OrderQty.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SalesOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code UnitPriceDiscount}</th><td>{@code ((0.0))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Sales.SalesOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LineTotal}</th>
+ *     <td>{@code (isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Triggers on {@code Sales.SalesOrderDetail}</caption>
+ * <thead>
+ * <tr><th scope="col">Trigger</th><th scope="col">Timing</th><th scope="col">Events</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code iduSalesOrderDetail}</th>
+ *     <td>{@code AFTER}</td><td>{@code INSERT}, {@code UPDATE}, {@code DELETE}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSalesOrderDetail.TABLE_SCHEMA,
+        table = MappedSalesOrderDetail.TABLE_NAME,
+        value = "Individual products associated with a specific sales order. See SalesOrderHeader."
+)
+@MsTrigger(
+        name = "iduSalesOrderDetail",
+        events = {MsTrigger.Event.INSERT, MsTrigger.Event.UPDATE, MsTrigger.Event.DELETE}
+)
 public abstract class MappedSalesOrderDetail {
 
     /**
@@ -58,7 +139,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String TABLE_NAME = "SalesOrderDetail";
 
-    // ---------------------------------------------------------------------------------------------------- SalesOrderID
+    // -------------------------------------------------------------------------------- SalesOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -70,7 +151,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
-    // ---------------------------------------------------------------------------------------------- SalesOrderDetailID
+    // -------------------------------------------------------------------------- SalesOrderDetailID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -83,7 +164,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID = "salesOrderDetailId";
 
-    // ------------------------------------------------------------------------------------------- CarrierTrackingNumber
+    // ----------------------------------------------------------------------- CarrierTrackingNumber
 
     /**
      * The name of the {@code nvarchar(25)} column. The value is {@value}.
@@ -101,7 +182,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER = "carrierTrackingNumber";
 
-    // -------------------------------------------------------------------------------------------------------- OrderQty
+    // ------------------------------------------------------------------------------------ OrderQty
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -124,7 +205,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ORDER_QTY = "orderQty";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -136,7 +217,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // -------------------------------------------------------------------------------------------------- SpecialOfferID
+    // ------------------------------------------------------------------------------ SpecialOfferID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -148,7 +229,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_ID = "specialOfferId";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -166,7 +247,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ----------------------------------------------------------------------------------------------- UnitPriceDiscount
+    // --------------------------------------------------------------------------- UnitPriceDiscount
 
     /**
      * The name of the {@code money, DEFAULT ((0.0)), NOT NULL} column. The value is {@value}.
@@ -186,7 +267,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT = "unitPriceDiscount";
 
-    // ------------------------------------------------------------------------------------------------------- LineTotal
+    // ----------------------------------------------------------------------------------- LineTotal
 
     /**
      * The name of the
@@ -210,7 +291,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_LINE_TOTAL = "lineTotal";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -222,7 +303,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -234,7 +315,7 @@ public abstract class MappedSalesOrderDetail {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -243,7 +324,7 @@ public abstract class MappedSalesOrderDetail {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -292,7 +373,7 @@ public abstract class MappedSalesOrderDetail {
         return Objects.hash(salesOrderId, salesOrderDetailId);
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesOrderId
+    // -------------------------------------------------------------------------------- salesOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
@@ -312,7 +393,7 @@ public abstract class MappedSalesOrderDetail {
         this.salesOrderId = salesOrderId;
     }
 
-    // ---------------------------------------------------------------------------------------------- salesOrderDetailId
+    // -------------------------------------------------------------------------- salesOrderDetailId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID} attribute.
@@ -332,7 +413,7 @@ public abstract class MappedSalesOrderDetail {
         this.salesOrderDetailId = salesOrderDetailId;
     }
 
-    // ------------------------------------------------------------------------------------------- carrierTrackingNumber
+    // ----------------------------------------------------------------------- carrierTrackingNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER} attribute.
@@ -352,7 +433,7 @@ public abstract class MappedSalesOrderDetail {
         this.carrierTrackingNumber = carrierTrackingNumber;
     }
 
-    // -------------------------------------------------------------------------------------------------------- orderQty
+    // ------------------------------------------------------------------------------------ orderQty
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute.
@@ -372,7 +453,7 @@ public abstract class MappedSalesOrderDetail {
         this.orderQty = orderQty;
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -393,7 +474,7 @@ public abstract class MappedSalesOrderDetail {
         this.productId = productId;
     }
 
-    // -------------------------------------------------------------------------------------------------- specialOfferId
+    // ------------------------------------------------------------------------------ specialOfferId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
@@ -415,7 +496,7 @@ public abstract class MappedSalesOrderDetail {
         this.specialOfferId = specialOfferId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -435,7 +516,7 @@ public abstract class MappedSalesOrderDetail {
         this.unitPrice = unitPrice;
     }
 
-    // ----------------------------------------------------------------------------------------------- unitPriceDiscount
+    // --------------------------------------------------------------------------- unitPriceDiscount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT} attribute.
@@ -455,7 +536,7 @@ public abstract class MappedSalesOrderDetail {
         this.unitPriceDiscount = unitPriceDiscount;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineTotal
+    // ----------------------------------------------------------------------------------- lineTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute.
@@ -476,7 +557,7 @@ public abstract class MappedSalesOrderDetail {
         this.lineTotal = lineTotal;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -496,7 +577,7 @@ public abstract class MappedSalesOrderDetail {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -516,7 +597,7 @@ public abstract class MappedSalesOrderDetail {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -525,9 +606,11 @@ public abstract class MappedSalesOrderDetail {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID,
+                          value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
     private Integer salesOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -537,9 +620,11 @@ public abstract class MappedSalesOrderDetail {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
+                          value = "Primary key. One incremental unique number per product sold.")
     private Integer salesOrderDetailId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER,
@@ -548,9 +633,11 @@ public abstract class MappedSalesOrderDetail {
             updatable = true,
             length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER,
+                          value = "Shipment tracking number supplied by the shipper.")
     private String carrierTrackingNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderDetail_OrderQty: ([OrderQty]>(0)); smallint's upper bound
     @Max(COLUMN_MAX_ORDER_QTY)
     @Min(COLUMN_MIN_ORDER_QTY)
@@ -561,9 +648,10 @@ public abstract class MappedSalesOrderDetail {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_QTY, value = "Quantity ordered per product.")
     private Integer orderQty;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -572,9 +660,11 @@ public abstract class MappedSalesOrderDetail {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product sold to customer. Foreign key to Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -583,9 +673,11 @@ public abstract class MappedSalesOrderDetail {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
+                          value = "Promotional code. Foreign key to SpecialOffer.SpecialOfferID.")
     private Integer specialOfferId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderDetail_UnitPrice: ([UnitPrice]>=(0.00))
     @DecimalMin(COLUMN_MIN_UNIT_PRICE)
     @NotNull
@@ -595,9 +687,11 @@ public abstract class MappedSalesOrderDetail {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
+                          value = "Selling price of a single product.")
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesOrderDetail_UnitPriceDiscount: ([UnitPriceDiscount]>=(0.00))
     @DecimalMin(COLUMN_MIN_UNIT_PRICE_DISCOUNT)
     @NotNull
@@ -607,9 +701,11 @@ public abstract class MappedSalesOrderDetail {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, value = "Discount amount.")
+    @MsDefault(name = "DF_SalesOrderDetail_UnitPriceDiscount", value = "((0.0))")
     private BigDecimal unitPriceDiscount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = false)
@@ -620,19 +716,27 @@ public abstract class MappedSalesOrderDetail {
             precision = COLUMN_PRECISION_LINE_TOTAL,
             scale = COLUMN_SCALE_LINE_TOTAL
     )
+    @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
+                          value = "Per product subtotal. Computed as UnitPrice * (1 - "
+                                  + "UnitPriceDiscount) * OrderQty.")
+    @MsComputedColumn("(isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))")
     private BigDecimal lineTotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_SalesOrderDetail_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -641,6 +745,9 @@ public abstract class MappedSalesOrderDetail {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_SalesOrderDetail_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

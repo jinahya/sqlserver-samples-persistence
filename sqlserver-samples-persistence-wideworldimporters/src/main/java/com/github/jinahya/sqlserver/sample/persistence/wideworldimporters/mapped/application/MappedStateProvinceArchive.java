@@ -55,7 +55,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String TABLE_NAME = "StateProvinces_Archive";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -67,7 +67,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceCode
+    // --------------------------------------------------------------------------- StateProvinceCode
 
     /**
      * The name of the {@code nvarchar(5), NOT NULL} column. The value is {@value}.
@@ -85,7 +85,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_CODE = "stateProvinceCode";
 
-    // ----------------------------------------------------------------------------------------------- StateProvinceName
+    // --------------------------------------------------------------------------- StateProvinceName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -103,7 +103,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_NAME = "stateProvinceName";
 
-    // ------------------------------------------------------------------------------------------------------- CountryID
+    // ----------------------------------------------------------------------------------- CountryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -115,7 +115,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_ID = "countryId";
 
-    // -------------------------------------------------------------------------------------------------- SalesTerritory
+    // ------------------------------------------------------------------------------ SalesTerritory
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -132,7 +132,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_SALES_TERRITORY = "salesTerritory";
 
-    // ---------------------------------------------------------------------------------------------------------- Border
+    // -------------------------------------------------------------------------------------- Border
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -144,7 +144,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_BORDER = "border";
 
-    // ---------------------------------------------------------------------------------------- LatestRecordedPopulation
+    // -------------------------------------------------------------------- LatestRecordedPopulation
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -157,7 +157,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION = "latestRecordedPopulation";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -169,7 +169,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -181,7 +181,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -193,7 +193,7 @@ public abstract class MappedStateProvinceArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -202,7 +202,7 @@ public abstract class MappedStateProvinceArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -220,7 +220,7 @@ public abstract class MappedStateProvinceArchive {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -240,7 +240,7 @@ public abstract class MappedStateProvinceArchive {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceCode
+    // --------------------------------------------------------------------------- stateProvinceCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_CODE} attribute.
@@ -260,7 +260,7 @@ public abstract class MappedStateProvinceArchive {
         this.stateProvinceCode = stateProvinceCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- stateProvinceName
+    // --------------------------------------------------------------------------- stateProvinceName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute.
@@ -280,7 +280,7 @@ public abstract class MappedStateProvinceArchive {
         this.stateProvinceName = stateProvinceName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- countryId
+    // ----------------------------------------------------------------------------------- countryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute.
@@ -300,7 +300,7 @@ public abstract class MappedStateProvinceArchive {
         this.countryId = countryId;
     }
 
-    // -------------------------------------------------------------------------------------------------- salesTerritory
+    // ------------------------------------------------------------------------------ salesTerritory
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_TERRITORY} attribute.
@@ -320,7 +320,7 @@ public abstract class MappedStateProvinceArchive {
         this.salesTerritory = salesTerritory;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- border
+    // -------------------------------------------------------------------------------------- border
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BORDER} attribute.
@@ -340,7 +340,7 @@ public abstract class MappedStateProvinceArchive {
         this.border = border;
     }
 
-    // ---------------------------------------------------------------------------------------- latestRecordedPopulation
+    // -------------------------------------------------------------------- latestRecordedPopulation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute.
@@ -361,7 +361,7 @@ public abstract class MappedStateProvinceArchive {
         this.latestRecordedPopulation = latestRecordedPopulation;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -381,7 +381,7 @@ public abstract class MappedStateProvinceArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -401,7 +401,7 @@ public abstract class MappedStateProvinceArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -421,7 +421,7 @@ public abstract class MappedStateProvinceArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -432,7 +432,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
@@ -445,7 +445,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private String stateProvinceCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
@@ -458,7 +458,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private String stateProvinceName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -469,7 +469,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private Integer countryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
@@ -482,7 +482,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private String salesTerritory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
@@ -493,7 +493,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private Geography border;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
@@ -503,7 +503,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private Long latestRecordedPopulation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -514,7 +514,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -525,7 +525,7 @@ public abstract class MappedStateProvinceArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

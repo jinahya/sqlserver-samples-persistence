@@ -35,7 +35,7 @@ class WorkOrderRouting_Persister
         super(WorkOrderRouting.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public WorkOrderRouting apply(final EntityManager entityManager, final WorkOrderRouting entityInstance) {
         final var workOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, WorkOrder.class);

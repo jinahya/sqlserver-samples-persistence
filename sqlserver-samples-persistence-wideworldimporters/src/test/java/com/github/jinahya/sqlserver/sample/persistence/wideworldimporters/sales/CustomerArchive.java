@@ -37,7 +37,7 @@ import java.util.Optional;
  */
 public class CustomerArchive extends MappedCustomerArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

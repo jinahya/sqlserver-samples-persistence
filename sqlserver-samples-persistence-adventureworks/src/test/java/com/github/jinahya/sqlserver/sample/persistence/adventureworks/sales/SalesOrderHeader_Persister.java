@@ -37,7 +37,7 @@ class SalesOrderHeader_Persister
         super(SalesOrderHeader.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesOrderHeader apply(final EntityManager entityManager, final SalesOrderHeader entityInstance) {
         final var customer = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Customer.class);

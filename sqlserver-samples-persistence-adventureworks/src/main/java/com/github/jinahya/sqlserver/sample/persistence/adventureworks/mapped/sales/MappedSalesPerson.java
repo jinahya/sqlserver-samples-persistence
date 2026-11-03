@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -37,8 +39,55 @@ import java.util.UUID;
  * <p>
  * The {@value #COLUMN_NAME_TERRITORY_ID} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.SalesPerson}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Primary key for SalesPerson records. Foreign key to Employee.BusinessEntityID</td></tr>
+ * <tr><th scope="row">{@code TerritoryID}</th>
+ *     <td>Territory currently assigned to. Foreign key to
+ *     SalesTerritory.SalesTerritoryID.</td></tr>
+ * <tr><th scope="row">{@code SalesQuota}</th><td>Projected yearly sales.</td></tr>
+ * <tr><th scope="row">{@code Bonus}</th><td>Bonus due if quota is met.</td></tr>
+ * <tr><th scope="row">{@code CommissionPct}</th><td>Commision percent received per sale.</td></tr>
+ * <tr><th scope="row">{@code SalesYTD}</th><td>Sales total year to date.</td></tr>
+ * <tr><th scope="row">{@code SalesLastYear}</th><td>Sales total of previous year.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.SalesPerson}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code Bonus}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code CommissionPct}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code SalesYTD}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code SalesLastYear}</th><td>{@code ((0.00))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedSalesPerson.TABLE_SCHEMA,
+        table = MappedSalesPerson.TABLE_NAME,
+        value = "Sales representative current information."
+)
 public abstract class MappedSalesPerson {
 
     /**
@@ -51,7 +100,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String TABLE_NAME = "SalesPerson";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +112,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ----------------------------------------------------------------------------------------------------- TerritoryID
+    // --------------------------------------------------------------------------------- TerritoryID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -75,7 +124,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
-    // ------------------------------------------------------------------------------------------------------ SalesQuota
+    // ---------------------------------------------------------------------------------- SalesQuota
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -93,7 +142,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_SALES_QUOTA = "salesQuota";
 
-    // ----------------------------------------------------------------------------------------------------------- Bonus
+    // --------------------------------------------------------------------------------------- Bonus
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -111,7 +160,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_BONUS = "bonus";
 
-    // --------------------------------------------------------------------------------------------------- CommissionPct
+    // ------------------------------------------------------------------------------- CommissionPct
 
     /**
      * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -129,7 +178,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_COMMISSION_PCT = "commissionPct";
 
-    // -------------------------------------------------------------------------------------------------------- SalesYTD
+    // ------------------------------------------------------------------------------------ SalesYTD
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -147,7 +196,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
 
-    // --------------------------------------------------------------------------------------------------- SalesLastYear
+    // ------------------------------------------------------------------------------- SalesLastYear
 
     /**
      * The name of the {@code money, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
@@ -166,7 +215,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_SALES_LAST_YEAR = "salesLastYear";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -178,7 +227,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -190,7 +239,7 @@ public abstract class MappedSalesPerson {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -199,7 +248,7 @@ public abstract class MappedSalesPerson {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -245,7 +294,7 @@ public abstract class MappedSalesPerson {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -265,7 +314,7 @@ public abstract class MappedSalesPerson {
         this.businessEntityId = businessEntityId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- territoryId
+    // --------------------------------------------------------------------------------- territoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
@@ -286,7 +335,7 @@ public abstract class MappedSalesPerson {
         this.territoryId = territoryId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ salesQuota
+    // ---------------------------------------------------------------------------------- salesQuota
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute.
@@ -306,7 +355,7 @@ public abstract class MappedSalesPerson {
         this.salesQuota = salesQuota;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- bonus
+    // --------------------------------------------------------------------------------------- bonus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BONUS} attribute.
@@ -326,7 +375,7 @@ public abstract class MappedSalesPerson {
         this.bonus = bonus;
     }
 
-    // --------------------------------------------------------------------------------------------------- commissionPct
+    // ------------------------------------------------------------------------------- commissionPct
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMMISSION_PCT} attribute.
@@ -346,7 +395,7 @@ public abstract class MappedSalesPerson {
         this.commissionPct = commissionPct;
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesYtd
+    // ------------------------------------------------------------------------------------ salesYtd
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute.
@@ -366,7 +415,7 @@ public abstract class MappedSalesPerson {
         this.salesYtd = salesYtd;
     }
 
-    // --------------------------------------------------------------------------------------------------- salesLastYear
+    // ------------------------------------------------------------------------------- salesLastYear
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute.
@@ -386,7 +435,7 @@ public abstract class MappedSalesPerson {
         this.salesLastYear = salesLastYear;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -406,7 +455,7 @@ public abstract class MappedSalesPerson {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -426,7 +475,7 @@ public abstract class MappedSalesPerson {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -435,9 +484,12 @@ public abstract class MappedSalesPerson {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Primary key for SalesPerson records. Foreign key to "
+                                  + "Employee.BusinessEntityID")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -445,9 +497,12 @@ public abstract class MappedSalesPerson {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
+                          value = "Territory currently assigned to. Foreign key to "
+                                  + "SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_SalesQuota: ([SalesQuota]>(0.00))
     @DecimalMin(value = COLUMN_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
@@ -456,9 +511,10 @@ public abstract class MappedSalesPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_QUOTA, value = "Projected yearly sales.")
     private BigDecimal salesQuota;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_Bonus: ([Bonus]>=(0.00))
     @DecimalMin(COLUMN_MIN_BONUS)
     @NotNull
@@ -468,9 +524,11 @@ public abstract class MappedSalesPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_BONUS, value = "Bonus due if quota is met.")
+    @MsDefault(name = "DF_SalesPerson_Bonus", value = "((0.00))")
     private BigDecimal bonus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_CommissionPct: ([CommissionPct]>=(0.00))
     @DecimalMin(COLUMN_MIN_COMMISSION_PCT)
     @NotNull
@@ -480,9 +538,12 @@ public abstract class MappedSalesPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMMISSION_PCT,
+                          value = "Commision percent received per sale.")
+    @MsDefault(name = "DF_SalesPerson_CommissionPct", value = "((0.00))")
     private BigDecimal commissionPct;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_SalesYTD: ([SalesYTD]>=(0.00))
     @DecimalMin(COLUMN_MIN_SALES_YTD)
     @NotNull
@@ -492,9 +553,11 @@ public abstract class MappedSalesPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_YTD, value = "Sales total year to date.")
+    @MsDefault(name = "DF_SalesPerson_SalesYTD", value = "((0.00))")
     private BigDecimal salesYtd;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_SalesLastYear: ([SalesLastYear]>=(0.00))
     @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
@@ -504,19 +567,26 @@ public abstract class MappedSalesPerson {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
+                          value = "Sales total of previous year.")
+    @MsDefault(name = "DF_SalesPerson_SalesLastYear", value = "((0.00))")
     private BigDecimal salesLastYear;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_SalesPerson_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -525,6 +595,9 @@ public abstract class MappedSalesPerson {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_SalesPerson_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

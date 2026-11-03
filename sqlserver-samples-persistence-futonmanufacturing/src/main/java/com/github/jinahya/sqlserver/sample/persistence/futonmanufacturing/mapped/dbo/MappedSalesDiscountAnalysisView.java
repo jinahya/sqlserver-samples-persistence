@@ -53,7 +53,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String TABLE_NAME = "vw_Sales_DiscountAnalysis";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -77,7 +77,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -111,7 +111,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // -------------------------------------------------------------------------------------------------- TotalDiscounts
+    // ------------------------------------------------------------------------------ TotalDiscounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -167,7 +167,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DISCOUNTS = "totalDiscounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -189,7 +189,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // ------------------------------------------------------------------------------------------------- DiscountPercent
+    // ----------------------------------------------------------------------------- DiscountPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -211,7 +211,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENT = "discountPercent";
 
-    // --------------------------------------------------------------------------------------------- AvgDiscountPerOrder
+    // ------------------------------------------------------------------------- AvgDiscountPerOrder
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -234,7 +234,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DISCOUNT_PER_ORDER = "avgDiscountPerOrder";
 
-    // ------------------------------------------------------------------------------------------------ NoDiscountOrders
+    // ---------------------------------------------------------------------------- NoDiscountOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -246,7 +246,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_NO_DISCOUNT_ORDERS = "noDiscountOrders";
 
-    // ----------------------------------------------------------------------------------------------- LowDiscountOrders
+    // --------------------------------------------------------------------------- LowDiscountOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -259,7 +259,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_LOW_DISCOUNT_ORDERS = "lowDiscountOrders";
 
-    // -------------------------------------------------------------------------------------------- MediumDiscountOrders
+    // ------------------------------------------------------------------------ MediumDiscountOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -272,7 +272,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MEDIUM_DISCOUNT_ORDERS = "mediumDiscountOrders";
 
-    // ---------------------------------------------------------------------------------------------- HighDiscountOrders
+    // -------------------------------------------------------------------------- HighDiscountOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -285,7 +285,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_HIGH_DISCOUNT_ORDERS = "highDiscountOrders";
 
-    // ----------------------------------------------------------------------------------------------------- GrossProfit
+    // --------------------------------------------------------------------------------- GrossProfit
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -307,7 +307,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_PROFIT = "grossProfit";
 
-    // ---------------------------------------------------------------------------------------------- GrossMarginPercent
+    // -------------------------------------------------------------------------- GrossMarginPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -330,7 +330,7 @@ public abstract class MappedSalesDiscountAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT = "grossMarginPercent";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -339,7 +339,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -363,7 +363,7 @@ public abstract class MappedSalesDiscountAnalysisView {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -383,7 +383,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -403,7 +403,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.month = month;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -423,7 +423,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.channelName = channelName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -443,7 +443,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.customerType = customerType;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -463,7 +463,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.orderCount = orderCount;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -483,7 +483,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.grossSales = grossSales;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalDiscounts
+    // ------------------------------------------------------------------------------ totalDiscounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_DISCOUNTS} attribute.
@@ -503,7 +503,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.totalDiscounts = totalDiscounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -523,7 +523,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.netSales = netSales;
     }
 
-    // ------------------------------------------------------------------------------------------------- discountPercent
+    // ----------------------------------------------------------------------------- discountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute.
@@ -543,7 +543,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.discountPercent = discountPercent;
     }
 
-    // --------------------------------------------------------------------------------------------- avgDiscountPerOrder
+    // ------------------------------------------------------------------------- avgDiscountPerOrder
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DISCOUNT_PER_ORDER} attribute.
@@ -563,7 +563,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.avgDiscountPerOrder = avgDiscountPerOrder;
     }
 
-    // ------------------------------------------------------------------------------------------------ noDiscountOrders
+    // ---------------------------------------------------------------------------- noDiscountOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NO_DISCOUNT_ORDERS} attribute.
@@ -583,7 +583,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.noDiscountOrders = noDiscountOrders;
     }
 
-    // ----------------------------------------------------------------------------------------------- lowDiscountOrders
+    // --------------------------------------------------------------------------- lowDiscountOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOW_DISCOUNT_ORDERS} attribute.
@@ -603,7 +603,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.lowDiscountOrders = lowDiscountOrders;
     }
 
-    // -------------------------------------------------------------------------------------------- mediumDiscountOrders
+    // ------------------------------------------------------------------------ mediumDiscountOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MEDIUM_DISCOUNT_ORDERS} attribute.
@@ -623,7 +623,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.mediumDiscountOrders = mediumDiscountOrders;
     }
 
-    // ---------------------------------------------------------------------------------------------- highDiscountOrders
+    // -------------------------------------------------------------------------- highDiscountOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HIGH_DISCOUNT_ORDERS} attribute.
@@ -643,7 +643,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.highDiscountOrders = highDiscountOrders;
     }
 
-    // ----------------------------------------------------------------------------------------------------- grossProfit
+    // --------------------------------------------------------------------------------- grossProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_PROFIT} attribute.
@@ -663,7 +663,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.grossProfit = grossProfit;
     }
 
-    // ---------------------------------------------------------------------------------------------- grossMarginPercent
+    // -------------------------------------------------------------------------- grossMarginPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_MARGIN_PERCENT} attribute.
@@ -683,7 +683,7 @@ public abstract class MappedSalesDiscountAnalysisView {
         this.grossMarginPercent = grossMarginPercent;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -693,7 +693,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -703,7 +703,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -716,7 +716,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -728,7 +728,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -738,7 +738,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -751,7 +751,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
@@ -765,7 +765,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private BigDecimal totalDiscounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -778,7 +778,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
@@ -792,7 +792,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private BigDecimal discountPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT_PER_ORDER - COLUMN_SCALE_AVG_DISCOUNT_PER_ORDER,
             fraction = COLUMN_SCALE_AVG_DISCOUNT_PER_ORDER)
@@ -806,7 +806,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private BigDecimal avgDiscountPerOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NO_DISCOUNT_ORDERS,
@@ -816,7 +816,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer noDiscountOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOW_DISCOUNT_ORDERS,
@@ -826,7 +826,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer lowDiscountOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MEDIUM_DISCOUNT_ORDERS,
@@ -836,7 +836,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer mediumDiscountOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HIGH_DISCOUNT_ORDERS,
@@ -846,7 +846,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private Integer highDiscountOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
@@ -859,7 +859,7 @@ public abstract class MappedSalesDiscountAnalysisView {
     )
     private BigDecimal grossProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)

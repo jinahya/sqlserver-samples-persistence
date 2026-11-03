@@ -54,7 +54,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String TABLE_NAME = "vw_Sales_CustomerLifetimeValue";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -66,7 +66,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerCode
+    // -------------------------------------------------------------------------------- CustomerCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -83,7 +83,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CODE = "customerCode";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -100,7 +100,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -117,7 +117,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // -------------------------------------------------------------------------------------------------------- SalesRep
+    // ------------------------------------------------------------------------------------ SalesRep
 
     /**
      * The name of the {@code nvarchar(101)} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP = "salesRep";
 
-    // ----------------------------------------------------------------------------------------------- FirstPurchaseDate
+    // --------------------------------------------------------------------------- FirstPurchaseDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -147,7 +147,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_PURCHASE_DATE = "firstPurchaseDate";
 
-    // ------------------------------------------------------------------------------------------------ LastPurchaseDate
+    // ---------------------------------------------------------------------------- LastPurchaseDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -159,7 +159,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_LAST_PURCHASE_DATE = "lastPurchaseDate";
 
-    // ------------------------------------------------------------------------------------------ CustomerLifetimeMonths
+    // ---------------------------------------------------------------------- CustomerLifetimeMonths
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_LIFETIME_MONTHS = "customerLifetimeMonths";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRevenue
+    // -------------------------------------------------------------------------------- TotalRevenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -206,7 +206,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
 
-    // ----------------------------------------------------------------------------------------------------- TotalProfit
+    // --------------------------------------------------------------------------------- TotalProfit
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -228,7 +228,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_PROFIT = "totalProfit";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -250,7 +250,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ----------------------------------------------------------------------------------------------- AvgMonthlyRevenue
+    // --------------------------------------------------------------------------- AvgMonthlyRevenue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -273,7 +273,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_AVG_MONTHLY_REVENUE = "avgMonthlyRevenue";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerTier
+    // -------------------------------------------------------------------------------- CustomerTier
 
     /**
      * The name of the {@code varchar(8), NOT NULL} column. The value is {@value}.
@@ -290,7 +290,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TIER = "customerTier";
 
-    // ------------------------------------------------------------------------------------------- DaysSinceLastPurchase
+    // ----------------------------------------------------------------------- DaysSinceLastPurchase
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -303,7 +303,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_LAST_PURCHASE = "daysSinceLastPurchase";
 
-    // -------------------------------------------------------------------------------------------------- ActivityStatus
+    // ------------------------------------------------------------------------------ ActivityStatus
 
     /**
      * The name of the {@code varchar(13), NOT NULL} column. The value is {@value}.
@@ -320,7 +320,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_ACTIVITY_STATUS = "activityStatus";
 
-    // ------------------------------------------------------------------------------------------ ProjectedAnnualRevenue
+    // ---------------------------------------------------------------------- ProjectedAnnualRevenue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -343,7 +343,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_PROJECTED_ANNUAL_REVENUE = "projectedAnnualRevenue";
 
-    // ------------------------------------------------------------------------------------------------------- ValueRank
+    // ----------------------------------------------------------------------------------- ValueRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -355,7 +355,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      */
     public static final String ATTRIBUTE_NAME_VALUE_RANK = "valueRank";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -364,7 +364,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -419,7 +419,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         return Objects.hash(customerId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -439,7 +439,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.customerId = customerId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerCode
+    // -------------------------------------------------------------------------------- customerCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CODE} attribute.
@@ -459,7 +459,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.customerCode = customerCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -479,7 +479,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.customerName = customerName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -499,7 +499,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.customerType = customerType;
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesRep
+    // ------------------------------------------------------------------------------------ salesRep
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REP} attribute.
@@ -519,7 +519,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.salesRep = salesRep;
     }
 
-    // ----------------------------------------------------------------------------------------------- firstPurchaseDate
+    // --------------------------------------------------------------------------- firstPurchaseDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_PURCHASE_DATE} attribute.
@@ -539,7 +539,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.firstPurchaseDate = firstPurchaseDate;
     }
 
-    // ------------------------------------------------------------------------------------------------ lastPurchaseDate
+    // ---------------------------------------------------------------------------- lastPurchaseDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_PURCHASE_DATE} attribute.
@@ -559,7 +559,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.lastPurchaseDate = lastPurchaseDate;
     }
 
-    // ------------------------------------------------------------------------------------------ customerLifetimeMonths
+    // ---------------------------------------------------------------------- customerLifetimeMonths
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_LIFETIME_MONTHS} attribute.
@@ -579,7 +579,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.customerLifetimeMonths = customerLifetimeMonths;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -599,7 +599,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.totalOrders = totalOrders;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRevenue
+    // -------------------------------------------------------------------------------- totalRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute.
@@ -619,7 +619,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.totalRevenue = totalRevenue;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalProfit
+    // --------------------------------------------------------------------------------- totalProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_PROFIT} attribute.
@@ -639,7 +639,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.totalProfit = totalProfit;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -659,7 +659,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ----------------------------------------------------------------------------------------------- avgMonthlyRevenue
+    // --------------------------------------------------------------------------- avgMonthlyRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_MONTHLY_REVENUE} attribute.
@@ -679,7 +679,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.avgMonthlyRevenue = avgMonthlyRevenue;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerTier
+    // -------------------------------------------------------------------------------- customerTier
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TIER} attribute.
@@ -699,7 +699,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.customerTier = customerTier;
     }
 
-    // ------------------------------------------------------------------------------------------- daysSinceLastPurchase
+    // ----------------------------------------------------------------------- daysSinceLastPurchase
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_PURCHASE} attribute.
@@ -719,7 +719,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.daysSinceLastPurchase = daysSinceLastPurchase;
     }
 
-    // -------------------------------------------------------------------------------------------------- activityStatus
+    // ------------------------------------------------------------------------------ activityStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTIVITY_STATUS} attribute.
@@ -739,7 +739,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.activityStatus = activityStatus;
     }
 
-    // ------------------------------------------------------------------------------------------ projectedAnnualRevenue
+    // ---------------------------------------------------------------------- projectedAnnualRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROJECTED_ANNUAL_REVENUE} attribute.
@@ -759,7 +759,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.projectedAnnualRevenue = projectedAnnualRevenue;
     }
 
-    // ------------------------------------------------------------------------------------------------------- valueRank
+    // ----------------------------------------------------------------------------------- valueRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALUE_RANK} attribute.
@@ -779,7 +779,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
         this.valueRank = valueRank;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -790,7 +790,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
@@ -803,7 +803,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private String customerCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -816,7 +816,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -828,7 +828,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP)
     @Basic(optional = true)
@@ -840,7 +840,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private String salesRep;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FIRST_PURCHASE_DATE,
@@ -850,7 +850,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private LocalDate firstPurchaseDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_PURCHASE_DATE,
@@ -860,7 +860,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private LocalDate lastPurchaseDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS,
@@ -870,7 +870,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private Integer customerLifetimeMonths;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -880,7 +880,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
@@ -894,7 +894,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private BigDecimal totalRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_PROFIT - COLUMN_SCALE_TOTAL_PROFIT, fraction = COLUMN_SCALE_TOTAL_PROFIT)
     @Basic(optional = true)
@@ -907,7 +907,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private BigDecimal totalProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -921,7 +921,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_MONTHLY_REVENUE - COLUMN_SCALE_AVG_MONTHLY_REVENUE,
             fraction = COLUMN_SCALE_AVG_MONTHLY_REVENUE)
@@ -935,7 +935,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private BigDecimal avgMonthlyRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TIER)
     @NotNull
@@ -948,7 +948,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private String customerTier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE,
@@ -958,7 +958,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private Integer daysSinceLastPurchase;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ACTIVITY_STATUS)
     @NotNull
@@ -971,7 +971,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private String activityStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PROJECTED_ANNUAL_REVENUE - COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE,
             fraction = COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE)
@@ -985,7 +985,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     )
     private BigDecimal projectedAnnualRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_RANK,

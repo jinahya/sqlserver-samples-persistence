@@ -35,7 +35,7 @@ class ProductListPriceHistory_Persister
         super(ProductListPriceHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductListPriceHistory apply(final EntityManager entityManager,
                                          final ProductListPriceHistory entityInstance) {

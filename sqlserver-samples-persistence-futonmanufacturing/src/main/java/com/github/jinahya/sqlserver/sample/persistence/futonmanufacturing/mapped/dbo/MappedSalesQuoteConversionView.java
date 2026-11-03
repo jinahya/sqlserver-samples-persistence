@@ -54,7 +54,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String TABLE_NAME = "vw_Sales_QuoteConversion";
 
-    // ----------------------------------------------------------------------------------------------------- QuoteNumber
+    // --------------------------------------------------------------------------------- QuoteNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_NUMBER = "quoteNumber";
 
-    // ----------------------------------------------------------------------------------------------------- QuoteStatus
+    // --------------------------------------------------------------------------------- QuoteStatus
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_STATUS = "quoteStatus";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // -------------------------------------------------------------------------------------------------------- SalesRep
+    // ------------------------------------------------------------------------------------ SalesRep
 
     /**
      * The name of the {@code nvarchar(101)} column. The value is {@value}.
@@ -156,7 +156,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP = "salesRep";
 
-    // --------------------------------------------------------------------------------------------------- TerritoryName
+    // ------------------------------------------------------------------------------- TerritoryName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -173,7 +173,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_NAME = "territoryName";
 
-    // ------------------------------------------------------------------------------------------------------- QuoteDate
+    // ----------------------------------------------------------------------------------- QuoteDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -185,7 +185,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_DATE = "quoteDate";
 
-    // -------------------------------------------------------------------------------------------------- ExpirationDate
+    // ------------------------------------------------------------------------------ ExpirationDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -197,7 +197,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_EXPIRATION_DATE = "expirationDate";
 
-    // ---------------------------------------------------------------------------------------------------- DaysToExpire
+    // -------------------------------------------------------------------------------- DaysToExpire
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -209,7 +209,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_TO_EXPIRE = "daysToExpire";
 
-    // ----------------------------------------------------------------------------------------------------- QuoteAmount
+    // --------------------------------------------------------------------------------- QuoteAmount
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -231,7 +231,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_QUOTE_AMOUNT = "quoteAmount";
 
-    // ------------------------------------------------------------------------------------------------ ConversionStatus
+    // ---------------------------------------------------------------------------- ConversionStatus
 
     /**
      * The name of the {@code varchar(18), NOT NULL} column. The value is {@value}.
@@ -248,7 +248,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_CONVERSION_STATUS = "conversionStatus";
 
-    // -------------------------------------------------------------------------------------------- ConvertedOrderNumber
+    // ------------------------------------------------------------------------ ConvertedOrderNumber
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -266,7 +266,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_CONVERTED_ORDER_NUMBER = "convertedOrderNumber";
 
-    // ----------------------------------------------------------------------------------------------------- OrderAmount
+    // --------------------------------------------------------------------------------- OrderAmount
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -288,7 +288,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_AMOUNT = "orderAmount";
 
-    // --------------------------------------------------------------------------------------------------- ValueVariance
+    // ------------------------------------------------------------------------------- ValueVariance
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -310,7 +310,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_VALUE_VARIANCE = "valueVariance";
 
-    // --------------------------------------------------------------------------------------------------- DaysToConvert
+    // ------------------------------------------------------------------------------- DaysToConvert
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -322,7 +322,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_TO_CONVERT = "daysToConvert";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -331,7 +331,7 @@ public abstract class MappedSalesQuoteConversionView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -384,7 +384,7 @@ public abstract class MappedSalesQuoteConversionView {
         return Objects.hash(quoteNumber);
     }
 
-    // ----------------------------------------------------------------------------------------------------- quoteNumber
+    // --------------------------------------------------------------------------------- quoteNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_NUMBER} attribute.
@@ -404,7 +404,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.quoteNumber = quoteNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------------- quoteStatus
+    // --------------------------------------------------------------------------------- quoteStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_STATUS} attribute.
@@ -424,7 +424,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.quoteStatus = quoteStatus;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -444,7 +444,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.customerName = customerName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -464,7 +464,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.customerType = customerType;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -484,7 +484,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.channelName = channelName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesRep
+    // ------------------------------------------------------------------------------------ salesRep
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REP} attribute.
@@ -504,7 +504,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.salesRep = salesRep;
     }
 
-    // --------------------------------------------------------------------------------------------------- territoryName
+    // ------------------------------------------------------------------------------- territoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute.
@@ -524,7 +524,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.territoryName = territoryName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- quoteDate
+    // ----------------------------------------------------------------------------------- quoteDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_DATE} attribute.
@@ -544,7 +544,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.quoteDate = quoteDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- expirationDate
+    // ------------------------------------------------------------------------------ expirationDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXPIRATION_DATE} attribute.
@@ -564,7 +564,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.expirationDate = expirationDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- daysToExpire
+    // -------------------------------------------------------------------------------- daysToExpire
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_TO_EXPIRE} attribute.
@@ -584,7 +584,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.daysToExpire = daysToExpire;
     }
 
-    // ----------------------------------------------------------------------------------------------------- quoteAmount
+    // --------------------------------------------------------------------------------- quoteAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUOTE_AMOUNT} attribute.
@@ -604,7 +604,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.quoteAmount = quoteAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------ conversionStatus
+    // ---------------------------------------------------------------------------- conversionStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONVERSION_STATUS} attribute.
@@ -624,7 +624,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.conversionStatus = conversionStatus;
     }
 
-    // -------------------------------------------------------------------------------------------- convertedOrderNumber
+    // ------------------------------------------------------------------------ convertedOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONVERTED_ORDER_NUMBER} attribute.
@@ -644,7 +644,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.convertedOrderNumber = convertedOrderNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------------- orderAmount
+    // --------------------------------------------------------------------------------- orderAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_AMOUNT} attribute.
@@ -664,7 +664,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.orderAmount = orderAmount;
     }
 
-    // --------------------------------------------------------------------------------------------------- valueVariance
+    // ------------------------------------------------------------------------------- valueVariance
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALUE_VARIANCE} attribute.
@@ -684,7 +684,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.valueVariance = valueVariance;
     }
 
-    // --------------------------------------------------------------------------------------------------- daysToConvert
+    // ------------------------------------------------------------------------------- daysToConvert
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_TO_CONVERT} attribute.
@@ -704,7 +704,7 @@ public abstract class MappedSalesQuoteConversionView {
         this.daysToConvert = daysToConvert;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_QUOTE_NUMBER)
     @NotNull
@@ -717,7 +717,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String quoteNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_QUOTE_STATUS)
     @NotNull
@@ -730,7 +730,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String quoteStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -743,7 +743,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -755,7 +755,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @Basic(optional = true)
@@ -767,7 +767,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP)
     @Basic(optional = true)
@@ -779,7 +779,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String salesRep;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
@@ -791,7 +791,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String territoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -802,7 +802,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private LocalDate quoteDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPIRATION_DATE,
@@ -812,7 +812,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private LocalDate expirationDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_EXPIRE,
@@ -822,7 +822,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private Integer daysToExpire;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUOTE_AMOUNT - COLUMN_SCALE_QUOTE_AMOUNT, fraction = COLUMN_SCALE_QUOTE_AMOUNT)
     @Basic(optional = true)
@@ -835,7 +835,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private BigDecimal quoteAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CONVERSION_STATUS)
     @NotNull
@@ -848,7 +848,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String conversionStatus;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CONVERTED_ORDER_NUMBER)
     @Basic(optional = true)
@@ -860,7 +860,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private String convertedOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_AMOUNT - COLUMN_SCALE_ORDER_AMOUNT, fraction = COLUMN_SCALE_ORDER_AMOUNT)
     @Basic(optional = true)
@@ -873,7 +873,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private BigDecimal orderAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE_VARIANCE - COLUMN_SCALE_VALUE_VARIANCE,
             fraction = COLUMN_SCALE_VALUE_VARIANCE)
@@ -887,7 +887,7 @@ public abstract class MappedSalesQuoteConversionView {
     )
     private BigDecimal valueVariance;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_CONVERT,

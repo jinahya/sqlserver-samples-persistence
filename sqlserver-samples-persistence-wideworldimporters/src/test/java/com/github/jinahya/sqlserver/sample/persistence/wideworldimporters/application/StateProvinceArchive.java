@@ -35,7 +35,7 @@ import java.util.Optional;
  */
 public class StateProvinceArchive extends MappedStateProvinceArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

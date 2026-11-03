@@ -30,7 +30,7 @@ class TransactionHistory_PersistenceIT extends _Entity_PersistenceIT<Transaction
         super(TransactionHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; the triggers of the work-order, purchase-order and sales-order tables insert every row of

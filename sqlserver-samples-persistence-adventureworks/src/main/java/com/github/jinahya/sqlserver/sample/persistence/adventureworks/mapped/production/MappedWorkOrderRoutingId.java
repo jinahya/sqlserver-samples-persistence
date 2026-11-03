@@ -35,7 +35,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -73,7 +73,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
         return Objects.hash(workOrderId, productId, operationSequence);
     }
 
-    // ----------------------------------------------------------------------------------------------------- workOrderId
+    // --------------------------------------------------------------------------------- workOrderId
 
     /**
      * Returns current value of the {@code workOrderId} attribute.
@@ -93,7 +93,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
         this.workOrderId = workOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of the {@code productId} attribute.
@@ -113,7 +113,7 @@ public class MappedWorkOrderRoutingId implements Serializable {
         this.productId = productId;
     }
 
-    // ----------------------------------------------------------------------------------------------- operationSequence
+    // --------------------------------------------------------------------------- operationSequence
 
     /**
      * Returns current value of the {@code operationSequence} attribute.
@@ -133,11 +133,20 @@ public class MappedWorkOrderRoutingId implements Serializable {
         this.operationSequence = operationSequence;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code workOrderId} attribute.
+     */
     private Integer workOrderId;
 
+    /**
+     * The value of the {@code productId} attribute.
+     */
     private Integer productId;
 
+    /**
+     * The value of the {@code operationSequence} attribute.
+     */
     private Integer operationSequence;
 }
 

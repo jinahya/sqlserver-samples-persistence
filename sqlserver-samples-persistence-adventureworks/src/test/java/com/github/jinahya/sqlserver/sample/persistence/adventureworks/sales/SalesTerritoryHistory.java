@@ -24,18 +24,36 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritoryHistory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritoryHistoryId;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SalesTerritoryHistory} table.
  */
 @Entity(name = "SalesSalesTerritoryHistory")
-@Table(schema = MappedSalesTerritoryHistory.TABLE_SCHEMA, name = MappedSalesTerritoryHistory.TABLE_NAME)
+@Table(schema = MappedSalesTerritoryHistory.TABLE_SCHEMA,
+       name = MappedSalesTerritoryHistory.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SalesTerritoryHistory_rowguid",
+                       columnNames = {
+                               SalesTerritoryHistory.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SalesTerritoryHistory_EndDate",
+                       constraint = "([EndDate]>=[StartDate] OR [EndDate] IS NULL)"
+               )
+       }
+)
 @IdClass(MappedSalesTerritoryHistoryId.class)
 public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
 
@@ -51,7 +69,7 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +78,7 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code SalesPerson} which the {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign
@@ -83,7 +101,7 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- territory
+    // ----------------------------------------------------------------------------------- territory
 
     /**
      * Returns the {@code SalesTerritory} which the {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID} foreign
@@ -106,7 +124,7 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
         setTerritoryId(territory == null ? null : territory.getTerritoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedSalesPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -116,7 +134,7 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
     )
     private SalesPerson businessEntity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

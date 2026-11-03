@@ -35,7 +35,7 @@ class EmployeeDepartmentHistory_Persister
         super(EmployeeDepartmentHistory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public EmployeeDepartmentHistory apply(final EntityManager entityManager,
                                            final EmployeeDepartmentHistory entityInstance) {

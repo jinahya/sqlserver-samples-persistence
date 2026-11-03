@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,23 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_ITEM_ID}, {@value #COLUMN_NAME_WAREHOUSE_ID}, {@value #COLUMN_NAME_WORK_CENTER_ID} columns
  * are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.ProductionOrder}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code QuantityCompleted}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code QuantityScrapped}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code Status}</th><td>{@code ('Planned')}</td></tr>
+ * <tr><th scope="row">{@code Priority}</th><td>{@code ((5))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedProductionOrder {
@@ -55,7 +74,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String TABLE_NAME = "ProductionOrder";
 
-    // ----------------------------------------------------------------------------------------------- ProductionOrderID
+    // --------------------------------------------------------------------------- ProductionOrderID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -68,7 +87,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_PRODUCTION_ORDER_ID = "productionOrderId";
 
-    // ------------------------------------------------------------------------------------------------- WorkOrderNumber
+    // ----------------------------------------------------------------------------- WorkOrderNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -85,7 +104,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_NUMBER = "workOrderNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -97,7 +116,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ----------------------------------------------------------------------------------------------------- WarehouseID
+    // --------------------------------------------------------------------------------- WarehouseID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -109,7 +128,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
 
-    // ---------------------------------------------------------------------------------------------------- WorkCenterID
+    // -------------------------------------------------------------------------------- WorkCenterID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -121,7 +140,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_ID = "workCenterId";
 
-    // --------------------------------------------------------------------------------------------------- OrderQuantity
+    // ------------------------------------------------------------------------------- OrderQuantity
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -143,7 +162,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_QUANTITY = "orderQuantity";
 
-    // ----------------------------------------------------------------------------------------------- QuantityCompleted
+    // --------------------------------------------------------------------------- QuantityCompleted
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -165,7 +184,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_COMPLETED = "quantityCompleted";
 
-    // ------------------------------------------------------------------------------------------------ QuantityScrapped
+    // ---------------------------------------------------------------------------- QuantityScrapped
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -187,7 +206,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_SCRAPPED = "quantityScrapped";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -199,7 +218,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // ------------------------------------------------------------------------------------------- PlannedCompletionDate
+    // ----------------------------------------------------------------------- PlannedCompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -212,7 +231,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE = "plannedCompletionDate";
 
-    // -------------------------------------------------------------------------------------------- ActualCompletionDate
+    // ------------------------------------------------------------------------ ActualCompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -225,7 +244,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_COMPLETION_DATE = "actualCompletionDate";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), DEFAULT ('Planned'), NOT NULL} column. The value is {@value}.
@@ -242,7 +261,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // -------------------------------------------------------------------------------------------------------- Priority
+    // ------------------------------------------------------------------------------------ Priority
 
     /**
      * The name of the {@code int, DEFAULT ((5))} column. The value is {@value}.
@@ -254,7 +273,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_PRIORITY = "priority";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -266,7 +285,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ------------------------------------------------------------------------------------------------------- CreatedBy
+    // ----------------------------------------------------------------------------------- CreatedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -283,7 +302,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_CREATED_BY = "createdBy";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -295,7 +314,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -307,7 +326,7 @@ public abstract class MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -316,7 +335,7 @@ public abstract class MappedProductionOrder {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -370,7 +389,7 @@ public abstract class MappedProductionOrder {
         return Objects.hash(productionOrderId);
     }
 
-    // ----------------------------------------------------------------------------------------------- productionOrderId
+    // --------------------------------------------------------------------------- productionOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute.
@@ -390,7 +409,7 @@ public abstract class MappedProductionOrder {
         this.productionOrderId = productionOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------- workOrderNumber
+    // ----------------------------------------------------------------------------- workOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_NUMBER} attribute.
@@ -410,7 +429,7 @@ public abstract class MappedProductionOrder {
         this.workOrderNumber = workOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -431,7 +450,7 @@ public abstract class MappedProductionOrder {
         this.itemId = itemId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- warehouseId
+    // --------------------------------------------------------------------------------- warehouseId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
@@ -452,7 +471,7 @@ public abstract class MappedProductionOrder {
         this.warehouseId = warehouseId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- workCenterId
+    // -------------------------------------------------------------------------------- workCenterId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute.
@@ -474,7 +493,7 @@ public abstract class MappedProductionOrder {
         this.workCenterId = workCenterId;
     }
 
-    // --------------------------------------------------------------------------------------------------- orderQuantity
+    // ------------------------------------------------------------------------------- orderQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_QUANTITY} attribute.
@@ -494,7 +513,7 @@ public abstract class MappedProductionOrder {
         this.orderQuantity = orderQuantity;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityCompleted
+    // --------------------------------------------------------------------------- quantityCompleted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_COMPLETED} attribute.
@@ -514,7 +533,7 @@ public abstract class MappedProductionOrder {
         this.quantityCompleted = quantityCompleted;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityScrapped
+    // ---------------------------------------------------------------------------- quantityScrapped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_SCRAPPED} attribute.
@@ -534,7 +553,7 @@ public abstract class MappedProductionOrder {
         this.quantityScrapped = quantityScrapped;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -554,7 +573,7 @@ public abstract class MappedProductionOrder {
         this.startDate = startDate;
     }
 
-    // ------------------------------------------------------------------------------------------- plannedCompletionDate
+    // ----------------------------------------------------------------------- plannedCompletionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PLANNED_COMPLETION_DATE} attribute.
@@ -574,7 +593,7 @@ public abstract class MappedProductionOrder {
         this.plannedCompletionDate = plannedCompletionDate;
     }
 
-    // -------------------------------------------------------------------------------------------- actualCompletionDate
+    // ------------------------------------------------------------------------ actualCompletionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTUAL_COMPLETION_DATE} attribute.
@@ -594,7 +613,7 @@ public abstract class MappedProductionOrder {
         this.actualCompletionDate = actualCompletionDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -614,7 +633,7 @@ public abstract class MappedProductionOrder {
         this.status = status;
     }
 
-    // -------------------------------------------------------------------------------------------------------- priority
+    // ------------------------------------------------------------------------------------ priority
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIORITY} attribute.
@@ -634,7 +653,7 @@ public abstract class MappedProductionOrder {
         this.priority = priority;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -654,7 +673,7 @@ public abstract class MappedProductionOrder {
         this.notes = notes;
     }
 
-    // ------------------------------------------------------------------------------------------------------- createdBy
+    // ----------------------------------------------------------------------------------- createdBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_BY} attribute.
@@ -674,7 +693,7 @@ public abstract class MappedProductionOrder {
         this.createdBy = createdBy;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -694,7 +713,7 @@ public abstract class MappedProductionOrder {
         this.createdDate = createdDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -714,7 +733,7 @@ public abstract class MappedProductionOrder {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -726,7 +745,7 @@ public abstract class MappedProductionOrder {
     )
     private Integer productionOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -738,7 +757,7 @@ public abstract class MappedProductionOrder {
     )
     private String workOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -749,7 +768,7 @@ public abstract class MappedProductionOrder {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -760,7 +779,7 @@ public abstract class MappedProductionOrder {
     )
     private Integer warehouseId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_ID,
@@ -770,7 +789,7 @@ public abstract class MappedProductionOrder {
     )
     private Integer workCenterId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_ORDER_QUANTITY - COLUMN_SCALE_ORDER_QUANTITY,
             fraction = COLUMN_SCALE_ORDER_QUANTITY)
     @NotNull
@@ -784,7 +803,7 @@ public abstract class MappedProductionOrder {
     )
     private BigDecimal orderQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
     @Basic(optional = true)
@@ -795,9 +814,10 @@ public abstract class MappedProductionOrder {
             precision = COLUMN_PRECISION_QUANTITY_COMPLETED,
             scale = COLUMN_SCALE_QUANTITY_COMPLETED
     )
+    @MsDefault("((0))")
     private BigDecimal quantityCompleted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
             fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @Basic(optional = true)
@@ -808,9 +828,10 @@ public abstract class MappedProductionOrder {
             precision = COLUMN_PRECISION_QUANTITY_SCRAPPED,
             scale = COLUMN_SCALE_QUANTITY_SCRAPPED
     )
+    @MsDefault("((0))")
     private BigDecimal quantityScrapped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_START_DATE,
             nullable = true,
@@ -819,7 +840,7 @@ public abstract class MappedProductionOrder {
     )
     private LocalDate startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
             nullable = true,
@@ -828,7 +849,7 @@ public abstract class MappedProductionOrder {
     )
     private LocalDate plannedCompletionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTUAL_COMPLETION_DATE,
             nullable = true,
@@ -837,7 +858,7 @@ public abstract class MappedProductionOrder {
     )
     private LocalDate actualCompletionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
@@ -847,18 +868,20 @@ public abstract class MappedProductionOrder {
             updatable = true,
             length = COLUMN_LENGTH_STATUS
     )
+    @MsDefault("('Planned')")
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("((5))")
     private Integer priority;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -867,7 +890,7 @@ public abstract class MappedProductionOrder {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_BY,
@@ -878,22 +901,24 @@ public abstract class MappedProductionOrder {
     )
     private String createdBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 }
 

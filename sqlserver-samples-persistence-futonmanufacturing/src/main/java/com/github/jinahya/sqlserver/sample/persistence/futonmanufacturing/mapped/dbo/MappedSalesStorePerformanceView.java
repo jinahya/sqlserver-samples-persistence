@@ -54,7 +54,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String TABLE_NAME = "vw_Sales_StorePerformance";
 
-    // ------------------------------------------------------------------------------------------------------- StoreCode
+    // ----------------------------------------------------------------------------------- StoreCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_STORE_CODE = "storeCode";
 
-    // ------------------------------------------------------------------------------------------------------- StoreName
+    // ----------------------------------------------------------------------------------- StoreName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_STORE_NAME = "storeName";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // ----------------------------------------------------------------------------------------------------------- State
+    // --------------------------------------------------------------------------------------- State
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_STATE = "state";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // --------------------------------------------------------------------------------------------------------- Manager
+    // ------------------------------------------------------------------------------------- Manager
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -156,7 +156,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_MANAGER = "manager";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -168,7 +168,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ------------------------------------------------------------------------------------------------- UniqueCustomers
+    // ----------------------------------------------------------------------------- UniqueCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -180,7 +180,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_CUSTOMERS = "uniqueCustomers";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -202,7 +202,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // -------------------------------------------------------------------------------------------------- TotalDiscounts
+    // ------------------------------------------------------------------------------ TotalDiscounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -224,7 +224,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DISCOUNTS = "totalDiscounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -246,7 +246,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -268,7 +268,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ------------------------------------------------------------------------------------------------- CompletedOrders
+    // ----------------------------------------------------------------------------- CompletedOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -280,7 +280,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_COMPLETED_ORDERS = "completedOrders";
 
-    // -------------------------------------------------------------------------------------------------- CompletionRate
+    // ------------------------------------------------------------------------------ CompletionRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -302,7 +302,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_RATE = "completionRate";
 
-    // ------------------------------------------------------------------------------------------------------- FirstSale
+    // ----------------------------------------------------------------------------------- FirstSale
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -314,7 +314,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_SALE = "firstSale";
 
-    // -------------------------------------------------------------------------------------------------------- LastSale
+    // ------------------------------------------------------------------------------------ LastSale
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -326,7 +326,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_LAST_SALE = "lastSale";
 
-    // ------------------------------------------------------------------------------------------------------ DaysActive
+    // ---------------------------------------------------------------------------------- DaysActive
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -338,7 +338,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_ACTIVE = "daysActive";
 
-    // --------------------------------------------------------------------------------------------------- AvgDailySales
+    // ------------------------------------------------------------------------------- AvgDailySales
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -360,7 +360,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DAILY_SALES = "avgDailySales";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -369,7 +369,7 @@ public abstract class MappedSalesStorePerformanceView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -424,7 +424,7 @@ public abstract class MappedSalesStorePerformanceView {
         return Objects.hash(storeCode);
     }
 
-    // ------------------------------------------------------------------------------------------------------- storeCode
+    // ----------------------------------------------------------------------------------- storeCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STORE_CODE} attribute.
@@ -444,7 +444,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.storeCode = storeCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------- storeName
+    // ----------------------------------------------------------------------------------- storeName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STORE_NAME} attribute.
@@ -464,7 +464,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.storeName = storeName;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -484,7 +484,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.city = city;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- state
+    // --------------------------------------------------------------------------------------- state
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE} attribute.
@@ -504,7 +504,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.state = state;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -524,7 +524,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.channelName = channelName;
     }
 
-    // --------------------------------------------------------------------------------------------------------- manager
+    // ------------------------------------------------------------------------------------- manager
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MANAGER} attribute.
@@ -544,7 +544,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.manager = manager;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -564,7 +564,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.totalOrders = totalOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------- uniqueCustomers
+    // ----------------------------------------------------------------------------- uniqueCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute.
@@ -584,7 +584,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.uniqueCustomers = uniqueCustomers;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -604,7 +604,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.grossSales = grossSales;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalDiscounts
+    // ------------------------------------------------------------------------------ totalDiscounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_DISCOUNTS} attribute.
@@ -624,7 +624,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.totalDiscounts = totalDiscounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -644,7 +644,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.netSales = netSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -664,7 +664,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- completedOrders
+    // ----------------------------------------------------------------------------- completedOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETED_ORDERS} attribute.
@@ -684,7 +684,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.completedOrders = completedOrders;
     }
 
-    // -------------------------------------------------------------------------------------------------- completionRate
+    // ------------------------------------------------------------------------------ completionRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETION_RATE} attribute.
@@ -704,7 +704,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.completionRate = completionRate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- firstSale
+    // ----------------------------------------------------------------------------------- firstSale
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_SALE} attribute.
@@ -724,7 +724,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.firstSale = firstSale;
     }
 
-    // -------------------------------------------------------------------------------------------------------- lastSale
+    // ------------------------------------------------------------------------------------ lastSale
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_SALE} attribute.
@@ -744,7 +744,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.lastSale = lastSale;
     }
 
-    // ------------------------------------------------------------------------------------------------------ daysActive
+    // ---------------------------------------------------------------------------------- daysActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_ACTIVE} attribute.
@@ -764,7 +764,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.daysActive = daysActive;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgDailySales
+    // ------------------------------------------------------------------------------- avgDailySales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DAILY_SALES} attribute.
@@ -784,7 +784,7 @@ public abstract class MappedSalesStorePerformanceView {
         this.avgDailySales = avgDailySales;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STORE_CODE)
     @NotNull
@@ -797,7 +797,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private String storeCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STORE_NAME)
     @NotNull
@@ -810,7 +810,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private String storeName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
@@ -822,7 +822,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
@@ -834,7 +834,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private String state;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @Basic(optional = true)
@@ -846,7 +846,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MANAGER)
     @Basic(optional = true)
@@ -858,7 +858,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private String manager;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -868,7 +868,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
@@ -878,7 +878,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private Integer uniqueCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -891,7 +891,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
@@ -905,7 +905,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private BigDecimal totalDiscounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -918,7 +918,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -932,7 +932,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_ORDERS,
@@ -942,7 +942,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private Integer completedOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_COMPLETION_RATE - COLUMN_SCALE_COMPLETION_RATE,
             fraction = COLUMN_SCALE_COMPLETION_RATE)
@@ -956,7 +956,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private BigDecimal completionRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FIRST_SALE,
@@ -966,7 +966,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private LocalDate firstSale;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_SALE,
@@ -976,7 +976,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private LocalDate lastSale;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_ACTIVE,
@@ -986,7 +986,7 @@ public abstract class MappedSalesStorePerformanceView {
     )
     private Integer daysActive;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DAILY_SALES - COLUMN_SCALE_AVG_DAILY_SALES,
             fraction = COLUMN_SCALE_AVG_DAILY_SALES)

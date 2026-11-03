@@ -34,7 +34,7 @@ import jakarta.persistence.Table;
        name = MappedSalesPersonSalesByFiscalYearsView.TABLE_NAME)
 public class SalesPersonSalesByFiscalYearsView extends MappedSalesPersonSalesByFiscalYearsView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

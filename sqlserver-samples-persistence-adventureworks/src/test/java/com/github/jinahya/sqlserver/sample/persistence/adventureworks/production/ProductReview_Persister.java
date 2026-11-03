@@ -35,7 +35,7 @@ class ProductReview_Persister
         super(ProductReview.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductReview apply(final EntityManager entityManager, final ProductReview entityInstance) {
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

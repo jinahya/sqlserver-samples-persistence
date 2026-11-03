@@ -35,7 +35,7 @@ class ProductInventory_Persister
         super(ProductInventory.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductInventory apply(final EntityManager entityManager, final ProductInventory entityInstance) {
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

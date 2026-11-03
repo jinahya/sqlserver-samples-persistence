@@ -58,18 +58,22 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
 | `date`, `time`, `datetime`, `datetime2` | `LocalDate`, `LocalTime`, `LocalDateTime` | |
 | `uniqueidentifier` | `UUID` | Hibernate ORM maps it, with no converter; an identifier is a `String` |
 | `varbinary` | `byte[]` | the driver's bytes |
-| `hierarchyid` | `-common`'s `Heirarchyid` | `HeirarchyidAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.2; its `toString()` is `ToString()`'s |
-| `geography` | `-common`'s `Geography` | `GeographyAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.1; its `toString()` is `STAsText()`'s, but for the digits of a coordinate |
+| `hierarchyid` | `-common`'s `Heirarchyid` | `HeirarchyidAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.2; its `toString()` is [`ToString()`](https://learn.microsoft.com/en-us/sql/t-sql/data-types/tostring-database-engine)'s |
+| `geography` | `-common`'s `Geography` | `GeographyAttributeConverter`, through the serialized form of [MS-SSCLRT] section 2.1; its `toString()` is [`STAsText()`](https://learn.microsoft.com/en-us/sql/t-sql/spatial-geography/stastext-geography-data-type)'s, but for the digits of a coordinate |
 | alias types (`Name`, `Flag`, `Phone`, ...) | as their base type | |
 
 - An `IDENTITY` column is `@GeneratedValue(strategy = IDENTITY)`, and WideWorldImporters' keys, whose defaults are
-  `NEXT VALUE FOR [Sequences].[...]`, `@GeneratedValue(strategy = SEQUENCE)` with a `@SequenceGenerator` per
+  [`NEXT VALUE FOR`](https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql) `[Sequences].[...]`, `@GeneratedValue(strategy = SEQUENCE)` with a `@SequenceGenerator` per
   sequence.
 - An AdventureWorks `dbo` or `HumanResources` table keyed by a single `IDENTITY` column extends `-common`'s
   `MappedWithIdentityId`, whose `Long id_` maps the column through an `@AttributeOverride`, whatever its width;
   `Production.Location` and `Production.ScrapReason` keep their `smallint` keys as `Short`.
 - A keyless class, which no converter reaches, takes a `hierarchyid` or a `geography` column's bytes in its
   constructor and decodes them.
+- No attribute is `@Column(unique = true)`. A unique key or index is a `@UniqueConstraint` of the entity's `@Table`,
+  under the name the database gives it (`AK_AddressType_rowguid`), with all its columns; a mapped superclass has no
+  `@Table`, and `unique = true` names no constraint and takes one column only. The two together would generate one
+  constraint twice, the second under a name the provider makes up.
 - A computed column, and the `ValidFrom` / `ValidTo` period columns of a system-versioned table, are read-only.
 - Every column of a view is read-only. SQL Server takes no whole row of any of the views in an INSERT or an UPDATE,
   which is how a provider writes one: the row spans more than one base table (error 4405), or has derived, constant
@@ -82,7 +86,7 @@ foreign keys -- the basic attribute writes it, and the association is the read-o
   `RevisionNumber`, `SalesYTD`) stays writable.
 - A column name SQL Server reserves, or which is no plain identifier (`Group`, `Database Version`, `2002`), is
   quoted, `"\"Group\""`.
-- AdventureWorks' `dbo.DatabaseLog.XmlEvent`, one `EVENTDATA()` document a row, is an `EventInstance`: the class
+- AdventureWorks' `dbo.DatabaseLog.XmlEvent`, one [`EVENTDATA()`](https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql) document a row, is an `EventInstance`: the class
   [`sqlserver-xml-schema-binding-b872ce`](https://central.sonatype.com/artifact/io.github.jinahya/sqlserver-xml-schema-binding-b872ce)
   generates for the row's event type, `EVENTINSTANCECREATETABLE` for a `CREATE_TABLE`, through
   `EventInstanceStringAttributeConverter`, a `JaxbAttributeConverter` of `jinahya-persistence-more`. It is read-only:

@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
  */
 public class ComponentShortageView extends MappedComponentShortageView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -32,8 +34,41 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Person.PersonPhone} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Person.PersonPhone}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Business entity identification number. Foreign key to Person.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code PhoneNumber}</th><td>Telephone number identification number.</td></tr>
+ * <tr><th scope="row">{@code PhoneNumberTypeID}</th>
+ *     <td>Kind of phone number. Foreign key to PhoneNumberType.PhoneNumberTypeID.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Person.PersonPhone}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPersonPhone.TABLE_SCHEMA,
+        table = MappedPersonPhone.TABLE_NAME,
+        value = "Telephone number and type of a person."
+)
 public abstract class MappedPersonPhone {
 
     /**
@@ -46,7 +81,7 @@ public abstract class MappedPersonPhone {
      */
     public static final String TABLE_NAME = "PersonPhone";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -58,7 +93,7 @@ public abstract class MappedPersonPhone {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code Phone (nvarchar)(25), NOT NULL} column. The value is {@value}.
@@ -75,7 +110,7 @@ public abstract class MappedPersonPhone {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ----------------------------------------------------------------------------------------------- PhoneNumberTypeID
+    // --------------------------------------------------------------------------- PhoneNumberTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -88,7 +123,7 @@ public abstract class MappedPersonPhone {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER_TYPE_ID = "phoneNumberTypeId";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -100,7 +135,7 @@ public abstract class MappedPersonPhone {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -109,7 +144,7 @@ public abstract class MappedPersonPhone {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -152,7 +187,7 @@ public abstract class MappedPersonPhone {
         return Objects.hash(businessEntityId, phoneNumber, phoneNumberTypeId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -172,7 +207,7 @@ public abstract class MappedPersonPhone {
         this.businessEntityId = businessEntityId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -192,7 +227,7 @@ public abstract class MappedPersonPhone {
         this.phoneNumber = phoneNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------- phoneNumberTypeId
+    // --------------------------------------------------------------------------- phoneNumberTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE_ID} attribute.
@@ -212,7 +247,7 @@ public abstract class MappedPersonPhone {
         this.phoneNumberTypeId = phoneNumberTypeId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -232,7 +267,7 @@ public abstract class MappedPersonPhone {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -241,9 +276,12 @@ public abstract class MappedPersonPhone {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Business entity identification number. Foreign key to "
+                                  + "Person.BusinessEntityID.")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
@@ -254,9 +292,11 @@ public abstract class MappedPersonPhone {
             updatable = false,
             length = COLUMN_LENGTH_PHONE_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER,
+                          value = "Telephone number identification number.")
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -265,9 +305,12 @@ public abstract class MappedPersonPhone {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID,
+                          value = "Kind of phone number. Foreign key to "
+                                  + "PhoneNumberType.PhoneNumberTypeID.")
     private Integer phoneNumberTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -276,6 +319,9 @@ public abstract class MappedPersonPhone {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_PersonPhone_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

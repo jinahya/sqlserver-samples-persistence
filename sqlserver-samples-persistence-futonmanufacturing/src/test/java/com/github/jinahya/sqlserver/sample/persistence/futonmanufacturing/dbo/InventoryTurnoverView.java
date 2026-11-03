@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedInventoryTurnoverView.TABLE_SCHEMA, name = MappedInventoryTurnoverView.TABLE_NAME)
 public class InventoryTurnoverView extends MappedInventoryTurnoverView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

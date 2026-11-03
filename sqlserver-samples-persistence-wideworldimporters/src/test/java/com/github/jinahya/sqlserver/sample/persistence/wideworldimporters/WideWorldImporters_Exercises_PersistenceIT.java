@@ -91,7 +91,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         return new BigDecimal(value.toString());
     }
 
-    // -------------------------------------------------------------------------------------------- WWI_APPLICATION_B_01
+    // ------------------------------------------------------------------------ WWI_APPLICATION_B_01
     @DisplayName("WWI_APPLICATION_B_01: the salespeople, by name")
     @Nested
     class WWI_APPLICATION_B_01_Test {
@@ -128,7 +128,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------- WWI_APPLICATION_I_01
+    // ------------------------------------------------------------------------ WWI_APPLICATION_I_01
     @DisplayName("WWI_APPLICATION_I_01: the countries and the population of each continent")
     @Nested
     class WWI_APPLICATION_I_01_Test {
@@ -179,7 +179,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // --------------------------------------------------------------------------------------------- WWI_PURCHASING_B_01
+    // ------------------------------------------------------------------------- WWI_PURCHASING_B_01
     @DisplayName("WWI_PURCHASING_B_01: the suppliers, by category and then by name")
     @Nested
     class WWI_PURCHASING_B_01_Test {
@@ -218,7 +218,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // --------------------------------------------------------------------------------------------- WWI_PURCHASING_B_02
+    // ------------------------------------------------------------------------- WWI_PURCHASING_B_02
     @DisplayName("WWI_PURCHASING_B_02: what is still owed to each supplier")
     @Nested
     class WWI_PURCHASING_B_02_Test {
@@ -270,7 +270,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // --------------------------------------------------------------------------------------------- WWI_PURCHASING_I_01
+    // ------------------------------------------------------------------------- WWI_PURCHASING_I_01
     @DisplayName(
             "WWI_PURCHASING_I_01: the purchase orders and the amount ordered from each supplier " +
             "in a year")
@@ -335,7 +335,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_B_01
+    // ------------------------------------------------------------------------------ WWI_SALES_B_01
     @DisplayName("WWI_SALES_B_01: the customers of each buying group")
     @Nested
     class WWI_SALES_B_01_Test {
@@ -384,7 +384,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_B_02
+    // ------------------------------------------------------------------------------ WWI_SALES_B_02
     @DisplayName("WWI_SALES_B_02: the customers billed for others")
     @Nested
     class WWI_SALES_B_02_Test {
@@ -434,7 +434,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_B_03
+    // ------------------------------------------------------------------------------ WWI_SALES_B_03
     @DisplayName(
             "WWI_SALES_B_03: the first five customers of no buying group, from the Website" +
             ".Customers view")
@@ -486,7 +486,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_I_01
+    // ------------------------------------------------------------------------------ WWI_SALES_I_01
     @DisplayName("WWI_SALES_I_01: the five stock items which earned the most in a year")
     @Nested
     class WWI_SALES_I_01_Test {
@@ -548,7 +548,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_I_02
+    // ------------------------------------------------------------------------------ WWI_SALES_I_02
     @DisplayName("WWI_SALES_I_02: the sales of a year by month")
     @Nested
     class WWI_SALES_I_02_Test {
@@ -608,7 +608,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_I_03
+    // ------------------------------------------------------------------------------ WWI_SALES_I_03
     @DisplayName("WWI_SALES_I_03: the confirmed deliveries of a customer since a date")
     @Nested
     class WWI_SALES_I_03_Test {
@@ -663,7 +663,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_A_02
+    // ------------------------------------------------------------------------------ WWI_SALES_A_02
     @DisplayName(
             "WWI_SALES_A_02: the customers whose credit limit changed since a moment, by a native" +
             " query")
@@ -700,7 +700,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // -------------------------------------------------------------------------------------------------- WWI_SALES_A_03
+    // ------------------------------------------------------------------------------ WWI_SALES_A_03
     @DisplayName(
             "WWI_SALES_A_03: the five oldest backorders never invoiced, and the orders which " +
             "backordered them")
@@ -761,7 +761,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // ---------------------------------------------------------------------------------------------- WWI_WAREHOUSE_B_01
+    // -------------------------------------------------------------------------- WWI_WAREHOUSE_B_01
     @DisplayName("WWI_WAREHOUSE_B_01: the stock items below their reorder level")
     @Nested
     class WWI_WAREHOUSE_B_01_Test {
@@ -808,7 +808,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // ---------------------------------------------------------------------------------------------- WWI_WAREHOUSE_B_02
+    // -------------------------------------------------------------------------- WWI_WAREHOUSE_B_02
     @DisplayName("WWI_WAREHOUSE_B_02: the chiller stock items, by name")
     @Nested
     class WWI_WAREHOUSE_B_02_Test {
@@ -846,7 +846,7 @@ class WideWorldImporters_Exercises_PersistenceIT {
         }
     }
 
-    // ---------------------------------------------------------------------------------------------- WWI_WAREHOUSE_I_01
+    // -------------------------------------------------------------------------- WWI_WAREHOUSE_I_01
     @DisplayName("WWI_WAREHOUSE_I_01: the stock items of each stock group")
     @Nested
     class WWI_WAREHOUSE_I_01_Test {

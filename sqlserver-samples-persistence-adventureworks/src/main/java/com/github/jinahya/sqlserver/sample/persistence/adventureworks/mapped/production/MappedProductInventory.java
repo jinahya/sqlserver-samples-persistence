@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -36,8 +38,52 @@ import java.util.UUID;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductInventory} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.ProductInventory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product identification number. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code LocationID}</th>
+ *     <td>Inventory location identification number. Foreign key to Location.LocationID.</td></tr>
+ * <tr><th scope="row">{@code Shelf}</th>
+ *     <td>Storage compartment within an inventory location.</td></tr>
+ * <tr><th scope="row">{@code Bin}</th>
+ *     <td>Storage container on a shelf in an inventory location.</td></tr>
+ * <tr><th scope="row">{@code Quantity}</th>
+ *     <td>Quantity of products in the inventory location.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.ProductInventory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code Quantity}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProductInventory.TABLE_SCHEMA,
+        table = MappedProductInventory.TABLE_NAME,
+        value = "Product inventory information."
+)
 public abstract class MappedProductInventory {
 
     /**
@@ -50,7 +96,7 @@ public abstract class MappedProductInventory {
      */
     public static final String TABLE_NAME = "ProductInventory";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -62,7 +108,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------------ LocationID
+    // ---------------------------------------------------------------------------------- LocationID
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -84,7 +130,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
-    // ----------------------------------------------------------------------------------------------------------- Shelf
+    // --------------------------------------------------------------------------------------- Shelf
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -101,7 +147,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_SHELF = "shelf";
 
-    // ------------------------------------------------------------------------------------------------------------- Bin
+    // ----------------------------------------------------------------------------------------- Bin
 
     /**
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
@@ -125,7 +171,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_BIN = "bin";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code smallint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -147,7 +193,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -159,7 +205,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -171,7 +217,7 @@ public abstract class MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -180,7 +226,7 @@ public abstract class MappedProductInventory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -225,7 +271,7 @@ public abstract class MappedProductInventory {
         return Objects.hash(productId, locationId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_SHELF} attribute is {@code null}, a single letter, or {@code N/A},
@@ -247,7 +293,7 @@ public abstract class MappedProductInventory {
         return shelf.matches("[A-Za-z]") || shelf.equals("N/A");
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -267,7 +313,7 @@ public abstract class MappedProductInventory {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ locationId
+    // ---------------------------------------------------------------------------------- locationId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
@@ -287,7 +333,7 @@ public abstract class MappedProductInventory {
         this.locationId = locationId;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- shelf
+    // --------------------------------------------------------------------------------------- shelf
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHELF} attribute.
@@ -307,7 +353,7 @@ public abstract class MappedProductInventory {
         this.shelf = shelf;
     }
 
-    // ------------------------------------------------------------------------------------------------------------- bin
+    // ----------------------------------------------------------------------------------------- bin
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BIN} attribute.
@@ -327,7 +373,7 @@ public abstract class MappedProductInventory {
         this.bin = bin;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -347,7 +393,7 @@ public abstract class MappedProductInventory {
         this.quantity = quantity;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -367,7 +413,7 @@ public abstract class MappedProductInventory {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -387,7 +433,7 @@ public abstract class MappedProductInventory {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -396,9 +442,12 @@ public abstract class MappedProductInventory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product identification number. Foreign key to "
+                                  + "Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Max(COLUMN_MAX_LOCATION_ID)
     @Min(COLUMN_MIN_LOCATION_ID)
@@ -409,9 +458,12 @@ public abstract class MappedProductInventory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_LOCATION_ID,
+                          value = "Inventory location identification number. Foreign key to "
+                                  + "Location.LocationID.")
     private Integer locationId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SHELF)
     @NotNull
     @Basic(optional = false)
@@ -421,9 +473,11 @@ public abstract class MappedProductInventory {
             updatable = true,
             length = COLUMN_LENGTH_SHELF
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHELF,
+                          value = "Storage compartment within an inventory location.")
     private String shelf;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ProductInventory_Bin: ([Bin]>=(0) AND [Bin]<=(100))
     @Max(COLUMN_MAX_BIN)
     @Min(COLUMN_MIN_BIN)
@@ -434,9 +488,11 @@ public abstract class MappedProductInventory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_BIN,
+                          value = "Storage container on a shelf in an inventory location.")
     private Integer bin;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Max(COLUMN_MAX_QUANTITY)
     @Min(COLUMN_MIN_QUANTITY)
     @NotNull
@@ -446,19 +502,26 @@ public abstract class MappedProductInventory {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY,
+                          value = "Quantity of products in the inventory location.")
+    @MsDefault(name = "DF_ProductInventory_Quantity", value = "((0))")
     private Integer quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_ProductInventory_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -467,6 +530,9 @@ public abstract class MappedProductInventory {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ProductInventory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

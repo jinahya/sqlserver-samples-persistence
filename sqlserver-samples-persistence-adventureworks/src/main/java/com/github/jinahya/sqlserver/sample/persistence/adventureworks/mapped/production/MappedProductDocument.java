@@ -22,6 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -37,8 +39,40 @@ import java.time.LocalDateTime;
  * Jakarta Persistence holds, and no other unique key exists.
  * <p>
  * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.ProductDocument}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product identification number. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code DocumentNode}</th>
+ *     <td>Document identification number. Foreign key to Document.DocumentNode.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.ProductDocument}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProductDocument.TABLE_SCHEMA,
+        table = MappedProductDocument.TABLE_NAME,
+        value = "Cross-reference table mapping products to related product documents."
+)
 public abstract class MappedProductDocument {
 
     /**
@@ -51,7 +85,7 @@ public abstract class MappedProductDocument {
      */
     public static final String TABLE_NAME = "ProductDocument";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +97,7 @@ public abstract class MappedProductDocument {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ---------------------------------------------------------------------------------------------------- DocumentNode
+    // -------------------------------------------------------------------------------- DocumentNode
 
     /**
      * The name of the {@code hierarchyid, NOT NULL} column. The value is {@value}.
@@ -75,7 +109,7 @@ public abstract class MappedProductDocument {
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_NODE = "documentNode";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -87,7 +121,7 @@ public abstract class MappedProductDocument {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -96,7 +130,7 @@ public abstract class MappedProductDocument {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -107,7 +141,7 @@ public abstract class MappedProductDocument {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -127,7 +161,7 @@ public abstract class MappedProductDocument {
         this.productId = productId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- documentNode
+    // -------------------------------------------------------------------------------- documentNode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
@@ -147,7 +181,7 @@ public abstract class MappedProductDocument {
         this.documentNode = documentNode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -167,7 +201,7 @@ public abstract class MappedProductDocument {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID,
@@ -175,9 +209,12 @@ public abstract class MappedProductDocument {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product identification number. Foreign key to "
+                                  + "Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
@@ -186,9 +223,12 @@ public abstract class MappedProductDocument {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
+                          value = "Document identification number. Foreign key to "
+                                  + "Document.DocumentNode.")
     private Heirarchyid documentNode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -197,6 +237,9 @@ public abstract class MappedProductDocument {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ProductDocument_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

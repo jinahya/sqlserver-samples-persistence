@@ -35,7 +35,7 @@ class ProductProductPhoto_Persister
         super(ProductProductPhoto.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public ProductProductPhoto apply(final EntityManager entityManager, final ProductProductPhoto entityInstance) {
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);

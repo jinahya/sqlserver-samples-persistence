@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
@@ -34,8 +36,51 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.TransactionHistoryArchive} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.TransactionHistoryArchive}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code TransactionID}</th>
+ *     <td>Primary key for TransactionHistoryArchive records.</td></tr>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product identification number. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code ReferenceOrderID}</th>
+ *     <td>Purchase order, sales order, or work order identification number.</td></tr>
+ * <tr><th scope="row">{@code ReferenceOrderLineID}</th>
+ *     <td>Line number associated with the purchase order, sales order, or work order.</td></tr>
+ * <tr><th scope="row">{@code TransactionDate}</th><td>Date and time of the transaction.</td></tr>
+ * <tr><th scope="row">{@code TransactionType}</th>
+ *     <td>W = Work Order, S = Sales Order, P = Purchase Order</td></tr>
+ * <tr><th scope="row">{@code Quantity}</th><td>Product quantity.</td></tr>
+ * <tr><th scope="row">{@code ActualCost}</th><td>Product cost.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.TransactionHistoryArchive}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ReferenceOrderLineID}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code TransactionDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedTransactionHistoryArchive.TABLE_SCHEMA,
+        table = MappedTransactionHistoryArchive.TABLE_NAME,
+        value = "Transactions for previous years."
+)
 public abstract class MappedTransactionHistoryArchive {
 
     /**
@@ -48,7 +93,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String TABLE_NAME = "TransactionHistoryArchive";
 
-    // --------------------------------------------------------------------------------------------------- TransactionID
+    // ------------------------------------------------------------------------------- TransactionID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -60,7 +105,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_ID = "transactionId";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -72,7 +117,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ------------------------------------------------------------------------------------------------ ReferenceOrderID
+    // ---------------------------------------------------------------------------- ReferenceOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -84,7 +129,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_ORDER_ID = "referenceOrderId";
 
-    // -------------------------------------------------------------------------------------------- ReferenceOrderLineID
+    // ------------------------------------------------------------------------ ReferenceOrderLineID
 
     /**
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -97,7 +142,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID = "referenceOrderLineId";
 
-    // ------------------------------------------------------------------------------------------------- TransactionDate
+    // ----------------------------------------------------------------------------- TransactionDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -109,7 +154,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_DATE = "transactionDate";
 
-    // ------------------------------------------------------------------------------------------------- TransactionType
+    // ----------------------------------------------------------------------------- TransactionType
 
     /**
      * The name of the {@code nchar(1), NOT NULL} column. The value is {@value}.
@@ -147,7 +192,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE = "transactionType";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -159,7 +204,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------ ActualCost
+    // ---------------------------------------------------------------------------------- ActualCost
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -171,7 +216,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_COST = "actualCost";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -183,7 +228,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -192,7 +237,7 @@ public abstract class MappedTransactionHistoryArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -238,7 +283,7 @@ public abstract class MappedTransactionHistoryArchive {
         return Objects.hash(transactionId);
     }
 
-    // --------------------------------------------------------------------------------------------------- transactionId
+    // ------------------------------------------------------------------------------- transactionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute.
@@ -258,7 +303,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.transactionId = transactionId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -278,7 +323,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------ referenceOrderId
+    // ---------------------------------------------------------------------------- referenceOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute.
@@ -298,7 +343,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.referenceOrderId = referenceOrderId;
     }
 
-    // -------------------------------------------------------------------------------------------- referenceOrderLineId
+    // ------------------------------------------------------------------------ referenceOrderLineId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID} attribute.
@@ -318,7 +363,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.referenceOrderLineId = referenceOrderLineId;
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionDate
+    // ----------------------------------------------------------------------------- transactionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute.
@@ -338,7 +383,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.transactionDate = transactionDate;
     }
 
-    // ------------------------------------------------------------------------------------------------- transactionType
+    // ----------------------------------------------------------------------------- transactionType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute.
@@ -358,7 +403,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.transactionType = transactionType;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -378,7 +423,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------ actualCost
+    // ---------------------------------------------------------------------------------- actualCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute.
@@ -398,7 +443,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.actualCost = actualCost;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -418,7 +463,7 @@ public abstract class MappedTransactionHistoryArchive {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -427,9 +472,11 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_ID,
+                          value = "Primary key for TransactionHistoryArchive records.")
     private Integer transactionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID,
@@ -437,9 +484,12 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product identification number. Foreign key to "
+                                  + "Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
@@ -447,9 +497,12 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
+                          value = "Purchase order, sales order, or work order identification "
+                                  + "number.")
     private Integer referenceOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
@@ -457,9 +510,13 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
+                          value = "Line number associated with the purchase order, sales order, "
+                                  + "or work order.")
+    @MsDefault(name = "DF_TransactionHistoryArchive_ReferenceOrderLineID", value = "((0))")
     private Integer referenceOrderLineId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_DATE,
@@ -467,9 +524,12 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE,
+                          value = "Date and time of the transaction.")
+    @MsDefault(name = "DF_TransactionHistoryArchive_TransactionDate", value = "(getdate())")
     private LocalDateTime transactionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_TransactionHistoryArchive_TransactionType:
     // (upper([TransactionType])='P' OR upper([TransactionType])='S' OR upper([TransactionType])='W'), the same values
     // as MappedTransactionHistory.TransactionType
@@ -482,9 +542,11 @@ public abstract class MappedTransactionHistoryArchive {
             updatable = true,
             length = COLUMN_LENGTH_TRANSACTION_TYPE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE,
+                          value = "W = Work Order, S = Sales Order, P = Purchase Order")
     private MappedTransactionHistory.TransactionType transactionType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY,
@@ -492,9 +554,10 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity.")
     private Integer quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ACTUAL_COST,
@@ -502,9 +565,10 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ACTUAL_COST, value = "Product cost.")
     private BigDecimal actualCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -513,6 +577,9 @@ public abstract class MappedTransactionHistoryArchive {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_TransactionHistoryArchive_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

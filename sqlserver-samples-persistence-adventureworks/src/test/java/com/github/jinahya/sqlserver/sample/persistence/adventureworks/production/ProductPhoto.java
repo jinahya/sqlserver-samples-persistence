@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
 @Table(schema = MappedProductPhoto.TABLE_SCHEMA, name = MappedProductPhoto.TABLE_NAME)
 public class ProductPhoto extends MappedProductPhoto {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

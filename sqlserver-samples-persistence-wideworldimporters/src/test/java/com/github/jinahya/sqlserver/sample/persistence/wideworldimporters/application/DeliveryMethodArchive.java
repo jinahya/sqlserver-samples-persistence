@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class DeliveryMethodArchive extends MappedDeliveryMethodArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

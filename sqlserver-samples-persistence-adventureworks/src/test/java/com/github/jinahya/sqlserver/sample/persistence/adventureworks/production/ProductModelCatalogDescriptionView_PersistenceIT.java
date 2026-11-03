@@ -31,7 +31,7 @@ class ProductModelCatalogDescriptionView_PersistenceIT
         super(ProductModelCatalogDescriptionView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Production.vProductModelCatalogDescription} is a view, which no row is inserted into.

@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +44,58 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_BACKORDER_ORDER_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.Orders}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrderID}</th>
+ *     <td>Numeric ID used for reference to an order within the database</td></tr>
+ * <tr><th scope="row">{@code CustomerID}</th><td>Customer for this order</td></tr>
+ * <tr><th scope="row">{@code SalespersonPersonID}</th><td>Salesperson for this order</td></tr>
+ * <tr><th scope="row">{@code PickedByPersonID}</th><td>Person who picked this shipment</td></tr>
+ * <tr><th scope="row">{@code ContactPersonID}</th><td>Customer contact for this order</td></tr>
+ * <tr><th scope="row">{@code BackorderOrderID}</th>
+ *     <td>If this order is a backorder, this column holds the original order number</td></tr>
+ * <tr><th scope="row">{@code OrderDate}</th><td>Date that this order was raised</td></tr>
+ * <tr><th scope="row">{@code ExpectedDeliveryDate}</th><td>Expected delivery date</td></tr>
+ * <tr><th scope="row">{@code CustomerPurchaseOrderNumber}</th>
+ *     <td>Purchase Order Number received from customer</td></tr>
+ * <tr><th scope="row">{@code IsUndersupplyBackordered}</th>
+ *     <td>If items cannot be supplied are they backordered?</td></tr>
+ * <tr><th scope="row">{@code Comments}</th>
+ *     <td>Any comments related to this order (sent to customer)</td></tr>
+ * <tr><th scope="row">{@code DeliveryInstructions}</th>
+ *     <td>Any comments related to order delivery (sent to customer)</td></tr>
+ * <tr><th scope="row">{@code InternalComments}</th>
+ *     <td>Any internal comments related to this order (not sent to the customer)</td></tr>
+ * <tr><th scope="row">{@code PickingCompletedWhen}</th>
+ *     <td>When was picking of the entire order completed?</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.Orders}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code OrderID}</th><td>{@code (NEXT VALUE FOR [Sequences].[OrderID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedOrder.TABLE_SCHEMA,
+        table = MappedOrder.TABLE_NAME,
+        value = "Detail of customer orders"
+)
 public abstract class MappedOrder {
 
     /**
@@ -56,7 +108,7 @@ public abstract class MappedOrder {
      */
     public static final String TABLE_NAME = "Orders";
 
-    // --------------------------------------------------------------------------------------------------------- OrderID
+    // ------------------------------------------------------------------------------------- OrderID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.OrderID, NOT NULL} column. The value is {@value}.
@@ -68,7 +120,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_ID = "orderId";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -80,7 +132,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // --------------------------------------------------------------------------------------------- SalespersonPersonID
+    // ------------------------------------------------------------------------- SalespersonPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -93,7 +145,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_SALESPERSON_PERSON_ID = "salespersonPersonId";
 
-    // ------------------------------------------------------------------------------------------------ PickedByPersonID
+    // ---------------------------------------------------------------------------- PickedByPersonID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -106,7 +158,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_PICKED_BY_PERSON_ID = "pickedByPersonId";
 
-    // ------------------------------------------------------------------------------------------------- ContactPersonID
+    // ----------------------------------------------------------------------------- ContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -118,7 +170,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_CONTACT_PERSON_ID = "contactPersonId";
 
-    // ------------------------------------------------------------------------------------------------ BackorderOrderID
+    // ---------------------------------------------------------------------------- BackorderOrderID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -130,7 +182,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_BACKORDER_ORDER_ID = "backorderOrderId";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -142,7 +194,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // -------------------------------------------------------------------------------------------- ExpectedDeliveryDate
+    // ------------------------------------------------------------------------ ExpectedDeliveryDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -155,7 +207,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE = "expectedDeliveryDate";
 
-    // ------------------------------------------------------------------------------------- CustomerPurchaseOrderNumber
+    // ----------------------------------------------------------------- CustomerPurchaseOrderNumber
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -173,7 +225,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER = "customerPurchaseOrderNumber";
 
-    // ---------------------------------------------------------------------------------------- IsUndersupplyBackordered
+    // -------------------------------------------------------------------- IsUndersupplyBackordered
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -186,7 +238,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_IS_UNDERSUPPLY_BACKORDERED = "isUndersupplyBackordered";
 
-    // -------------------------------------------------------------------------------------------------------- Comments
+    // ------------------------------------------------------------------------------------ Comments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -198,7 +250,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_COMMENTS = "comments";
 
-    // -------------------------------------------------------------------------------------------- DeliveryInstructions
+    // ------------------------------------------------------------------------ DeliveryInstructions
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -211,7 +263,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_INSTRUCTIONS = "deliveryInstructions";
 
-    // ------------------------------------------------------------------------------------------------ InternalComments
+    // ---------------------------------------------------------------------------- InternalComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -223,7 +275,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_INTERNAL_COMMENTS = "internalComments";
 
-    // -------------------------------------------------------------------------------------------- PickingCompletedWhen
+    // ------------------------------------------------------------------------ PickingCompletedWhen
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -236,7 +288,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_PICKING_COMPLETED_WHEN = "pickingCompletedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -248,7 +300,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -260,7 +312,7 @@ public abstract class MappedOrder {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -269,7 +321,7 @@ public abstract class MappedOrder {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -322,7 +374,7 @@ public abstract class MappedOrder {
         return Objects.hash(orderId);
     }
 
-    // --------------------------------------------------------------------------------------------------------- orderId
+    // ------------------------------------------------------------------------------------- orderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_ID} attribute.
@@ -342,7 +394,7 @@ public abstract class MappedOrder {
         this.orderId = orderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -363,7 +415,7 @@ public abstract class MappedOrder {
         this.customerId = customerId;
     }
 
-    // --------------------------------------------------------------------------------------------- salespersonPersonId
+    // ------------------------------------------------------------------------- salespersonPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute.
@@ -385,7 +437,7 @@ public abstract class MappedOrder {
         this.salespersonPersonId = salespersonPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ pickedByPersonId
+    // ---------------------------------------------------------------------------- pickedByPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PICKED_BY_PERSON_ID} attribute.
@@ -407,7 +459,7 @@ public abstract class MappedOrder {
         this.pickedByPersonId = pickedByPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------- contactPersonId
+    // ----------------------------------------------------------------------------- contactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute.
@@ -429,7 +481,7 @@ public abstract class MappedOrder {
         this.contactPersonId = contactPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ backorderOrderId
+    // ---------------------------------------------------------------------------- backorderOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BACKORDER_ORDER_ID} attribute.
@@ -451,7 +503,7 @@ public abstract class MappedOrder {
         this.backorderOrderId = backorderOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -471,7 +523,7 @@ public abstract class MappedOrder {
         this.orderDate = orderDate;
     }
 
-    // -------------------------------------------------------------------------------------------- expectedDeliveryDate
+    // ------------------------------------------------------------------------ expectedDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE} attribute.
@@ -491,7 +543,7 @@ public abstract class MappedOrder {
         this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
-    // ------------------------------------------------------------------------------------- customerPurchaseOrderNumber
+    // ----------------------------------------------------------------- customerPurchaseOrderNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER} attribute.
@@ -513,7 +565,7 @@ public abstract class MappedOrder {
         this.customerPurchaseOrderNumber = customerPurchaseOrderNumber;
     }
 
-    // ---------------------------------------------------------------------------------------- isUndersupplyBackordered
+    // -------------------------------------------------------------------- isUndersupplyBackordered
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_UNDERSUPPLY_BACKORDERED} attribute.
@@ -534,7 +586,7 @@ public abstract class MappedOrder {
         this.isUndersupplyBackordered = isUndersupplyBackordered;
     }
 
-    // -------------------------------------------------------------------------------------------------------- comments
+    // ------------------------------------------------------------------------------------ comments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
@@ -554,7 +606,7 @@ public abstract class MappedOrder {
         this.comments = comments;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryInstructions
+    // ------------------------------------------------------------------------ deliveryInstructions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_INSTRUCTIONS} attribute.
@@ -574,7 +626,7 @@ public abstract class MappedOrder {
         this.deliveryInstructions = deliveryInstructions;
     }
 
-    // ------------------------------------------------------------------------------------------------ internalComments
+    // ---------------------------------------------------------------------------- internalComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNAL_COMMENTS} attribute.
@@ -594,7 +646,7 @@ public abstract class MappedOrder {
         this.internalComments = internalComments;
     }
 
-    // -------------------------------------------------------------------------------------------- pickingCompletedWhen
+    // ------------------------------------------------------------------------ pickingCompletedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PICKING_COMPLETED_WHEN} attribute.
@@ -614,7 +666,7 @@ public abstract class MappedOrder {
         this.pickingCompletedWhen = pickingCompletedWhen;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -636,7 +688,7 @@ public abstract class MappedOrder {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -656,7 +708,7 @@ public abstract class MappedOrder {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.OrderID", schema = "Sequences", sequenceName = "OrderID",
@@ -667,9 +719,12 @@ public abstract class MappedOrder {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
+                          value = "Numeric ID used for reference to an order within the database")
+    @MsDefault(name = "DF_Sales_Orders_OrderID", value = "(NEXT VALUE FOR [Sequences].[OrderID])")
     private Integer orderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -678,9 +733,10 @@ public abstract class MappedOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this order")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -689,9 +745,11 @@ public abstract class MappedOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
+                          value = "Salesperson for this order")
     private Integer salespersonPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID,
@@ -699,9 +757,11 @@ public abstract class MappedOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID,
+                          value = "Person who picked this shipment")
     private Integer pickedByPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -710,9 +770,11 @@ public abstract class MappedOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
+                          value = "Customer contact for this order")
     private Integer contactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BACKORDER_ORDER_ID,
@@ -720,9 +782,12 @@ public abstract class MappedOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BACKORDER_ORDER_ID,
+                          value = "If this order is a backorder, this column holds the original "
+                                  + "order number")
     private Integer backorderOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_DATE,
@@ -730,9 +795,10 @@ public abstract class MappedOrder {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE, value = "Date that this order was raised")
     private LocalDate orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
@@ -740,9 +806,11 @@ public abstract class MappedOrder {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
+                          value = "Expected delivery date")
     private LocalDate expectedDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
@@ -751,9 +819,11 @@ public abstract class MappedOrder {
             updatable = true,
             length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
+                          value = "Purchase Order Number received from customer")
     private String customerPurchaseOrderNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_UNDERSUPPLY_BACKORDERED,
@@ -761,45 +831,56 @@ public abstract class MappedOrder {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_UNDERSUPPLY_BACKORDERED,
+                          value = "If items cannot be supplied are they backordered?")
     private Boolean isUndersupplyBackordered;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
+                          value = "Any comments related to this order (sent to customer)")
     private String comments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
+                          value = "Any comments related to order delivery (sent to customer)")
     private String deliveryInstructions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
+                          value = "Any internal comments related to this order (not sent to the "
+                                  + "customer)")
     private String internalComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
+                          value = "When was picking of the entire order completed?")
     private LocalDateTime pickingCompletedWhen;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -810,7 +891,7 @@ public abstract class MappedOrder {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -818,6 +899,7 @@ public abstract class MappedOrder {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Sales_Orders_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

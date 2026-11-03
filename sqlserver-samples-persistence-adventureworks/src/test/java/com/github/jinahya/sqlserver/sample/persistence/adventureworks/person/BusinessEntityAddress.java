@@ -31,12 +31,23 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Person.BusinessEntityAddress} table.
  */
 @Entity(name = "PersonBusinessEntityAddress")
-@Table(schema = MappedBusinessEntityAddress.TABLE_SCHEMA, name = MappedBusinessEntityAddress.TABLE_NAME)
+@Table(schema = MappedBusinessEntityAddress.TABLE_SCHEMA,
+       name = MappedBusinessEntityAddress.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_BusinessEntityAddress_rowguid",
+                       columnNames = {
+                               BusinessEntityAddress.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 @IdClass(MappedBusinessEntityAddressId.class)
 public class BusinessEntityAddress extends MappedBusinessEntityAddress {
 
@@ -58,7 +69,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -67,7 +78,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- address
+    // ------------------------------------------------------------------------------------- address
 
     /**
      * Returns the {@code Address} which the {@code FK_BusinessEntityAddress_Address_AddressID} foreign key references.
@@ -89,7 +100,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
         setAddressId(address == null ? null : address.getAddressId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- addressType
+    // --------------------------------------------------------------------------------- addressType
 
     /**
      * Returns the {@code AddressType} which the {@code FK_BusinessEntityAddress_AddressType_AddressTypeID} foreign key
@@ -112,7 +123,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
         setAddressTypeId(addressType == null ? null : addressType.getAddressTypeId());
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code BusinessEntity} which the {@code FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID}
@@ -135,7 +146,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ADDRESS_ID,
                 referencedColumnName = MappedAddress.COLUMN_NAME_ADDRESS_ID,
@@ -145,7 +156,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
     )
     private Address address;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ADDRESS_TYPE_ID,
                 referencedColumnName = MappedAddressType.COLUMN_NAME_ADDRESS_TYPE_ID,
@@ -155,7 +166,7 @@ public class BusinessEntityAddress extends MappedBusinessEntityAddress {
     )
     private AddressType addressType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedBusinessEntity.COLUMN_NAME_BUSINESS_ENTITY_ID,

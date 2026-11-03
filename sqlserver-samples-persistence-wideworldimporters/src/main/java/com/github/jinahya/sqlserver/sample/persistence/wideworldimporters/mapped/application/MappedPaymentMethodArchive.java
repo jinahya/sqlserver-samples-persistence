@@ -51,7 +51,7 @@ public abstract class MappedPaymentMethodArchive {
      */
     public static final String TABLE_NAME = "PaymentMethods_Archive";
 
-    // ------------------------------------------------------------------------------------------------- PaymentMethodID
+    // ----------------------------------------------------------------------------- PaymentMethodID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedPaymentMethodArchive {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_METHOD_ID = "paymentMethodId";
 
-    // ----------------------------------------------------------------------------------------------- PaymentMethodName
+    // --------------------------------------------------------------------------- PaymentMethodName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -81,7 +81,7 @@ public abstract class MappedPaymentMethodArchive {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_METHOD_NAME = "paymentMethodName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -93,7 +93,7 @@ public abstract class MappedPaymentMethodArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedPaymentMethodArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -117,7 +117,7 @@ public abstract class MappedPaymentMethodArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -126,7 +126,7 @@ public abstract class MappedPaymentMethodArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -139,7 +139,7 @@ public abstract class MappedPaymentMethodArchive {
                + "}";
     }
 
-    // ------------------------------------------------------------------------------------------------- paymentMethodId
+    // ----------------------------------------------------------------------------- paymentMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute.
@@ -159,7 +159,7 @@ public abstract class MappedPaymentMethodArchive {
         this.paymentMethodId = paymentMethodId;
     }
 
-    // ----------------------------------------------------------------------------------------------- paymentMethodName
+    // --------------------------------------------------------------------------- paymentMethodName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_NAME} attribute.
@@ -179,7 +179,7 @@ public abstract class MappedPaymentMethodArchive {
         this.paymentMethodName = paymentMethodName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -199,7 +199,7 @@ public abstract class MappedPaymentMethodArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -219,7 +219,7 @@ public abstract class MappedPaymentMethodArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -239,7 +239,7 @@ public abstract class MappedPaymentMethodArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -250,7 +250,7 @@ public abstract class MappedPaymentMethodArchive {
     )
     private Integer paymentMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PAYMENT_METHOD_NAME)
     @NotNull
@@ -263,7 +263,7 @@ public abstract class MappedPaymentMethodArchive {
     )
     private String paymentMethodName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -274,7 +274,7 @@ public abstract class MappedPaymentMethodArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -285,7 +285,7 @@ public abstract class MappedPaymentMethodArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

@@ -30,12 +30,29 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.Customer} table.
  */
 @Entity(name = "SalesCustomer")
-@Table(schema = MappedCustomer.TABLE_SCHEMA, name = MappedCustomer.TABLE_NAME)
+@Table(schema = MappedCustomer.TABLE_SCHEMA,
+       name = MappedCustomer.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Customer_AccountNumber",
+                       columnNames = {
+                               Customer.COLUMN_NAME_ACCOUNT_NUMBER
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Customer_rowguid",
+                       columnNames = {
+                               Customer.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 public class Customer extends MappedCustomer {
 
     /**
@@ -54,7 +71,7 @@ public class Customer extends MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -63,7 +80,7 @@ public class Customer extends MappedCustomer {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------------- person
+    // -------------------------------------------------------------------------------------- person
 
     /**
      * Returns the {@code Person} which the {@code FK_Customer_Person_PersonID} foreign key references.
@@ -85,7 +102,7 @@ public class Customer extends MappedCustomer {
         setPersonId(person == null ? null : person.getBusinessEntityId());
     }
 
-    // ----------------------------------------------------------------------------------------------------------- store
+    // --------------------------------------------------------------------------------------- store
 
     /**
      * Returns the {@code Store} which the {@code FK_Customer_Store_StoreID} foreign key references.
@@ -107,7 +124,7 @@ public class Customer extends MappedCustomer {
         setStoreId(store == null ? null : store.getBusinessEntityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- territory
+    // ----------------------------------------------------------------------------------- territory
 
     /**
      * Returns the {@code SalesTerritory} which the {@code FK_Customer_SalesTerritory_TerritoryID} foreign key
@@ -130,7 +147,7 @@ public class Customer extends MappedCustomer {
         setTerritoryId(territory == null ? null : territory.getTerritoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -140,7 +157,7 @@ public class Customer extends MappedCustomer {
     )
     private Person person;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STORE_ID,
                 referencedColumnName = MappedStore.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -150,7 +167,7 @@ public class Customer extends MappedCustomer {
     )
     private Store store;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

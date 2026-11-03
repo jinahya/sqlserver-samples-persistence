@@ -36,7 +36,7 @@ class SalesTaxRate_Persister
         super(SalesTaxRate.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesTaxRate apply(final EntityManager entityManager, final SalesTaxRate entityInstance) {
         final var stateProvince = EntityPersisterUtils.newPersistedInstanceOf(entityManager, StateProvince.class);

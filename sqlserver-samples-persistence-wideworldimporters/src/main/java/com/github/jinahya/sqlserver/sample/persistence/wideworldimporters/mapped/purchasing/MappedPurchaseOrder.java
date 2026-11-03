@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +43,56 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_CONTACT_PERSON_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Purchasing.PurchaseOrders}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PurchaseOrderID}</th>
+ *     <td>Numeric ID used for reference to a purchase order within the database</td></tr>
+ * <tr><th scope="row">{@code SupplierID}</th><td>Supplier for this purchase order</td></tr>
+ * <tr><th scope="row">{@code OrderDate}</th><td>Date that this purchase order was raised</td></tr>
+ * <tr><th scope="row">{@code DeliveryMethodID}</th>
+ *     <td>How this purchase order should be delivered</td></tr>
+ * <tr><th scope="row">{@code ContactPersonID}</th>
+ *     <td>The person who is the primary contact for this purchase order</td></tr>
+ * <tr><th scope="row">{@code ExpectedDeliveryDate}</th>
+ *     <td>Expected delivery date for this purchase order</td></tr>
+ * <tr><th scope="row">{@code SupplierReference}</th>
+ *     <td>Supplier reference for our organization (might be our account number at the
+ *     supplier)</td></tr>
+ * <tr><th scope="row">{@code IsOrderFinalized}</th>
+ *     <td>Is this purchase order now considered finalized?</td></tr>
+ * <tr><th scope="row">{@code Comments}</th>
+ *     <td>Any comments related this purchase order (comments sent to the supplier)</td></tr>
+ * <tr><th scope="row">{@code InternalComments}</th>
+ *     <td>Any internal comments related this purchase order (comments for internal reference only
+ *     and not sent to the supplier)</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Purchasing.PurchaseOrders}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PurchaseOrderID}</th><td>{@code (NEXT VALUE FOR [Sequences].[PurchaseOrderID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPurchaseOrder.TABLE_SCHEMA,
+        table = MappedPurchaseOrder.TABLE_NAME,
+        value = "Details of supplier purchase orders"
+)
 public abstract class MappedPurchaseOrder {
 
     /**
@@ -55,7 +105,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String TABLE_NAME = "PurchaseOrders";
 
-    // ------------------------------------------------------------------------------------------------- PurchaseOrderID
+    // ----------------------------------------------------------------------------- PurchaseOrderID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.PurchaseOrderID, NOT NULL} column. The value is {@value}.
@@ -67,7 +117,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -79,7 +129,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -91,7 +141,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryMethodID
+    // ---------------------------------------------------------------------------- DeliveryMethodID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -103,7 +153,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
 
-    // ------------------------------------------------------------------------------------------------- ContactPersonID
+    // ----------------------------------------------------------------------------- ContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -115,7 +165,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_CONTACT_PERSON_ID = "contactPersonId";
 
-    // -------------------------------------------------------------------------------------------- ExpectedDeliveryDate
+    // ------------------------------------------------------------------------ ExpectedDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -128,7 +178,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE = "expectedDeliveryDate";
 
-    // ----------------------------------------------------------------------------------------------- SupplierReference
+    // --------------------------------------------------------------------------- SupplierReference
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -145,7 +195,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_REFERENCE = "supplierReference";
 
-    // ------------------------------------------------------------------------------------------------ IsOrderFinalized
+    // ---------------------------------------------------------------------------- IsOrderFinalized
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -157,7 +207,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_IS_ORDER_FINALIZED = "isOrderFinalized";
 
-    // -------------------------------------------------------------------------------------------------------- Comments
+    // ------------------------------------------------------------------------------------ Comments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -169,7 +219,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_COMMENTS = "comments";
 
-    // ------------------------------------------------------------------------------------------------ InternalComments
+    // ---------------------------------------------------------------------------- InternalComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -181,7 +231,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_INTERNAL_COMMENTS = "internalComments";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -193,7 +243,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -205,7 +255,7 @@ public abstract class MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -214,7 +264,7 @@ public abstract class MappedPurchaseOrder {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -263,7 +313,7 @@ public abstract class MappedPurchaseOrder {
         return Objects.hash(purchaseOrderId);
     }
 
-    // ------------------------------------------------------------------------------------------------- purchaseOrderId
+    // ----------------------------------------------------------------------------- purchaseOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
@@ -283,7 +333,7 @@ public abstract class MappedPurchaseOrder {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -304,7 +354,7 @@ public abstract class MappedPurchaseOrder {
         this.supplierId = supplierId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -324,7 +374,7 @@ public abstract class MappedPurchaseOrder {
         this.orderDate = orderDate;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryMethodId
+    // ---------------------------------------------------------------------------- deliveryMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
@@ -346,7 +396,7 @@ public abstract class MappedPurchaseOrder {
         this.deliveryMethodId = deliveryMethodId;
     }
 
-    // ------------------------------------------------------------------------------------------------- contactPersonId
+    // ----------------------------------------------------------------------------- contactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute.
@@ -368,7 +418,7 @@ public abstract class MappedPurchaseOrder {
         this.contactPersonId = contactPersonId;
     }
 
-    // -------------------------------------------------------------------------------------------- expectedDeliveryDate
+    // ------------------------------------------------------------------------ expectedDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE} attribute.
@@ -388,7 +438,7 @@ public abstract class MappedPurchaseOrder {
         this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
-    // ----------------------------------------------------------------------------------------------- supplierReference
+    // --------------------------------------------------------------------------- supplierReference
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_REFERENCE} attribute.
@@ -408,7 +458,7 @@ public abstract class MappedPurchaseOrder {
         this.supplierReference = supplierReference;
     }
 
-    // ------------------------------------------------------------------------------------------------ isOrderFinalized
+    // ---------------------------------------------------------------------------- isOrderFinalized
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ORDER_FINALIZED} attribute.
@@ -428,7 +478,7 @@ public abstract class MappedPurchaseOrder {
         this.isOrderFinalized = isOrderFinalized;
     }
 
-    // -------------------------------------------------------------------------------------------------------- comments
+    // ------------------------------------------------------------------------------------ comments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
@@ -448,7 +498,7 @@ public abstract class MappedPurchaseOrder {
         this.comments = comments;
     }
 
-    // ------------------------------------------------------------------------------------------------ internalComments
+    // ---------------------------------------------------------------------------- internalComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNAL_COMMENTS} attribute.
@@ -468,7 +518,7 @@ public abstract class MappedPurchaseOrder {
         this.internalComments = internalComments;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -490,7 +540,7 @@ public abstract class MappedPurchaseOrder {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -510,7 +560,7 @@ public abstract class MappedPurchaseOrder {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PurchaseOrderID", schema = "Sequences",
@@ -522,9 +572,14 @@ public abstract class MappedPurchaseOrder {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
+                          value = "Numeric ID used for reference to a purchase order within the "
+                                  + "database")
+    @MsDefault(name = "DF_Purchasing_PurchaseOrders_PurchaseOrderID",
+               value = "(NEXT VALUE FOR [Sequences].[PurchaseOrderID])")
     private Integer purchaseOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -533,9 +588,11 @@ public abstract class MappedPurchaseOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
+                          value = "Supplier for this purchase order")
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ORDER_DATE,
@@ -543,9 +600,11 @@ public abstract class MappedPurchaseOrder {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE,
+                          value = "Date that this purchase order was raised")
     private LocalDate orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -554,9 +613,11 @@ public abstract class MappedPurchaseOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
+                          value = "How this purchase order should be delivered")
     private Integer deliveryMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -565,18 +626,22 @@ public abstract class MappedPurchaseOrder {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
+                          value = "The person who is the primary contact for this purchase order")
     private Integer contactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
+                          value = "Expected delivery date for this purchase order")
     private LocalDate expectedDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
@@ -585,9 +650,12 @@ public abstract class MappedPurchaseOrder {
             updatable = true,
             length = COLUMN_LENGTH_SUPPLIER_REFERENCE
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
+                          value = "Supplier reference for our organization (might be our "
+                                  + "account number at the supplier)")
     private String supplierReference;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ORDER_FINALIZED,
@@ -595,27 +663,35 @@ public abstract class MappedPurchaseOrder {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_ORDER_FINALIZED,
+                          value = "Is this purchase order now considered finalized?")
     private Boolean isOrderFinalized;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
+                          value = "Any comments related this purchase order (comments sent to "
+                                  + "the supplier)")
     private String comments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
+                          value = "Any internal comments related this purchase order (comments "
+                                  + "for internal reference only and not sent to the supplier)")
     private String internalComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -626,7 +702,7 @@ public abstract class MappedPurchaseOrder {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -634,6 +710,7 @@ public abstract class MappedPurchaseOrder {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Purchasing_PurchaseOrders_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

@@ -51,7 +51,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String TABLE_NAME = "vw_BOMExplosion";
 
-    // ---------------------------------------------------------------------------------------------------- ParentItemID
+    // -------------------------------------------------------------------------------- ParentItemID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_ID = "parentItemId";
 
-    // -------------------------------------------------------------------------------------------------- ParentItemCode
+    // ------------------------------------------------------------------------------ ParentItemCode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -80,7 +80,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_CODE = "parentItemCode";
 
-    // -------------------------------------------------------------------------------------------------- ParentItemName
+    // ------------------------------------------------------------------------------ ParentItemName
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -97,7 +97,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_NAME = "parentItemName";
 
-    // ------------------------------------------------------------------------------------------------- ComponentItemID
+    // ----------------------------------------------------------------------------- ComponentItemID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -109,7 +109,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_ID = "componentItemId";
 
-    // ----------------------------------------------------------------------------------------------- ComponentItemCode
+    // --------------------------------------------------------------------------- ComponentItemCode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -127,7 +127,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_CODE = "componentItemCode";
 
-    // ----------------------------------------------------------------------------------------------- ComponentItemName
+    // --------------------------------------------------------------------------- ComponentItemName
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ITEM_NAME = "componentItemName";
 
-    // --------------------------------------------------------------------------------------------------- ComponentType
+    // ------------------------------------------------------------------------------- ComponentType
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_TYPE = "componentType";
 
-    // ----------------------------------------------------------------------------------------------------------- Level
+    // --------------------------------------------------------------------------------------- Level
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_LEVEL = "level";
 
-    // ----------------------------------------------------------------------------------------------- EffectiveQuantity
+    // --------------------------------------------------------------------------- EffectiveQuantity
 
     /**
      * The name of the {@code decimal(18, 4)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_EFFECTIVE_QUANTITY = "effectiveQuantity";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10)} column. The value is {@value}.
@@ -213,7 +213,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // ---------------------------------------------------------------------------------------------------- StandardCost
+    // -------------------------------------------------------------------------------- StandardCost
 
     /**
      * The name of the {@code decimal(18, 4)} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
 
-    // ---------------------------------------------------------------------------------------------------- ExtendedCost
+    // -------------------------------------------------------------------------------- ExtendedCost
 
     /**
      * The name of the {@code decimal(18, 4)} column. The value is {@value}.
@@ -257,7 +257,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_EXTENDED_COST = "extendedCost";
 
-    // --------------------------------------------------------------------------------------------------------- BOMPath
+    // ------------------------------------------------------------------------------------- BOMPath
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -269,7 +269,7 @@ public abstract class MappedBomExplosionView {
      */
     public static final String ATTRIBUTE_NAME_BOM_PATH = "bomPath";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -278,7 +278,7 @@ public abstract class MappedBomExplosionView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -299,7 +299,7 @@ public abstract class MappedBomExplosionView {
                + "}";
     }
 
-    // ---------------------------------------------------------------------------------------------------- parentItemId
+    // -------------------------------------------------------------------------------- parentItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute.
@@ -319,7 +319,7 @@ public abstract class MappedBomExplosionView {
         this.parentItemId = parentItemId;
     }
 
-    // -------------------------------------------------------------------------------------------------- parentItemCode
+    // ------------------------------------------------------------------------------ parentItemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_CODE} attribute.
@@ -339,7 +339,7 @@ public abstract class MappedBomExplosionView {
         this.parentItemCode = parentItemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------- parentItemName
+    // ------------------------------------------------------------------------------ parentItemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_NAME} attribute.
@@ -359,7 +359,7 @@ public abstract class MappedBomExplosionView {
         this.parentItemName = parentItemName;
     }
 
-    // ------------------------------------------------------------------------------------------------- componentItemId
+    // ----------------------------------------------------------------------------- componentItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute.
@@ -379,7 +379,7 @@ public abstract class MappedBomExplosionView {
         this.componentItemId = componentItemId;
     }
 
-    // ----------------------------------------------------------------------------------------------- componentItemCode
+    // --------------------------------------------------------------------------- componentItemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_CODE} attribute.
@@ -399,7 +399,7 @@ public abstract class MappedBomExplosionView {
         this.componentItemCode = componentItemCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- componentItemName
+    // --------------------------------------------------------------------------- componentItemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_NAME} attribute.
@@ -419,7 +419,7 @@ public abstract class MappedBomExplosionView {
         this.componentItemName = componentItemName;
     }
 
-    // --------------------------------------------------------------------------------------------------- componentType
+    // ------------------------------------------------------------------------------- componentType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPONENT_TYPE} attribute.
@@ -439,7 +439,7 @@ public abstract class MappedBomExplosionView {
         this.componentType = componentType;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- level
+    // --------------------------------------------------------------------------------------- level
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEVEL} attribute.
@@ -459,7 +459,7 @@ public abstract class MappedBomExplosionView {
         this.level = level;
     }
 
-    // ----------------------------------------------------------------------------------------------- effectiveQuantity
+    // --------------------------------------------------------------------------- effectiveQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EFFECTIVE_QUANTITY} attribute.
@@ -479,7 +479,7 @@ public abstract class MappedBomExplosionView {
         this.effectiveQuantity = effectiveQuantity;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -499,7 +499,7 @@ public abstract class MappedBomExplosionView {
         this.unitCode = unitCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- standardCost
+    // -------------------------------------------------------------------------------- standardCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute.
@@ -519,7 +519,7 @@ public abstract class MappedBomExplosionView {
         this.standardCost = standardCost;
     }
 
-    // ---------------------------------------------------------------------------------------------------- extendedCost
+    // -------------------------------------------------------------------------------- extendedCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXTENDED_COST} attribute.
@@ -539,7 +539,7 @@ public abstract class MappedBomExplosionView {
         this.extendedCost = extendedCost;
     }
 
-    // --------------------------------------------------------------------------------------------------------- bomPath
+    // ------------------------------------------------------------------------------------- bomPath
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BOM_PATH} attribute.
@@ -559,7 +559,7 @@ public abstract class MappedBomExplosionView {
         this.bomPath = bomPath;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PARENT_ITEM_ID,
@@ -569,7 +569,7 @@ public abstract class MappedBomExplosionView {
     )
     private Integer parentItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_CODE)
     @Basic(optional = true)
@@ -581,7 +581,7 @@ public abstract class MappedBomExplosionView {
     )
     private String parentItemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_NAME)
     @Basic(optional = true)
@@ -593,7 +593,7 @@ public abstract class MappedBomExplosionView {
     )
     private String parentItemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID,
@@ -603,7 +603,7 @@ public abstract class MappedBomExplosionView {
     )
     private Integer componentItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_CODE)
     @Basic(optional = true)
@@ -615,7 +615,7 @@ public abstract class MappedBomExplosionView {
     )
     private String componentItemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_NAME)
     @Basic(optional = true)
@@ -627,7 +627,7 @@ public abstract class MappedBomExplosionView {
     )
     private String componentItemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_TYPE)
     @Basic(optional = true)
@@ -639,7 +639,7 @@ public abstract class MappedBomExplosionView {
     )
     private String componentType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEVEL,
@@ -649,7 +649,7 @@ public abstract class MappedBomExplosionView {
     )
     private Integer level;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_EFFECTIVE_QUANTITY - COLUMN_SCALE_EFFECTIVE_QUANTITY,
             fraction = COLUMN_SCALE_EFFECTIVE_QUANTITY)
@@ -663,7 +663,7 @@ public abstract class MappedBomExplosionView {
     )
     private BigDecimal effectiveQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @Basic(optional = true)
@@ -675,7 +675,7 @@ public abstract class MappedBomExplosionView {
     )
     private String unitCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
             fraction = COLUMN_SCALE_STANDARD_COST)
@@ -689,7 +689,7 @@ public abstract class MappedBomExplosionView {
     )
     private BigDecimal standardCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_EXTENDED_COST - COLUMN_SCALE_EXTENDED_COST,
             fraction = COLUMN_SCALE_EXTENDED_COST)
@@ -703,7 +703,7 @@ public abstract class MappedBomExplosionView {
     )
     private BigDecimal extendedCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BOM_PATH,

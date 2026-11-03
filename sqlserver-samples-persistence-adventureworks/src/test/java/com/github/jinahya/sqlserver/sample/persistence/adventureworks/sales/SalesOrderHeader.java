@@ -30,17 +30,61 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Address;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.ShipMethod;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SalesOrderHeader} table.
  */
 @Entity(name = "SalesSalesOrderHeader")
-@Table(schema = MappedSalesOrderHeader.TABLE_SCHEMA, name = MappedSalesOrderHeader.TABLE_NAME)
+@Table(schema = MappedSalesOrderHeader.TABLE_SCHEMA,
+       name = MappedSalesOrderHeader.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SalesOrderHeader_rowguid",
+                       columnNames = {
+                               SalesOrderHeader.COLUMN_NAME_ROWGUID
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_SalesOrderHeader_SalesOrderNumber",
+                       columnNames = {
+                               SalesOrderHeader.COLUMN_NAME_SALES_ORDER_NUMBER
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SalesOrderHeader_DueDate",
+                       constraint = "([DueDate]>=[OrderDate])"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderHeader_Freight",
+                       constraint = "([Freight]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderHeader_ShipDate",
+                       constraint = "([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderHeader_Status",
+                       constraint = "([Status]>=(0) AND [Status]<=(8))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderHeader_SubTotal",
+                       constraint = "([SubTotal]>=(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_SalesOrderHeader_TaxAmt",
+                       constraint = "([TaxAmt]>=(0.00))"
+               )
+       }
+)
 public class SalesOrderHeader extends MappedSalesOrderHeader {
 
     /**
@@ -91,7 +135,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -100,7 +144,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- billToAddress
+    // ------------------------------------------------------------------------------- billToAddress
 
     /**
      * Returns the {@code Address} which the {@code FK_SalesOrderHeader_Address_BillToAddressID} foreign key
@@ -123,7 +167,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setBillToAddressId(billToAddress == null ? null : billToAddress.getAddressId());
     }
 
-    // --------------------------------------------------------------------------------------------------- shipToAddress
+    // ------------------------------------------------------------------------------- shipToAddress
 
     /**
      * Returns the {@code Address} which the {@code FK_SalesOrderHeader_Address_ShipToAddressID} foreign key
@@ -146,7 +190,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setShipToAddressId(shipToAddress == null ? null : shipToAddress.getAddressId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ creditCard
+    // ---------------------------------------------------------------------------------- creditCard
 
     /**
      * Returns the {@code CreditCard} which the {@code FK_SalesOrderHeader_CreditCard_CreditCardID} foreign key
@@ -169,7 +213,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setCreditCardId(creditCard == null ? null : creditCard.getCreditCardId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- currencyRate
+    // -------------------------------------------------------------------------------- currencyRate
 
     /**
      * Returns the {@code CurrencyRate} which the {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID} foreign key
@@ -192,7 +236,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setCurrencyRateId(currencyRate == null ? null : currencyRate.getCurrencyRateId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- customer
+    // ------------------------------------------------------------------------------------ customer
 
     /**
      * Returns the {@code Customer} which the {@code FK_SalesOrderHeader_Customer_CustomerID} foreign key references.
@@ -214,7 +258,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setCustomerId(customer == null ? null : customer.getCustomerId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- salesPerson
+    // --------------------------------------------------------------------------------- salesPerson
 
     /**
      * Returns the {@code SalesPerson} which the {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID} foreign key
@@ -237,7 +281,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setSalesPersonId(salesPerson == null ? null : salesPerson.getBusinessEntityId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ shipMethod
+    // ---------------------------------------------------------------------------------- shipMethod
 
     /**
      * Returns the {@code ShipMethod} which the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID} foreign key
@@ -260,7 +304,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setShipMethodId(shipMethod == null ? null : shipMethod.getShipMethodId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- territory
+    // ----------------------------------------------------------------------------------- territory
 
     /**
      * Returns the {@code SalesTerritory} which the {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID} foreign key
@@ -283,7 +327,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
         setTerritoryId(territory == null ? null : territory.getTerritoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BILL_TO_ADDRESS_ID,
                 referencedColumnName = MappedAddress.COLUMN_NAME_ADDRESS_ID,
@@ -293,7 +337,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private Address billToAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SHIP_TO_ADDRESS_ID,
                 referencedColumnName = MappedAddress.COLUMN_NAME_ADDRESS_ID,
@@ -303,7 +347,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private Address shipToAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CREDIT_CARD_ID,
                 referencedColumnName = MappedCreditCard.COLUMN_NAME_CREDIT_CARD_ID,
@@ -313,7 +357,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private CreditCard creditCard;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CURRENCY_RATE_ID,
                 referencedColumnName = MappedCurrencyRate.COLUMN_NAME_CURRENCY_RATE_ID,
@@ -323,7 +367,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private CurrencyRate currencyRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -333,7 +377,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private Customer customer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_PERSON_ID,
                 referencedColumnName = MappedSalesPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -343,7 +387,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private SalesPerson salesPerson;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SHIP_METHOD_ID,
                 referencedColumnName = MappedShipMethod.COLUMN_NAME_SHIP_METHOD_ID,
@@ -353,7 +397,7 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     )
     private ShipMethod shipMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

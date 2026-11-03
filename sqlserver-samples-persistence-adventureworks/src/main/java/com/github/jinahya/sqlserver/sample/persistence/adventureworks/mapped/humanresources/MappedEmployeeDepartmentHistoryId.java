@@ -36,7 +36,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -45,7 +45,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -76,7 +76,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
         return Objects.hash(businessEntityId, startDate, departmentId, shiftId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of the {@code businessEntityId} attribute.
@@ -96,7 +96,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of the {@code startDate} attribute.
@@ -116,7 +116,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
         this.startDate = startDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- departmentId
+    // -------------------------------------------------------------------------------- departmentId
 
     /**
      * Returns current value of the {@code departmentId} attribute.
@@ -136,7 +136,7 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
         this.departmentId = departmentId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- shiftId
+    // ------------------------------------------------------------------------------------- shiftId
 
     /**
      * Returns current value of the {@code shiftId} attribute.
@@ -156,13 +156,25 @@ public class MappedEmployeeDepartmentHistoryId implements Serializable {
         this.shiftId = shiftId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code businessEntityId} attribute.
+     */
     private Integer businessEntityId;
 
+    /**
+     * The value of the {@code startDate} attribute.
+     */
     private LocalDate startDate;
 
+    /**
+     * The value of the {@code departmentId} attribute.
+     */
     private Integer departmentId;
 
+    /**
+     * The value of the {@code shiftId} attribute.
+     */
     private Integer shiftId;
 }
 

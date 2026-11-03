@@ -30,7 +30,7 @@ class ProductAndDescriptionView_PersistenceIT extends _Entity_PersistenceIT<Prod
         super(ProductAndDescriptionView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Production.vProductAndDescription} is a view, which no row is inserted into.

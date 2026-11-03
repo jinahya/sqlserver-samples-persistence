@@ -47,7 +47,7 @@ public abstract class MappedUnitOfMeasure {
      */
     public static final String TABLE_NAME = "UnitOfMeasure";
 
-    // ---------------------------------------------------------------------------------------------------------- UnitID
+    // -------------------------------------------------------------------------------------- UnitID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -59,7 +59,7 @@ public abstract class MappedUnitOfMeasure {
      */
     public static final String ATTRIBUTE_NAME_UNIT_ID = "unitId";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -76,7 +76,7 @@ public abstract class MappedUnitOfMeasure {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // -------------------------------------------------------------------------------------------------------- UnitName
+    // ------------------------------------------------------------------------------------ UnitName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -93,7 +93,7 @@ public abstract class MappedUnitOfMeasure {
      */
     public static final String ATTRIBUTE_NAME_UNIT_NAME = "unitName";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -110,7 +110,7 @@ public abstract class MappedUnitOfMeasure {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -119,7 +119,7 @@ public abstract class MappedUnitOfMeasure {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -160,7 +160,7 @@ public abstract class MappedUnitOfMeasure {
         return Objects.hash(unitId);
     }
 
-    // ---------------------------------------------------------------------------------------------------------- unitId
+    // -------------------------------------------------------------------------------------- unitId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_ID} attribute.
@@ -180,7 +180,7 @@ public abstract class MappedUnitOfMeasure {
         this.unitId = unitId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -200,7 +200,7 @@ public abstract class MappedUnitOfMeasure {
         this.unitCode = unitCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitName
+    // ------------------------------------------------------------------------------------ unitName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_NAME} attribute.
@@ -220,7 +220,7 @@ public abstract class MappedUnitOfMeasure {
         this.unitName = unitName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -240,7 +240,7 @@ public abstract class MappedUnitOfMeasure {
         this.description = description;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -252,7 +252,7 @@ public abstract class MappedUnitOfMeasure {
     )
     private Integer unitId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
@@ -264,7 +264,7 @@ public abstract class MappedUnitOfMeasure {
     )
     private String unitCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_UNIT_NAME)
     @NotNull
     @Basic(optional = false)
@@ -276,7 +276,7 @@ public abstract class MappedUnitOfMeasure {
     )
     private String unitName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION,

@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,16 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.ReturnReason} table.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.ReturnReason}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedReturnReason {
@@ -47,7 +59,7 @@ public abstract class MappedReturnReason {
      */
     public static final String TABLE_NAME = "ReturnReason";
 
-    // -------------------------------------------------------------------------------------------------- ReturnReasonID
+    // ------------------------------------------------------------------------------ ReturnReasonID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -59,7 +71,7 @@ public abstract class MappedReturnReason {
      */
     public static final String ATTRIBUTE_NAME_RETURN_REASON_ID = "returnReasonId";
 
-    // ------------------------------------------------------------------------------------------------------ ReasonCode
+    // ---------------------------------------------------------------------------------- ReasonCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -76,7 +88,7 @@ public abstract class MappedReturnReason {
      */
     public static final String ATTRIBUTE_NAME_REASON_CODE = "reasonCode";
 
-    // ----------------------------------------------------------------------------------------------- ReasonDescription
+    // --------------------------------------------------------------------------- ReasonDescription
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -93,7 +105,7 @@ public abstract class MappedReturnReason {
      */
     public static final String ATTRIBUTE_NAME_REASON_DESCRIPTION = "reasonDescription";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -105,7 +117,7 @@ public abstract class MappedReturnReason {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -114,7 +126,7 @@ public abstract class MappedReturnReason {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -155,7 +167,7 @@ public abstract class MappedReturnReason {
         return Objects.hash(returnReasonId);
     }
 
-    // -------------------------------------------------------------------------------------------------- returnReasonId
+    // ------------------------------------------------------------------------------ returnReasonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_REASON_ID} attribute.
@@ -175,7 +187,7 @@ public abstract class MappedReturnReason {
         this.returnReasonId = returnReasonId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ reasonCode
+    // ---------------------------------------------------------------------------------- reasonCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REASON_CODE} attribute.
@@ -195,7 +207,7 @@ public abstract class MappedReturnReason {
         this.reasonCode = reasonCode;
     }
 
-    // ----------------------------------------------------------------------------------------------- reasonDescription
+    // --------------------------------------------------------------------------- reasonDescription
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REASON_DESCRIPTION} attribute.
@@ -215,7 +227,7 @@ public abstract class MappedReturnReason {
         this.reasonDescription = reasonDescription;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -235,7 +247,7 @@ public abstract class MappedReturnReason {
         this.isActive = isActive;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -247,7 +259,7 @@ public abstract class MappedReturnReason {
     )
     private Integer returnReasonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REASON_CODE)
     @NotNull
     @Basic(optional = false)
@@ -259,7 +271,7 @@ public abstract class MappedReturnReason {
     )
     private String reasonCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REASON_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
@@ -271,7 +283,7 @@ public abstract class MappedReturnReason {
     )
     private String reasonDescription;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -279,6 +291,7 @@ public abstract class MappedReturnReason {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 }
 

@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +34,40 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.Illustration} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.Illustration}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IllustrationID}</th>
+ *     <td>Primary key for Illustration records.</td></tr>
+ * <tr><th scope="row">{@code Diagram}</th>
+ *     <td>Illustrations used in manufacturing instructions. Stored as XML.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.Illustration}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedIllustration.TABLE_SCHEMA,
+        table = MappedIllustration.TABLE_NAME,
+        value = "Bicycle assembly diagrams."
+)
 public abstract class MappedIllustration {
 
     /**
@@ -46,7 +80,7 @@ public abstract class MappedIllustration {
      */
     public static final String TABLE_NAME = "Illustration";
 
-    // -------------------------------------------------------------------------------------------------- IllustrationID
+    // ------------------------------------------------------------------------------ IllustrationID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -58,7 +92,7 @@ public abstract class MappedIllustration {
      */
     public static final String ATTRIBUTE_NAME_ILLUSTRATION_ID = "illustrationId";
 
-    // --------------------------------------------------------------------------------------------------------- Diagram
+    // ------------------------------------------------------------------------------------- Diagram
 
     /**
      * The name of the {@code xml} column. The value is {@value}.
@@ -70,7 +104,7 @@ public abstract class MappedIllustration {
      */
     public static final String ATTRIBUTE_NAME_DIAGRAM = "diagram";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -82,7 +116,7 @@ public abstract class MappedIllustration {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -91,7 +125,7 @@ public abstract class MappedIllustration {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -131,7 +165,7 @@ public abstract class MappedIllustration {
         return Objects.hash(illustrationId);
     }
 
-    // -------------------------------------------------------------------------------------------------- illustrationId
+    // ------------------------------------------------------------------------------ illustrationId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ILLUSTRATION_ID} attribute.
@@ -151,7 +185,7 @@ public abstract class MappedIllustration {
         this.illustrationId = illustrationId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- diagram
+    // ------------------------------------------------------------------------------------- diagram
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DIAGRAM} attribute.
@@ -171,7 +205,7 @@ public abstract class MappedIllustration {
         this.diagram = diagram;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -191,7 +225,7 @@ public abstract class MappedIllustration {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -201,18 +235,23 @@ public abstract class MappedIllustration {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ILLUSTRATION_ID,
+                          value = "Primary key for Illustration records.")
     private Integer illustrationId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DIAGRAM,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DIAGRAM,
+                          value = "Illustrations used in manufacturing instructions. Stored as "
+                                  + "XML.")
     private String diagram;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -221,6 +260,9 @@ public abstract class MappedIllustration {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_Illustration_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

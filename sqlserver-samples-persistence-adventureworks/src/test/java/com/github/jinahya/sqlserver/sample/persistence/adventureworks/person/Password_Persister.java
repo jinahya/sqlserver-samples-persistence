@@ -35,7 +35,7 @@ class Password_Persister
         super(Password.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public Password apply(final EntityManager entityManager, final Password entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);

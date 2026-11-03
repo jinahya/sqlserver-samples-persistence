@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -37,8 +39,48 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.StockItemHoldings}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemID}</th>
+ *     <td>ID of the stock item that this holding relates to (this table holds non-temporal columns
+ *     for stock)</td></tr>
+ * <tr><th scope="row">{@code QuantityOnHand}</th>
+ *     <td>Quantity currently on hand (if tracked)</td></tr>
+ * <tr><th scope="row">{@code BinLocation}</th>
+ *     <td>Bin location (ie location of this stock item within the depot)</td></tr>
+ * <tr><th scope="row">{@code LastStocktakeQuantity}</th>
+ *     <td>Quantity at last stocktake (if tracked)</td></tr>
+ * <tr><th scope="row">{@code LastCostPrice}</th>
+ *     <td>Unit cost price the last time this stock item was purchased</td></tr>
+ * <tr><th scope="row">{@code ReorderLevel}</th>
+ *     <td>Quantity below which reordering should take place</td></tr>
+ * <tr><th scope="row">{@code TargetStockLevel}</th><td>Typical quantity ordered</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Warehouse.StockItemHoldings}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedStockItemHolding.TABLE_SCHEMA,
+        table = MappedStockItemHolding.TABLE_NAME,
+        value = "Non-temporal attributes for stock items"
+)
 public abstract class MappedStockItemHolding {
 
     /**
@@ -51,7 +93,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String TABLE_NAME = "StockItemHoldings";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +105,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // -------------------------------------------------------------------------------------------------- QuantityOnHand
+    // ------------------------------------------------------------------------------ QuantityOnHand
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -75,7 +117,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ON_HAND = "quantityOnHand";
 
-    // ----------------------------------------------------------------------------------------------------- BinLocation
+    // --------------------------------------------------------------------------------- BinLocation
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -92,7 +134,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_BIN_LOCATION = "binLocation";
 
-    // ------------------------------------------------------------------------------------------- LastStocktakeQuantity
+    // ----------------------------------------------------------------------- LastStocktakeQuantity
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -105,7 +147,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_LAST_STOCKTAKE_QUANTITY = "lastStocktakeQuantity";
 
-    // --------------------------------------------------------------------------------------------------- LastCostPrice
+    // ------------------------------------------------------------------------------- LastCostPrice
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -127,7 +169,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_LAST_COST_PRICE = "lastCostPrice";
 
-    // ---------------------------------------------------------------------------------------------------- ReorderLevel
+    // -------------------------------------------------------------------------------- ReorderLevel
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -139,7 +181,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_REORDER_LEVEL = "reorderLevel";
 
-    // ------------------------------------------------------------------------------------------------ TargetStockLevel
+    // ---------------------------------------------------------------------------- TargetStockLevel
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -151,7 +193,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_TARGET_STOCK_LEVEL = "targetStockLevel";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -163,7 +205,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -175,7 +217,7 @@ public abstract class MappedStockItemHolding {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -184,7 +226,7 @@ public abstract class MappedStockItemHolding {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -230,7 +272,7 @@ public abstract class MappedStockItemHolding {
         return Objects.hash(stockItemId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -250,7 +292,7 @@ public abstract class MappedStockItemHolding {
         this.stockItemId = stockItemId;
     }
 
-    // -------------------------------------------------------------------------------------------------- quantityOnHand
+    // ------------------------------------------------------------------------------ quantityOnHand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ON_HAND} attribute.
@@ -270,7 +312,7 @@ public abstract class MappedStockItemHolding {
         this.quantityOnHand = quantityOnHand;
     }
 
-    // ----------------------------------------------------------------------------------------------------- binLocation
+    // --------------------------------------------------------------------------------- binLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BIN_LOCATION} attribute.
@@ -290,7 +332,7 @@ public abstract class MappedStockItemHolding {
         this.binLocation = binLocation;
     }
 
-    // ------------------------------------------------------------------------------------------- lastStocktakeQuantity
+    // ----------------------------------------------------------------------- lastStocktakeQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_STOCKTAKE_QUANTITY} attribute.
@@ -310,7 +352,7 @@ public abstract class MappedStockItemHolding {
         this.lastStocktakeQuantity = lastStocktakeQuantity;
     }
 
-    // --------------------------------------------------------------------------------------------------- lastCostPrice
+    // ------------------------------------------------------------------------------- lastCostPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_COST_PRICE} attribute.
@@ -330,7 +372,7 @@ public abstract class MappedStockItemHolding {
         this.lastCostPrice = lastCostPrice;
     }
 
-    // ---------------------------------------------------------------------------------------------------- reorderLevel
+    // -------------------------------------------------------------------------------- reorderLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REORDER_LEVEL} attribute.
@@ -350,7 +392,7 @@ public abstract class MappedStockItemHolding {
         this.reorderLevel = reorderLevel;
     }
 
-    // ------------------------------------------------------------------------------------------------ targetStockLevel
+    // ---------------------------------------------------------------------------- targetStockLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TARGET_STOCK_LEVEL} attribute.
@@ -370,7 +412,7 @@ public abstract class MappedStockItemHolding {
         this.targetStockLevel = targetStockLevel;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -392,7 +434,7 @@ public abstract class MappedStockItemHolding {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -412,7 +454,7 @@ public abstract class MappedStockItemHolding {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -421,9 +463,12 @@ public abstract class MappedStockItemHolding {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "ID of the stock item that this holding relates to (this "
+                                  + "table holds non-temporal columns for stock)")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
@@ -431,9 +476,11 @@ public abstract class MappedStockItemHolding {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
+                          value = "Quantity currently on hand (if tracked)")
     private Integer quantityOnHand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BIN_LOCATION)
     @NotNull
     @Basic(optional = false)
@@ -443,9 +490,11 @@ public abstract class MappedStockItemHolding {
             updatable = true,
             length = COLUMN_LENGTH_BIN_LOCATION
     )
+    @MsDescription.Column(name = COLUMN_NAME_BIN_LOCATION,
+                          value = "Bin location (ie location of this stock item within the depot)")
     private String binLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_STOCKTAKE_QUANTITY,
@@ -453,9 +502,11 @@ public abstract class MappedStockItemHolding {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LAST_STOCKTAKE_QUANTITY,
+                          value = "Quantity at last stocktake (if tracked)")
     private Integer lastStocktakeQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_LAST_COST_PRICE - COLUMN_SCALE_LAST_COST_PRICE,
             fraction = COLUMN_SCALE_LAST_COST_PRICE)
     @NotNull
@@ -467,9 +518,11 @@ public abstract class MappedStockItemHolding {
             precision = COLUMN_PRECISION_LAST_COST_PRICE,
             scale = COLUMN_SCALE_LAST_COST_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_LAST_COST_PRICE,
+                          value = "Unit cost price the last time this stock item was purchased")
     private BigDecimal lastCostPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REORDER_LEVEL,
@@ -477,9 +530,11 @@ public abstract class MappedStockItemHolding {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_REORDER_LEVEL,
+                          value = "Quantity below which reordering should take place")
     private Integer reorderLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TARGET_STOCK_LEVEL,
@@ -487,9 +542,10 @@ public abstract class MappedStockItemHolding {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_TARGET_STOCK_LEVEL, value = "Typical quantity ordered")
     private Integer targetStockLevel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -500,7 +556,7 @@ public abstract class MappedStockItemHolding {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -508,6 +564,7 @@ public abstract class MappedStockItemHolding {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Warehouse_StockItemHoldings_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

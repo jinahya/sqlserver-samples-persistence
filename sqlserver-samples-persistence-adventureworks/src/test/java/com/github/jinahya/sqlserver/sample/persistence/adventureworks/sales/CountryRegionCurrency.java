@@ -52,7 +52,7 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
      */
     public static final String ATTRIBUTE_NAME_CURRENCY = "currency";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +61,7 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- countryRegion
+    // ------------------------------------------------------------------------------- countryRegion
 
     /**
      * Returns the {@code CountryRegion} which the {@code FK_CountryRegionCurrency_CountryRegion_CountryRegionCode}
@@ -84,7 +84,7 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
         setCountryRegionCode(countryRegion == null ? null : countryRegion.getCountryRegionCode());
     }
 
-    // -------------------------------------------------------------------------------------------------------- currency
+    // ------------------------------------------------------------------------------------ currency
 
     /**
      * Returns the {@code Currency} which the {@code FK_CountryRegionCurrency_Currency_CurrencyCode} foreign key
@@ -107,7 +107,7 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
         setCurrencyCode(currency == null ? null : currency.getCurrencyCode());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COUNTRY_REGION_CODE,
                 referencedColumnName = MappedCountryRegion.COLUMN_NAME_COUNTRY_REGION_CODE,
@@ -117,7 +117,7 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
     )
     private CountryRegion countryRegion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CURRENCY_CODE,
                 referencedColumnName = MappedCurrency.COLUMN_NAME_CURRENCY_CODE,

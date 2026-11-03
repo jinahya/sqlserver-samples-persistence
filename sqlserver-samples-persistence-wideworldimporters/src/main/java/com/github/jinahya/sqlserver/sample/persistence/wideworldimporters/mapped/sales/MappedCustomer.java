@@ -22,6 +22,10 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsRowLevelSecurity;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -51,8 +55,113 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_DELIVERY_CITY_ID}, {@value #COLUMN_NAME_POSTAL_CITY_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.Customers}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CustomerID}</th>
+ *     <td>Numeric ID used for reference to a customer within the database</td></tr>
+ * <tr><th scope="row">{@code CustomerName}</th>
+ *     <td>Customer's full name (usually a trading name)</td></tr>
+ * <tr><th scope="row">{@code BillToCustomerID}</th>
+ *     <td>Customer that this is billed to (usually the same customer but can be another parent
+ *     company)</td></tr>
+ * <tr><th scope="row">{@code CustomerCategoryID}</th><td>Customer's category</td></tr>
+ * <tr><th scope="row">{@code BuyingGroupID}</th><td>Customer's buying group (optional)</td></tr>
+ * <tr><th scope="row">{@code PrimaryContactPersonID}</th><td>Primary contact</td></tr>
+ * <tr><th scope="row">{@code AlternateContactPersonID}</th><td>Alternate contact</td></tr>
+ * <tr><th scope="row">{@code DeliveryMethodID}</th>
+ *     <td>Standard delivery method for stock items sent to this customer</td></tr>
+ * <tr><th scope="row">{@code DeliveryCityID}</th>
+ *     <td>ID of the delivery city for this address</td></tr>
+ * <tr><th scope="row">{@code PostalCityID}</th><td>ID of the postal city for this address</td></tr>
+ * <tr><th scope="row">{@code CreditLimit}</th>
+ *     <td>Credit limit for this customer (NULL if unlimited)</td></tr>
+ * <tr><th scope="row">{@code AccountOpenedDate}</th>
+ *     <td>Date this customer account was opened</td></tr>
+ * <tr><th scope="row">{@code StandardDiscountPercentage}</th>
+ *     <td>Standard discount offered to this customer</td></tr>
+ * <tr><th scope="row">{@code IsStatementSent}</th>
+ *     <td>Is a statement sent to this customer? (Or do they just pay on each invoice?)</td></tr>
+ * <tr><th scope="row">{@code IsOnCreditHold}</th>
+ *     <td>Is this customer on credit hold? (Prevents further deliveries to this customer)</td></tr>
+ * <tr><th scope="row">{@code PaymentDays}</th>
+ *     <td>Number of days for payment of an invoice (ie payment terms)</td></tr>
+ * <tr><th scope="row">{@code PhoneNumber}</th><td>Phone number</td></tr>
+ * <tr><th scope="row">{@code FaxNumber}</th><td>Fax number</td></tr>
+ * <tr><th scope="row">{@code DeliveryRun}</th><td>Normal delivery run for this customer</td></tr>
+ * <tr><th scope="row">{@code RunPosition}</th>
+ *     <td>Normal position in the delivery run for this customer</td></tr>
+ * <tr><th scope="row">{@code WebsiteURL}</th><td>URL for the website for this customer</td></tr>
+ * <tr><th scope="row">{@code DeliveryAddressLine1}</th>
+ *     <td>First delivery address line for the customer</td></tr>
+ * <tr><th scope="row">{@code DeliveryAddressLine2}</th>
+ *     <td>Second delivery address line for the customer</td></tr>
+ * <tr><th scope="row">{@code DeliveryPostalCode}</th>
+ *     <td>Delivery postal code for the customer</td></tr>
+ * <tr><th scope="row">{@code DeliveryLocation}</th>
+ *     <td>Geographic location for the customer's office/warehouse</td></tr>
+ * <tr><th scope="row">{@code PostalAddressLine1}</th>
+ *     <td>First postal address line for the customer</td></tr>
+ * <tr><th scope="row">{@code PostalAddressLine2}</th>
+ *     <td>Second postal address line for the customer</td></tr>
+ * <tr><th scope="row">{@code PostalPostalCode}</th>
+ *     <td>Postal code for the customer when sending by mail</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.Customers}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CustomerID}</th><td>{@code (NEXT VALUE FOR [Sequences].[CustomerID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Security predicates on {@code Sales.Customers}</caption>
+ * <thead>
+ * <tr><th scope="col">Policy</th><th scope="col">Type</th><th scope="col">Predicate</th>
+ *     <th scope="col">Operation</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code Application.FilterCustomersBySalesTerritoryRole}</th>
+ *     <td>{@code FILTER}</td><td>{@code ([Application].[DetermineCustomerAccess]([DeliveryCityID]))}</td><td></td></tr>
+ * <tr><th scope="row">{@code Application.FilterCustomersBySalesTerritoryRole}</th>
+ *     <td>{@code BLOCK}</td>
+ *     <td>{@code ([Application].[DetermineCustomerAccess]([DeliveryCityID]))}</td>
+ *     <td>{@code AFTER UPDATE}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCustomer.TABLE_SCHEMA,
+        table = MappedCustomer.TABLE_NAME,
+        value = "Main entity tables for customers (organizations or individuals)"
+)
+@MsTemporal(
+        historyTable = "Sales.Customers_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
+@MsRowLevelSecurity(
+        policy = "Application.FilterCustomersBySalesTerritoryRole",
+        predicate = "([Application].[DetermineCustomerAccess]([DeliveryCityID]))"
+)
+@MsRowLevelSecurity(
+        policy = "Application.FilterCustomersBySalesTerritoryRole",
+        type = MsRowLevelSecurity.PredicateType.BLOCK,
+        predicate = "([Application].[DetermineCustomerAccess]([DeliveryCityID]))",
+        operation = MsRowLevelSecurity.BlockOperation.AFTER_UPDATE
+)
 public abstract class MappedCustomer {
 
     /**
@@ -65,7 +174,7 @@ public abstract class MappedCustomer {
      */
     public static final String TABLE_NAME = "Customers";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.CustomerID, NOT NULL} column. The value is {@value}.
@@ -77,7 +186,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -94,7 +203,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ------------------------------------------------------------------------------------------------ BillToCustomerID
+    // ---------------------------------------------------------------------------- BillToCustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -107,7 +216,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID = "billToCustomerId";
 
-    // ---------------------------------------------------------------------------------------------- CustomerCategoryID
+    // -------------------------------------------------------------------------- CustomerCategoryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -120,7 +229,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID = "customerCategoryId";
 
-    // --------------------------------------------------------------------------------------------------- BuyingGroupID
+    // ------------------------------------------------------------------------------- BuyingGroupID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -132,7 +241,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_BUYING_GROUP_ID = "buyingGroupId";
 
-    // ------------------------------------------------------------------------------------------ PrimaryContactPersonID
+    // ---------------------------------------------------------------------- PrimaryContactPersonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -145,7 +254,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID = "primaryContactPersonId";
 
-    // ---------------------------------------------------------------------------------------- AlternateContactPersonID
+    // -------------------------------------------------------------------- AlternateContactPersonID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -158,7 +267,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID = "alternateContactPersonId";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryMethodID
+    // ---------------------------------------------------------------------------- DeliveryMethodID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -170,7 +279,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryCityID
+    // ------------------------------------------------------------------------------ DeliveryCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -182,7 +291,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_CITY_ID = "deliveryCityId";
 
-    // ---------------------------------------------------------------------------------------------------- PostalCityID
+    // -------------------------------------------------------------------------------- PostalCityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -194,7 +303,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CITY_ID = "postalCityId";
 
-    // ----------------------------------------------------------------------------------------------------- CreditLimit
+    // --------------------------------------------------------------------------------- CreditLimit
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -216,7 +325,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_LIMIT = "creditLimit";
 
-    // ----------------------------------------------------------------------------------------------- AccountOpenedDate
+    // --------------------------------------------------------------------------- AccountOpenedDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -229,7 +338,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_ACCOUNT_OPENED_DATE = "accountOpenedDate";
 
-    // -------------------------------------------------------------------------------------- StandardDiscountPercentage
+    // ------------------------------------------------------------------ StandardDiscountPercentage
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -252,7 +361,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_DISCOUNT_PERCENTAGE = "standardDiscountPercentage";
 
-    // ------------------------------------------------------------------------------------------------- IsStatementSent
+    // ----------------------------------------------------------------------------- IsStatementSent
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -264,7 +373,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_IS_STATEMENT_SENT = "isStatementSent";
 
-    // -------------------------------------------------------------------------------------------------- IsOnCreditHold
+    // ------------------------------------------------------------------------------ IsOnCreditHold
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -276,7 +385,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_IS_ON_CREDIT_HOLD = "isOnCreditHold";
 
-    // ----------------------------------------------------------------------------------------------------- PaymentDays
+    // --------------------------------------------------------------------------------- PaymentDays
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -288,7 +397,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_PAYMENT_DAYS = "paymentDays";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -305,7 +414,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -322,7 +431,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ----------------------------------------------------------------------------------------------------- DeliveryRun
+    // --------------------------------------------------------------------------------- DeliveryRun
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -339,7 +448,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_RUN = "deliveryRun";
 
-    // ----------------------------------------------------------------------------------------------------- RunPosition
+    // --------------------------------------------------------------------------------- RunPosition
 
     /**
      * The name of the {@code nvarchar(5)} column. The value is {@value}.
@@ -356,7 +465,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_RUN_POSITION = "runPosition";
 
-    // ------------------------------------------------------------------------------------------------------ WebsiteURL
+    // ---------------------------------------------------------------------------------- WebsiteURL
 
     /**
      * The name of the {@code nvarchar(256), NOT NULL} column. The value is {@value}.
@@ -373,7 +482,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_WEBSITE_URL = "websiteUrl";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine1
+    // ------------------------------------------------------------------------ DeliveryAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -391,7 +500,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1 = "deliveryAddressLine1";
 
-    // -------------------------------------------------------------------------------------------- DeliveryAddressLine2
+    // ------------------------------------------------------------------------ DeliveryAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -409,7 +518,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2 = "deliveryAddressLine2";
 
-    // ---------------------------------------------------------------------------------------------- DeliveryPostalCode
+    // -------------------------------------------------------------------------- DeliveryPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -427,7 +536,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE = "deliveryPostalCode";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryLocation
+    // ---------------------------------------------------------------------------- DeliveryLocation
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -439,7 +548,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_LOCATION = "deliveryLocation";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine1
+    // -------------------------------------------------------------------------- PostalAddressLine1
 
     /**
      * The name of the {@code nvarchar(60), NOT NULL} column. The value is {@value}.
@@ -457,7 +566,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1 = "postalAddressLine1";
 
-    // ---------------------------------------------------------------------------------------------- PostalAddressLine2
+    // -------------------------------------------------------------------------- PostalAddressLine2
 
     /**
      * The name of the {@code nvarchar(60)} column. The value is {@value}.
@@ -475,7 +584,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2 = "postalAddressLine2";
 
-    // ------------------------------------------------------------------------------------------------ PostalPostalCode
+    // ---------------------------------------------------------------------------- PostalPostalCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -492,7 +601,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_POSTAL_CODE = "postalPostalCode";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -504,7 +613,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -516,7 +625,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -528,7 +637,7 @@ public abstract class MappedCustomer {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -537,7 +646,7 @@ public abstract class MappedCustomer {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -605,7 +714,7 @@ public abstract class MappedCustomer {
         return Objects.hash(customerId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -625,7 +734,7 @@ public abstract class MappedCustomer {
         this.customerId = customerId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -645,7 +754,7 @@ public abstract class MappedCustomer {
         this.customerName = customerName;
     }
 
-    // ------------------------------------------------------------------------------------------------ billToCustomerId
+    // ---------------------------------------------------------------------------- billToCustomerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute.
@@ -667,7 +776,7 @@ public abstract class MappedCustomer {
         this.billToCustomerId = billToCustomerId;
     }
 
-    // ---------------------------------------------------------------------------------------------- customerCategoryId
+    // -------------------------------------------------------------------------- customerCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
@@ -689,7 +798,7 @@ public abstract class MappedCustomer {
         this.customerCategoryId = customerCategoryId;
     }
 
-    // --------------------------------------------------------------------------------------------------- buyingGroupId
+    // ------------------------------------------------------------------------------- buyingGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute.
@@ -711,7 +820,7 @@ public abstract class MappedCustomer {
         this.buyingGroupId = buyingGroupId;
     }
 
-    // ------------------------------------------------------------------------------------------ primaryContactPersonId
+    // ---------------------------------------------------------------------- primaryContactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID} attribute.
@@ -733,7 +842,7 @@ public abstract class MappedCustomer {
         this.primaryContactPersonId = primaryContactPersonId;
     }
 
-    // ---------------------------------------------------------------------------------------- alternateContactPersonId
+    // -------------------------------------------------------------------- alternateContactPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID} attribute.
@@ -755,7 +864,7 @@ public abstract class MappedCustomer {
         this.alternateContactPersonId = alternateContactPersonId;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryMethodId
+    // ---------------------------------------------------------------------------- deliveryMethodId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
@@ -777,7 +886,7 @@ public abstract class MappedCustomer {
         this.deliveryMethodId = deliveryMethodId;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryCityId
+    // ------------------------------------------------------------------------------ deliveryCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
@@ -799,7 +908,7 @@ public abstract class MappedCustomer {
         this.deliveryCityId = deliveryCityId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- postalCityId
+    // -------------------------------------------------------------------------------- postalCityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
@@ -821,7 +930,7 @@ public abstract class MappedCustomer {
         this.postalCityId = postalCityId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- creditLimit
+    // --------------------------------------------------------------------------------- creditLimit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREDIT_LIMIT} attribute.
@@ -841,7 +950,7 @@ public abstract class MappedCustomer {
         this.creditLimit = creditLimit;
     }
 
-    // ----------------------------------------------------------------------------------------------- accountOpenedDate
+    // --------------------------------------------------------------------------- accountOpenedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACCOUNT_OPENED_DATE} attribute.
@@ -861,7 +970,7 @@ public abstract class MappedCustomer {
         this.accountOpenedDate = accountOpenedDate;
     }
 
-    // -------------------------------------------------------------------------------------- standardDiscountPercentage
+    // ------------------------------------------------------------------ standardDiscountPercentage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_DISCOUNT_PERCENTAGE} attribute.
@@ -882,7 +991,7 @@ public abstract class MappedCustomer {
         this.standardDiscountPercentage = standardDiscountPercentage;
     }
 
-    // ------------------------------------------------------------------------------------------------- isStatementSent
+    // ----------------------------------------------------------------------------- isStatementSent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_STATEMENT_SENT} attribute.
@@ -902,7 +1011,7 @@ public abstract class MappedCustomer {
         this.isStatementSent = isStatementSent;
     }
 
-    // -------------------------------------------------------------------------------------------------- isOnCreditHold
+    // ------------------------------------------------------------------------------ isOnCreditHold
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ON_CREDIT_HOLD} attribute.
@@ -922,7 +1031,7 @@ public abstract class MappedCustomer {
         this.isOnCreditHold = isOnCreditHold;
     }
 
-    // ----------------------------------------------------------------------------------------------------- paymentDays
+    // --------------------------------------------------------------------------------- paymentDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PAYMENT_DAYS} attribute.
@@ -942,7 +1051,7 @@ public abstract class MappedCustomer {
         this.paymentDays = paymentDays;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -962,7 +1071,7 @@ public abstract class MappedCustomer {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -982,7 +1091,7 @@ public abstract class MappedCustomer {
         this.faxNumber = faxNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------------- deliveryRun
+    // --------------------------------------------------------------------------------- deliveryRun
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_RUN} attribute.
@@ -1002,7 +1111,7 @@ public abstract class MappedCustomer {
         this.deliveryRun = deliveryRun;
     }
 
-    // ----------------------------------------------------------------------------------------------------- runPosition
+    // --------------------------------------------------------------------------------- runPosition
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RUN_POSITION} attribute.
@@ -1022,7 +1131,7 @@ public abstract class MappedCustomer {
         this.runPosition = runPosition;
     }
 
-    // ------------------------------------------------------------------------------------------------------ websiteUrl
+    // ---------------------------------------------------------------------------------- websiteUrl
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEBSITE_URL} attribute.
@@ -1042,7 +1151,7 @@ public abstract class MappedCustomer {
         this.websiteUrl = websiteUrl;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine1
+    // ------------------------------------------------------------------------ deliveryAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_1} attribute.
@@ -1062,7 +1171,7 @@ public abstract class MappedCustomer {
         this.deliveryAddressLine1 = deliveryAddressLine1;
     }
 
-    // -------------------------------------------------------------------------------------------- deliveryAddressLine2
+    // ------------------------------------------------------------------------ deliveryAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_ADDRESS_LINE_2} attribute.
@@ -1082,7 +1191,7 @@ public abstract class MappedCustomer {
         this.deliveryAddressLine2 = deliveryAddressLine2;
     }
 
-    // ---------------------------------------------------------------------------------------------- deliveryPostalCode
+    // -------------------------------------------------------------------------- deliveryPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_POSTAL_CODE} attribute.
@@ -1102,7 +1211,7 @@ public abstract class MappedCustomer {
         this.deliveryPostalCode = deliveryPostalCode;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryLocation
+    // ---------------------------------------------------------------------------- deliveryLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
@@ -1122,7 +1231,7 @@ public abstract class MappedCustomer {
         this.deliveryLocation = deliveryLocation;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine1
+    // -------------------------------------------------------------------------- postalAddressLine1
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_1} attribute.
@@ -1142,7 +1251,7 @@ public abstract class MappedCustomer {
         this.postalAddressLine1 = postalAddressLine1;
     }
 
-    // ---------------------------------------------------------------------------------------------- postalAddressLine2
+    // -------------------------------------------------------------------------- postalAddressLine2
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_ADDRESS_LINE_2} attribute.
@@ -1162,7 +1271,7 @@ public abstract class MappedCustomer {
         this.postalAddressLine2 = postalAddressLine2;
     }
 
-    // ------------------------------------------------------------------------------------------------ postalPostalCode
+    // ---------------------------------------------------------------------------- postalPostalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_POSTAL_CODE} attribute.
@@ -1182,7 +1291,7 @@ public abstract class MappedCustomer {
         this.postalPostalCode = postalPostalCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -1204,7 +1313,7 @@ public abstract class MappedCustomer {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -1225,7 +1334,7 @@ public abstract class MappedCustomer {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -1246,7 +1355,7 @@ public abstract class MappedCustomer {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.CustomerID", schema = "Sequences",
@@ -1258,9 +1367,12 @@ public abstract class MappedCustomer {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
+                          value = "Numeric ID used for reference to a customer within the database")
+    @MsDefault(name = "DF_Sales_Customers_CustomerID", value = "(NEXT VALUE FOR [Sequences].[CustomerID])")
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
@@ -1270,9 +1382,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_CUSTOMER_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_NAME,
+                          value = "Customer's full name (usually a trading name)")
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1281,9 +1395,12 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
+                          value = "Customer that this is billed to (usually the same customer "
+                                  + "but can be another parent company)")
     private Integer billToCustomerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1292,9 +1409,10 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, value = "Customer's category")
     private Integer customerCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUYING_GROUP_ID,
@@ -1302,9 +1420,11 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
+                          value = "Customer's buying group (optional)")
     private Integer buyingGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1313,9 +1433,10 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, value = "Primary contact")
     private Integer primaryContactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
@@ -1323,9 +1444,11 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
+                          value = "Alternate contact")
     private Integer alternateContactPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1334,9 +1457,11 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
+                          value = "Standard delivery method for stock items sent to this customer")
     private Integer deliveryMethodId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1345,9 +1470,11 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
+                          value = "ID of the delivery city for this address")
     private Integer deliveryCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1356,9 +1483,11 @@ public abstract class MappedCustomer {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_CITY_ID,
+                          value = "ID of the postal city for this address")
     private Integer postalCityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_CREDIT_LIMIT - COLUMN_SCALE_CREDIT_LIMIT, fraction = COLUMN_SCALE_CREDIT_LIMIT)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREDIT_LIMIT,
@@ -1368,9 +1497,11 @@ public abstract class MappedCustomer {
             precision = COLUMN_PRECISION_CREDIT_LIMIT,
             scale = COLUMN_SCALE_CREDIT_LIMIT
     )
+    @MsDescription.Column(name = COLUMN_NAME_CREDIT_LIMIT,
+                          value = "Credit limit for this customer (NULL if unlimited)")
     private BigDecimal creditLimit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ACCOUNT_OPENED_DATE,
@@ -1378,9 +1509,11 @@ public abstract class MappedCustomer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_OPENED_DATE,
+                          value = "Date this customer account was opened")
     private LocalDate accountOpenedDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_STANDARD_DISCOUNT_PERCENTAGE - COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE,
             fraction = COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE)
     @NotNull
@@ -1392,9 +1525,11 @@ public abstract class MappedCustomer {
             precision = COLUMN_PRECISION_STANDARD_DISCOUNT_PERCENTAGE,
             scale = COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE
     )
+    @MsDescription.Column(name = COLUMN_NAME_STANDARD_DISCOUNT_PERCENTAGE,
+                          value = "Standard discount offered to this customer")
     private BigDecimal standardDiscountPercentage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_STATEMENT_SENT,
@@ -1402,9 +1537,12 @@ public abstract class MappedCustomer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_STATEMENT_SENT,
+                          value = "Is a statement sent to this customer? (Or do they just pay "
+                                  + "on each invoice?)")
     private Boolean isStatementSent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ON_CREDIT_HOLD,
@@ -1412,9 +1550,12 @@ public abstract class MappedCustomer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_ON_CREDIT_HOLD,
+                          value = "Is this customer on credit hold? (Prevents further "
+                                  + "deliveries to this customer)")
     private Boolean isOnCreditHold;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAYMENT_DAYS,
@@ -1422,9 +1563,11 @@ public abstract class MappedCustomer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_DAYS,
+                          value = "Number of days for payment of an invoice (ie payment terms)")
     private Integer paymentDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -1434,9 +1577,10 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_PHONE_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER, value = "Phone number")
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -1446,9 +1590,10 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_FAX_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_FAX_NUMBER, value = "Fax number")
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_RUN,
@@ -1457,9 +1602,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_RUN
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_RUN,
+                          value = "Normal delivery run for this customer")
     private String deliveryRun;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RUN_POSITION,
@@ -1468,9 +1615,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_RUN_POSITION
     )
+    @MsDescription.Column(name = COLUMN_NAME_RUN_POSITION,
+                          value = "Normal position in the delivery run for this customer")
     private String runPosition;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
@@ -1480,9 +1629,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_WEBSITE_URL
     )
+    @MsDescription.Column(name = COLUMN_NAME_WEBSITE_URL,
+                          value = "URL for the website for this customer")
     private String websiteUrl;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -1492,9 +1643,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
+                          value = "First delivery address line for the customer")
     private String deliveryAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
@@ -1503,9 +1656,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
+                          value = "Second delivery address line for the customer")
     private String deliveryAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -1515,9 +1670,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
+                          value = "Delivery postal code for the customer")
     private String deliveryPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
@@ -1525,9 +1682,11 @@ public abstract class MappedCustomer {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_LOCATION,
+                          value = "Geographic location for the customer's office/warehouse")
     private Geography deliveryLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
@@ -1537,9 +1696,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
+                          value = "First postal address line for the customer")
     private String postalAddressLine1;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
@@ -1548,9 +1709,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
+                          value = "Second postal address line for the customer")
     private String postalAddressLine2;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
@@ -1560,9 +1723,11 @@ public abstract class MappedCustomer {
             updatable = true,
             length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
+                          value = "Postal code for the customer when sending by mail")
     private String postalPostalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1573,7 +1738,7 @@ public abstract class MappedCustomer {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -1584,7 +1749,7 @@ public abstract class MappedCustomer {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

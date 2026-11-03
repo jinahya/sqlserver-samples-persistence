@@ -31,12 +31,23 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Person.BusinessEntityContact} table.
  */
 @Entity(name = "PersonBusinessEntityContact")
-@Table(schema = MappedBusinessEntityContact.TABLE_SCHEMA, name = MappedBusinessEntityContact.TABLE_NAME)
+@Table(schema = MappedBusinessEntityContact.TABLE_SCHEMA,
+       name = MappedBusinessEntityContact.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_BusinessEntityContact_rowguid",
+                       columnNames = {
+                               BusinessEntityContact.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 @IdClass(MappedBusinessEntityContactId.class)
 public class BusinessEntityContact extends MappedBusinessEntityContact {
 
@@ -58,7 +69,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -67,7 +78,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------------- person
+    // -------------------------------------------------------------------------------------- person
 
     /**
      * Returns the {@code Person} which the {@code FK_BusinessEntityContact_Person_PersonID} foreign key references.
@@ -89,7 +100,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
         setPersonId(person == null ? null : person.getBusinessEntityId());
     }
 
-    // ----------------------------------------------------------------------------------------------------- contactType
+    // --------------------------------------------------------------------------------- contactType
 
     /**
      * Returns the {@code ContactType} which the {@code FK_BusinessEntityContact_ContactType_ContactTypeID} foreign key
@@ -112,7 +123,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
         setContactTypeId(contactType == null ? null : contactType.getContactTypeId());
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code BusinessEntity} which the {@code FK_BusinessEntityContact_BusinessEntity_BusinessEntityID}
@@ -135,7 +146,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PERSON_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -145,7 +156,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
     )
     private Person person;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CONTACT_TYPE_ID,
                 referencedColumnName = MappedContactType.COLUMN_NAME_CONTACT_TYPE_ID,
@@ -155,7 +166,7 @@ public class BusinessEntityContact extends MappedBusinessEntityContact {
     )
     private ContactType contactType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedBusinessEntity.COLUMN_NAME_BUSINESS_ENTITY_ID,

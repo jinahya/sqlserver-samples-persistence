@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -35,8 +37,48 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.EmployeeDepartmentHistory} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code HumanResources.EmployeeDepartmentHistory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code BusinessEntityID}</th>
+ *     <td>Employee identification number. Foreign key to Employee.BusinessEntityID.</td></tr>
+ * <tr><th scope="row">{@code DepartmentID}</th>
+ *     <td>Department in which the employee worked including currently. Foreign key to
+ *     Department.DepartmentID.</td></tr>
+ * <tr><th scope="row">{@code ShiftID}</th>
+ *     <td>Identifies which 8-hour shift the employee works. Foreign key to
+ *     Shift.Shift.ID.</td></tr>
+ * <tr><th scope="row">{@code StartDate}</th>
+ *     <td>Date the employee started work in the department.</td></tr>
+ * <tr><th scope="row">{@code EndDate}</th>
+ *     <td>Date the employee left the department. NULL = Current department.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code HumanResources.EmployeeDepartmentHistory}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedEmployeeDepartmentHistory.TABLE_SCHEMA,
+        table = MappedEmployeeDepartmentHistory.TABLE_NAME,
+        value = "Employee department transfers."
+)
 public abstract class MappedEmployeeDepartmentHistory {
 
     /**
@@ -49,7 +91,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String TABLE_NAME = "EmployeeDepartmentHistory";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -61,7 +103,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ---------------------------------------------------------------------------------------------------- DepartmentID
+    // -------------------------------------------------------------------------------- DepartmentID
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -83,7 +125,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_DEPARTMENT_ID = "departmentId";
 
-    // --------------------------------------------------------------------------------------------------------- ShiftID
+    // ------------------------------------------------------------------------------------- ShiftID
 
     /**
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
@@ -105,7 +147,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_SHIFT_ID = "shiftId";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -117,7 +159,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -129,7 +171,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -141,7 +183,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -150,7 +192,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -196,7 +238,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         return Objects.hash(businessEntityId, startDate, departmentId, shiftId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ VALIDATION
+    // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
@@ -219,7 +261,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         return !endDate.isBefore(startDate);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -239,7 +281,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         this.businessEntityId = businessEntityId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- departmentId
+    // -------------------------------------------------------------------------------- departmentId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
@@ -259,7 +301,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         this.departmentId = departmentId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- shiftId
+    // ------------------------------------------------------------------------------------- shiftId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
@@ -279,7 +321,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         this.shiftId = shiftId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -299,7 +341,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         this.startDate = startDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -319,7 +361,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         this.endDate = endDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -339,7 +381,7 @@ public abstract class MappedEmployeeDepartmentHistory {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -348,9 +390,12 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
+                          value = "Employee identification number. Foreign key to "
+                                  + "Employee.BusinessEntityID.")
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Max(COLUMN_MAX_DEPARTMENT_ID)
     @Min(COLUMN_MIN_DEPARTMENT_ID)
@@ -361,9 +406,12 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_DEPARTMENT_ID,
+                          value = "Department in which the employee worked including currently. "
+                                  + "Foreign key to Department.DepartmentID.")
     private Integer departmentId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Max(COLUMN_MAX_SHIFT_ID)
     @Min(COLUMN_MIN_SHIFT_ID)
@@ -374,9 +422,12 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHIFT_ID,
+                          value = "Identifies which 8-hour shift the employee works. Foreign "
+                                  + "key to Shift.Shift.ID.")
     private Integer shiftId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
@@ -385,18 +436,23 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
+                          value = "Date the employee started work in the department.")
     private LocalDate startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_END_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
+                          value = "Date the employee left the department. NULL = Current "
+                                  + "department.")
     private LocalDate endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -405,6 +461,9 @@ public abstract class MappedEmployeeDepartmentHistory {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_EmployeeDepartmentHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

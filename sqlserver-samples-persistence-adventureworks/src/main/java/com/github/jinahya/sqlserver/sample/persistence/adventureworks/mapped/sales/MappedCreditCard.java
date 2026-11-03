@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -36,8 +38,41 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.CreditCard} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.CreditCard}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CreditCardID}</th><td>Primary key for CreditCard records.</td></tr>
+ * <tr><th scope="row">{@code CardType}</th><td>Credit card name.</td></tr>
+ * <tr><th scope="row">{@code CardNumber}</th><td>Credit card number.</td></tr>
+ * <tr><th scope="row">{@code ExpMonth}</th><td>Credit card expiration month.</td></tr>
+ * <tr><th scope="row">{@code ExpYear}</th><td>Credit card expiration year.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.CreditCard}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCreditCard.TABLE_SCHEMA,
+        table = MappedCreditCard.TABLE_NAME,
+        value = "Customer credit card information."
+)
 public abstract class MappedCreditCard {
 
     /**
@@ -50,7 +85,7 @@ public abstract class MappedCreditCard {
      */
     public static final String TABLE_NAME = "CreditCard";
 
-    // ---------------------------------------------------------------------------------------------------- CreditCardID
+    // -------------------------------------------------------------------------------- CreditCardID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -62,7 +97,7 @@ public abstract class MappedCreditCard {
      */
     public static final String ATTRIBUTE_NAME_CREDIT_CARD_ID = "creditCardId";
 
-    // -------------------------------------------------------------------------------------------------------- CardType
+    // ------------------------------------------------------------------------------------ CardType
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -79,7 +114,7 @@ public abstract class MappedCreditCard {
      */
     public static final String ATTRIBUTE_NAME_CARD_TYPE = "cardType";
 
-    // ------------------------------------------------------------------------------------------------------ CardNumber
+    // ---------------------------------------------------------------------------------- CardNumber
 
     /**
      * The name of the {@code nvarchar(25), NOT NULL} column. The value is {@value}.
@@ -96,7 +131,7 @@ public abstract class MappedCreditCard {
      */
     public static final String ATTRIBUTE_NAME_CARD_NUMBER = "cardNumber";
 
-    // -------------------------------------------------------------------------------------------------------- ExpMonth
+    // ------------------------------------------------------------------------------------ ExpMonth
 
     /**
      * The name of the {@code tinyint, NOT NULL} column. The value is {@value}.
@@ -118,7 +153,7 @@ public abstract class MappedCreditCard {
      */
     public static final String ATTRIBUTE_NAME_EXP_MONTH = "expMonth";
 
-    // --------------------------------------------------------------------------------------------------------- ExpYear
+    // ------------------------------------------------------------------------------------- ExpYear
 
     /**
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
@@ -140,7 +175,7 @@ public abstract class MappedCreditCard {
      */
     public static final String ATTRIBUTE_NAME_EXP_YEAR = "expYear";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -152,7 +187,7 @@ public abstract class MappedCreditCard {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -161,7 +196,7 @@ public abstract class MappedCreditCard {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -204,7 +239,7 @@ public abstract class MappedCreditCard {
         return Objects.hash(creditCardId);
     }
 
-    // ---------------------------------------------------------------------------------------------------- creditCardId
+    // -------------------------------------------------------------------------------- creditCardId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute.
@@ -224,7 +259,7 @@ public abstract class MappedCreditCard {
         this.creditCardId = creditCardId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- cardType
+    // ------------------------------------------------------------------------------------ cardType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CARD_TYPE} attribute.
@@ -244,7 +279,7 @@ public abstract class MappedCreditCard {
         this.cardType = cardType;
     }
 
-    // ------------------------------------------------------------------------------------------------------ cardNumber
+    // ---------------------------------------------------------------------------------- cardNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CARD_NUMBER} attribute.
@@ -264,7 +299,7 @@ public abstract class MappedCreditCard {
         this.cardNumber = cardNumber;
     }
 
-    // -------------------------------------------------------------------------------------------------------- expMonth
+    // ------------------------------------------------------------------------------------ expMonth
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXP_MONTH} attribute.
@@ -284,7 +319,7 @@ public abstract class MappedCreditCard {
         this.expMonth = expMonth;
     }
 
-    // --------------------------------------------------------------------------------------------------------- expYear
+    // ------------------------------------------------------------------------------------- expYear
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXP_YEAR} attribute.
@@ -304,7 +339,7 @@ public abstract class MappedCreditCard {
         this.expYear = expYear;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -324,7 +359,7 @@ public abstract class MappedCreditCard {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -334,9 +369,11 @@ public abstract class MappedCreditCard {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CREDIT_CARD_ID,
+                          value = "Primary key for CreditCard records.")
     private Integer creditCardId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CARD_TYPE)
     @NotNull
     @Basic(optional = false)
@@ -346,9 +383,10 @@ public abstract class MappedCreditCard {
             updatable = true,
             length = COLUMN_LENGTH_CARD_TYPE
     )
+    @MsDescription.Column(name = COLUMN_NAME_CARD_TYPE, value = "Credit card name.")
     private String cardType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CARD_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -358,9 +396,10 @@ public abstract class MappedCreditCard {
             updatable = true,
             length = COLUMN_LENGTH_CARD_NUMBER
     )
+    @MsDescription.Column(name = COLUMN_NAME_CARD_NUMBER, value = "Credit card number.")
     private String cardNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Max(COLUMN_MAX_EXP_MONTH)
     @Min(COLUMN_MIN_EXP_MONTH)
     @NotNull
@@ -370,9 +409,10 @@ public abstract class MappedCreditCard {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_EXP_MONTH, value = "Credit card expiration month.")
     private Integer expMonth;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Max(COLUMN_MAX_EXP_YEAR)
     @Min(COLUMN_MIN_EXP_YEAR)
     @NotNull
@@ -382,9 +422,10 @@ public abstract class MappedCreditCard {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_EXP_YEAR, value = "Credit card expiration year.")
     private Integer expYear;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -393,6 +434,9 @@ public abstract class MappedCreditCard {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_CreditCard_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

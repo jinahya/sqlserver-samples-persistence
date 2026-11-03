@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class QualityInspectionSummaryView extends MappedQualityInspectionSummaryView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

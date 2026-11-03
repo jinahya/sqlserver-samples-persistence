@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +35,42 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductPhoto} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.ProductPhoto}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductPhotoID}</th>
+ *     <td>Primary key for ProductPhoto records.</td></tr>
+ * <tr><th scope="row">{@code ThumbNailPhoto}</th><td>Small image of the product.</td></tr>
+ * <tr><th scope="row">{@code ThumbnailPhotoFileName}</th><td>Small image file name.</td></tr>
+ * <tr><th scope="row">{@code LargePhoto}</th><td>Large image of the product.</td></tr>
+ * <tr><th scope="row">{@code LargePhotoFileName}</th><td>Large image file name.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.ProductPhoto}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProductPhoto.TABLE_SCHEMA,
+        table = MappedProductPhoto.TABLE_NAME,
+        value = "Product images."
+)
 public abstract class MappedProductPhoto {
 
     /**
@@ -47,7 +83,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String TABLE_NAME = "ProductPhoto";
 
-    // -------------------------------------------------------------------------------------------------- ProductPhotoID
+    // ------------------------------------------------------------------------------ ProductPhotoID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -59,7 +95,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO_ID = "productPhotoId";
 
-    // -------------------------------------------------------------------------------------------------- ThumbNailPhoto
+    // ------------------------------------------------------------------------------ ThumbNailPhoto
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -71,7 +107,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_THUMB_NAIL_PHOTO = "thumbNailPhoto";
 
-    // ------------------------------------------------------------------------------------------ ThumbnailPhotoFileName
+    // ---------------------------------------------------------------------- ThumbnailPhotoFileName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -89,7 +125,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_THUMBNAIL_PHOTO_FILE_NAME = "thumbnailPhotoFileName";
 
-    // ------------------------------------------------------------------------------------------------------ LargePhoto
+    // ---------------------------------------------------------------------------------- LargePhoto
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -101,7 +137,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_LARGE_PHOTO = "largePhoto";
 
-    // ---------------------------------------------------------------------------------------------- LargePhotoFileName
+    // -------------------------------------------------------------------------- LargePhotoFileName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -119,7 +155,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_LARGE_PHOTO_FILE_NAME = "largePhotoFileName";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -131,7 +167,7 @@ public abstract class MappedProductPhoto {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -140,7 +176,7 @@ public abstract class MappedProductPhoto {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -183,7 +219,7 @@ public abstract class MappedProductPhoto {
         return Objects.hash(productPhotoId);
     }
 
-    // -------------------------------------------------------------------------------------------------- productPhotoId
+    // ------------------------------------------------------------------------------ productPhotoId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute.
@@ -203,7 +239,7 @@ public abstract class MappedProductPhoto {
         this.productPhotoId = productPhotoId;
     }
 
-    // -------------------------------------------------------------------------------------------------- thumbNailPhoto
+    // ------------------------------------------------------------------------------ thumbNailPhoto
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_THUMB_NAIL_PHOTO} attribute.
@@ -223,7 +259,7 @@ public abstract class MappedProductPhoto {
         this.thumbNailPhoto = thumbNailPhoto;
     }
 
-    // ------------------------------------------------------------------------------------------ thumbnailPhotoFileName
+    // ---------------------------------------------------------------------- thumbnailPhotoFileName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_THUMBNAIL_PHOTO_FILE_NAME} attribute.
@@ -243,7 +279,7 @@ public abstract class MappedProductPhoto {
         this.thumbnailPhotoFileName = thumbnailPhotoFileName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ largePhoto
+    // ---------------------------------------------------------------------------------- largePhoto
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LARGE_PHOTO} attribute.
@@ -263,7 +299,7 @@ public abstract class MappedProductPhoto {
         this.largePhoto = largePhoto;
     }
 
-    // ---------------------------------------------------------------------------------------------- largePhotoFileName
+    // -------------------------------------------------------------------------- largePhotoFileName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LARGE_PHOTO_FILE_NAME} attribute.
@@ -283,7 +319,7 @@ public abstract class MappedProductPhoto {
         this.largePhotoFileName = largePhotoFileName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -303,7 +339,7 @@ public abstract class MappedProductPhoto {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -313,18 +349,22 @@ public abstract class MappedProductPhoto {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
+                          value = "Primary key for ProductPhoto records.")
     private Integer productPhotoId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO,
+                          value = "Small image of the product.")
     private byte[] thumbNailPhoto;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME,
@@ -333,18 +373,21 @@ public abstract class MappedProductPhoto {
             updatable = true,
             length = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME,
+                          value = "Small image file name.")
     private String thumbnailPhotoFileName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LARGE_PHOTO,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LARGE_PHOTO, value = "Large image of the product.")
     private byte[] largePhoto;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME,
@@ -353,9 +396,11 @@ public abstract class MappedProductPhoto {
             updatable = true,
             length = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME,
+                          value = "Large image file name.")
     private String largePhotoFileName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -364,6 +409,9 @@ public abstract class MappedProductPhoto {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ProductPhoto_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

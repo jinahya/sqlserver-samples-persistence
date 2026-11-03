@@ -53,7 +53,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String TABLE_NAME = "vw_Sales_ByTerritory";
 
-    // --------------------------------------------------------------------------------------------------- TerritoryCode
+    // ------------------------------------------------------------------------------- TerritoryCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_CODE = "territoryCode";
 
-    // --------------------------------------------------------------------------------------------------- TerritoryName
+    // ------------------------------------------------------------------------------- TerritoryName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_NAME = "territoryName";
 
-    // ---------------------------------------------------------------------------------------------------------- Region
+    // -------------------------------------------------------------------------------------- Region
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_REGION = "region";
 
-    // ------------------------------------------------------------------------------------------------------- SalesReps
+    // ----------------------------------------------------------------------------------- SalesReps
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_SALES_REPS = "salesReps";
 
-    // -------------------------------------------------------------------------------------------------- TotalCustomers
+    // ------------------------------------------------------------------------------ TotalCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_CUSTOMERS = "totalCustomers";
 
-    // ----------------------------------------------------------------------------------------------------- TotalOrders
+    // --------------------------------------------------------------------------------- TotalOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // ------------------------------------------------------------------------------------------------------- Discounts
+    // ----------------------------------------------------------------------------------- Discounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNTS = "discounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -206,7 +206,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -228,7 +228,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ----------------------------------------------------------------------------------------------------- SalesPerRep
+    // --------------------------------------------------------------------------------- SalesPerRep
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -250,7 +250,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_SALES_PER_REP = "salesPerRep";
 
-    // ------------------------------------------------------------------------------------------------ SalesPerCustomer
+    // ---------------------------------------------------------------------------- SalesPerCustomer
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -272,7 +272,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_SALES_PER_CUSTOMER = "salesPerCustomer";
 
-    // ------------------------------------------------------------------------------------------------------ TopProduct
+    // ---------------------------------------------------------------------------------- TopProduct
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -289,7 +289,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     public static final String ATTRIBUTE_NAME_TOP_PRODUCT = "topProduct";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -298,7 +298,7 @@ public abstract class MappedSalesByTerritoryView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -348,7 +348,7 @@ public abstract class MappedSalesByTerritoryView {
         return Objects.hash(territoryCode);
     }
 
-    // --------------------------------------------------------------------------------------------------- territoryCode
+    // ------------------------------------------------------------------------------- territoryCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_CODE} attribute.
@@ -368,7 +368,7 @@ public abstract class MappedSalesByTerritoryView {
         this.territoryCode = territoryCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- territoryName
+    // ------------------------------------------------------------------------------- territoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute.
@@ -388,7 +388,7 @@ public abstract class MappedSalesByTerritoryView {
         this.territoryName = territoryName;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- region
+    // -------------------------------------------------------------------------------------- region
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REGION} attribute.
@@ -408,7 +408,7 @@ public abstract class MappedSalesByTerritoryView {
         this.region = region;
     }
 
-    // ------------------------------------------------------------------------------------------------------- salesReps
+    // ----------------------------------------------------------------------------------- salesReps
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REPS} attribute.
@@ -428,7 +428,7 @@ public abstract class MappedSalesByTerritoryView {
         this.salesReps = salesReps;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalCustomers
+    // ------------------------------------------------------------------------------ totalCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_CUSTOMERS} attribute.
@@ -448,7 +448,7 @@ public abstract class MappedSalesByTerritoryView {
         this.totalCustomers = totalCustomers;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalOrders
+    // --------------------------------------------------------------------------------- totalOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute.
@@ -468,7 +468,7 @@ public abstract class MappedSalesByTerritoryView {
         this.totalOrders = totalOrders;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -488,7 +488,7 @@ public abstract class MappedSalesByTerritoryView {
         this.grossSales = grossSales;
     }
 
-    // ------------------------------------------------------------------------------------------------------- discounts
+    // ----------------------------------------------------------------------------------- discounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNTS} attribute.
@@ -508,7 +508,7 @@ public abstract class MappedSalesByTerritoryView {
         this.discounts = discounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -528,7 +528,7 @@ public abstract class MappedSalesByTerritoryView {
         this.netSales = netSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -548,7 +548,7 @@ public abstract class MappedSalesByTerritoryView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ----------------------------------------------------------------------------------------------------- salesPerRep
+    // --------------------------------------------------------------------------------- salesPerRep
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_PER_REP} attribute.
@@ -568,7 +568,7 @@ public abstract class MappedSalesByTerritoryView {
         this.salesPerRep = salesPerRep;
     }
 
-    // ------------------------------------------------------------------------------------------------ salesPerCustomer
+    // ---------------------------------------------------------------------------- salesPerCustomer
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_PER_CUSTOMER} attribute.
@@ -588,7 +588,7 @@ public abstract class MappedSalesByTerritoryView {
         this.salesPerCustomer = salesPerCustomer;
     }
 
-    // ------------------------------------------------------------------------------------------------------ topProduct
+    // ---------------------------------------------------------------------------------- topProduct
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOP_PRODUCT} attribute.
@@ -608,7 +608,7 @@ public abstract class MappedSalesByTerritoryView {
         this.topProduct = topProduct;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_CODE)
     @NotNull
@@ -621,7 +621,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private String territoryCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @NotNull
@@ -634,7 +634,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private String territoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @Basic(optional = true)
@@ -646,7 +646,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private String region;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REPS,
@@ -656,7 +656,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private Integer salesReps;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_CUSTOMERS,
@@ -666,7 +666,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private Integer totalCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS,
@@ -676,7 +676,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private Integer totalOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -689,7 +689,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNTS - COLUMN_SCALE_DISCOUNTS, fraction = COLUMN_SCALE_DISCOUNTS)
     @Basic(optional = true)
@@ -702,7 +702,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private BigDecimal discounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -715,7 +715,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -729,7 +729,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SALES_PER_REP - COLUMN_SCALE_SALES_PER_REP,
             fraction = COLUMN_SCALE_SALES_PER_REP)
@@ -743,7 +743,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private BigDecimal salesPerRep;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SALES_PER_CUSTOMER - COLUMN_SCALE_SALES_PER_CUSTOMER,
             fraction = COLUMN_SCALE_SALES_PER_CUSTOMER)
@@ -757,7 +757,7 @@ public abstract class MappedSalesByTerritoryView {
     )
     private BigDecimal salesPerCustomer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TOP_PRODUCT)
     @Basic(optional = true)

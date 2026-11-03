@@ -54,7 +54,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String TABLE_NAME = "vw_PurchaseOrderStatus";
 
-    // -------------------------------------------------------------------------------------------------------- PONumber
+    // ------------------------------------------------------------------------------------ PONumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_PO_NUMBER = "poNumber";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierName
+    // -------------------------------------------------------------------------------- SupplierName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_NAME = "supplierName";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseName
+    // ------------------------------------------------------------------------------- WarehouseName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_NAME = "warehouseName";
 
-    // ------------------------------------------------------------------------------------------------------- OrderDate
+    // ----------------------------------------------------------------------------------- OrderDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
-    // -------------------------------------------------------------------------------------------- ExpectedDeliveryDate
+    // ------------------------------------------------------------------------ ExpectedDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -147,7 +147,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE = "expectedDeliveryDate";
 
-    // ---------------------------------------------------------------------------------------------- ActualDeliveryDate
+    // -------------------------------------------------------------------------- ActualDeliveryDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -160,7 +160,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_DELIVERY_DATE = "actualDeliveryDate";
 
-    // -------------------------------------------------------------------------------------------------- DaysSinceOrder
+    // ------------------------------------------------------------------------------ DaysSinceOrder
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_ORDER = "daysSinceOrder";
 
-    // ---------------------------------------------------------------------------------------------------- DaysVariance
+    // -------------------------------------------------------------------------------- DaysVariance
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -184,7 +184,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_DAYS_VARIANCE = "daysVariance";
 
-    // ------------------------------------------------------------------------------------------------------- LineItems
+    // ----------------------------------------------------------------------------------- LineItems
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_LINE_ITEMS = "lineItems";
 
-    // ----------------------------------------------------------------------------------------------------- TotalAmount
+    // --------------------------------------------------------------------------------- TotalAmount
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -218,7 +218,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_AMOUNT = "totalAmount";
 
-    // ------------------------------------------------------------------------------------------------------ LinesTotal
+    // ---------------------------------------------------------------------------------- LinesTotal
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -240,7 +240,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_LINES_TOTAL = "linesTotal";
 
-    // --------------------------------------------------------------------------------------------------- ReceivedValue
+    // ------------------------------------------------------------------------------- ReceivedValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -262,7 +262,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_RECEIVED_VALUE = "receivedValue";
 
-    // ------------------------------------------------------------------------------------------------- PercentReceived
+    // ----------------------------------------------------------------------------- PercentReceived
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -284,7 +284,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_PERCENT_RECEIVED = "percentReceived";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryStatus
+    // ------------------------------------------------------------------------------ DeliveryStatus
 
     /**
      * The name of the {@code varchar(9), NOT NULL} column. The value is {@value}.
@@ -301,7 +301,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_STATUS = "deliveryStatus";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -310,7 +310,7 @@ public abstract class MappedPurchaseOrderStatusView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -362,7 +362,7 @@ public abstract class MappedPurchaseOrderStatusView {
         return Objects.hash(poNumber);
     }
 
-    // -------------------------------------------------------------------------------------------------------- poNumber
+    // ------------------------------------------------------------------------------------ poNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PO_NUMBER} attribute.
@@ -382,7 +382,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.poNumber = poNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.status = status;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierName
+    // -------------------------------------------------------------------------------- supplierName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_NAME} attribute.
@@ -422,7 +422,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.supplierName = supplierName;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseName
+    // ------------------------------------------------------------------------------- warehouseName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_NAME} attribute.
@@ -442,7 +442,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.warehouseName = warehouseName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- orderDate
+    // ----------------------------------------------------------------------------------- orderDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
@@ -462,7 +462,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.orderDate = orderDate;
     }
 
-    // -------------------------------------------------------------------------------------------- expectedDeliveryDate
+    // ------------------------------------------------------------------------ expectedDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXPECTED_DELIVERY_DATE} attribute.
@@ -482,7 +482,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
-    // ---------------------------------------------------------------------------------------------- actualDeliveryDate
+    // -------------------------------------------------------------------------- actualDeliveryDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ACTUAL_DELIVERY_DATE} attribute.
@@ -502,7 +502,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.actualDeliveryDate = actualDeliveryDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- daysSinceOrder
+    // ------------------------------------------------------------------------------ daysSinceOrder
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_SINCE_ORDER} attribute.
@@ -522,7 +522,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.daysSinceOrder = daysSinceOrder;
     }
 
-    // ---------------------------------------------------------------------------------------------------- daysVariance
+    // -------------------------------------------------------------------------------- daysVariance
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute.
@@ -542,7 +542,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.daysVariance = daysVariance;
     }
 
-    // ------------------------------------------------------------------------------------------------------- lineItems
+    // ----------------------------------------------------------------------------------- lineItems
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute.
@@ -562,7 +562,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.lineItems = lineItems;
     }
 
-    // ----------------------------------------------------------------------------------------------------- totalAmount
+    // --------------------------------------------------------------------------------- totalAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_AMOUNT} attribute.
@@ -582,7 +582,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.totalAmount = totalAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------------ linesTotal
+    // ---------------------------------------------------------------------------------- linesTotal
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LINES_TOTAL} attribute.
@@ -602,7 +602,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.linesTotal = linesTotal;
     }
 
-    // --------------------------------------------------------------------------------------------------- receivedValue
+    // ------------------------------------------------------------------------------- receivedValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECEIVED_VALUE} attribute.
@@ -622,7 +622,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.receivedValue = receivedValue;
     }
 
-    // ------------------------------------------------------------------------------------------------- percentReceived
+    // ----------------------------------------------------------------------------- percentReceived
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERCENT_RECEIVED} attribute.
@@ -642,7 +642,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.percentReceived = percentReceived;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryStatus
+    // ------------------------------------------------------------------------------ deliveryStatus
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_STATUS} attribute.
@@ -662,7 +662,7 @@ public abstract class MappedPurchaseOrderStatusView {
         this.deliveryStatus = deliveryStatus;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PO_NUMBER)
     @NotNull
@@ -675,7 +675,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private String poNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
@@ -688,7 +688,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
@@ -701,7 +701,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private String supplierName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
@@ -714,7 +714,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private String warehouseName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -725,7 +725,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private LocalDate orderDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
@@ -735,7 +735,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private LocalDate expectedDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTUAL_DELIVERY_DATE,
@@ -745,7 +745,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private LocalDate actualDeliveryDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_ORDER,
@@ -755,7 +755,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private Integer daysSinceOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_VARIANCE,
@@ -765,7 +765,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private Integer daysVariance;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LINE_ITEMS,
@@ -775,7 +775,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private Integer lineItems;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
@@ -788,7 +788,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private BigDecimal totalAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LINES_TOTAL - COLUMN_SCALE_LINES_TOTAL, fraction = COLUMN_SCALE_LINES_TOTAL)
     @Basic(optional = true)
@@ -801,7 +801,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private BigDecimal linesTotal;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RECEIVED_VALUE - COLUMN_SCALE_RECEIVED_VALUE,
             fraction = COLUMN_SCALE_RECEIVED_VALUE)
@@ -815,7 +815,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private BigDecimal receivedValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PERCENT_RECEIVED - COLUMN_SCALE_PERCENT_RECEIVED,
             fraction = COLUMN_SCALE_PERCENT_RECEIVED)
@@ -829,7 +829,7 @@ public abstract class MappedPurchaseOrderStatusView {
     )
     private BigDecimal percentReceived;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_STATUS)
     @NotNull

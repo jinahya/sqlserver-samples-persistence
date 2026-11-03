@@ -33,7 +33,7 @@ import java.util.Optional;
 public class GeographyAttributeConverter
         implements AttributeConverter<Geography, byte[]> {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -42,7 +42,7 @@ public class GeographyAttributeConverter
         super();
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public byte[] convertToDatabaseColumn(final Geography attribute) {
         return Optional.ofNullable(attribute).map(Geography::getBytes).orElse(null);

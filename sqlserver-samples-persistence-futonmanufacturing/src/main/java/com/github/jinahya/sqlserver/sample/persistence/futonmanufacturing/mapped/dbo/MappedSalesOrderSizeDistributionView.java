@@ -53,7 +53,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String TABLE_NAME = "vw_Sales_OrderSizeDistribution";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // ------------------------------------------------------------------------------------------------- OrderSizeBucket
+    // ----------------------------------------------------------------------------- OrderSizeBucket
 
     /**
      * The name of the {@code varchar(22), NOT NULL} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_SIZE_BUCKET = "orderSizeBucket";
 
-    // ------------------------------------------------------------------------------------------------------ BasketSize
+    // ---------------------------------------------------------------------------------- BasketSize
 
     /**
      * The name of the {@code varchar(13), NOT NULL} column. The value is {@value}.
@@ -121,7 +121,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_BASKET_SIZE = "basketSize";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -133,7 +133,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ---------------------------------------------------------------------------------------------------- TotalRevenue
+    // -------------------------------------------------------------------------------- TotalRevenue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -155,7 +155,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_REVENUE = "totalRevenue";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -177,7 +177,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // ------------------------------------------------------------------------------------------------ AvgUnitsPerOrder
+    // ---------------------------------------------------------------------------- AvgUnitsPerOrder
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -200,7 +200,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_AVG_UNITS_PER_ORDER = "avgUnitsPerOrder";
 
-    // ---------------------------------------------------------------------------------------------------- AvgLineItems
+    // -------------------------------------------------------------------------------- AvgLineItems
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -212,7 +212,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_AVG_LINE_ITEMS = "avgLineItems";
 
-    // ------------------------------------------------------------------------------------------ PercentOfChannelOrders
+    // ---------------------------------------------------------------------- PercentOfChannelOrders
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
      */
     public static final String ATTRIBUTE_NAME_PERCENT_OF_CHANNEL_ORDERS = "percentOfChannelOrders";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -244,7 +244,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -262,7 +262,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -282,7 +282,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.channelName = channelName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -302,7 +302,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.customerType = customerType;
     }
 
-    // ------------------------------------------------------------------------------------------------- orderSizeBucket
+    // ----------------------------------------------------------------------------- orderSizeBucket
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_SIZE_BUCKET} attribute.
@@ -322,7 +322,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.orderSizeBucket = orderSizeBucket;
     }
 
-    // ------------------------------------------------------------------------------------------------------ basketSize
+    // ---------------------------------------------------------------------------------- basketSize
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BASKET_SIZE} attribute.
@@ -342,7 +342,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.basketSize = basketSize;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -362,7 +362,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.orderCount = orderCount;
     }
 
-    // ---------------------------------------------------------------------------------------------------- totalRevenue
+    // -------------------------------------------------------------------------------- totalRevenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_REVENUE} attribute.
@@ -382,7 +382,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.totalRevenue = totalRevenue;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -402,7 +402,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // ------------------------------------------------------------------------------------------------ avgUnitsPerOrder
+    // ---------------------------------------------------------------------------- avgUnitsPerOrder
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_UNITS_PER_ORDER} attribute.
@@ -422,7 +422,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.avgUnitsPerOrder = avgUnitsPerOrder;
     }
 
-    // ---------------------------------------------------------------------------------------------------- avgLineItems
+    // -------------------------------------------------------------------------------- avgLineItems
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_LINE_ITEMS} attribute.
@@ -442,7 +442,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.avgLineItems = avgLineItems;
     }
 
-    // ------------------------------------------------------------------------------------------ percentOfChannelOrders
+    // ---------------------------------------------------------------------- percentOfChannelOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PERCENT_OF_CHANNEL_ORDERS} attribute.
@@ -462,7 +462,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
         this.percentOfChannelOrders = percentOfChannelOrders;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -475,7 +475,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -487,7 +487,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ORDER_SIZE_BUCKET)
     @NotNull
@@ -500,7 +500,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private String orderSizeBucket;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BASKET_SIZE)
     @NotNull
@@ -513,7 +513,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private String basketSize;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -523,7 +523,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
@@ -537,7 +537,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private BigDecimal totalRevenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -551,7 +551,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_UNITS_PER_ORDER - COLUMN_SCALE_AVG_UNITS_PER_ORDER,
             fraction = COLUMN_SCALE_AVG_UNITS_PER_ORDER)
@@ -565,7 +565,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private BigDecimal avgUnitsPerOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_LINE_ITEMS,
@@ -575,7 +575,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     )
     private Integer avgLineItems;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PERCENT_OF_CHANNEL_ORDERS - COLUMN_SCALE_PERCENT_OF_CHANNEL_ORDERS,
             fraction = COLUMN_SCALE_PERCENT_OF_CHANNEL_ORDERS)

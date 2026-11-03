@@ -40,7 +40,7 @@ class Employee_PersistenceIT
         super(Employee.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private static Employee first(final EntityManager entityManager) {
         return entityManager.createQuery(
                         """
@@ -55,7 +55,7 @@ class Employee_PersistenceIT
                 .orElse(null);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the employee's own values go back in, but for LoginID, which the unique index on the
     // column takes as it is new
     @DisplayName("HumanResources.uspUpdateEmployeeLogin updates an employee")

@@ -35,7 +35,7 @@ class SalesOrderHeaderSalesReason_Persister
         super(SalesOrderHeaderSalesReason.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SalesOrderHeaderSalesReason apply(final EntityManager entityManager,
                                              final SalesOrderHeaderSalesReason entityInstance) {

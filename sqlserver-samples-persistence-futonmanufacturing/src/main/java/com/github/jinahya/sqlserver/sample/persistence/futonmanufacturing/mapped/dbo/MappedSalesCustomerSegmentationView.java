@@ -53,7 +53,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String TABLE_NAME = "vw_Sales_CustomerSegmentation";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerCode
+    // -------------------------------------------------------------------------------- CustomerCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CODE = "customerCode";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerName
+    // -------------------------------------------------------------------------------- CustomerName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_NAME = "customerName";
 
-    // ---------------------------------------------------------------------------------------------------- CustomerType
+    // -------------------------------------------------------------------------------- CustomerType
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_TYPE = "customerType";
 
-    // --------------------------------------------------------------------------------------------------------- Recency
+    // ------------------------------------------------------------------------------------- Recency
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_RECENCY = "recency";
 
-    // ------------------------------------------------------------------------------------------------------- Frequency
+    // ----------------------------------------------------------------------------------- Frequency
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -140,7 +140,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_FREQUENCY = "frequency";
 
-    // -------------------------------------------------------------------------------------------------------- Monetary
+    // ------------------------------------------------------------------------------------ Monetary
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_MONETARY = "monetary";
 
-    // --------------------------------------------------------------------------------------------------------- R_Score
+    // ------------------------------------------------------------------------------------- R_Score
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -174,7 +174,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_R_SCORE = "rScore";
 
-    // --------------------------------------------------------------------------------------------------------- F_Score
+    // ------------------------------------------------------------------------------------- F_Score
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -186,7 +186,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_F_SCORE = "fScore";
 
-    // --------------------------------------------------------------------------------------------------------- M_Score
+    // ------------------------------------------------------------------------------------- M_Score
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -198,7 +198,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_M_SCORE = "mScore";
 
-    // ------------------------------------------------------------------------------------------------------- RFM_Score
+    // ----------------------------------------------------------------------------------- RFM_Score
 
     /**
      * The name of the {@code numeric(26, 6)} column. The value is {@value}.
@@ -220,7 +220,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_RFM_SCORE = "rfmScore";
 
-    // ------------------------------------------------------------------------------------------------- CustomerSegment
+    // ----------------------------------------------------------------------------- CustomerSegment
 
     /**
      * The name of the {@code varchar(15), NOT NULL} column. The value is {@value}.
@@ -237,7 +237,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_SEGMENT = "customerSegment";
 
-    // ----------------------------------------------------------------------------------------------- RecommendedAction
+    // --------------------------------------------------------------------------- RecommendedAction
 
     /**
      * The name of the {@code varchar(44), NOT NULL} column. The value is {@value}.
@@ -254,7 +254,7 @@ public abstract class MappedSalesCustomerSegmentationView {
      */
     public static final String ATTRIBUTE_NAME_RECOMMENDED_ACTION = "recommendedAction";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -263,7 +263,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -313,7 +313,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         return Objects.hash(customerId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -333,7 +333,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.customerId = customerId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerCode
+    // -------------------------------------------------------------------------------- customerCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CODE} attribute.
@@ -353,7 +353,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.customerCode = customerCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerName
+    // -------------------------------------------------------------------------------- customerName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_NAME} attribute.
@@ -373,7 +373,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.customerName = customerName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customerType
+    // -------------------------------------------------------------------------------- customerType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_TYPE} attribute.
@@ -393,7 +393,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.customerType = customerType;
     }
 
-    // --------------------------------------------------------------------------------------------------------- recency
+    // ------------------------------------------------------------------------------------- recency
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECENCY} attribute.
@@ -413,7 +413,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.recency = recency;
     }
 
-    // ------------------------------------------------------------------------------------------------------- frequency
+    // ----------------------------------------------------------------------------------- frequency
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FREQUENCY} attribute.
@@ -433,7 +433,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.frequency = frequency;
     }
 
-    // -------------------------------------------------------------------------------------------------------- monetary
+    // ------------------------------------------------------------------------------------ monetary
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONETARY} attribute.
@@ -453,7 +453,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.monetary = monetary;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- rScore
+    // -------------------------------------------------------------------------------------- rScore
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_R_SCORE} attribute.
@@ -473,7 +473,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.rScore = rScore;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- fScore
+    // -------------------------------------------------------------------------------------- fScore
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_F_SCORE} attribute.
@@ -493,7 +493,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.fScore = fScore;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- mScore
+    // -------------------------------------------------------------------------------------- mScore
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_M_SCORE} attribute.
@@ -513,7 +513,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.mScore = mScore;
     }
 
-    // -------------------------------------------------------------------------------------------------------- rfmScore
+    // ------------------------------------------------------------------------------------ rfmScore
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RFM_SCORE} attribute.
@@ -533,7 +533,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.rfmScore = rfmScore;
     }
 
-    // ------------------------------------------------------------------------------------------------- customerSegment
+    // ----------------------------------------------------------------------------- customerSegment
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_SEGMENT} attribute.
@@ -553,7 +553,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.customerSegment = customerSegment;
     }
 
-    // ----------------------------------------------------------------------------------------------- recommendedAction
+    // --------------------------------------------------------------------------- recommendedAction
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECOMMENDED_ACTION} attribute.
@@ -573,7 +573,7 @@ public abstract class MappedSalesCustomerSegmentationView {
         this.recommendedAction = recommendedAction;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -584,7 +584,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
@@ -597,7 +597,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private String customerCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
@@ -610,7 +610,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private String customerName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
@@ -622,7 +622,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private String customerType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RECENCY,
@@ -632,7 +632,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private Integer recency;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FREQUENCY,
@@ -642,7 +642,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private Integer frequency;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MONETARY - COLUMN_SCALE_MONETARY, fraction = COLUMN_SCALE_MONETARY)
     @Basic(optional = true)
@@ -655,7 +655,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private BigDecimal monetary;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_R_SCORE,
@@ -665,7 +665,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private Long rScore;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_F_SCORE,
@@ -675,7 +675,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private Long fScore;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_M_SCORE,
@@ -685,7 +685,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private Long mScore;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RFM_SCORE - COLUMN_SCALE_RFM_SCORE, fraction = COLUMN_SCALE_RFM_SCORE)
     @Basic(optional = true)
@@ -698,7 +698,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private BigDecimal rfmScore;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_SEGMENT)
     @NotNull
@@ -711,7 +711,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     )
     private String customerSegment;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_RECOMMENDED_ACTION)
     @NotNull

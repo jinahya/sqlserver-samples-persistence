@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +41,18 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_ITEM_ID} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.QualityInspection}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code InspectionDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedQualityInspection {
@@ -53,7 +67,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String TABLE_NAME = "QualityInspection";
 
-    // ---------------------------------------------------------------------------------------------------- InspectionID
+    // -------------------------------------------------------------------------------- InspectionID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +79,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_INSPECTION_ID = "inspectionId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -77,7 +91,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // -------------------------------------------------------------------------------------------------- InspectionType
+    // ------------------------------------------------------------------------------ InspectionType
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -94,7 +108,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_INSPECTION_TYPE = "inspectionType";
 
-    // --------------------------------------------------------------------------------------------------- ReferenceType
+    // ------------------------------------------------------------------------------- ReferenceType
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -111,7 +125,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_TYPE = "referenceType";
 
-    // ------------------------------------------------------------------------------------------------- ReferenceNumber
+    // ----------------------------------------------------------------------------- ReferenceNumber
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -128,7 +142,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_NUMBER = "referenceNumber";
 
-    // ----------------------------------------------------------------------------------------------- QuantityInspected
+    // --------------------------------------------------------------------------- QuantityInspected
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -150,7 +164,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_INSPECTED = "quantityInspected";
 
-    // ------------------------------------------------------------------------------------------------ QuantityAccepted
+    // ---------------------------------------------------------------------------- QuantityAccepted
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -172,7 +186,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_ACCEPTED = "quantityAccepted";
 
-    // ------------------------------------------------------------------------------------------------ QuantityRejected
+    // ---------------------------------------------------------------------------- QuantityRejected
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -194,7 +208,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_REJECTED = "quantityRejected";
 
-    // -------------------------------------------------------------------------------------------------- InspectionDate
+    // ------------------------------------------------------------------------------ InspectionDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -206,7 +220,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_INSPECTION_DATE = "inspectionDate";
 
-    // ----------------------------------------------------------------------------------------------------- InspectedBy
+    // --------------------------------------------------------------------------------- InspectedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -223,7 +237,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_INSPECTED_BY = "inspectedBy";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -235,7 +249,7 @@ public abstract class MappedQualityInspection {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -244,7 +258,7 @@ public abstract class MappedQualityInspection {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -292,7 +306,7 @@ public abstract class MappedQualityInspection {
         return Objects.hash(inspectionId);
     }
 
-    // ---------------------------------------------------------------------------------------------------- inspectionId
+    // -------------------------------------------------------------------------------- inspectionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSPECTION_ID} attribute.
@@ -312,7 +326,7 @@ public abstract class MappedQualityInspection {
         this.inspectionId = inspectionId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -333,7 +347,7 @@ public abstract class MappedQualityInspection {
         this.itemId = itemId;
     }
 
-    // -------------------------------------------------------------------------------------------------- inspectionType
+    // ------------------------------------------------------------------------------ inspectionType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSPECTION_TYPE} attribute.
@@ -353,7 +367,7 @@ public abstract class MappedQualityInspection {
         this.inspectionType = inspectionType;
     }
 
-    // --------------------------------------------------------------------------------------------------- referenceType
+    // ------------------------------------------------------------------------------- referenceType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFERENCE_TYPE} attribute.
@@ -373,7 +387,7 @@ public abstract class MappedQualityInspection {
         this.referenceType = referenceType;
     }
 
-    // ------------------------------------------------------------------------------------------------- referenceNumber
+    // ----------------------------------------------------------------------------- referenceNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFERENCE_NUMBER} attribute.
@@ -393,7 +407,7 @@ public abstract class MappedQualityInspection {
         this.referenceNumber = referenceNumber;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityInspected
+    // --------------------------------------------------------------------------- quantityInspected
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_INSPECTED} attribute.
@@ -413,7 +427,7 @@ public abstract class MappedQualityInspection {
         this.quantityInspected = quantityInspected;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityAccepted
+    // ---------------------------------------------------------------------------- quantityAccepted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_ACCEPTED} attribute.
@@ -433,7 +447,7 @@ public abstract class MappedQualityInspection {
         this.quantityAccepted = quantityAccepted;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityRejected
+    // ---------------------------------------------------------------------------- quantityRejected
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_REJECTED} attribute.
@@ -453,7 +467,7 @@ public abstract class MappedQualityInspection {
         this.quantityRejected = quantityRejected;
     }
 
-    // -------------------------------------------------------------------------------------------------- inspectionDate
+    // ------------------------------------------------------------------------------ inspectionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSPECTION_DATE} attribute.
@@ -473,7 +487,7 @@ public abstract class MappedQualityInspection {
         this.inspectionDate = inspectionDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- inspectedBy
+    // --------------------------------------------------------------------------------- inspectedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INSPECTED_BY} attribute.
@@ -493,7 +507,7 @@ public abstract class MappedQualityInspection {
         this.inspectedBy = inspectedBy;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -513,7 +527,7 @@ public abstract class MappedQualityInspection {
         this.notes = notes;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -525,7 +539,7 @@ public abstract class MappedQualityInspection {
     )
     private Integer inspectionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -536,7 +550,7 @@ public abstract class MappedQualityInspection {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_INSPECTION_TYPE)
     @NotNull
     @Basic(optional = false)
@@ -548,7 +562,7 @@ public abstract class MappedQualityInspection {
     )
     private String inspectionType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REFERENCE_TYPE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REFERENCE_TYPE,
@@ -559,7 +573,7 @@ public abstract class MappedQualityInspection {
     )
     private String referenceType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REFERENCE_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REFERENCE_NUMBER,
@@ -570,7 +584,7 @@ public abstract class MappedQualityInspection {
     )
     private String referenceNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_INSPECTED - COLUMN_SCALE_QUANTITY_INSPECTED,
             fraction = COLUMN_SCALE_QUANTITY_INSPECTED)
     @NotNull
@@ -584,7 +598,7 @@ public abstract class MappedQualityInspection {
     )
     private BigDecimal quantityInspected;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_ACCEPTED - COLUMN_SCALE_QUANTITY_ACCEPTED,
             fraction = COLUMN_SCALE_QUANTITY_ACCEPTED)
     @NotNull
@@ -598,7 +612,7 @@ public abstract class MappedQualityInspection {
     )
     private BigDecimal quantityAccepted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_REJECTED - COLUMN_SCALE_QUANTITY_REJECTED,
             fraction = COLUMN_SCALE_QUANTITY_REJECTED)
     @NotNull
@@ -612,16 +626,17 @@ public abstract class MappedQualityInspection {
     )
     private BigDecimal quantityRejected;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSPECTION_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime inspectionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_INSPECTED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSPECTED_BY,
@@ -632,7 +647,7 @@ public abstract class MappedQualityInspection {
     )
     private String inspectedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,

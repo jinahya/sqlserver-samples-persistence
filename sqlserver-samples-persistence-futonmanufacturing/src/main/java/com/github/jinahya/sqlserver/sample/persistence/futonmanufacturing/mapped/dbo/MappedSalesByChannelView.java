@@ -53,7 +53,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String TABLE_NAME = "vw_Sales_ByChannel";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelCode
+    // --------------------------------------------------------------------------------- ChannelCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_CODE = "channelCode";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -99,7 +99,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -111,7 +111,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // --------------------------------------------------------------------------------------------------------- Quarter
+    // ------------------------------------------------------------------------------------- Quarter
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -123,7 +123,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_QUARTER = "quarter";
 
-    // ------------------------------------------------------------------------------------------------------ OrderCount
+    // ---------------------------------------------------------------------------------- OrderCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -135,7 +135,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
 
-    // ------------------------------------------------------------------------------------------------- UniqueCustomers
+    // ----------------------------------------------------------------------------- UniqueCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -147,7 +147,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_CUSTOMERS = "uniqueCustomers";
 
-    // ------------------------------------------------------------------------------------------------------ GrossSales
+    // ---------------------------------------------------------------------------------- GrossSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -169,7 +169,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_SALES = "grossSales";
 
-    // -------------------------------------------------------------------------------------------------- TotalDiscounts
+    // ------------------------------------------------------------------------------ TotalDiscounts
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -191,7 +191,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DISCOUNTS = "totalDiscounts";
 
-    // -------------------------------------------------------------------------------------------------------- NetSales
+    // ------------------------------------------------------------------------------------ NetSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -213,7 +213,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_NET_SALES = "netSales";
 
-    // --------------------------------------------------------------------------------------------------- AvgOrderValue
+    // ------------------------------------------------------------------------------- AvgOrderValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -235,7 +235,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_AVG_ORDER_VALUE = "avgOrderValue";
 
-    // -------------------------------------------------------------------------------------------------- DeliveredSales
+    // ------------------------------------------------------------------------------ DeliveredSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -257,7 +257,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_DELIVERED_SALES = "deliveredSales";
 
-    // --------------------------------------------------------------------------------------------------- PipelineSales
+    // ------------------------------------------------------------------------------- PipelineSales
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -279,7 +279,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_PIPELINE_SALES = "pipelineSales";
 
-    // ---------------------------------------------------------------------------------------------- AvgDiscountPercent
+    // -------------------------------------------------------------------------- AvgDiscountPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -302,7 +302,7 @@ public abstract class MappedSalesByChannelView {
      */
     public static final String ATTRIBUTE_NAME_AVG_DISCOUNT_PERCENT = "avgDiscountPercent";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -311,7 +311,7 @@ public abstract class MappedSalesByChannelView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -333,7 +333,7 @@ public abstract class MappedSalesByChannelView {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelCode
+    // --------------------------------------------------------------------------------- channelCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_CODE} attribute.
@@ -353,7 +353,7 @@ public abstract class MappedSalesByChannelView {
         this.channelCode = channelCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -373,7 +373,7 @@ public abstract class MappedSalesByChannelView {
         this.channelName = channelName;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -393,7 +393,7 @@ public abstract class MappedSalesByChannelView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -413,7 +413,7 @@ public abstract class MappedSalesByChannelView {
         this.month = month;
     }
 
-    // --------------------------------------------------------------------------------------------------------- quarter
+    // ------------------------------------------------------------------------------------- quarter
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUARTER} attribute.
@@ -433,7 +433,7 @@ public abstract class MappedSalesByChannelView {
         this.quarter = quarter;
     }
 
-    // ------------------------------------------------------------------------------------------------------ orderCount
+    // ---------------------------------------------------------------------------------- orderCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute.
@@ -453,7 +453,7 @@ public abstract class MappedSalesByChannelView {
         this.orderCount = orderCount;
     }
 
-    // ------------------------------------------------------------------------------------------------- uniqueCustomers
+    // ----------------------------------------------------------------------------- uniqueCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute.
@@ -473,7 +473,7 @@ public abstract class MappedSalesByChannelView {
         this.uniqueCustomers = uniqueCustomers;
     }
 
-    // ------------------------------------------------------------------------------------------------------ grossSales
+    // ---------------------------------------------------------------------------------- grossSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_SALES} attribute.
@@ -493,7 +493,7 @@ public abstract class MappedSalesByChannelView {
         this.grossSales = grossSales;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalDiscounts
+    // ------------------------------------------------------------------------------ totalDiscounts
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_DISCOUNTS} attribute.
@@ -513,7 +513,7 @@ public abstract class MappedSalesByChannelView {
         this.totalDiscounts = totalDiscounts;
     }
 
-    // -------------------------------------------------------------------------------------------------------- netSales
+    // ------------------------------------------------------------------------------------ netSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NET_SALES} attribute.
@@ -533,7 +533,7 @@ public abstract class MappedSalesByChannelView {
         this.netSales = netSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- avgOrderValue
+    // ------------------------------------------------------------------------------- avgOrderValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_ORDER_VALUE} attribute.
@@ -553,7 +553,7 @@ public abstract class MappedSalesByChannelView {
         this.avgOrderValue = avgOrderValue;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveredSales
+    // ------------------------------------------------------------------------------ deliveredSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERED_SALES} attribute.
@@ -573,7 +573,7 @@ public abstract class MappedSalesByChannelView {
         this.deliveredSales = deliveredSales;
     }
 
-    // --------------------------------------------------------------------------------------------------- pipelineSales
+    // ------------------------------------------------------------------------------- pipelineSales
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PIPELINE_SALES} attribute.
@@ -593,7 +593,7 @@ public abstract class MappedSalesByChannelView {
         this.pipelineSales = pipelineSales;
     }
 
-    // ---------------------------------------------------------------------------------------------- avgDiscountPercent
+    // -------------------------------------------------------------------------- avgDiscountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_DISCOUNT_PERCENT} attribute.
@@ -613,7 +613,7 @@ public abstract class MappedSalesByChannelView {
         this.avgDiscountPercent = avgDiscountPercent;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_CODE)
     @NotNull
@@ -626,7 +626,7 @@ public abstract class MappedSalesByChannelView {
     )
     private String channelCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -639,7 +639,7 @@ public abstract class MappedSalesByChannelView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -649,7 +649,7 @@ public abstract class MappedSalesByChannelView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -659,7 +659,7 @@ public abstract class MappedSalesByChannelView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUARTER,
@@ -669,7 +669,7 @@ public abstract class MappedSalesByChannelView {
     )
     private Integer quarter;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT,
@@ -679,7 +679,7 @@ public abstract class MappedSalesByChannelView {
     )
     private Integer orderCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
@@ -689,7 +689,7 @@ public abstract class MappedSalesByChannelView {
     )
     private Integer uniqueCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
@@ -702,7 +702,7 @@ public abstract class MappedSalesByChannelView {
     )
     private BigDecimal grossSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
@@ -716,7 +716,7 @@ public abstract class MappedSalesByChannelView {
     )
     private BigDecimal totalDiscounts;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
@@ -729,7 +729,7 @@ public abstract class MappedSalesByChannelView {
     )
     private BigDecimal netSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
@@ -743,7 +743,7 @@ public abstract class MappedSalesByChannelView {
     )
     private BigDecimal avgOrderValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DELIVERED_SALES - COLUMN_SCALE_DELIVERED_SALES,
             fraction = COLUMN_SCALE_DELIVERED_SALES)
@@ -757,7 +757,7 @@ public abstract class MappedSalesByChannelView {
     )
     private BigDecimal deliveredSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PIPELINE_SALES - COLUMN_SCALE_PIPELINE_SALES,
             fraction = COLUMN_SCALE_PIPELINE_SALES)
@@ -771,7 +771,7 @@ public abstract class MappedSalesByChannelView {
     )
     private BigDecimal pipelineSales;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT - COLUMN_SCALE_AVG_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_AVG_DISCOUNT_PERCENT)

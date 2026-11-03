@@ -23,15 +23,32 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedAddressType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Person.AddressType} table.
  */
 @Entity(name = "PersonAddressType")
-@Table(schema = MappedAddressType.TABLE_SCHEMA, name = MappedAddressType.TABLE_NAME)
+@Table(schema = MappedAddressType.TABLE_SCHEMA,
+       name = MappedAddressType.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_AddressType_Name",
+                       columnNames = {
+                               AddressType.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_AddressType_rowguid",
+                       columnNames = {
+                               AddressType.COLUMN_NAME_ROWGUID
+                       }
+               )
+       }
+)
 public class AddressType extends MappedAddressType {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

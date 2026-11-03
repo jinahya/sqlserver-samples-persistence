@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class PersonArchive extends MappedPersonArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

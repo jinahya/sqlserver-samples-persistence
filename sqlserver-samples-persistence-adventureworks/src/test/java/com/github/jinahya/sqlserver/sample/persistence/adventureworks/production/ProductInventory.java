@@ -24,6 +24,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pro
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductInventory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductInventoryId;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -35,7 +36,19 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Production.ProductInventory} table.
  */
 @Entity(name = "ProductionProductInventory")
-@Table(schema = MappedProductInventory.TABLE_SCHEMA, name = MappedProductInventory.TABLE_NAME)
+@Table(schema = MappedProductInventory.TABLE_SCHEMA,
+       name = MappedProductInventory.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_ProductInventory_Bin",
+                       constraint = "([Bin]>=(0) AND [Bin]<=(100))"
+               ),
+               @CheckConstraint(
+                       name = "CK_ProductInventory_Shelf",
+                       constraint = "([Shelf] like '[A-Za-z]' OR [Shelf]='N/A')"
+               )
+       }
+)
 @IdClass(MappedProductInventoryId.class)
 public class ProductInventory extends MappedProductInventory {
 
@@ -51,7 +64,7 @@ public class ProductInventory extends MappedProductInventory {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +73,7 @@ public class ProductInventory extends MappedProductInventory {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- location
+    // ------------------------------------------------------------------------------------ location
 
     /**
      * Returns the {@code Location} which the {@code FK_ProductInventory_Location_LocationID} foreign key references.
@@ -83,7 +96,7 @@ public class ProductInventory extends MappedProductInventory {
                       ? null : location.getLocationId().intValue());
     }
 
-    // --------------------------------------------------------------------------------------------------------- product
+    // ------------------------------------------------------------------------------------- product
 
     /**
      * Returns the {@code Product} which the {@code FK_ProductInventory_Product_ProductID} foreign key references.
@@ -105,7 +118,7 @@ public class ProductInventory extends MappedProductInventory {
         setProductId(product == null ? null : product.getProductId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LOCATION_ID,
                 referencedColumnName = MappedLocation.COLUMN_NAME_LOCATION_ID,
@@ -115,7 +128,7 @@ public class ProductInventory extends MappedProductInventory {
     )
     private Location location;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,

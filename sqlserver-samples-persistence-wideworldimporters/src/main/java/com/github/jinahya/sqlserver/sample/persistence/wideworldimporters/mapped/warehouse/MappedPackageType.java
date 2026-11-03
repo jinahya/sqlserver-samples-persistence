@@ -20,6 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,8 +44,43 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_LAST_EDITED_BY} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.PackageTypes}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PackageTypeID}</th>
+ *     <td>Numeric ID used for reference to a package type within the database</td></tr>
+ * <tr><th scope="row">{@code PackageTypeName}</th>
+ *     <td>Full name of package types that stock items can be purchased in or sold in</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Warehouse.PackageTypes}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code PackageTypeID}</th><td>{@code (NEXT VALUE FOR [Sequences].[PackageTypeID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedPackageType.TABLE_SCHEMA,
+        table = MappedPackageType.TABLE_NAME,
+        value = "Ways that stock items can be packaged (ie: each, box, carton, pallet, kg, etc."
+)
+@MsTemporal(
+        historyTable = "Warehouse.PackageTypes_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedPackageType {
 
     /**
@@ -55,7 +93,7 @@ public abstract class MappedPackageType {
      */
     public static final String TABLE_NAME = "PackageTypes";
 
-    // --------------------------------------------------------------------------------------------------- PackageTypeID
+    // ------------------------------------------------------------------------------- PackageTypeID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.PackageTypeID, NOT NULL} column. The value is {@value}.
@@ -67,7 +105,7 @@ public abstract class MappedPackageType {
      */
     public static final String ATTRIBUTE_NAME_PACKAGE_TYPE_ID = "packageTypeId";
 
-    // ------------------------------------------------------------------------------------------------- PackageTypeName
+    // ----------------------------------------------------------------------------- PackageTypeName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +122,7 @@ public abstract class MappedPackageType {
      */
     public static final String ATTRIBUTE_NAME_PACKAGE_TYPE_NAME = "packageTypeName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -96,7 +134,7 @@ public abstract class MappedPackageType {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -108,7 +146,7 @@ public abstract class MappedPackageType {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -120,7 +158,7 @@ public abstract class MappedPackageType {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -129,7 +167,7 @@ public abstract class MappedPackageType {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -171,7 +209,7 @@ public abstract class MappedPackageType {
         return Objects.hash(packageTypeId);
     }
 
-    // --------------------------------------------------------------------------------------------------- packageTypeId
+    // ------------------------------------------------------------------------------- packageTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute.
@@ -191,7 +229,7 @@ public abstract class MappedPackageType {
         this.packageTypeId = packageTypeId;
     }
 
-    // ------------------------------------------------------------------------------------------------- packageTypeName
+    // ----------------------------------------------------------------------------- packageTypeName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_NAME} attribute.
@@ -211,7 +249,7 @@ public abstract class MappedPackageType {
         this.packageTypeName = packageTypeName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -233,7 +271,7 @@ public abstract class MappedPackageType {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -254,7 +292,7 @@ public abstract class MappedPackageType {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -275,7 +313,7 @@ public abstract class MappedPackageType {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PackageTypeID", schema = "Sequences",
@@ -287,9 +325,13 @@ public abstract class MappedPackageType {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
+                          value = "Numeric ID used for reference to a package type within the "
+                                  + "database")
+    @MsDefault(name = "DF_Warehouse_PackageTypes_PackageTypeID", value = "(NEXT VALUE FOR [Sequences].[PackageTypeID])")
     private Integer packageTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PACKAGE_TYPE_NAME)
     @NotNull
     @Basic(optional = false)
@@ -299,9 +341,12 @@ public abstract class MappedPackageType {
             updatable = true,
             length = COLUMN_LENGTH_PACKAGE_TYPE_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_NAME,
+                          value = "Full name of package types that stock items can be purchased "
+                                  + "in or sold in")
     private String packageTypeName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -312,7 +357,7 @@ public abstract class MappedPackageType {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -323,7 +368,7 @@ public abstract class MappedPackageType {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

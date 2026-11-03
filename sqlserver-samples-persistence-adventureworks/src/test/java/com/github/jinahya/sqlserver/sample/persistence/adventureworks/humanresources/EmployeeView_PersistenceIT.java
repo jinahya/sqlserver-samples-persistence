@@ -39,7 +39,7 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
         super(EmployeeView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code HumanResources.vEmployee} is a view, which no row is inserted into.
@@ -51,7 +51,7 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
         // empty
     }
 
-    // ------------------------------------------------------------------------------------------- additionalContactInfo
+    // ----------------------------------------------------------------------- additionalContactInfo
     @DisplayName("every additionalContactInfo is read, and a flush with none of them changed writes nothing")
     @Test
     void additionalContactInfo() {

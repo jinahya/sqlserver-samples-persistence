@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -39,8 +41,45 @@ import java.util.Objects;
  * <p>
  * The {@value #COLUMN_NAME_PRODUCT_ID} column is mapped read-only, as a foreign key; the extending entity owns the
  * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.ShoppingCartItem}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ShoppingCartItemID}</th>
+ *     <td>Primary key for ShoppingCartItem records.</td></tr>
+ * <tr><th scope="row">{@code ShoppingCartID}</th><td>Shopping cart identification number.</td></tr>
+ * <tr><th scope="row">{@code Quantity}</th><td>Product quantity ordered.</td></tr>
+ * <tr><th scope="row">{@code ProductID}</th>
+ *     <td>Product ordered. Foreign key to Product.ProductID.</td></tr>
+ * <tr><th scope="row">{@code DateCreated}</th><td>Date the time the record was created.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.ShoppingCartItem}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code Quantity}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code DateCreated}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedShoppingCartItem.TABLE_SCHEMA,
+        table = MappedShoppingCartItem.TABLE_NAME,
+        value = "Contains online customer orders until the order is submitted or cancelled."
+)
 public abstract class MappedShoppingCartItem {
 
     /**
@@ -53,7 +92,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String TABLE_NAME = "ShoppingCartItem";
 
-    // ---------------------------------------------------------------------------------------------- ShoppingCartItemID
+    // -------------------------------------------------------------------------- ShoppingCartItemID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +105,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_SHOPPING_CART_ITEM_ID = "shoppingCartItemId";
 
-    // -------------------------------------------------------------------------------------------------- ShoppingCartID
+    // ------------------------------------------------------------------------------ ShoppingCartID
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -83,7 +122,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_SHOPPING_CART_ID = "shoppingCartId";
 
-    // -------------------------------------------------------------------------------------------------------- Quantity
+    // ------------------------------------------------------------------------------------ Quantity
 
     /**
      * The name of the {@code int, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -106,7 +145,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
-    // ------------------------------------------------------------------------------------------------------- ProductID
+    // ----------------------------------------------------------------------------------- ProductID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -118,7 +157,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
-    // ----------------------------------------------------------------------------------------------------- DateCreated
+    // --------------------------------------------------------------------------------- DateCreated
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -130,7 +169,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_DATE_CREATED = "dateCreated";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -142,7 +181,7 @@ public abstract class MappedShoppingCartItem {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -151,7 +190,7 @@ public abstract class MappedShoppingCartItem {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -194,7 +233,7 @@ public abstract class MappedShoppingCartItem {
         return Objects.hash(shoppingCartItemId);
     }
 
-    // ---------------------------------------------------------------------------------------------- shoppingCartItemId
+    // -------------------------------------------------------------------------- shoppingCartItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHOPPING_CART_ITEM_ID} attribute.
@@ -214,7 +253,7 @@ public abstract class MappedShoppingCartItem {
         this.shoppingCartItemId = shoppingCartItemId;
     }
 
-    // -------------------------------------------------------------------------------------------------- shoppingCartId
+    // ------------------------------------------------------------------------------ shoppingCartId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHOPPING_CART_ID} attribute.
@@ -234,7 +273,7 @@ public abstract class MappedShoppingCartItem {
         this.shoppingCartId = shoppingCartId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- quantity
+    // ------------------------------------------------------------------------------------ quantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
@@ -254,7 +293,7 @@ public abstract class MappedShoppingCartItem {
         this.quantity = quantity;
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
@@ -275,7 +314,7 @@ public abstract class MappedShoppingCartItem {
         this.productId = productId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- dateCreated
+    // --------------------------------------------------------------------------------- dateCreated
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DATE_CREATED} attribute.
@@ -295,7 +334,7 @@ public abstract class MappedShoppingCartItem {
         this.dateCreated = dateCreated;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -315,7 +354,7 @@ public abstract class MappedShoppingCartItem {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -325,9 +364,11 @@ public abstract class MappedShoppingCartItem {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID,
+                          value = "Primary key for ShoppingCartItem records.")
     private Integer shoppingCartItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SHOPPING_CART_ID)
     @NotNull
     @Basic(optional = false)
@@ -337,9 +378,11 @@ public abstract class MappedShoppingCartItem {
             updatable = true,
             length = COLUMN_LENGTH_SHOPPING_CART_ID
     )
+    @MsDescription.Column(name = COLUMN_NAME_SHOPPING_CART_ID,
+                          value = "Shopping cart identification number.")
     private String shoppingCartId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // CK_ShoppingCartItem_Quantity: ([Quantity]>=(1))
     @Max(COLUMN_MAX_QUANTITY)
     @Min(COLUMN_MIN_QUANTITY)
@@ -350,9 +393,11 @@ public abstract class MappedShoppingCartItem {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity ordered.")
+    @MsDefault(name = "DF_ShoppingCartItem_Quantity", value = "((1))")
     private Integer quantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -361,9 +406,11 @@ public abstract class MappedShoppingCartItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
+                          value = "Product ordered. Foreign key to Product.ProductID.")
     private Integer productId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DATE_CREATED,
@@ -371,9 +418,12 @@ public abstract class MappedShoppingCartItem {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_DATE_CREATED,
+                          value = "Date the time the record was created.")
+    @MsDefault(name = "DF_ShoppingCartItem_DateCreated", value = "(getdate())")
     private LocalDateTime dateCreated;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -382,6 +432,9 @@ public abstract class MappedShoppingCartItem {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ShoppingCartItem_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

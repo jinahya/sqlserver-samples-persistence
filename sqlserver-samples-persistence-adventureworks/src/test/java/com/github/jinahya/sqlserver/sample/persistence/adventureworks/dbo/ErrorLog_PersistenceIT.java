@@ -30,7 +30,7 @@ class ErrorLog_PersistenceIT extends _Entity_PersistenceIT<ErrorLog> {
         super(ErrorLog.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code dbo.uspLogError} inserts every row of {@code dbo.ErrorLog}, and nothing else inserts into

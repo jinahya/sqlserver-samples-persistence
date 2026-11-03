@@ -23,15 +23,26 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedUnitMeasure;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.UnitMeasure} table.
  */
 @Entity(name = "ProductionUnitMeasure")
-@Table(schema = MappedUnitMeasure.TABLE_SCHEMA, name = MappedUnitMeasure.TABLE_NAME)
+@Table(schema = MappedUnitMeasure.TABLE_SCHEMA,
+       name = MappedUnitMeasure.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_UnitMeasure_Name",
+                       columnNames = {
+                               UnitMeasure.COLUMN_NAME_NAME
+                       }
+               )
+       }
+)
 public class UnitMeasure extends MappedUnitMeasure {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

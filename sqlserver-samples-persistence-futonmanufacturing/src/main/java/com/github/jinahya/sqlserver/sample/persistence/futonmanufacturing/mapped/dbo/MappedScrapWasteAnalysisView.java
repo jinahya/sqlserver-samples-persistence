@@ -54,7 +54,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String TABLE_NAME = "vw_ScrapWasteAnalysis";
 
-    // -------------------------------------------------------------------------------------------------- CompletionDate
+    // ------------------------------------------------------------------------------ CompletionDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -66,7 +66,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_DATE = "completionDate";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -78,7 +78,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -90,7 +90,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // -------------------------------------------------------------------------------------------------- WorkCenterName
+    // ------------------------------------------------------------------------------ WorkCenterName
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -107,7 +107,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER_NAME = "workCenterName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -124,7 +124,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -141,7 +141,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -158,7 +158,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // -------------------------------------------------------------------------------------------------- TotalCompleted
+    // ------------------------------------------------------------------------------ TotalCompleted
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -180,7 +180,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_COMPLETED = "totalCompleted";
 
-    // --------------------------------------------------------------------------------------------------- TotalScrapped
+    // ------------------------------------------------------------------------------- TotalScrapped
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -202,7 +202,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_SCRAPPED = "totalScrapped";
 
-    // --------------------------------------------------------------------------------------------------- TotalProduced
+    // ------------------------------------------------------------------------------- TotalProduced
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -224,7 +224,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_TOTAL_PRODUCED = "totalProduced";
 
-    // ------------------------------------------------------------------------------------------------------- ScrapRate
+    // ----------------------------------------------------------------------------------- ScrapRate
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -246,7 +246,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_SCRAP_RATE = "scrapRate";
 
-    // ------------------------------------------------------------------------------------------------------ ScrapValue
+    // ---------------------------------------------------------------------------------- ScrapValue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -268,7 +268,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_SCRAP_VALUE = "scrapValue";
 
-    // -------------------------------------------------------------------------------------------------- NumberOfOrders
+    // ------------------------------------------------------------------------------ NumberOfOrders
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -280,7 +280,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_NUMBER_OF_ORDERS = "numberOfOrders";
 
-    // ----------------------------------------------------------------------------------------------------- AvgUnitCost
+    // --------------------------------------------------------------------------------- AvgUnitCost
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -302,7 +302,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_AVG_UNIT_COST = "avgUnitCost";
 
-    // ------------------------------------------------------------------------------------------------------ ScrapLevel
+    // ---------------------------------------------------------------------------------- ScrapLevel
 
     /**
      * The name of the {@code varchar(6), NOT NULL} column. The value is {@value}.
@@ -319,7 +319,7 @@ public abstract class MappedScrapWasteAnalysisView {
      */
     public static final String ATTRIBUTE_NAME_SCRAP_LEVEL = "scrapLevel";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -328,7 +328,7 @@ public abstract class MappedScrapWasteAnalysisView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -351,7 +351,7 @@ public abstract class MappedScrapWasteAnalysisView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------- completionDate
+    // ------------------------------------------------------------------------------ completionDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COMPLETION_DATE} attribute.
@@ -371,7 +371,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.completionDate = completionDate;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -391,7 +391,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -411,7 +411,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.month = month;
     }
 
-    // -------------------------------------------------------------------------------------------------- workCenterName
+    // ------------------------------------------------------------------------------ workCenterName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_NAME} attribute.
@@ -431,7 +431,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.workCenterName = workCenterName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -451,7 +451,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -471,7 +471,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.itemName = itemName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -491,7 +491,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.itemType = itemType;
     }
 
-    // -------------------------------------------------------------------------------------------------- totalCompleted
+    // ------------------------------------------------------------------------------ totalCompleted
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_COMPLETED} attribute.
@@ -511,7 +511,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.totalCompleted = totalCompleted;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalScrapped
+    // ------------------------------------------------------------------------------- totalScrapped
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_SCRAPPED} attribute.
@@ -531,7 +531,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.totalScrapped = totalScrapped;
     }
 
-    // --------------------------------------------------------------------------------------------------- totalProduced
+    // ------------------------------------------------------------------------------- totalProduced
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TOTAL_PRODUCED} attribute.
@@ -551,7 +551,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.totalProduced = totalProduced;
     }
 
-    // ------------------------------------------------------------------------------------------------------- scrapRate
+    // ----------------------------------------------------------------------------------- scrapRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCRAP_RATE} attribute.
@@ -571,7 +571,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.scrapRate = scrapRate;
     }
 
-    // ------------------------------------------------------------------------------------------------------ scrapValue
+    // ---------------------------------------------------------------------------------- scrapValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCRAP_VALUE} attribute.
@@ -591,7 +591,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.scrapValue = scrapValue;
     }
 
-    // -------------------------------------------------------------------------------------------------- numberOfOrders
+    // ------------------------------------------------------------------------------ numberOfOrders
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NUMBER_OF_ORDERS} attribute.
@@ -611,7 +611,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.numberOfOrders = numberOfOrders;
     }
 
-    // ----------------------------------------------------------------------------------------------------- avgUnitCost
+    // --------------------------------------------------------------------------------- avgUnitCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVG_UNIT_COST} attribute.
@@ -631,7 +631,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.avgUnitCost = avgUnitCost;
     }
 
-    // ------------------------------------------------------------------------------------------------------ scrapLevel
+    // ---------------------------------------------------------------------------------- scrapLevel
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SCRAP_LEVEL} attribute.
@@ -651,7 +651,7 @@ public abstract class MappedScrapWasteAnalysisView {
         this.scrapLevel = scrapLevel;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETION_DATE,
@@ -661,7 +661,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private LocalDate completionDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -671,7 +671,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -681,7 +681,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
@@ -693,7 +693,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private String workCenterName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -706,7 +706,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -719,7 +719,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -732,7 +732,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_COMPLETED - COLUMN_SCALE_TOTAL_COMPLETED,
             fraction = COLUMN_SCALE_TOTAL_COMPLETED)
@@ -746,7 +746,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private BigDecimal totalCompleted;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_SCRAPPED - COLUMN_SCALE_TOTAL_SCRAPPED,
             fraction = COLUMN_SCALE_TOTAL_SCRAPPED)
@@ -760,7 +760,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private BigDecimal totalScrapped;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_PRODUCED - COLUMN_SCALE_TOTAL_PRODUCED,
             fraction = COLUMN_SCALE_TOTAL_PRODUCED)
@@ -774,7 +774,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private BigDecimal totalProduced;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
     @Basic(optional = true)
@@ -787,7 +787,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private BigDecimal scrapRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_VALUE - COLUMN_SCALE_SCRAP_VALUE, fraction = COLUMN_SCALE_SCRAP_VALUE)
     @Basic(optional = true)
@@ -800,7 +800,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private BigDecimal scrapValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_ORDERS,
@@ -810,7 +810,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private Integer numberOfOrders;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_UNIT_COST - COLUMN_SCALE_AVG_UNIT_COST,
             fraction = COLUMN_SCALE_AVG_UNIT_COST)
@@ -824,7 +824,7 @@ public abstract class MappedScrapWasteAnalysisView {
     )
     private BigDecimal avgUnitCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SCRAP_LEVEL)
     @NotNull

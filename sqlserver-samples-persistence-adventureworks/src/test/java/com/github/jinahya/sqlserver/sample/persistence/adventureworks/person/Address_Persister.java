@@ -34,7 +34,7 @@ class Address_Persister
         super(Address.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public Address apply(final EntityManager entityManager, final Address entityInstance) {
         final var stateProvince = EntityPersisterUtils.newPersistedInstanceOf(entityManager, StateProvince.class);

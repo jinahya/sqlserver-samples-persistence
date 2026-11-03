@@ -23,15 +23,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedUnitOfMeasure;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.UnitOfMeasure} table.
  */
 @Entity(name = "DboUnitOfMeasure")
-@Table(schema = MappedUnitOfMeasure.TABLE_SCHEMA, name = MappedUnitOfMeasure.TABLE_NAME)
+@Table(schema = MappedUnitOfMeasure.TABLE_SCHEMA,
+       name = MappedUnitOfMeasure.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               UnitOfMeasure.COLUMN_NAME_UNIT_CODE
+                       }
+               )
+       }
+)
 public class UnitOfMeasure extends MappedUnitOfMeasure {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

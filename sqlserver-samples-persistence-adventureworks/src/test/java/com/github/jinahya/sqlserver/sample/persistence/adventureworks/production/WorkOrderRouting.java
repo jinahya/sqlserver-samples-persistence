@@ -24,6 +24,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pro
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrder;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrderRouting;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrderRoutingId;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.IdClass;
@@ -35,7 +36,32 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Production.WorkOrderRouting} table.
  */
 @Entity(name = "ProductionWorkOrderRouting")
-@Table(schema = MappedWorkOrderRouting.TABLE_SCHEMA, name = MappedWorkOrderRouting.TABLE_NAME)
+@Table(schema = MappedWorkOrderRouting.TABLE_SCHEMA,
+       name = MappedWorkOrderRouting.TABLE_NAME,
+       check = {
+               @CheckConstraint(
+                       name = "CK_WorkOrderRouting_ActualCost",
+                       constraint = "([ActualCost]>(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_WorkOrderRouting_ActualEndDate",
+                       constraint = "([ActualEndDate]>=[ActualStartDate] OR [ActualEndDate] IS "
+                               + "NULL OR [ActualStartDate] IS NULL)"
+               ),
+               @CheckConstraint(
+                       name = "CK_WorkOrderRouting_ActualResourceHrs",
+                       constraint = "([ActualResourceHrs]>=(0.0000))"
+               ),
+               @CheckConstraint(
+                       name = "CK_WorkOrderRouting_PlannedCost",
+                       constraint = "([PlannedCost]>(0.00))"
+               ),
+               @CheckConstraint(
+                       name = "CK_WorkOrderRouting_ScheduledEndDate",
+                       constraint = "([ScheduledEndDate]>=[ScheduledStartDate])"
+               )
+       }
+)
 @IdClass(MappedWorkOrderRoutingId.class)
 public class WorkOrderRouting extends MappedWorkOrderRouting {
 
@@ -51,7 +77,7 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER = "workOrder";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +86,7 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- location
+    // ------------------------------------------------------------------------------------ location
 
     /**
      * Returns the {@code Location} which the {@code FK_WorkOrderRouting_Location_LocationID} foreign key references.
@@ -83,7 +109,7 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
                       ? null : location.getLocationId().intValue());
     }
 
-    // ------------------------------------------------------------------------------------------------------- workOrder
+    // ----------------------------------------------------------------------------------- workOrder
 
     /**
      * Returns the {@code WorkOrder} which the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID} foreign key
@@ -106,7 +132,7 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
         setWorkOrderId(workOrder == null ? null : workOrder.getWorkOrderId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LOCATION_ID,
                 referencedColumnName = MappedLocation.COLUMN_NAME_LOCATION_ID,
@@ -116,7 +142,7 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
     )
     private Location location;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WORK_ORDER_ID,
                 referencedColumnName = MappedWorkOrder.COLUMN_NAME_WORK_ORDER_ID,

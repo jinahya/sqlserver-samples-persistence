@@ -28,12 +28,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.PurchaseOrder} table.
  */
 @Entity(name = "DboPurchaseOrder")
-@Table(schema = MappedPurchaseOrder.TABLE_SCHEMA, name = MappedPurchaseOrder.TABLE_NAME)
+@Table(schema = MappedPurchaseOrder.TABLE_SCHEMA,
+       name = MappedPurchaseOrder.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               PurchaseOrder.COLUMN_NAME_PO_NUMBER
+                       }
+               )
+       }
+)
 public class PurchaseOrder extends MappedPurchaseOrder {
 
     /**
@@ -46,7 +56,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE = "warehouse";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -55,7 +65,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- supplier
+    // ------------------------------------------------------------------------------------ supplier
 
     /**
      * Returns the {@code Supplier} which the {@code FK_PO_Supplier} foreign key references.
@@ -77,7 +87,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         setSupplierId(supplier == null ? null : supplier.getSupplierId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- warehouse
+    // ----------------------------------------------------------------------------------- warehouse
 
     /**
      * Returns the {@code Warehouse} which the {@code FK_PO_Warehouse} foreign key references.
@@ -99,7 +109,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
         setWarehouseId(warehouse == null ? null : warehouse.getWarehouseId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SUPPLIER_ID,
                 referencedColumnName = MappedSupplier.COLUMN_NAME_SUPPLIER_ID,
@@ -109,7 +119,7 @@ public class PurchaseOrder extends MappedPurchaseOrder {
     )
     private Supplier supplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WAREHOUSE_ID,
                 referencedColumnName = MappedWarehouse.COLUMN_NAME_WAREHOUSE_ID,

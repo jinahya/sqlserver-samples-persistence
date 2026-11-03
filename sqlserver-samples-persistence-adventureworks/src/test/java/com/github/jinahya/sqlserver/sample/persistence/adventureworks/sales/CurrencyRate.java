@@ -27,12 +27,25 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.CurrencyRate} table.
  */
 @Entity(name = "SalesCurrencyRate")
-@Table(schema = MappedCurrencyRate.TABLE_SCHEMA, name = MappedCurrencyRate.TABLE_NAME)
+@Table(schema = MappedCurrencyRate.TABLE_SCHEMA,
+       name = MappedCurrencyRate.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_CurrencyRate_CurrencyRateDate_FromCurrencyCode_ToCurrencyCode",
+                       columnNames = {
+                               CurrencyRate.COLUMN_NAME_CURRENCY_RATE_DATE,
+                               CurrencyRate.COLUMN_NAME_FROM_CURRENCY_CODE,
+                               CurrencyRate.COLUMN_NAME_TO_CURRENCY_CODE
+                       }
+               )
+       }
+)
 public class CurrencyRate extends MappedCurrencyRate {
 
     /**
@@ -47,7 +60,7 @@ public class CurrencyRate extends MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_TO_CURRENCY = "toCurrency";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -56,7 +69,7 @@ public class CurrencyRate extends MappedCurrencyRate {
         super();
     }
 
-    // ---------------------------------------------------------------------------------------------------- fromCurrency
+    // -------------------------------------------------------------------------------- fromCurrency
 
     /**
      * Returns the {@code Currency} which the {@code FK_CurrencyRate_Currency_FromCurrencyCode} foreign key references.
@@ -78,7 +91,7 @@ public class CurrencyRate extends MappedCurrencyRate {
         setFromCurrencyCode(fromCurrency == null ? null : fromCurrency.getCurrencyCode());
     }
 
-    // ------------------------------------------------------------------------------------------------------ toCurrency
+    // ---------------------------------------------------------------------------------- toCurrency
 
     /**
      * Returns the {@code Currency} which the {@code FK_CurrencyRate_Currency_ToCurrencyCode} foreign key references.
@@ -100,7 +113,7 @@ public class CurrencyRate extends MappedCurrencyRate {
         setToCurrencyCode(toCurrency == null ? null : toCurrency.getCurrencyCode());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_FROM_CURRENCY_CODE,
                 referencedColumnName = MappedCurrency.COLUMN_NAME_CURRENCY_CODE,
@@ -110,7 +123,7 @@ public class CurrencyRate extends MappedCurrencyRate {
     )
     private Currency fromCurrency;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TO_CURRENCY_CODE,
                 referencedColumnName = MappedCurrency.COLUMN_NAME_CURRENCY_CODE,

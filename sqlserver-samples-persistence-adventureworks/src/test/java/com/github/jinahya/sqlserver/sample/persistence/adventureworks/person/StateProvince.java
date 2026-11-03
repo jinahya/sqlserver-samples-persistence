@@ -29,12 +29,36 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Person.StateProvince} table.
  */
 @Entity(name = "PersonStateProvince")
-@Table(schema = MappedStateProvince.TABLE_SCHEMA, name = MappedStateProvince.TABLE_NAME)
+@Table(schema = MappedStateProvince.TABLE_SCHEMA,
+       name = MappedStateProvince.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_StateProvince_Name",
+                       columnNames = {
+                               StateProvince.COLUMN_NAME_NAME
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_StateProvince_rowguid",
+                       columnNames = {
+                               StateProvince.COLUMN_NAME_ROWGUID
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_StateProvince_StateProvinceCode_CountryRegionCode",
+                       columnNames = {
+                               StateProvince.COLUMN_NAME_STATE_PROVINCE_CODE,
+                               StateProvince.COLUMN_NAME_COUNTRY_REGION_CODE
+                       }
+               )
+       }
+)
 public class StateProvince extends MappedStateProvince {
 
     /**
@@ -49,7 +73,7 @@ public class StateProvince extends MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -58,7 +82,7 @@ public class StateProvince extends MappedStateProvince {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- countryRegion
+    // ------------------------------------------------------------------------------- countryRegion
 
     /**
      * Returns the {@code CountryRegion} which the {@code FK_StateProvince_CountryRegion_CountryRegionCode} foreign key
@@ -81,7 +105,7 @@ public class StateProvince extends MappedStateProvince {
         setCountryRegionCode(countryRegion == null ? null : countryRegion.getCountryRegionCode());
     }
 
-    // ------------------------------------------------------------------------------------------------------- territory
+    // ----------------------------------------------------------------------------------- territory
 
     /**
      * Returns the {@code SalesTerritory} which the {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign key
@@ -104,7 +128,7 @@ public class StateProvince extends MappedStateProvince {
         setTerritoryId(territory == null ? null : territory.getTerritoryId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COUNTRY_REGION_CODE,
                 referencedColumnName = MappedCountryRegion.COLUMN_NAME_COUNTRY_REGION_CODE,
@@ -114,7 +138,7 @@ public class StateProvince extends MappedStateProvince {
     )
     private CountryRegion countryRegion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

@@ -31,12 +31,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.SalesOrder} table.
  */
 @Entity(name = "DboSalesOrder")
-@Table(schema = MappedSalesOrder.TABLE_SCHEMA, name = MappedSalesOrder.TABLE_NAME)
+@Table(schema = MappedSalesOrder.TABLE_SCHEMA,
+       name = MappedSalesOrder.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               SalesOrder.COLUMN_NAME_ORDER_NUMBER
+                       }
+               )
+       }
+)
 public class SalesOrder extends MappedSalesOrder {
 
     /**
@@ -64,7 +74,7 @@ public class SalesOrder extends MappedSalesOrder {
      */
     public static final String ATTRIBUTE_NAME_SALES_REP = "salesRep";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -73,7 +83,7 @@ public class SalesOrder extends MappedSalesOrder {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------------- customer
+    // ------------------------------------------------------------------------------------ customer
 
     /**
      * Returns the {@code Customer} which the {@code FK_SO_Customer} foreign key references.
@@ -95,7 +105,7 @@ public class SalesOrder extends MappedSalesOrder {
         setCustomerId(customer == null ? null : customer.getCustomerId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- warehouse
+    // ----------------------------------------------------------------------------------- warehouse
 
     /**
      * Returns the {@code Warehouse} which the {@code FK_SO_Warehouse} foreign key references.
@@ -117,7 +127,7 @@ public class SalesOrder extends MappedSalesOrder {
         setWarehouseId(warehouse == null ? null : warehouse.getWarehouseId());
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesChannel
+    // -------------------------------------------------------------------------------- salesChannel
 
     /**
      * Returns the {@code SalesChannel} which the {@code FK_SalesOrder_SalesChannel} foreign key references.
@@ -139,7 +149,7 @@ public class SalesOrder extends MappedSalesOrder {
         setSalesChannelId(salesChannel == null ? null : salesChannel.getSalesChannelId());
     }
 
-    // ----------------------------------------------------------------------------------------------------------- store
+    // --------------------------------------------------------------------------------------- store
 
     /**
      * Returns the {@code Store} which the {@code FK_SalesOrder_Store} foreign key references.
@@ -161,7 +171,7 @@ public class SalesOrder extends MappedSalesOrder {
         setStoreId(store == null ? null : store.getStoreId());
     }
 
-    // -------------------------------------------------------------------------------------------------------- salesRep
+    // ------------------------------------------------------------------------------------ salesRep
 
     /**
      * Returns the {@code SalesRep} which the {@code FK_SalesOrder_SalesRep} foreign key references.
@@ -183,7 +193,7 @@ public class SalesOrder extends MappedSalesOrder {
         setSalesRepId(salesRep == null ? null : salesRep.getSalesRepId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CUSTOMER_ID,
                 referencedColumnName = MappedCustomer.COLUMN_NAME_CUSTOMER_ID,
@@ -193,7 +203,7 @@ public class SalesOrder extends MappedSalesOrder {
     )
     private Customer customer;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WAREHOUSE_ID,
                 referencedColumnName = MappedWarehouse.COLUMN_NAME_WAREHOUSE_ID,
@@ -203,7 +213,7 @@ public class SalesOrder extends MappedSalesOrder {
     )
     private Warehouse warehouse;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_CHANNEL_ID,
                 referencedColumnName = MappedSalesChannel.COLUMN_NAME_SALES_CHANNEL_ID,
@@ -213,7 +223,7 @@ public class SalesOrder extends MappedSalesOrder {
     )
     private SalesChannel salesChannel;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STORE_ID,
                 referencedColumnName = MappedStore.COLUMN_NAME_STORE_ID,
@@ -223,7 +233,7 @@ public class SalesOrder extends MappedSalesOrder {
     )
     private Store store;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_REP_ID,
                 referencedColumnName = MappedSalesRep.COLUMN_NAME_SALES_REP_ID,

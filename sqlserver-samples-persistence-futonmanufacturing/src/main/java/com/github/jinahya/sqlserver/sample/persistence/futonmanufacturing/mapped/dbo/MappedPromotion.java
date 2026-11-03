@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,17 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.Promotion} table.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.Promotion}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code MinimumPurchase}</th><td>{@code ((0))}</td></tr>
+ * </tbody>
+ * </table>
  */
 @MappedSuperclass
 public abstract class MappedPromotion {
@@ -50,7 +63,7 @@ public abstract class MappedPromotion {
      */
     public static final String TABLE_NAME = "Promotion";
 
-    // ----------------------------------------------------------------------------------------------------- PromotionID
+    // --------------------------------------------------------------------------------- PromotionID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -62,7 +75,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_PROMOTION_ID = "promotionId";
 
-    // --------------------------------------------------------------------------------------------------- PromotionCode
+    // ------------------------------------------------------------------------------- PromotionCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -79,7 +92,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_PROMOTION_CODE = "promotionCode";
 
-    // --------------------------------------------------------------------------------------------------- PromotionName
+    // ------------------------------------------------------------------------------- PromotionName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -96,7 +109,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_PROMOTION_NAME = "promotionName";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -108,7 +121,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // ------------------------------------------------------------------------------------------------- DiscountPercent
+    // ----------------------------------------------------------------------------- DiscountPercent
 
     /**
      * The name of the {@code decimal(5, 2)} column. The value is {@value}.
@@ -130,7 +143,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PERCENT = "discountPercent";
 
-    // -------------------------------------------------------------------------------------------------- DiscountAmount
+    // ------------------------------------------------------------------------------ DiscountAmount
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -152,7 +165,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_AMOUNT = "discountAmount";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -164,7 +177,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -176,7 +189,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -188,7 +201,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ------------------------------------------------------------------------------------------------- MinimumPurchase
+    // ----------------------------------------------------------------------------- MinimumPurchase
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -210,7 +223,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_MINIMUM_PURCHASE = "minimumPurchase";
 
-    // ---------------------------------------------------------------------------------------------- ApplicableChannels
+    // -------------------------------------------------------------------------- ApplicableChannels
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -228,7 +241,7 @@ public abstract class MappedPromotion {
      */
     public static final String ATTRIBUTE_NAME_APPLICABLE_CHANNELS = "applicableChannels";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -237,7 +250,7 @@ public abstract class MappedPromotion {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -285,7 +298,7 @@ public abstract class MappedPromotion {
         return Objects.hash(promotionId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- promotionId
+    // --------------------------------------------------------------------------------- promotionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROMOTION_ID} attribute.
@@ -305,7 +318,7 @@ public abstract class MappedPromotion {
         this.promotionId = promotionId;
     }
 
-    // --------------------------------------------------------------------------------------------------- promotionCode
+    // ------------------------------------------------------------------------------- promotionCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROMOTION_CODE} attribute.
@@ -325,7 +338,7 @@ public abstract class MappedPromotion {
         this.promotionCode = promotionCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- promotionName
+    // ------------------------------------------------------------------------------- promotionName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROMOTION_NAME} attribute.
@@ -345,7 +358,7 @@ public abstract class MappedPromotion {
         this.promotionName = promotionName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -365,7 +378,7 @@ public abstract class MappedPromotion {
         this.description = description;
     }
 
-    // ------------------------------------------------------------------------------------------------- discountPercent
+    // ----------------------------------------------------------------------------- discountPercent
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PERCENT} attribute.
@@ -385,7 +398,7 @@ public abstract class MappedPromotion {
         this.discountPercent = discountPercent;
     }
 
-    // -------------------------------------------------------------------------------------------------- discountAmount
+    // ------------------------------------------------------------------------------ discountAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DISCOUNT_AMOUNT} attribute.
@@ -405,7 +418,7 @@ public abstract class MappedPromotion {
         this.discountAmount = discountAmount;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -425,7 +438,7 @@ public abstract class MappedPromotion {
         this.startDate = startDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -445,7 +458,7 @@ public abstract class MappedPromotion {
         this.endDate = endDate;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -465,7 +478,7 @@ public abstract class MappedPromotion {
         this.isActive = isActive;
     }
 
-    // ------------------------------------------------------------------------------------------------- minimumPurchase
+    // ----------------------------------------------------------------------------- minimumPurchase
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MINIMUM_PURCHASE} attribute.
@@ -485,7 +498,7 @@ public abstract class MappedPromotion {
         this.minimumPurchase = minimumPurchase;
     }
 
-    // ---------------------------------------------------------------------------------------------- applicableChannels
+    // -------------------------------------------------------------------------- applicableChannels
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_APPLICABLE_CHANNELS} attribute.
@@ -505,7 +518,7 @@ public abstract class MappedPromotion {
         this.applicableChannels = applicableChannels;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -517,7 +530,7 @@ public abstract class MappedPromotion {
     )
     private Integer promotionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PROMOTION_CODE)
     @NotNull
     @Basic(optional = false)
@@ -529,7 +542,7 @@ public abstract class MappedPromotion {
     )
     private String promotionCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PROMOTION_NAME)
     @NotNull
     @Basic(optional = false)
@@ -541,7 +554,7 @@ public abstract class MappedPromotion {
     )
     private String promotionName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION,
             nullable = true,
@@ -550,7 +563,7 @@ public abstract class MappedPromotion {
     )
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
     @Basic(optional = true)
@@ -563,7 +576,7 @@ public abstract class MappedPromotion {
     )
     private BigDecimal discountPercent;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @Basic(optional = true)
@@ -576,7 +589,7 @@ public abstract class MappedPromotion {
     )
     private BigDecimal discountAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_START_DATE,
@@ -586,7 +599,7 @@ public abstract class MappedPromotion {
     )
     private LocalDate startDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_END_DATE,
@@ -596,7 +609,7 @@ public abstract class MappedPromotion {
     )
     private LocalDate endDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -604,9 +617,10 @@ public abstract class MappedPromotion {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_MINIMUM_PURCHASE - COLUMN_SCALE_MINIMUM_PURCHASE,
             fraction = COLUMN_SCALE_MINIMUM_PURCHASE)
     @Basic(optional = true)
@@ -617,9 +631,10 @@ public abstract class MappedPromotion {
             precision = COLUMN_PRECISION_MINIMUM_PURCHASE,
             scale = COLUMN_SCALE_MINIMUM_PURCHASE
     )
+    @MsDefault("((0))")
     private BigDecimal minimumPurchase;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_APPLICABLE_CHANNELS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_APPLICABLE_CHANNELS,

@@ -54,7 +54,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String TABLE_NAME = "vw_ItemsBelowReorderPoint";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseCode
+    // ------------------------------------------------------------------------------- WarehouseCode
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -71,7 +71,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_CODE = "warehouseCode";
 
-    // --------------------------------------------------------------------------------------------------- WarehouseName
+    // ------------------------------------------------------------------------------- WarehouseName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -88,7 +88,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_NAME = "warehouseName";
 
-    // -------------------------------------------------------------------------------------------------------- ItemType
+    // ------------------------------------------------------------------------------------ ItemType
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -105,7 +105,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE = "itemType";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -122,7 +122,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // ----------------------------------------------------------------------------------------------- QuantityAvailable
+    // --------------------------------------------------------------------------- QuantityAvailable
 
     /**
      * The name of the {@code decimal(19, 2)} column. The value is {@value}.
@@ -161,7 +161,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_AVAILABLE = "quantityAvailable";
 
-    // ---------------------------------------------------------------------------------------------------- ReorderPoint
+    // -------------------------------------------------------------------------------- ReorderPoint
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -183,7 +183,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_REORDER_POINT = "reorderPoint";
 
-    // ----------------------------------------------------------------------------------------------------- SafetyStock
+    // --------------------------------------------------------------------------------- SafetyStock
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -205,7 +205,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_SAFETY_STOCK = "safetyStock";
 
-    // ------------------------------------------------------------------------------------------------ ShortageQuantity
+    // ---------------------------------------------------------------------------- ShortageQuantity
 
     /**
      * The name of the {@code decimal(20, 2)} column. The value is {@value}.
@@ -227,7 +227,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_SHORTAGE_QUANTITY = "shortageQuantity";
 
-    // -------------------------------------------------------------------------------------------------------- UnitCode
+    // ------------------------------------------------------------------------------------ UnitCode
 
     /**
      * The name of the {@code nvarchar(10), NOT NULL} column. The value is {@value}.
@@ -244,7 +244,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_CODE = "unitCode";
 
-    // ---------------------------------------------------------------------------------------------------- LeadTimeDays
+    // -------------------------------------------------------------------------------- LeadTimeDays
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -256,7 +256,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
 
-    // ----------------------------------------------------------------------------------------------- PreferredSupplier
+    // --------------------------------------------------------------------------- PreferredSupplier
 
     /**
      * The name of the {@code nvarchar(255)} column. The value is {@value}.
@@ -273,7 +273,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_PREFERRED_SUPPLIER = "preferredSupplier";
 
-    // -------------------------------------------------------------------------------------------------- PreferredPrice
+    // ------------------------------------------------------------------------------ PreferredPrice
 
     /**
      * The name of the {@code decimal(18, 4)} column. The value is {@value}.
@@ -295,7 +295,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_PREFERRED_PRICE = "preferredPrice";
 
-    // ------------------------------------------------------------------------------------------------- ExpectedArrival
+    // ----------------------------------------------------------------------------- ExpectedArrival
 
     /**
      * The name of the {@code datetime} column. The value is {@value}.
@@ -307,7 +307,7 @@ public abstract class MappedItemsBelowReorderPointView {
      */
     public static final String ATTRIBUTE_NAME_EXPECTED_ARRIVAL = "expectedArrival";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -316,7 +316,7 @@ public abstract class MappedItemsBelowReorderPointView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -338,7 +338,7 @@ public abstract class MappedItemsBelowReorderPointView {
                + "}";
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseCode
+    // ------------------------------------------------------------------------------- warehouseCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_CODE} attribute.
@@ -358,7 +358,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.warehouseCode = warehouseCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- warehouseName
+    // ------------------------------------------------------------------------------- warehouseName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_NAME} attribute.
@@ -378,7 +378,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.warehouseName = warehouseName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemType
+    // ------------------------------------------------------------------------------------ itemType
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE} attribute.
@@ -398,7 +398,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.itemType = itemType;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -418,7 +418,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -438,7 +438,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.itemName = itemName;
     }
 
-    // ----------------------------------------------------------------------------------------------- quantityAvailable
+    // --------------------------------------------------------------------------- quantityAvailable
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_AVAILABLE} attribute.
@@ -458,7 +458,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.quantityAvailable = quantityAvailable;
     }
 
-    // ---------------------------------------------------------------------------------------------------- reorderPoint
+    // -------------------------------------------------------------------------------- reorderPoint
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute.
@@ -478,7 +478,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.reorderPoint = reorderPoint;
     }
 
-    // ----------------------------------------------------------------------------------------------------- safetyStock
+    // --------------------------------------------------------------------------------- safetyStock
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SAFETY_STOCK} attribute.
@@ -498,7 +498,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.safetyStock = safetyStock;
     }
 
-    // ------------------------------------------------------------------------------------------------ shortageQuantity
+    // ---------------------------------------------------------------------------- shortageQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SHORTAGE_QUANTITY} attribute.
@@ -518,7 +518,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.shortageQuantity = shortageQuantity;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitCode
+    // ------------------------------------------------------------------------------------ unitCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_CODE} attribute.
@@ -538,7 +538,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.unitCode = unitCode;
     }
 
-    // ---------------------------------------------------------------------------------------------------- leadTimeDays
+    // -------------------------------------------------------------------------------- leadTimeDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute.
@@ -558,7 +558,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.leadTimeDays = leadTimeDays;
     }
 
-    // ----------------------------------------------------------------------------------------------- preferredSupplier
+    // --------------------------------------------------------------------------- preferredSupplier
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PREFERRED_SUPPLIER} attribute.
@@ -578,7 +578,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.preferredSupplier = preferredSupplier;
     }
 
-    // -------------------------------------------------------------------------------------------------- preferredPrice
+    // ------------------------------------------------------------------------------ preferredPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PREFERRED_PRICE} attribute.
@@ -598,7 +598,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.preferredPrice = preferredPrice;
     }
 
-    // ------------------------------------------------------------------------------------------------- expectedArrival
+    // ----------------------------------------------------------------------------- expectedArrival
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EXPECTED_ARRIVAL} attribute.
@@ -618,7 +618,7 @@ public abstract class MappedItemsBelowReorderPointView {
         this.expectedArrival = expectedArrival;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
@@ -631,7 +631,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String warehouseCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
@@ -644,7 +644,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String warehouseName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
@@ -657,7 +657,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String itemType;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -670,7 +670,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -683,7 +683,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
@@ -697,7 +697,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private BigDecimal quantityAvailable;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REORDER_POINT - COLUMN_SCALE_REORDER_POINT,
             fraction = COLUMN_SCALE_REORDER_POINT)
@@ -711,7 +711,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private BigDecimal reorderPoint;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SAFETY_STOCK - COLUMN_SCALE_SAFETY_STOCK, fraction = COLUMN_SCALE_SAFETY_STOCK)
     @Basic(optional = true)
@@ -724,7 +724,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private BigDecimal safetyStock;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
@@ -738,7 +738,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private BigDecimal shortageQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
@@ -751,7 +751,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String unitCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
@@ -761,7 +761,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private Integer leadTimeDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     @Basic(optional = true)
@@ -773,7 +773,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private String preferredSupplier;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PREFERRED_PRICE - COLUMN_SCALE_PREFERRED_PRICE,
             fraction = COLUMN_SCALE_PREFERRED_PRICE)
@@ -787,7 +787,7 @@ public abstract class MappedItemsBelowReorderPointView {
     )
     private BigDecimal preferredPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EXPECTED_ARRIVAL,

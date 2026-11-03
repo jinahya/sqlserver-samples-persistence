@@ -52,7 +52,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String TABLE_NAME = "vw_Sales_Pipeline";
 
-    // ----------------------------------------------------------------------------------------------------------- Stage
+    // --------------------------------------------------------------------------------------- Stage
 
     /**
      * The name of the {@code varchar(22), NOT NULL} column. The value is {@value}.
@@ -69,7 +69,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_STAGE = "stage";
 
-    // ------------------------------------------------------------------------------------------------------ StageOrder
+    // ---------------------------------------------------------------------------------- StageOrder
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -81,7 +81,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_STAGE_ORDER = "stageOrder";
 
-    // ----------------------------------------------------------------------------------------------------------- Count
+    // --------------------------------------------------------------------------------------- Count
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -93,7 +93,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_COUNT = "count";
 
-    // ----------------------------------------------------------------------------------------------------------- Value
+    // --------------------------------------------------------------------------------------- Value
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -115,7 +115,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_VALUE = "value";
 
-    // ------------------------------------------------------------------------------------------------- PriorStageCount
+    // ----------------------------------------------------------------------------- PriorStageCount
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -127,7 +127,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_PRIOR_STAGE_COUNT = "priorStageCount";
 
-    // ------------------------------------------------------------------------------------------------- PriorStageValue
+    // ----------------------------------------------------------------------------- PriorStageValue
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -149,7 +149,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_PRIOR_STAGE_VALUE = "priorStageValue";
 
-    // -------------------------------------------------------------------------------------------------- ConversionRate
+    // ------------------------------------------------------------------------------ ConversionRate
 
     /**
      * The name of the {@code decimal(10, 2)} column. The value is {@value}.
@@ -171,7 +171,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_CONVERSION_RATE = "conversionRate";
 
-    // ---------------------------------------------------------------------------------------------- ValueRetentionRate
+    // -------------------------------------------------------------------------- ValueRetentionRate
 
     /**
      * The name of the {@code decimal(10, 2)} column. The value is {@value}.
@@ -194,7 +194,7 @@ public abstract class MappedSalesPipelineView {
      */
     public static final String ATTRIBUTE_NAME_VALUE_RETENTION_RATE = "valueRetentionRate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -203,7 +203,7 @@ public abstract class MappedSalesPipelineView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -219,7 +219,7 @@ public abstract class MappedSalesPipelineView {
                + "}";
     }
 
-    // ----------------------------------------------------------------------------------------------------------- stage
+    // --------------------------------------------------------------------------------------- stage
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STAGE} attribute.
@@ -239,7 +239,7 @@ public abstract class MappedSalesPipelineView {
         this.stage = stage;
     }
 
-    // ------------------------------------------------------------------------------------------------------ stageOrder
+    // ---------------------------------------------------------------------------------- stageOrder
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STAGE_ORDER} attribute.
@@ -259,7 +259,7 @@ public abstract class MappedSalesPipelineView {
         this.stageOrder = stageOrder;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- count
+    // --------------------------------------------------------------------------------------- count
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNT} attribute.
@@ -279,7 +279,7 @@ public abstract class MappedSalesPipelineView {
         this.count = count;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- value
+    // --------------------------------------------------------------------------------------- value
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALUE} attribute.
@@ -299,7 +299,7 @@ public abstract class MappedSalesPipelineView {
         this.value = value;
     }
 
-    // ------------------------------------------------------------------------------------------------- priorStageCount
+    // ----------------------------------------------------------------------------- priorStageCount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIOR_STAGE_COUNT} attribute.
@@ -319,7 +319,7 @@ public abstract class MappedSalesPipelineView {
         this.priorStageCount = priorStageCount;
     }
 
-    // ------------------------------------------------------------------------------------------------- priorStageValue
+    // ----------------------------------------------------------------------------- priorStageValue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIOR_STAGE_VALUE} attribute.
@@ -339,7 +339,7 @@ public abstract class MappedSalesPipelineView {
         this.priorStageValue = priorStageValue;
     }
 
-    // -------------------------------------------------------------------------------------------------- conversionRate
+    // ------------------------------------------------------------------------------ conversionRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CONVERSION_RATE} attribute.
@@ -359,7 +359,7 @@ public abstract class MappedSalesPipelineView {
         this.conversionRate = conversionRate;
     }
 
-    // ---------------------------------------------------------------------------------------------- valueRetentionRate
+    // -------------------------------------------------------------------------- valueRetentionRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALUE_RETENTION_RATE} attribute.
@@ -379,7 +379,7 @@ public abstract class MappedSalesPipelineView {
         this.valueRetentionRate = valueRetentionRate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STAGE)
     @NotNull
@@ -392,7 +392,7 @@ public abstract class MappedSalesPipelineView {
     )
     private String stage;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -403,7 +403,7 @@ public abstract class MappedSalesPipelineView {
     )
     private Integer stageOrder;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNT,
@@ -413,7 +413,7 @@ public abstract class MappedSalesPipelineView {
     )
     private Integer count;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE - COLUMN_SCALE_VALUE, fraction = COLUMN_SCALE_VALUE)
     @Basic(optional = true)
@@ -426,7 +426,7 @@ public abstract class MappedSalesPipelineView {
     )
     private BigDecimal value;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_STAGE_COUNT,
@@ -436,7 +436,7 @@ public abstract class MappedSalesPipelineView {
     )
     private Integer priorStageCount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_PRIOR_STAGE_VALUE - COLUMN_SCALE_PRIOR_STAGE_VALUE,
             fraction = COLUMN_SCALE_PRIOR_STAGE_VALUE)
@@ -450,7 +450,7 @@ public abstract class MappedSalesPipelineView {
     )
     private BigDecimal priorStageValue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_CONVERSION_RATE - COLUMN_SCALE_CONVERSION_RATE,
             fraction = COLUMN_SCALE_CONVERSION_RATE)
@@ -464,7 +464,7 @@ public abstract class MappedSalesPipelineView {
     )
     private BigDecimal conversionRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE_RETENTION_RATE - COLUMN_SCALE_VALUE_RETENTION_RATE,
             fraction = COLUMN_SCALE_VALUE_RETENTION_RATE)

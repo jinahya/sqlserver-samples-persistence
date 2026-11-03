@@ -36,7 +36,7 @@ class SpecialOfferProduct_Persister
         super(SpecialOfferProduct.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public SpecialOfferProduct apply(final EntityManager entityManager, final SpecialOfferProduct entityInstance) {
         final var specialOffer = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SpecialOffer.class);

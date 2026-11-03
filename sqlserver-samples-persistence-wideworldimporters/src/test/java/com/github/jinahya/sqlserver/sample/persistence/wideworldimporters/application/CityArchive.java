@@ -35,7 +35,7 @@ import java.util.Optional;
  */
 public class CityArchive extends MappedCityArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

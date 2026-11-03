@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -32,8 +34,39 @@ import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Person.CountryRegion} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Person.CountryRegion}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CountryRegionCode}</th>
+ *     <td>ISO standard code for countries and regions.</td></tr>
+ * <tr><th scope="row">{@code Name}</th><td>Country or region name.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Person.CountryRegion}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCountryRegion.TABLE_SCHEMA,
+        table = MappedCountryRegion.TABLE_NAME,
+        value = "Lookup table containing the ISO standard codes for countries and regions."
+)
 public abstract class MappedCountryRegion {
 
     /**
@@ -46,7 +79,7 @@ public abstract class MappedCountryRegion {
      */
     public static final String TABLE_NAME = "CountryRegion";
 
-    // ----------------------------------------------------------------------------------------------- CountryRegionCode
+    // --------------------------------------------------------------------------- CountryRegionCode
 
     /**
      * The name of the {@code nvarchar(3), NOT NULL} column. The value is {@value}.
@@ -64,7 +97,7 @@ public abstract class MappedCountryRegion {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
-    // ------------------------------------------------------------------------------------------------------------ Name
+    // ---------------------------------------------------------------------------------------- Name
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -81,7 +114,7 @@ public abstract class MappedCountryRegion {
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -93,7 +126,7 @@ public abstract class MappedCountryRegion {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -102,7 +135,7 @@ public abstract class MappedCountryRegion {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -142,7 +175,7 @@ public abstract class MappedCountryRegion {
         return Objects.hash(countryRegionCode);
     }
 
-    // ----------------------------------------------------------------------------------------------- countryRegionCode
+    // --------------------------------------------------------------------------- countryRegionCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
@@ -162,7 +195,7 @@ public abstract class MappedCountryRegion {
         this.countryRegionCode = countryRegionCode;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ name
+    // ---------------------------------------------------------------------------------------- name
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NAME} attribute.
@@ -182,7 +215,7 @@ public abstract class MappedCountryRegion {
         this.name = name;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -202,7 +235,7 @@ public abstract class MappedCountryRegion {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
@@ -213,9 +246,11 @@ public abstract class MappedCountryRegion {
             updatable = false,
             length = COLUMN_LENGTH_COUNTRY_REGION_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
+                          value = "ISO standard code for countries and regions.")
     private String countryRegionCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
@@ -225,9 +260,10 @@ public abstract class MappedCountryRegion {
             updatable = true,
             length = COLUMN_LENGTH_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Country or region name.")
     private String name;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -236,6 +272,9 @@ public abstract class MappedCountryRegion {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_CountryRegion_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

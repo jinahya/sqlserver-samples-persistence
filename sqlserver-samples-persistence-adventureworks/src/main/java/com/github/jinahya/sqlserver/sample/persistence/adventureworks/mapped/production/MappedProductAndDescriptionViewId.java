@@ -35,7 +35,7 @@ public class MappedProductAndDescriptionViewId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -44,7 +44,7 @@ public class MappedProductAndDescriptionViewId implements Serializable {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class MappedProductAndDescriptionViewId implements Serializable {
         return Objects.hash(productId, cultureId);
     }
 
-    // ------------------------------------------------------------------------------------------------------- productId
+    // ----------------------------------------------------------------------------------- productId
 
     /**
      * Returns current value of the {@code productId} attribute.
@@ -91,7 +91,7 @@ public class MappedProductAndDescriptionViewId implements Serializable {
         this.productId = productId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- cultureId
+    // ----------------------------------------------------------------------------------- cultureId
 
     /**
      * Returns current value of the {@code cultureId} attribute.
@@ -111,9 +111,15 @@ public class MappedProductAndDescriptionViewId implements Serializable {
         this.cultureId = cultureId;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    /**
+     * The value of the {@code productId} attribute.
+     */
     private Integer productId;
 
+    /**
+     * The value of the {@code cultureId} attribute.
+     */
     private String cultureId;
 }
 

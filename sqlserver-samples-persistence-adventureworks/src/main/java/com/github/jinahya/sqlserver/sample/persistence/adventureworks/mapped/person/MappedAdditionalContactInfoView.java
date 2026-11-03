@@ -52,7 +52,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String TABLE_NAME = "vAdditionalContactInfo";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -64,7 +64,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ------------------------------------------------------------------------------------------------------- FirstName
+    // ----------------------------------------------------------------------------------- FirstName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -81,7 +81,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
-    // ------------------------------------------------------------------------------------------------------ MiddleName
+    // ---------------------------------------------------------------------------------- MiddleName
 
     /**
      * The name of the {@code Name (nvarchar)(50)} column. The value is {@value}.
@@ -98,7 +98,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_MIDDLE_NAME = "middleName";
 
-    // -------------------------------------------------------------------------------------------------------- LastName
+    // ------------------------------------------------------------------------------------ LastName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -115,7 +115,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
-    // ------------------------------------------------------------------------------------------------- TelephoneNumber
+    // ----------------------------------------------------------------------------- TelephoneNumber
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -132,7 +132,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_TELEPHONE_NUMBER = "telephoneNumber";
 
-    // ------------------------------------------------------------------------------------ TelephoneSpecialInstructions
+    // ---------------------------------------------------------------- TelephoneSpecialInstructions
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -145,7 +145,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_TELEPHONE_SPECIAL_INSTRUCTIONS = "telephoneSpecialInstructions";
 
-    // ---------------------------------------------------------------------------------------------------------- Street
+    // -------------------------------------------------------------------------------------- Street
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -162,7 +162,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_STREET = "street";
 
-    // ------------------------------------------------------------------------------------------------------------ City
+    // ---------------------------------------------------------------------------------------- City
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -179,7 +179,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
-    // --------------------------------------------------------------------------------------------------- StateProvince
+    // ------------------------------------------------------------------------------- StateProvince
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -196,7 +196,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE = "stateProvince";
 
-    // ------------------------------------------------------------------------------------------------------ PostalCode
+    // ---------------------------------------------------------------------------------- PostalCode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -213,7 +213,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CODE = "postalCode";
 
-    // --------------------------------------------------------------------------------------------------- CountryRegion
+    // ------------------------------------------------------------------------------- CountryRegion
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -230,7 +230,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION = "countryRegion";
 
-    // ---------------------------------------------------------------------------------- HomeAddressSpecialInstructions
+    // -------------------------------------------------------------- HomeAddressSpecialInstructions
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -243,7 +243,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_HOME_ADDRESS_SPECIAL_INSTRUCTIONS = "homeAddressSpecialInstructions";
 
-    // ---------------------------------------------------------------------------------------------------- EMailAddress
+    // -------------------------------------------------------------------------------- EMailAddress
 
     /**
      * The name of the {@code nvarchar(128)} column. The value is {@value}.
@@ -260,7 +260,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_E_MAIL_ADDRESS = "eMailAddress";
 
-    // ---------------------------------------------------------------------------------------- EMailSpecialInstructions
+    // -------------------------------------------------------------------- EMailSpecialInstructions
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -273,7 +273,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_E_MAIL_SPECIAL_INSTRUCTIONS = "eMailSpecialInstructions";
 
-    // -------------------------------------------------------------------------------------------- EMailTelephoneNumber
+    // ------------------------------------------------------------------------ EMailTelephoneNumber
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -291,7 +291,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_E_MAIL_TELEPHONE_NUMBER = "eMailTelephoneNumber";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, NOT NULL} column. The value is {@value}.
@@ -303,7 +303,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -315,7 +315,7 @@ public abstract class MappedAdditionalContactInfoView {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -324,7 +324,7 @@ public abstract class MappedAdditionalContactInfoView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -378,7 +378,7 @@ public abstract class MappedAdditionalContactInfoView {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -398,7 +398,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.businessEntityId = businessEntityId;
     }
 
-    // ------------------------------------------------------------------------------------------------------- firstName
+    // ----------------------------------------------------------------------------------- firstName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
@@ -418,7 +418,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.firstName = firstName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ middleName
+    // ---------------------------------------------------------------------------------- middleName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute.
@@ -438,7 +438,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.middleName = middleName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- lastName
+    // ------------------------------------------------------------------------------------ lastName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
@@ -458,7 +458,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.lastName = lastName;
     }
 
-    // ------------------------------------------------------------------------------------------------- telephoneNumber
+    // ----------------------------------------------------------------------------- telephoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TELEPHONE_NUMBER} attribute.
@@ -478,7 +478,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.telephoneNumber = telephoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------ telephoneSpecialInstructions
+    // ---------------------------------------------------------------- telephoneSpecialInstructions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TELEPHONE_SPECIAL_INSTRUCTIONS} attribute.
@@ -500,7 +500,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.telephoneSpecialInstructions = telephoneSpecialInstructions;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- street
+    // -------------------------------------------------------------------------------------- street
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STREET} attribute.
@@ -520,7 +520,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.street = street;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ city
+    // ---------------------------------------------------------------------------------------- city
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY} attribute.
@@ -540,7 +540,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.city = city;
     }
 
-    // --------------------------------------------------------------------------------------------------- stateProvince
+    // ------------------------------------------------------------------------------- stateProvince
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE} attribute.
@@ -560,7 +560,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.stateProvince = stateProvince;
     }
 
-    // ------------------------------------------------------------------------------------------------------ postalCode
+    // ---------------------------------------------------------------------------------- postalCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute.
@@ -580,7 +580,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.postalCode = postalCode;
     }
 
-    // --------------------------------------------------------------------------------------------------- countryRegion
+    // ------------------------------------------------------------------------------- countryRegion
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION} attribute.
@@ -600,7 +600,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.countryRegion = countryRegion;
     }
 
-    // ---------------------------------------------------------------------------------- homeAddressSpecialInstructions
+    // -------------------------------------------------------------- homeAddressSpecialInstructions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_HOME_ADDRESS_SPECIAL_INSTRUCTIONS} attribute.
@@ -622,7 +622,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.homeAddressSpecialInstructions = homeAddressSpecialInstructions;
     }
 
-    // ---------------------------------------------------------------------------------------------------- eMailAddress
+    // -------------------------------------------------------------------------------- eMailAddress
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_E_MAIL_ADDRESS} attribute.
@@ -642,7 +642,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.eMailAddress = eMailAddress;
     }
 
-    // ---------------------------------------------------------------------------------------- eMailSpecialInstructions
+    // -------------------------------------------------------------------- eMailSpecialInstructions
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_E_MAIL_SPECIAL_INSTRUCTIONS} attribute.
@@ -663,7 +663,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.eMailSpecialInstructions = eMailSpecialInstructions;
     }
 
-    // -------------------------------------------------------------------------------------------- eMailTelephoneNumber
+    // ------------------------------------------------------------------------ eMailTelephoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_E_MAIL_TELEPHONE_NUMBER} attribute.
@@ -683,7 +683,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.eMailTelephoneNumber = eMailTelephoneNumber;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -703,7 +703,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -723,7 +723,7 @@ public abstract class MappedAdditionalContactInfoView {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -734,7 +734,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
@@ -747,7 +747,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String firstName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
@@ -759,7 +759,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String middleName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
@@ -772,7 +772,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String lastName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TELEPHONE_NUMBER)
     @Basic(optional = true)
@@ -784,7 +784,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String telephoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TELEPHONE_SPECIAL_INSTRUCTIONS,
@@ -794,7 +794,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String telephoneSpecialInstructions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STREET)
     @Basic(optional = true)
@@ -806,7 +806,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String street;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
@@ -818,7 +818,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String city;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE)
     @Basic(optional = true)
@@ -830,7 +830,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String stateProvince;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @Basic(optional = true)
@@ -842,7 +842,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String postalCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION)
     @Basic(optional = true)
@@ -854,7 +854,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String countryRegion;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOME_ADDRESS_SPECIAL_INSTRUCTIONS,
@@ -864,7 +864,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String homeAddressSpecialInstructions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_E_MAIL_ADDRESS)
     @Basic(optional = true)
@@ -876,7 +876,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String eMailAddress;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_E_MAIL_SPECIAL_INSTRUCTIONS,
@@ -886,7 +886,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String eMailSpecialInstructions;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_E_MAIL_TELEPHONE_NUMBER)
     @Basic(optional = true)
@@ -898,7 +898,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private String eMailTelephoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -909,7 +909,7 @@ public abstract class MappedAdditionalContactInfoView {
     )
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)

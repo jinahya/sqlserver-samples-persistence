@@ -28,12 +28,23 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Application.StateProvinces} table.
  */
 @Entity(name = "ApplicationStateProvince")
-@Table(schema = MappedStateProvince.TABLE_SCHEMA, name = MappedStateProvince.TABLE_NAME)
+@Table(schema = MappedStateProvince.TABLE_SCHEMA,
+       name = MappedStateProvince.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "UQ_Application_StateProvinces_StateProvinceName",
+                       columnNames = {
+                               StateProvince.COLUMN_NAME_STATE_PROVINCE_NAME
+                       }
+               )
+       }
+)
 public class StateProvince extends MappedStateProvince {
 
     /**
@@ -48,7 +59,7 @@ public class StateProvince extends MappedStateProvince {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY_PERSON = "lastEditedByPerson";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -57,7 +68,7 @@ public class StateProvince extends MappedStateProvince {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------------- country
+    // ------------------------------------------------------------------------------------- country
 
     /**
      * Returns the {@code Country} which the {@code FK_Application_StateProvinces_CountryID_Application_Countries}
@@ -80,7 +91,7 @@ public class StateProvince extends MappedStateProvince {
         setCountryId(country == null ? null : country.getCountryId());
     }
 
-    // ---------------------------------------------------------------------------------------------- lastEditedByPerson
+    // -------------------------------------------------------------------------- lastEditedByPerson
 
     /**
      * Returns the {@code Person} which the {@code FK_Application_StateProvinces_Application_People} foreign key
@@ -103,7 +114,7 @@ public class StateProvince extends MappedStateProvince {
         setLastEditedBy(lastEditedByPerson == null ? null : lastEditedByPerson.getPersonId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_COUNTRY_ID,
                 referencedColumnName = MappedCountry.COLUMN_NAME_COUNTRY_ID,
@@ -113,7 +124,7 @@ public class StateProvince extends MappedStateProvince {
     )
     private Country country;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LAST_EDITED_BY,
                 referencedColumnName = MappedPerson.COLUMN_NAME_PERSON_ID,

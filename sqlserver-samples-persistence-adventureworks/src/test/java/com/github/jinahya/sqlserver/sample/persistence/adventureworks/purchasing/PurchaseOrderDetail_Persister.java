@@ -36,7 +36,7 @@ class PurchaseOrderDetail_Persister
         super(PurchaseOrderDetail.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public PurchaseOrderDetail apply(final EntityManager entityManager, final PurchaseOrderDetail entityInstance) {
         final var purchaseOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, PurchaseOrderHeader.class);

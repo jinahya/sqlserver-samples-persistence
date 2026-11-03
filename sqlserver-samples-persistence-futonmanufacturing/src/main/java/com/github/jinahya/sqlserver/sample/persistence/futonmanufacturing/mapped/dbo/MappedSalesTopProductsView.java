@@ -53,7 +53,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String TABLE_NAME = "vw_Sales_TopProducts";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -70,7 +70,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -87,7 +87,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // ----------------------------------------------------------------------------------------------------- ChannelName
+    // --------------------------------------------------------------------------------- ChannelName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -104,7 +104,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_CHANNEL_NAME = "channelName";
 
-    // ------------------------------------------------------------------------------------------------------------ Year
+    // ---------------------------------------------------------------------------------------- Year
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -116,7 +116,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
 
-    // ----------------------------------------------------------------------------------------------------------- Month
+    // --------------------------------------------------------------------------------------- Month
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -128,7 +128,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
 
-    // ------------------------------------------------------------------------------------------------------- UnitsSold
+    // ----------------------------------------------------------------------------------- UnitsSold
 
     /**
      * The name of the {@code decimal(38, 2)} column. The value is {@value}.
@@ -150,7 +150,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_UNITS_SOLD = "unitsSold";
 
-    // --------------------------------------------------------------------------------------------------------- Revenue
+    // ------------------------------------------------------------------------------------- Revenue
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -172,7 +172,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_REVENUE = "revenue";
 
-    // ----------------------------------------------------------------------------------------------------- GrossProfit
+    // --------------------------------------------------------------------------------- GrossProfit
 
     /**
      * The name of the {@code decimal(38, 6)} column. The value is {@value}.
@@ -194,7 +194,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_GROSS_PROFIT = "grossProfit";
 
-    // ------------------------------------------------------------------------------------------------- UniqueCustomers
+    // ----------------------------------------------------------------------------- UniqueCustomers
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -206,7 +206,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_CUSTOMERS = "uniqueCustomers";
 
-    // -------------------------------------------------------------------------------------------------------- UnitRank
+    // ------------------------------------------------------------------------------------ UnitRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -218,7 +218,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_UNIT_RANK = "unitRank";
 
-    // ----------------------------------------------------------------------------------------------------- RevenueRank
+    // --------------------------------------------------------------------------------- RevenueRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -230,7 +230,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_REVENUE_RANK = "revenueRank";
 
-    // ------------------------------------------------------------------------------------------------------ ProfitRank
+    // ---------------------------------------------------------------------------------- ProfitRank
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -242,7 +242,7 @@ public abstract class MappedSalesTopProductsView {
      */
     public static final String ATTRIBUTE_NAME_PROFIT_RANK = "profitRank";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -251,7 +251,7 @@ public abstract class MappedSalesTopProductsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -271,7 +271,7 @@ public abstract class MappedSalesTopProductsView {
                + "}";
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -291,7 +291,7 @@ public abstract class MappedSalesTopProductsView {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -311,7 +311,7 @@ public abstract class MappedSalesTopProductsView {
         this.itemName = itemName;
     }
 
-    // ----------------------------------------------------------------------------------------------------- channelName
+    // --------------------------------------------------------------------------------- channelName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CHANNEL_NAME} attribute.
@@ -331,7 +331,7 @@ public abstract class MappedSalesTopProductsView {
         this.channelName = channelName;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ year
+    // ---------------------------------------------------------------------------------------- year
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR} attribute.
@@ -351,7 +351,7 @@ public abstract class MappedSalesTopProductsView {
         this.year = year;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- month
+    // --------------------------------------------------------------------------------------- month
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MONTH} attribute.
@@ -371,7 +371,7 @@ public abstract class MappedSalesTopProductsView {
         this.month = month;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitsSold
+    // ----------------------------------------------------------------------------------- unitsSold
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNITS_SOLD} attribute.
@@ -391,7 +391,7 @@ public abstract class MappedSalesTopProductsView {
         this.unitsSold = unitsSold;
     }
 
-    // --------------------------------------------------------------------------------------------------------- revenue
+    // ------------------------------------------------------------------------------------- revenue
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVENUE} attribute.
@@ -411,7 +411,7 @@ public abstract class MappedSalesTopProductsView {
         this.revenue = revenue;
     }
 
-    // ----------------------------------------------------------------------------------------------------- grossProfit
+    // --------------------------------------------------------------------------------- grossProfit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROSS_PROFIT} attribute.
@@ -431,7 +431,7 @@ public abstract class MappedSalesTopProductsView {
         this.grossProfit = grossProfit;
     }
 
-    // ------------------------------------------------------------------------------------------------- uniqueCustomers
+    // ----------------------------------------------------------------------------- uniqueCustomers
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute.
@@ -451,7 +451,7 @@ public abstract class MappedSalesTopProductsView {
         this.uniqueCustomers = uniqueCustomers;
     }
 
-    // -------------------------------------------------------------------------------------------------------- unitRank
+    // ------------------------------------------------------------------------------------ unitRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_RANK} attribute.
@@ -471,7 +471,7 @@ public abstract class MappedSalesTopProductsView {
         this.unitRank = unitRank;
     }
 
-    // ----------------------------------------------------------------------------------------------------- revenueRank
+    // --------------------------------------------------------------------------------- revenueRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REVENUE_RANK} attribute.
@@ -491,7 +491,7 @@ public abstract class MappedSalesTopProductsView {
         this.revenueRank = revenueRank;
     }
 
-    // ------------------------------------------------------------------------------------------------------ profitRank
+    // ---------------------------------------------------------------------------------- profitRank
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PROFIT_RANK} attribute.
@@ -511,7 +511,7 @@ public abstract class MappedSalesTopProductsView {
         this.profitRank = profitRank;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
@@ -524,7 +524,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
@@ -537,7 +537,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
@@ -550,7 +550,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private String channelName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR,
@@ -560,7 +560,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private Integer year;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH,
@@ -570,7 +570,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private Integer month;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_UNITS_SOLD - COLUMN_SCALE_UNITS_SOLD, fraction = COLUMN_SCALE_UNITS_SOLD)
     @Basic(optional = true)
@@ -583,7 +583,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private BigDecimal unitsSold;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REVENUE - COLUMN_SCALE_REVENUE, fraction = COLUMN_SCALE_REVENUE)
     @Basic(optional = true)
@@ -596,7 +596,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private BigDecimal revenue;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
@@ -609,7 +609,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private BigDecimal grossProfit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
@@ -619,7 +619,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private Integer uniqueCustomers;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIT_RANK,
@@ -629,7 +629,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private Long unitRank;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_REVENUE_RANK,
@@ -639,7 +639,7 @@ public abstract class MappedSalesTopProductsView {
     )
     private Long revenueRank;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PROFIT_RANK,

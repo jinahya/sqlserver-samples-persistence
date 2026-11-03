@@ -45,6 +45,10 @@ import java.util.Objects;
  * Instances compare as SQL Server compares the values, in depth-first order, by their binary forms.
  *
  * @see <a href="https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssclrt/">[MS-SSCLRT]</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/tostring-database-engine">
+ *      ToString (Database Engine)</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
+ *      GetLevel (Database Engine)</a>
  */
 public final class Heirarchyid
         implements Comparable<Heirarchyid> {
@@ -59,7 +63,7 @@ public final class Heirarchyid
      */
     public static final Heirarchyid ROOT = new Heirarchyid(List.of(), new byte[0]);
 
-    // ---------------------------------------------------------------------------------------------------- NESTED TYPES
+    // -------------------------------------------------------------------------------- NESTED TYPES
 
     /**
      * The ranges of section 2.2, each with its {@code Li} prefix and the pattern of its {@code Oi} field: a {@code .}
@@ -166,7 +170,7 @@ public final class Heirarchyid
         private final long max;
     }
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Returns the value of the specified node labels.
@@ -349,7 +353,7 @@ public final class Heirarchyid
         return Arrays.compareUnsigned(bytes, o.bytes);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Returns the binary form of this value.
@@ -414,7 +418,7 @@ public final class Heirarchyid
         return true;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private final List<long[]> labels;
 
     private final byte[] bytes;

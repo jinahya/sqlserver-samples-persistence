@@ -30,7 +30,7 @@ class EmployeeDepartmentView_PersistenceIT extends _Entity_PersistenceIT<Employe
         super(EmployeeDepartmentView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code HumanResources.vEmployeeDepartment} is a view, which no row is inserted into.

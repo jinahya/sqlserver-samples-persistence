@@ -30,7 +30,7 @@ class VendorWithAddressesView_PersistenceIT extends _Entity_PersistenceIT<Vendor
         super(VendorWithAddressesView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Purchasing.vVendorWithAddresses} is a view, which no row is inserted into.

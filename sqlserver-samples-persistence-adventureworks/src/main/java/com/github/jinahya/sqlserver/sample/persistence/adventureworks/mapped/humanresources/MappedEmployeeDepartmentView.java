@@ -51,7 +51,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String TABLE_NAME = "vEmployeeDepartment";
 
-    // ------------------------------------------------------------------------------------------------ BusinessEntityID
+    // ---------------------------------------------------------------------------- BusinessEntityID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -63,7 +63,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
-    // ----------------------------------------------------------------------------------------------------------- Title
+    // --------------------------------------------------------------------------------------- Title
 
     /**
      * The name of the {@code nvarchar(8)} column. The value is {@value}.
@@ -80,7 +80,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
-    // ------------------------------------------------------------------------------------------------------- FirstName
+    // ----------------------------------------------------------------------------------- FirstName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -97,7 +97,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
-    // ------------------------------------------------------------------------------------------------------ MiddleName
+    // ---------------------------------------------------------------------------------- MiddleName
 
     /**
      * The name of the {@code Name (nvarchar)(50)} column. The value is {@value}.
@@ -114,7 +114,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_MIDDLE_NAME = "middleName";
 
-    // -------------------------------------------------------------------------------------------------------- LastName
+    // ------------------------------------------------------------------------------------ LastName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -131,7 +131,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
-    // ---------------------------------------------------------------------------------------------------------- Suffix
+    // -------------------------------------------------------------------------------------- Suffix
 
     /**
      * The name of the {@code nvarchar(10)} column. The value is {@value}.
@@ -148,7 +148,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_SUFFIX = "suffix";
 
-    // -------------------------------------------------------------------------------------------------------- JobTitle
+    // ------------------------------------------------------------------------------------ JobTitle
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -165,7 +165,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
-    // ------------------------------------------------------------------------------------------------------ Department
+    // ---------------------------------------------------------------------------------- Department
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -182,7 +182,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_DEPARTMENT = "department";
 
-    // ------------------------------------------------------------------------------------------------------- GroupName
+    // ----------------------------------------------------------------------------------- GroupName
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -199,7 +199,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_GROUP_NAME = "groupName";
 
-    // ------------------------------------------------------------------------------------------------------- StartDate
+    // ----------------------------------------------------------------------------------- StartDate
 
     /**
      * The name of the {@code date, NOT NULL} column. The value is {@value}.
@@ -211,7 +211,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -220,7 +220,7 @@ public abstract class MappedEmployeeDepartmentView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -267,7 +267,7 @@ public abstract class MappedEmployeeDepartmentView {
         return Objects.hash(businessEntityId);
     }
 
-    // ------------------------------------------------------------------------------------------------ businessEntityId
+    // ---------------------------------------------------------------------------- businessEntityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
@@ -287,7 +287,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.businessEntityId = businessEntityId;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- title
+    // --------------------------------------------------------------------------------------- title
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TITLE} attribute.
@@ -307,7 +307,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.title = title;
     }
 
-    // ------------------------------------------------------------------------------------------------------- firstName
+    // ----------------------------------------------------------------------------------- firstName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
@@ -327,7 +327,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.firstName = firstName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ middleName
+    // ---------------------------------------------------------------------------------- middleName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute.
@@ -347,7 +347,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.middleName = middleName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- lastName
+    // ------------------------------------------------------------------------------------ lastName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
@@ -367,7 +367,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.lastName = lastName;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- suffix
+    // -------------------------------------------------------------------------------------- suffix
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute.
@@ -387,7 +387,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.suffix = suffix;
     }
 
-    // -------------------------------------------------------------------------------------------------------- jobTitle
+    // ------------------------------------------------------------------------------------ jobTitle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
@@ -407,7 +407,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.jobTitle = jobTitle;
     }
 
-    // ------------------------------------------------------------------------------------------------------ department
+    // ---------------------------------------------------------------------------------- department
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DEPARTMENT} attribute.
@@ -427,7 +427,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.department = department;
     }
 
-    // ------------------------------------------------------------------------------------------------------- groupName
+    // ----------------------------------------------------------------------------------- groupName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute.
@@ -447,7 +447,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.groupName = groupName;
     }
 
-    // ------------------------------------------------------------------------------------------------------- startDate
+    // ----------------------------------------------------------------------------------- startDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute.
@@ -467,7 +467,7 @@ public abstract class MappedEmployeeDepartmentView {
         this.startDate = startDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -478,7 +478,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private Integer businessEntityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
@@ -490,7 +490,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String title;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
@@ -503,7 +503,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String firstName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
@@ -515,7 +515,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String middleName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
@@ -528,7 +528,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String lastName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
@@ -540,7 +540,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String suffix;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
@@ -553,7 +553,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String jobTitle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DEPARTMENT)
     @NotNull
@@ -566,7 +566,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String department;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_GROUP_NAME)
     @NotNull
@@ -579,7 +579,7 @@ public abstract class MappedEmployeeDepartmentView {
     )
     private String groupName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)

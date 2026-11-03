@@ -35,7 +35,7 @@ class StateProvince_Persister
         super(StateProvince.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Override
     public StateProvince apply(final EntityManager entityManager, final StateProvince entityInstance) {
         entityInstance.setCountryRegion(

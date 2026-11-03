@@ -23,15 +23,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mapped.dbo.MappedPromotion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.Promotion} table.
  */
 @Entity(name = "DboPromotion")
-@Table(schema = MappedPromotion.TABLE_SCHEMA, name = MappedPromotion.TABLE_NAME)
+@Table(schema = MappedPromotion.TABLE_SCHEMA,
+       name = MappedPromotion.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               Promotion.COLUMN_NAME_PROMOTION_CODE
+                       }
+               )
+       }
+)
 public class Promotion extends MappedPromotion {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.

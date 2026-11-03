@@ -51,7 +51,7 @@ public abstract class MappedCustomerCategoryArchive {
      */
     public static final String TABLE_NAME = "CustomerCategories_Archive";
 
-    // ---------------------------------------------------------------------------------------------- CustomerCategoryID
+    // -------------------------------------------------------------------------- CustomerCategoryID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -64,7 +64,7 @@ public abstract class MappedCustomerCategoryArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID = "customerCategoryId";
 
-    // -------------------------------------------------------------------------------------------- CustomerCategoryName
+    // ------------------------------------------------------------------------ CustomerCategoryName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedCustomerCategoryArchive {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_CATEGORY_NAME = "customerCategoryName";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -94,7 +94,7 @@ public abstract class MappedCustomerCategoryArchive {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -106,7 +106,7 @@ public abstract class MappedCustomerCategoryArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, NOT NULL} column. The value is {@value}.
@@ -118,7 +118,7 @@ public abstract class MappedCustomerCategoryArchive {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -127,7 +127,7 @@ public abstract class MappedCustomerCategoryArchive {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -140,7 +140,7 @@ public abstract class MappedCustomerCategoryArchive {
                + "}";
     }
 
-    // ---------------------------------------------------------------------------------------------- customerCategoryId
+    // -------------------------------------------------------------------------- customerCategoryId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
@@ -160,7 +160,7 @@ public abstract class MappedCustomerCategoryArchive {
         this.customerCategoryId = customerCategoryId;
     }
 
-    // -------------------------------------------------------------------------------------------- customerCategoryName
+    // ------------------------------------------------------------------------ customerCategoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_NAME} attribute.
@@ -180,7 +180,7 @@ public abstract class MappedCustomerCategoryArchive {
         this.customerCategoryName = customerCategoryName;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -200,7 +200,7 @@ public abstract class MappedCustomerCategoryArchive {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -220,7 +220,7 @@ public abstract class MappedCustomerCategoryArchive {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -240,7 +240,7 @@ public abstract class MappedCustomerCategoryArchive {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -251,7 +251,7 @@ public abstract class MappedCustomerCategoryArchive {
     )
     private Integer customerCategoryId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @NotNull
@@ -264,7 +264,7 @@ public abstract class MappedCustomerCategoryArchive {
     )
     private String customerCategoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -275,7 +275,7 @@ public abstract class MappedCustomerCategoryArchive {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -286,7 +286,7 @@ public abstract class MappedCustomerCategoryArchive {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)

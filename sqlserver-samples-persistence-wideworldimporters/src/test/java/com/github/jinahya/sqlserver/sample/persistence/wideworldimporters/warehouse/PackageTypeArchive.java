@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
  */
 public class PackageTypeArchive extends MappedPackageTypeArchive {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -38,8 +40,43 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_STOCK_ITEM_ID}, {@value #COLUMN_NAME_STOCK_GROUP_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.StockItemStockGroups}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemStockGroupID}</th>
+ *     <td>Internal reference for this linking row</td></tr>
+ * <tr><th scope="row">{@code StockItemID}</th>
+ *     <td>Stock item assigned to this stock group (FK indexed via unique constraint)</td></tr>
+ * <tr><th scope="row">{@code StockGroupID}</th>
+ *     <td>StockGroup assigned to this stock item (FK indexed via unique constraint)</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Warehouse.StockItemStockGroups}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemStockGroupID}</th>
+ *     <td>{@code (NEXT VALUE FOR [Sequences].[StockItemStockGroupID])}</td></tr>
+ * <tr><th scope="row">{@code LastEditedWhen}</th><td>{@code (sysdatetime())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/sysdatetime-transact-sql">SYSDATETIME</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedStockItemStockGroup.TABLE_SCHEMA,
+        table = MappedStockItemStockGroup.TABLE_NAME,
+        value = "Which stock items are in which stock groups"
+)
 public abstract class MappedStockItemStockGroup {
 
     /**
@@ -52,7 +89,7 @@ public abstract class MappedStockItemStockGroup {
      */
     public static final String TABLE_NAME = "StockItemStockGroups";
 
-    // ------------------------------------------------------------------------------------------- StockItemStockGroupID
+    // ----------------------------------------------------------------------- StockItemStockGroupID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.StockItemStockGroupID, NOT NULL} column. The value is
@@ -66,7 +103,7 @@ public abstract class MappedStockItemStockGroup {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_STOCK_GROUP_ID = "stockItemStockGroupId";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -78,7 +115,7 @@ public abstract class MappedStockItemStockGroup {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // ---------------------------------------------------------------------------------------------------- StockGroupID
+    // -------------------------------------------------------------------------------- StockGroupID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -90,7 +127,7 @@ public abstract class MappedStockItemStockGroup {
      */
     public static final String ATTRIBUTE_NAME_STOCK_GROUP_ID = "stockGroupId";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -102,7 +139,7 @@ public abstract class MappedStockItemStockGroup {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // -------------------------------------------------------------------------------------------------- LastEditedWhen
+    // ------------------------------------------------------------------------------ LastEditedWhen
 
     /**
      * The name of the {@code datetime2, DEFAULT (sysdatetime()), NOT NULL} column. The value is {@value}.
@@ -114,7 +151,7 @@ public abstract class MappedStockItemStockGroup {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_WHEN = "lastEditedWhen";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -123,7 +160,7 @@ public abstract class MappedStockItemStockGroup {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -165,7 +202,7 @@ public abstract class MappedStockItemStockGroup {
         return Objects.hash(stockItemStockGroupId);
     }
 
-    // ------------------------------------------------------------------------------------------- stockItemStockGroupId
+    // ----------------------------------------------------------------------- stockItemStockGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_STOCK_GROUP_ID} attribute.
@@ -185,7 +222,7 @@ public abstract class MappedStockItemStockGroup {
         this.stockItemStockGroupId = stockItemStockGroupId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -207,7 +244,7 @@ public abstract class MappedStockItemStockGroup {
         this.stockItemId = stockItemId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- stockGroupId
+    // -------------------------------------------------------------------------------- stockGroupId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute.
@@ -229,7 +266,7 @@ public abstract class MappedStockItemStockGroup {
         this.stockGroupId = stockGroupId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -251,7 +288,7 @@ public abstract class MappedStockItemStockGroup {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // -------------------------------------------------------------------------------------------------- lastEditedWhen
+    // ------------------------------------------------------------------------------ lastEditedWhen
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_WHEN} attribute.
@@ -271,7 +308,7 @@ public abstract class MappedStockItemStockGroup {
         this.lastEditedWhen = lastEditedWhen;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StockItemStockGroupID", schema = "Sequences",
@@ -284,9 +321,13 @@ public abstract class MappedStockItemStockGroup {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID,
+                          value = "Internal reference for this linking row")
+    @MsDefault(name = "DF_Warehouse_StockItemStockGroups_StockItemStockGroupID",
+               value = "(NEXT VALUE FOR [Sequences].[StockItemStockGroupID])")
     private Integer stockItemStockGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -295,9 +336,12 @@ public abstract class MappedStockItemStockGroup {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "Stock item assigned to this stock group (FK indexed via "
+                                  + "unique constraint)")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -306,9 +350,12 @@ public abstract class MappedStockItemStockGroup {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
+                          value = "StockGroup assigned to this stock item (FK indexed via "
+                                  + "unique constraint)")
     private Integer stockGroupId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -319,7 +366,7 @@ public abstract class MappedStockItemStockGroup {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
@@ -327,6 +374,7 @@ public abstract class MappedStockItemStockGroup {
             insertable = true,
             updatable = true
     )
+    @MsDefault(name = "DF_Warehouse_StockItemStockGroups_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
 

@@ -34,7 +34,7 @@ import java.time.LocalDate;
  */
 public class ProductionCompletionSummaryView extends MappedProductionCompletionSummaryView {
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new empty instance.

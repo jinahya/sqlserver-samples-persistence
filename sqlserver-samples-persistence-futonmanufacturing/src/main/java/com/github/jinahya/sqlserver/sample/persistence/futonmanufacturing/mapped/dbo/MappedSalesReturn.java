@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,24 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_SALES_ORDER_ID}, {@value #COLUMN_NAME_CUSTOMER_ID}, {@value #COLUMN_NAME_RETURN_REASON_ID}
  * columns are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
  * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SalesReturn}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ReturnDate}</th><td>{@code (CONVERT([date],getdate()))}</td></tr>
+ * <tr><th scope="row">{@code Status}</th><td>{@code ('Pending')}</td></tr>
+ * <tr><th scope="row">{@code RefundAmount}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code RestockingFee}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedSalesReturn {
@@ -55,7 +75,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String TABLE_NAME = "SalesReturn";
 
-    // -------------------------------------------------------------------------------------------------------- ReturnID
+    // ------------------------------------------------------------------------------------ ReturnID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -67,7 +87,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_RETURN_ID = "returnId";
 
-    // ---------------------------------------------------------------------------------------------------- ReturnNumber
+    // -------------------------------------------------------------------------------- ReturnNumber
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -84,7 +104,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_RETURN_NUMBER = "returnNumber";
 
-    // ---------------------------------------------------------------------------------------------------- SalesOrderID
+    // -------------------------------------------------------------------------------- SalesOrderID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -96,7 +116,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
-    // ------------------------------------------------------------------------------------------------------ CustomerID
+    // ---------------------------------------------------------------------------------- CustomerID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -108,7 +128,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
-    // ------------------------------------------------------------------------------------------------------ ReturnDate
+    // ---------------------------------------------------------------------------------- ReturnDate
 
     /**
      * The name of the {@code date, DEFAULT (CONVERT([date],getdate())), NOT NULL} column. The value is {@value}.
@@ -120,7 +140,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_RETURN_DATE = "returnDate";
 
-    // -------------------------------------------------------------------------------------------------- ReturnReasonID
+    // ------------------------------------------------------------------------------ ReturnReasonID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -132,7 +152,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_RETURN_REASON_ID = "returnReasonId";
 
-    // ---------------------------------------------------------------------------------------------------------- Status
+    // -------------------------------------------------------------------------------------- Status
 
     /**
      * The name of the {@code nvarchar(20), DEFAULT ('Pending'), NOT NULL} column. The value is {@value}.
@@ -149,7 +169,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
-    // ---------------------------------------------------------------------------------------------------- RefundAmount
+    // -------------------------------------------------------------------------------- RefundAmount
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -171,7 +191,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_REFUND_AMOUNT = "refundAmount";
 
-    // --------------------------------------------------------------------------------------------------- RestockingFee
+    // ------------------------------------------------------------------------------- RestockingFee
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -193,7 +213,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_RESTOCKING_FEE = "restockingFee";
 
-    // ----------------------------------------------------------------------------------------------------------- Notes
+    // --------------------------------------------------------------------------------------- Notes
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -205,7 +225,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_NOTES = "notes";
 
-    // ------------------------------------------------------------------------------------------------------ ApprovedBy
+    // ---------------------------------------------------------------------------------- ApprovedBy
 
     /**
      * The name of the {@code nvarchar(100)} column. The value is {@value}.
@@ -222,7 +242,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_APPROVED_BY = "approvedBy";
 
-    // ---------------------------------------------------------------------------------------------------- ApprovedDate
+    // -------------------------------------------------------------------------------- ApprovedDate
 
     /**
      * The name of the {@code datetime2} column. The value is {@value}.
@@ -234,7 +254,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_APPROVED_DATE = "approvedDate";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -246,7 +266,7 @@ public abstract class MappedSalesReturn {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -255,7 +275,7 @@ public abstract class MappedSalesReturn {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -305,7 +325,7 @@ public abstract class MappedSalesReturn {
         return Objects.hash(returnId);
     }
 
-    // -------------------------------------------------------------------------------------------------------- returnId
+    // ------------------------------------------------------------------------------------ returnId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_ID} attribute.
@@ -325,7 +345,7 @@ public abstract class MappedSalesReturn {
         this.returnId = returnId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- returnNumber
+    // -------------------------------------------------------------------------------- returnNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_NUMBER} attribute.
@@ -345,7 +365,7 @@ public abstract class MappedSalesReturn {
         this.returnNumber = returnNumber;
     }
 
-    // ---------------------------------------------------------------------------------------------------- salesOrderId
+    // -------------------------------------------------------------------------------- salesOrderId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
@@ -367,7 +387,7 @@ public abstract class MappedSalesReturn {
         this.salesOrderId = salesOrderId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ customerId
+    // ---------------------------------------------------------------------------------- customerId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
@@ -388,7 +408,7 @@ public abstract class MappedSalesReturn {
         this.customerId = customerId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ returnDate
+    // ---------------------------------------------------------------------------------- returnDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_DATE} attribute.
@@ -408,7 +428,7 @@ public abstract class MappedSalesReturn {
         this.returnDate = returnDate;
     }
 
-    // -------------------------------------------------------------------------------------------------- returnReasonId
+    // ------------------------------------------------------------------------------ returnReasonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RETURN_REASON_ID} attribute.
@@ -430,7 +450,7 @@ public abstract class MappedSalesReturn {
         this.returnReasonId = returnReasonId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- status
+    // -------------------------------------------------------------------------------------- status
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATUS} attribute.
@@ -450,7 +470,7 @@ public abstract class MappedSalesReturn {
         this.status = status;
     }
 
-    // ---------------------------------------------------------------------------------------------------- refundAmount
+    // -------------------------------------------------------------------------------- refundAmount
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REFUND_AMOUNT} attribute.
@@ -470,7 +490,7 @@ public abstract class MappedSalesReturn {
         this.refundAmount = refundAmount;
     }
 
-    // --------------------------------------------------------------------------------------------------- restockingFee
+    // ------------------------------------------------------------------------------- restockingFee
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RESTOCKING_FEE} attribute.
@@ -490,7 +510,7 @@ public abstract class MappedSalesReturn {
         this.restockingFee = restockingFee;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- notes
+    // --------------------------------------------------------------------------------------- notes
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_NOTES} attribute.
@@ -510,7 +530,7 @@ public abstract class MappedSalesReturn {
         this.notes = notes;
     }
 
-    // ------------------------------------------------------------------------------------------------------ approvedBy
+    // ---------------------------------------------------------------------------------- approvedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_APPROVED_BY} attribute.
@@ -530,7 +550,7 @@ public abstract class MappedSalesReturn {
         this.approvedBy = approvedBy;
     }
 
-    // ---------------------------------------------------------------------------------------------------- approvedDate
+    // -------------------------------------------------------------------------------- approvedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_APPROVED_DATE} attribute.
@@ -550,7 +570,7 @@ public abstract class MappedSalesReturn {
         this.approvedDate = approvedDate;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -570,7 +590,7 @@ public abstract class MappedSalesReturn {
         this.createdDate = createdDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -582,7 +602,7 @@ public abstract class MappedSalesReturn {
     )
     private Integer returnId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RETURN_NUMBER)
     @NotNull
     @Basic(optional = false)
@@ -594,7 +614,7 @@ public abstract class MappedSalesReturn {
     )
     private String returnNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -605,7 +625,7 @@ public abstract class MappedSalesReturn {
     )
     private Integer salesOrderId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -616,7 +636,7 @@ public abstract class MappedSalesReturn {
     )
     private Integer customerId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RETURN_DATE,
@@ -624,9 +644,10 @@ public abstract class MappedSalesReturn {
             insertable = true,
             updatable = true
     )
+    @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate returnDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -637,7 +658,7 @@ public abstract class MappedSalesReturn {
     )
     private Integer returnReasonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
@@ -647,9 +668,10 @@ public abstract class MappedSalesReturn {
             updatable = true,
             length = COLUMN_LENGTH_STATUS
     )
+    @MsDefault("('Pending')")
     private String status;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_REFUND_AMOUNT - COLUMN_SCALE_REFUND_AMOUNT,
             fraction = COLUMN_SCALE_REFUND_AMOUNT)
     @Basic(optional = true)
@@ -660,9 +682,10 @@ public abstract class MappedSalesReturn {
             precision = COLUMN_PRECISION_REFUND_AMOUNT,
             scale = COLUMN_SCALE_REFUND_AMOUNT
     )
+    @MsDefault("((0))")
     private BigDecimal refundAmount;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_RESTOCKING_FEE - COLUMN_SCALE_RESTOCKING_FEE,
             fraction = COLUMN_SCALE_RESTOCKING_FEE)
     @Basic(optional = true)
@@ -673,9 +696,10 @@ public abstract class MappedSalesReturn {
             precision = COLUMN_PRECISION_RESTOCKING_FEE,
             scale = COLUMN_SCALE_RESTOCKING_FEE
     )
+    @MsDefault("((0))")
     private BigDecimal restockingFee;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NOTES,
             nullable = true,
@@ -684,7 +708,7 @@ public abstract class MappedSalesReturn {
     )
     private String notes;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_APPROVED_BY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_APPROVED_BY,
@@ -695,7 +719,7 @@ public abstract class MappedSalesReturn {
     )
     private String approvedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_APPROVED_DATE,
             nullable = true,
@@ -704,13 +728,14 @@ public abstract class MappedSalesReturn {
     )
     private LocalDateTime approvedDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 }
 

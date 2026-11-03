@@ -30,7 +30,7 @@ class StoreWithDemographicsView_PersistenceIT extends _Entity_PersistenceIT<Stor
         super(StoreWithDemographicsView.class);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Does nothing; {@code Sales.vStoreWithDemographics} is a view, which no row is inserted into.

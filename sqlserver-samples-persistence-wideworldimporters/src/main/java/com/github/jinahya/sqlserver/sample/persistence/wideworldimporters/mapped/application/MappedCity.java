@@ -22,6 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -45,8 +48,46 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_STATE_PROVINCE_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Application.Cities}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CityID}</th>
+ *     <td>Numeric ID used for reference to a city within the database</td></tr>
+ * <tr><th scope="row">{@code CityName}</th><td>Formal name of the city</td></tr>
+ * <tr><th scope="row">{@code StateProvinceID}</th><td>State or province for this city</td></tr>
+ * <tr><th scope="row">{@code Location}</th><td>Geographic location of the city</td></tr>
+ * <tr><th scope="row">{@code LatestRecordedPopulation}</th>
+ *     <td>Latest available population for the City</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Application.Cities}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CityID}</th><td>{@code (NEXT VALUE FOR [Sequences].[CityID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCity.TABLE_SCHEMA,
+        table = MappedCity.TABLE_NAME,
+        value = "Cities that are part of any address (including geographic location)"
+)
+@MsTemporal(
+        historyTable = "Application.Cities_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedCity {
 
     /**
@@ -59,7 +100,7 @@ public abstract class MappedCity {
      */
     public static final String TABLE_NAME = "Cities";
 
-    // ---------------------------------------------------------------------------------------------------------- CityID
+    // -------------------------------------------------------------------------------------- CityID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.CityID, NOT NULL} column. The value is {@value}.
@@ -71,7 +112,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_CITY_ID = "cityId";
 
-    // -------------------------------------------------------------------------------------------------------- CityName
+    // ------------------------------------------------------------------------------------ CityName
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -88,7 +129,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_CITY_NAME = "cityName";
 
-    // ------------------------------------------------------------------------------------------------- StateProvinceID
+    // ----------------------------------------------------------------------------- StateProvinceID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -100,7 +141,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
-    // -------------------------------------------------------------------------------------------------------- Location
+    // ------------------------------------------------------------------------------------ Location
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -112,7 +153,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_LOCATION = "location";
 
-    // ---------------------------------------------------------------------------------------- LatestRecordedPopulation
+    // -------------------------------------------------------------------- LatestRecordedPopulation
 
     /**
      * The name of the {@code bigint} column. The value is {@value}.
@@ -125,7 +166,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION = "latestRecordedPopulation";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -137,7 +178,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -149,7 +190,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -161,7 +202,7 @@ public abstract class MappedCity {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -170,7 +211,7 @@ public abstract class MappedCity {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -215,7 +256,7 @@ public abstract class MappedCity {
         return Objects.hash(cityId);
     }
 
-    // ---------------------------------------------------------------------------------------------------------- cityId
+    // -------------------------------------------------------------------------------------- cityId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY_ID} attribute.
@@ -235,7 +276,7 @@ public abstract class MappedCity {
         this.cityId = cityId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- cityName
+    // ------------------------------------------------------------------------------------ cityName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY_NAME} attribute.
@@ -255,7 +296,7 @@ public abstract class MappedCity {
         this.cityName = cityName;
     }
 
-    // ------------------------------------------------------------------------------------------------- stateProvinceId
+    // ----------------------------------------------------------------------------- stateProvinceId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
@@ -277,7 +318,7 @@ public abstract class MappedCity {
         this.stateProvinceId = stateProvinceId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- location
+    // ------------------------------------------------------------------------------------ location
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION} attribute.
@@ -297,7 +338,7 @@ public abstract class MappedCity {
         this.location = location;
     }
 
-    // ---------------------------------------------------------------------------------------- latestRecordedPopulation
+    // -------------------------------------------------------------------- latestRecordedPopulation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute.
@@ -318,7 +359,7 @@ public abstract class MappedCity {
         this.latestRecordedPopulation = latestRecordedPopulation;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -340,7 +381,7 @@ public abstract class MappedCity {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -361,7 +402,7 @@ public abstract class MappedCity {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -382,7 +423,7 @@ public abstract class MappedCity {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.CityID", schema = "Sequences", sequenceName = "CityID",
@@ -393,9 +434,12 @@ public abstract class MappedCity {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CITY_ID,
+                          value = "Numeric ID used for reference to a city within the database")
+    @MsDefault(name = "DF_Application_Cities_CityID", value = "(NEXT VALUE FOR [Sequences].[CityID])")
     private Integer cityId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @NotNull
     @Basic(optional = false)
@@ -405,9 +449,10 @@ public abstract class MappedCity {
             updatable = true,
             length = COLUMN_LENGTH_CITY_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_CITY_NAME, value = "Formal name of the city")
     private String cityName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -416,9 +461,11 @@ public abstract class MappedCity {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
+                          value = "State or province for this city")
     private Integer stateProvinceId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION,
@@ -426,18 +473,21 @@ public abstract class MappedCity {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LOCATION, value = "Geographic location of the city")
     private Geography location;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
+                          value = "Latest available population for the City")
     private Long latestRecordedPopulation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -448,7 +498,7 @@ public abstract class MappedCity {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -459,7 +509,7 @@ public abstract class MappedCity {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

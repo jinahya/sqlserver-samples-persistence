@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +42,25 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_ITEM_TYPE_ID}, {@value #COLUMN_NAME_UNIT_ID} columns are mapped read-only, as a foreign key;
  * the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.Items}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StandardCost}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code ListPrice}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code IsActive}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code LeadTimeDays}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code ReorderPoint}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code SafetyStock}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code CreatedDate}</th><td>{@code (getdate())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedItem {
@@ -54,7 +75,7 @@ public abstract class MappedItem {
      */
     public static final String TABLE_NAME = "Items";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +87,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // -------------------------------------------------------------------------------------------------------- ItemCode
+    // ------------------------------------------------------------------------------------ ItemCode
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -83,7 +104,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_ITEM_CODE = "itemCode";
 
-    // -------------------------------------------------------------------------------------------------------- ItemName
+    // ------------------------------------------------------------------------------------ ItemName
 
     /**
      * The name of the {@code nvarchar(255), NOT NULL} column. The value is {@value}.
@@ -100,7 +121,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_ITEM_NAME = "itemName";
 
-    // ------------------------------------------------------------------------------------------------------ ItemTypeID
+    // ---------------------------------------------------------------------------------- ItemTypeID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -112,7 +133,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_ITEM_TYPE_ID = "itemTypeId";
 
-    // ---------------------------------------------------------------------------------------------------------- UnitID
+    // -------------------------------------------------------------------------------------- UnitID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -124,7 +145,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_UNIT_ID = "unitId";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -136,7 +157,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // ---------------------------------------------------------------------------------------------------- StandardCost
+    // -------------------------------------------------------------------------------- StandardCost
 
     /**
      * The name of the {@code decimal(18, 4), DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -158,7 +179,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_STANDARD_COST = "standardCost";
 
-    // ------------------------------------------------------------------------------------------------------- ListPrice
+    // ----------------------------------------------------------------------------------- ListPrice
 
     /**
      * The name of the {@code decimal(18, 4), DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -180,7 +201,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_LIST_PRICE = "listPrice";
 
-    // -------------------------------------------------------------------------------------------------------- IsActive
+    // ------------------------------------------------------------------------------------ IsActive
 
     /**
      * The name of the {@code bit, DEFAULT ((1)), NOT NULL} column. The value is {@value}.
@@ -192,7 +213,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_IS_ACTIVE = "isActive";
 
-    // ---------------------------------------------------------------------------------------------------- LeadTimeDays
+    // -------------------------------------------------------------------------------- LeadTimeDays
 
     /**
      * The name of the {@code int, DEFAULT ((0))} column. The value is {@value}.
@@ -204,7 +225,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
 
-    // ---------------------------------------------------------------------------------------------------- ReorderPoint
+    // -------------------------------------------------------------------------------- ReorderPoint
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -226,7 +247,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_REORDER_POINT = "reorderPoint";
 
-    // ----------------------------------------------------------------------------------------------------- SafetyStock
+    // --------------------------------------------------------------------------------- SafetyStock
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((0))} column. The value is {@value}.
@@ -248,7 +269,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_SAFETY_STOCK = "safetyStock";
 
-    // ----------------------------------------------------------------------------------------------------- CreatedDate
+    // --------------------------------------------------------------------------------- CreatedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -260,7 +281,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_CREATED_DATE = "createdDate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime2, DEFAULT (getdate())} column. The value is {@value}.
@@ -272,7 +293,7 @@ public abstract class MappedItem {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -281,7 +302,7 @@ public abstract class MappedItem {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -332,7 +353,7 @@ public abstract class MappedItem {
         return Objects.hash(itemId);
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -352,7 +373,7 @@ public abstract class MappedItem {
         this.itemId = itemId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemCode
+    // ------------------------------------------------------------------------------------ itemCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_CODE} attribute.
@@ -372,7 +393,7 @@ public abstract class MappedItem {
         this.itemCode = itemCode;
     }
 
-    // -------------------------------------------------------------------------------------------------------- itemName
+    // ------------------------------------------------------------------------------------ itemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_NAME} attribute.
@@ -392,7 +413,7 @@ public abstract class MappedItem {
         this.itemName = itemName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ itemTypeId
+    // ---------------------------------------------------------------------------------- itemTypeId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE_ID} attribute.
@@ -413,7 +434,7 @@ public abstract class MappedItem {
         this.itemTypeId = itemTypeId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- unitId
+    // -------------------------------------------------------------------------------------- unitId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_ID} attribute.
@@ -434,7 +455,7 @@ public abstract class MappedItem {
         this.unitId = unitId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -454,7 +475,7 @@ public abstract class MappedItem {
         this.description = description;
     }
 
-    // ---------------------------------------------------------------------------------------------------- standardCost
+    // -------------------------------------------------------------------------------- standardCost
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute.
@@ -474,7 +495,7 @@ public abstract class MappedItem {
         this.standardCost = standardCost;
     }
 
-    // ------------------------------------------------------------------------------------------------------- listPrice
+    // ----------------------------------------------------------------------------------- listPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute.
@@ -494,7 +515,7 @@ public abstract class MappedItem {
         this.listPrice = listPrice;
     }
 
-    // -------------------------------------------------------------------------------------------------------- isActive
+    // ------------------------------------------------------------------------------------ isActive
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_ACTIVE} attribute.
@@ -514,7 +535,7 @@ public abstract class MappedItem {
         this.isActive = isActive;
     }
 
-    // ---------------------------------------------------------------------------------------------------- leadTimeDays
+    // -------------------------------------------------------------------------------- leadTimeDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute.
@@ -534,7 +555,7 @@ public abstract class MappedItem {
         this.leadTimeDays = leadTimeDays;
     }
 
-    // ---------------------------------------------------------------------------------------------------- reorderPoint
+    // -------------------------------------------------------------------------------- reorderPoint
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute.
@@ -554,7 +575,7 @@ public abstract class MappedItem {
         this.reorderPoint = reorderPoint;
     }
 
-    // ----------------------------------------------------------------------------------------------------- safetyStock
+    // --------------------------------------------------------------------------------- safetyStock
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SAFETY_STOCK} attribute.
@@ -574,7 +595,7 @@ public abstract class MappedItem {
         this.safetyStock = safetyStock;
     }
 
-    // ----------------------------------------------------------------------------------------------------- createdDate
+    // --------------------------------------------------------------------------------- createdDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
@@ -594,7 +615,7 @@ public abstract class MappedItem {
         this.createdDate = createdDate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -614,7 +635,7 @@ public abstract class MappedItem {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -626,7 +647,7 @@ public abstract class MappedItem {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
@@ -638,7 +659,7 @@ public abstract class MappedItem {
     )
     private String itemCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
@@ -650,7 +671,7 @@ public abstract class MappedItem {
     )
     private String itemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -661,7 +682,7 @@ public abstract class MappedItem {
     )
     private Integer itemTypeId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -672,7 +693,7 @@ public abstract class MappedItem {
     )
     private Integer unitId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DESCRIPTION,
             nullable = true,
@@ -681,7 +702,7 @@ public abstract class MappedItem {
     )
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
             fraction = COLUMN_SCALE_STANDARD_COST)
     @NotNull
@@ -693,9 +714,10 @@ public abstract class MappedItem {
             precision = COLUMN_PRECISION_STANDARD_COST,
             scale = COLUMN_SCALE_STANDARD_COST
     )
+    @MsDefault("((0))")
     private BigDecimal standardCost;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -706,9 +728,10 @@ public abstract class MappedItem {
             precision = COLUMN_PRECISION_LIST_PRICE,
             scale = COLUMN_SCALE_LIST_PRICE
     )
+    @MsDefault("((0))")
     private BigDecimal listPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ACTIVE,
@@ -716,18 +739,20 @@ public abstract class MappedItem {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((1))")
     private Boolean isActive;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("((0))")
     private Integer leadTimeDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_REORDER_POINT - COLUMN_SCALE_REORDER_POINT,
             fraction = COLUMN_SCALE_REORDER_POINT)
     @Basic(optional = true)
@@ -738,9 +763,10 @@ public abstract class MappedItem {
             precision = COLUMN_PRECISION_REORDER_POINT,
             scale = COLUMN_SCALE_REORDER_POINT
     )
+    @MsDefault("((0))")
     private BigDecimal reorderPoint;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SAFETY_STOCK - COLUMN_SCALE_SAFETY_STOCK, fraction = COLUMN_SCALE_SAFETY_STOCK)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SAFETY_STOCK,
@@ -750,24 +776,27 @@ public abstract class MappedItem {
             precision = COLUMN_PRECISION_SAFETY_STOCK,
             scale = COLUMN_SCALE_SAFETY_STOCK
     )
+    @MsDefault("((0))")
     private BigDecimal safetyStock;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREATED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MODIFIED_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 }
 

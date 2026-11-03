@@ -51,7 +51,7 @@ public class PersonPhone extends MappedPersonPhone {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER_TYPE = "phoneNumberType";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -60,7 +60,7 @@ public class PersonPhone extends MappedPersonPhone {
         super();
     }
 
-    // -------------------------------------------------------------------------------------------------- businessEntity
+    // ------------------------------------------------------------------------------ businessEntity
 
     /**
      * Returns the {@code Person} which the {@code FK_PersonPhone_Person_BusinessEntityID} foreign key references.
@@ -82,7 +82,7 @@ public class PersonPhone extends MappedPersonPhone {
         setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
     }
 
-    // ------------------------------------------------------------------------------------------------- phoneNumberType
+    // ----------------------------------------------------------------------------- phoneNumberType
 
     /**
      * Returns the {@code PhoneNumberType} which the {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID} foreign
@@ -105,7 +105,7 @@ public class PersonPhone extends MappedPersonPhone {
         setPhoneNumberTypeId(phoneNumberType == null ? null : phoneNumberType.getPhoneNumberTypeId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -115,7 +115,7 @@ public class PersonPhone extends MappedPersonPhone {
     )
     private Person businessEntity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID,
                 referencedColumnName = MappedPhoneNumberType.COLUMN_NAME_PHONE_NUMBER_TYPE_ID,

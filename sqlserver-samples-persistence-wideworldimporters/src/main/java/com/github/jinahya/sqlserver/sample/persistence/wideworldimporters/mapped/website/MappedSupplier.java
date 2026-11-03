@@ -53,7 +53,7 @@ public abstract class MappedSupplier {
      */
     public static final String TABLE_NAME = "Suppliers";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -65,7 +65,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ---------------------------------------------------------------------------------------------------- SupplierName
+    // -------------------------------------------------------------------------------- SupplierName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -82,7 +82,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_NAME = "supplierName";
 
-    // -------------------------------------------------------------------------------------------- SupplierCategoryName
+    // ------------------------------------------------------------------------ SupplierCategoryName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -100,7 +100,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_CATEGORY_NAME = "supplierCategoryName";
 
-    // -------------------------------------------------------------------------------------------------- PrimaryContact
+    // ------------------------------------------------------------------------------ PrimaryContact
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -117,7 +117,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PRIMARY_CONTACT = "primaryContact";
 
-    // ------------------------------------------------------------------------------------------------ AlternateContact
+    // ---------------------------------------------------------------------------- AlternateContact
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -134,7 +134,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_ALTERNATE_CONTACT = "alternateContact";
 
-    // ----------------------------------------------------------------------------------------------------- PhoneNumber
+    // --------------------------------------------------------------------------------- PhoneNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -151,7 +151,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
-    // ------------------------------------------------------------------------------------------------------- FaxNumber
+    // ----------------------------------------------------------------------------------- FaxNumber
 
     /**
      * The name of the {@code nvarchar(20), NOT NULL} column. The value is {@value}.
@@ -168,7 +168,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_FAX_NUMBER = "faxNumber";
 
-    // ------------------------------------------------------------------------------------------------------ WebsiteURL
+    // ---------------------------------------------------------------------------------- WebsiteURL
 
     /**
      * The name of the {@code nvarchar(256), NOT NULL} column. The value is {@value}.
@@ -185,7 +185,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_WEBSITE_URL = "websiteUrl";
 
-    // -------------------------------------------------------------------------------------------------- DeliveryMethod
+    // ------------------------------------------------------------------------------ DeliveryMethod
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -202,7 +202,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD = "deliveryMethod";
 
-    // -------------------------------------------------------------------------------------------------------- CityName
+    // ------------------------------------------------------------------------------------ CityName
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -219,7 +219,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_CITY_NAME = "cityName";
 
-    // ------------------------------------------------------------------------------------------------ DeliveryLocation
+    // ---------------------------------------------------------------------------- DeliveryLocation
 
     /**
      * The name of the {@code geography} column. The value is {@value}.
@@ -231,7 +231,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_LOCATION = "deliveryLocation";
 
-    // ----------------------------------------------------------------------------------------------- SupplierReference
+    // --------------------------------------------------------------------------- SupplierReference
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -248,7 +248,7 @@ public abstract class MappedSupplier {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_REFERENCE = "supplierReference";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -257,7 +257,7 @@ public abstract class MappedSupplier {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -306,7 +306,7 @@ public abstract class MappedSupplier {
         return Objects.hash(supplierId);
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -326,7 +326,7 @@ public abstract class MappedSupplier {
         this.supplierId = supplierId;
     }
 
-    // ---------------------------------------------------------------------------------------------------- supplierName
+    // -------------------------------------------------------------------------------- supplierName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_NAME} attribute.
@@ -346,7 +346,7 @@ public abstract class MappedSupplier {
         this.supplierName = supplierName;
     }
 
-    // -------------------------------------------------------------------------------------------- supplierCategoryName
+    // ------------------------------------------------------------------------ supplierCategoryName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CATEGORY_NAME} attribute.
@@ -366,7 +366,7 @@ public abstract class MappedSupplier {
         this.supplierCategoryName = supplierCategoryName;
     }
 
-    // -------------------------------------------------------------------------------------------------- primaryContact
+    // ------------------------------------------------------------------------------ primaryContact
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT} attribute.
@@ -386,7 +386,7 @@ public abstract class MappedSupplier {
         this.primaryContact = primaryContact;
     }
 
-    // ------------------------------------------------------------------------------------------------ alternateContact
+    // ---------------------------------------------------------------------------- alternateContact
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT} attribute.
@@ -406,7 +406,7 @@ public abstract class MappedSupplier {
         this.alternateContact = alternateContact;
     }
 
-    // ----------------------------------------------------------------------------------------------------- phoneNumber
+    // --------------------------------------------------------------------------------- phoneNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
@@ -426,7 +426,7 @@ public abstract class MappedSupplier {
         this.phoneNumber = phoneNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- faxNumber
+    // ----------------------------------------------------------------------------------- faxNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FAX_NUMBER} attribute.
@@ -446,7 +446,7 @@ public abstract class MappedSupplier {
         this.faxNumber = faxNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------ websiteUrl
+    // ---------------------------------------------------------------------------------- websiteUrl
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_WEBSITE_URL} attribute.
@@ -466,7 +466,7 @@ public abstract class MappedSupplier {
         this.websiteUrl = websiteUrl;
     }
 
-    // -------------------------------------------------------------------------------------------------- deliveryMethod
+    // ------------------------------------------------------------------------------ deliveryMethod
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD} attribute.
@@ -486,7 +486,7 @@ public abstract class MappedSupplier {
         this.deliveryMethod = deliveryMethod;
     }
 
-    // -------------------------------------------------------------------------------------------------------- cityName
+    // ------------------------------------------------------------------------------------ cityName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CITY_NAME} attribute.
@@ -506,7 +506,7 @@ public abstract class MappedSupplier {
         this.cityName = cityName;
     }
 
-    // ------------------------------------------------------------------------------------------------ deliveryLocation
+    // ---------------------------------------------------------------------------- deliveryLocation
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DELIVERY_LOCATION} attribute.
@@ -526,7 +526,7 @@ public abstract class MappedSupplier {
         this.deliveryLocation = deliveryLocation;
     }
 
-    // ----------------------------------------------------------------------------------------------- supplierReference
+    // --------------------------------------------------------------------------- supplierReference
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_REFERENCE} attribute.
@@ -546,7 +546,7 @@ public abstract class MappedSupplier {
         this.supplierReference = supplierReference;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
@@ -557,7 +557,7 @@ public abstract class MappedSupplier {
     )
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
@@ -570,7 +570,7 @@ public abstract class MappedSupplier {
     )
     private String supplierName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME)
     @Basic(optional = true)
@@ -582,7 +582,7 @@ public abstract class MappedSupplier {
     )
     private String supplierCategoryName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRIMARY_CONTACT)
     @Basic(optional = true)
@@ -594,7 +594,7 @@ public abstract class MappedSupplier {
     )
     private String primaryContact;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ALTERNATE_CONTACT)
     @Basic(optional = true)
@@ -606,7 +606,7 @@ public abstract class MappedSupplier {
     )
     private String alternateContact;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
@@ -619,7 +619,7 @@ public abstract class MappedSupplier {
     )
     private String phoneNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
@@ -632,7 +632,7 @@ public abstract class MappedSupplier {
     )
     private String faxNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
@@ -645,7 +645,7 @@ public abstract class MappedSupplier {
     )
     private String websiteUrl;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_METHOD)
     @Basic(optional = true)
@@ -657,7 +657,7 @@ public abstract class MappedSupplier {
     )
     private String deliveryMethod;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @Basic(optional = true)
@@ -669,7 +669,7 @@ public abstract class MappedSupplier {
     )
     private String cityName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
@@ -680,7 +680,7 @@ public abstract class MappedSupplier {
     )
     private Geography deliveryLocation;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)

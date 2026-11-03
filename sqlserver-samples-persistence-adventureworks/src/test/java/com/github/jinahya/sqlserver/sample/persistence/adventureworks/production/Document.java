@@ -23,17 +23,47 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.Employee;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedDocument;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Production.Document} table.
  */
 @Entity(name = "ProductionDocument")
-@Table(schema = MappedDocument.TABLE_SCHEMA, name = MappedDocument.TABLE_NAME)
+@Table(schema = MappedDocument.TABLE_SCHEMA,
+       name = MappedDocument.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_Document_DocumentLevel_DocumentNode",
+                       columnNames = {
+                               Document.COLUMN_NAME_DOCUMENT_LEVEL,
+                               Document.COLUMN_NAME_DOCUMENT_NODE
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_Document_rowguid",
+                       columnNames = {
+                               Document.COLUMN_NAME_ROWGUID
+                       }
+               ),
+               @UniqueConstraint(
+                       columnNames = {
+                               Document.COLUMN_NAME_ROWGUID
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_Document_Status",
+                       constraint = "([Status]>=(1) AND [Status]<=(3))"
+               )
+       }
+)
 public class Document extends MappedDocument {
 
     /**
@@ -41,7 +71,7 @@ public class Document extends MappedDocument {
      */
     public static final String ATTRIBUTE_NAME_OWNER_EMPLOYEE = "ownerEmployee";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -50,7 +80,7 @@ public class Document extends MappedDocument {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- ownerEmployee
+    // ------------------------------------------------------------------------------- ownerEmployee
 
     /**
      * Returns the {@code Employee} which the {@code FK_Document_Employee_Owner} foreign key references.
@@ -72,7 +102,7 @@ public class Document extends MappedDocument {
         setOwner(ownerEmployee == null ? null : ownerEmployee.getBusinessEntityId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_OWNER,
                 referencedColumnName = MappedEmployee.COLUMN_NAME_BUSINESS_ENTITY_ID,

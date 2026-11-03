@@ -52,7 +52,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String TABLE_NAME = "vSalesPersonSalesByFiscalYears";
 
-    // --------------------------------------------------------------------------------------------------- SalesPersonID
+    // ------------------------------------------------------------------------------- SalesPersonID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -64,7 +64,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_SALES_PERSON_ID = "salesPersonId";
 
-    // -------------------------------------------------------------------------------------------------------- FullName
+    // ------------------------------------------------------------------------------------ FullName
 
     /**
      * The name of the {@code nvarchar(152)} column. The value is {@value}.
@@ -81,7 +81,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_FULL_NAME = "fullName";
 
-    // -------------------------------------------------------------------------------------------------------- JobTitle
+    // ------------------------------------------------------------------------------------ JobTitle
 
     /**
      * The name of the {@code nvarchar(50), NOT NULL} column. The value is {@value}.
@@ -98,7 +98,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
-    // -------------------------------------------------------------------------------------------------- SalesTerritory
+    // ------------------------------------------------------------------------------ SalesTerritory
 
     /**
      * The name of the {@code Name (nvarchar)(50), NOT NULL} column. The value is {@value}.
@@ -115,7 +115,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_SALES_TERRITORY = "salesTerritory";
 
-    // ------------------------------------------------------------------------------------------------------------ 2002
+    // ---------------------------------------------------------------------------------------- 2002
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -127,7 +127,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_YEAR_2002 = "year2002";
 
-    // ------------------------------------------------------------------------------------------------------------ 2003
+    // ---------------------------------------------------------------------------------------- 2003
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -139,7 +139,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_YEAR_2003 = "year2003";
 
-    // ------------------------------------------------------------------------------------------------------------ 2004
+    // ---------------------------------------------------------------------------------------- 2004
 
     /**
      * The name of the {@code money} column. The value is {@value}.
@@ -151,7 +151,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     public static final String ATTRIBUTE_NAME_YEAR_2004 = "year2004";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -160,7 +160,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -204,7 +204,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         return Objects.hash(salesPersonId);
     }
 
-    // --------------------------------------------------------------------------------------------------- salesPersonId
+    // ------------------------------------------------------------------------------- salesPersonId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute.
@@ -224,7 +224,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.salesPersonId = salesPersonId;
     }
 
-    // -------------------------------------------------------------------------------------------------------- fullName
+    // ------------------------------------------------------------------------------------ fullName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FULL_NAME} attribute.
@@ -244,7 +244,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.fullName = fullName;
     }
 
-    // -------------------------------------------------------------------------------------------------------- jobTitle
+    // ------------------------------------------------------------------------------------ jobTitle
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
@@ -264,7 +264,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.jobTitle = jobTitle;
     }
 
-    // -------------------------------------------------------------------------------------------------- salesTerritory
+    // ------------------------------------------------------------------------------ salesTerritory
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_TERRITORY} attribute.
@@ -284,7 +284,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.salesTerritory = salesTerritory;
     }
 
-    // -------------------------------------------------------------------------------------------------------- year2002
+    // ------------------------------------------------------------------------------------ year2002
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR_2002} attribute.
@@ -304,7 +304,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.year2002 = year2002;
     }
 
-    // -------------------------------------------------------------------------------------------------------- year2003
+    // ------------------------------------------------------------------------------------ year2003
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR_2003} attribute.
@@ -324,7 +324,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.year2003 = year2003;
     }
 
-    // -------------------------------------------------------------------------------------------------------- year2004
+    // ------------------------------------------------------------------------------------ year2004
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_YEAR_2004} attribute.
@@ -344,7 +344,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         this.year2004 = year2004;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
     @Column(name = COLUMN_NAME_SALES_PERSON_ID,
@@ -354,7 +354,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     )
     private Integer salesPersonId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @Basic(optional = true)
@@ -366,7 +366,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     )
     private String fullName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
@@ -379,7 +379,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     )
     private String jobTitle;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
@@ -392,7 +392,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     )
     private String salesTerritory;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_2002,
@@ -402,7 +402,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     )
     private BigDecimal year2002;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_2003,
@@ -412,7 +412,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     )
     private BigDecimal year2003;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_2004,

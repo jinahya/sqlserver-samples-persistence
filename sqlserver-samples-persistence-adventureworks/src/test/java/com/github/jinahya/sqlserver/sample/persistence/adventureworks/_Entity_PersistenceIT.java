@@ -59,7 +59,7 @@ public abstract class _Entity_PersistenceIT<T> {
         this.entityClass = Objects.requireNonNull(entityClass, "entityClass is null");
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private List<T> select(final EntityManager entityManager) {
         final var builder = entityManager.getCriteriaBuilder();
         final var query = builder.createQuery(entityClass);
@@ -71,7 +71,7 @@ public abstract class _Entity_PersistenceIT<T> {
         return ___Persistence_TestUtils.entityManagerFactory().getMetamodel().entity(entityClass);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @DisplayName("the installed rows are read, and each is found again by its identifier")
     @Test
     void find() {
@@ -208,6 +208,6 @@ public abstract class _Entity_PersistenceIT<T> {
         // empty
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     protected final Class<T> entityClass;
 }

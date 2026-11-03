@@ -23,17 +23,42 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedStateProvince;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTaxRate;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvince;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code Sales.SalesTaxRate} table.
  */
 @Entity(name = "SalesSalesTaxRate")
-@Table(schema = MappedSalesTaxRate.TABLE_SCHEMA, name = MappedSalesTaxRate.TABLE_NAME)
+@Table(schema = MappedSalesTaxRate.TABLE_SCHEMA,
+       name = MappedSalesTaxRate.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       name = "AK_SalesTaxRate_rowguid",
+                       columnNames = {
+                               SalesTaxRate.COLUMN_NAME_ROWGUID
+                       }
+               ),
+               @UniqueConstraint(
+                       name = "AK_SalesTaxRate_StateProvinceID_TaxType",
+                       columnNames = {
+                               SalesTaxRate.COLUMN_NAME_STATE_PROVINCE_ID,
+                               SalesTaxRate.COLUMN_NAME_TAX_TYPE
+                       }
+               )
+       },
+       check = {
+               @CheckConstraint(
+                       name = "CK_SalesTaxRate_TaxType",
+                       constraint = "([TaxType]>=(1) AND [TaxType]<=(3))"
+               )
+       }
+)
 public class SalesTaxRate extends MappedSalesTaxRate {
 
     /**
@@ -42,7 +67,7 @@ public class SalesTaxRate extends MappedSalesTaxRate {
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE = "stateProvince";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -51,7 +76,7 @@ public class SalesTaxRate extends MappedSalesTaxRate {
         super();
     }
 
-    // --------------------------------------------------------------------------------------------------- stateProvince
+    // ------------------------------------------------------------------------------- stateProvince
 
     /**
      * Returns the {@code StateProvince} which the {@code FK_SalesTaxRate_StateProvince_StateProvinceID} foreign key
@@ -74,7 +99,7 @@ public class SalesTaxRate extends MappedSalesTaxRate {
         setStateProvinceId(stateProvince == null ? null : stateProvince.getStateProvinceId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_STATE_PROVINCE_ID,
                 referencedColumnName = MappedStateProvince.COLUMN_NAME_STATE_PROVINCE_ID,

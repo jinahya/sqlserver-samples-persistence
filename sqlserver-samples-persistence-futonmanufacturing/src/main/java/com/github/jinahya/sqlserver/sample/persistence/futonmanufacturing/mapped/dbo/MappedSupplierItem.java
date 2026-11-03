@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +42,23 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_SUPPLIER_ID}, {@value #COLUMN_NAME_ITEM_ID} columns are mapped read-only, as a foreign key;
  * the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code dbo.SupplierItem}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code MinimumOrderQuantity}</th><td>{@code ((1))}</td></tr>
+ * <tr><th scope="row">{@code LeadTimeDays}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code IsPreferred}</th><td>{@code ((0))}</td></tr>
+ * <tr><th scope="row">{@code EffectiveDate}</th><td>{@code (CONVERT([date],getdate()))}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *      CAST and CONVERT</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedSupplierItem {
@@ -54,7 +73,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String TABLE_NAME = "SupplierItem";
 
-    // -------------------------------------------------------------------------------------------------- SupplierItemID
+    // ------------------------------------------------------------------------------ SupplierItemID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -66,7 +85,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ITEM_ID = "supplierItemId";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -78,7 +97,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // ---------------------------------------------------------------------------------------------------------- ItemID
+    // -------------------------------------------------------------------------------------- ItemID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -90,7 +109,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
 
-    // ---------------------------------------------------------------------------------------------- SupplierPartNumber
+    // -------------------------------------------------------------------------- SupplierPartNumber
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -108,7 +127,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_PART_NUMBER = "supplierPartNumber";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 4), NOT NULL} column. The value is {@value}.
@@ -130,7 +149,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // -------------------------------------------------------------------------------------------- MinimumOrderQuantity
+    // ------------------------------------------------------------------------ MinimumOrderQuantity
 
     /**
      * The name of the {@code decimal(18, 2), DEFAULT ((1))} column. The value is {@value}.
@@ -153,7 +172,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_MINIMUM_ORDER_QUANTITY = "minimumOrderQuantity";
 
-    // ---------------------------------------------------------------------------------------------------- LeadTimeDays
+    // -------------------------------------------------------------------------------- LeadTimeDays
 
     /**
      * The name of the {@code int, DEFAULT ((0))} column. The value is {@value}.
@@ -165,7 +184,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
 
-    // ----------------------------------------------------------------------------------------------------- IsPreferred
+    // --------------------------------------------------------------------------------- IsPreferred
 
     /**
      * The name of the {@code bit, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
@@ -177,7 +196,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_IS_PREFERRED = "isPreferred";
 
-    // --------------------------------------------------------------------------------------------------- EffectiveDate
+    // ------------------------------------------------------------------------------- EffectiveDate
 
     /**
      * The name of the {@code date, DEFAULT (CONVERT([date],getdate()))} column. The value is {@value}.
@@ -189,7 +208,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_EFFECTIVE_DATE = "effectiveDate";
 
-    // --------------------------------------------------------------------------------------------------------- EndDate
+    // ------------------------------------------------------------------------------------- EndDate
 
     /**
      * The name of the {@code date} column. The value is {@value}.
@@ -201,7 +220,7 @@ public abstract class MappedSupplierItem {
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -210,7 +229,7 @@ public abstract class MappedSupplierItem {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -257,7 +276,7 @@ public abstract class MappedSupplierItem {
         return Objects.hash(supplierItemId);
     }
 
-    // -------------------------------------------------------------------------------------------------- supplierItemId
+    // ------------------------------------------------------------------------------ supplierItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ITEM_ID} attribute.
@@ -277,7 +296,7 @@ public abstract class MappedSupplierItem {
         this.supplierItemId = supplierItemId;
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -298,7 +317,7 @@ public abstract class MappedSupplierItem {
         this.supplierId = supplierId;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- itemId
+    // -------------------------------------------------------------------------------------- itemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
@@ -319,7 +338,7 @@ public abstract class MappedSupplierItem {
         this.itemId = itemId;
     }
 
-    // ---------------------------------------------------------------------------------------------- supplierPartNumber
+    // -------------------------------------------------------------------------- supplierPartNumber
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_PART_NUMBER} attribute.
@@ -339,7 +358,7 @@ public abstract class MappedSupplierItem {
         this.supplierPartNumber = supplierPartNumber;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -359,7 +378,7 @@ public abstract class MappedSupplierItem {
         this.unitPrice = unitPrice;
     }
 
-    // -------------------------------------------------------------------------------------------- minimumOrderQuantity
+    // ------------------------------------------------------------------------ minimumOrderQuantity
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MINIMUM_ORDER_QUANTITY} attribute.
@@ -379,7 +398,7 @@ public abstract class MappedSupplierItem {
         this.minimumOrderQuantity = minimumOrderQuantity;
     }
 
-    // ---------------------------------------------------------------------------------------------------- leadTimeDays
+    // -------------------------------------------------------------------------------- leadTimeDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute.
@@ -399,7 +418,7 @@ public abstract class MappedSupplierItem {
         this.leadTimeDays = leadTimeDays;
     }
 
-    // ----------------------------------------------------------------------------------------------------- isPreferred
+    // --------------------------------------------------------------------------------- isPreferred
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_PREFERRED} attribute.
@@ -419,7 +438,7 @@ public abstract class MappedSupplierItem {
         this.isPreferred = isPreferred;
     }
 
-    // --------------------------------------------------------------------------------------------------- effectiveDate
+    // ------------------------------------------------------------------------------- effectiveDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_EFFECTIVE_DATE} attribute.
@@ -439,7 +458,7 @@ public abstract class MappedSupplierItem {
         this.effectiveDate = effectiveDate;
     }
 
-    // --------------------------------------------------------------------------------------------------------- endDate
+    // ------------------------------------------------------------------------------------- endDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute.
@@ -459,7 +478,7 @@ public abstract class MappedSupplierItem {
         this.endDate = endDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -471,7 +490,7 @@ public abstract class MappedSupplierItem {
     )
     private Integer supplierItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -482,7 +501,7 @@ public abstract class MappedSupplierItem {
     )
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -493,7 +512,7 @@ public abstract class MappedSupplierItem {
     )
     private Integer itemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_PART_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_PART_NUMBER,
@@ -504,7 +523,7 @@ public abstract class MappedSupplierItem {
     )
     private String supplierPartNumber;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -517,7 +536,7 @@ public abstract class MappedSupplierItem {
     )
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY - COLUMN_SCALE_MINIMUM_ORDER_QUANTITY,
             fraction = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY)
     @Basic(optional = true)
@@ -528,18 +547,20 @@ public abstract class MappedSupplierItem {
             precision = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY,
             scale = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY
     )
+    @MsDefault("((1))")
     private BigDecimal minimumOrderQuantity;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("((0))")
     private Integer leadTimeDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_PREFERRED,
@@ -547,18 +568,20 @@ public abstract class MappedSupplierItem {
             insertable = true,
             updatable = true
     )
+    @MsDefault("((0))")
     private Boolean isPreferred;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EFFECTIVE_DATE,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate effectiveDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_END_DATE,
             nullable = true,

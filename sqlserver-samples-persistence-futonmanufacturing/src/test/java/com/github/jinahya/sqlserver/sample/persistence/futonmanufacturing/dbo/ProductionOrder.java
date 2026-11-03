@@ -29,12 +29,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * An entity which maps the {@code dbo.ProductionOrder} table.
  */
 @Entity(name = "DboProductionOrder")
-@Table(schema = MappedProductionOrder.TABLE_SCHEMA, name = MappedProductionOrder.TABLE_NAME)
+@Table(schema = MappedProductionOrder.TABLE_SCHEMA,
+       name = MappedProductionOrder.TABLE_NAME,
+       uniqueConstraints = {
+               @UniqueConstraint(
+                       columnNames = {
+                               ProductionOrder.COLUMN_NAME_WORK_ORDER_NUMBER
+                       }
+               )
+       }
+)
 public class ProductionOrder extends MappedProductionOrder {
 
     /**
@@ -52,7 +62,7 @@ public class ProductionOrder extends MappedProductionOrder {
      */
     public static final String ATTRIBUTE_NAME_WORK_CENTER = "workCenter";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -61,7 +71,7 @@ public class ProductionOrder extends MappedProductionOrder {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------------------ item
+    // ---------------------------------------------------------------------------------------- item
 
     /**
      * Returns the {@code Item} which the {@code FK_ProdOrder_Item} foreign key references.
@@ -83,7 +93,7 @@ public class ProductionOrder extends MappedProductionOrder {
         setItemId(item == null ? null : item.getItemId());
     }
 
-    // ------------------------------------------------------------------------------------------------------- warehouse
+    // ----------------------------------------------------------------------------------- warehouse
 
     /**
      * Returns the {@code Warehouse} which the {@code FK_ProdOrder_Warehouse} foreign key references.
@@ -105,7 +115,7 @@ public class ProductionOrder extends MappedProductionOrder {
         setWarehouseId(warehouse == null ? null : warehouse.getWarehouseId());
     }
 
-    // ------------------------------------------------------------------------------------------------------ workCenter
+    // ---------------------------------------------------------------------------------- workCenter
 
     /**
      * Returns the {@code WorkCenter} which the {@code FK_ProdOrder_WorkCenter} foreign key references.
@@ -127,7 +137,7 @@ public class ProductionOrder extends MappedProductionOrder {
         setWorkCenterId(workCenter == null ? null : workCenter.getWorkCenterId());
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_ITEM_ID,
                 referencedColumnName = MappedItem.COLUMN_NAME_ITEM_ID,
@@ -137,7 +147,7 @@ public class ProductionOrder extends MappedProductionOrder {
     )
     private Item item;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WAREHOUSE_ID,
                 referencedColumnName = MappedWarehouse.COLUMN_NAME_WAREHOUSE_ID,
@@ -147,7 +157,7 @@ public class ProductionOrder extends MappedProductionOrder {
     )
     private Warehouse warehouse;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WORK_CENTER_ID,
                 referencedColumnName = MappedWorkCenter.COLUMN_NAME_WORK_CENTER_ID,

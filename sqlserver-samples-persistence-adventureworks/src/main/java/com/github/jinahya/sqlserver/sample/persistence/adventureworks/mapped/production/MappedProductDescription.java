@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -35,8 +37,44 @@ import java.util.UUID;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductDescription} table.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Production.ProductDescription}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ProductDescriptionID}</th>
+ *     <td>Primary key for ProductDescription records.</td></tr>
+ * <tr><th scope="row">{@code Description}</th><td>Description of the product.</td></tr>
+ * <tr><th scope="row">{@code rowguid}</th>
+ *     <td>ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication
+ *     sample.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Production.ProductDescription}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code rowguid}</th><td>{@code (newid())}</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedProductDescription.TABLE_SCHEMA,
+        table = MappedProductDescription.TABLE_NAME,
+        value = "Product descriptions in several languages."
+)
 public abstract class MappedProductDescription {
 
     /**
@@ -49,7 +87,7 @@ public abstract class MappedProductDescription {
      */
     public static final String TABLE_NAME = "ProductDescription";
 
-    // -------------------------------------------------------------------------------------------- ProductDescriptionID
+    // ------------------------------------------------------------------------ ProductDescriptionID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -62,7 +100,7 @@ public abstract class MappedProductDescription {
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID = "productDescriptionId";
 
-    // ----------------------------------------------------------------------------------------------------- Description
+    // --------------------------------------------------------------------------------- Description
 
     /**
      * The name of the {@code nvarchar(400), NOT NULL} column. The value is {@value}.
@@ -79,7 +117,7 @@ public abstract class MappedProductDescription {
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
@@ -91,7 +129,7 @@ public abstract class MappedProductDescription {
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -103,7 +141,7 @@ public abstract class MappedProductDescription {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -112,7 +150,7 @@ public abstract class MappedProductDescription {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -153,7 +191,7 @@ public abstract class MappedProductDescription {
         return Objects.hash(productDescriptionId);
     }
 
-    // -------------------------------------------------------------------------------------------- productDescriptionId
+    // ------------------------------------------------------------------------ productDescriptionId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID} attribute.
@@ -173,7 +211,7 @@ public abstract class MappedProductDescription {
         this.productDescriptionId = productDescriptionId;
     }
 
-    // ----------------------------------------------------------------------------------------------------- description
+    // --------------------------------------------------------------------------------- description
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
@@ -193,7 +231,7 @@ public abstract class MappedProductDescription {
         this.description = description;
     }
 
-    // --------------------------------------------------------------------------------------------------------- rowguid
+    // ------------------------------------------------------------------------------------- rowguid
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
@@ -213,7 +251,7 @@ public abstract class MappedProductDescription {
         this.rowguid = rowguid;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -233,7 +271,7 @@ public abstract class MappedProductDescription {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -243,9 +281,11 @@ public abstract class MappedProductDescription {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
+                          value = "Primary key for ProductDescription records.")
     private Integer productDescriptionId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
@@ -255,19 +295,24 @@ public abstract class MappedProductDescription {
             updatable = true,
             length = COLUMN_LENGTH_DESCRIPTION
     )
+    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION, value = "Description of the product.")
     private String description;
 
-    // -----------------------------------------------------------------------------------------------------------------
-    @NotNull
+    // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID,
             nullable = false,
-            insertable = true,
-            updatable = true
+            insertable = false,
+            updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
+                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
+                                  + "support a merge replication sample.")
+    @MsDefault(name = "DF_ProductDescription_rowguid", value = "(newid())")
     private UUID rowguid;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -276,6 +321,9 @@ public abstract class MappedProductDescription {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_ProductDescription_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

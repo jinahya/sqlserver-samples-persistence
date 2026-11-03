@@ -20,6 +20,10 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTemporal;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -45,8 +49,92 @@ import java.util.Objects;
  * {@value #COLUMN_NAME_OUTER_PACKAGE_ID}, {@value #COLUMN_NAME_LAST_EDITED_BY} columns are mapped read-only, as a
  * foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Warehouse.StockItems}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemID}</th>
+ *     <td>Numeric ID used for reference to a stock item within the database</td></tr>
+ * <tr><th scope="row">{@code StockItemName}</th>
+ *     <td>Full name of a stock item (but not a full description)</td></tr>
+ * <tr><th scope="row">{@code SupplierID}</th><td>Usual supplier for this stock item</td></tr>
+ * <tr><th scope="row">{@code ColorID}</th><td>Color (optional) for this stock item</td></tr>
+ * <tr><th scope="row">{@code UnitPackageID}</th>
+ *     <td>Usual package for selling units of this stock item</td></tr>
+ * <tr><th scope="row">{@code OuterPackageID}</th>
+ *     <td>Usual package for selling outers of this stock item (ie cartons, boxes, etc.)</td></tr>
+ * <tr><th scope="row">{@code Brand}</th>
+ *     <td>Brand for the stock item (if the item is branded)</td></tr>
+ * <tr><th scope="row">{@code Size}</th><td>Size of this item (eg: 100mm)</td></tr>
+ * <tr><th scope="row">{@code LeadTimeDays}</th>
+ *     <td>Number of days typically taken from order to receipt of this stock item</td></tr>
+ * <tr><th scope="row">{@code QuantityPerOuter}</th>
+ *     <td>Quantity of the stock item in an outer package</td></tr>
+ * <tr><th scope="row">{@code IsChillerStock}</th>
+ *     <td>Does this stock item need to be in a chiller?</td></tr>
+ * <tr><th scope="row">{@code Barcode}</th><td>Barcode for this stock item</td></tr>
+ * <tr><th scope="row">{@code TaxRate}</th><td>Tax rate to be applied</td></tr>
+ * <tr><th scope="row">{@code UnitPrice}</th>
+ *     <td>Selling price (ex-tax) for one unit of this product</td></tr>
+ * <tr><th scope="row">{@code RecommendedRetailPrice}</th>
+ *     <td>Recommended retail price for this stock item</td></tr>
+ * <tr><th scope="row">{@code TypicalWeightPerUnit}</th>
+ *     <td>Typical weight for one unit of this product (packaged)</td></tr>
+ * <tr><th scope="row">{@code MarketingComments}</th>
+ *     <td>Marketing comments for this stock item (shared outside the organization)</td></tr>
+ * <tr><th scope="row">{@code InternalComments}</th>
+ *     <td>Internal comments (not exposed outside organization)</td></tr>
+ * <tr><th scope="row">{@code Photo}</th><td>Photo of the product</td></tr>
+ * <tr><th scope="row">{@code CustomFields}</th><td>Custom fields added by system users</td></tr>
+ * <tr><th scope="row">{@code Tags}</th>
+ *     <td>Advertising tags associated with this stock item (JSON array retrieved from
+ *     CustomFields)</td></tr>
+ * <tr><th scope="row">{@code SearchDetails}</th>
+ *     <td>Combination of columns used by full text search</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Warehouse.StockItems}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code StockItemID}</th><td>{@code (NEXT VALUE FOR [Sequences].[StockItemID])}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Computed columns of {@code Warehouse.StockItems}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th><th scope="col">Persisted</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code Tags}</th>
+ *     <td>{@code (json_query([CustomFields],N'$.Tags'))}</td><td>{@code false}</td></tr>
+ * <tr><th scope="row">{@code SearchDetails}</th>
+ *     <td>{@code (concat([StockItemName],N' ',[MarketingComments]))}</td><td>{@code false}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql">NEXT VALUE FOR</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/json-query-transact-sql">JSON_QUERY</a>
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/concat-transact-sql">CONCAT</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedStockItem.TABLE_SCHEMA,
+        table = MappedStockItem.TABLE_NAME,
+        value = "Main entity table for stock items"
+)
+@MsTemporal(
+        historyTable = "Warehouse.StockItems_Archive",
+        periodStart = "ValidFrom",
+        periodEnd = "ValidTo"
+)
 public abstract class MappedStockItem {
 
     /**
@@ -59,7 +147,7 @@ public abstract class MappedStockItem {
      */
     public static final String TABLE_NAME = "StockItems";
 
-    // ----------------------------------------------------------------------------------------------------- StockItemID
+    // --------------------------------------------------------------------------------- StockItemID
 
     /**
      * The name of the {@code int, NEXT VALUE FOR Sequences.StockItemID, NOT NULL} column. The value is {@value}.
@@ -71,7 +159,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
 
-    // --------------------------------------------------------------------------------------------------- StockItemName
+    // ------------------------------------------------------------------------------- StockItemName
 
     /**
      * The name of the {@code nvarchar(100), NOT NULL} column. The value is {@value}.
@@ -88,7 +176,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_NAME = "stockItemName";
 
-    // ------------------------------------------------------------------------------------------------------ SupplierID
+    // ---------------------------------------------------------------------------------- SupplierID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -100,7 +188,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
 
-    // --------------------------------------------------------------------------------------------------------- ColorID
+    // ------------------------------------------------------------------------------------- ColorID
 
     /**
      * The name of the {@code int} column. The value is {@value}.
@@ -112,7 +200,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_COLOR_ID = "colorId";
 
-    // --------------------------------------------------------------------------------------------------- UnitPackageID
+    // ------------------------------------------------------------------------------- UnitPackageID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -124,7 +212,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PACKAGE_ID = "unitPackageId";
 
-    // -------------------------------------------------------------------------------------------------- OuterPackageID
+    // ------------------------------------------------------------------------------ OuterPackageID
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -136,7 +224,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_OUTER_PACKAGE_ID = "outerPackageId";
 
-    // ----------------------------------------------------------------------------------------------------------- Brand
+    // --------------------------------------------------------------------------------------- Brand
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -153,7 +241,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_BRAND = "brand";
 
-    // ------------------------------------------------------------------------------------------------------------ Size
+    // ---------------------------------------------------------------------------------------- Size
 
     /**
      * The name of the {@code nvarchar(20)} column. The value is {@value}.
@@ -170,7 +258,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_SIZE = "size";
 
-    // ---------------------------------------------------------------------------------------------------- LeadTimeDays
+    // -------------------------------------------------------------------------------- LeadTimeDays
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -182,7 +270,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
 
-    // ------------------------------------------------------------------------------------------------ QuantityPerOuter
+    // ---------------------------------------------------------------------------- QuantityPerOuter
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -194,7 +282,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_QUANTITY_PER_OUTER = "quantityPerOuter";
 
-    // -------------------------------------------------------------------------------------------------- IsChillerStock
+    // ------------------------------------------------------------------------------ IsChillerStock
 
     /**
      * The name of the {@code bit, NOT NULL} column. The value is {@value}.
@@ -206,7 +294,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_IS_CHILLER_STOCK = "isChillerStock";
 
-    // --------------------------------------------------------------------------------------------------------- Barcode
+    // ------------------------------------------------------------------------------------- Barcode
 
     /**
      * The name of the {@code nvarchar(50)} column. The value is {@value}.
@@ -223,7 +311,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_BARCODE = "barcode";
 
-    // --------------------------------------------------------------------------------------------------------- TaxRate
+    // ------------------------------------------------------------------------------------- TaxRate
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -245,7 +333,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_TAX_RATE = "taxRate";
 
-    // ------------------------------------------------------------------------------------------------------- UnitPrice
+    // ----------------------------------------------------------------------------------- UnitPrice
 
     /**
      * The name of the {@code decimal(18, 2), NOT NULL} column. The value is {@value}.
@@ -267,7 +355,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
-    // ------------------------------------------------------------------------------------------ RecommendedRetailPrice
+    // ---------------------------------------------------------------------- RecommendedRetailPrice
 
     /**
      * The name of the {@code decimal(18, 2)} column. The value is {@value}.
@@ -290,7 +378,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_RECOMMENDED_RETAIL_PRICE = "recommendedRetailPrice";
 
-    // -------------------------------------------------------------------------------------------- TypicalWeightPerUnit
+    // ------------------------------------------------------------------------ TypicalWeightPerUnit
 
     /**
      * The name of the {@code decimal(18, 3), NOT NULL} column. The value is {@value}.
@@ -313,7 +401,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_TYPICAL_WEIGHT_PER_UNIT = "typicalWeightPerUnit";
 
-    // ----------------------------------------------------------------------------------------------- MarketingComments
+    // --------------------------------------------------------------------------- MarketingComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -325,7 +413,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_MARKETING_COMMENTS = "marketingComments";
 
-    // ------------------------------------------------------------------------------------------------ InternalComments
+    // ---------------------------------------------------------------------------- InternalComments
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -337,7 +425,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_INTERNAL_COMMENTS = "internalComments";
 
-    // ----------------------------------------------------------------------------------------------------------- Photo
+    // --------------------------------------------------------------------------------------- Photo
 
     /**
      * The name of the {@code varbinary(max)} column. The value is {@value}.
@@ -349,7 +437,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_PHOTO = "photo";
 
-    // ---------------------------------------------------------------------------------------------------- CustomFields
+    // -------------------------------------------------------------------------------- CustomFields
 
     /**
      * The name of the {@code nvarchar(max)} column. The value is {@value}.
@@ -361,7 +449,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_CUSTOM_FIELDS = "customFields";
 
-    // ------------------------------------------------------------------------------------------------------------ Tags
+    // ---------------------------------------------------------------------------------------- Tags
 
     /**
      * The name of the {@code nvarchar(max), computed as (json_query([CustomFields],N'$.Tags'))} column. The value is
@@ -374,7 +462,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_TAGS = "tags";
 
-    // --------------------------------------------------------------------------------------------------- SearchDetails
+    // ------------------------------------------------------------------------------- SearchDetails
 
     /**
      * The name of the {@code nvarchar(max), computed as (concat([StockItemName],N' ',[MarketingComments])), NOT NULL}
@@ -387,7 +475,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_SEARCH_DETAILS = "searchDetails";
 
-    // ---------------------------------------------------------------------------------------------------- LastEditedBy
+    // -------------------------------------------------------------------------------- LastEditedBy
 
     /**
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
@@ -399,7 +487,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_LAST_EDITED_BY = "lastEditedBy";
 
-    // ------------------------------------------------------------------------------------------------------- ValidFrom
+    // ----------------------------------------------------------------------------------- ValidFrom
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW START, NOT NULL} column. The value is {@value}.
@@ -411,7 +499,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_VALID_FROM = "validFrom";
 
-    // --------------------------------------------------------------------------------------------------------- ValidTo
+    // ------------------------------------------------------------------------------------- ValidTo
 
     /**
      * The name of the {@code datetime2, GENERATED ALWAYS AS ROW END, NOT NULL} column. The value is {@value}.
@@ -423,7 +511,7 @@ public abstract class MappedStockItem {
      */
     public static final String ATTRIBUTE_NAME_VALID_TO = "validTo";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -432,7 +520,7 @@ public abstract class MappedStockItem {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -494,7 +582,7 @@ public abstract class MappedStockItem {
         return Objects.hash(stockItemId);
     }
 
-    // ----------------------------------------------------------------------------------------------------- stockItemId
+    // --------------------------------------------------------------------------------- stockItemId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
@@ -514,7 +602,7 @@ public abstract class MappedStockItem {
         this.stockItemId = stockItemId;
     }
 
-    // --------------------------------------------------------------------------------------------------- stockItemName
+    // ------------------------------------------------------------------------------- stockItemName
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_NAME} attribute.
@@ -534,7 +622,7 @@ public abstract class MappedStockItem {
         this.stockItemName = stockItemName;
     }
 
-    // ------------------------------------------------------------------------------------------------------ supplierId
+    // ---------------------------------------------------------------------------------- supplierId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
@@ -555,7 +643,7 @@ public abstract class MappedStockItem {
         this.supplierId = supplierId;
     }
 
-    // --------------------------------------------------------------------------------------------------------- colorId
+    // ------------------------------------------------------------------------------------- colorId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_COLOR_ID} attribute.
@@ -576,7 +664,7 @@ public abstract class MappedStockItem {
         this.colorId = colorId;
     }
 
-    // --------------------------------------------------------------------------------------------------- unitPackageId
+    // ------------------------------------------------------------------------------- unitPackageId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute.
@@ -598,7 +686,7 @@ public abstract class MappedStockItem {
         this.unitPackageId = unitPackageId;
     }
 
-    // -------------------------------------------------------------------------------------------------- outerPackageId
+    // ------------------------------------------------------------------------------ outerPackageId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute.
@@ -620,7 +708,7 @@ public abstract class MappedStockItem {
         this.outerPackageId = outerPackageId;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- brand
+    // --------------------------------------------------------------------------------------- brand
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BRAND} attribute.
@@ -640,7 +728,7 @@ public abstract class MappedStockItem {
         this.brand = brand;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ size
+    // ---------------------------------------------------------------------------------------- size
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SIZE} attribute.
@@ -660,7 +748,7 @@ public abstract class MappedStockItem {
         this.size = size;
     }
 
-    // ---------------------------------------------------------------------------------------------------- leadTimeDays
+    // -------------------------------------------------------------------------------- leadTimeDays
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute.
@@ -680,7 +768,7 @@ public abstract class MappedStockItem {
         this.leadTimeDays = leadTimeDays;
     }
 
-    // ------------------------------------------------------------------------------------------------ quantityPerOuter
+    // ---------------------------------------------------------------------------- quantityPerOuter
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_QUANTITY_PER_OUTER} attribute.
@@ -700,7 +788,7 @@ public abstract class MappedStockItem {
         this.quantityPerOuter = quantityPerOuter;
     }
 
-    // -------------------------------------------------------------------------------------------------- isChillerStock
+    // ------------------------------------------------------------------------------ isChillerStock
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_IS_CHILLER_STOCK} attribute.
@@ -720,7 +808,7 @@ public abstract class MappedStockItem {
         this.isChillerStock = isChillerStock;
     }
 
-    // --------------------------------------------------------------------------------------------------------- barcode
+    // ------------------------------------------------------------------------------------- barcode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_BARCODE} attribute.
@@ -740,7 +828,7 @@ public abstract class MappedStockItem {
         this.barcode = barcode;
     }
 
-    // --------------------------------------------------------------------------------------------------------- taxRate
+    // ------------------------------------------------------------------------------------- taxRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAX_RATE} attribute.
@@ -760,7 +848,7 @@ public abstract class MappedStockItem {
         this.taxRate = taxRate;
     }
 
-    // ------------------------------------------------------------------------------------------------------- unitPrice
+    // ----------------------------------------------------------------------------------- unitPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
@@ -780,7 +868,7 @@ public abstract class MappedStockItem {
         this.unitPrice = unitPrice;
     }
 
-    // ------------------------------------------------------------------------------------------ recommendedRetailPrice
+    // ---------------------------------------------------------------------- recommendedRetailPrice
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_RECOMMENDED_RETAIL_PRICE} attribute.
@@ -800,7 +888,7 @@ public abstract class MappedStockItem {
         this.recommendedRetailPrice = recommendedRetailPrice;
     }
 
-    // -------------------------------------------------------------------------------------------- typicalWeightPerUnit
+    // ------------------------------------------------------------------------ typicalWeightPerUnit
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TYPICAL_WEIGHT_PER_UNIT} attribute.
@@ -820,7 +908,7 @@ public abstract class MappedStockItem {
         this.typicalWeightPerUnit = typicalWeightPerUnit;
     }
 
-    // ----------------------------------------------------------------------------------------------- marketingComments
+    // --------------------------------------------------------------------------- marketingComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MARKETING_COMMENTS} attribute.
@@ -840,7 +928,7 @@ public abstract class MappedStockItem {
         this.marketingComments = marketingComments;
     }
 
-    // ------------------------------------------------------------------------------------------------ internalComments
+    // ---------------------------------------------------------------------------- internalComments
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_INTERNAL_COMMENTS} attribute.
@@ -860,7 +948,7 @@ public abstract class MappedStockItem {
         this.internalComments = internalComments;
     }
 
-    // ----------------------------------------------------------------------------------------------------------- photo
+    // --------------------------------------------------------------------------------------- photo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_PHOTO} attribute.
@@ -880,7 +968,7 @@ public abstract class MappedStockItem {
         this.photo = photo;
     }
 
-    // ---------------------------------------------------------------------------------------------------- customFields
+    // -------------------------------------------------------------------------------- customFields
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CUSTOM_FIELDS} attribute.
@@ -900,7 +988,7 @@ public abstract class MappedStockItem {
         this.customFields = customFields;
     }
 
-    // ------------------------------------------------------------------------------------------------------------ tags
+    // ---------------------------------------------------------------------------------------- tags
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TAGS} attribute.
@@ -921,7 +1009,7 @@ public abstract class MappedStockItem {
         this.tags = tags;
     }
 
-    // --------------------------------------------------------------------------------------------------- searchDetails
+    // ------------------------------------------------------------------------------- searchDetails
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_SEARCH_DETAILS} attribute.
@@ -942,7 +1030,7 @@ public abstract class MappedStockItem {
         this.searchDetails = searchDetails;
     }
 
-    // ---------------------------------------------------------------------------------------------------- lastEditedBy
+    // -------------------------------------------------------------------------------- lastEditedBy
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
@@ -964,7 +1052,7 @@ public abstract class MappedStockItem {
         this.lastEditedBy = lastEditedBy;
     }
 
-    // ------------------------------------------------------------------------------------------------------- validFrom
+    // ----------------------------------------------------------------------------------- validFrom
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_FROM} attribute.
@@ -985,7 +1073,7 @@ public abstract class MappedStockItem {
         this.validFrom = validFrom;
     }
 
-    // --------------------------------------------------------------------------------------------------------- validTo
+    // ------------------------------------------------------------------------------------- validTo
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_VALID_TO} attribute.
@@ -1006,7 +1094,7 @@ public abstract class MappedStockItem {
         this.validTo = validTo;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StockItemID", schema = "Sequences",
@@ -1018,9 +1106,13 @@ public abstract class MappedStockItem {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
+                          value = "Numeric ID used for reference to a stock item within the "
+                                  + "database")
+    @MsDefault(name = "DF_Warehouse_StockItems_StockItemID", value = "(NEXT VALUE FOR [Sequences].[StockItemID])")
     private Integer stockItemId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STOCK_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
@@ -1030,9 +1122,11 @@ public abstract class MappedStockItem {
             updatable = true,
             length = COLUMN_LENGTH_STOCK_ITEM_NAME
     )
+    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_NAME,
+                          value = "Full name of a stock item (but not a full description)")
     private String stockItemName;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1041,9 +1135,11 @@ public abstract class MappedStockItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
+                          value = "Usual supplier for this stock item")
     private Integer supplierId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COLOR_ID,
@@ -1051,9 +1147,11 @@ public abstract class MappedStockItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_COLOR_ID,
+                          value = "Color (optional) for this stock item")
     private Integer colorId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1062,9 +1160,11 @@ public abstract class MappedStockItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PACKAGE_ID,
+                          value = "Usual package for selling units of this stock item")
     private Integer unitPackageId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1073,9 +1173,12 @@ public abstract class MappedStockItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_OUTER_PACKAGE_ID,
+                          value = "Usual package for selling outers of this stock item (ie "
+                                  + "cartons, boxes, etc.)")
     private Integer outerPackageId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BRAND)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BRAND,
@@ -1084,9 +1187,11 @@ public abstract class MappedStockItem {
             updatable = true,
             length = COLUMN_LENGTH_BRAND
     )
+    @MsDescription.Column(name = COLUMN_NAME_BRAND,
+                          value = "Brand for the stock item (if the item is branded)")
     private String brand;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SIZE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SIZE,
@@ -1095,9 +1200,10 @@ public abstract class MappedStockItem {
             updatable = true,
             length = COLUMN_LENGTH_SIZE
     )
+    @MsDescription.Column(name = COLUMN_NAME_SIZE, value = "Size of this item (eg: 100mm)")
     private String size;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
@@ -1105,9 +1211,12 @@ public abstract class MappedStockItem {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
+                          value = "Number of days typically taken from order to receipt of this "
+                                  + "stock item")
     private Integer leadTimeDays;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_PER_OUTER,
@@ -1115,9 +1224,11 @@ public abstract class MappedStockItem {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_QUANTITY_PER_OUTER,
+                          value = "Quantity of the stock item in an outer package")
     private Integer quantityPerOuter;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_CHILLER_STOCK,
@@ -1125,9 +1236,11 @@ public abstract class MappedStockItem {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_IS_CHILLER_STOCK,
+                          value = "Does this stock item need to be in a chiller?")
     private Boolean isChillerStock;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BARCODE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BARCODE,
@@ -1136,9 +1249,10 @@ public abstract class MappedStockItem {
             updatable = true,
             length = COLUMN_LENGTH_BARCODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_BARCODE, value = "Barcode for this stock item")
     private String barcode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
@@ -1149,9 +1263,10 @@ public abstract class MappedStockItem {
             precision = COLUMN_PRECISION_TAX_RATE,
             scale = COLUMN_SCALE_TAX_RATE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
     private BigDecimal taxRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
@@ -1162,9 +1277,11 @@ public abstract class MappedStockItem {
             precision = COLUMN_PRECISION_UNIT_PRICE,
             scale = COLUMN_SCALE_UNIT_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
+                          value = "Selling price (ex-tax) for one unit of this product")
     private BigDecimal unitPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE - COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE,
             fraction = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
     @Basic(optional = true)
@@ -1175,9 +1292,11 @@ public abstract class MappedStockItem {
             precision = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE,
             scale = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE
     )
+    @MsDescription.Column(name = COLUMN_NAME_RECOMMENDED_RETAIL_PRICE,
+                          value = "Recommended retail price for this stock item")
     private BigDecimal recommendedRetailPrice;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT - COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT,
             fraction = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
     @NotNull
@@ -1189,45 +1308,55 @@ public abstract class MappedStockItem {
             precision = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT,
             scale = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT
     )
+    @MsDescription.Column(name = COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT,
+                          value = "Typical weight for one unit of this product (packaged)")
     private BigDecimal typicalWeightPerUnit;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MARKETING_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MARKETING_COMMENTS,
+                          value = "Marketing comments for this stock item (shared outside the "
+                                  + "organization)")
     private String marketingComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
+                          value = "Internal comments (not exposed outside organization)")
     private String internalComments;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PHOTO,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_PHOTO, value = "Photo of the product")
     private byte[] photo;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
             nullable = true,
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CUSTOM_FIELDS,
+                          value = "Custom fields added by system users")
     private String customFields;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TAGS,
@@ -1235,9 +1364,13 @@ public abstract class MappedStockItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_TAGS,
+                          value = "Advertising tags associated with this stock item (JSON array "
+                                  + "retrieved from CustomFields)")
+    @MsComputedColumn("(json_query([CustomFields],N'$.Tags'))")
     private String tags;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SEARCH_DETAILS,
@@ -1245,9 +1378,12 @@ public abstract class MappedStockItem {
             insertable = false,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_SEARCH_DETAILS,
+                          value = "Combination of columns used by full text search")
+    @MsComputedColumn("(concat([StockItemName],N' ',[MarketingComments]))")
     private String searchDetails;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
@@ -1258,7 +1394,7 @@ public abstract class MappedStockItem {
     )
     private Integer lastEditedBy;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
@@ -1269,7 +1405,7 @@ public abstract class MappedStockItem {
     )
     private LocalDateTime validFrom;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)

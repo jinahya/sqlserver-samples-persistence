@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
+import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -39,8 +41,46 @@ import java.util.Objects;
  * The {@value #COLUMN_NAME_FROM_CURRENCY_CODE}, {@value #COLUMN_NAME_TO_CURRENCY_CODE} columns are mapped read-only, as
  * a foreign key; the extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ *
+ * <table class="striped">
+ * <caption>Columns of {@code Sales.CurrencyRate}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code CurrencyRateID}</th>
+ *     <td>Primary key for CurrencyRate records.</td></tr>
+ * <tr><th scope="row">{@code CurrencyRateDate}</th>
+ *     <td>Date and time the exchange rate was obtained.</td></tr>
+ * <tr><th scope="row">{@code FromCurrencyCode}</th>
+ *     <td>Exchange rate was converted from this currency code.</td></tr>
+ * <tr><th scope="row">{@code ToCurrencyCode}</th>
+ *     <td>Exchange rate was converted to this currency code.</td></tr>
+ * <tr><th scope="row">{@code AverageRate}</th><td>Average exchange rate for the day.</td></tr>
+ * <tr><th scope="row">{@code EndOfDayRate}</th><td>Final exchange rate for the day.</td></tr>
+ * <tr><th scope="row">{@code ModifiedDate}</th>
+ *     <td>Date and time the record was last updated.</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * <table class="striped">
+ * <caption>Defaults of {@code Sales.CurrencyRate}</caption>
+ * <thead>
+ * <tr><th scope="col">Column</th><th scope="col">Definition</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><th scope="row">{@code ModifiedDate}</th><td>{@code (getdate())}</td></tr>
+ * </tbody>
+ * </table>
+ *
+ * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
+@MsDescription(
+        schema = MappedCurrencyRate.TABLE_SCHEMA,
+        table = MappedCurrencyRate.TABLE_NAME,
+        value = "Currency exchange rates."
+)
 public abstract class MappedCurrencyRate {
 
     /**
@@ -53,7 +93,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String TABLE_NAME = "CurrencyRate";
 
-    // -------------------------------------------------------------------------------------------------- CurrencyRateID
+    // ------------------------------------------------------------------------------ CurrencyRateID
 
     /**
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
@@ -65,7 +105,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_RATE_ID = "currencyRateId";
 
-    // ------------------------------------------------------------------------------------------------ CurrencyRateDate
+    // ---------------------------------------------------------------------------- CurrencyRateDate
 
     /**
      * The name of the {@code datetime, NOT NULL} column. The value is {@value}.
@@ -77,7 +117,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_RATE_DATE = "currencyRateDate";
 
-    // ------------------------------------------------------------------------------------------------ FromCurrencyCode
+    // ---------------------------------------------------------------------------- FromCurrencyCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -94,7 +134,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_FROM_CURRENCY_CODE = "fromCurrencyCode";
 
-    // -------------------------------------------------------------------------------------------------- ToCurrencyCode
+    // ------------------------------------------------------------------------------ ToCurrencyCode
 
     /**
      * The name of the {@code nchar(3), NOT NULL} column. The value is {@value}.
@@ -111,7 +151,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_TO_CURRENCY_CODE = "toCurrencyCode";
 
-    // ----------------------------------------------------------------------------------------------------- AverageRate
+    // --------------------------------------------------------------------------------- AverageRate
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -123,7 +163,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_AVERAGE_RATE = "averageRate";
 
-    // ---------------------------------------------------------------------------------------------------- EndOfDayRate
+    // -------------------------------------------------------------------------------- EndOfDayRate
 
     /**
      * The name of the {@code money, NOT NULL} column. The value is {@value}.
@@ -135,7 +175,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_END_OF_DAY_RATE = "endOfDayRate";
 
-    // ---------------------------------------------------------------------------------------------------- ModifiedDate
+    // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
      * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
@@ -147,7 +187,7 @@ public abstract class MappedCurrencyRate {
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+    // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
      * Creates a new instance.
@@ -156,7 +196,7 @@ public abstract class MappedCurrencyRate {
         super();
     }
 
-    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    // ---------------------------------------------------------------------------- java.lang.Object
 
     @Override
     public String toString() {
@@ -200,7 +240,7 @@ public abstract class MappedCurrencyRate {
         return Objects.hash(currencyRateId);
     }
 
-    // -------------------------------------------------------------------------------------------------- currencyRateId
+    // ------------------------------------------------------------------------------ currencyRateId
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute.
@@ -220,7 +260,7 @@ public abstract class MappedCurrencyRate {
         this.currencyRateId = currencyRateId;
     }
 
-    // ------------------------------------------------------------------------------------------------ currencyRateDate
+    // ---------------------------------------------------------------------------- currencyRateDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_DATE} attribute.
@@ -240,7 +280,7 @@ public abstract class MappedCurrencyRate {
         this.currencyRateDate = currencyRateDate;
     }
 
-    // ------------------------------------------------------------------------------------------------ fromCurrencyCode
+    // ---------------------------------------------------------------------------- fromCurrencyCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_FROM_CURRENCY_CODE} attribute.
@@ -262,7 +302,7 @@ public abstract class MappedCurrencyRate {
         this.fromCurrencyCode = fromCurrencyCode;
     }
 
-    // -------------------------------------------------------------------------------------------------- toCurrencyCode
+    // ------------------------------------------------------------------------------ toCurrencyCode
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_TO_CURRENCY_CODE} attribute.
@@ -284,7 +324,7 @@ public abstract class MappedCurrencyRate {
         this.toCurrencyCode = toCurrencyCode;
     }
 
-    // ----------------------------------------------------------------------------------------------------- averageRate
+    // --------------------------------------------------------------------------------- averageRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_AVERAGE_RATE} attribute.
@@ -304,7 +344,7 @@ public abstract class MappedCurrencyRate {
         this.averageRate = averageRate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- endOfDayRate
+    // -------------------------------------------------------------------------------- endOfDayRate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_END_OF_DAY_RATE} attribute.
@@ -324,7 +364,7 @@ public abstract class MappedCurrencyRate {
         this.endOfDayRate = endOfDayRate;
     }
 
-    // ---------------------------------------------------------------------------------------------------- modifiedDate
+    // -------------------------------------------------------------------------------- modifiedDate
 
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
@@ -344,7 +384,7 @@ public abstract class MappedCurrencyRate {
         this.modifiedDate = modifiedDate;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
@@ -354,9 +394,11 @@ public abstract class MappedCurrencyRate {
             insertable = true,
             updatable = false
     )
+    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
+                          value = "Primary key for CurrencyRate records.")
     private Integer currencyRateId;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CURRENCY_RATE_DATE,
@@ -364,9 +406,11 @@ public abstract class MappedCurrencyRate {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_DATE,
+                          value = "Date and time the exchange rate was obtained.")
     private LocalDateTime currencyRateDate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_FROM_CURRENCY_CODE)
     @NotNull
@@ -377,9 +421,11 @@ public abstract class MappedCurrencyRate {
             updatable = false,
             length = COLUMN_LENGTH_FROM_CURRENCY_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_FROM_CURRENCY_CODE,
+                          value = "Exchange rate was converted from this currency code.")
     private String fromCurrencyCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_TO_CURRENCY_CODE)
     @NotNull
@@ -390,9 +436,11 @@ public abstract class MappedCurrencyRate {
             updatable = false,
             length = COLUMN_LENGTH_TO_CURRENCY_CODE
     )
+    @MsDescription.Column(name = COLUMN_NAME_TO_CURRENCY_CODE,
+                          value = "Exchange rate was converted to this currency code.")
     private String toCurrencyCode;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVERAGE_RATE,
@@ -400,9 +448,11 @@ public abstract class MappedCurrencyRate {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_AVERAGE_RATE,
+                          value = "Average exchange rate for the day.")
     private BigDecimal averageRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_END_OF_DAY_RATE,
@@ -410,9 +460,11 @@ public abstract class MappedCurrencyRate {
             insertable = true,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_END_OF_DAY_RATE,
+                          value = "Final exchange rate for the day.")
     private BigDecimal endOfDayRate;
 
-    // -----------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
@@ -421,6 +473,9 @@ public abstract class MappedCurrencyRate {
             insertable = false,
             updatable = true
     )
+    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
+                          value = "Date and time the record was last updated.")
+    @MsDefault(name = "DF_CurrencyRate_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 
