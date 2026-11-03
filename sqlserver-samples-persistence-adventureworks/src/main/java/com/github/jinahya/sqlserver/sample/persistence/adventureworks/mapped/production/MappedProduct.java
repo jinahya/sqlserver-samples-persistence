@@ -1195,7 +1195,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SIZE_UNIT_MEASURE_CODE} attribute.
      */
-    public String getSizeUnitMeasureCode() {
+    protected String getSizeUnitMeasureCode() {
         return sizeUnitMeasureCode;
     }
 
@@ -1218,7 +1218,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WEIGHT_UNIT_MEASURE_CODE} attribute.
      */
-    public String getWeightUnitMeasureCode() {
+    protected String getWeightUnitMeasureCode() {
         return weightUnitMeasureCode;
     }
 
@@ -1346,7 +1346,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_SUBCATEGORY_ID} attribute.
      */
-    public Integer getProductSubcategoryId() {
+    protected Integer getProductSubcategoryId() {
         return productSubcategoryId;
     }
 
@@ -1369,7 +1369,7 @@ public abstract class MappedProduct {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
      */
-    public Integer getProductModelId() {
+    protected Integer getProductModelId() {
         return productModelId;
     }
 

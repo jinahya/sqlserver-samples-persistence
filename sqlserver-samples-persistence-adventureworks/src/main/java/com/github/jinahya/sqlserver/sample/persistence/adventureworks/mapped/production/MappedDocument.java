@@ -492,7 +492,7 @@ public abstract class MappedDocument {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_OWNER} attribute.
      */
-    public Integer getOwner() {
+    protected Integer getOwner() {
         return owner;
     }
 

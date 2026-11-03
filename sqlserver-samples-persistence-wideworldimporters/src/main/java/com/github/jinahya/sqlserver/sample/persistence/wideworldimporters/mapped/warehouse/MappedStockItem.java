@@ -629,7 +629,7 @@ public abstract class MappedStockItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
      */
-    public Integer getSupplierId() {
+    protected Integer getSupplierId() {
         return supplierId;
     }
 
@@ -650,7 +650,7 @@ public abstract class MappedStockItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_COLOR_ID} attribute.
      */
-    public Integer getColorId() {
+    protected Integer getColorId() {
         return colorId;
     }
 
@@ -671,7 +671,7 @@ public abstract class MappedStockItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute.
      */
-    public Integer getUnitPackageId() {
+    protected Integer getUnitPackageId() {
         return unitPackageId;
     }
 
@@ -693,7 +693,7 @@ public abstract class MappedStockItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute.
      */
-    public Integer getOuterPackageId() {
+    protected Integer getOuterPackageId() {
         return outerPackageId;
     }
 
@@ -1037,7 +1037,7 @@ public abstract class MappedStockItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

@@ -20,9 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.ResumeTypeStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
+import io.github.jinahya.sqlserver.xml.schema.binding.b3da3e.ResumeType;
+import jakarta.persistence.Convert;
+import jakarta.validation.Valid;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
@@ -212,7 +216,7 @@ public abstract class MappedJobCandidate
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -234,7 +238,7 @@ public abstract class MappedJobCandidate
      *
      * @return current value of {@value #ATTRIBUTE_NAME_RESUME} attribute.
      */
-    public String getResume() {
+    public ResumeType getResume() {
         return resume;
     }
 
@@ -244,7 +248,7 @@ public abstract class MappedJobCandidate
      *
      * @param resume new value for {@value #ATTRIBUTE_NAME_RESUME} attribute.
      */
-    public void setResume(final String resume) {
+    public void setResume(final ResumeType resume) {
         this.resume = resume;
     }
 
@@ -281,10 +285,16 @@ public abstract class MappedJobCandidate
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
+    // immutable to Hibernate ORM: Tel.Type is an xsd:anyType, a DOM element, which equals no copy of itself, so a
+    // value would never equal the snapshot of it, and every flush would update the row; the value is replaced, not
+    // changed in place
+    @Valid
+    @Convert(converter = ResumeTypeStringAttributeConverter.class)
+    @org.hibernate.annotations.Mutability(org.hibernate.type.descriptor.java.Immutability.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RESUME, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RESUME, value = "Résumé in XML format.")
-    private String resume;
+    private ResumeType resume;
 
     // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was

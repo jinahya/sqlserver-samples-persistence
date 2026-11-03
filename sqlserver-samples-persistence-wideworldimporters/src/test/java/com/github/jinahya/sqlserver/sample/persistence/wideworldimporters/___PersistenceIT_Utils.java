@@ -20,16 +20,19 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
+import com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils;
 import com.github.jinahya.persistence.util.JinahyaEntityManagerUtils;
-import com.github.jinahya.persistence.util.JinahyaPersistenceUtils;
 import jakarta.persistence.EntityManager;
 
 import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * The helpers the integration tests share, on the {@value #PERSISTENCE_UNIT_NAME} unit. No factory is held:
- * each call creates one, through {@link JinahyaPersistenceUtils}, and closes it.
+ * The helpers the integration tests share, on the {@value #PERSISTENCE_UNIT_NAME} unit. The factory
+ * is opened once for the whole run, through
+ * {@link JinahyaPersistenceTestUtils#applyCachedEntityManagerFactory(String, Function)}, and closed
+ * when the virtual machine shuts down.
  */
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
@@ -43,9 +46,13 @@ public final class ___PersistenceIT_Utils {
      */
     public static <R> R applyInTransactionAndRollback(final Function<? super EntityManager, ? extends R> function) {
         Objects.requireNonNull(function, "function is null");
-        return JinahyaPersistenceUtils.applyEntityManager(
+        return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(
                 PERSISTENCE_UNIT_NAME,
-                em -> JinahyaEntityManagerUtils.applyInTransaction(em, function, true));
+                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManager(
+                        emf,
+                        em -> JinahyaEntityManagerUtils.applyInTransaction(em, function, true)
+                )
+        );
     }
 
     private ___PersistenceIT_Utils() {

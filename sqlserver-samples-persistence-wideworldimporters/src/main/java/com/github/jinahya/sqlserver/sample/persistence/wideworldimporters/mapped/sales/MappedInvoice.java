@@ -576,7 +576,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -597,7 +597,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute.
      */
-    public Integer getBillToCustomerId() {
+    protected Integer getBillToCustomerId() {
         return billToCustomerId;
     }
 
@@ -619,7 +619,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ORDER_ID} attribute.
      */
-    public Integer getOrderId() {
+    protected Integer getOrderId() {
         return orderId;
     }
 
@@ -640,7 +640,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
      */
-    public Integer getDeliveryMethodId() {
+    protected Integer getDeliveryMethodId() {
         return deliveryMethodId;
     }
 
@@ -662,7 +662,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getContactPersonId() {
+    protected Integer getContactPersonId() {
         return contactPersonId;
     }
 
@@ -684,7 +684,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ACCOUNTS_PERSON_ID} attribute.
      */
-    public Integer getAccountsPersonId() {
+    protected Integer getAccountsPersonId() {
         return accountsPersonId;
     }
 
@@ -706,7 +706,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute.
      */
-    public Integer getSalespersonPersonId() {
+    protected Integer getSalespersonPersonId() {
         return salespersonPersonId;
     }
 
@@ -728,7 +728,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PACKED_BY_PERSON_ID} attribute.
      */
-    public Integer getPackedByPersonId() {
+    protected Integer getPackedByPersonId() {
         return packedByPersonId;
     }
 
@@ -1034,7 +1034,7 @@ public abstract class MappedInvoice {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

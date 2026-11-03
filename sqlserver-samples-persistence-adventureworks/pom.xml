@@ -20,6 +20,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>sqlserver-samples-persistence-common</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.microsoft.sqlserver</groupId>
@@ -30,27 +31,63 @@
     <dependency>
       <groupId>io.github.jinahya</groupId>
       <artifactId>jinahya-persistence-more</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.github.jinahya</groupId>
       <artifactId>sqlserver-xml-schema-binding-b872ce</artifactId>
+      <scope>compile</scope>
     </dependency>
     <!-- Person.AdditionalContactInfoSchemaCollection: ContactInfo, and the ContactRecord and ContactTypes it holds -->
     <dependency>
       <groupId>io.github.jinahya</groupId>
       <artifactId>sqlserver-xml-schema-binding-b7fdbe</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.github.jinahya</groupId>
       <artifactId>sqlserver-xml-schema-binding-b80e2e</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.github.jinahya</groupId>
       <artifactId>sqlserver-xml-schema-binding-b2e7ae</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- Person.Person.Demographics: IndividualSurvey -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b9c1be</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- Production.ProductModel.CatalogDescription: its Warranty and Maintenance -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b4347e</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- Production.ProductModel.CatalogDescription: ProductDescription -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b0fd0e</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- HumanResources.JobCandidate.Resume: ResumeType -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b3da3e</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- Sales.Store.Demographics: StoreSurvey -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b95f5e</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>

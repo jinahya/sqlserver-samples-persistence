@@ -425,7 +425,7 @@ public abstract class MappedSystemParameter {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
      */
-    public Integer getDeliveryCityId() {
+    protected Integer getDeliveryCityId() {
         return deliveryCityId;
     }
 
@@ -527,7 +527,7 @@ public abstract class MappedSystemParameter {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
      */
-    public Integer getPostalCityId() {
+    protected Integer getPostalCityId() {
         return postalCityId;
     }
 
@@ -589,7 +589,7 @@ public abstract class MappedSystemParameter {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

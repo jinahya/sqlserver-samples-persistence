@@ -534,7 +534,7 @@ public abstract class MappedSalesOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -555,7 +555,7 @@ public abstract class MappedSalesOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
      */
-    public Integer getWarehouseId() {
+    protected Integer getWarehouseId() {
         return warehouseId;
     }
 
@@ -816,7 +816,7 @@ public abstract class MappedSalesOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute.
      */
-    public Integer getSalesChannelId() {
+    protected Integer getSalesChannelId() {
         return salesChannelId;
     }
 
@@ -838,7 +838,7 @@ public abstract class MappedSalesOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STORE_ID} attribute.
      */
-    public Integer getStoreId() {
+    protected Integer getStoreId() {
         return storeId;
     }
 
@@ -859,7 +859,7 @@ public abstract class MappedSalesOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute.
      */
-    public Integer getSalesRepId() {
+    protected Integer getSalesRepId() {
         return salesRepId;
     }
 

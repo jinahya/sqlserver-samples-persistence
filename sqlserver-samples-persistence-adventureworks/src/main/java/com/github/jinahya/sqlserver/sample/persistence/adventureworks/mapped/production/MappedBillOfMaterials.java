@@ -424,7 +424,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute.
      */
-    public Integer getProductAssemblyId() {
+    protected Integer getProductAssemblyId() {
         return productAssemblyId;
     }
 
@@ -447,7 +447,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute.
      */
-    public Integer getComponentId() {
+    protected Integer getComponentId() {
         return componentId;
     }
 
@@ -511,7 +511,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
      */
-    public String getUnitMeasureCode() {
+    protected String getUnitMeasureCode() {
         return unitMeasureCode;
     }
 

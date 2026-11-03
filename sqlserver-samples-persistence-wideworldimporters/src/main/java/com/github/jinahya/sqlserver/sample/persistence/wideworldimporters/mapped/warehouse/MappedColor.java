@@ -256,7 +256,7 @@ public abstract class MappedColor {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

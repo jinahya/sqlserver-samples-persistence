@@ -580,7 +580,7 @@ public abstract class MappedProductVendor {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
      */
-    public String getUnitMeasureCode() {
+    protected String getUnitMeasureCode() {
         return unitMeasureCode;
     }
 

@@ -332,7 +332,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
      */
-    public Integer getStockItemId() {
+    protected Integer getStockItemId() {
         return stockItemId;
     }
 
@@ -354,7 +354,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
      */
-    public Integer getTransactionTypeId() {
+    protected Integer getTransactionTypeId() {
         return transactionTypeId;
     }
 
@@ -376,7 +376,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -397,7 +397,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute.
      */
-    public Integer getInvoiceId() {
+    protected Integer getInvoiceId() {
         return invoiceId;
     }
 
@@ -418,7 +418,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
      */
-    public Integer getSupplierId() {
+    protected Integer getSupplierId() {
         return supplierId;
     }
 
@@ -439,7 +439,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      */
-    public Integer getPurchaseOrderId() {
+    protected Integer getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
@@ -501,7 +501,7 @@ public abstract class MappedStockItemTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

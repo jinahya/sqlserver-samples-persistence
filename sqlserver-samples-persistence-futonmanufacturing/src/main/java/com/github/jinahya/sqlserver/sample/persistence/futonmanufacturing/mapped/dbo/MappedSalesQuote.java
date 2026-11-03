@@ -434,7 +434,7 @@ public abstract class MappedSalesQuote {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -455,7 +455,7 @@ public abstract class MappedSalesQuote {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute.
      */
-    public Integer getSalesChannelId() {
+    protected Integer getSalesChannelId() {
         return salesChannelId;
     }
 
@@ -477,7 +477,7 @@ public abstract class MappedSalesQuote {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute.
      */
-    public Integer getSalesRepId() {
+    protected Integer getSalesRepId() {
         return salesRepId;
     }
 
@@ -638,7 +638,7 @@ public abstract class MappedSalesQuote {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CONVERTED_TO_ORDER_ID} attribute.
      */
-    public Integer getConvertedToOrderId() {
+    protected Integer getConvertedToOrderId() {
         return convertedToOrderId;
     }
 

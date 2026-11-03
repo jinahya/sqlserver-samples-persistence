@@ -320,7 +320,7 @@ public abstract class MappedInventoryTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 
@@ -341,7 +341,7 @@ public abstract class MappedInventoryTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
      */
-    public Integer getWarehouseId() {
+    protected Integer getWarehouseId() {
         return warehouseId;
     }
 
@@ -362,7 +362,7 @@ public abstract class MappedInventoryTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
      */
-    public Integer getTransactionTypeId() {
+    protected Integer getTransactionTypeId() {
         return transactionTypeId;
     }
 

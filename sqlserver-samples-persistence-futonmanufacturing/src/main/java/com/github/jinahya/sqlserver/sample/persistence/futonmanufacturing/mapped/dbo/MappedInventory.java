@@ -289,7 +289,7 @@ public abstract class MappedInventory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 
@@ -310,7 +310,7 @@ public abstract class MappedInventory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
      */
-    public Integer getWarehouseId() {
+    protected Integer getWarehouseId() {
         return warehouseId;
     }
 

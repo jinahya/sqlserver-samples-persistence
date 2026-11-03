@@ -20,7 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
+import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
+import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import io.github.jinahya.sqlserver.xml.schema.binding.b95f5e.StoreSurvey;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Store_PersistenceIT
         extends _Entity_PersistenceIT<Store> {
@@ -28,4 +36,43 @@ class Store_PersistenceIT
     Store_PersistenceIT() {
         super(Store.class);
     }
+
+    /**
+     * Verifies that every installed {@code Demographics} is read, through the converter, as a {@code StoreSurvey}.
+     */
+    @DisplayName("every installed Demographics is read as a StoreSurvey")
+    @Test
+    void demographics_Read_Installed() {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var count = em.createQuery("SELECT COUNT(e) FROM SalesStore e WHERE e.demographics IS NOT NULL", Long.class)
+                    .getSingleResult();
+            final var values = em.createQuery("SELECT e.demographics FROM SalesStore e WHERE e.demographics IS NOT NULL", StoreSurvey.class)
+                    .getResultList();
+            assertThat(values).hasSize(count.intValue()).doesNotContainNull();
+            return null;
+        });
+    }
+
+    /**
+     * Verifies that a new {@code Store} with an installed {@code Demographics} is persisted; the converter's text is what
+     * the typed {@code xml} column takes.
+     */
+    @DisplayName("a new Store with an installed Demographics is persisted")
+    @Test
+    void demographics_Persisted() {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var installed = em.createQuery("SELECT e.demographics FROM SalesStore e WHERE e.demographics IS NOT NULL", StoreSurvey.class)
+                    .setMaxResults(1)
+                    .getSingleResult();
+            final var instance = ObjectRandomizerUtils.newRandomizedInstanceOf(Store.class).orElseThrow();
+            instance.setDemographics(installed);
+            EntityPersisterUtils.newPersisterInstanceOf(Store.class).orElseThrow().apply(em, instance);
+            em.flush();
+            em.clear();
+            final var found = em.find(Store.class, instance.getBusinessEntityId());
+            assertThat(found.getDemographics()).isNotNull();
+            return null;
+        });
+    }
 }
+

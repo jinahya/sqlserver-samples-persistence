@@ -380,7 +380,7 @@ public abstract class MappedWorkOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public Integer getProductId() {
+    protected Integer getProductId() {
         return productId;
     }
 
@@ -529,7 +529,7 @@ public abstract class MappedWorkOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    public Integer getScrapReasonId() {
+    protected Integer getScrapReasonId() {
         return scrapReasonId;
     }
 

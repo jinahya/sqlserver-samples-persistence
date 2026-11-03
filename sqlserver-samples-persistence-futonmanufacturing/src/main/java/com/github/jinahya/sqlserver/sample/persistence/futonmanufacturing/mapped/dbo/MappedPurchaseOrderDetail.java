@@ -292,7 +292,7 @@ public abstract class MappedPurchaseOrderDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      */
-    public Integer getPurchaseOrderId() {
+    protected Integer getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
@@ -334,7 +334,7 @@ public abstract class MappedPurchaseOrderDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

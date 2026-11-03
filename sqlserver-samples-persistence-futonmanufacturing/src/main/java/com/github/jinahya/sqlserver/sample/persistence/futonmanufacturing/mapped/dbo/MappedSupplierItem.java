@@ -303,7 +303,7 @@ public abstract class MappedSupplierItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
      */
-    public Integer getSupplierId() {
+    protected Integer getSupplierId() {
         return supplierId;
     }
 
@@ -324,7 +324,7 @@ public abstract class MappedSupplierItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

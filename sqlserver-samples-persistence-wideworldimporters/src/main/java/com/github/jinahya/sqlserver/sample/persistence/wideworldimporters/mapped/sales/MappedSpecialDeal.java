@@ -442,7 +442,7 @@ public abstract class MappedSpecialDeal {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
      */
-    public Integer getStockItemId() {
+    protected Integer getStockItemId() {
         return stockItemId;
     }
 
@@ -464,7 +464,7 @@ public abstract class MappedSpecialDeal {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -485,7 +485,7 @@ public abstract class MappedSpecialDeal {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute.
      */
-    public Integer getBuyingGroupId() {
+    protected Integer getBuyingGroupId() {
         return buyingGroupId;
     }
 
@@ -507,7 +507,7 @@ public abstract class MappedSpecialDeal {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
      */
-    public Integer getCustomerCategoryId() {
+    protected Integer getCustomerCategoryId() {
         return customerCategoryId;
     }
 
@@ -529,7 +529,7 @@ public abstract class MappedSpecialDeal {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute.
      */
-    public Integer getStockGroupId() {
+    protected Integer getStockGroupId() {
         return stockGroupId;
     }
 
@@ -671,7 +671,7 @@ public abstract class MappedSpecialDeal {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

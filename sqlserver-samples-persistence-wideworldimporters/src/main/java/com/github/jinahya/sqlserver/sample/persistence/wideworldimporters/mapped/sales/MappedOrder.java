@@ -401,7 +401,7 @@ public abstract class MappedOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -422,7 +422,7 @@ public abstract class MappedOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute.
      */
-    public Integer getSalespersonPersonId() {
+    protected Integer getSalespersonPersonId() {
         return salespersonPersonId;
     }
 
@@ -444,7 +444,7 @@ public abstract class MappedOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PICKED_BY_PERSON_ID} attribute.
      */
-    public Integer getPickedByPersonId() {
+    protected Integer getPickedByPersonId() {
         return pickedByPersonId;
     }
 
@@ -466,7 +466,7 @@ public abstract class MappedOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getContactPersonId() {
+    protected Integer getContactPersonId() {
         return contactPersonId;
     }
 
@@ -488,7 +488,7 @@ public abstract class MappedOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BACKORDER_ORDER_ID} attribute.
      */
-    public Integer getBackorderOrderId() {
+    protected Integer getBackorderOrderId() {
         return backorderOrderId;
     }
 
@@ -673,7 +673,7 @@ public abstract class MappedOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

@@ -390,7 +390,7 @@ public abstract class MappedStore {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute.
      */
-    public Integer getSalesChannelId() {
+    protected Integer getSalesChannelId() {
         return salesChannelId;
     }
 

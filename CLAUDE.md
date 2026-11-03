@@ -84,3 +84,6 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
 `enforce-dependency-convergence` runs on every module and is not skipped. Jakarta EE 11 is the only platform; the
 `jakarta.*` APIs come from `jakarta.jakartaee-bom` with no version of their own. Declare any other version in the root
 `pom.xml`.
+
+**Every `<dependency>` names its `<scope>`**, `compile` included, though it is the default; a module's dependency
+never leaves it out.

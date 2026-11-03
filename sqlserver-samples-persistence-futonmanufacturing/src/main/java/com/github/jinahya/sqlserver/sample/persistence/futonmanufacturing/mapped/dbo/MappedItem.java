@@ -420,7 +420,7 @@ public abstract class MappedItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_TYPE_ID} attribute.
      */
-    public Integer getItemTypeId() {
+    protected Integer getItemTypeId() {
         return itemTypeId;
     }
 
@@ -441,7 +441,7 @@ public abstract class MappedItem {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_UNIT_ID} attribute.
      */
-    public Integer getUnitId() {
+    protected Integer getUnitId() {
         return unitId;
     }
 

@@ -424,7 +424,7 @@ public abstract class MappedCustomerTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -445,7 +445,7 @@ public abstract class MappedCustomerTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
      */
-    public Integer getTransactionTypeId() {
+    protected Integer getTransactionTypeId() {
         return transactionTypeId;
     }
 
@@ -467,7 +467,7 @@ public abstract class MappedCustomerTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute.
      */
-    public Integer getInvoiceId() {
+    protected Integer getInvoiceId() {
         return invoiceId;
     }
 
@@ -488,7 +488,7 @@ public abstract class MappedCustomerTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute.
      */
-    public Integer getPaymentMethodId() {
+    protected Integer getPaymentMethodId() {
         return paymentMethodId;
     }
 
@@ -651,7 +651,7 @@ public abstract class MappedCustomerTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

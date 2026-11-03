@@ -46,6 +46,18 @@ module com.github.jinahya.sqlserver.sample.persistence.adventureworks {
     requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b7fdbe;
     requires io.github.jinahya.sqlserver.xml.schema.binding.b80e2e;
     requires io.github.jinahya.sqlserver.xml.schema.binding.b2e7ae;
+    // Person.IndividualSurveySchemaCollection; MappedPerson returns an IndividualSurvey
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b9c1be;
+    // Production.ProductDescriptionSchemaCollection; the Warranty and the Maintenance of a ProductDescription
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b4347e;
+    // Production.ProductDescriptionSchemaCollection; MappedProductModel returns a ProductDescription
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b0fd0e;
+    // HumanResources.HRResumeSchemaCollection; MappedJobCandidate returns a ResumeType
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b3da3e;
+    // Sales.StoreSurveySchemaCollection; MappedStore returns a StoreSurvey
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b95f5e;
+    // Person.Person.Demographics, which the iuPerson trigger writes; MappedPerson reads it back with @Generated
+    requires static org.hibernate.orm.core;
 
     exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped;
     exports com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo;

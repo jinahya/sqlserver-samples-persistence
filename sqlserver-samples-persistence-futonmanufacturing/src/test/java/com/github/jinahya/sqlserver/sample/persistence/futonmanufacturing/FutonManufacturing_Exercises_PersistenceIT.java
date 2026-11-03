@@ -316,14 +316,14 @@ class FutonManufacturing_Exercises_PersistenceIT {
                 final var next = new HashMap<Integer, BigDecimal>();
                 for (final var row : rows) {
                     // the quantity of the parent, times the quantity of this row and its scrap
-                    final var required = level.get(row.getParentItemId())
+                    final var required = level.get(row.getParentItem().getItemId())
                             .multiply(row.getQuantity())
                             .multiply(BigDecimal.ONE.add(row.getScrapRate().movePointLeft(2)));
-                    next.merge(row.getComponentItemId(), required, BigDecimal::add);
+                    next.merge(row.getComponentItem().getItemId(), required, BigDecimal::add);
                 }
                 // an item with no row of its own is a raw material
                 for (final var entry : level.entrySet()) {
-                    if (rows.stream().noneMatch(r -> r.getParentItemId().equals(entry.getKey()))) {
+                    if (rows.stream().noneMatch(r -> r.getParentItem().getItemId().equals(entry.getKey()))) {
                         final var leaf = entityManager.find(Item.class, entry.getKey());
                         leaves.merge(leaf.getItemCode(), entry.getValue(), BigDecimal::add);
                     }

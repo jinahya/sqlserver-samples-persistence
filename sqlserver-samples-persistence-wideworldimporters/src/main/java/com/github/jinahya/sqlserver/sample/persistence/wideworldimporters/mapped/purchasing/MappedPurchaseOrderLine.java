@@ -356,7 +356,7 @@ public abstract class MappedPurchaseOrderLine {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      */
-    public Integer getPurchaseOrderId() {
+    protected Integer getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
@@ -378,7 +378,7 @@ public abstract class MappedPurchaseOrderLine {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
      */
-    public Integer getStockItemId() {
+    protected Integer getStockItemId() {
         return stockItemId;
     }
 
@@ -460,7 +460,7 @@ public abstract class MappedPurchaseOrderLine {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PACKAGE_TYPE_ID} attribute.
      */
-    public Integer getPackageTypeId() {
+    protected Integer getPackageTypeId() {
         return packageTypeId;
     }
 
@@ -543,7 +543,7 @@ public abstract class MappedPurchaseOrderLine {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

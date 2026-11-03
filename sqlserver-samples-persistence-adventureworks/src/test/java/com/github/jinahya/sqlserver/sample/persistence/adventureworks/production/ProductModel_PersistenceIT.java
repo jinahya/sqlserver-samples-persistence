@@ -20,7 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
+import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
+import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import io.github.jinahya.sqlserver.xml.schema.binding.b0fd0e.ProductDescription;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductModel_PersistenceIT
         extends _Entity_PersistenceIT<ProductModel> {
@@ -28,4 +36,43 @@ class ProductModel_PersistenceIT
     ProductModel_PersistenceIT() {
         super(ProductModel.class);
     }
+
+    /**
+     * Verifies that every installed {@code CatalogDescription} is read, through the converter, as a {@code ProductDescription}.
+     */
+    @DisplayName("every installed CatalogDescription is read as a ProductDescription")
+    @Test
+    void catalogDescription_Read_Installed() {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var count = em.createQuery("SELECT COUNT(e) FROM ProductionProductModel e WHERE e.catalogDescription IS NOT NULL", Long.class)
+                    .getSingleResult();
+            final var values = em.createQuery("SELECT e.catalogDescription FROM ProductionProductModel e WHERE e.catalogDescription IS NOT NULL", ProductDescription.class)
+                    .getResultList();
+            assertThat(values).hasSize(count.intValue()).doesNotContainNull();
+            return null;
+        });
+    }
+
+    /**
+     * Verifies that a new {@code ProductModel} with an installed {@code CatalogDescription} is persisted; the converter's text is what
+     * the typed {@code xml} column takes.
+     */
+    @DisplayName("a new ProductModel with an installed CatalogDescription is persisted")
+    @Test
+    void catalogDescription_Persisted() {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var installed = em.createQuery("SELECT e.catalogDescription FROM ProductionProductModel e WHERE e.catalogDescription IS NOT NULL", ProductDescription.class)
+                    .setMaxResults(1)
+                    .getSingleResult();
+            final var instance = ObjectRandomizerUtils.newRandomizedInstanceOf(ProductModel.class).orElseThrow();
+            instance.setCatalogDescription(installed);
+            EntityPersisterUtils.newPersisterInstanceOf(ProductModel.class).orElseThrow().apply(em, instance);
+            em.flush();
+            em.clear();
+            final var found = em.find(ProductModel.class, instance.getProductModelId());
+            assertThat(found.getCatalogDescription()).isNotNull();
+            return null;
+        });
+    }
 }
+

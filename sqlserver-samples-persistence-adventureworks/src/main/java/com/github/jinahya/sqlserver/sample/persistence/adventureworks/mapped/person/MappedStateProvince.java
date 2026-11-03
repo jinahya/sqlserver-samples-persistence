@@ -332,7 +332,7 @@ public abstract class MappedStateProvince {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
      */
-    public String getCountryRegionCode() {
+    protected String getCountryRegionCode() {
         return countryRegionCode;
     }
 
@@ -398,7 +398,7 @@ public abstract class MappedStateProvince {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
-    public Integer getTerritoryId() {
+    protected Integer getTerritoryId() {
         return territoryId;
     }
 

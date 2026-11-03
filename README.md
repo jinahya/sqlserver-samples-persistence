@@ -188,13 +188,15 @@ JDBC URL and the credentials from the root `pom.xml`'s `mssql.*` properties.
 
 ## The tests
 
-Each entity's `*_PersistenceIT` reads up to eight installed rows, inside a transaction it rolls back, and
+Each entity's `*_PersistenceIT`, each test inside a transaction it rolls back,
 
-- loads every association of each, and reads the identifier of the entity it references;
-- resolves each of its `ATTRIBUTE_PATH_*` constants, such as `id.personId`, through the metamodel.
+- selects a random installed row, and validates it against the mapping's constraints, which Jakarta Persistence does
+  only on persist, update and remove;
+- resolves each of its `ATTRIBUTE_PATH_*` constants, such as `id.personId`, through the metamodel;
+- persists a new instance, which its `<Entity>_Randomizer` fills and its `<Entity>_Persister` persists with
+  the rows it references, and flushes it.
 
-Each also persists a new instance, which its `<Entity>_Randomizer` fills and its `<Entity>_Persister` persists with
-the rows it references, and flushes it. An entity which is not persisted -- a view, or a table which only SQL Server,
+An entity which is not persisted -- a view, or a table which only SQL Server,
 the installer or a procedure writes -- has the test `@Disabled`, with the reason.
 
 Each id class of a composite key has a unit test, `<Entity>Id_Test`, run by surefire: its `toString`, its `equals` and
@@ -205,16 +207,15 @@ that its public constructor takes them all.
 
 | Module | Entity and keyless ITs | Exercise ITs | Skipped |
 |---|---|---|---|
-| adventureworks | 419 | 42 | 56 |
-| futonmanufacturing | 244 | 28 | 54 |
-| wideworldimporters | 184 | 31 | 9 |
+| adventureworks | 348 | 42 | 18 |
+| futonmanufacturing | 194 | 28 | 22 |
+| wideworldimporters | 150 | 31 | 4 |
 
 Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
 Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.
 
-All of them pass. A test is skipped when an entity maps no association, a view returns no row, an entity has no
-persister yet, or an entity is not persisted: a view, or a table which only SQL Server, the installer or a procedure
-writes.
+All of them pass. A test is skipped when a table or a view returns no row, or an entity is not persisted: a view, or
+a table which only SQL Server, the installer or a procedure writes.
 
 ## The diagrams
 

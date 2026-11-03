@@ -296,7 +296,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PERSON_ID} attribute.
      */
-    public Integer getPersonId() {
+    protected Integer getPersonId() {
         return personId;
     }
 
@@ -318,7 +318,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STORE_ID} attribute.
      */
-    public Integer getStoreId() {
+    protected Integer getStoreId() {
         return storeId;
     }
 
@@ -340,7 +340,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
-    public Integer getTerritoryId() {
+    protected Integer getTerritoryId() {
         return territoryId;
     }
 

@@ -436,7 +436,7 @@ public abstract class MappedPurchaseOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
      */
-    public Integer getSupplierId() {
+    protected Integer getSupplierId() {
         return supplierId;
     }
 
@@ -457,7 +457,7 @@ public abstract class MappedPurchaseOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
      */
-    public Integer getWarehouseId() {
+    protected Integer getWarehouseId() {
         return warehouseId;
     }
 

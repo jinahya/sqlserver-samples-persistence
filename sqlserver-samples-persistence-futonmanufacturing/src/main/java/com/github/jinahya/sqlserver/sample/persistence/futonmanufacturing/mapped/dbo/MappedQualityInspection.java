@@ -333,7 +333,7 @@ public abstract class MappedQualityInspection {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

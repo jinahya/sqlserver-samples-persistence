@@ -170,6 +170,31 @@
         <artifactId>sqlserver-xml-schema-binding-b2e7ae</artifactId>
         <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
       </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b9c1be</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelWarrAndMain -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b4347e</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b0fd0e</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b3da3e</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
+      <dependency><!-- http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey -->
+        <groupId>io.github.jinahya</groupId>
+        <artifactId>sqlserver-xml-schema-binding-b95f5e</artifactId>
+        <version>${version.io.github.jinahya.sqlserver-xml-schema-binding}</version>
+      </dependency>
       <dependency><!-- https://central.sonatype.com/artifact/jakarta.platform/jakarta.jakartaee-bom/versions -->
         <groupId>jakarta.platform</groupId>
         <artifactId>jakarta.jakartaee-bom</artifactId>

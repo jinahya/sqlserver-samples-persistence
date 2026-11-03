@@ -436,7 +436,7 @@ public abstract class MappedProductionOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 
@@ -457,7 +457,7 @@ public abstract class MappedProductionOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute.
      */
-    public Integer getWarehouseId() {
+    protected Integer getWarehouseId() {
         return warehouseId;
     }
 
@@ -478,7 +478,7 @@ public abstract class MappedProductionOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute.
      */
-    public Integer getWorkCenterId() {
+    protected Integer getWorkCenterId() {
         return workCenterId;
     }
 

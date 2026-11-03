@@ -272,7 +272,7 @@ public abstract class MappedProductionCompletion {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute.
      */
-    public Integer getProductionOrderId() {
+    protected Integer getProductionOrderId() {
         return productionOrderId;
     }
 
@@ -354,7 +354,7 @@ public abstract class MappedProductionCompletion {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute.
      */
-    public Integer getWorkCenterId() {
+    protected Integer getWorkCenterId() {
         return workCenterId;
     }
 

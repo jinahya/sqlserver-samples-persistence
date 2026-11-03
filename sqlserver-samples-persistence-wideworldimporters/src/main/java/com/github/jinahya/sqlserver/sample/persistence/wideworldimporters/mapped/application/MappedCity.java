@@ -303,7 +303,7 @@ public abstract class MappedCity {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
      */
-    public Integer getStateProvinceId() {
+    protected Integer getStateProvinceId() {
         return stateProvinceId;
     }
 
@@ -366,7 +366,7 @@ public abstract class MappedCity {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

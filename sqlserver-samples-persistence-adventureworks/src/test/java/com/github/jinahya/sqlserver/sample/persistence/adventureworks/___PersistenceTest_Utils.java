@@ -20,8 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
+import com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils;
 import com.github.jinahya.persistence.util.JinahyaEntityManagerUtils;
-import com.github.jinahya.persistence.util.JinahyaPersistenceUtils;
 import jakarta.persistence.EntityManager;
 
 import java.util.Objects;
@@ -29,8 +30,10 @@ import java.util.function.Function;
 
 /**
  * The helpers the {@code *_PersistenceTest}s share, on the {@value #PERSISTENCE_UNIT_NAME} unit, an
- * in-memory H2 database whose schema the provider generates from the mappings. No factory is held:
- * each call creates one, through {@link JinahyaPersistenceUtils}, and closes it.
+ * in-memory H2 database whose schema the provider generates from the mappings. The factory is
+ * opened once for the whole run, through
+ * {@link JinahyaPersistenceTestUtils#applyCachedEntityManagerFactory(String, Function)}, and closed
+ * when the virtual machine shuts down.
  * <p>
  * It is the counterpart of {@link ___PersistenceIT_Utils}, whose unit is on the database
  * {@code compose.yaml} brings up; a {@code *_PersistenceTest} needs no database, and is run by
@@ -50,9 +53,12 @@ public final class ___PersistenceTest_Utils {
     public static <R> R applyInTransactionAndRollback(
             final Function<? super EntityManager, ? extends R> function) {
         Objects.requireNonNull(function, "function is null");
-        return JinahyaPersistenceUtils.applyEntityManager(
+        return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(
                 PERSISTENCE_UNIT_NAME,
-                em -> JinahyaEntityManagerUtils.applyInTransaction(em, function, true)
+                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManager(
+                        emf,
+                        em -> JinahyaEntityManagerUtils.applyInTransaction(em, function, true)
+                )
         );
     }
 

@@ -446,7 +446,7 @@ public abstract class MappedSupplierTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
      */
-    public Integer getSupplierId() {
+    protected Integer getSupplierId() {
         return supplierId;
     }
 
@@ -467,7 +467,7 @@ public abstract class MappedSupplierTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute.
      */
-    public Integer getTransactionTypeId() {
+    protected Integer getTransactionTypeId() {
         return transactionTypeId;
     }
 
@@ -489,7 +489,7 @@ public abstract class MappedSupplierTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      */
-    public Integer getPurchaseOrderId() {
+    protected Integer getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
@@ -511,7 +511,7 @@ public abstract class MappedSupplierTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute.
      */
-    public Integer getPaymentMethodId() {
+    protected Integer getPaymentMethodId() {
         return paymentMethodId;
     }
 
@@ -694,7 +694,7 @@ public abstract class MappedSupplierTransaction {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

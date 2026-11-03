@@ -20,14 +20,18 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.ProductDescriptionStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import io.github.jinahya.sqlserver.xml.schema.binding.b0fd0e.ProductDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -279,7 +283,7 @@ public abstract class MappedProductModel {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CATALOG_DESCRIPTION} attribute.
      */
-    public String getCatalogDescription() {
+    public ProductDescription getCatalogDescription() {
         return catalogDescription;
     }
 
@@ -290,7 +294,7 @@ public abstract class MappedProductModel {
      * @param catalogDescription new value for {@value #ATTRIBUTE_NAME_CATALOG_DESCRIPTION}
      *                           attribute.
      */
-    public void setCatalogDescription(final String catalogDescription) {
+    public void setCatalogDescription(final ProductDescription catalogDescription) {
         this.catalogDescription = catalogDescription;
     }
 
@@ -369,12 +373,18 @@ public abstract class MappedProductModel {
     private String name;
 
     // ---------------------------------------------------------------------------------------------
+    // immutable to Hibernate ORM: the description's xsd:any content is DOM elements, which equal no copy of
+    // themselves, so a value would never equal the snapshot of it, and every flush would update the row; the value
+    // is replaced, not changed in place
+    @Valid
+    @Convert(converter = ProductDescriptionStringAttributeConverter.class)
+    @org.hibernate.annotations.Mutability(org.hibernate.type.descriptor.java.Immutability.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CATALOG_DESCRIPTION, nullable = true, insertable = true,
             updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CATALOG_DESCRIPTION,
                           value = "Detailed product catalog information in xml format.")
-    private String catalogDescription;
+    private ProductDescription catalogDescription;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)

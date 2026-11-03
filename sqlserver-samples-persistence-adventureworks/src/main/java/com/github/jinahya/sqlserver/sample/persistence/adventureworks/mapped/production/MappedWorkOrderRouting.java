@@ -463,7 +463,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    public Integer getLocationId() {
+    protected Integer getLocationId() {
         return locationId;
     }
 

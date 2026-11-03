@@ -360,7 +360,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute.
      */
-    public Integer getParentItemId() {
+    protected Integer getParentItemId() {
         return parentItemId;
     }
 
@@ -382,7 +382,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute.
      */
-    public Integer getComponentItemId() {
+    protected Integer getComponentItemId() {
         return componentItemId;
     }
 
@@ -424,7 +424,7 @@ public abstract class MappedBillOfMaterials {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_UNIT_ID} attribute.
      */
-    public Integer getUnitId() {
+    protected Integer getUnitId() {
         return unitId;
     }
 

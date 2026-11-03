@@ -378,7 +378,7 @@ public abstract class MappedSalesRep {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
-    public Integer getTerritoryId() {
+    protected Integer getTerritoryId() {
         return territoryId;
     }
 

@@ -716,7 +716,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_CATEGORY_ID} attribute.
      */
-    public Integer getSupplierCategoryId() {
+    protected Integer getSupplierCategoryId() {
         return supplierCategoryId;
     }
 
@@ -738,7 +738,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getPrimaryContactPersonId() {
+    protected Integer getPrimaryContactPersonId() {
         return primaryContactPersonId;
     }
 
@@ -760,7 +760,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getAlternateContactPersonId() {
+    protected Integer getAlternateContactPersonId() {
         return alternateContactPersonId;
     }
 
@@ -782,7 +782,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
      */
-    public Integer getDeliveryMethodId() {
+    protected Integer getDeliveryMethodId() {
         return deliveryMethodId;
     }
 
@@ -804,7 +804,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
      */
-    public Integer getDeliveryCityId() {
+    protected Integer getDeliveryCityId() {
         return deliveryCityId;
     }
 
@@ -826,7 +826,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
      */
-    public Integer getPostalCityId() {
+    protected Integer getPostalCityId() {
         return postalCityId;
     }
 
@@ -1208,7 +1208,7 @@ public abstract class MappedSupplier {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

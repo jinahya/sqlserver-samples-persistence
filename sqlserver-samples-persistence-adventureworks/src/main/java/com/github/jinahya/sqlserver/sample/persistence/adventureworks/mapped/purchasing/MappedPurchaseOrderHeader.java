@@ -521,7 +521,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_EMPLOYEE_ID} attribute.
      */
-    public Integer getEmployeeId() {
+    protected Integer getEmployeeId() {
         return employeeId;
     }
 
@@ -543,7 +543,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_VENDOR_ID} attribute.
      */
-    public Integer getVendorId() {
+    protected Integer getVendorId() {
         return vendorId;
     }
 
@@ -565,7 +565,7 @@ public abstract class MappedPurchaseOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute.
      */
-    public Integer getShipMethodId() {
+    protected Integer getShipMethodId() {
         return shipMethodId;
     }
 

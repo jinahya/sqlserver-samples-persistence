@@ -223,7 +223,7 @@ public abstract class MappedPriceListDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRICE_LIST_ID} attribute.
      */
-    public Integer getPriceListId() {
+    protected Integer getPriceListId() {
         return priceListId;
     }
 
@@ -245,7 +245,7 @@ public abstract class MappedPriceListDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

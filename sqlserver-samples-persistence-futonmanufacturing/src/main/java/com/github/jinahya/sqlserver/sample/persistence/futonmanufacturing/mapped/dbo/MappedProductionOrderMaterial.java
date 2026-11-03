@@ -224,7 +224,7 @@ public abstract class MappedProductionOrderMaterial {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute.
      */
-    public Integer getProductionOrderId() {
+    protected Integer getProductionOrderId() {
         return productionOrderId;
     }
 
@@ -246,7 +246,7 @@ public abstract class MappedProductionOrderMaterial {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

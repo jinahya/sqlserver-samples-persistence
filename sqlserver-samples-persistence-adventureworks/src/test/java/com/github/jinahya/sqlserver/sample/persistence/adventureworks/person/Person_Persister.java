@@ -43,6 +43,13 @@ class Person_Persister
         // the business entity's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setBusinessEntity(businessEntity);
-        return super.apply(entityManager, entityInstance);
+        try {
+            return super.apply(entityManager, entityInstance);
+        } finally {
+            // the iuPerson trigger writes the row's Demographics; the flush runs it, and the
+            // refresh reads back what it wrote
+            entityManager.flush();
+            entityManager.refresh(entityInstance);
+        }
     }
 }

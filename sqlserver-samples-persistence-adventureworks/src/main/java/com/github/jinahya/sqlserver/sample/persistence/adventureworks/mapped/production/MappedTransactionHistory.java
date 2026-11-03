@@ -361,7 +361,7 @@ public abstract class MappedTransactionHistory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public Integer getProductId() {
+    protected Integer getProductId() {
         return productId;
     }
 

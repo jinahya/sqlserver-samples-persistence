@@ -249,7 +249,7 @@ public abstract class MappedProductSubcategory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_CATEGORY_ID} attribute.
      */
-    public Integer getProductCategoryId() {
+    protected Integer getProductCategoryId() {
         return productCategoryId;
     }
 

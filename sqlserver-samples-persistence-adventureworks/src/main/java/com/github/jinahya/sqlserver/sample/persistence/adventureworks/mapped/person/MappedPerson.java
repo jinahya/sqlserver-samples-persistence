@@ -20,15 +20,21 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.IndividualSurveyStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsTrigger;
+import io.github.jinahya.sqlserver.xml.schema.binding.b7fdbe.AdditionalContactInfo;
+import io.github.jinahya.sqlserver.xml.schema.binding.b9c1be.IndividualSurvey;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -103,8 +109,7 @@ import java.util.UUID;
  *
  * @see <a
  *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a
- *         href="https://learn.microsoft
+ * @see <a href="https://learn.microsoft
  *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
@@ -684,7 +689,7 @@ public abstract class MappedPerson {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO} attribute.
      */
-    public String getAdditionalContactInfo() {
+    public AdditionalContactInfo getAdditionalContactInfo() {
         return additionalContactInfo;
     }
 
@@ -695,7 +700,7 @@ public abstract class MappedPerson {
      * @param additionalContactInfo new value for {@value #ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO}
      *                              attribute.
      */
-    public void setAdditionalContactInfo(final String additionalContactInfo) {
+    public void setAdditionalContactInfo(final AdditionalContactInfo additionalContactInfo) {
         this.additionalContactInfo = additionalContactInfo;
     }
 
@@ -706,7 +711,7 @@ public abstract class MappedPerson {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute.
      */
-    public String getDemographics() {
+    public IndividualSurvey getDemographics() {
         return demographics;
     }
 
@@ -716,7 +721,7 @@ public abstract class MappedPerson {
      *
      * @param demographics new value for {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute.
      */
-    public void setDemographics(final String demographics) {
+    public void setDemographics(final IndividualSurvey demographics) {
         this.demographics = demographics;
     }
 
@@ -848,21 +853,35 @@ public abstract class MappedPerson {
     private Integer emailPromotion;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @Convert(converter = AdditionalContactInfoStringAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO, nullable = true, insertable = true,
             updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO,
                           value = "Additional contact information about the person stored in "
                                   + "xml format.")
-    private String additionalContactInfo;
+    private AdditionalContactInfo additionalContactInfo;
 
     // ---------------------------------------------------------------------------------------------
+    // the iuPerson trigger, after an INSERT or an UPDATE, puts a TotalPurchaseYTD into it, or a
+    // whole survey when it
+    // is NULL; Hibernate ORM writes the value and reads back what the trigger left
+    @Valid
+    @Convert(converter = IndividualSurveyStringAttributeConverter.class)
+    @org.hibernate.annotations.Generated(
+            event = {
+                    org.hibernate.generator.EventType.INSERT,
+                    org.hibernate.generator.EventType.UPDATE
+            },
+            writable = true
+    )
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DEMOGRAPHICS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DEMOGRAPHICS,
                           value = "Personal information such as hobbies, and income collected "
                                   + "from online shoppers. Used for sales analysis.")
-    private String demographics;
+    private IndividualSurvey demographics;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the

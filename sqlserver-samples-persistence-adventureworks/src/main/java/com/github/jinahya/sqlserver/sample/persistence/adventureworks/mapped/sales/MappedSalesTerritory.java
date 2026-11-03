@@ -390,7 +390,7 @@ public abstract class MappedSalesTerritory {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
      */
-    public String getCountryRegionCode() {
+    protected String getCountryRegionCode() {
         return countryRegionCode;
     }
 

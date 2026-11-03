@@ -158,8 +158,8 @@ public class WorkOrderRouting
         this.workOrder = workOrder;
         setWorkOrderId(Optional.ofNullable(workOrder).map(WorkOrder::getWorkOrderId).orElse(null));
         // ProductID, of the key, has no foreign key of its own; it is the product of the work order
-        setProductId(
-                Optional.ofNullable(workOrder).map(MappedWorkOrder::getProductId).orElse(null));
+        setProductId(Optional.ofNullable(workOrder).map(WorkOrder::getProduct).map(Product::getProductId)
+                              .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

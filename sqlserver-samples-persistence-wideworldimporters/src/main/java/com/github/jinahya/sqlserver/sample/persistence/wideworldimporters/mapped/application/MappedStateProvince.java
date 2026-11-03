@@ -367,7 +367,7 @@ public abstract class MappedStateProvince {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute.
      */
-    public Integer getCountryId() {
+    protected Integer getCountryId() {
         return countryId;
     }
 
@@ -449,7 +449,7 @@ public abstract class MappedStateProvince {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

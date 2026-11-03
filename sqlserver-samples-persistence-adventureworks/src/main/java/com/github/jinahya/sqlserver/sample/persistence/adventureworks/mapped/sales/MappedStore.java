@@ -20,12 +20,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.StoreSurveyStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import io.github.jinahya.sqlserver.xml.schema.binding.b95f5e.StoreSurvey;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -283,7 +287,7 @@ public abstract class MappedStore {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute.
      */
-    public Integer getSalesPersonId() {
+    protected Integer getSalesPersonId() {
         return salesPersonId;
     }
 
@@ -305,7 +309,7 @@ public abstract class MappedStore {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute.
      */
-    public String getDemographics() {
+    public StoreSurvey getDemographics() {
         return demographics;
     }
 
@@ -315,7 +319,7 @@ public abstract class MappedStore {
      *
      * @param demographics new value for {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute.
      */
-    public void setDemographics(final String demographics) {
+    public void setDemographics(final StoreSurvey demographics) {
         this.demographics = demographics;
     }
 
@@ -383,12 +387,14 @@ public abstract class MappedStore {
     private Integer salesPersonId;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @Convert(converter = StoreSurveyStringAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DEMOGRAPHICS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DEMOGRAPHICS,
                           value = "Demographic informationg about the store such as the number "
                                   + "of employees, annual sales and store type.")
-    private String demographics;
+    private StoreSurvey demographics;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the

@@ -372,7 +372,7 @@ public abstract class MappedSalesReturn {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
      */
-    public Integer getSalesOrderId() {
+    protected Integer getSalesOrderId() {
         return salesOrderId;
     }
 
@@ -394,7 +394,7 @@ public abstract class MappedSalesReturn {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -435,7 +435,7 @@ public abstract class MappedSalesReturn {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_RETURN_REASON_ID} attribute.
      */
-    public Integer getReturnReasonId() {
+    protected Integer getReturnReasonId() {
         return returnReasonId;
     }
 

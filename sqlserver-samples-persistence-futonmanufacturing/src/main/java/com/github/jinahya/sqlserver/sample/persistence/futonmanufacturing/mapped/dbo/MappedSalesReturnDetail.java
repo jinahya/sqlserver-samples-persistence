@@ -265,7 +265,7 @@ public abstract class MappedSalesReturnDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_RETURN_ID} attribute.
      */
-    public Integer getReturnId() {
+    protected Integer getReturnId() {
         return returnId;
     }
 
@@ -286,7 +286,7 @@ public abstract class MappedSalesReturnDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SO_DETAIL_ID} attribute.
      */
-    public Integer getSoDetailId() {
+    protected Integer getSoDetailId() {
         return soDetailId;
     }
 
@@ -307,7 +307,7 @@ public abstract class MappedSalesReturnDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

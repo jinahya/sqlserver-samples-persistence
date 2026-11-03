@@ -761,7 +761,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute.
      */
-    public Integer getBillToCustomerId() {
+    protected Integer getBillToCustomerId() {
         return billToCustomerId;
     }
 
@@ -783,7 +783,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_CATEGORY_ID} attribute.
      */
-    public Integer getCustomerCategoryId() {
+    protected Integer getCustomerCategoryId() {
         return customerCategoryId;
     }
 
@@ -805,7 +805,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUYING_GROUP_ID} attribute.
      */
-    public Integer getBuyingGroupId() {
+    protected Integer getBuyingGroupId() {
         return buyingGroupId;
     }
 
@@ -827,7 +827,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRIMARY_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getPrimaryContactPersonId() {
+    protected Integer getPrimaryContactPersonId() {
         return primaryContactPersonId;
     }
 
@@ -849,7 +849,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ALTERNATE_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getAlternateContactPersonId() {
+    protected Integer getAlternateContactPersonId() {
         return alternateContactPersonId;
     }
 
@@ -871,7 +871,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
      */
-    public Integer getDeliveryMethodId() {
+    protected Integer getDeliveryMethodId() {
         return deliveryMethodId;
     }
 
@@ -893,7 +893,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_CITY_ID} attribute.
      */
-    public Integer getDeliveryCityId() {
+    protected Integer getDeliveryCityId() {
         return deliveryCityId;
     }
 
@@ -915,7 +915,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_POSTAL_CITY_ID} attribute.
      */
-    public Integer getPostalCityId() {
+    protected Integer getPostalCityId() {
         return postalCityId;
     }
 
@@ -1298,7 +1298,7 @@ public abstract class MappedCustomer {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

@@ -298,7 +298,7 @@ public abstract class MappedSalesTaxRate {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
      */
-    public Integer getStateProvinceId() {
+    protected Integer getStateProvinceId() {
         return stateProvinceId;
     }
 

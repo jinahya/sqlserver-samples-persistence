@@ -20,6 +20,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>sqlserver-samples-persistence-common</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.microsoft.sqlserver</groupId>

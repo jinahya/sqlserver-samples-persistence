@@ -340,7 +340,7 @@ public abstract class MappedPurchaseOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute.
      */
-    public Integer getSupplierId() {
+    protected Integer getSupplierId() {
         return supplierId;
     }
 
@@ -381,7 +381,7 @@ public abstract class MappedPurchaseOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute.
      */
-    public Integer getDeliveryMethodId() {
+    protected Integer getDeliveryMethodId() {
         return deliveryMethodId;
     }
 
@@ -403,7 +403,7 @@ public abstract class MappedPurchaseOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute.
      */
-    public Integer getContactPersonId() {
+    protected Integer getContactPersonId() {
         return contactPersonId;
     }
 
@@ -525,7 +525,7 @@ public abstract class MappedPurchaseOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute.
      */
-    public Integer getLastEditedBy() {
+    protected Integer getLastEditedBy() {
         return lastEditedBy;
     }
 

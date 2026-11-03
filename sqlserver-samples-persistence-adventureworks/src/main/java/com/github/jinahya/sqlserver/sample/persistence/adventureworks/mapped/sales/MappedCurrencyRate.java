@@ -299,7 +299,7 @@ public abstract class MappedCurrencyRate {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_FROM_CURRENCY_CODE} attribute.
      */
-    public String getFromCurrencyCode() {
+    protected String getFromCurrencyCode() {
         return fromCurrencyCode;
     }
 
@@ -321,7 +321,7 @@ public abstract class MappedCurrencyRate {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TO_CURRENCY_CODE} attribute.
      */
-    public String getToCurrencyCode() {
+    protected String getToCurrencyCode() {
         return toCurrencyCode;
     }
 

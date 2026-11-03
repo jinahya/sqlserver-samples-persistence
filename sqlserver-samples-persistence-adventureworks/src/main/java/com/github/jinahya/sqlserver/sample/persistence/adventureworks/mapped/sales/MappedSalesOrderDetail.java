@@ -495,7 +495,7 @@ public abstract class MappedSalesOrderDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public Integer getProductId() {
+    protected Integer getProductId() {
         return productId;
     }
 
@@ -517,7 +517,7 @@ public abstract class MappedSalesOrderDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
      */
-    public Integer getSpecialOfferId() {
+    protected Integer getSpecialOfferId() {
         return specialOfferId;
     }
 

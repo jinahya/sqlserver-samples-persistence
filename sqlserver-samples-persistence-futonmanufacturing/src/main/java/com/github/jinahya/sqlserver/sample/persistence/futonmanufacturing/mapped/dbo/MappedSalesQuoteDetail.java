@@ -294,7 +294,7 @@ public abstract class MappedSalesQuoteDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_QUOTE_ID} attribute.
      */
-    public Integer getQuoteId() {
+    protected Integer getQuoteId() {
         return quoteId;
     }
 
@@ -335,7 +335,7 @@ public abstract class MappedSalesQuoteDetail {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ITEM_ID} attribute.
      */
-    public Integer getItemId() {
+    protected Integer getItemId() {
         return itemId;
     }
 

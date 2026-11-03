@@ -942,7 +942,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
-    public Integer getCustomerId() {
+    protected Integer getCustomerId() {
         return customerId;
     }
 
@@ -964,7 +964,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute.
      */
-    public Integer getSalesPersonId() {
+    protected Integer getSalesPersonId() {
         return salesPersonId;
     }
 
@@ -986,7 +986,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
-    public Integer getTerritoryId() {
+    protected Integer getTerritoryId() {
         return territoryId;
     }
 
@@ -1008,7 +1008,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BILL_TO_ADDRESS_ID} attribute.
      */
-    public Integer getBillToAddressId() {
+    protected Integer getBillToAddressId() {
         return billToAddressId;
     }
 
@@ -1030,7 +1030,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SHIP_TO_ADDRESS_ID} attribute.
      */
-    public Integer getShipToAddressId() {
+    protected Integer getShipToAddressId() {
         return shipToAddressId;
     }
 
@@ -1052,7 +1052,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute.
      */
-    public Integer getShipMethodId() {
+    protected Integer getShipMethodId() {
         return shipMethodId;
     }
 
@@ -1074,7 +1074,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute.
      */
-    public Integer getCreditCardId() {
+    protected Integer getCreditCardId() {
         return creditCardId;
     }
 
@@ -1118,7 +1118,7 @@ public abstract class MappedSalesOrderHeader {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute.
      */
-    public Integer getCurrencyRateId() {
+    protected Integer getCurrencyRateId() {
         return currencyRateId;
     }
 

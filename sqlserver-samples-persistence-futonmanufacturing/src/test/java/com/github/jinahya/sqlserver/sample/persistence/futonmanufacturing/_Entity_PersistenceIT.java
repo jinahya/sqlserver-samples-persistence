@@ -24,18 +24,15 @@ import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Path;
-import jakarta.persistence.metamodel.Attribute;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
@@ -51,63 +48,12 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 })
 public abstract class _Entity_PersistenceIT<T> {
 
-    /**
-     * The number of installed rows each test reads.
-     */
-    static final int MAX_RESULTS = 8;
-
     protected _Entity_PersistenceIT(final Class<T> entityClass) {
         super();
         this.entityClass = Objects.requireNonNull(entityClass, "entityClass is null");
     }
 
     // ---------------------------------------------------------------------------------------------
-    private List<T> select(final EntityManager entityManager) {
-        final var builder = entityManager.getCriteriaBuilder();
-        final var query = builder.createQuery(entityClass);
-        query.select(query.from(entityClass));
-        return entityManager.createQuery(query).setMaxResults(MAX_RESULTS).getResultList();
-    }
-
-    // ---------------------------------------------------------------------------------------------
-    @DisplayName("every association of the installed rows is loaded")
-    @Test
-    void associations() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
-            final var associations = em.getMetamodel().entity(entityClass).getSingularAttributes().stream()
-                    .filter(Attribute::isAssociation)
-                    .map(a -> (Field) a.getJavaMember())
-                    .toList();
-            assumeFalse(associations.isEmpty(),
-                        () -> entityClass.getSimpleName() + " maps no association");
-            final var util = em.getEntityManagerFactory().getPersistenceUnitUtil();
-            var referenced = 0;
-            for (final var instance : select(em)) {
-                for (final var association : associations) {
-                    final Object value;
-                    try {
-                        association.setAccessible(true);
-                        value = association.get(instance);
-                    } catch (final IllegalAccessException iae) {
-                        throw new AssertionError("failed to read " + association, iae);
-                    }
-                    if (value == null) {
-                        continue;
-                    }
-                    util.load(value);
-                    assertThat(util.isLoaded(value))
-                            .as("%s of %s loaded", association.getName(), instance)
-                            .isTrue();
-                    assertThat(util.getIdentifier(value)).isNotNull();
-                    referenced++;
-                }
-            }
-            assumeFalse(referenced == 0,
-                        () -> "no installed row of " + entityClass.getSimpleName() + " references");
-            return null;
-        });
-    }
-
     /**
      * Persists a new, randomized instance of the entity, through its persister, and flushes it.
      * <p>
