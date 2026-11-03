@@ -546,149 +546,88 @@ public abstract class MappedJobCandidateEducationView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false, updatable = false)
     private Integer jobCandidateId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LEVEL,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EDU_LEVEL, nullable = true, insertable = false, updatable = false)
     private String eduLevel;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_START_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EDU_START_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime eduStartDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_END_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EDU_END_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime eduEndDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_DEGREE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_DEGREE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_DEGREE
-    )
+    @Column(name = COLUMN_NAME_EDU_DEGREE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_DEGREE)
     private String eduDegree;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_MAJOR)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_MAJOR,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_MAJOR
-    )
+    @Column(name = COLUMN_NAME_EDU_MAJOR, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_MAJOR)
     private String eduMajor;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_MINOR)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_MINOR,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_MINOR
-    )
+    @Column(name = COLUMN_NAME_EDU_MINOR, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_MINOR)
     private String eduMinor;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_GPA)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_GPA,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_GPA
-    )
+    @Column(name = COLUMN_NAME_EDU_GPA, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_GPA)
     private String eduGpa;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_GPA_SCALE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_GPA_SCALE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_GPA_SCALE
-    )
+    @Column(name = COLUMN_NAME_EDU_GPA_SCALE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_GPA_SCALE)
     private String eduGpaScale;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_SCHOOL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_SCHOOL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_SCHOOL
-    )
+    @Column(name = COLUMN_NAME_EDU_SCHOOL, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_SCHOOL)
     private String eduSchool;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LOC_COUNTRY_REGION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION
-    )
+    @Column(name = COLUMN_NAME_EDU_LOC_COUNTRY_REGION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION)
     private String eduLocCountryRegion;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_STATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LOC_STATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_LOC_STATE
-    )
+    @Column(name = COLUMN_NAME_EDU_LOC_STATE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_LOC_STATE)
     private String eduLocState;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_CITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LOC_CITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDU_LOC_CITY
-    )
+    @Column(name = COLUMN_NAME_EDU_LOC_CITY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_LOC_CITY)
     private String eduLocCity;
 }
 

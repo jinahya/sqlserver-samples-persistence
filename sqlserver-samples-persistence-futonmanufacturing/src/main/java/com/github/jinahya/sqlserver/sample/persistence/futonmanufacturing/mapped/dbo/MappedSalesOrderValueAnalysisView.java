@@ -727,84 +727,48 @@ public abstract class MappedSalesOrderValueAnalysisView {
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_TYPE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_TYPE)
     private String customerType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_TERRITORY_NAME
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TERRITORY_NAME)
     private String territoryName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_REGION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REGION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_REGION
-    )
+    @Column(name = COLUMN_NAME_REGION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_REGION)
     private String region;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_SUBTOTAL - COLUMN_SCALE_AVG_SUBTOTAL, fraction = COLUMN_SCALE_AVG_SUBTOTAL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_SUBTOTAL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_SUBTOTAL,
-            scale = COLUMN_SCALE_AVG_SUBTOTAL
-    )
+    @Column(name = COLUMN_NAME_AVG_SUBTOTAL, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_SUBTOTAL, scale = COLUMN_SCALE_AVG_SUBTOTAL)
     private BigDecimal avgSubtotal;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT - COLUMN_SCALE_AVG_DISCOUNT, fraction = COLUMN_SCALE_AVG_DISCOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_DISCOUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_DISCOUNT,
-            scale = COLUMN_SCALE_AVG_DISCOUNT
-    )
+    @Column(name = COLUMN_NAME_AVG_DISCOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_DISCOUNT, scale = COLUMN_SCALE_AVG_DISCOUNT)
     private BigDecimal avgDiscount;
 
     // ---------------------------------------------------------------------------------------------
@@ -812,39 +776,21 @@ public abstract class MappedSalesOrderValueAnalysisView {
     @Digits(integer = COLUMN_PRECISION_AVG_NET_AMOUNT - COLUMN_SCALE_AVG_NET_AMOUNT,
             fraction = COLUMN_SCALE_AVG_NET_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_NET_AMOUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_NET_AMOUNT,
-            scale = COLUMN_SCALE_AVG_NET_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_AVG_NET_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_NET_AMOUNT, scale = COLUMN_SCALE_AVG_NET_AMOUNT)
     private BigDecimal avgNetAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_TAX - COLUMN_SCALE_AVG_TAX, fraction = COLUMN_SCALE_AVG_TAX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_TAX,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_TAX,
-            scale = COLUMN_SCALE_AVG_TAX
-    )
+    @Column(name = COLUMN_NAME_AVG_TAX, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_TAX, scale = COLUMN_SCALE_AVG_TAX)
     private BigDecimal avgTax;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_AVG_SHIPPING - COLUMN_SCALE_AVG_SHIPPING, fraction = COLUMN_SCALE_AVG_SHIPPING)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_SHIPPING,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_SHIPPING,
-            scale = COLUMN_SCALE_AVG_SHIPPING
-    )
+    @Column(name = COLUMN_NAME_AVG_SHIPPING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_SHIPPING, scale = COLUMN_SCALE_AVG_SHIPPING)
     private BigDecimal avgShipping;
 
     // ---------------------------------------------------------------------------------------------
@@ -852,13 +798,7 @@ public abstract class MappedSalesOrderValueAnalysisView {
     @Digits(integer = COLUMN_PRECISION_MIN_ORDER_VALUE - COLUMN_SCALE_MIN_ORDER_VALUE,
             fraction = COLUMN_SCALE_MIN_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIN_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_MIN_ORDER_VALUE,
-            scale = COLUMN_SCALE_MIN_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_MIN_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MIN_ORDER_VALUE, scale = COLUMN_SCALE_MIN_ORDER_VALUE)
     private BigDecimal minOrderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -866,63 +806,37 @@ public abstract class MappedSalesOrderValueAnalysisView {
     @Digits(integer = COLUMN_PRECISION_MAX_ORDER_VALUE - COLUMN_SCALE_MAX_ORDER_VALUE,
             fraction = COLUMN_SCALE_MAX_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MAX_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_MAX_ORDER_VALUE,
-            scale = COLUMN_SCALE_MAX_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_MAX_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MAX_ORDER_VALUE, scale = COLUMN_SCALE_MAX_ORDER_VALUE)
     private BigDecimal maxOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STD_DEV_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STD_DEV_ORDER_VALUE, nullable = true, insertable = false, updatable = false)
     private Double stdDevOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SMALL_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SMALL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer smallOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MEDIUM_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MEDIUM_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer mediumOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LARGE_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LARGE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer largeOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ENTERPRISE_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ENTERPRISE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer enterpriseOrders;
 }
 

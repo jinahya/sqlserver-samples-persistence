@@ -246,46 +246,27 @@ public abstract class MappedTransactionType {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = true, updatable = false)
     private Integer transactionTypeId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TYPE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TYPE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TYPE_CODE
-    )
+    @Column(name = COLUMN_NAME_TYPE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TYPE_CODE)
     private String typeCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TYPE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TYPE_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TYPE_NAME
-    )
+    @Column(name = COLUMN_NAME_TYPE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TYPE_NAME)
     private String typeName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     private String description;
 }
 

@@ -252,45 +252,27 @@ public abstract class MappedReturnReason {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_RETURN_REASON_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RETURN_REASON_ID, nullable = false, insertable = true, updatable = false)
     private Integer returnReasonId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REASON_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REASON_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REASON_CODE
-    )
+    @Column(name = COLUMN_NAME_REASON_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REASON_CODE)
     private String reasonCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REASON_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REASON_DESCRIPTION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REASON_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_REASON_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REASON_DESCRIPTION)
     private String reasonDescription;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

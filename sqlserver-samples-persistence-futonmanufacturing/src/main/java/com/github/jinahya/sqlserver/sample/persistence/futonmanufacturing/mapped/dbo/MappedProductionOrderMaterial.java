@@ -305,33 +305,21 @@ public abstract class MappedProductionOrderMaterial {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PROD_ORDER_MATERIAL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PROD_ORDER_MATERIAL_ID, nullable = false, insertable = true, updatable = false)
     private Integer prodOrderMaterialId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = false, updatable = false)
     private Integer productionOrderId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
@@ -339,26 +327,14 @@ public abstract class MappedProductionOrderMaterial {
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REQUIRED_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_REQUIRED_QUANTITY,
-            scale = COLUMN_SCALE_REQUIRED_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_REQUIRED_QUANTITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_REQUIRED_QUANTITY, scale = COLUMN_SCALE_REQUIRED_QUANTITY)
     private BigDecimal requiredQuantity;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_ISSUED_QUANTITY - COLUMN_SCALE_ISSUED_QUANTITY,
             fraction = COLUMN_SCALE_ISSUED_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ISSUED_QUANTITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_ISSUED_QUANTITY,
-            scale = COLUMN_SCALE_ISSUED_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_ISSUED_QUANTITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_ISSUED_QUANTITY, scale = COLUMN_SCALE_ISSUED_QUANTITY)
     @MsDefault("((0))")
     private BigDecimal issuedQuantity;
 }

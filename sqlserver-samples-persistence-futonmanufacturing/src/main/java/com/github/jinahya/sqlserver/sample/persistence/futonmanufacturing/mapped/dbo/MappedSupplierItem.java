@@ -483,111 +483,66 @@ public abstract class MappedSupplierItem {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SUPPLIER_ITEM_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ITEM_ID, nullable = false, insertable = true, updatable = false)
     private Integer supplierItemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
     private Integer supplierId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_PART_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUPPLIER_PART_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUPPLIER_PART_NUMBER
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_PART_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_PART_NUMBER)
     private String supplierPartNumber;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY - COLUMN_SCALE_MINIMUM_ORDER_QUANTITY,
             fraction = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MINIMUM_ORDER_QUANTITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY,
-            scale = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_MINIMUM_ORDER_QUANTITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_MINIMUM_ORDER_QUANTITY, scale = COLUMN_SCALE_MINIMUM_ORDER_QUANTITY)
     @MsDefault("((1))")
     private BigDecimal minimumOrderQuantity;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = true, updatable = true)
     @MsDefault("((0))")
     private Integer leadTimeDays;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_PREFERRED,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_PREFERRED, nullable = false, insertable = true, updatable = true)
     @MsDefault("((0))")
     private Boolean isPreferred;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EFFECTIVE_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EFFECTIVE_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate effectiveDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate endDate;
 }
 

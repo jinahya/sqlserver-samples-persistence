@@ -43,9 +43,6 @@ class BusinessEntityContact_Persister
         final var contactType = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ContactType.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setBusinessEntity(businessEntity);
-        entityInstance.setPerson(person);
-        entityInstance.setContactType(contactType);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, BusinessEntityContact.of(businessEntity, person, contactType));
     }
 }

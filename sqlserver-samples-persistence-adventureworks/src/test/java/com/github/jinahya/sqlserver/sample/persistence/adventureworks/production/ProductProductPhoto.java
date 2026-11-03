@@ -23,20 +23,26 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductPhoto;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductProductPhoto;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductProductPhotoId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductProductPhotoId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
 
 /**
  * An entity which maps the {@code Production.ProductProductPhoto} table.
+ * <p>
+ * Each attribute of the embedded {@link ProductProductPhotoId} is derived, with {@link MapsId @MapsId}, from the association
+ * which references the same column.
  */
 @Entity(name = "ProductionProductProductPhoto")
 @Table(schema = MappedProductProductPhoto.TABLE_SCHEMA, name = MappedProductProductPhoto.TABLE_NAME)
-@IdClass(MappedProductProductPhotoId.class)
 public class ProductProductPhoto extends MappedProductProductPhoto {
 
     /**
@@ -50,6 +56,26 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
      * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO = "productPhoto";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code product} and {@code productPhoto}.
+     *
+     * @param product      the {@code Product} to reference.
+     * @param productPhoto the {@code ProductPhoto} to reference.
+     * @return a new instance which references {@code product} and {@code productPhoto}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static ProductProductPhoto of(final Product product,
+                                         final ProductPhoto productPhoto) {
+        Objects.requireNonNull(product, "product is null");
+        Objects.requireNonNull(productPhoto, "productPhoto is null");
+        final var instance = new ProductProductPhoto();
+        instance.product = product;
+        instance.productPhoto = productPhoto;
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -71,17 +97,6 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
         return product;
     }
 
-    /**
-     * Replaces the {@code Product} which the {@code FK_ProductProductPhoto_Product_ProductID} foreign key references,
-     * and the value of the column it consists of.
-     *
-     * @param product the {@code Product} to reference; {@code null} for none.
-     */
-    public void setProduct(final Product product) {
-        this.product = product;
-        setProductId(product == null ? null : product.getProductId());
-    }
-
     // -------------------------------------------------------------------------------- productPhoto
 
     /**
@@ -94,33 +109,28 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
         return productPhoto;
     }
 
-    /**
-     * Replaces the {@code ProductPhoto} which the {@code FK_ProductProductPhoto_ProductPhoto_ProductPhotoID} foreign
-     * key references, and the value of the column it consists of.
-     *
-     * @param productPhoto the {@code ProductPhoto} to reference; {@code null} for none.
-     */
-    public void setProductPhoto(final ProductPhoto productPhoto) {
-        this.productPhoto = productPhoto;
-        setProductPhotoId(productPhoto == null ? null : productPhoto.getProductPhotoId());
-    }
-
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(ProductProductPhotoId.ATTRIBUTE_NAME_PRODUCT_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private Product product;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(ProductProductPhotoId.ATTRIBUTE_NAME_PRODUCT_PHOTO_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
                 referencedColumnName = MappedProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private ProductPhoto productPhoto;

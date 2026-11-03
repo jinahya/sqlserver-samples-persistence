@@ -364,11 +364,7 @@ public abstract class MappedCreditCard {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_CREDIT_CARD_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CREDIT_CARD_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CREDIT_CARD_ID,
                           value = "Primary key for CreditCard records.")
     private Integer creditCardId;
@@ -377,12 +373,7 @@ public abstract class MappedCreditCard {
     @Size(max = COLUMN_LENGTH_CARD_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CARD_TYPE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CARD_TYPE
-    )
+    @Column(name = COLUMN_NAME_CARD_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CARD_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_CARD_TYPE, value = "Credit card name.")
     private String cardType;
 
@@ -390,12 +381,7 @@ public abstract class MappedCreditCard {
     @Size(max = COLUMN_LENGTH_CARD_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CARD_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CARD_NUMBER
-    )
+    @Column(name = COLUMN_NAME_CARD_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CARD_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_CARD_NUMBER, value = "Credit card number.")
     private String cardNumber;
 
@@ -404,11 +390,7 @@ public abstract class MappedCreditCard {
     @Min(COLUMN_MIN_EXP_MONTH)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EXP_MONTH,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EXP_MONTH, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_EXP_MONTH, value = "Credit card expiration month.")
     private Integer expMonth;
 
@@ -417,11 +399,7 @@ public abstract class MappedCreditCard {
     @Min(COLUMN_MIN_EXP_YEAR)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EXP_YEAR,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EXP_YEAR, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_EXP_YEAR, value = "Credit card expiration year.")
     private Integer expYear;
 
@@ -429,11 +407,7 @@ public abstract class MappedCreditCard {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_CreditCard_ModifiedDate", value = "(getdate())")

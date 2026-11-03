@@ -657,12 +657,7 @@ public abstract class MappedInventoryValuationView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_CODE
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_CODE)
     private String warehouseCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -670,12 +665,7 @@ public abstract class MappedInventoryValuationView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_NAME
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_NAME)
     private String warehouseName;
 
     // ---------------------------------------------------------------------------------------------
@@ -683,12 +673,7 @@ public abstract class MappedInventoryValuationView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -696,12 +681,7 @@ public abstract class MappedInventoryValuationView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -709,12 +689,7 @@ public abstract class MappedInventoryValuationView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -723,13 +698,7 @@ public abstract class MappedInventoryValuationView {
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_ON_HAND,
-            scale = COLUMN_SCALE_QUANTITY_ON_HAND
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_ON_HAND, scale = COLUMN_SCALE_QUANTITY_ON_HAND)
     private BigDecimal quantityOnHand;
 
     // ---------------------------------------------------------------------------------------------
@@ -738,13 +707,7 @@ public abstract class MappedInventoryValuationView {
             fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_ALLOCATED,
-            scale = COLUMN_SCALE_QUANTITY_ALLOCATED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_ALLOCATED, scale = COLUMN_SCALE_QUANTITY_ALLOCATED)
     private BigDecimal quantityAllocated;
 
     // ---------------------------------------------------------------------------------------------
@@ -752,13 +715,7 @@ public abstract class MappedInventoryValuationView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_AVAILABLE,
-            scale = COLUMN_SCALE_QUANTITY_AVAILABLE
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     private BigDecimal quantityAvailable;
 
     // ---------------------------------------------------------------------------------------------
@@ -766,12 +723,7 @@ public abstract class MappedInventoryValuationView {
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_CODE)
     private String unitCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -780,13 +732,7 @@ public abstract class MappedInventoryValuationView {
             fraction = COLUMN_SCALE_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STANDARD_COST,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_STANDARD_COST,
-            scale = COLUMN_SCALE_STANDARD_COST
-    )
+    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_STANDARD_COST, scale = COLUMN_SCALE_STANDARD_COST)
     private BigDecimal standardCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -794,13 +740,7 @@ public abstract class MappedInventoryValuationView {
     @Digits(integer = COLUMN_PRECISION_INVENTORY_VALUE - COLUMN_SCALE_INVENTORY_VALUE,
             fraction = COLUMN_SCALE_INVENTORY_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INVENTORY_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_INVENTORY_VALUE,
-            scale = COLUMN_SCALE_INVENTORY_VALUE
-    )
+    @Column(name = COLUMN_NAME_INVENTORY_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_INVENTORY_VALUE, scale = COLUMN_SCALE_INVENTORY_VALUE)
     private BigDecimal inventoryValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -808,33 +748,19 @@ public abstract class MappedInventoryValuationView {
     @Digits(integer = COLUMN_PRECISION_AVAILABLE_VALUE - COLUMN_SCALE_AVAILABLE_VALUE,
             fraction = COLUMN_SCALE_AVAILABLE_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVAILABLE_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVAILABLE_VALUE,
-            scale = COLUMN_SCALE_AVAILABLE_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVAILABLE_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVAILABLE_VALUE, scale = COLUMN_SCALE_AVAILABLE_VALUE)
     private BigDecimal availableValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_COUNT_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_COUNT_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime lastCountDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_SINCE_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_SINCE_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceCount;
 }
 

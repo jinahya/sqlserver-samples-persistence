@@ -532,56 +532,33 @@ public abstract class MappedQualityInspection {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_INSPECTION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INSPECTION_ID, nullable = false, insertable = true, updatable = false)
     private Integer inspectionId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_INSPECTION_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_INSPECTION_TYPE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_INSPECTION_TYPE
-    )
+    @Column(name = COLUMN_NAME_INSPECTION_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_INSPECTION_TYPE)
     private String inspectionType;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REFERENCE_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REFERENCE_TYPE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REFERENCE_TYPE
-    )
+    @Column(name = COLUMN_NAME_REFERENCE_TYPE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_REFERENCE_TYPE)
     private String referenceType;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REFERENCE_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REFERENCE_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REFERENCE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_REFERENCE_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_REFERENCE_NUMBER)
     private String referenceNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -589,13 +566,7 @@ public abstract class MappedQualityInspection {
             fraction = COLUMN_SCALE_QUANTITY_INSPECTED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_INSPECTED,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_INSPECTED,
-            scale = COLUMN_SCALE_QUANTITY_INSPECTED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_INSPECTED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_INSPECTED, scale = COLUMN_SCALE_QUANTITY_INSPECTED)
     private BigDecimal quantityInspected;
 
     // ---------------------------------------------------------------------------------------------
@@ -603,13 +574,7 @@ public abstract class MappedQualityInspection {
             fraction = COLUMN_SCALE_QUANTITY_ACCEPTED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_ACCEPTED,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_ACCEPTED,
-            scale = COLUMN_SCALE_QUANTITY_ACCEPTED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_ACCEPTED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_ACCEPTED, scale = COLUMN_SCALE_QUANTITY_ACCEPTED)
     private BigDecimal quantityAccepted;
 
     // ---------------------------------------------------------------------------------------------
@@ -617,43 +582,24 @@ public abstract class MappedQualityInspection {
             fraction = COLUMN_SCALE_QUANTITY_REJECTED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_REJECTED,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_REJECTED,
-            scale = COLUMN_SCALE_QUANTITY_REJECTED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_REJECTED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_REJECTED, scale = COLUMN_SCALE_QUANTITY_REJECTED)
     private BigDecimal quantityRejected;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INSPECTION_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_INSPECTION_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime inspectionDate;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_INSPECTED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INSPECTED_BY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_INSPECTED_BY
-    )
+    @Column(name = COLUMN_NAME_INSPECTED_BY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_INSPECTED_BY)
     private String inspectedBy;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NOTES,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;
 }
 

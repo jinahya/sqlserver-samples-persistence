@@ -789,12 +789,7 @@ public abstract class MappedSalesStorePerformanceView {
     @Size(max = COLUMN_LENGTH_STORE_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_STORE_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STORE_CODE
-    )
+    @Column(name = COLUMN_NAME_STORE_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STORE_CODE)
     private String storeCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -802,93 +797,54 @@ public abstract class MappedSalesStorePerformanceView {
     @Size(max = COLUMN_LENGTH_STORE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STORE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STORE_NAME
-    )
+    @Column(name = COLUMN_NAME_STORE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STORE_NAME)
     private String storeName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CITY
-    )
+    @Column(name = COLUMN_NAME_CITY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATE
-    )
+    @Column(name = COLUMN_NAME_STATE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE)
     private String state;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MANAGER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MANAGER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_MANAGER
-    )
+    @Column(name = COLUMN_NAME_MANAGER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MANAGER)
     private String manager;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_SALES,
-            scale = COLUMN_SCALE_GROSS_SALES
-    )
+    @Column(name = COLUMN_NAME_GROSS_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_SALES, scale = COLUMN_SCALE_GROSS_SALES)
     private BigDecimal grossSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -896,26 +852,14 @@ public abstract class MappedSalesStorePerformanceView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_DISCOUNTS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_DISCOUNTS,
-            scale = COLUMN_SCALE_TOTAL_DISCOUNTS
-    )
+    @Column(name = COLUMN_NAME_TOTAL_DISCOUNTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_DISCOUNTS, scale = COLUMN_SCALE_TOTAL_DISCOUNTS)
     private BigDecimal totalDiscounts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NET_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_NET_SALES,
-            scale = COLUMN_SCALE_NET_SALES
-    )
+    @Column(name = COLUMN_NAME_NET_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_NET_SALES, scale = COLUMN_SCALE_NET_SALES)
     private BigDecimal netSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -923,23 +867,13 @@ public abstract class MappedSalesStorePerformanceView {
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
-            scale = COLUMN_SCALE_AVG_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPLETED_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPLETED_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer completedOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -947,43 +881,25 @@ public abstract class MappedSalesStorePerformanceView {
     @Digits(integer = COLUMN_PRECISION_COMPLETION_RATE - COLUMN_SCALE_COMPLETION_RATE,
             fraction = COLUMN_SCALE_COMPLETION_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPLETION_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_COMPLETION_RATE,
-            scale = COLUMN_SCALE_COMPLETION_RATE
-    )
+    @Column(name = COLUMN_NAME_COMPLETION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_COMPLETION_RATE, scale = COLUMN_SCALE_COMPLETION_RATE)
     private BigDecimal completionRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FIRST_SALE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_FIRST_SALE, nullable = true, insertable = false, updatable = false)
     private LocalDate firstSale;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_SALE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_SALE, nullable = true, insertable = false, updatable = false)
     private LocalDate lastSale;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_ACTIVE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_ACTIVE, nullable = true, insertable = false, updatable = false)
     private Integer daysActive;
 
     // ---------------------------------------------------------------------------------------------
@@ -991,13 +907,7 @@ public abstract class MappedSalesStorePerformanceView {
     @Digits(integer = COLUMN_PRECISION_AVG_DAILY_SALES - COLUMN_SCALE_AVG_DAILY_SALES,
             fraction = COLUMN_SCALE_AVG_DAILY_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_DAILY_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_DAILY_SALES,
-            scale = COLUMN_SCALE_AVG_DAILY_SALES
-    )
+    @Column(name = COLUMN_NAME_AVG_DAILY_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_DAILY_SALES, scale = COLUMN_SCALE_AVG_DAILY_SALES)
     private BigDecimal avgDailySales;
 }
 

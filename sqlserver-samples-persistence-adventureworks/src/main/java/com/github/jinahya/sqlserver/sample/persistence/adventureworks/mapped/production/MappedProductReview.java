@@ -438,11 +438,7 @@ public abstract class MappedProductReview {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID,
                           value = "Primary key for ProductReview records.")
     private Integer productReviewId;
@@ -451,11 +447,7 @@ public abstract class MappedProductReview {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -465,23 +457,14 @@ public abstract class MappedProductReview {
     @Size(max = COLUMN_LENGTH_REVIEWER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVIEWER_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REVIEWER_NAME
-    )
+    @Column(name = COLUMN_NAME_REVIEWER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REVIEWER_NAME)
     @MsDescription.Column(name = COLUMN_NAME_REVIEWER_NAME, value = "Name of the reviewer.")
     private String reviewerName;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVIEW_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REVIEW_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REVIEW_DATE, value = "Date review was submitted.")
     @MsDefault(name = "DF_ProductReview_ReviewDate", value = "(getdate())")
     private LocalDateTime reviewDate;
@@ -490,12 +473,7 @@ public abstract class MappedProductReview {
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMAIL_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL_ADDRESS)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS, value = "Reviewer's e-mail address.")
     private String emailAddress;
 
@@ -505,11 +483,7 @@ public abstract class MappedProductReview {
     @Min(COLUMN_MIN_RATING)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RATING,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RATING, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RATING,
                           value = "Product rating given by the reviewer. Scale is 1 to 5 with 5 "
                                   + "as the highest rating.")
@@ -518,12 +492,7 @@ public abstract class MappedProductReview {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COMMENTS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COMMENTS
-    )
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COMMENTS)
     @MsDescription.Column(name = COLUMN_NAME_COMMENTS, value = "Reviewer's comments")
     private String comments;
 
@@ -531,11 +500,7 @@ public abstract class MappedProductReview {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductReview_ModifiedDate", value = "(getdate())")

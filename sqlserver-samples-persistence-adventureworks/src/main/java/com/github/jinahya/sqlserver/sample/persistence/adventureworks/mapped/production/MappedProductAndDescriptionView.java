@@ -168,8 +168,8 @@ public abstract class MappedProductAndDescriptionView {
         if (!(obj instanceof MappedProductAndDescriptionView that)) {
             return false;
         }
-        return Objects.equals(productId, that.productId) &&
-               Objects.equals(cultureId, that.cultureId);
+        return Objects.equals(getProductId(), that.getProductId()) &&
+               Objects.equals(getCultureId(), that.getCultureId());
     }
 
     /**
@@ -180,7 +180,7 @@ public abstract class MappedProductAndDescriptionView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(productId, cultureId);
+        return Objects.hash(getProductId(), getCultureId());
     }
 
     // ----------------------------------------------------------------------------------- productId
@@ -287,11 +287,7 @@ public abstract class MappedProductAndDescriptionView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -299,12 +295,7 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -312,12 +303,7 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_PRODUCT_MODEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_MODEL,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PRODUCT_MODEL
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_MODEL, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_PRODUCT_MODEL)
     private String productModel;
 
     // ---------------------------------------------------------------------------------------------
@@ -325,12 +311,7 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_CULTURE_ID)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CULTURE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CULTURE_ID
-    )
+    @Column(name = COLUMN_NAME_CULTURE_ID, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CULTURE_ID)
     private String cultureId;
 
     // ---------------------------------------------------------------------------------------------
@@ -338,12 +319,7 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DESCRIPTION)
     private String description;
 }
 

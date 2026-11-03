@@ -324,11 +324,7 @@ public abstract class MappedCustomerCategory {
                        sequenceName = "CustomerCategoryID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.CustomerCategoryID")
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
                           value = "Numeric ID used for reference to a customer category within "
                                   + "the database")
@@ -340,12 +336,7 @@ public abstract class MappedCustomerCategory {
     @Size(max = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME,
                           value = "Full name of the category that customers can be assigned to")
     private String customerCategoryName;
@@ -354,33 +345,21 @@ public abstract class MappedCustomerCategory {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

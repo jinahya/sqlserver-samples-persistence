@@ -204,11 +204,7 @@ public abstract class MappedProductDocument {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -218,11 +214,7 @@ public abstract class MappedProductDocument {
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DOCUMENT_NODE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
                           value = "Document identification number. Foreign key to "
                                   + "Document.DocumentNode.")
@@ -232,11 +224,7 @@ public abstract class MappedProductDocument {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductDocument_ModifiedDate", value = "(getdate())")

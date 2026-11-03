@@ -43,8 +43,6 @@ class ProductModelIllustration_Persister
         final var illustration = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Illustration.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setProductModel(productModel);
-        entityInstance.setIllustration(illustration);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, ProductModelIllustration.of(productModel, illustration));
     }
 }

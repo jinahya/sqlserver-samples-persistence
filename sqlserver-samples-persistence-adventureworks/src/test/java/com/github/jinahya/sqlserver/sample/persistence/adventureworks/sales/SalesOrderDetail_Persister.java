@@ -43,8 +43,12 @@ class SalesOrderDetail_Persister
                 EntityPersisterUtils.newPersistedInstanceOf(entityManager, SpecialOfferProduct.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setSalesOrder(salesOrder);
-        entityInstance.setSpecialOfferProduct(specialOfferProduct);
-        return super.apply(entityManager, entityInstance);
+        final var instance = SalesOrderDetail.of(salesOrder);
+        instance.setSpecialOfferProduct(specialOfferProduct);
+        instance.setCarrierTrackingNumber(entityInstance.getCarrierTrackingNumber());
+        instance.setOrderQty(entityInstance.getOrderQty());
+        instance.setUnitPrice(entityInstance.getUnitPrice());
+        instance.setUnitPriceDiscount(entityInstance.getUnitPriceDiscount());
+        return super.apply(entityManager, instance);
     }
 }

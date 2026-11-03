@@ -434,82 +434,48 @@ public abstract class MappedPurchaseOrderDetail {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PO_DETAIL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PO_DETAIL_ID, nullable = false, insertable = true, updatable = false)
     private Integer poDetailId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = false, updatable = false)
     private Integer purchaseOrderId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LINE_NUMBER, nullable = false, insertable = true, updatable = true)
     private Integer lineNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY,
-            scale = COLUMN_SCALE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY, scale = COLUMN_SCALE_QUANTITY)
     private BigDecimal quantity;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_RECEIVED - COLUMN_SCALE_QUANTITY_RECEIVED,
             fraction = COLUMN_SCALE_QUANTITY_RECEIVED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_RECEIVED,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_RECEIVED,
-            scale = COLUMN_SCALE_QUANTITY_RECEIVED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_RECEIVED, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_RECEIVED, scale = COLUMN_SCALE_QUANTITY_RECEIVED)
     @MsDefault("((0))")
     private BigDecimal quantityReceived;
 
@@ -517,13 +483,7 @@ public abstract class MappedPurchaseOrderDetail {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LINE_TOTAL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_LINE_TOTAL,
-            scale = COLUMN_SCALE_LINE_TOTAL
-    )
+    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL)
     @MsComputedColumn(value = "([Quantity]*[UnitPrice])", persisted = true)
     private BigDecimal lineTotal;
 }

@@ -42,8 +42,8 @@ class ProductProductPhoto_Persister
         final var productPhoto = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductPhoto.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setProduct(product);
-        entityInstance.setProductPhoto(productPhoto);
-        return super.apply(entityManager, entityInstance);
+        final var instance = ProductProductPhoto.of(product, productPhoto);
+        instance.setPrimary(entityInstance.getPrimary());
+        return super.apply(entityManager, instance);
     }
 }

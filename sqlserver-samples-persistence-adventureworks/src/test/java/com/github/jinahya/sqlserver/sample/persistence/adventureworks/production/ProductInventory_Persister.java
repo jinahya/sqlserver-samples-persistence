@@ -42,8 +42,10 @@ class ProductInventory_Persister
         final var location = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Location.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setProduct(product);
-        entityInstance.setLocation(location);
-        return super.apply(entityManager, entityInstance);
+        final var instance = ProductInventory.of(product, location);
+        instance.setShelf(entityInstance.getShelf());
+        instance.setBin(entityInstance.getBin());
+        instance.setQuantity(entityInstance.getQuantity());
+        return super.apply(entityManager, instance);
     }
 }

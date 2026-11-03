@@ -43,8 +43,13 @@ class PurchaseOrderDetail_Persister
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setPurchaseOrder(purchaseOrder);
-        entityInstance.setProduct(product);
-        return super.apply(entityManager, entityInstance);
+        final var instance = PurchaseOrderDetail.of(purchaseOrder);
+        instance.setProduct(product);
+        instance.setDueDate(entityInstance.getDueDate());
+        instance.setOrderQty(entityInstance.getOrderQty());
+        instance.setUnitPrice(entityInstance.getUnitPrice());
+        instance.setReceivedQty(entityInstance.getReceivedQty());
+        instance.setRejectedQty(entityInstance.getRejectedQty());
+        return super.apply(entityManager, instance);
     }
 }

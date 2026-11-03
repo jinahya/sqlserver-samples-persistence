@@ -487,12 +487,7 @@ public abstract class MappedWorkCenterCapacityView {
     @Size(max = COLUMN_LENGTH_WORK_CENTER_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_WORK_CENTER_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_CENTER_CODE
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_CENTER_CODE)
     private String workCenterCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -500,12 +495,7 @@ public abstract class MappedWorkCenterCapacityView {
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_CENTER_NAME
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_CENTER_NAME)
     private String workCenterName;
 
     // ---------------------------------------------------------------------------------------------
@@ -513,33 +503,19 @@ public abstract class MappedWorkCenterCapacityView {
     @Digits(integer = COLUMN_PRECISION_DAILY_CAPACITY - COLUMN_SCALE_DAILY_CAPACITY,
             fraction = COLUMN_SCALE_DAILY_CAPACITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAILY_CAPACITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DAILY_CAPACITY,
-            scale = COLUMN_SCALE_DAILY_CAPACITY
-    )
+    @Column(name = COLUMN_NAME_DAILY_CAPACITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DAILY_CAPACITY, scale = COLUMN_SCALE_DAILY_CAPACITY)
     private BigDecimal dailyCapacity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTIVE_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ACTIVE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer activeOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_IN_PROGRESS_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IN_PROGRESS_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer inProgressOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -547,26 +523,14 @@ public abstract class MappedWorkCenterCapacityView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_PENDING - COLUMN_SCALE_TOTAL_QUANTITY_PENDING,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_PENDING)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_QUANTITY_PENDING,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_QUANTITY_PENDING,
-            scale = COLUMN_SCALE_TOTAL_QUANTITY_PENDING
-    )
+    @Column(name = COLUMN_NAME_TOTAL_QUANTITY_PENDING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_QUANTITY_PENDING, scale = COLUMN_SCALE_TOTAL_QUANTITY_PENDING)
     private BigDecimal totalQuantityPending;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DAYS_OF_WORK - COLUMN_SCALE_DAYS_OF_WORK, fraction = COLUMN_SCALE_DAYS_OF_WORK)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_OF_WORK,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DAYS_OF_WORK,
-            scale = COLUMN_SCALE_DAYS_OF_WORK
-    )
+    @Column(name = COLUMN_NAME_DAYS_OF_WORK, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DAYS_OF_WORK, scale = COLUMN_SCALE_DAYS_OF_WORK)
     private BigDecimal daysOfWork;
 
     // ---------------------------------------------------------------------------------------------
@@ -574,33 +538,19 @@ public abstract class MappedWorkCenterCapacityView {
     @Digits(integer = COLUMN_PRECISION_PERCENT_OF_TOTAL_ORDERS - COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS,
             fraction = COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PERCENT_OF_TOTAL_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PERCENT_OF_TOTAL_ORDERS,
-            scale = COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS
-    )
+    @Column(name = COLUMN_NAME_PERCENT_OF_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_OF_TOTAL_ORDERS, scale = COLUMN_SCALE_PERCENT_OF_TOTAL_ORDERS)
     private BigDecimal percentOfTotalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EARLIEST_DUE_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EARLIEST_DUE_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate earliestDueDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_DUE_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LATEST_DUE_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate latestDueDate;
 }
 

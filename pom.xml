@@ -94,6 +94,8 @@
     <!-- Jakarta XML Binding 4.0; not in the Jakarta EE 11 platform, so not in its BOM, and versioned here -->
     <!-- https://central.sonatype.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api/versions -->
     <version.jakarta.xml.bind-api>4.0.5</version.jakarta.xml.bind-api>
+    <!-- https://central.sonatype.com/artifact/nl.jqno.equalsverifier/equalsverifier-nodep/versions -->
+    <version.nl.jqno.equalsverifier>4.5.2</version.nl.jqno.equalsverifier>
     <!-- https://central.sonatype.com/artifact/org.assertj/assertj-core/versions -->
     <version.org.assertj>4.0.0-M1</version.org.assertj>
     <!-- https://central.sonatype.com/artifact/org.geolatte/geolatte-geom/versions; the one hibernate-spatial takes -->
@@ -179,6 +181,11 @@
         <groupId>jakarta.xml.bind</groupId>
         <artifactId>jakarta.xml.bind-api</artifactId>
         <version>${version.jakarta.xml.bind-api}</version>
+      </dependency>
+      <dependency>
+        <groupId>nl.jqno.equalsverifier</groupId>
+        <artifactId>equalsverifier-nodep</artifactId>
+        <version>${version.nl.jqno.equalsverifier}</version>
       </dependency>
       <dependency>
         <groupId>org.assertj</groupId>

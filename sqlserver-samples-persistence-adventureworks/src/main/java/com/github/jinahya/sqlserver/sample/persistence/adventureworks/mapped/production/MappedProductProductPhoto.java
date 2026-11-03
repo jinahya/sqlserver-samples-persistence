@@ -24,15 +24,19 @@ import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefau
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductProductPhoto} table.
+ * <p>
+ * The key is a {@link ProductProductPhotoId} embedded with {@link EmbeddedId @EmbeddedId}, whose fields map the columns of the
+ * key; an entity which extends this class derives each of its attributes from an association with
+ * {@link jakarta.persistence.MapsId @MapsId}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.ProductProductPhoto}</caption>
@@ -83,6 +87,13 @@ public abstract class MappedProductProductPhoto {
      */
     public static final String TABLE_NAME = "ProductProductPhoto";
 
+    // ------------------------------------------------------------------------------------------ id
+
+    /**
+     * The name of the attribute which embeds the key. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_ID = "id";
+
     // ----------------------------------------------------------------------------------- ProductID
 
     /**
@@ -91,9 +102,10 @@ public abstract class MappedProductProductPhoto {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column -- a path into the
+     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
      */
-    public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_ID = "id.productId";
 
     // ------------------------------------------------------------------------------ ProductPhotoID
 
@@ -103,9 +115,10 @@ public abstract class MappedProductProductPhoto {
     public static final String COLUMN_NAME_PRODUCT_PHOTO_ID = "ProductPhotoID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_PHOTO_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_PHOTO_ID} column -- a path into the
+     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
      */
-    public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO_ID = "productPhotoId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_PHOTO_ID = "id.productPhotoId";
 
     // ------------------------------------------------------------------------------------- Primary
 
@@ -145,8 +158,7 @@ public abstract class MappedProductProductPhoto {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "productId=" + productId
-               + ",productPhotoId=" + productPhotoId
+               + "id=" + id
                + ",primary=" + primary
                + ",modifiedDate=" + modifiedDate
                + "}";
@@ -157,7 +169,9 @@ public abstract class MappedProductProductPhoto {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
+     *         identifier is not yet assigned, which {@link jakarta.persistence.MapsId @MapsId} does on persist,
+     *         equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -167,59 +181,38 @@ public abstract class MappedProductProductPhoto {
         if (!(obj instanceof MappedProductProductPhoto that)) {
             return false;
         }
-        return Objects.equals(productId, that.productId) &&
-               Objects.equals(productPhotoId, that.productPhotoId);
+        final var id = getId();
+        return id != null
+               && id.getProductId() != null
+               && id.getProductPhotoId() != null
+               && id.equals(that.getId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when persist assigns the
+     *         identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(productId, productPhotoId);
+        return MappedProductProductPhoto.class.hashCode();
     }
 
-    // ----------------------------------------------------------------------------------- productId
+    // ------------------------------------------------------------------------------------------ id
 
     /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID} attribute.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     * @return current value of {@value #ATTRIBUTE_NAME_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getProductId() {
-        return productId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
-     *
-     * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
-     */
-    public void setProductId(final Integer productId) {
-        this.productId = productId;
-    }
-
-    // ------------------------------------------------------------------------------ productPhotoId
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute.
-     */
-    public Integer getProductPhotoId() {
-        return productPhotoId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute with the specified value.
-     *
-     * @param productPhotoId new value for {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute.
-     */
-    public void setProductPhotoId(final Integer productPhotoId) {
-        this.productPhotoId = productPhotoId;
+    protected ProductProductPhotoId getId() {
+        return id;
     }
 
     // ------------------------------------------------------------------------------------- primary
@@ -263,41 +256,16 @@ public abstract class MappedProductProductPhoto {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an entity
+    @Valid
     @NotNull
-    @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
-    private Integer productId;
-
-    // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @NotNull
-    @Id
-    @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
-                          value = "Product photo identification number. Foreign key to "
-                                  + "ProductPhoto.ProductPhotoID.")
-    private Integer productPhotoId;
+    @EmbeddedId
+    private ProductProductPhotoId id = new ProductProductPhotoId();
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRIMARY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PRIMARY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PRIMARY,
                           value = "0 = Photo is not the principal image. 1 = Photo is the "
                                   + "principal image.")
@@ -308,11 +276,7 @@ public abstract class MappedProductProductPhoto {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductProductPhoto_ModifiedDate", value = "(getdate())")

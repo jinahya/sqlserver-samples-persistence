@@ -347,23 +347,14 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
-    @Column(name = COLUMN_NAME_SALES_PERSON_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesPersonId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FULL_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FULL_NAME
-    )
+    @Column(name = COLUMN_NAME_FULL_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_FULL_NAME)
     private String fullName;
 
     // ---------------------------------------------------------------------------------------------
@@ -371,12 +362,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_JOB_TITLE
-    )
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_JOB_TITLE)
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
@@ -384,42 +370,25 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_TERRITORY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SALES_TERRITORY
-    )
+    @Column(name = COLUMN_NAME_SALES_TERRITORY, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SALES_TERRITORY)
     private String salesTerritory;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR_2002,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR_2002, nullable = true, insertable = false, updatable = false)
     private BigDecimal year2002;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR_2003,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR_2003, nullable = true, insertable = false, updatable = false)
     private BigDecimal year2003;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR_2004,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR_2004, nullable = true, insertable = false, updatable = false)
     private BigDecimal year2004;
 }
 

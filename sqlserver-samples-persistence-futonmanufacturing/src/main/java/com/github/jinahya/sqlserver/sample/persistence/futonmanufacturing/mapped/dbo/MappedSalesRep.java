@@ -437,98 +437,57 @@ public abstract class MappedSalesRep {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_REP_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_REP_ID, nullable = false, insertable = true, updatable = false)
     private Integer salesRepId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMPLOYEE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMPLOYEE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMPLOYEE_CODE
-    )
+    @Column(name = COLUMN_NAME_EMPLOYEE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_EMPLOYEE_CODE)
     private String employeeCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FIRST_NAME
-    )
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FIRST_NAME)
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_LAST_NAME
-    )
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_LAST_NAME)
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMAIL
-    )
+    @Column(name = COLUMN_NAME_EMAIL, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL)
     private String email;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PHONE
-    )
+    @Column(name = COLUMN_NAME_PHONE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE)
     private String phone;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_HIRE_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_HIRE_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate hireDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

@@ -569,21 +569,13 @@ public abstract class MappedSalesGrowthAnalysisView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
@@ -591,45 +583,26 @@ public abstract class MappedSalesGrowthAnalysisView {
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer orders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer customers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_REVENUE - COLUMN_SCALE_REVENUE, fraction = COLUMN_SCALE_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_REVENUE,
-            scale = COLUMN_SCALE_REVENUE
-    )
+    @Column(name = COLUMN_NAME_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REVENUE, scale = COLUMN_SCALE_REVENUE)
     private BigDecimal revenue;
 
     // ---------------------------------------------------------------------------------------------
@@ -637,13 +610,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     @Digits(integer = COLUMN_PRECISION_PRIOR_MONTH_REVENUE - COLUMN_SCALE_PRIOR_MONTH_REVENUE,
             fraction = COLUMN_SCALE_PRIOR_MONTH_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIOR_MONTH_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PRIOR_MONTH_REVENUE,
-            scale = COLUMN_SCALE_PRIOR_MONTH_REVENUE
-    )
+    @Column(name = COLUMN_NAME_PRIOR_MONTH_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRIOR_MONTH_REVENUE, scale = COLUMN_SCALE_PRIOR_MONTH_REVENUE)
     private BigDecimal priorMonthRevenue;
 
     // ---------------------------------------------------------------------------------------------
@@ -651,13 +618,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     @Digits(integer = COLUMN_PRECISION_REVENUE_GROWTH - COLUMN_SCALE_REVENUE_GROWTH,
             fraction = COLUMN_SCALE_REVENUE_GROWTH)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REVENUE_GROWTH,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_REVENUE_GROWTH,
-            scale = COLUMN_SCALE_REVENUE_GROWTH
-    )
+    @Column(name = COLUMN_NAME_REVENUE_GROWTH, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REVENUE_GROWTH, scale = COLUMN_SCALE_REVENUE_GROWTH)
     private BigDecimal revenueGrowth;
 
     // ---------------------------------------------------------------------------------------------
@@ -665,33 +626,19 @@ public abstract class MappedSalesGrowthAnalysisView {
     @Digits(integer = COLUMN_PRECISION_GROWTH_PERCENT - COLUMN_SCALE_GROWTH_PERCENT,
             fraction = COLUMN_SCALE_GROWTH_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROWTH_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROWTH_PERCENT,
-            scale = COLUMN_SCALE_GROWTH_PERCENT
-    )
+    @Column(name = COLUMN_NAME_GROWTH_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROWTH_PERCENT, scale = COLUMN_SCALE_GROWTH_PERCENT)
     private BigDecimal growthPercent;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIOR_MONTH_CUSTOMERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRIOR_MONTH_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer priorMonthCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_GROWTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_GROWTH, nullable = true, insertable = false, updatable = false)
     private Integer customerGrowth;
 
     // ---------------------------------------------------------------------------------------------
@@ -699,13 +646,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     @Digits(integer = COLUMN_PRECISION_CUMULATIVE_REVENUE - COLUMN_SCALE_CUMULATIVE_REVENUE,
             fraction = COLUMN_SCALE_CUMULATIVE_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUMULATIVE_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_CUMULATIVE_REVENUE,
-            scale = COLUMN_SCALE_CUMULATIVE_REVENUE
-    )
+    @Column(name = COLUMN_NAME_CUMULATIVE_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_CUMULATIVE_REVENUE, scale = COLUMN_SCALE_CUMULATIVE_REVENUE)
     private BigDecimal cumulativeRevenue;
 
     // ---------------------------------------------------------------------------------------------
@@ -713,13 +654,7 @@ public abstract class MappedSalesGrowthAnalysisView {
     @Digits(integer = COLUMN_PRECISION_THREE_MONTH_AVG - COLUMN_SCALE_THREE_MONTH_AVG,
             fraction = COLUMN_SCALE_THREE_MONTH_AVG)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_THREE_MONTH_AVG,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_THREE_MONTH_AVG,
-            scale = COLUMN_SCALE_THREE_MONTH_AVG
-    )
+    @Column(name = COLUMN_NAME_THREE_MONTH_AVG, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_THREE_MONTH_AVG, scale = COLUMN_SCALE_THREE_MONTH_AVG)
     private BigDecimal threeMonthAvg;
 }
 

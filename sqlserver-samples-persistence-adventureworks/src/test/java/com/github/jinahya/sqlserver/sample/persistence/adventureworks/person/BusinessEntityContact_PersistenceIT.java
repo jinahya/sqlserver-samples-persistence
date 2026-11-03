@@ -20,11 +20,44 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BusinessEntityContact_PersistenceIT extends _Entity_PersistenceIT<BusinessEntityContact> {
 
     BusinessEntityContact_PersistenceIT() {
         super(BusinessEntityContact.class);
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Verifies that two new instances which reference the same rows are not equal while their identifiers are not
+     * assigned, and that the hash of an instance does not change when persist assigns its identifier.
+     */
+    @DisplayName("an unpersisted instance equals only itself, and keeps its hash through persist")
+    @Test
+    void equals_hashCode_AcrossPersist() {
+        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+            final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(em, BusinessEntity.class);
+            final var person = EntityPersisterUtils.newPersistedInstanceOf(em, Person.class);
+            final var contactType = EntityPersisterUtils.newPersistedInstanceOf(em, ContactType.class);
+            em.flush();
+            final var instance = BusinessEntityContact.of(businessEntity, person, contactType);
+            final var other = BusinessEntityContact.of(businessEntity, person, contactType);
+            assertThat(instance).isEqualTo(instance).isNotEqualTo(other);
+            final var hash = instance.hashCode();
+            em.persist(instance);
+            em.flush();
+            assertThat(instance.hashCode()).isEqualTo(hash);
+            assertThat(instance).isNotEqualTo(other);
+            return null;
+        });
+    }
 }
+

@@ -24,16 +24,19 @@ import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefau
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.CountryRegionCurrency} table.
+ * <p>
+ * The key is a {@link CountryRegionCurrencyId} embedded with {@link EmbeddedId @EmbeddedId}, whose fields map the columns of the
+ * key; an entity which extends this class derives each of its attributes from an association with
+ * {@link jakarta.persistence.MapsId @MapsId}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.CountryRegionCurrency}</caption>
@@ -81,6 +84,13 @@ public abstract class MappedCountryRegionCurrency {
      */
     public static final String TABLE_NAME = "CountryRegionCurrency";
 
+    // ------------------------------------------------------------------------------------------ id
+
+    /**
+     * The name of the attribute which embeds the key. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_ID = "id";
+
     // --------------------------------------------------------------------------- CountryRegionCode
 
     /**
@@ -89,15 +99,15 @@ public abstract class MappedCountryRegionCurrency {
     public static final String COLUMN_NAME_COUNTRY_REGION_CODE = "CountryRegionCode";
 
     /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column -- a path into the
+     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_PATH_ID_COUNTRY_REGION_CODE = "id.countryRegionCode";
+
+    /**
      * The length of the {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column. The value is {@value}.
      */
     public static final int COLUMN_LENGTH_COUNTRY_REGION_CODE = 3;
-
-    /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column. The value is
-     * {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
     // -------------------------------------------------------------------------------- CurrencyCode
 
@@ -107,14 +117,15 @@ public abstract class MappedCountryRegionCurrency {
     public static final String COLUMN_NAME_CURRENCY_CODE = "CurrencyCode";
 
     /**
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_CODE} column -- a path into the
+     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_PATH_ID_CURRENCY_CODE = "id.currencyCode";
+
+    /**
      * The length of the {@value #COLUMN_NAME_CURRENCY_CODE} column. The value is {@value}.
      */
     public static final int COLUMN_LENGTH_CURRENCY_CODE = 3;
-
-    /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_CODE} column. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_CURRENCY_CODE = "currencyCode";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
@@ -142,8 +153,7 @@ public abstract class MappedCountryRegionCurrency {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "countryRegionCode=" + countryRegionCode
-               + ",currencyCode=" + currencyCode
+               + "id=" + id
                + ",modifiedDate=" + modifiedDate
                + "}";
     }
@@ -153,7 +163,9 @@ public abstract class MappedCountryRegionCurrency {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
+     *         identifier is not yet assigned, which {@link jakarta.persistence.MapsId @MapsId} does on persist,
+     *         equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -163,59 +175,38 @@ public abstract class MappedCountryRegionCurrency {
         if (!(obj instanceof MappedCountryRegionCurrency that)) {
             return false;
         }
-        return Objects.equals(countryRegionCode, that.countryRegionCode) &&
-               Objects.equals(currencyCode, that.currencyCode);
+        final var id = getId();
+        return id != null
+               && id.getCountryRegionCode() != null
+               && id.getCurrencyCode() != null
+               && id.equals(that.getId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when persist assigns the
+     *         identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(countryRegionCode, currencyCode);
+        return MappedCountryRegionCurrency.class.hashCode();
     }
 
-    // --------------------------------------------------------------------------- countryRegionCode
+    // ------------------------------------------------------------------------------------------ id
 
     /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID} attribute.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
+     * @return current value of {@value #ATTRIBUTE_NAME_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public String getCountryRegionCode() {
-        return countryRegionCode;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute with the specified value.
-     *
-     * @param countryRegionCode new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
-     */
-    public void setCountryRegionCode(final String countryRegionCode) {
-        this.countryRegionCode = countryRegionCode;
-    }
-
-    // -------------------------------------------------------------------------------- currencyCode
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_CURRENCY_CODE} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_CURRENCY_CODE} attribute.
-     */
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENCY_CODE} attribute with the specified value.
-     *
-     * @param currencyCode new value for {@value #ATTRIBUTE_NAME_CURRENCY_CODE} attribute.
-     */
-    public void setCurrencyCode(final String currencyCode) {
-        this.currencyCode = currencyCode;
+    protected CountryRegionCurrencyId getId() {
+        return id;
     }
 
     // -------------------------------------------------------------------------------- modifiedDate
@@ -239,46 +230,17 @@ public abstract class MappedCountryRegionCurrency {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
+    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an entity
+    @Valid
     @NotNull
-    @Id
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_REGION_CODE
-    )
-    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-                          value = "ISO code for countries and regions. Foreign key to "
-                                  + "CountryRegion.CountryRegionCode.")
-    private String countryRegionCode;
-
-    // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Size(max = COLUMN_LENGTH_CURRENCY_CODE)
-    @NotNull
-    @Id
-    @Column(name = COLUMN_NAME_CURRENCY_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = false,
-            length = COLUMN_LENGTH_CURRENCY_CODE
-    )
-    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_CODE,
-                          value = "ISO standard currency code. Foreign key to "
-                                  + "Currency.CurrencyCode.")
-    private String currencyCode;
+    @EmbeddedId
+    private CountryRegionCurrencyId id = new CountryRegionCurrencyId();
 
     // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_CountryRegionCurrency_ModifiedDate", value = "(getdate())")

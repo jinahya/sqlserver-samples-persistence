@@ -506,12 +506,7 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     private String workOrderNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -519,22 +514,13 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATUS)
     private String status;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate plannedCompletionDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -542,12 +528,7 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -555,12 +536,7 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -568,12 +544,7 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -581,13 +552,7 @@ public abstract class MappedMaterialRequirementsView {
     @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REQUIRED_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_REQUIRED_QUANTITY,
-            scale = COLUMN_SCALE_REQUIRED_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_REQUIRED_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REQUIRED_QUANTITY, scale = COLUMN_SCALE_REQUIRED_QUANTITY)
     private BigDecimal requiredQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -596,13 +561,7 @@ public abstract class MappedMaterialRequirementsView {
             fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVAILABLE_QUANTITY,
-            scale = COLUMN_SCALE_AVAILABLE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVAILABLE_QUANTITY, scale = COLUMN_SCALE_AVAILABLE_QUANTITY)
     private BigDecimal availableQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -610,13 +569,7 @@ public abstract class MappedMaterialRequirementsView {
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SHORTAGE_QUANTITY,
-            scale = COLUMN_SCALE_SHORTAGE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHORTAGE_QUANTITY, scale = COLUMN_SCALE_SHORTAGE_QUANTITY)
     private BigDecimal shortageQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -624,12 +577,7 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_AVAILABILITY_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AVAILABILITY_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_AVAILABILITY_STATUS
-    )
+    @Column(name = COLUMN_NAME_AVAILABILITY_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_AVAILABILITY_STATUS)
     private String availabilityStatus;
 
     // ---------------------------------------------------------------------------------------------
@@ -637,12 +585,7 @@ public abstract class MappedMaterialRequirementsView {
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_CODE)
     private String unitCode;
 }
 

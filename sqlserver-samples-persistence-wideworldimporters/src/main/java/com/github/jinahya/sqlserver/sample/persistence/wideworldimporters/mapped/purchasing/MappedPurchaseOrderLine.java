@@ -585,11 +585,7 @@ public abstract class MappedPurchaseOrderLine {
                        sequenceName = "PurchaseOrderLineID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PurchaseOrderLineID")
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_LINE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_LINE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_LINE_ID,
                           value = "Numeric ID used for reference to a line on a purchase order "
                                   + "within the database")
@@ -601,11 +597,7 @@ public abstract class MappedPurchaseOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                           value = "Purchase order that this line is associated with")
     private Integer purchaseOrderId;
@@ -614,11 +606,7 @@ public abstract class MappedPurchaseOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "Stock item for this purchase order line")
     private Integer stockItemId;
@@ -626,11 +614,7 @@ public abstract class MappedPurchaseOrderLine {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDERED_OUTERS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDERED_OUTERS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORDERED_OUTERS,
                           value = "Quantity of the stock item that is ordered")
     private Integer orderedOuters;
@@ -639,12 +623,7 @@ public abstract class MappedPurchaseOrderLine {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
                           value = "Description of the item to be supplied (Often the stock item "
                                   + "name but could be supplier description)")
@@ -653,11 +632,7 @@ public abstract class MappedPurchaseOrderLine {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECEIVED_OUTERS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RECEIVED_OUTERS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RECEIVED_OUTERS,
                           value = "Total quantity of the stock item that has been received so far")
     private Integer receivedOuters;
@@ -666,11 +641,7 @@ public abstract class MappedPurchaseOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, value = "Type of package received")
     private Integer packageTypeId;
 
@@ -678,24 +649,14 @@ public abstract class MappedPurchaseOrderLine {
     @Digits(integer = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER - COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER,
             fraction = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER,
-            scale = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER
-    )
+    @Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER, scale = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER)
     @MsDescription.Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER,
                           value = "The unit price that we expect to be charged")
     private BigDecimal expectedUnitPricePerOuter;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
                           value = "The last date on which this stock item was received for this "
                                   + "purchase order")
@@ -704,11 +665,7 @@ public abstract class MappedPurchaseOrderLine {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ORDER_LINE_FINALIZED,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ORDER_LINE_FINALIZED, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_ORDER_LINE_FINALIZED,
                           value = "Is this purchase order line now considered finalized? "
                                   + "(Receipted quantities and weights are often not precise)")
@@ -718,21 +675,13 @@ public abstract class MappedPurchaseOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Purchasing_PurchaseOrderLines_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

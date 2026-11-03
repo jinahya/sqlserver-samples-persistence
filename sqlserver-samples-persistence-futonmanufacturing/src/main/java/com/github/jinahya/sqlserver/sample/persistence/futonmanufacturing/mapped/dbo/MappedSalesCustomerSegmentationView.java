@@ -577,11 +577,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -589,12 +585,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_CODE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_CODE)
     private String customerCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -602,100 +593,58 @@ public abstract class MappedSalesCustomerSegmentationView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_NAME
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_NAME)
     private String customerName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_TYPE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_TYPE)
     private String customerType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RECENCY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RECENCY, nullable = true, insertable = false, updatable = false)
     private Integer recency;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FREQUENCY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_FREQUENCY, nullable = true, insertable = false, updatable = false)
     private Integer frequency;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MONETARY - COLUMN_SCALE_MONETARY, fraction = COLUMN_SCALE_MONETARY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONETARY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_MONETARY,
-            scale = COLUMN_SCALE_MONETARY
-    )
+    @Column(name = COLUMN_NAME_MONETARY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MONETARY, scale = COLUMN_SCALE_MONETARY)
     private BigDecimal monetary;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_R_SCORE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_R_SCORE, nullable = true, insertable = false, updatable = false)
     private Long rScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_F_SCORE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_F_SCORE, nullable = true, insertable = false, updatable = false)
     private Long fScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_M_SCORE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_M_SCORE, nullable = true, insertable = false, updatable = false)
     private Long mScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_RFM_SCORE - COLUMN_SCALE_RFM_SCORE, fraction = COLUMN_SCALE_RFM_SCORE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RFM_SCORE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_RFM_SCORE,
-            scale = COLUMN_SCALE_RFM_SCORE
-    )
+    @Column(name = COLUMN_NAME_RFM_SCORE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_RFM_SCORE, scale = COLUMN_SCALE_RFM_SCORE)
     private BigDecimal rfmScore;
 
     // ---------------------------------------------------------------------------------------------
@@ -703,12 +652,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_SEGMENT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_SEGMENT,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_SEGMENT
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_SEGMENT, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_SEGMENT)
     private String customerSegment;
 
     // ---------------------------------------------------------------------------------------------
@@ -716,12 +660,7 @@ public abstract class MappedSalesCustomerSegmentationView {
     @Size(max = COLUMN_LENGTH_RECOMMENDED_ACTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECOMMENDED_ACTION,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_RECOMMENDED_ACTION
-    )
+    @Column(name = COLUMN_NAME_RECOMMENDED_ACTION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_RECOMMENDED_ACTION)
     private String recommendedAction;
 }
 

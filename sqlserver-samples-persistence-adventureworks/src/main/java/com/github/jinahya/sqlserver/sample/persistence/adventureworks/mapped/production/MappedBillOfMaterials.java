@@ -568,11 +568,7 @@ public abstract class MappedBillOfMaterials {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID,
                           value = "Primary key for BillOfMaterials records.")
     private Integer billOfMaterialsId;
@@ -580,11 +576,7 @@ public abstract class MappedBillOfMaterials {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
                           value = "Parent product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -594,11 +586,7 @@ public abstract class MappedBillOfMaterials {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COMPONENT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COMPONENT_ID,
                           value = "Component identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -607,11 +595,7 @@ public abstract class MappedBillOfMaterials {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_START_DATE,
                           value = "Date the component started being used in the assembly item.")
     @MsDefault(name = "DF_BillOfMaterials_StartDate", value = "(getdate())")
@@ -619,11 +603,7 @@ public abstract class MappedBillOfMaterials {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_DATE,
                           value = "Date the component stopped being used in the assembly item.")
     private LocalDateTime endDate;
@@ -633,12 +613,7 @@ public abstract class MappedBillOfMaterials {
     @Size(max = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_MEASURE_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
                           value = "Standard code identifying the unit of measure for the quantity.")
     private String unitMeasureCode;
@@ -650,11 +625,7 @@ public abstract class MappedBillOfMaterials {
     @Min(COLUMN_MIN_BOM_LEVEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BOM_LEVEL,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_BOM_LEVEL, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_BOM_LEVEL,
                           value = "Indicates the depth the component is from its parent "
                                   + "(AssemblyID).")
@@ -667,13 +638,7 @@ public abstract class MappedBillOfMaterials {
             fraction = COLUMN_SCALE_PER_ASSEMBLY_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_PER_ASSEMBLY_QTY,
-            scale = COLUMN_SCALE_PER_ASSEMBLY_QTY
-    )
+    @Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_PER_ASSEMBLY_QTY, scale = COLUMN_SCALE_PER_ASSEMBLY_QTY)
     @MsDescription.Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY,
                           value = "Quantity of the component needed to create the assembly.")
     @MsDefault(name = "DF_BillOfMaterials_PerAssemblyQty", value = "((1.00))")
@@ -683,11 +648,7 @@ public abstract class MappedBillOfMaterials {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_BillOfMaterials_ModifiedDate", value = "(getdate())")

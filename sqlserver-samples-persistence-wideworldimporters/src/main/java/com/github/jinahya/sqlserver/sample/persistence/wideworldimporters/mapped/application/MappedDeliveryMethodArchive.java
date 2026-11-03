@@ -243,11 +243,7 @@ public abstract class MappedDeliveryMethodArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
     private Integer deliveryMethodId;
 
     // ---------------------------------------------------------------------------------------------
@@ -255,45 +251,28 @@ public abstract class MappedDeliveryMethodArchive {
     @Size(max = COLUMN_LENGTH_DELIVERY_METHOD_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DELIVERY_METHOD_NAME
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DELIVERY_METHOD_NAME)
     private String deliveryMethodName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

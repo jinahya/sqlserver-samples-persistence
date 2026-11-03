@@ -523,100 +523,58 @@ public abstract class MappedPromotion {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PROMOTION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PROMOTION_ID, nullable = false, insertable = true, updatable = false)
     private Integer promotionId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PROMOTION_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PROMOTION_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PROMOTION_CODE
-    )
+    @Column(name = COLUMN_NAME_PROMOTION_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PROMOTION_CODE)
     private String promotionCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PROMOTION_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PROMOTION_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PROMOTION_NAME
-    )
+    @Column(name = COLUMN_NAME_PROMOTION_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PROMOTION_NAME)
     private String promotionName;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true)
     private String description;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_PERCENT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_DISCOUNT_PERCENT,
-            scale = COLUMN_SCALE_DISCOUNT_PERCENT
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_PERCENT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_PERCENT, scale = COLUMN_SCALE_DISCOUNT_PERCENT)
     private BigDecimal discountPercent;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_DISCOUNT_AMOUNT,
-            scale = COLUMN_SCALE_DISCOUNT_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
     private BigDecimal discountAmount;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDate startDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDate endDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 
@@ -624,25 +582,14 @@ public abstract class MappedPromotion {
     @Digits(integer = COLUMN_PRECISION_MINIMUM_PURCHASE - COLUMN_SCALE_MINIMUM_PURCHASE,
             fraction = COLUMN_SCALE_MINIMUM_PURCHASE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MINIMUM_PURCHASE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_MINIMUM_PURCHASE,
-            scale = COLUMN_SCALE_MINIMUM_PURCHASE
-    )
+    @Column(name = COLUMN_NAME_MINIMUM_PURCHASE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_MINIMUM_PURCHASE, scale = COLUMN_SCALE_MINIMUM_PURCHASE)
     @MsDefault("((0))")
     private BigDecimal minimumPurchase;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_APPLICABLE_CHANNELS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_APPLICABLE_CHANNELS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_APPLICABLE_CHANNELS
-    )
+    @Column(name = COLUMN_NAME_APPLICABLE_CHANNELS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_APPLICABLE_CHANNELS)
     private String applicableChannels;
 }
 

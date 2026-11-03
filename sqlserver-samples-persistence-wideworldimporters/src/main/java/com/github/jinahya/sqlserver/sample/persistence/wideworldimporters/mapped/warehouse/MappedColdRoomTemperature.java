@@ -342,11 +342,7 @@ public abstract class MappedColdRoomTemperature {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID,
                           value = "Instantaneous temperature readings for cold rooms (chillers)")
     private Long coldRoomTemperatureId;
@@ -354,11 +350,7 @@ public abstract class MappedColdRoomTemperature {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER,
                           value = "Cold room sensor number")
     private Integer coldRoomSensorNumber;
@@ -366,11 +358,7 @@ public abstract class MappedColdRoomTemperature {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECORDED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RECORDED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RECORDED_WHEN,
                           value = "Time when this temperature recording was taken")
     private LocalDateTime recordedWhen;
@@ -379,13 +367,7 @@ public abstract class MappedColdRoomTemperature {
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TEMPERATURE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TEMPERATURE,
-            scale = COLUMN_SCALE_TEMPERATURE
-    )
+    @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE)
     @MsDescription.Column(name = COLUMN_NAME_TEMPERATURE,
                           value = "Temperature at the time of recording")
     private BigDecimal temperature;
@@ -394,22 +376,14 @@ public abstract class MappedColdRoomTemperature {
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

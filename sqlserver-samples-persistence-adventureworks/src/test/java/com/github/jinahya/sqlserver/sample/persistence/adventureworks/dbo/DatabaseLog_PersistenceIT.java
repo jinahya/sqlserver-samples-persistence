@@ -44,7 +44,7 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
     @Disabled("written by the ddlDatabaseTriggerLog trigger: nothing else inserts into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 

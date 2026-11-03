@@ -406,44 +406,28 @@ public abstract class MappedSalesReturnDetail {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_RETURN_DETAIL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RETURN_DETAIL_ID, nullable = false, insertable = true, updatable = false)
     private Integer returnDetailId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RETURN_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RETURN_ID, nullable = false, insertable = false, updatable = false)
     private Integer returnId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SO_DETAIL_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SO_DETAIL_ID, nullable = false, insertable = false, updatable = false)
     private Integer soDetailId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
@@ -451,26 +435,14 @@ public abstract class MappedSalesReturnDetail {
             fraction = COLUMN_SCALE_QUANTITY_RETURNED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_RETURNED,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_RETURNED,
-            scale = COLUMN_SCALE_QUANTITY_RETURNED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_RETURNED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_RETURNED, scale = COLUMN_SCALE_QUANTITY_RETURNED)
     private BigDecimal quantityReturned;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
@@ -478,24 +450,13 @@ public abstract class MappedSalesReturnDetail {
             fraction = COLUMN_SCALE_REFUND_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFUND_AMOUNT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_REFUND_AMOUNT,
-            scale = COLUMN_SCALE_REFUND_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_REFUND_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_REFUND_AMOUNT, scale = COLUMN_SCALE_REFUND_AMOUNT)
     private BigDecimal refundAmount;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DISPOSITION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISPOSITION,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DISPOSITION
-    )
+    @Column(name = COLUMN_NAME_DISPOSITION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DISPOSITION)
     private String disposition;
 }
 

@@ -691,11 +691,7 @@ public abstract class MappedPurchaseOrderHeader {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, value = "Primary key.")
     private Integer purchaseOrderId;
 
@@ -704,11 +700,7 @@ public abstract class MappedPurchaseOrderHeader {
     @Min(COLUMN_MIN_REVISION_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVISION_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REVISION_NUMBER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REVISION_NUMBER,
                           value = "Incremental number to track changes to the purchase order "
                                   + "over time.")
@@ -721,11 +713,7 @@ public abstract class MappedPurchaseOrderHeader {
     @Min(COLUMN_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_STATUS,
                           value = "Order current status. 1 = Pending; 2 = Approved; 3 = "
                                   + "Rejected; 4 = Complete")
@@ -736,11 +724,7 @@ public abstract class MappedPurchaseOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMPLOYEE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMPLOYEE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_EMPLOYEE_ID,
                           value = "Employee who created the purchase order. Foreign key to "
                                   + "Employee.BusinessEntityID.")
@@ -750,11 +734,7 @@ public abstract class MappedPurchaseOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VENDOR_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VENDOR_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_VENDOR_ID,
                           value = "Vendor with whom the purchase order is placed. Foreign key "
                                   + "to Vendor.BusinessEntityID.")
@@ -764,11 +744,7 @@ public abstract class MappedPurchaseOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_METHOD_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_METHOD_ID,
                           value = "Shipping method. Foreign key to ShipMethod.ShipMethodID.")
     private Integer shipMethodId;
@@ -776,22 +752,14 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE, value = "Purchase order creation date.")
     @MsDefault(name = "DF_PurchaseOrderHeader_OrderDate", value = "(getdate())")
     private LocalDateTime orderDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHIP_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SHIP_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_DATE,
                           value = "Estimated shipment date from the vendor.")
     private LocalDateTime shipDate;
@@ -801,11 +769,7 @@ public abstract class MappedPurchaseOrderHeader {
     @DecimalMin(COLUMN_MIN_SUB_TOTAL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUB_TOTAL,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SUB_TOTAL, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SUB_TOTAL,
                           value = "Purchase order subtotal. Computed as "
                                   + "SUM(PurchaseOrderDetail.LineTotal)for the appropriate "
@@ -818,11 +782,7 @@ public abstract class MappedPurchaseOrderHeader {
     @DecimalMin(COLUMN_MIN_TAX_AMT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_AMT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TAX_AMT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TAX_AMT, value = "Tax amount.")
     @MsDefault(name = "DF_PurchaseOrderHeader_TaxAmt", value = "((0.00))")
     private BigDecimal taxAmt;
@@ -832,11 +792,7 @@ public abstract class MappedPurchaseOrderHeader {
     @DecimalMin(COLUMN_MIN_FREIGHT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FREIGHT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_FREIGHT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_FREIGHT, value = "Shipping cost.")
     @MsDefault(name = "DF_PurchaseOrderHeader_Freight", value = "((0.00))")
     private BigDecimal freight;
@@ -844,11 +800,7 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TOTAL_DUE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_DUE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TOTAL_DUE,
                           value = "Total due to vendor. Computed as Subtotal + TaxAmt + Freight.")
     @MsComputedColumn(value = "(isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))", persisted = true)
@@ -858,11 +810,7 @@ public abstract class MappedPurchaseOrderHeader {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PurchaseOrderHeader_ModifiedDate", value = "(getdate())")

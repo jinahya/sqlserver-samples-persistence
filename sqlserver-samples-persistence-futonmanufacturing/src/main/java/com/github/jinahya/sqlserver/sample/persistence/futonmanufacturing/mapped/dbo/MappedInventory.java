@@ -430,33 +430,21 @@ public abstract class MappedInventory {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_INVENTORY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INVENTORY_ID, nullable = false, insertable = true, updatable = false)
     private Integer inventoryId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
     private Integer warehouseId;
 
     // ---------------------------------------------------------------------------------------------
@@ -464,13 +452,7 @@ public abstract class MappedInventory {
             fraction = COLUMN_SCALE_QUANTITY_ON_HAND)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_ON_HAND,
-            scale = COLUMN_SCALE_QUANTITY_ON_HAND
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_ON_HAND, scale = COLUMN_SCALE_QUANTITY_ON_HAND)
     @MsDefault("((0))")
     private BigDecimal quantityOnHand;
 
@@ -479,13 +461,7 @@ public abstract class MappedInventory {
             fraction = COLUMN_SCALE_QUANTITY_ALLOCATED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_ALLOCATED,
-            scale = COLUMN_SCALE_QUANTITY_ALLOCATED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_ALLOCATED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_ALLOCATED, scale = COLUMN_SCALE_QUANTITY_ALLOCATED)
     @MsDefault("((0))")
     private BigDecimal quantityAllocated;
 
@@ -494,32 +470,18 @@ public abstract class MappedInventory {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_AVAILABLE,
-            scale = COLUMN_SCALE_QUANTITY_AVAILABLE
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @MsComputedColumn(value = "([QuantityOnHand]-[QuantityAllocated])", persisted = true)
     private BigDecimal quantityAvailable;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_COUNT_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_COUNT_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDateTime lastCountDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_UPDATED,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_UPDATED, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime lastUpdated;
 }

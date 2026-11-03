@@ -567,11 +567,7 @@ public abstract class MappedPurchaseOrder {
                        sequenceName = "PurchaseOrderID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PurchaseOrderID")
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                           value = "Numeric ID used for reference to a purchase order within the "
                                   + "database")
@@ -583,11 +579,7 @@ public abstract class MappedPurchaseOrder {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
                           value = "Supplier for this purchase order")
     private Integer supplierId;
@@ -595,11 +587,7 @@ public abstract class MappedPurchaseOrder {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE,
                           value = "Date that this purchase order was raised")
     private LocalDate orderDate;
@@ -608,11 +596,7 @@ public abstract class MappedPurchaseOrder {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
                           value = "How this purchase order should be delivered")
     private Integer deliveryMethodId;
@@ -621,22 +605,14 @@ public abstract class MappedPurchaseOrder {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
                           value = "The person who is the primary contact for this purchase order")
     private Integer contactPersonId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
                           value = "Expected delivery date for this purchase order")
     private LocalDate expectedDeliveryDate;
@@ -644,12 +620,7 @@ public abstract class MappedPurchaseOrder {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUPPLIER_REFERENCE
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
                           value = "Supplier reference for our organization (might be our "
                                   + "account number at the supplier)")
@@ -658,22 +629,14 @@ public abstract class MappedPurchaseOrder {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ORDER_FINALIZED,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ORDER_FINALIZED, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_ORDER_FINALIZED,
                           value = "Is this purchase order now considered finalized?")
     private Boolean isOrderFinalized;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
                           value = "Any comments related this purchase order (comments sent to "
                                   + "the supplier)")
@@ -681,11 +644,7 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
                           value = "Any internal comments related this purchase order (comments "
                                   + "for internal reference only and not sent to the supplier)")
@@ -695,21 +654,13 @@ public abstract class MappedPurchaseOrder {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Purchasing_PurchaseOrders_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

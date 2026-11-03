@@ -185,9 +185,9 @@ public abstract class MappedBusinessEntityAddress {
         if (!(obj instanceof MappedBusinessEntityAddress that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(addressId, that.addressId) &&
-               Objects.equals(addressTypeId, that.addressTypeId);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId()) &&
+               Objects.equals(getAddressId(), that.getAddressId()) &&
+               Objects.equals(getAddressTypeId(), that.getAddressTypeId());
     }
 
     /**
@@ -198,7 +198,7 @@ public abstract class MappedBusinessEntityAddress {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, addressId, addressTypeId);
+        return Objects.hash(getBusinessEntityId(), getAddressId(), getAddressTypeId());
     }
 
     // ---------------------------------------------------------------------------- businessEntityId
@@ -207,8 +207,12 @@ public abstract class MappedBusinessEntityAddress {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -217,7 +221,7 @@ public abstract class MappedBusinessEntityAddress {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -227,8 +231,12 @@ public abstract class MappedBusinessEntityAddress {
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getAddressId() {
+    protected Integer getAddressId() {
         return addressId;
     }
 
@@ -237,7 +245,7 @@ public abstract class MappedBusinessEntityAddress {
      *
      * @param addressId new value for {@value #ATTRIBUTE_NAME_ADDRESS_ID} attribute.
      */
-    public void setAddressId(final Integer addressId) {
+    protected void setAddressId(final Integer addressId) {
         this.addressId = addressId;
     }
 
@@ -247,8 +255,12 @@ public abstract class MappedBusinessEntityAddress {
      * Returns current value of {@value #ATTRIBUTE_NAME_ADDRESS_TYPE_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ADDRESS_TYPE_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getAddressTypeId() {
+    protected Integer getAddressTypeId() {
         return addressTypeId;
     }
 
@@ -257,7 +269,7 @@ public abstract class MappedBusinessEntityAddress {
      *
      * @param addressTypeId new value for {@value #ATTRIBUTE_NAME_ADDRESS_TYPE_ID} attribute.
      */
-    public void setAddressTypeId(final Integer addressTypeId) {
+    protected void setAddressTypeId(final Integer addressTypeId) {
         this.addressTypeId = addressTypeId;
     }
 
@@ -270,15 +282,6 @@ public abstract class MappedBusinessEntityAddress {
      */
     public UUID getRowguid() {
         return rowguid;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
     }
 
     // -------------------------------------------------------------------------------- modifiedDate
@@ -305,11 +308,7 @@ public abstract class MappedBusinessEntityAddress {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key. Foreign key to BusinessEntity.BusinessEntityID.")
     private Integer businessEntityId;
@@ -318,11 +317,7 @@ public abstract class MappedBusinessEntityAddress {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_ADDRESS_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ADDRESS_ID,
                           value = "Primary key. Foreign key to Address.AddressID.")
     private Integer addressId;
@@ -331,11 +326,7 @@ public abstract class MappedBusinessEntityAddress {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_ADDRESS_TYPE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_TYPE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ADDRESS_TYPE_ID,
                           value = "Primary key. Foreign key to AddressType.AddressTypeID.")
     private Integer addressTypeId;
@@ -343,11 +334,7 @@ public abstract class MappedBusinessEntityAddress {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -358,11 +345,7 @@ public abstract class MappedBusinessEntityAddress {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_BusinessEntityAddress_ModifiedDate", value = "(getdate())")

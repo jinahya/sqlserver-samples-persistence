@@ -458,11 +458,7 @@ public abstract class MappedStockItemHolding {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "ID of the stock item that this holding relates to (this "
                                   + "table holds non-temporal columns for stock)")
@@ -471,11 +467,7 @@ public abstract class MappedStockItemHolding {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_ON_HAND, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY_ON_HAND,
                           value = "Quantity currently on hand (if tracked)")
     private Integer quantityOnHand;
@@ -484,12 +476,7 @@ public abstract class MappedStockItemHolding {
     @Size(max = COLUMN_LENGTH_BIN_LOCATION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BIN_LOCATION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BIN_LOCATION
-    )
+    @Column(name = COLUMN_NAME_BIN_LOCATION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_BIN_LOCATION)
     @MsDescription.Column(name = COLUMN_NAME_BIN_LOCATION,
                           value = "Bin location (ie location of this stock item within the depot)")
     private String binLocation;
@@ -497,11 +484,7 @@ public abstract class MappedStockItemHolding {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_STOCKTAKE_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_STOCKTAKE_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LAST_STOCKTAKE_QUANTITY,
                           value = "Quantity at last stocktake (if tracked)")
     private Integer lastStocktakeQuantity;
@@ -511,13 +494,7 @@ public abstract class MappedStockItemHolding {
             fraction = COLUMN_SCALE_LAST_COST_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_COST_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_LAST_COST_PRICE,
-            scale = COLUMN_SCALE_LAST_COST_PRICE
-    )
+    @Column(name = COLUMN_NAME_LAST_COST_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LAST_COST_PRICE, scale = COLUMN_SCALE_LAST_COST_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_LAST_COST_PRICE,
                           value = "Unit cost price the last time this stock item was purchased")
     private BigDecimal lastCostPrice;
@@ -525,11 +502,7 @@ public abstract class MappedStockItemHolding {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REORDER_LEVEL,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REORDER_LEVEL, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REORDER_LEVEL,
                           value = "Quantity below which reordering should take place")
     private Integer reorderLevel;
@@ -537,11 +510,7 @@ public abstract class MappedStockItemHolding {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TARGET_STOCK_LEVEL,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TARGET_STOCK_LEVEL, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TARGET_STOCK_LEVEL, value = "Typical quantity ordered")
     private Integer targetStockLevel;
 
@@ -549,21 +518,13 @@ public abstract class MappedStockItemHolding {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Warehouse_StockItemHoldings_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

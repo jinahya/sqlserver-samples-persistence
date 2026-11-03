@@ -32,7 +32,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -182,7 +181,8 @@ public abstract class MappedEmailAddress {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
+     *         identifier is not yet assigned, which the database does on insert, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -192,19 +192,22 @@ public abstract class MappedEmailAddress {
         if (!(obj instanceof MappedEmailAddress that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(emailAddressId, that.emailAddressId);
+        return getBusinessEntityId() != null
+               && getEmailAddressId() != null
+               && getBusinessEntityId().equals(that.getBusinessEntityId())
+               && getEmailAddressId().equals(that.getEmailAddressId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when the identifier is
+     *         assigned; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, emailAddressId);
+        return MappedEmailAddress.class.hashCode();
     }
 
     // ---------------------------------------------------------------------------- businessEntityId
@@ -213,8 +216,12 @@ public abstract class MappedEmailAddress {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -223,7 +230,7 @@ public abstract class MappedEmailAddress {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -278,15 +285,6 @@ public abstract class MappedEmailAddress {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -311,11 +309,7 @@ public abstract class MappedEmailAddress {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key. Person associated with this email address.  "
                                   + "Foreign key to Person.BusinessEntityID")
@@ -326,11 +320,7 @@ public abstract class MappedEmailAddress {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS_ID,
                           value = "Primary key. ID of this email address.")
     private Integer emailAddressId;
@@ -338,12 +328,7 @@ public abstract class MappedEmailAddress {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMAIL_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL_ADDRESS)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS,
                           value = "E-mail address for the person.")
     private String emailAddress;
@@ -351,11 +336,7 @@ public abstract class MappedEmailAddress {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -366,11 +347,7 @@ public abstract class MappedEmailAddress {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmailAddress_ModifiedDate", value = "(getdate())")

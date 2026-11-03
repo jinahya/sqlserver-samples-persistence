@@ -26,17 +26,17 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link BusinessEntityContact}; the identifier and what it references, which the persister sets,
- * and what SQL Server fills are left out.
+ * Randomizes a new {@link BusinessEntityContact}; the identifier, what it references, and what SQL
+ * Server fills are left out, which leaves nothing to randomize. The persister does not use the
+ * instance; it persists one which {@link BusinessEntityContact#of} creates with the instances it
+ * references.
  */
 class BusinessEntityContact_Randomizer
         extends PodamObjectRandomizer<BusinessEntityContact> {
 
     BusinessEntityContact_Randomizer() {
         super(BusinessEntityContact.class, List.of(
-                BusinessEntityContact.ATTRIBUTE_NAME_BUSINESS_ENTITY_ID,
-                BusinessEntityContact.ATTRIBUTE_NAME_PERSON_ID,
-                BusinessEntityContact.ATTRIBUTE_NAME_CONTACT_TYPE_ID,
+                BusinessEntityContact.ATTRIBUTE_NAME_ID,
                 BusinessEntityContact.ATTRIBUTE_NAME_BUSINESS_ENTITY,
                 BusinessEntityContact.ATTRIBUTE_NAME_PERSON,
                 BusinessEntityContact.ATTRIBUTE_NAME_CONTACT_TYPE,

@@ -676,166 +676,93 @@ public abstract class MappedSupplier {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SUPPLIER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = true, updatable = false)
     private Integer supplierId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUPPLIER_CODE
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_CODE)
     private String supplierCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUPPLIER_NAME
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_NAME)
     private String supplierName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CONTACT_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONTACT_NAME,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CONTACT_NAME
-    )
+    @Column(name = COLUMN_NAME_CONTACT_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CONTACT_NAME)
     private String contactName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMAIL
-    )
+    @Column(name = COLUMN_NAME_EMAIL, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL)
     private String email;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PHONE
-    )
+    @Column(name = COLUMN_NAME_PHONE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE)
     private String phone;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_ADDRESS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ADDRESS)
     private String address;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CITY
-    )
+    @Column(name = COLUMN_NAME_CITY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STATE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATE
-    )
+    @Column(name = COLUMN_NAME_STATE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE)
     private String state;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ZIP_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ZIP_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ZIP_CODE
-    )
+    @Column(name = COLUMN_NAME_ZIP_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ZIP_CODE)
     private String zipCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COUNTRY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COUNTRY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COUNTRY
-    )
+    @Column(name = COLUMN_NAME_COUNTRY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COUNTRY)
     private String country;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PAYMENT_TERMS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PAYMENT_TERMS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PAYMENT_TERMS
-    )
+    @Column(name = COLUMN_NAME_PAYMENT_TERMS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PAYMENT_TERMS)
     private String paymentTerms;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_RATING - COLUMN_SCALE_RATING, fraction = COLUMN_SCALE_RATING)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RATING,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_RATING,
-            scale = COLUMN_SCALE_RATING
-    )
+    @Column(name = COLUMN_NAME_RATING, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_RATING, scale = COLUMN_SCALE_RATING)
     private BigDecimal rating;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 }

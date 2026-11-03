@@ -26,8 +26,10 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link SpecialOfferProduct}; the identifier and what it references, which the persister sets, and
- * what SQL Server fills are left out.
+ * Randomizes a new {@link SpecialOfferProduct}; the identifier, what it references, and what SQL
+ * Server fills are left out, which leaves nothing to randomize. The persister does not use the
+ * instance; it persists one which {@link SpecialOfferProduct#of} creates with the instances it
+ * references.
  */
 class SpecialOfferProduct_Randomizer
         extends PodamObjectRandomizer<SpecialOfferProduct> {

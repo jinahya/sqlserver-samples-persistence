@@ -238,12 +238,7 @@ public abstract class MappedUnitMeasure {
     @Size(max = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_MEASURE_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = true, updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, value = "Primary key.")
     private String unitMeasureCode;
 
@@ -251,12 +246,7 @@ public abstract class MappedUnitMeasure {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Unit of measure description.")
     private String name;
 
@@ -264,11 +254,7 @@ public abstract class MappedUnitMeasure {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_UnitMeasure_ModifiedDate", value = "(getdate())")

@@ -316,11 +316,7 @@ public abstract class MappedStockItemStockGroup {
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
                     generator = "WideWorldImporters.Sequences.StockItemStockGroupID")
-    @Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID,
                           value = "Internal reference for this linking row")
     @MsDefault(name = "DF_Warehouse_StockItemStockGroups_StockItemStockGroupID",
@@ -331,11 +327,7 @@ public abstract class MappedStockItemStockGroup {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "Stock item assigned to this stock group (FK indexed via "
                                   + "unique constraint)")
@@ -345,11 +337,7 @@ public abstract class MappedStockItemStockGroup {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_GROUP_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
                           value = "StockGroup assigned to this stock item (FK indexed via "
                                   + "unique constraint)")
@@ -359,21 +347,13 @@ public abstract class MappedStockItemStockGroup {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Warehouse_StockItemStockGroups_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

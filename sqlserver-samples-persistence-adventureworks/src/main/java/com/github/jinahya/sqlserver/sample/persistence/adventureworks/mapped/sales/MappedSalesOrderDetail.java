@@ -39,7 +39,6 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -348,7 +347,8 @@ public abstract class MappedSalesOrderDetail {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
+     *         identifier is not yet assigned, which the database does on insert, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -358,19 +358,22 @@ public abstract class MappedSalesOrderDetail {
         if (!(obj instanceof MappedSalesOrderDetail that)) {
             return false;
         }
-        return Objects.equals(salesOrderId, that.salesOrderId) &&
-               Objects.equals(salesOrderDetailId, that.salesOrderDetailId);
+        return getSalesOrderId() != null
+               && getSalesOrderDetailId() != null
+               && getSalesOrderId().equals(that.getSalesOrderId())
+               && getSalesOrderDetailId().equals(that.getSalesOrderDetailId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when the identifier is
+     *         assigned; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(salesOrderId, salesOrderDetailId);
+        return MappedSalesOrderDetail.class.hashCode();
     }
 
     // -------------------------------------------------------------------------------- salesOrderId
@@ -379,8 +382,12 @@ public abstract class MappedSalesOrderDetail {
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getSalesOrderId() {
+    protected Integer getSalesOrderId() {
         return salesOrderId;
     }
 
@@ -389,7 +396,7 @@ public abstract class MappedSalesOrderDetail {
      *
      * @param salesOrderId new value for {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
      */
-    public void setSalesOrderId(final Integer salesOrderId) {
+    protected void setSalesOrderId(final Integer salesOrderId) {
         this.salesOrderId = salesOrderId;
     }
 
@@ -568,15 +575,6 @@ public abstract class MappedSalesOrderDetail {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -601,11 +599,7 @@ public abstract class MappedSalesOrderDetail {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_SALES_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID,
                           value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
     private Integer salesOrderId;
@@ -615,11 +609,7 @@ public abstract class MappedSalesOrderDetail {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
                           value = "Primary key. One incremental unique number per product sold.")
     private Integer salesOrderDetailId;
@@ -627,12 +617,7 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER
-    )
+    @Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER,
                           value = "Shipment tracking number supplied by the shipper.")
     private String carrierTrackingNumber;
@@ -643,11 +628,7 @@ public abstract class MappedSalesOrderDetail {
     @Min(COLUMN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_QTY, value = "Quantity ordered per product.")
     private Integer orderQty;
 
@@ -655,11 +636,7 @@ public abstract class MappedSalesOrderDetail {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product sold to customer. Foreign key to Product.ProductID.")
     private Integer productId;
@@ -668,11 +645,7 @@ public abstract class MappedSalesOrderDetail {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
                           value = "Promotional code. Foreign key to SpecialOffer.SpecialOfferID.")
     private Integer specialOfferId;
@@ -682,11 +655,7 @@ public abstract class MappedSalesOrderDetail {
     @DecimalMin(COLUMN_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
                           value = "Selling price of a single product.")
     private BigDecimal unitPrice;
@@ -696,11 +665,7 @@ public abstract class MappedSalesOrderDetail {
     @DecimalMin(COLUMN_MIN_UNIT_PRICE_DISCOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, value = "Discount amount.")
     @MsDefault(name = "DF_SalesOrderDetail_UnitPriceDiscount", value = "((0.0))")
     private BigDecimal unitPriceDiscount;
@@ -709,13 +674,7 @@ public abstract class MappedSalesOrderDetail {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_TOTAL,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_LINE_TOTAL,
-            scale = COLUMN_SCALE_LINE_TOTAL
-    )
+    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL)
     @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
                           value = "Per product subtotal. Computed as UnitPrice * (1 - "
                                   + "UnitPriceDiscount) * OrderQty.")
@@ -725,11 +684,7 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -740,11 +695,7 @@ public abstract class MappedSalesOrderDetail {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesOrderDetail_ModifiedDate", value = "(getdate())")

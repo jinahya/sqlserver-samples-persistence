@@ -22,7 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPerson;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPersonQuotaHistory;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPersonQuotaHistoryId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesPersonQuotaHistoryId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +31,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Sales.SalesPersonQuotaHistory} table.
@@ -53,7 +59,7 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-@IdClass(MappedSalesPersonQuotaHistoryId.class)
+@IdClass(SalesPersonQuotaHistoryId.class)
 public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
 
     /**
@@ -61,6 +67,26 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
      * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code businessEntity}, with {@code quotaDate}.
+     *
+     * @param businessEntity the {@code SalesPerson} to reference.
+     * @param quotaDate      the value of the {@value #COLUMN_NAME_QUOTA_DATE} column.
+     * @return a new instance which references {@code businessEntity}, with {@code quotaDate}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static SalesPersonQuotaHistory of(final SalesPerson businessEntity,
+                                             final LocalDateTime quotaDate) {
+        Objects.requireNonNull(businessEntity, "businessEntity is null");
+        Objects.requireNonNull(quotaDate, "quotaDate is null");
+        final var instance = new SalesPersonQuotaHistory();
+        instance.setBusinessEntity(businessEntity);
+        instance.setQuotaDate(quotaDate);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -89,12 +115,14 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
      *
      * @param businessEntity the {@code SalesPerson} to reference; {@code null} for none.
      */
-    public void setBusinessEntity(final SalesPerson businessEntity) {
+    private void setBusinessEntity(final SalesPerson businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
+        setBusinessEntityId(Optional.ofNullable(businessEntity).map(SalesPerson::getBusinessEntityId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedSalesPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,

@@ -68,11 +68,7 @@ import java.util.Objects;
 // identifier, which
 // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
-                   column = @Column(name = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID,
-                                    nullable = false,
-                                    insertable = true,
-                                    updatable = false
-                   )
+                   column = @Column(name = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID, nullable = false, insertable = true, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -278,12 +274,7 @@ public abstract class MappedDepartment
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the department.")
     private String name;
 
@@ -291,12 +282,7 @@ public abstract class MappedDepartment
     @Size(max = COLUMN_LENGTH_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_GROUP_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_GROUP_NAME
-    )
+    @Column(name = COLUMN_NAME_GROUP_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_GROUP_NAME)
     @MsDescription.Column(name = COLUMN_NAME_GROUP_NAME,
                           value = "Name of the group to which the department belongs.")
     private String groupName;
@@ -306,11 +292,7 @@ public abstract class MappedDepartment
     // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Department_ModifiedDate", value = "(getdate())")

@@ -738,55 +738,34 @@ public abstract class MappedProductionOrder {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = true, updatable = false)
     private Integer productionOrderId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_WORK_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     private String workOrderNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
     private Integer warehouseId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORK_CENTER_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = true, insertable = false, updatable = false)
     private Integer workCenterId;
 
     // ---------------------------------------------------------------------------------------------
@@ -794,26 +773,14 @@ public abstract class MappedProductionOrder {
             fraction = COLUMN_SCALE_ORDER_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_ORDER_QUANTITY,
-            scale = COLUMN_SCALE_ORDER_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_ORDER_QUANTITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_ORDER_QUANTITY, scale = COLUMN_SCALE_ORDER_QUANTITY)
     private BigDecimal orderQuantity;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_COMPLETED,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_COMPLETED,
-            scale = COLUMN_SCALE_QUANTITY_COMPLETED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_COMPLETED, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_COMPLETED, scale = COLUMN_SCALE_QUANTITY_COMPLETED)
     @MsDefault("((0))")
     private BigDecimal quantityCompleted;
 
@@ -821,103 +788,59 @@ public abstract class MappedProductionOrder {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
             fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_SCRAPPED,
-            scale = COLUMN_SCALE_QUANTITY_SCRAPPED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_SCRAPPED, scale = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @MsDefault("((0))")
     private BigDecimal quantityScrapped;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate plannedCompletionDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_COMPLETION_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_COMPLETION_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate actualCompletionDate;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATUS)
     @MsDefault("('Planned')")
     private String status;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIORITY,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = true, updatable = true)
     @MsDefault("((5))")
     private Integer priority;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NOTES,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_BY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CREATED_BY
-    )
+    @Column(name = COLUMN_NAME_CREATED_BY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CREATED_BY)
     private String createdBy;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -309,9 +309,9 @@ public abstract class MappedWorkOrderRouting {
         if (!(obj instanceof MappedWorkOrderRouting that)) {
             return false;
         }
-        return Objects.equals(workOrderId, that.workOrderId) &&
-               Objects.equals(productId, that.productId) &&
-               Objects.equals(operationSequence, that.operationSequence);
+        return Objects.equals(getWorkOrderId(), that.getWorkOrderId()) &&
+               Objects.equals(getProductId(), that.getProductId()) &&
+               Objects.equals(getOperationSequence(), that.getOperationSequence());
     }
 
     /**
@@ -322,7 +322,7 @@ public abstract class MappedWorkOrderRouting {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(workOrderId, productId, operationSequence);
+        return Objects.hash(getWorkOrderId(), getProductId(), getOperationSequence());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION
@@ -375,8 +375,12 @@ public abstract class MappedWorkOrderRouting {
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getWorkOrderId() {
+    protected Integer getWorkOrderId() {
         return workOrderId;
     }
 
@@ -385,7 +389,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @param workOrderId new value for {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
      */
-    public void setWorkOrderId(final Integer workOrderId) {
+    protected void setWorkOrderId(final Integer workOrderId) {
         this.workOrderId = workOrderId;
     }
 
@@ -405,7 +409,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public void setProductId(final Integer productId) {
+    protected void setProductId(final Integer productId) {
         this.productId = productId;
     }
 
@@ -425,7 +429,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @param operationSequence new value for {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute.
      */
-    public void setOperationSequence(final Integer operationSequence) {
+    protected void setOperationSequence(final Integer operationSequence) {
         this.operationSequence = operationSequence;
     }
 
@@ -614,22 +618,14 @@ public abstract class MappedWorkOrderRouting {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_WORK_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true, updatable = false)
     private Integer workOrderId;
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -638,11 +634,7 @@ public abstract class MappedWorkOrderRouting {
     @Min(COLUMN_MIN_OPERATION_SEQUENCE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_OPERATION_SEQUENCE,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_OPERATION_SEQUENCE, nullable = false, insertable = true, updatable = false)
     private Integer operationSequence;
 
     // ---------------------------------------------------------------------------------------------
@@ -651,49 +643,29 @@ public abstract class MappedWorkOrderRouting {
     @Min(COLUMN_MIN_LOCATION_ID)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LOCATION_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = false, updatable = false)
     private Integer locationId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCHEDULED_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SCHEDULED_START_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDateTime scheduledStartDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCHEDULED_END_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SCHEDULED_END_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDateTime scheduledEndDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_START_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_START_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDateTime actualStartDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_END_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDateTime actualEndDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -702,13 +674,7 @@ public abstract class MappedWorkOrderRouting {
     @Digits(integer = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS - COLUMN_SCALE_ACTUAL_RESOURCE_HRS,
             fraction = COLUMN_SCALE_ACTUAL_RESOURCE_HRS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_RESOURCE_HRS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS,
-            scale = COLUMN_SCALE_ACTUAL_RESOURCE_HRS
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_RESOURCE_HRS, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS, scale = COLUMN_SCALE_ACTUAL_RESOURCE_HRS)
     private BigDecimal actualResourceHrs;
 
     // ---------------------------------------------------------------------------------------------
@@ -716,32 +682,20 @@ public abstract class MappedWorkOrderRouting {
     @DecimalMin(value = COLUMN_MIN_PLANNED_COST_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PLANNED_COST,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PLANNED_COST, nullable = false, insertable = true, updatable = true)
     private BigDecimal plannedCost;
 
     // ---------------------------------------------------------------------------------------------
     // CK_WorkOrderRouting_ActualCost: ([ActualCost]>(0.00))
     @DecimalMin(value = COLUMN_MIN_ACTUAL_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_COST,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = true, insertable = true, updatable = true)
     private BigDecimal actualCost;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     @MsDefault(name = "DF_WorkOrderRouting_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

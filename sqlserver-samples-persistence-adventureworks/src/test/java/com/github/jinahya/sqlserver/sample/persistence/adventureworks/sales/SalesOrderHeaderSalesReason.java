@@ -22,21 +22,27 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderHeader;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderHeaderSalesReason;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderHeaderSalesReasonId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesReason;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesOrderHeaderSalesReasonId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
 
 /**
  * An entity which maps the {@code Sales.SalesOrderHeaderSalesReason} table.
+ * <p>
+ * Each attribute of the embedded {@link SalesOrderHeaderSalesReasonId} is derived, with {@link MapsId @MapsId}, from the association
+ * which references the same column.
  */
 @Entity(name = "SalesSalesOrderHeaderSalesReason")
 @Table(schema = MappedSalesOrderHeaderSalesReason.TABLE_SCHEMA, name = MappedSalesOrderHeaderSalesReason.TABLE_NAME)
-@IdClass(MappedSalesOrderHeaderSalesReasonId.class)
 public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReason {
 
     /**
@@ -50,6 +56,26 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
      * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER = "salesOrder";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code salesOrder} and {@code salesReason}.
+     *
+     * @param salesOrder  the {@code SalesOrderHeader} to reference.
+     * @param salesReason the {@code SalesReason} to reference.
+     * @return a new instance which references {@code salesOrder} and {@code salesReason}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static SalesOrderHeaderSalesReason of(final SalesOrderHeader salesOrder,
+                                                 final SalesReason salesReason) {
+        Objects.requireNonNull(salesOrder, "salesOrder is null");
+        Objects.requireNonNull(salesReason, "salesReason is null");
+        final var instance = new SalesOrderHeaderSalesReason();
+        instance.salesOrder = salesOrder;
+        instance.salesReason = salesReason;
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -72,17 +98,6 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
         return salesReason;
     }
 
-    /**
-     * Replaces the {@code SalesReason} which the {@code FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID}
-     * foreign key references, and the value of the column it consists of.
-     *
-     * @param salesReason the {@code SalesReason} to reference; {@code null} for none.
-     */
-    public void setSalesReason(final SalesReason salesReason) {
-        this.salesReason = salesReason;
-        setSalesReasonId(salesReason == null ? null : salesReason.getSalesReasonId());
-    }
-
     // ---------------------------------------------------------------------------------- salesOrder
 
     /**
@@ -95,34 +110,28 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
         return salesOrder;
     }
 
-    /**
-     * Replaces the {@code SalesOrderHeader} which the
-     * {@code FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID} foreign key references, and the value of the
-     * column it consists of.
-     *
-     * @param salesOrder the {@code SalesOrderHeader} to reference; {@code null} for none.
-     */
-    public void setSalesOrder(final SalesOrderHeader salesOrder) {
-        this.salesOrder = salesOrder;
-        setSalesOrderId(salesOrder == null ? null : salesOrder.getSalesOrderId());
-    }
-
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(SalesOrderHeaderSalesReasonId.ATTRIBUTE_NAME_SALES_REASON_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_REASON_ID,
                 referencedColumnName = MappedSalesReason.COLUMN_NAME_SALES_REASON_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private SalesReason salesReason;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(SalesOrderHeaderSalesReasonId.ATTRIBUTE_NAME_SALES_ORDER_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_ORDER_ID,
                 referencedColumnName = MappedSalesOrderHeader.COLUMN_NAME_SALES_ORDER_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private SalesOrderHeader salesOrder;

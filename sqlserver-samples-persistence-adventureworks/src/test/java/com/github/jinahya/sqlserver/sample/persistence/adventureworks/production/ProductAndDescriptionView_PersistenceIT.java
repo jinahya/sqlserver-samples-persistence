@@ -38,7 +38,7 @@ class ProductAndDescriptionView_PersistenceIT extends _Entity_PersistenceIT<Prod
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 }

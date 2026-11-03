@@ -357,74 +357,44 @@ public abstract class MappedPriceList {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRICE_LIST_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRICE_LIST_ID, nullable = false, insertable = true, updatable = false)
     private Integer priceListId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PRICE_LIST_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRICE_LIST_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PRICE_LIST_CODE
-    )
+    @Column(name = COLUMN_NAME_PRICE_LIST_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PRICE_LIST_CODE)
     private String priceListCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PRICE_LIST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRICE_LIST_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PRICE_LIST_NAME
-    )
+    @Column(name = COLUMN_NAME_PRICE_LIST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PRICE_LIST_NAME)
     private String priceListName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_CHANNEL_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_CHANNEL_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesChannelId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EFFECTIVE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EFFECTIVE_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDate effectiveDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate endDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

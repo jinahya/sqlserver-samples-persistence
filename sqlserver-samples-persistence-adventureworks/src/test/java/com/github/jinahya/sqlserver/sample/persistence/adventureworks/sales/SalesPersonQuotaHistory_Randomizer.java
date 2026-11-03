@@ -27,8 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link SalesPersonQuotaHistory}; the sales person, which the persister sets, and what SQL Server
- * fills are left out.
+ * Randomizes a new {@link SalesPersonQuotaHistory}; the identifier, what it references, and what SQL Server fills
+ * are left out. The persister takes the rest of the instance into one which {@link SalesPersonQuotaHistory#of}
+ * creates with the sales person it references and a quota date of its own.
  */
 class SalesPersonQuotaHistory_Randomizer
         extends PodamObjectRandomizer<SalesPersonQuotaHistory> {
@@ -37,6 +38,7 @@ class SalesPersonQuotaHistory_Randomizer
         super(SalesPersonQuotaHistory.class, List.of(
                 SalesPersonQuotaHistory.ATTRIBUTE_NAME_BUSINESS_ENTITY_ID,
                 SalesPersonQuotaHistory.ATTRIBUTE_NAME_BUSINESS_ENTITY,
+                SalesPersonQuotaHistory.ATTRIBUTE_NAME_QUOTA_DATE,
                 SalesPersonQuotaHistory.ATTRIBUTE_NAME_MODIFIED_DATE
         ));
     }
@@ -52,8 +54,7 @@ class SalesPersonQuotaHistory_Randomizer
     @Override
     public SalesPersonQuotaHistory get() {
         final var instance = super.get();
-        // QuotaDate, a datetime; SalesQuota, a money, > 0
-        instance.setQuotaDate(__Random_TestUtils.dateTime());
+        // SalesQuota, a money, > 0
         instance.setSalesQuota(__Random_TestUtils.positive(5, 4));
         return instance;
     }

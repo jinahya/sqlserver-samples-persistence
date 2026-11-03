@@ -25,6 +25,8 @@ import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Persists a new {@link WorkOrderRouting}, of a new work order, at a new location.
  */
@@ -42,10 +44,16 @@ class WorkOrderRouting_Persister
         final var location = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Location.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setWorkOrder(workOrder);
-        // ProductID, of the key, has no foreign key of its own; it is the product of the work order
-        entityInstance.setProductId(workOrder.getProductId());
-        entityInstance.setLocation(location);
-        return super.apply(entityManager, entityInstance);
+        final var instance = WorkOrderRouting.of(
+                workOrder, ThreadLocalRandom.current().nextInt(1, WorkOrderRouting.COLUMN_MAX_OPERATION_SEQUENCE + 1));
+        instance.setLocation(location);
+        instance.setScheduledStartDate(entityInstance.getScheduledStartDate());
+        instance.setScheduledEndDate(entityInstance.getScheduledEndDate());
+        instance.setActualStartDate(entityInstance.getActualStartDate());
+        instance.setActualEndDate(entityInstance.getActualEndDate());
+        instance.setActualResourceHrs(entityInstance.getActualResourceHrs());
+        instance.setPlannedCost(entityInstance.getPlannedCost());
+        instance.setActualCost(entityInstance.getActualCost());
+        return super.apply(entityManager, instance);
     }
 }

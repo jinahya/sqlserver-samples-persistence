@@ -718,99 +718,59 @@ public abstract class MappedSalesQuote {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_QUOTE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_QUOTE_ID, nullable = false, insertable = true, updatable = false)
     private Integer quoteId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_QUOTE_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUOTE_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_QUOTE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_QUOTE_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_QUOTE_NUMBER)
     private String quoteNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_CHANNEL_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_CHANNEL_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesChannelId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_REP_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_REP_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesRepId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUOTE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUOTE_DATE, nullable = false, insertable = true, updatable = true)
     @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate quoteDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPIRATION_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EXPIRATION_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate expirationDate;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATUS)
     @MsDefault("('Draft')")
     private String status;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SUBTOTAL - COLUMN_SCALE_SUBTOTAL, fraction = COLUMN_SCALE_SUBTOTAL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUBTOTAL,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_SUBTOTAL,
-            scale = COLUMN_SCALE_SUBTOTAL
-    )
+    @Column(name = COLUMN_NAME_SUBTOTAL, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SUBTOTAL, scale = COLUMN_SCALE_SUBTOTAL)
     @MsDefault("((0))")
     private BigDecimal subtotal;
 
@@ -818,79 +778,44 @@ public abstract class MappedSalesQuote {
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_DISCOUNT_AMOUNT,
-            scale = COLUMN_SCALE_DISCOUNT_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal discountAmount;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TAX_AMOUNT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TAX_AMOUNT,
-            scale = COLUMN_SCALE_TAX_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_AMOUNT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TOTAL_AMOUNT,
-            scale = COLUMN_SCALE_TOTAL_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TOTAL_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_TOTAL_AMOUNT, scale = COLUMN_SCALE_TOTAL_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal totalAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONVERTED_TO_ORDER_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CONVERTED_TO_ORDER_ID, nullable = true, insertable = false, updatable = false)
     private Integer convertedToOrderId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NOTES,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_BY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CREATED_BY
-    )
+    @Column(name = COLUMN_NAME_CREATED_BY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CREATED_BY)
     private String createdBy;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 }

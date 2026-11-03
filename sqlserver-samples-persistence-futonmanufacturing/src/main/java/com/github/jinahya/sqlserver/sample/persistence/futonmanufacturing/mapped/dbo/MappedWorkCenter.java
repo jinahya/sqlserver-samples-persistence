@@ -335,68 +335,39 @@ public abstract class MappedWorkCenter {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_WORK_CENTER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = false, insertable = true, updatable = false)
     private Integer workCenterId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WORK_CENTER_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_CENTER_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_WORK_CENTER_CODE
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WORK_CENTER_CODE)
     private String workCenterCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_WORK_CENTER_NAME
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WORK_CENTER_NAME)
     private String workCenterName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     private String description;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_CAPACITY - COLUMN_SCALE_CAPACITY, fraction = COLUMN_SCALE_CAPACITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CAPACITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_CAPACITY,
-            scale = COLUMN_SCALE_CAPACITY
-    )
+    @Column(name = COLUMN_NAME_CAPACITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_CAPACITY, scale = COLUMN_SCALE_CAPACITY)
     private BigDecimal capacity;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

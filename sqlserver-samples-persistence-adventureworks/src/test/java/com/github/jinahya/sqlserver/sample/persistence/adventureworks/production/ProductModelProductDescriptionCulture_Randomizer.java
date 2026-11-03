@@ -26,17 +26,17 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductModelProductDescriptionCulture}; the identifier and what it references, which the
- * persister sets, and what SQL Server fills are left out.
+ * Randomizes a new {@link ProductModelProductDescriptionCulture}; the identifier, what it
+ * references, and what SQL Server fills are left out, which leaves nothing to randomize. The
+ * persister does not use the instance; it persists one which
+ * {@link ProductModelProductDescriptionCulture#of} creates with the instances it references.
  */
 class ProductModelProductDescriptionCulture_Randomizer
         extends PodamObjectRandomizer<ProductModelProductDescriptionCulture> {
 
     ProductModelProductDescriptionCulture_Randomizer() {
         super(ProductModelProductDescriptionCulture.class, List.of(
-                ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_PRODUCT_MODEL_ID,
-                ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID,
-                ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_CULTURE_ID,
+                ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_ID,
                 ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_PRODUCT_MODEL,
                 ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_PRODUCT_DESCRIPTION,
                 ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_CULTURE,

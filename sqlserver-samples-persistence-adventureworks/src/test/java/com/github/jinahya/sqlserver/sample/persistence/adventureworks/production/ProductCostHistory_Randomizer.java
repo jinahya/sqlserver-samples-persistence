@@ -25,11 +25,11 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link ProductCostHistory}; the product, which the persister sets, and what SQL Server fills are
- * left out.
+ * Randomizes a new {@link ProductCostHistory}; the identifier, what it references, the dates, which the persister
+ * relates, and what SQL Server fills are left out. The persister takes the rest of the instance into one which
+ * {@link ProductCostHistory#of} creates with the product it references and a start date of its own.
  */
 class ProductCostHistory_Randomizer
         extends PodamObjectRandomizer<ProductCostHistory> {
@@ -38,6 +38,8 @@ class ProductCostHistory_Randomizer
         super(ProductCostHistory.class, List.of(
                 ProductCostHistory.ATTRIBUTE_NAME_PRODUCT_ID,
                 ProductCostHistory.ATTRIBUTE_NAME_PRODUCT,
+                ProductCostHistory.ATTRIBUTE_NAME_START_DATE,
+                ProductCostHistory.ATTRIBUTE_NAME_END_DATE,
                 ProductCostHistory.ATTRIBUTE_NAME_MODIFIED_DATE
         ));
     }
@@ -53,14 +55,8 @@ class ProductCostHistory_Randomizer
     @Override
     public ProductCostHistory get() {
         final var instance = super.get();
-        final var random = ThreadLocalRandom.current();
         // StandardCost, a money, >= 0
         instance.setStandardCost(__Random_TestUtils.positive(5, 4));
-        // EndDate, when any, >= StartDate
-        instance.setStartDate(__Random_TestUtils.dateTime());
-        instance.setEndDate(random.nextBoolean()
-                            ? null
-                            : instance.getStartDate().plusDays(random.nextLong(366L)));
         return instance;
     }
 }

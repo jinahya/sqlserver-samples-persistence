@@ -38,7 +38,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Purchasing.PurchaseOrderDetail} table.
@@ -368,7 +367,8 @@ public abstract class MappedPurchaseOrderDetail {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
+     *         identifier is not yet assigned, which the database does on insert, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -378,19 +378,22 @@ public abstract class MappedPurchaseOrderDetail {
         if (!(obj instanceof MappedPurchaseOrderDetail that)) {
             return false;
         }
-        return Objects.equals(purchaseOrderId, that.purchaseOrderId) &&
-               Objects.equals(purchaseOrderDetailId, that.purchaseOrderDetailId);
+        return getPurchaseOrderId() != null
+               && getPurchaseOrderDetailId() != null
+               && getPurchaseOrderId().equals(that.getPurchaseOrderId())
+               && getPurchaseOrderDetailId().equals(that.getPurchaseOrderDetailId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when the identifier is
+     *         assigned; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(purchaseOrderId, purchaseOrderDetailId);
+        return MappedPurchaseOrderDetail.class.hashCode();
     }
 
     // ----------------------------------------------------------------------------- purchaseOrderId
@@ -399,8 +402,12 @@ public abstract class MappedPurchaseOrderDetail {
      * Returns current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getPurchaseOrderId() {
+    protected Integer getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
@@ -409,7 +416,7 @@ public abstract class MappedPurchaseOrderDetail {
      *
      * @param purchaseOrderId new value for {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      */
-    public void setPurchaseOrderId(final Integer purchaseOrderId) {
+    protected void setPurchaseOrderId(final Integer purchaseOrderId) {
         this.purchaseOrderId = purchaseOrderId;
     }
 
@@ -620,11 +627,7 @@ public abstract class MappedPurchaseOrderDetail {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                           value = "Primary key. Foreign key to "
                                   + "PurchaseOrderHeader.PurchaseOrderID.")
@@ -635,11 +638,7 @@ public abstract class MappedPurchaseOrderDetail {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID,
                           value = "Primary key. One line number per purchased product.")
     private Integer purchaseOrderDetailId;
@@ -647,11 +646,7 @@ public abstract class MappedPurchaseOrderDetail {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DUE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DUE_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DUE_DATE,
                           value = "Date the product is expected to be received.")
     private LocalDateTime dueDate;
@@ -662,11 +657,7 @@ public abstract class MappedPurchaseOrderDetail {
     @Min(COLUMN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_QTY, value = "Quantity ordered.")
     private Integer orderQty;
 
@@ -674,11 +665,7 @@ public abstract class MappedPurchaseOrderDetail {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -689,11 +676,7 @@ public abstract class MappedPurchaseOrderDetail {
     @DecimalMin(COLUMN_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
                           value = "Vendor's selling price of a single product.")
     private BigDecimal unitPrice;
@@ -701,11 +684,7 @@ public abstract class MappedPurchaseOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_TOTAL,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
                           value = "Per product subtotal. Computed as OrderQty * UnitPrice.")
     @MsComputedColumn("(isnull([OrderQty]*[UnitPrice],(0.00)))")
@@ -717,13 +696,7 @@ public abstract class MappedPurchaseOrderDetail {
     @Digits(integer = COLUMN_PRECISION_RECEIVED_QTY - COLUMN_SCALE_RECEIVED_QTY, fraction = COLUMN_SCALE_RECEIVED_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECEIVED_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_RECEIVED_QTY,
-            scale = COLUMN_SCALE_RECEIVED_QTY
-    )
+    @Column(name = COLUMN_NAME_RECEIVED_QTY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_RECEIVED_QTY, scale = COLUMN_SCALE_RECEIVED_QTY)
     @MsDescription.Column(name = COLUMN_NAME_RECEIVED_QTY,
                           value = "Quantity actually received from the vendor.")
     private BigDecimal receivedQty;
@@ -734,13 +707,7 @@ public abstract class MappedPurchaseOrderDetail {
     @Digits(integer = COLUMN_PRECISION_REJECTED_QTY - COLUMN_SCALE_REJECTED_QTY, fraction = COLUMN_SCALE_REJECTED_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REJECTED_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_REJECTED_QTY,
-            scale = COLUMN_SCALE_REJECTED_QTY
-    )
+    @Column(name = COLUMN_NAME_REJECTED_QTY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_REJECTED_QTY, scale = COLUMN_SCALE_REJECTED_QTY)
     @MsDescription.Column(name = COLUMN_NAME_REJECTED_QTY,
                           value = "Quantity rejected during inspection.")
     private BigDecimal rejectedQty;
@@ -749,13 +716,7 @@ public abstract class MappedPurchaseOrderDetail {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Digits(integer = COLUMN_PRECISION_STOCKED_QTY - COLUMN_SCALE_STOCKED_QTY, fraction = COLUMN_SCALE_STOCKED_QTY)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCKED_QTY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_STOCKED_QTY,
-            scale = COLUMN_SCALE_STOCKED_QTY
-    )
+    @Column(name = COLUMN_NAME_STOCKED_QTY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_STOCKED_QTY, scale = COLUMN_SCALE_STOCKED_QTY)
     @MsDescription.Column(name = COLUMN_NAME_STOCKED_QTY,
                           value = "Quantity accepted into inventory. Computed as ReceivedQty - "
                                   + "RejectedQty.")
@@ -766,11 +727,7 @@ public abstract class MappedPurchaseOrderDetail {
     // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and the uPurchaseOrderDetail trigger
     // on every UPDATE
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PurchaseOrderDetail_ModifiedDate", value = "(getdate())")

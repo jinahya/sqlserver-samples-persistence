@@ -14,9 +14,9 @@ The three depend on `sqlserver-samples-persistence-common`, which holds what the
 and the `hierarchyid` and `geography` types with their converters.
 
 Each module's main sources are a package per schema, `<database>.mapped.<schema>`: one `@MappedSuperclass`
-`Mapped<Entity>` per table and view, and one `Mapped<Entity>Id` per composite key. The entities, which add `@Entity`,
-`@Table`, `@IdClass` and the associations, live in `src/test/java`, in `<database>.<schema>`, with the persistence unit,
-`<database>-it`, and an integration test per class. The layout follows
+`Mapped<Entity>` per table and view, and one `<Entity>Id` per composite key. The entities, which add `@Entity`,
+`@Table`, the `@IdClass` of a composite key and the associations, live in `src/test/java`, in `<database>.<schema>`,
+with the persistence unit, `<database>-it`, and an integration test per class. The layout follows
 [oracle-sample-schemas-persistence](https://github.com/jinahya/oracle-sample-schemas-persistence).
 
 A table or view is named within its schema, and so is its class: `Website.Customers` is `website.Customer`, next to
@@ -55,7 +55,8 @@ A mapped superclass holds what the database says -- the names, the types, the le
 columns, the sequences, the computed and period columns -- and nothing an application decides. A foreign-key column
 is mapped read-only there; the entity's `@ManyToOne` writes it, and the association's setter keeps the basic attribute
 in step. Where a column cannot be written by one association alone -- it is part of the primary key, or of two
-foreign keys -- the basic attribute writes it, and the association is the read-only one.
+foreign keys -- the basic attribute writes it, and the association is the read-only one; under an `@EmbeddedId`, the
+association writes it, and `@MapsId` derives the attribute of the key from it.
 
 | SQL Server | Attribute | How |
 |---|---|---|
@@ -110,10 +111,26 @@ What identifies a row:
 
 | Object | Identifier |
 |---|---|
-| A table with a primary key | the primary key: `@Id`, or `@IdClass(Mapped<Entity>Id.class)` for the 23 composite ones of AdventureWorks |
+| A table with a primary key | the primary key: `@Id`; for the 23 composite ones of AdventureWorks, `@IdClass(<Entity>Id.class)`, or an `@EmbeddedId` `<Entity>Id` which the associations derive with `@MapsId` (below) |
 | `Production.Document` | its unique `rowguid`: the primary key, `DocumentNode`, is a `hierarchyid`, which no identifier type holds |
 | A view | the columns which are unique, and not null, in every row it returns, when they are identifiers (`...ID`, `...Code`, `...Number`); an entity with no association |
 | A view with no such columns, `Production.ProductDocument` (whose key includes a `hierarchyid`) and the 17 `*_Archive` history tables of WideWorldImporters | none: a keyless class, a plain class over the mapped superclass with a public all-args constructor |
+
+A composite key is mapped by what it is made of, and the mapped superclass fixes how:
+
+| Key | Mapping | Tables |
+|---|---|---|
+| foreign keys only, each to another entity's `@Id` of the same type | `@EmbeddedId`; each association of the key carries `@MapsId` and writes its column | `BusinessEntityContact`, `ProductModelIllustration`, `ProductModelProductDescriptionCulture`, `ProductProductPhoto`, `CountryRegionCurrency`, `PersonCreditCard`, `SalesOrderHeaderSalesReason` |
+| foreign keys and a value of the row's own, an `IDENTITY` column, a view, or one the book shows as an `@IdClass` | `@IdClass`; the `@Id` attributes write the columns, and the associations are read-only | the other 15 tables, and `Production.vProductAndDescription` |
+
+`BusinessEntityAddress`, whose key is three foreign keys like `BusinessEntityContact`'s, stays an `@IdClass`, so that
+the two show the two mappings side by side; `ProductInventory` does too, since its `Integer` `LocationID` does not
+match `Location`'s `Short` identifier, which `@MapsId` requires.
+
+Either way, an entity of a composite key is created by its `of(...)`, which takes what makes up the key and is the
+only thing which sets it. `equals` and `hashCode` read the key through its getters, so that a Hibernate proxy answers
+too; where the key is assigned only on persist, by `@MapsId` or an `IDENTITY` column, an instance equals only itself
+until it is, and the hash is the same for every instance.
 
 ## Hibernate Spatial and `geography`
 
@@ -174,22 +191,28 @@ Each entity's `*_PersistenceIT` reads up to eight installed rows, inside a trans
 
 - finds each again by its identifier, from a cleared persistence context, equal to the one read;
 - loads every association of each, and reads the identifier of the entity it references;
-- validates each against the mapping's constraints.
+- validates each against the mapping's constraints;
+- resolves each of its `ATTRIBUTE_PATH_*` constants, such as `id.personId`, through the metamodel.
+
+In AdventureWorks, each also persists a new instance, through its `<Entity>_Persister`, and flushes it. Each id class
+of a composite key has a unit test, `<Entity>Id_Test`, run by surefire: its `toString`, its `equals` and `hashCode`,
+with EqualsVerifier, and its accessors.
 
 Each keyless class's `*_PersistenceIT` reads every column its mapped superclass names by a native query, and checks
 that its public constructor takes them all.
 
 | Module | Entity and keyless ITs | Exercise ITs | Skipped |
 |---|---|---|---|
-| adventureworks | 264 | 42 | 39 |
-| futonmanufacturing | 194 | 28 | 36 |
-| wideworldimporters | 136 | 31 | 5 |
+| adventureworks | 582 | 42 | 57 |
+| futonmanufacturing | 294 | 28 | 40 |
+| wideworldimporters | 218 | 31 | 6 |
 
 Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
 Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.
 
-All of them pass. A test is skipped when an entity maps no association, a view returns no row, or an entity has no
-persister yet.
+All of them pass. A test is skipped when an entity maps no association, a view returns no row, an entity has no
+persister yet, or an entity is not persisted: a view, or a table which only SQL Server, the installer or a procedure
+writes.
 
 ## The diagrams
 

@@ -1384,15 +1384,6 @@ public abstract class MappedProduct {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -1418,11 +1409,7 @@ public abstract class MappedProduct {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID, value = "Primary key for Product records.")
     private Integer productId;
 
@@ -1430,12 +1417,7 @@ public abstract class MappedProduct {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the product.")
     private String name;
 
@@ -1443,12 +1425,7 @@ public abstract class MappedProduct {
     @Size(max = COLUMN_LENGTH_PRODUCT_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PRODUCT_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PRODUCT_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_NUMBER,
                           value = "Unique product identification number.")
     private String productNumber;
@@ -1456,11 +1433,7 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MAKE_FLAG,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MAKE_FLAG, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MAKE_FLAG,
                           value = "0 = Product is purchased, 1 = Product is manufactured in-house.")
     @MsDefault(name = "DF_Product_MakeFlag", value = "((1))")
@@ -1469,11 +1442,7 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FINISHED_GOODS_FLAG,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_FINISHED_GOODS_FLAG, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_FINISHED_GOODS_FLAG,
                           value = "0 = Product is not a salable item. 1 = Product is salable.")
     @MsDefault(name = "DF_Product_FinishedGoodsFlag", value = "((1))")
@@ -1482,12 +1451,7 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COLOR)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COLOR,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COLOR
-    )
+    @Column(name = COLUMN_NAME_COLOR, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COLOR)
     @MsDescription.Column(name = COLUMN_NAME_COLOR, value = "Product color.")
     private String color;
 
@@ -1497,11 +1461,7 @@ public abstract class MappedProduct {
     @Min(COLUMN_MIN_SAFETY_STOCK_LEVEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SAFETY_STOCK_LEVEL,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SAFETY_STOCK_LEVEL, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SAFETY_STOCK_LEVEL,
                           value = "Minimum inventory quantity.")
     private Integer safetyStockLevel;
@@ -1512,11 +1472,7 @@ public abstract class MappedProduct {
     @Min(COLUMN_MIN_REORDER_POINT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REORDER_POINT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REORDER_POINT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REORDER_POINT,
                           value = "Inventory level that triggers a purchase order or work order.")
     private Integer reorderPoint;
@@ -1526,11 +1482,7 @@ public abstract class MappedProduct {
     @DecimalMin(COLUMN_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STANDARD_COST,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_STANDARD_COST, value = "Standard cost of the product.")
     private BigDecimal standardCost;
 
@@ -1539,23 +1491,14 @@ public abstract class MappedProduct {
     @DecimalMin(COLUMN_MIN_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LIST_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LIST_PRICE, value = "Selling price.")
     private BigDecimal listPrice;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SIZE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SIZE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SIZE
-    )
+    @Column(name = COLUMN_NAME_SIZE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SIZE)
     @MsDescription.Column(name = COLUMN_NAME_SIZE, value = "Product size.")
     private String size;
 
@@ -1563,12 +1506,7 @@ public abstract class MappedProduct {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_SIZE_UNIT_MEASURE_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SIZE_UNIT_MEASURE_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SIZE_UNIT_MEASURE_CODE
-    )
+    @Column(name = COLUMN_NAME_SIZE_UNIT_MEASURE_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SIZE_UNIT_MEASURE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_SIZE_UNIT_MEASURE_CODE,
                           value = "Unit of measure for Size column.")
     private String sizeUnitMeasureCode;
@@ -1577,12 +1515,7 @@ public abstract class MappedProduct {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Size(max = COLUMN_LENGTH_WEIGHT_UNIT_MEASURE_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WEIGHT_UNIT_MEASURE_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WEIGHT_UNIT_MEASURE_CODE
-    )
+    @Column(name = COLUMN_NAME_WEIGHT_UNIT_MEASURE_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WEIGHT_UNIT_MEASURE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_WEIGHT_UNIT_MEASURE_CODE,
                           value = "Unit of measure for Weight column.")
     private String weightUnitMeasureCode;
@@ -1592,13 +1525,7 @@ public abstract class MappedProduct {
     @DecimalMin(value = COLUMN_MIN_WEIGHT_EXCLUSIVE, inclusive = false)
     @Digits(integer = COLUMN_PRECISION_WEIGHT - COLUMN_SCALE_WEIGHT, fraction = COLUMN_SCALE_WEIGHT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WEIGHT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_WEIGHT,
-            scale = COLUMN_SCALE_WEIGHT
-    )
+    @Column(name = COLUMN_NAME_WEIGHT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_WEIGHT, scale = COLUMN_SCALE_WEIGHT)
     @MsDescription.Column(name = COLUMN_NAME_WEIGHT, value = "Product weight.")
     private BigDecimal weight;
 
@@ -1608,11 +1535,7 @@ public abstract class MappedProduct {
     @Min(COLUMN_MIN_DAYS_TO_MANUFACTURE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DAYS_TO_MANUFACTURE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DAYS_TO_MANUFACTURE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DAYS_TO_MANUFACTURE,
                           value = "Number of days required to manufacture the product.")
     private Integer daysToManufacture;
@@ -1620,12 +1543,7 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = ProductLineConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_LINE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PRODUCT_LINE
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_LINE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PRODUCT_LINE)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_LINE,
                           value = "R = Road, M = Mountain, T = Touring, S = Standard")
     private ProductLine productLine;
@@ -1633,35 +1551,21 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = ProductClassConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_CLASS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PRODUCT_CLASS
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_CLASS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PRODUCT_CLASS)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_CLASS, value = "H = High, M = Medium, L = Low")
     private ProductClass productClass;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = ProductStyleConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STYLE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STYLE
-    )
+    @Column(name = COLUMN_NAME_STYLE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_STYLE)
     @MsDescription.Column(name = COLUMN_NAME_STYLE, value = "W = Womens, M = Mens, U = Universal")
     private ProductStyle style;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID,
                           value = "Product is a member of this product subcategory. Foreign key "
                                   + "to ProductSubCategory.ProductSubCategoryID.")
@@ -1670,11 +1574,7 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
                           value = "Product is a member of this product model. Foreign key to "
                                   + "ProductModel.ProductModelID.")
@@ -1683,33 +1583,21 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SELL_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SELL_START_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SELL_START_DATE,
                           value = "Date the product was available for sale.")
     private LocalDateTime sellStartDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SELL_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SELL_END_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SELL_END_DATE,
                           value = "Date the product was no longer available for sale.")
     private LocalDateTime sellEndDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCONTINUED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DISCONTINUED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DISCONTINUED_DATE,
                           value = "Date the product was discontinued.")
     private LocalDateTime discontinuedDate;
@@ -1717,11 +1605,7 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -1732,11 +1616,7 @@ public abstract class MappedProduct {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Product_ModifiedDate", value = "(getdate())")

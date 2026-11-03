@@ -171,9 +171,9 @@ public abstract class MappedPersonPhone {
         if (!(obj instanceof MappedPersonPhone that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(phoneNumber, that.phoneNumber) &&
-               Objects.equals(phoneNumberTypeId, that.phoneNumberTypeId);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId()) &&
+               Objects.equals(getPhoneNumber(), that.getPhoneNumber()) &&
+               Objects.equals(getPhoneNumberTypeId(), that.getPhoneNumberTypeId());
     }
 
     /**
@@ -184,7 +184,7 @@ public abstract class MappedPersonPhone {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, phoneNumber, phoneNumberTypeId);
+        return Objects.hash(getBusinessEntityId(), getPhoneNumber(), getPhoneNumberTypeId());
     }
 
     // ---------------------------------------------------------------------------- businessEntityId
@@ -193,8 +193,12 @@ public abstract class MappedPersonPhone {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -203,7 +207,7 @@ public abstract class MappedPersonPhone {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -223,7 +227,7 @@ public abstract class MappedPersonPhone {
      *
      * @param phoneNumber new value for {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
      */
-    public void setPhoneNumber(final String phoneNumber) {
+    protected void setPhoneNumber(final String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -233,8 +237,12 @@ public abstract class MappedPersonPhone {
      * Returns current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getPhoneNumberTypeId() {
+    protected Integer getPhoneNumberTypeId() {
         return phoneNumberTypeId;
     }
 
@@ -243,7 +251,7 @@ public abstract class MappedPersonPhone {
      *
      * @param phoneNumberTypeId new value for {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE_ID} attribute.
      */
-    public void setPhoneNumberTypeId(final Integer phoneNumberTypeId) {
+    protected void setPhoneNumberTypeId(final Integer phoneNumberTypeId) {
         this.phoneNumberTypeId = phoneNumberTypeId;
     }
 
@@ -271,11 +279,7 @@ public abstract class MappedPersonPhone {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Business entity identification number. Foreign key to "
                                   + "Person.BusinessEntityID.")
@@ -286,12 +290,7 @@ public abstract class MappedPersonPhone {
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PHONE_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = false,
-            length = COLUMN_LENGTH_PHONE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = false, insertable = true, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER,
                           value = "Telephone number identification number.")
     private String phoneNumber;
@@ -300,11 +299,7 @@ public abstract class MappedPersonPhone {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID,
                           value = "Kind of phone number. Foreign key to "
                                   + "PhoneNumberType.PhoneNumberTypeID.")
@@ -314,11 +309,7 @@ public abstract class MappedPersonPhone {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PersonPhone_ModifiedDate", value = "(getdate())")

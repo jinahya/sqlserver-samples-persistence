@@ -23,7 +23,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import jakarta.persistence.EntityManager;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Persists a new {@link SalesTerritoryHistory}, of a new sales person, in a new territory.
@@ -42,8 +45,11 @@ class SalesTerritoryHistory_Persister
         final var territory = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setBusinessEntity(salesPerson);
-        entityInstance.setTerritory(territory);
-        return super.apply(entityManager, entityInstance);
+        final var random = ThreadLocalRandom.current();
+        // CK_SalesTerritoryHistory_EndDate: EndDate, when any, >= StartDate
+        final var startDate = __Random_TestUtils.dateTime();
+        final var instance = SalesTerritoryHistory.of(salesPerson, startDate, territory);
+        instance.setEndDate(random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
+        return super.apply(entityManager, instance);
     }
 }

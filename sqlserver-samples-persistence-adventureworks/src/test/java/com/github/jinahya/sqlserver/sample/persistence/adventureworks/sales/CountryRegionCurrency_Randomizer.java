@@ -26,16 +26,17 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link CountryRegionCurrency}; the identifier and what it references, which the persister sets,
- * and what SQL Server fills are left out.
+ * Randomizes a new {@link CountryRegionCurrency}; the identifier, what it references, and what SQL
+ * Server fills are left out, which leaves nothing to randomize. The persister does not use the
+ * instance; it persists one which {@link CountryRegionCurrency#of} creates with the instances it
+ * references.
  */
 class CountryRegionCurrency_Randomizer
         extends PodamObjectRandomizer<CountryRegionCurrency> {
 
     CountryRegionCurrency_Randomizer() {
         super(CountryRegionCurrency.class, List.of(
-                CountryRegionCurrency.ATTRIBUTE_NAME_COUNTRY_REGION_CODE,
-                CountryRegionCurrency.ATTRIBUTE_NAME_CURRENCY_CODE,
+                CountryRegionCurrency.ATTRIBUTE_NAME_ID,
                 CountryRegionCurrency.ATTRIBUTE_NAME_COUNTRY_REGION,
                 CountryRegionCurrency.ATTRIBUTE_NAME_CURRENCY,
                 CountryRegionCurrency.ATTRIBUTE_NAME_MODIFIED_DATE

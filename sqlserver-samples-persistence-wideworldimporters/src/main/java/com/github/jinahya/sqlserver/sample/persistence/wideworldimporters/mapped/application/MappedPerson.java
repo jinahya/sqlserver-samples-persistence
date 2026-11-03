@@ -924,11 +924,7 @@ public abstract class MappedPerson {
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PersonID", schema = "Sequences", sequenceName = "PersonID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PersonID")
-    @Column(name = COLUMN_NAME_PERSON_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PERSON_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PERSON_ID,
                           value = "Numeric ID used for reference to a person within the database")
     @MsDefault(name = "DF_Application_People_PersonID", value = "(NEXT VALUE FOR [Sequences].[PersonID])")
@@ -938,12 +934,7 @@ public abstract class MappedPerson {
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FULL_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FULL_NAME
-    )
+    @Column(name = COLUMN_NAME_FULL_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FULL_NAME)
     @MsDescription.Column(name = COLUMN_NAME_FULL_NAME, value = "Full name for this person")
     private String fullName;
 
@@ -951,12 +942,7 @@ public abstract class MappedPerson {
     @Size(max = COLUMN_LENGTH_PREFERRED_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PREFERRED_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PREFERRED_NAME
-    )
+    @Column(name = COLUMN_NAME_PREFERRED_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PREFERRED_NAME)
     @MsDescription.Column(name = COLUMN_NAME_PREFERRED_NAME,
                           value = "Name that this person prefers to be called")
     private String preferredName;
@@ -965,12 +951,7 @@ public abstract class MappedPerson {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_SEARCH_NAME)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SEARCH_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SEARCH_NAME
-    )
+    @Column(name = COLUMN_NAME_SEARCH_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SEARCH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_SEARCH_NAME,
                           value = "Name to build full text search on (computed column)")
     @MsComputedColumn(value = "(concat([PreferredName],N' ',[FullName]))", persisted = true)
@@ -979,11 +960,7 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON,
                           value = "Is this person permitted to log on?")
     private Boolean isPermittedToLogon;
@@ -991,34 +968,21 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LOGON_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LOGON_NAME,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_LOGON_NAME
-    )
+    @Column(name = COLUMN_NAME_LOGON_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_LOGON_NAME)
     @MsDescription.Column(name = COLUMN_NAME_LOGON_NAME, value = "Person's system logon name")
     private String logonName;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER,
                           value = "Is logon token provided by an external system?")
     private Boolean isExternalLogonProvider;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_HASHED_PASSWORD,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_HASHED_PASSWORD, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_HASHED_PASSWORD,
                           value = "Hash of password for users without external logon tokens")
     private byte[] hashedPassword;
@@ -1026,11 +990,7 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_SYSTEM_USER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_SYSTEM_USER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_SYSTEM_USER,
                           value = "Is the currently permitted to make online access?")
     private Boolean isSystemUser;
@@ -1038,33 +998,21 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_EMPLOYEE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_EMPLOYEE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_EMPLOYEE, value = "Is this person an employee?")
     private Boolean isEmployee;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_SALESPERSON,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_SALESPERSON, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_SALESPERSON,
                           value = "Is this person a staff salesperson?")
     private Boolean isSalesperson;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_USER_PREFERENCES,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_USER_PREFERENCES, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_USER_PREFERENCES,
                           value = "User preferences related to the website (holds JSON data)")
     private String userPreferences;
@@ -1072,56 +1020,33 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PHONE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER, value = "Phone number")
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FAX_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FAX_NUMBER
-    )
+    @Column(name = COLUMN_NAME_FAX_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_FAX_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_FAX_NUMBER, value = "Fax number")
     private String faxNumber;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMAIL_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL_ADDRESS)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS, value = "Email address for this person")
     private String emailAddress;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHOTO,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PHOTO, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PHOTO, value = "Photo of this person")
     private byte[] photo;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CUSTOM_FIELDS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOM_FIELDS,
                           value = "Custom fields for employees and salespeople")
     private String customFields;
@@ -1129,11 +1054,7 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_OTHER_LANGUAGES,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_OTHER_LANGUAGES, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_OTHER_LANGUAGES,
                           value = "Other languages spoken (computed column from custom fields)")
     @MsComputedColumn("(json_query([CustomFields],N'$.OtherLanguages'))")
@@ -1143,33 +1064,21 @@ public abstract class MappedPerson {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

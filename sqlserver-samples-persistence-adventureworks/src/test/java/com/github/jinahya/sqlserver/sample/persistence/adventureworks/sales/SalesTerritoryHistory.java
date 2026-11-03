@@ -23,7 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesPerson;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritoryHistory;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesTerritoryHistoryId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesTerritoryHistoryId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,6 +32,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Sales.SalesTerritoryHistory} table.
@@ -54,7 +60,7 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-@IdClass(MappedSalesTerritoryHistoryId.class)
+@IdClass(SalesTerritoryHistoryId.class)
 public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
 
     /**
@@ -68,6 +74,30 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
      * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code businessEntity} and {@code territory}, with {@code startDate}.
+     *
+     * @param businessEntity the {@code SalesPerson} to reference.
+     * @param startDate      the value of the {@value #COLUMN_NAME_START_DATE} column.
+     * @param territory      the {@code SalesTerritory} to reference.
+     * @return a new instance which references {@code businessEntity} and {@code territory}, with {@code startDate}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static SalesTerritoryHistory of(final SalesPerson businessEntity,
+                                           final LocalDateTime startDate,
+                                           final SalesTerritory territory) {
+        Objects.requireNonNull(businessEntity, "businessEntity is null");
+        Objects.requireNonNull(startDate, "startDate is null");
+        Objects.requireNonNull(territory, "territory is null");
+        final var instance = new SalesTerritoryHistory();
+        instance.setBusinessEntity(businessEntity);
+        instance.setStartDate(startDate);
+        instance.setTerritory(territory);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -96,9 +126,9 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
      *
      * @param businessEntity the {@code SalesPerson} to reference; {@code null} for none.
      */
-    public void setBusinessEntity(final SalesPerson businessEntity) {
+    private void setBusinessEntity(final SalesPerson businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
+        setBusinessEntityId(Optional.ofNullable(businessEntity).map(SalesPerson::getBusinessEntityId).orElse(null));
     }
 
     // ----------------------------------------------------------------------------------- territory
@@ -119,12 +149,14 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
      *
      * @param territory the {@code SalesTerritory} to reference; {@code null} for none.
      */
-    public void setTerritory(final SalesTerritory territory) {
+    private void setTerritory(final SalesTerritory territory) {
         this.territory = territory;
-        setTerritoryId(territory == null ? null : territory.getTerritoryId());
+        setTerritoryId(Optional.ofNullable(territory).map(SalesTerritory::getTerritoryId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedSalesPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,
@@ -135,6 +167,8 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
     private SalesPerson businessEntity;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_TERRITORY_ID,
                 referencedColumnName = MappedSalesTerritory.COLUMN_NAME_TERRITORY_ID,

@@ -667,11 +667,7 @@ public abstract class MappedCountry {
                        sequenceName = "CountryID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.CountryID")
-    @Column(name = COLUMN_NAME_COUNTRY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COUNTRY_ID,
                           value = "Numeric ID used for reference to a country within the database")
     @MsDefault(name = "DF_Application_Countries_CountryID", value = "(NEXT VALUE FOR [Sequences].[CountryID])")
@@ -681,12 +677,7 @@ public abstract class MappedCountry {
     @Size(max = COLUMN_LENGTH_COUNTRY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COUNTRY_NAME
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_COUNTRY_NAME)
     @MsDescription.Column(name = COLUMN_NAME_COUNTRY_NAME, value = "Name of the country")
     private String countryName;
 
@@ -694,12 +685,7 @@ public abstract class MappedCountry {
     @Size(max = COLUMN_LENGTH_FORMAL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FORMAL_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FORMAL_NAME
-    )
+    @Column(name = COLUMN_NAME_FORMAL_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FORMAL_NAME)
     @MsDescription.Column(name = COLUMN_NAME_FORMAL_NAME,
                           value = "Full formal name of the country as agreed by United Nations")
     private String formalName;
@@ -707,23 +693,14 @@ public abstract class MappedCountry {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ISO_ALPHA_3_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ISO_ALPHA_3_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ISO_ALPHA_3_CODE
-    )
+    @Column(name = COLUMN_NAME_ISO_ALPHA_3_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ISO_ALPHA_3_CODE)
     @MsDescription.Column(name = COLUMN_NAME_ISO_ALPHA_3_CODE,
                           value = "3 letter alphabetic code assigned to the country by ISO")
     private String isoAlpha3Code;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ISO_NUMERIC_CODE,
                           value = "Numeric code assigned to the country by ISO")
     private Integer isoNumericCode;
@@ -731,23 +708,14 @@ public abstract class MappedCountry {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COUNTRY_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COUNTRY_TYPE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COUNTRY_TYPE
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_TYPE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COUNTRY_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_COUNTRY_TYPE,
                           value = "Type of country or administrative region")
     private String countryType;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
                           value = "Latest available population for the country")
     private Long latestRecordedPopulation;
@@ -756,12 +724,7 @@ public abstract class MappedCountry {
     @Size(max = COLUMN_LENGTH_CONTINENT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTINENT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CONTINENT
-    )
+    @Column(name = COLUMN_NAME_CONTINENT, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CONTINENT)
     @MsDescription.Column(name = COLUMN_NAME_CONTINENT, value = "Name of the continent")
     private String continent;
 
@@ -769,12 +732,7 @@ public abstract class MappedCountry {
     @Size(max = COLUMN_LENGTH_REGION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REGION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REGION
-    )
+    @Column(name = COLUMN_NAME_REGION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REGION)
     @MsDescription.Column(name = COLUMN_NAME_REGION, value = "Name of the region")
     private String region;
 
@@ -782,23 +740,14 @@ public abstract class MappedCountry {
     @Size(max = COLUMN_LENGTH_SUBREGION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUBREGION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUBREGION
-    )
+    @Column(name = COLUMN_NAME_SUBREGION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SUBREGION)
     @MsDescription.Column(name = COLUMN_NAME_SUBREGION, value = "Name of the subregion")
     private String subregion;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BORDER,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_BORDER, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_BORDER,
                           value = "Geographic border of the country as described by the United "
                                   + "Nations")
@@ -808,33 +757,21 @@ public abstract class MappedCountry {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

@@ -238,12 +238,7 @@ public abstract class MappedCurrency {
     @Size(max = COLUMN_LENGTH_CURRENCY_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CURRENCY_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = false,
-            length = COLUMN_LENGTH_CURRENCY_CODE
-    )
+    @Column(name = COLUMN_NAME_CURRENCY_CODE, nullable = false, insertable = true, updatable = false, length = COLUMN_LENGTH_CURRENCY_CODE)
     @MsDescription.Column(name = COLUMN_NAME_CURRENCY_CODE,
                           value = "The ISO code for the Currency.")
     private String currencyCode;
@@ -252,12 +247,7 @@ public abstract class MappedCurrency {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Currency name.")
     private String name;
 
@@ -265,11 +255,7 @@ public abstract class MappedCurrency {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Currency_ModifiedDate", value = "(getdate())")

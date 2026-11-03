@@ -39,7 +39,8 @@ class EmailAddress_Persister
     @Override
     public EmailAddress apply(final EntityManager entityManager, final EmailAddress entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
-        entityInstance.setBusinessEntity(person);
-        return super.apply(entityManager, entityInstance);
+        final var instance = EmailAddress.of(person);
+        instance.setEmailAddress(entityInstance.getEmailAddress());
+        return super.apply(entityManager, instance);
     }
 }

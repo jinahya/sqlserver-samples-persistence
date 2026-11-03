@@ -201,9 +201,9 @@ public abstract class MappedSalesTerritoryHistory {
         if (!(obj instanceof MappedSalesTerritoryHistory that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(startDate, that.startDate) &&
-               Objects.equals(territoryId, that.territoryId);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId()) &&
+               Objects.equals(getStartDate(), that.getStartDate()) &&
+               Objects.equals(getTerritoryId(), that.getTerritoryId());
     }
 
     /**
@@ -214,7 +214,7 @@ public abstract class MappedSalesTerritoryHistory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, startDate, territoryId);
+        return Objects.hash(getBusinessEntityId(), getStartDate(), getTerritoryId());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION
@@ -245,8 +245,12 @@ public abstract class MappedSalesTerritoryHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -255,7 +259,7 @@ public abstract class MappedSalesTerritoryHistory {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -265,8 +269,12 @@ public abstract class MappedSalesTerritoryHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getTerritoryId() {
+    protected Integer getTerritoryId() {
         return territoryId;
     }
 
@@ -275,7 +283,7 @@ public abstract class MappedSalesTerritoryHistory {
      *
      * @param territoryId new value for {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
-    public void setTerritoryId(final Integer territoryId) {
+    protected void setTerritoryId(final Integer territoryId) {
         this.territoryId = territoryId;
     }
 
@@ -295,7 +303,7 @@ public abstract class MappedSalesTerritoryHistory {
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
-    public void setStartDate(final LocalDateTime startDate) {
+    protected void setStartDate(final LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
@@ -330,15 +338,6 @@ public abstract class MappedSalesTerritoryHistory {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -363,11 +362,7 @@ public abstract class MappedSalesTerritoryHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key. The sales rep.  Foreign key to "
                                   + "SalesPerson.BusinessEntityID.")
@@ -377,11 +372,7 @@ public abstract class MappedSalesTerritoryHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
                           value = "Primary key. Territory identification number. Foreign key to "
                                   + "SalesTerritory.SalesTerritoryID.")
@@ -391,11 +382,7 @@ public abstract class MappedSalesTerritoryHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_START_DATE,
                           value = "Primary key. Date the sales representive started work in the "
                                   + "territory.")
@@ -403,11 +390,7 @@ public abstract class MappedSalesTerritoryHistory {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_DATE,
                           value = "Date the sales representative left work in the territory.")
     private LocalDateTime endDate;
@@ -415,11 +398,7 @@ public abstract class MappedSalesTerritoryHistory {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -430,11 +409,7 @@ public abstract class MappedSalesTerritoryHistory {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesTerritoryHistory_ModifiedDate", value = "(getdate())")

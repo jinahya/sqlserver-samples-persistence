@@ -447,115 +447,69 @@ public abstract class MappedJobCandidateEmploymentView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false, updatable = false)
     private Integer jobCandidateId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_START_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_START_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime empStartDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_END_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_END_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime empEndDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMP_ORG_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_ORG_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EMP_ORG_NAME
-    )
+    @Column(name = COLUMN_NAME_EMP_ORG_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMP_ORG_NAME)
     private String empOrgName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMP_JOB_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_JOB_TITLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EMP_JOB_TITLE
-    )
+    @Column(name = COLUMN_NAME_EMP_JOB_TITLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMP_JOB_TITLE)
     private String empJobTitle;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_RESPONSIBILITY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_RESPONSIBILITY, nullable = true, insertable = false, updatable = false)
     private String empResponsibility;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_FUNCTION_CATEGORY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_FUNCTION_CATEGORY, nullable = true, insertable = false, updatable = false)
     private String empFunctionCategory;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_INDUSTRY_CATEGORY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_INDUSTRY_CATEGORY, nullable = true, insertable = false, updatable = false)
     private String empIndustryCategory;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_LOC_COUNTRY_REGION,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_LOC_COUNTRY_REGION, nullable = true, insertable = false, updatable = false)
     private String empLocCountryRegion;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_LOC_STATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_LOC_STATE, nullable = true, insertable = false, updatable = false)
     private String empLocState;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_LOC_CITY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMP_LOC_CITY, nullable = true, insertable = false, updatable = false)
     private String empLocCity;
 }
 

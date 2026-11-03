@@ -564,53 +564,32 @@ public abstract class MappedProductionCompletionSummaryView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPLETION_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPLETION_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate completionDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WEEK,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WEEK, nullable = true, insertable = false, updatable = false)
     private Integer week;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_CENTER_NAME
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_CENTER_NAME)
     private String workCenterName;
 
     // ---------------------------------------------------------------------------------------------
@@ -618,12 +597,7 @@ public abstract class MappedProductionCompletionSummaryView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -631,12 +605,7 @@ public abstract class MappedProductionCompletionSummaryView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -644,22 +613,13 @@ public abstract class MappedProductionCompletionSummaryView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_OF_COMPLETIONS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_NUMBER_OF_COMPLETIONS, nullable = true, insertable = false, updatable = false)
     private Integer numberOfCompletions;
 
     // ---------------------------------------------------------------------------------------------
@@ -667,13 +627,7 @@ public abstract class MappedProductionCompletionSummaryView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_COMPLETED - COLUMN_SCALE_TOTAL_COMPLETED,
             fraction = COLUMN_SCALE_TOTAL_COMPLETED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_COMPLETED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_COMPLETED,
-            scale = COLUMN_SCALE_TOTAL_COMPLETED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_COMPLETED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_COMPLETED, scale = COLUMN_SCALE_TOTAL_COMPLETED)
     private BigDecimal totalCompleted;
 
     // ---------------------------------------------------------------------------------------------
@@ -681,26 +635,14 @@ public abstract class MappedProductionCompletionSummaryView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_SCRAPPED - COLUMN_SCALE_TOTAL_SCRAPPED,
             fraction = COLUMN_SCALE_TOTAL_SCRAPPED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_SCRAPPED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_SCRAPPED,
-            scale = COLUMN_SCALE_TOTAL_SCRAPPED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_SCRAPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_SCRAPPED, scale = COLUMN_SCALE_TOTAL_SCRAPPED)
     private BigDecimal totalScrapped;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCRAP_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SCRAP_RATE,
-            scale = COLUMN_SCALE_SCRAP_RATE
-    )
+    @Column(name = COLUMN_NAME_SCRAP_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SCRAP_RATE, scale = COLUMN_SCALE_SCRAP_RATE)
     private BigDecimal scrapRate;
 
     // ---------------------------------------------------------------------------------------------
@@ -708,13 +650,7 @@ public abstract class MappedProductionCompletionSummaryView {
     @Digits(integer = COLUMN_PRECISION_PRODUCTION_VALUE - COLUMN_SCALE_PRODUCTION_VALUE,
             fraction = COLUMN_SCALE_PRODUCTION_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCTION_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PRODUCTION_VALUE,
-            scale = COLUMN_SCALE_PRODUCTION_VALUE
-    )
+    @Column(name = COLUMN_NAME_PRODUCTION_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRODUCTION_VALUE, scale = COLUMN_SCALE_PRODUCTION_VALUE)
     private BigDecimal productionValue;
 }
 

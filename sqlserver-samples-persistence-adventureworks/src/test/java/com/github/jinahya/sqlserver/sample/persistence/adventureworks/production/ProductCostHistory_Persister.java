@@ -23,7 +23,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import jakarta.persistence.EntityManager;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Persists a new {@link ProductCostHistory}, of a new product.
@@ -41,7 +44,12 @@ class ProductCostHistory_Persister
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the product's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
-        entityInstance.setProduct(product);
-        return super.apply(entityManager, entityInstance);
+        final var random = ThreadLocalRandom.current();
+        // EndDate, when any, >= StartDate
+        final var startDate = __Random_TestUtils.dateTime();
+        final var instance = ProductCostHistory.of(product, startDate);
+        instance.setEndDate(random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
+        instance.setStandardCost(entityInstance.getStandardCost());
+        return super.apply(entityManager, instance);
     }
 }

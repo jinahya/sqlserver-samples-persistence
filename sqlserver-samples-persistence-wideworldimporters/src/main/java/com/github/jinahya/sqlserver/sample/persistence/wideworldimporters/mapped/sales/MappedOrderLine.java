@@ -582,11 +582,7 @@ public abstract class MappedOrderLine {
                        sequenceName = "OrderLineID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.OrderLineID")
-    @Column(name = COLUMN_NAME_ORDER_LINE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_LINE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_LINE_ID,
                           value = "Numeric ID used for reference to a line on an Order within "
                                   + "the database")
@@ -597,11 +593,7 @@ public abstract class MappedOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
                           value = "Order that this line is associated with")
     private Integer orderId;
@@ -610,11 +602,7 @@ public abstract class MappedOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "Stock item for this order line (FK not indexed as separate "
                                   + "index exists)")
@@ -624,12 +612,7 @@ public abstract class MappedOrderLine {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
                           value = "Description of the item supplied (Usually the stock item "
                                   + "name but can be overridden)")
@@ -639,11 +622,7 @@ public abstract class MappedOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
                           value = "Type of package to be supplied")
     private Integer packageTypeId;
@@ -651,24 +630,14 @@ public abstract class MappedOrderLine {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Quantity to be supplied")
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price to be charged")
     private BigDecimal unitPrice;
 
@@ -676,34 +645,20 @@ public abstract class MappedOrderLine {
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_RATE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TAX_RATE,
-            scale = COLUMN_SCALE_TAX_RATE
-    )
+    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
     @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
     private BigDecimal taxRate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PICKED_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PICKED_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PICKED_QUANTITY, value = "Quantity picked from stock")
     private Integer pickedQuantity;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
                           value = "When was picking of this line completed?")
     private LocalDateTime pickingCompletedWhen;
@@ -712,21 +667,13 @@ public abstract class MappedOrderLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Sales_OrderLines_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

@@ -404,89 +404,51 @@ public abstract class MappedWarehouse {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_WAREHOUSE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = true, updatable = false)
     private Integer warehouseId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_WAREHOUSE_CODE
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WAREHOUSE_CODE)
     private String warehouseCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_WAREHOUSE_NAME
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WAREHOUSE_NAME)
     private String warehouseName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_ADDRESS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ADDRESS)
     private String address;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CITY
-    )
+    @Column(name = COLUMN_NAME_CITY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STATE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATE
-    )
+    @Column(name = COLUMN_NAME_STATE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE)
     private String state;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ZIP_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ZIP_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ZIP_CODE
-    )
+    @Column(name = COLUMN_NAME_ZIP_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ZIP_CODE)
     private String zipCode;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

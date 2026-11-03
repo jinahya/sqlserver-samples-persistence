@@ -1101,11 +1101,7 @@ public abstract class MappedStockItem {
                        sequenceName = "StockItemID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.StockItemID")
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "Numeric ID used for reference to a stock item within the "
                                   + "database")
@@ -1116,12 +1112,7 @@ public abstract class MappedStockItem {
     @Size(max = COLUMN_LENGTH_STOCK_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STOCK_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STOCK_ITEM_NAME)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_NAME,
                           value = "Full name of a stock item (but not a full description)")
     private String stockItemName;
@@ -1130,11 +1121,7 @@ public abstract class MappedStockItem {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
                           value = "Usual supplier for this stock item")
     private Integer supplierId;
@@ -1142,11 +1129,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COLOR_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COLOR_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COLOR_ID,
                           value = "Color (optional) for this stock item")
     private Integer colorId;
@@ -1155,11 +1138,7 @@ public abstract class MappedStockItem {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PACKAGE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_UNIT_PACKAGE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PACKAGE_ID,
                           value = "Usual package for selling units of this stock item")
     private Integer unitPackageId;
@@ -1168,11 +1147,7 @@ public abstract class MappedStockItem {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_OUTER_PACKAGE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_OUTER_PACKAGE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_OUTER_PACKAGE_ID,
                           value = "Usual package for selling outers of this stock item (ie "
                                   + "cartons, boxes, etc.)")
@@ -1181,12 +1156,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BRAND)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BRAND,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BRAND
-    )
+    @Column(name = COLUMN_NAME_BRAND, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BRAND)
     @MsDescription.Column(name = COLUMN_NAME_BRAND,
                           value = "Brand for the stock item (if the item is branded)")
     private String brand;
@@ -1194,23 +1164,14 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SIZE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SIZE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SIZE
-    )
+    @Column(name = COLUMN_NAME_SIZE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SIZE)
     @MsDescription.Column(name = COLUMN_NAME_SIZE, value = "Size of this item (eg: 100mm)")
     private String size;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
                           value = "Number of days typically taken from order to receipt of this "
                                   + "stock item")
@@ -1219,11 +1180,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_PER_OUTER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_PER_OUTER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY_PER_OUTER,
                           value = "Quantity of the stock item in an outer package")
     private Integer quantityPerOuter;
@@ -1231,11 +1188,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_CHILLER_STOCK,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_CHILLER_STOCK, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_CHILLER_STOCK,
                           value = "Does this stock item need to be in a chiller?")
     private Boolean isChillerStock;
@@ -1243,12 +1196,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BARCODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BARCODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BARCODE
-    )
+    @Column(name = COLUMN_NAME_BARCODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BARCODE)
     @MsDescription.Column(name = COLUMN_NAME_BARCODE, value = "Barcode for this stock item")
     private String barcode;
 
@@ -1256,13 +1204,7 @@ public abstract class MappedStockItem {
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_RATE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TAX_RATE,
-            scale = COLUMN_SCALE_TAX_RATE
-    )
+    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
     @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
     private BigDecimal taxRate;
 
@@ -1270,13 +1212,7 @@ public abstract class MappedStockItem {
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
                           value = "Selling price (ex-tax) for one unit of this product")
     private BigDecimal unitPrice;
@@ -1285,13 +1221,7 @@ public abstract class MappedStockItem {
     @Digits(integer = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE - COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE,
             fraction = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RECOMMENDED_RETAIL_PRICE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE,
-            scale = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE
-    )
+    @Column(name = COLUMN_NAME_RECOMMENDED_RETAIL_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_RECOMMENDED_RETAIL_PRICE, scale = COLUMN_SCALE_RECOMMENDED_RETAIL_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_RECOMMENDED_RETAIL_PRICE,
                           value = "Recommended retail price for this stock item")
     private BigDecimal recommendedRetailPrice;
@@ -1301,24 +1231,14 @@ public abstract class MappedStockItem {
             fraction = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT,
-            scale = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT
-    )
+    @Column(name = COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TYPICAL_WEIGHT_PER_UNIT, scale = COLUMN_SCALE_TYPICAL_WEIGHT_PER_UNIT)
     @MsDescription.Column(name = COLUMN_NAME_TYPICAL_WEIGHT_PER_UNIT,
                           value = "Typical weight for one unit of this product (packaged)")
     private BigDecimal typicalWeightPerUnit;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MARKETING_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MARKETING_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MARKETING_COMMENTS,
                           value = "Marketing comments for this stock item (shared outside the "
                                   + "organization)")
@@ -1326,32 +1246,20 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
                           value = "Internal comments (not exposed outside organization)")
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHOTO,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PHOTO, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PHOTO, value = "Photo of the product")
     private byte[] photo;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CUSTOM_FIELDS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOM_FIELDS,
                           value = "Custom fields added by system users")
     private String customFields;
@@ -1359,11 +1267,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TAGS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TAGS, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TAGS,
                           value = "Advertising tags associated with this stock item (JSON array "
                                   + "retrieved from CustomFields)")
@@ -1373,11 +1277,7 @@ public abstract class MappedStockItem {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SEARCH_DETAILS,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SEARCH_DETAILS, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SEARCH_DETAILS,
                           value = "Combination of columns used by full text search")
     @MsComputedColumn("(concat([StockItemName],N' ',[MarketingComments]))")
@@ -1387,33 +1287,21 @@ public abstract class MappedStockItem {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

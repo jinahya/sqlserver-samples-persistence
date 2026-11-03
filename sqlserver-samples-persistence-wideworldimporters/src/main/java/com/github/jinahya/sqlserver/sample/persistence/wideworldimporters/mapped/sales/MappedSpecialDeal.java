@@ -713,11 +713,7 @@ public abstract class MappedSpecialDeal {
                        sequenceName = "SpecialDealID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.SpecialDealID")
-    @Column(name = COLUMN_NAME_SPECIAL_DEAL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SPECIAL_DEAL_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SPECIAL_DEAL_ID,
                           value = "ID (sequence based) for a special deal")
     @MsDefault(name = "DF_Sales_SpecialDeals_SpecialDealID", value = "(NEXT VALUE FOR [Sequences].[SpecialDealID])")
@@ -726,11 +722,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "Stock item that the deal applies to (if NULL, then only "
                                   + "discounts are permitted not unit prices)")
@@ -739,11 +731,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
                           value = "ID of the customer that the special pricing applies to (if "
                                   + "NULL then all customers)")
@@ -752,11 +740,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUYING_GROUP_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
                           value = "ID of the buying group that the special pricing applies to "
                                   + "(optional)")
@@ -765,11 +749,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
                           value = "ID of the customer category that the special pricing applies "
                                   + "to (optional)")
@@ -778,11 +758,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STOCK_GROUP_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
                           value = "ID of the stock group that the special pricing applies to "
                                   + "(optional)")
@@ -792,12 +768,7 @@ public abstract class MappedSpecialDeal {
     @Size(max = COLUMN_LENGTH_DEAL_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DEAL_DESCRIPTION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DEAL_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DEAL_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DEAL_DESCRIPTION)
     @MsDescription.Column(name = COLUMN_NAME_DEAL_DESCRIPTION,
                           value = "Description of the special deal")
     private String dealDescription;
@@ -805,11 +776,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_START_DATE,
                           value = "Date that the special pricing starts from")
     private LocalDate startDate;
@@ -817,11 +784,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_DATE,
                           value = "Date that the special pricing ends on")
     private LocalDate endDate;
@@ -830,13 +793,7 @@ public abstract class MappedSpecialDeal {
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_AMOUNT - COLUMN_SCALE_DISCOUNT_AMOUNT,
             fraction = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_DISCOUNT_AMOUNT,
-            scale = COLUMN_SCALE_DISCOUNT_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
     @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
                           value = "Discount per unit to be applied to sale price (optional)")
     private BigDecimal discountAmount;
@@ -845,13 +802,7 @@ public abstract class MappedSpecialDeal {
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENTAGE - COLUMN_SCALE_DISCOUNT_PERCENTAGE,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENTAGE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_DISCOUNT_PERCENTAGE,
-            scale = COLUMN_SCALE_DISCOUNT_PERCENTAGE
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_PERCENTAGE, scale = COLUMN_SCALE_DISCOUNT_PERCENTAGE)
     @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE,
                           value = "Discount percentage per unit to be applied to sale price "
                                   + "(optional)")
@@ -860,13 +811,7 @@ public abstract class MappedSpecialDeal {
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
                           value = "Special price per unit to be applied instead of sale price "
                                   + "(optional)")
@@ -876,21 +821,13 @@ public abstract class MappedSpecialDeal {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Sales_SpecialDeals_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

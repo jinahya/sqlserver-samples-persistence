@@ -23,7 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedLocation;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrder;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrderRouting;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedWorkOrderRoutingId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.WorkOrderRoutingId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +31,11 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Production.WorkOrderRouting} table.
@@ -62,7 +67,7 @@ import jakarta.persistence.Table;
                )
        }
 )
-@IdClass(MappedWorkOrderRoutingId.class)
+@IdClass(WorkOrderRoutingId.class)
 public class WorkOrderRouting extends MappedWorkOrderRouting {
 
     /**
@@ -76,6 +81,26 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER = "workOrder";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code workOrder}, with {@code operationSequence}.
+     *
+     * @param workOrder         the {@code WorkOrder} to reference.
+     * @param operationSequence the value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column.
+     * @return a new instance which references {@code workOrder}, with {@code operationSequence}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static WorkOrderRouting of(final WorkOrder workOrder,
+                                      final Integer operationSequence) {
+        Objects.requireNonNull(workOrder, "workOrder is null");
+        Objects.requireNonNull(operationSequence, "operationSequence is null");
+        final var instance = new WorkOrderRouting();
+        instance.setWorkOrder(workOrder);
+        instance.setOperationSequence(operationSequence);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -105,8 +130,7 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
      */
     public void setLocation(final Location location) {
         this.location = location;
-        setLocationId(location == null || location.getLocationId() == null
-                      ? null : location.getLocationId().intValue());
+        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId).map(Short::intValue).orElse(null));
     }
 
     // ----------------------------------------------------------------------------------- workOrder
@@ -127,12 +151,16 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
      *
      * @param workOrder the {@code WorkOrder} to reference; {@code null} for none.
      */
-    public void setWorkOrder(final WorkOrder workOrder) {
+    private void setWorkOrder(final WorkOrder workOrder) {
         this.workOrder = workOrder;
-        setWorkOrderId(workOrder == null ? null : workOrder.getWorkOrderId());
+        setWorkOrderId(Optional.ofNullable(workOrder).map(WorkOrder::getWorkOrderId).orElse(null));
+        // ProductID, of the key, has no foreign key of its own; it is the product of the work order
+        setProductId(Optional.ofNullable(workOrder).map(MappedWorkOrder::getProductId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LOCATION_ID,
                 referencedColumnName = MappedLocation.COLUMN_NAME_LOCATION_ID,
@@ -143,6 +171,8 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
     private Location location;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_WORK_ORDER_ID,
                 referencedColumnName = MappedWorkOrder.COLUMN_NAME_WORK_ORDER_ID,

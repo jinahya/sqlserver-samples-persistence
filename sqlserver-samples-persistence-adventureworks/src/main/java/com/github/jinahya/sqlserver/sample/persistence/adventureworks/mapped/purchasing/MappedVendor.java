@@ -450,11 +450,7 @@ public abstract class MappedVendor {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for Vendor records.  Foreign key to "
                                   + "BusinessEntity.BusinessEntityID")
@@ -464,12 +460,7 @@ public abstract class MappedVendor {
     @Size(max = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ACCOUNT_NUMBER
-    )
+    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
                           value = "Vendor account (identification) number.")
     private String accountNumber;
@@ -478,12 +469,7 @@ public abstract class MappedVendor {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Company name.")
     private String name;
 
@@ -493,11 +479,7 @@ public abstract class MappedVendor {
     @Min(COLUMN_MIN_CREDIT_RATING)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CREDIT_RATING,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREDIT_RATING, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CREDIT_RATING,
                           value = "1 = Superior, 2 = Excellent, 3 = Above average, 4 = Average, "
                                   + "5 = Below average")
@@ -506,11 +488,7 @@ public abstract class MappedVendor {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS,
                           value = "0 = Do not use if another vendor is available. 1 = Preferred "
                                   + "over other vendors supplying the same product.")
@@ -520,11 +498,7 @@ public abstract class MappedVendor {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTIVE_FLAG,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ACTIVE_FLAG, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ACTIVE_FLAG,
                           value = "0 = Vendor no longer used. 1 = Vendor is actively used.")
     @MsDefault(name = "DF_Vendor_ActiveFlag", value = "((1))")
@@ -533,22 +507,13 @@ public abstract class MappedVendor {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PURCHASING_WEB_SERVICE_URL,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL
-    )
+    @Column(name = COLUMN_NAME_PURCHASING_WEB_SERVICE_URL, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL)
     private String purchasingWebServiceUrl;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     @MsDefault(name = "DF_Vendor_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

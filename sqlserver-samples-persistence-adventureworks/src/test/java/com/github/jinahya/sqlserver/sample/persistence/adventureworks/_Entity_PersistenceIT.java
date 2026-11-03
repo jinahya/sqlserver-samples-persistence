@@ -23,12 +23,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.EntityType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,9 +40,9 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
- * The integration tests of an entity, against the {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on the
- * database {@code compose.yaml} brings up. Each reads installed rows, or persists a new randomized instance, and rolls
- * back.
+ * The integration tests of an entity, against the
+ * {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on the database {@code compose.yaml}
+ * brings up. Each reads installed rows, or persists a new randomized instance, and rolls back.
  *
  * @param <T> the type of the entity.
  */
@@ -77,7 +80,8 @@ public abstract class _Entity_PersistenceIT<T> {
     void find() {
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
             final var selected = select(em);
-            assumeFalse(selected.isEmpty(), () -> "no row of " + entityClass.getSimpleName() + " is installed");
+            assumeFalse(selected.isEmpty(),
+                        () -> "no row of " + entityClass.getSimpleName() + " is installed");
             final var util = em.getEntityManagerFactory().getPersistenceUnitUtil();
             for (final var instance : selected) {
                 final var identifier = util.getIdentifier(instance);
@@ -101,7 +105,8 @@ public abstract class _Entity_PersistenceIT<T> {
                 .filter(Attribute::isAssociation)
                 .map(a -> (Field) a.getJavaMember())
                 .toList();
-        assumeFalse(associations.isEmpty(), () -> entityClass.getSimpleName() + " maps no association");
+        assumeFalse(associations.isEmpty(),
+                    () -> entityClass.getSimpleName() + " maps no association");
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
             final var util = em.getEntityManagerFactory().getPersistenceUnitUtil();
             var referenced = 0;
@@ -125,7 +130,8 @@ public abstract class _Entity_PersistenceIT<T> {
                     referenced++;
                 }
             }
-            assumeFalse(referenced == 0, () -> "no installed row of " + entityClass.getSimpleName() + " references");
+            assumeFalse(referenced == 0,
+                        () -> "no installed row of " + entityClass.getSimpleName() + " references");
             return null;
         });
     }
@@ -136,7 +142,8 @@ public abstract class _Entity_PersistenceIT<T> {
         final var validator = ___Persistence_TestUtils.validatorFactory().getValidator();
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
             for (final var instance : select(em)) {
-                assertThat(validator.validate(instance)).as("the violations of %s", instance).isEmpty();
+                assertThat(validator.validate(instance)).as("the violations of %s", instance)
+                        .isEmpty();
             }
             return null;
         });
@@ -145,66 +152,101 @@ public abstract class _Entity_PersistenceIT<T> {
     /**
      * Persists a new, randomized instance of the entity, through its persister, and flushes it.
      * <p>
-     * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister}, are found by name,
-     * beside the entity. An entity which is not persisted -- a view, or a table which only SQL Server, the installer,
-     * or a procedure writes -- overrides this method with an empty one,
-     * {@link org.junit.jupiter.api.Disabled @Disabled} with the reason.
+     * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister},
+     * are found by name, beside the entity. An entity which is not persisted -- a view, or a table
+     * which only SQL Server, the installer, or a procedure writes -- overrides this method with an
+     * empty one, {@link org.junit.jupiter.api.Disabled @Disabled} with the reason.
      *
-     * @implNote The flush is what makes the {@code INSERT} reach the database, with its constraints and triggers; the
-     *         transaction is rolled back, so without it nothing would be written, and nothing tested.
+     * @implNote The flush is what makes the {@code INSERT} reach the database, with its
+     *         constraints and triggers; the transaction is rolled back, so without it nothing would
+     *         be written, and nothing tested.
      */
     @DisplayName("a new randomized instance is persisted")
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
             final var persisted = EntityPersisterUtils.newPersistedInstanceOf(em, entityClass);
             em.flush();
-            assertThat(em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(persisted))
+            assertThat(
+                    em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(persisted))
                     .as("the identifier of the persisted %s", persisted)
                     .isNotNull();
-            targetInstancePersisted(em, persisted);
+            randomEntityInstancePersisted(em, persisted);
             return null;
         });
     }
 
     /**
-     * Called with the instance {@link #persistTargetInstance()} persisted and flushed, while it is still managed.
+     * Called with the instance {@link #persistRandomEntityInstance()} persisted and flushed, while
+     * it is still managed.
      *
      * @param entityManager  the entity manager which persisted the instance.
      * @param entityInstance the persisted instance.
-     * @implSpec This class does nothing; a subclass overrides it to assert what its table does with a new row.
+     * @implSpec This class does nothing; a subclass overrides it to assert what its table
+     *         does with a new row.
      */
-    protected void targetInstancePersisted(final EntityManager entityManager, final T entityInstance) {
+    protected void randomEntityInstancePersisted(final EntityManager entityManager,
+                                                 final T entityInstance) {
         // empty
     }
 
     /**
-     * Selects a random instance of the entity, from the installed rows, and hands it to
-     * {@link #randomTargetInstanceSelected(Object)}.
-     *
-     * @implNote The selection and the callback both run inside a transaction which is rolled back, so the instance
-     *         handed over is still managed, and nothing the callback does reaches the sample data.
-     * @implSpec An empty table is not a failure; the test aborts, since the table's content is the installer's.
+     * Verifies that each {@code ATTRIBUTE_PATH_*} constant of the entity, a dotted path such as
+     * {@code id.productId}, resolves through the metamodel.
      */
-    @DisplayName("a randomly selected installed row is handed to randomTargetInstanceSelected")
+    @DisplayName("each ATTRIBUTE_PATH_* constant resolves through the metamodel")
     @Test
-    void selectRandomTargetInstance() {
+    void attributePaths() throws IllegalAccessException {
+        final var paths = new ArrayList<String>();
+        for (final Field field : entityClass.getFields()) {
+            if (Modifier.isStatic(field.getModifiers()) && field.getType() == String.class
+                && field.getName().startsWith("ATTRIBUTE_PATH_")) {
+                paths.add((String) field.get(null));
+            }
+        }
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
-            final var selected = JinahyaEntityManagerTestUtils.selectRandomEntity(em, entityClass);
-            assumeTrue(selected.isPresent(), () -> "no row of " + entityClass.getSimpleName() + " is installed");
-            randomTargetInstanceSelected(selected.get());
+            for (final var attributePath : paths) {
+                Path<?> path = em.getCriteriaBuilder().createQuery().from(entityClass);
+                for (final var name : attributePath.split("\\.")) {
+                    path = path.get(name);
+                }
+                assertThat(path.getJavaType()).as(attributePath).isNotNull();
+            }
             return null;
         });
     }
 
     /**
-     * Called with the instance {@link #selectRandomTargetInstance()} selected, while it is still managed.
+     * Selects a random instance of the entity, from the installed rows, and hands it to
+     * {@link #randomEntityInstanceSelected(Object)}.
      *
-     * @param instance the randomly selected instance.
-     * @implSpec This class does nothing; a subclass overrides it to assert what its entity promises of an installed
-     *         row.
+     * @implNote The selection and the callback both run inside a transaction which is
+     *         rolled back, so the instance handed over is still managed, and nothing the callback
+     *         does reaches the sample data.
+     * @implSpec An empty table is not a failure; the test aborts, since the table's content
+     *         is the installer's.
      */
-    protected void randomTargetInstanceSelected(final T instance) {
+    @DisplayName("a randomly selected installed row is handed to randomTargetInstanceSelected")
+    @Test
+    void selectRandomEntityInstance() {
+        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+            final var selected = JinahyaEntityManagerTestUtils.selectRandomEntity(em, entityClass);
+            assumeTrue(selected.isPresent(),
+                       () -> "no row of " + entityClass.getSimpleName() + " is installed");
+            randomEntityInstanceSelected(selected.get());
+            return null;
+        });
+    }
+
+    /**
+     * Called with the instance {@link #selectRandomEntityInstance()} selected, while it is still
+     * managed.
+     *
+     * @param entityInstance the randomly selected instance.
+     * @implSpec This class does nothing; a subclass overrides it to assert what its entity
+     *         promises of an installed row.
+     */
+    protected void randomEntityInstanceSelected(final T entityInstance) {
         // empty
     }
 

@@ -38,7 +38,7 @@ class AwBuildVersion_PersistenceIT extends _Entity_PersistenceIT<AwBuildVersion>
     @Disabled("written by the installer: nothing else inserts into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 }

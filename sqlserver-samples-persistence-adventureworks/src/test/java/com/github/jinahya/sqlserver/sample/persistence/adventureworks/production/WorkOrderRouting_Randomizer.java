@@ -29,8 +29,9 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link WorkOrderRouting}; the work order, its product, and the location, which the persister sets,
- * and what SQL Server fills are left out.
+ * Randomizes a new {@link WorkOrderRouting}; the identifier, what it references, and what SQL Server fills are left
+ * out. The persister takes the rest of the instance into one which {@link WorkOrderRouting#of} creates with the
+ * work order it references and an operation sequence of its own.
  */
 class WorkOrderRouting_Randomizer
         extends PodamObjectRandomizer<WorkOrderRouting> {
@@ -39,6 +40,7 @@ class WorkOrderRouting_Randomizer
         super(WorkOrderRouting.class, List.of(
                 WorkOrderRouting.ATTRIBUTE_NAME_WORK_ORDER_ID,
                 WorkOrderRouting.ATTRIBUTE_NAME_PRODUCT_ID,
+                WorkOrderRouting.ATTRIBUTE_NAME_OPERATION_SEQUENCE,
                 WorkOrderRouting.ATTRIBUTE_NAME_LOCATION_ID,
                 WorkOrderRouting.ATTRIBUTE_NAME_WORK_ORDER,
                 WorkOrderRouting.ATTRIBUTE_NAME_LOCATION,

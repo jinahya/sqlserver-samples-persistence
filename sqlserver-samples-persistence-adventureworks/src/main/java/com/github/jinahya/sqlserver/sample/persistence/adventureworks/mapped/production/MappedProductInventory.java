@@ -256,8 +256,8 @@ public abstract class MappedProductInventory {
         if (!(obj instanceof MappedProductInventory that)) {
             return false;
         }
-        return Objects.equals(productId, that.productId) &&
-               Objects.equals(locationId, that.locationId);
+        return Objects.equals(getProductId(), that.getProductId()) &&
+               Objects.equals(getLocationId(), that.getLocationId());
     }
 
     /**
@@ -268,7 +268,7 @@ public abstract class MappedProductInventory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(productId, locationId);
+        return Objects.hash(getProductId(), getLocationId());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION
@@ -299,8 +299,12 @@ public abstract class MappedProductInventory {
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getProductId() {
+    protected Integer getProductId() {
         return productId;
     }
 
@@ -309,7 +313,7 @@ public abstract class MappedProductInventory {
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public void setProductId(final Integer productId) {
+    protected void setProductId(final Integer productId) {
         this.productId = productId;
     }
 
@@ -319,8 +323,12 @@ public abstract class MappedProductInventory {
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getLocationId() {
+    protected Integer getLocationId() {
         return locationId;
     }
 
@@ -329,7 +337,7 @@ public abstract class MappedProductInventory {
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    public void setLocationId(final Integer locationId) {
+    protected void setLocationId(final Integer locationId) {
         this.locationId = locationId;
     }
 
@@ -404,15 +412,6 @@ public abstract class MappedProductInventory {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -437,11 +436,7 @@ public abstract class MappedProductInventory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -453,11 +448,7 @@ public abstract class MappedProductInventory {
     @Min(COLUMN_MIN_LOCATION_ID)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_LOCATION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_LOCATION_ID,
                           value = "Inventory location identification number. Foreign key to "
                                   + "Location.LocationID.")
@@ -467,12 +458,7 @@ public abstract class MappedProductInventory {
     @Size(max = COLUMN_LENGTH_SHELF)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHELF,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SHELF
-    )
+    @Column(name = COLUMN_NAME_SHELF, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SHELF)
     @MsDescription.Column(name = COLUMN_NAME_SHELF,
                           value = "Storage compartment within an inventory location.")
     private String shelf;
@@ -483,11 +469,7 @@ public abstract class MappedProductInventory {
     @Min(COLUMN_MIN_BIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BIN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_BIN, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_BIN,
                           value = "Storage container on a shelf in an inventory location.")
     private Integer bin;
@@ -497,11 +479,7 @@ public abstract class MappedProductInventory {
     @Min(COLUMN_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY,
                           value = "Quantity of products in the inventory location.")
     @MsDefault(name = "DF_ProductInventory_Quantity", value = "((0))")
@@ -510,11 +488,7 @@ public abstract class MappedProductInventory {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -525,11 +499,7 @@ public abstract class MappedProductInventory {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductInventory_ModifiedDate", value = "(getdate())")

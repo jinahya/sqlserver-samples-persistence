@@ -244,11 +244,7 @@ public abstract class MappedSupplierCategoryArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, nullable = false, insertable = false, updatable = false)
     private Integer supplierCategoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -256,45 +252,28 @@ public abstract class MappedSupplierCategoryArchive {
     @Size(max = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME)
     private String supplierCategoryName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

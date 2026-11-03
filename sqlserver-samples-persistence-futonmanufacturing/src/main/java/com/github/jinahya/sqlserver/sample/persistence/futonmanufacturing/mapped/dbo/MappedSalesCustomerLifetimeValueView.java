@@ -783,11 +783,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -795,12 +791,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_CODE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_CODE)
     private String customerCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -808,76 +799,45 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_NAME
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_NAME)
     private String customerName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_TYPE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_TYPE)
     private String customerType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SALES_REP)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_REP,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SALES_REP
-    )
+    @Column(name = COLUMN_NAME_SALES_REP, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SALES_REP)
     private String salesRep;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FIRST_PURCHASE_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_FIRST_PURCHASE_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate firstPurchaseDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_PURCHASE_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_PURCHASE_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate lastPurchaseDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS, nullable = true, insertable = false, updatable = false)
     private Integer customerLifetimeMonths;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -885,26 +845,14 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_REVENUE,
-            scale = COLUMN_SCALE_TOTAL_REVENUE
-    )
+    @Column(name = COLUMN_NAME_TOTAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REVENUE, scale = COLUMN_SCALE_TOTAL_REVENUE)
     private BigDecimal totalRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_PROFIT - COLUMN_SCALE_TOTAL_PROFIT, fraction = COLUMN_SCALE_TOTAL_PROFIT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_PROFIT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_PROFIT,
-            scale = COLUMN_SCALE_TOTAL_PROFIT
-    )
+    @Column(name = COLUMN_NAME_TOTAL_PROFIT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_PROFIT, scale = COLUMN_SCALE_TOTAL_PROFIT)
     private BigDecimal totalProfit;
 
     // ---------------------------------------------------------------------------------------------
@@ -912,13 +860,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
-            scale = COLUMN_SCALE_AVG_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -926,13 +868,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Digits(integer = COLUMN_PRECISION_AVG_MONTHLY_REVENUE - COLUMN_SCALE_AVG_MONTHLY_REVENUE,
             fraction = COLUMN_SCALE_AVG_MONTHLY_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_MONTHLY_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_MONTHLY_REVENUE,
-            scale = COLUMN_SCALE_AVG_MONTHLY_REVENUE
-    )
+    @Column(name = COLUMN_NAME_AVG_MONTHLY_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_MONTHLY_REVENUE, scale = COLUMN_SCALE_AVG_MONTHLY_REVENUE)
     private BigDecimal avgMonthlyRevenue;
 
     // ---------------------------------------------------------------------------------------------
@@ -940,22 +876,13 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_TIER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_TIER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_TIER
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TIER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_TIER)
     private String customerTier;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceLastPurchase;
 
     // ---------------------------------------------------------------------------------------------
@@ -963,12 +890,7 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Size(max = COLUMN_LENGTH_ACTIVITY_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTIVITY_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ACTIVITY_STATUS
-    )
+    @Column(name = COLUMN_NAME_ACTIVITY_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ACTIVITY_STATUS)
     private String activityStatus;
 
     // ---------------------------------------------------------------------------------------------
@@ -976,23 +898,13 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     @Digits(integer = COLUMN_PRECISION_PROJECTED_ANNUAL_REVENUE - COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE,
             fraction = COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PROJECTED_ANNUAL_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PROJECTED_ANNUAL_REVENUE,
-            scale = COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE
-    )
+    @Column(name = COLUMN_NAME_PROJECTED_ANNUAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PROJECTED_ANNUAL_REVENUE, scale = COLUMN_SCALE_PROJECTED_ANNUAL_REVENUE)
     private BigDecimal projectedAnnualRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_VALUE_RANK,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALUE_RANK, nullable = true, insertable = false, updatable = false)
     private Long valueRank;
 }
 

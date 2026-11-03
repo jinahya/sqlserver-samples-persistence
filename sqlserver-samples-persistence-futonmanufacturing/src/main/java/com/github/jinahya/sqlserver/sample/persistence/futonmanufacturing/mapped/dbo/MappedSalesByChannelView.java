@@ -618,12 +618,7 @@ public abstract class MappedSalesByChannelView {
     @Size(max = COLUMN_LENGTH_CHANNEL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_CODE
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_CODE)
     private String channelCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -631,75 +626,44 @@ public abstract class MappedSalesByChannelView {
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUARTER,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_QUARTER, nullable = true, insertable = false, updatable = false)
     private Integer quarter;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_SALES,
-            scale = COLUMN_SCALE_GROSS_SALES
-    )
+    @Column(name = COLUMN_NAME_GROSS_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_SALES, scale = COLUMN_SCALE_GROSS_SALES)
     private BigDecimal grossSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -707,26 +671,14 @@ public abstract class MappedSalesByChannelView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_DISCOUNTS - COLUMN_SCALE_TOTAL_DISCOUNTS,
             fraction = COLUMN_SCALE_TOTAL_DISCOUNTS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_DISCOUNTS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_DISCOUNTS,
-            scale = COLUMN_SCALE_TOTAL_DISCOUNTS
-    )
+    @Column(name = COLUMN_NAME_TOTAL_DISCOUNTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_DISCOUNTS, scale = COLUMN_SCALE_TOTAL_DISCOUNTS)
     private BigDecimal totalDiscounts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NET_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_NET_SALES,
-            scale = COLUMN_SCALE_NET_SALES
-    )
+    @Column(name = COLUMN_NAME_NET_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_NET_SALES, scale = COLUMN_SCALE_NET_SALES)
     private BigDecimal netSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -734,13 +686,7 @@ public abstract class MappedSalesByChannelView {
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
-            scale = COLUMN_SCALE_AVG_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -748,13 +694,7 @@ public abstract class MappedSalesByChannelView {
     @Digits(integer = COLUMN_PRECISION_DELIVERED_SALES - COLUMN_SCALE_DELIVERED_SALES,
             fraction = COLUMN_SCALE_DELIVERED_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERED_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DELIVERED_SALES,
-            scale = COLUMN_SCALE_DELIVERED_SALES
-    )
+    @Column(name = COLUMN_NAME_DELIVERED_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DELIVERED_SALES, scale = COLUMN_SCALE_DELIVERED_SALES)
     private BigDecimal deliveredSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -762,13 +702,7 @@ public abstract class MappedSalesByChannelView {
     @Digits(integer = COLUMN_PRECISION_PIPELINE_SALES - COLUMN_SCALE_PIPELINE_SALES,
             fraction = COLUMN_SCALE_PIPELINE_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PIPELINE_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PIPELINE_SALES,
-            scale = COLUMN_SCALE_PIPELINE_SALES
-    )
+    @Column(name = COLUMN_NAME_PIPELINE_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PIPELINE_SALES, scale = COLUMN_SCALE_PIPELINE_SALES)
     private BigDecimal pipelineSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -776,13 +710,7 @@ public abstract class MappedSalesByChannelView {
     @Digits(integer = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT - COLUMN_SCALE_AVG_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_AVG_DISCOUNT_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_DISCOUNT_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT,
-            scale = COLUMN_SCALE_AVG_DISCOUNT_PERCENT
-    )
+    @Column(name = COLUMN_NAME_AVG_DISCOUNT_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_DISCOUNT_PERCENT, scale = COLUMN_SCALE_AVG_DISCOUNT_PERCENT)
     private BigDecimal avgDiscountPercent;
 }
 

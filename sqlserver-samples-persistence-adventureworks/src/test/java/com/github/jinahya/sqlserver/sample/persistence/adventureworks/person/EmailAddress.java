@@ -20,8 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.EmailAddressId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedEmailAddress;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedEmailAddressId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedPerson;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,13 +29,18 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Person.EmailAddress} table.
  */
 @Entity(name = "PersonEmailAddress")
 @Table(schema = MappedEmailAddress.TABLE_SCHEMA, name = MappedEmailAddress.TABLE_NAME)
-@IdClass(MappedEmailAddressId.class)
+@IdClass(EmailAddressId.class)
 public class EmailAddress extends MappedEmailAddress {
 
     /**
@@ -43,6 +48,22 @@ public class EmailAddress extends MappedEmailAddress {
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code businessEntity}.
+     *
+     * @param businessEntity the {@code Person} to reference.
+     * @return a new instance which references {@code businessEntity}.
+     * @throws NullPointerException if {@code businessEntity} is {@code null}.
+     */
+    public static EmailAddress of(final Person businessEntity) {
+        Objects.requireNonNull(businessEntity, "businessEntity is null");
+        final var instance = new EmailAddress();
+        instance.setBusinessEntity(businessEntity);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -70,12 +91,14 @@ public class EmailAddress extends MappedEmailAddress {
      *
      * @param businessEntity the {@code Person} to reference; {@code null} for none.
      */
-    public void setBusinessEntity(final Person businessEntity) {
+    private void setBusinessEntity(final Person businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
+        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Person::getBusinessEntityId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedPerson.COLUMN_NAME_BUSINESS_ENTITY_ID,

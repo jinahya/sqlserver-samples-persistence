@@ -835,12 +835,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Size(max = COLUMN_LENGTH_ORDER_NUMBER)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_ORDER_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_ORDER_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ORDER_NUMBER)
     private String orderNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -848,12 +843,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATUS)
     private String status;
 
     // ---------------------------------------------------------------------------------------------
@@ -861,12 +851,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_NAME
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_NAME)
     private String customerName;
 
     // ---------------------------------------------------------------------------------------------
@@ -874,12 +859,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_CODE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_CODE)
     private String customerCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -887,73 +867,44 @@ public abstract class MappedSalesOrderBacklogView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_NAME
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_NAME)
     private String warehouseName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = false, updatable = false)
     private LocalDate orderDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REQUESTED_DELIVERY_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_REQUESTED_DELIVERY_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate requestedDeliveryDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHIP_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SHIP_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate shipDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_OPEN,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_OPEN, nullable = true, insertable = false, updatable = false)
     private Integer daysOpen;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_UNTIL_DUE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_UNTIL_DUE, nullable = true, insertable = false, updatable = false)
     private Integer daysUntilDue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LINE_ITEMS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer lineItems;
 
     // ---------------------------------------------------------------------------------------------
@@ -961,13 +912,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED - COLUMN_SCALE_TOTAL_QUANTITY_ORDERED,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_QUANTITY_ORDERED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED,
-            scale = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_QUANTITY_ORDERED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_QUANTITY_ORDERED, scale = COLUMN_SCALE_TOTAL_QUANTITY_ORDERED)
     private BigDecimal totalQuantityOrdered;
 
     // ---------------------------------------------------------------------------------------------
@@ -975,13 +920,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED - COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED,
             fraction = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_QUANTITY_SHIPPED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED,
-            scale = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_QUANTITY_SHIPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_QUANTITY_SHIPPED, scale = COLUMN_SCALE_TOTAL_QUANTITY_SHIPPED)
     private BigDecimal totalQuantityShipped;
 
     // ---------------------------------------------------------------------------------------------
@@ -989,39 +928,21 @@ public abstract class MappedSalesOrderBacklogView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_BACKLOG - COLUMN_SCALE_QUANTITY_BACKLOG,
             fraction = COLUMN_SCALE_QUANTITY_BACKLOG)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_BACKLOG,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_BACKLOG,
-            scale = COLUMN_SCALE_QUANTITY_BACKLOG
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_BACKLOG, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_BACKLOG, scale = COLUMN_SCALE_QUANTITY_BACKLOG)
     private BigDecimal quantityBacklog;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_AMOUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_AMOUNT,
-            scale = COLUMN_SCALE_TOTAL_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TOTAL_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_AMOUNT, scale = COLUMN_SCALE_TOTAL_AMOUNT)
     private BigDecimal totalAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_ORDER_VALUE - COLUMN_SCALE_ORDER_VALUE, fraction = COLUMN_SCALE_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_ORDER_VALUE,
-            scale = COLUMN_SCALE_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ORDER_VALUE, scale = COLUMN_SCALE_ORDER_VALUE)
     private BigDecimal orderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -1029,13 +950,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Digits(integer = COLUMN_PRECISION_BACKLOG_VALUE - COLUMN_SCALE_BACKLOG_VALUE,
             fraction = COLUMN_SCALE_BACKLOG_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BACKLOG_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_BACKLOG_VALUE,
-            scale = COLUMN_SCALE_BACKLOG_VALUE
-    )
+    @Column(name = COLUMN_NAME_BACKLOG_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_BACKLOG_VALUE, scale = COLUMN_SCALE_BACKLOG_VALUE)
     private BigDecimal backlogValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -1043,13 +958,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
             fraction = COLUMN_SCALE_PERCENT_COMPLETE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PERCENT_COMPLETE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PERCENT_COMPLETE,
-            scale = COLUMN_SCALE_PERCENT_COMPLETE
-    )
+    @Column(name = COLUMN_NAME_PERCENT_COMPLETE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_COMPLETE, scale = COLUMN_SCALE_PERCENT_COMPLETE)
     private BigDecimal percentComplete;
 
     // ---------------------------------------------------------------------------------------------
@@ -1057,12 +966,7 @@ public abstract class MappedSalesOrderBacklogView {
     @Size(max = COLUMN_LENGTH_FULFILLMENT_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FULFILLMENT_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FULFILLMENT_STATUS
-    )
+    @Column(name = COLUMN_NAME_FULFILLMENT_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FULFILLMENT_STATUS)
     private String fulfillmentStatus;
 }
 

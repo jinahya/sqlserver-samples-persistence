@@ -230,22 +230,14 @@ public abstract class MappedIllustration {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_ILLUSTRATION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ILLUSTRATION_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ILLUSTRATION_ID,
                           value = "Primary key for Illustration records.")
     private Integer illustrationId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DIAGRAM,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DIAGRAM, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DIAGRAM,
                           value = "Illustrations used in manufacturing instructions. Stored as "
                                   + "XML.")
@@ -255,11 +247,7 @@ public abstract class MappedIllustration {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Illustration_ModifiedDate", value = "(getdate())")

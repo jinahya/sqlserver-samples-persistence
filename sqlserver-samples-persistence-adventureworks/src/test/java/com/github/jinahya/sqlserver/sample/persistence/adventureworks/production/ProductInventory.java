@@ -23,7 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedLocation;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductInventory;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductInventoryId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductInventoryId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +31,11 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Production.ProductInventory} table.
@@ -49,7 +54,7 @@ import jakarta.persistence.Table;
                )
        }
 )
-@IdClass(MappedProductInventoryId.class)
+@IdClass(ProductInventoryId.class)
 public class ProductInventory extends MappedProductInventory {
 
     /**
@@ -63,6 +68,26 @@ public class ProductInventory extends MappedProductInventory {
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code product} and {@code location}.
+     *
+     * @param product  the {@code Product} to reference.
+     * @param location the {@code Location} to reference.
+     * @return a new instance which references {@code product} and {@code location}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static ProductInventory of(final Product product,
+                                      final Location location) {
+        Objects.requireNonNull(product, "product is null");
+        Objects.requireNonNull(location, "location is null");
+        final var instance = new ProductInventory();
+        instance.setProduct(product);
+        instance.setLocation(location);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -90,10 +115,9 @@ public class ProductInventory extends MappedProductInventory {
      *
      * @param location the {@code Location} to reference; {@code null} for none.
      */
-    public void setLocation(final Location location) {
+    private void setLocation(final Location location) {
         this.location = location;
-        setLocationId(location == null || location.getLocationId() == null
-                      ? null : location.getLocationId().intValue());
+        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId).map(Short::intValue).orElse(null));
     }
 
     // ------------------------------------------------------------------------------------- product
@@ -113,12 +137,14 @@ public class ProductInventory extends MappedProductInventory {
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
-    public void setProduct(final Product product) {
+    private void setProduct(final Product product) {
         this.product = product;
-        setProductId(product == null ? null : product.getProductId());
+        setProductId(Optional.ofNullable(product).map(Product::getProductId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_LOCATION_ID,
                 referencedColumnName = MappedLocation.COLUMN_NAME_LOCATION_ID,
@@ -129,6 +155,8 @@ public class ProductInventory extends MappedProductInventory {
     private Location location;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,

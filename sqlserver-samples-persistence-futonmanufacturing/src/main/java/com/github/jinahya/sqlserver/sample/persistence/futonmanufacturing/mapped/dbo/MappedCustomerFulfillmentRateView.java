@@ -633,12 +633,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CUSTOMER_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_CODE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_CODE)
     private String customerCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -646,22 +641,13 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_NAME
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_NAME)
     private String customerName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -669,33 +655,19 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_ORDER_VALUE - COLUMN_SCALE_TOTAL_ORDER_VALUE,
             fraction = COLUMN_SCALE_TOTAL_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_ORDER_VALUE,
-            scale = COLUMN_SCALE_TOTAL_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_TOTAL_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_ORDER_VALUE, scale = COLUMN_SCALE_TOTAL_ORDER_VALUE)
     private BigDecimal totalOrderValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERED_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERED_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer deliveredOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES, nullable = true, insertable = false, updatable = false)
     private Integer onTimeDeliveries;
 
     // ---------------------------------------------------------------------------------------------
@@ -703,23 +675,13 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Digits(integer = COLUMN_PRECISION_DELIVERED_VALUE - COLUMN_SCALE_DELIVERED_VALUE,
             fraction = COLUMN_SCALE_DELIVERED_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERED_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DELIVERED_VALUE,
-            scale = COLUMN_SCALE_DELIVERED_VALUE
-    )
+    @Column(name = COLUMN_NAME_DELIVERED_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DELIVERED_VALUE, scale = COLUMN_SCALE_DELIVERED_VALUE)
     private BigDecimal deliveredValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PENDING_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PENDING_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer pendingOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -727,13 +689,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Digits(integer = COLUMN_PRECISION_PENDING_VALUE - COLUMN_SCALE_PENDING_VALUE,
             fraction = COLUMN_SCALE_PENDING_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PENDING_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PENDING_VALUE,
-            scale = COLUMN_SCALE_PENDING_VALUE
-    )
+    @Column(name = COLUMN_NAME_PENDING_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PENDING_VALUE, scale = COLUMN_SCALE_PENDING_VALUE)
     private BigDecimal pendingValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -741,13 +697,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Digits(integer = COLUMN_PRECISION_FULFILLMENT_RATE - COLUMN_SCALE_FULFILLMENT_RATE,
             fraction = COLUMN_SCALE_FULFILLMENT_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FULFILLMENT_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_FULFILLMENT_RATE,
-            scale = COLUMN_SCALE_FULFILLMENT_RATE
-    )
+    @Column(name = COLUMN_NAME_FULFILLMENT_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_FULFILLMENT_RATE, scale = COLUMN_SCALE_FULFILLMENT_RATE)
     private BigDecimal fulfillmentRate;
 
     // ---------------------------------------------------------------------------------------------
@@ -755,33 +705,19 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Digits(integer = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE - COLUMN_SCALE_ON_TIME_DELIVERY_RATE,
             fraction = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ON_TIME_DELIVERY_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE,
-            scale = COLUMN_SCALE_ON_TIME_DELIVERY_RATE
-    )
+    @Column(name = COLUMN_NAME_ON_TIME_DELIVERY_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ON_TIME_DELIVERY_RATE, scale = COLUMN_SCALE_ON_TIME_DELIVERY_RATE)
     private BigDecimal onTimeDeliveryRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_DAYS_TO_SHIP,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_AVG_DAYS_TO_SHIP, nullable = true, insertable = false, updatable = false)
     private Integer avgDaysToShip;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_DELIVERY_VARIANCE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_AVG_DELIVERY_VARIANCE, nullable = true, insertable = false, updatable = false)
     private Integer avgDeliveryVariance;
 
     // ---------------------------------------------------------------------------------------------
@@ -789,12 +725,7 @@ public abstract class MappedCustomerFulfillmentRateView {
     @Size(max = COLUMN_LENGTH_SERVICE_LEVEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SERVICE_LEVEL,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SERVICE_LEVEL
-    )
+    @Column(name = COLUMN_NAME_SERVICE_LEVEL, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SERVICE_LEVEL)
     private String serviceLevel;
 }
 

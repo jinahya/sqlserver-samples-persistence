@@ -22,14 +22,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link SalesTerritoryHistory}; the identifier and what it references, which the persister sets, and
- * what SQL Server fills are left out.
+ * Randomizes a new {@link SalesTerritoryHistory}; the identifier, what it references, the dates, which the
+ * {@code CK_SalesTerritoryHistory_EndDate} constraint relates, and what SQL Server fills are left out, which leaves
+ * nothing to randomize. The persister does not use the instance; it persists one which
+ * {@link SalesTerritoryHistory#of} creates with the instances it references, and dates of its own.
  */
 class SalesTerritoryHistory_Randomizer
         extends PodamObjectRandomizer<SalesTerritoryHistory> {
@@ -40,25 +40,9 @@ class SalesTerritoryHistory_Randomizer
                 SalesTerritoryHistory.ATTRIBUTE_NAME_TERRITORY_ID,
                 SalesTerritoryHistory.ATTRIBUTE_NAME_BUSINESS_ENTITY,
                 SalesTerritoryHistory.ATTRIBUTE_NAME_TERRITORY,
+                SalesTerritoryHistory.ATTRIBUTE_NAME_START_DATE,
+                SalesTerritoryHistory.ATTRIBUTE_NAME_END_DATE,
                 SalesTerritoryHistory.ATTRIBUTE_NAME_MODIFIED_DATE
         ));
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return {@inheritDoc}
-     * @implNote The returned instance has its dates within their columns, and in order.
-     */
-    @Override
-    public SalesTerritoryHistory get() {
-        final var instance = super.get();
-        final var random = ThreadLocalRandom.current();
-        // CK_SalesTerritoryHistory_EndDate: EndDate, when any, >= StartDate
-        instance.setStartDate(__Random_TestUtils.dateTime());
-        instance.setEndDate(random.nextBoolean() ? null : instance.getStartDate().plusDays(random.nextLong(366L)));
-        return instance;
     }
 }

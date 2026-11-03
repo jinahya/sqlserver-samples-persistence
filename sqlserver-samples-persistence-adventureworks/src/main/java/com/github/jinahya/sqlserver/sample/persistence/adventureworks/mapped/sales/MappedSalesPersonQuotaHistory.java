@@ -192,8 +192,8 @@ public abstract class MappedSalesPersonQuotaHistory {
         if (!(obj instanceof MappedSalesPersonQuotaHistory that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(quotaDate, that.quotaDate);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId()) &&
+               Objects.equals(getQuotaDate(), that.getQuotaDate());
     }
 
     /**
@@ -204,7 +204,7 @@ public abstract class MappedSalesPersonQuotaHistory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, quotaDate);
+        return Objects.hash(getBusinessEntityId(), getQuotaDate());
     }
 
     // ---------------------------------------------------------------------------- businessEntityId
@@ -213,8 +213,12 @@ public abstract class MappedSalesPersonQuotaHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -223,7 +227,7 @@ public abstract class MappedSalesPersonQuotaHistory {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -243,7 +247,7 @@ public abstract class MappedSalesPersonQuotaHistory {
      *
      * @param quotaDate new value for {@value #ATTRIBUTE_NAME_QUOTA_DATE} attribute.
      */
-    public void setQuotaDate(final LocalDateTime quotaDate) {
+    protected void setQuotaDate(final LocalDateTime quotaDate) {
         this.quotaDate = quotaDate;
     }
 
@@ -278,15 +282,6 @@ public abstract class MappedSalesPersonQuotaHistory {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -311,11 +306,7 @@ public abstract class MappedSalesPersonQuotaHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Sales person identification number. Foreign key to "
                                   + "SalesPerson.BusinessEntityID.")
@@ -325,11 +316,7 @@ public abstract class MappedSalesPersonQuotaHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_QUOTA_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_QUOTA_DATE, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_QUOTA_DATE, value = "Sales quota date.")
     private LocalDateTime quotaDate;
 
@@ -338,22 +325,14 @@ public abstract class MappedSalesPersonQuotaHistory {
     @DecimalMin(value = COLUMN_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_QUOTA,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SALES_QUOTA, value = "Sales quota amount.")
     private BigDecimal salesQuota;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -364,11 +343,7 @@ public abstract class MappedSalesPersonQuotaHistory {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesPersonQuotaHistory_ModifiedDate", value = "(getdate())")

@@ -346,11 +346,7 @@ public abstract class MappedCityArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer cityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -358,77 +354,48 @@ public abstract class MappedCityArchive {
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CITY_NAME
-    )
+    @Column(name = COLUMN_NAME_CITY_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CITY_NAME)
     private String cityName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false, updatable = false)
     private Integer stateProvinceId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LOCATION,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LOCATION, nullable = true, insertable = false, updatable = false)
     private Geography location;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = false, updatable = false)
     private Long latestRecordedPopulation;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

@@ -803,11 +803,7 @@ public abstract class MappedPersonArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PERSON_ID, nullable = false, insertable = false, updatable = false)
     private Integer personId;
 
     // ---------------------------------------------------------------------------------------------
@@ -815,12 +811,7 @@ public abstract class MappedPersonArchive {
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FULL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FULL_NAME
-    )
+    @Column(name = COLUMN_NAME_FULL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FULL_NAME)
     private String fullName;
 
     // ---------------------------------------------------------------------------------------------
@@ -828,12 +819,7 @@ public abstract class MappedPersonArchive {
     @Size(max = COLUMN_LENGTH_PREFERRED_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PREFERRED_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PREFERRED_NAME
-    )
+    @Column(name = COLUMN_NAME_PREFERRED_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_PREFERRED_NAME)
     private String preferredName;
 
     // ---------------------------------------------------------------------------------------------
@@ -841,198 +827,121 @@ public abstract class MappedPersonArchive {
     @Size(max = COLUMN_LENGTH_SEARCH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SEARCH_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SEARCH_NAME
-    )
+    @Column(name = COLUMN_NAME_SEARCH_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SEARCH_NAME)
     private String searchName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_PERMITTED_TO_LOGON, nullable = false, insertable = false, updatable = false)
     private Boolean isPermittedToLogon;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_LOGON_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LOGON_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_LOGON_NAME
-    )
+    @Column(name = COLUMN_NAME_LOGON_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_LOGON_NAME)
     private String logonName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_EXTERNAL_LOGON_PROVIDER, nullable = false, insertable = false, updatable = false)
     private Boolean isExternalLogonProvider;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_HASHED_PASSWORD,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_HASHED_PASSWORD, nullable = true, insertable = false, updatable = false)
     private byte[] hashedPassword;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_SYSTEM_USER,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_SYSTEM_USER, nullable = false, insertable = false, updatable = false)
     private Boolean isSystemUser;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_EMPLOYEE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_EMPLOYEE, nullable = false, insertable = false, updatable = false)
     private Boolean isEmployee;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_SALESPERSON,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_SALESPERSON, nullable = false, insertable = false, updatable = false)
     private Boolean isSalesperson;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_USER_PREFERENCES,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_USER_PREFERENCES, nullable = true, insertable = false, updatable = false)
     private String userPreferences;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PHONE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER)
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FAX_NUMBER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FAX_NUMBER
-    )
+    @Column(name = COLUMN_NAME_FAX_NUMBER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_FAX_NUMBER)
     private String faxNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EMAIL_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMAIL_ADDRESS)
     private String emailAddress;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHOTO,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PHOTO, nullable = true, insertable = false, updatable = false)
     private byte[] photo;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOM_FIELDS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOM_FIELDS, nullable = true, insertable = false, updatable = false)
     private String customFields;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_OTHER_LANGUAGES,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_OTHER_LANGUAGES, nullable = true, insertable = false, updatable = false)
     private String otherLanguages;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

@@ -39,7 +39,7 @@ class ErrorLog_PersistenceIT extends _Entity_PersistenceIT<ErrorLog> {
     @Disabled("written by dbo.uspLogError: nothing else inserts into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 }

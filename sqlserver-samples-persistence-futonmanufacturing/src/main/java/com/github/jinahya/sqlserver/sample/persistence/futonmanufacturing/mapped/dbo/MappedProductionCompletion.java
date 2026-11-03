@@ -414,22 +414,14 @@ public abstract class MappedProductionCompletion {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_COMPLETION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPLETION_ID, nullable = false, insertable = true, updatable = false)
     private Integer completionId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = false, updatable = false)
     private Integer productionOrderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -437,67 +429,38 @@ public abstract class MappedProductionCompletion {
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY_COMPLETED,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_COMPLETED,
-            scale = COLUMN_SCALE_QUANTITY_COMPLETED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_COMPLETED, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_COMPLETED, scale = COLUMN_SCALE_QUANTITY_COMPLETED)
     private BigDecimal quantityCompleted;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
             fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_QUANTITY_SCRAPPED,
-            scale = COLUMN_SCALE_QUANTITY_SCRAPPED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_QUANTITY_SCRAPPED, scale = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @MsDefault("((0))")
     private BigDecimal quantityScrapped;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPLETION_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_COMPLETION_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime completionDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORK_CENTER_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = true, insertable = false, updatable = false)
     private Integer workCenterId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NOTES,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COMPLETED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPLETED_BY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COMPLETED_BY
-    )
+    @Column(name = COLUMN_NAME_COMPLETED_BY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COMPLETED_BY)
     private String completedBy;
 }
 

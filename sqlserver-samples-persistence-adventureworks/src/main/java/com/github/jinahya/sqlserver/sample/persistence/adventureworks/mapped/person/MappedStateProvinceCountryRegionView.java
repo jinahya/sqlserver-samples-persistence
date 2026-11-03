@@ -358,11 +358,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false, updatable = false)
     private Integer stateProvinceId;
 
     // ---------------------------------------------------------------------------------------------
@@ -370,23 +366,14 @@ public abstract class MappedStateProvinceCountryRegionView {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATE_PROVINCE_CODE
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     private String stateProvinceCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG, nullable = false, insertable = false, updatable = false)
     private Boolean isOnlyStateProvinceFlag;
 
     // ---------------------------------------------------------------------------------------------
@@ -394,23 +381,14 @@ public abstract class MappedStateProvinceCountryRegionView {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATE_PROVINCE_NAME
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     private String stateProvinceName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = false, updatable = false)
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -418,12 +396,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_REGION_CODE
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     private String countryRegionCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -431,12 +404,7 @@ public abstract class MappedStateProvinceCountryRegionView {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_REGION_NAME
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     private String countryRegionName;
 }
 

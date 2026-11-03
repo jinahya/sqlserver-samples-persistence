@@ -654,43 +654,26 @@ public abstract class MappedScrapWasteAnalysisView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPLETION_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPLETION_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate completionDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_CENTER_NAME
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_CENTER_NAME)
     private String workCenterName;
 
     // ---------------------------------------------------------------------------------------------
@@ -698,12 +681,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -711,12 +689,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -724,12 +697,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -737,13 +705,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_COMPLETED - COLUMN_SCALE_TOTAL_COMPLETED,
             fraction = COLUMN_SCALE_TOTAL_COMPLETED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_COMPLETED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_COMPLETED,
-            scale = COLUMN_SCALE_TOTAL_COMPLETED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_COMPLETED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_COMPLETED, scale = COLUMN_SCALE_TOTAL_COMPLETED)
     private BigDecimal totalCompleted;
 
     // ---------------------------------------------------------------------------------------------
@@ -751,13 +713,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_SCRAPPED - COLUMN_SCALE_TOTAL_SCRAPPED,
             fraction = COLUMN_SCALE_TOTAL_SCRAPPED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_SCRAPPED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_SCRAPPED,
-            scale = COLUMN_SCALE_TOTAL_SCRAPPED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_SCRAPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_SCRAPPED, scale = COLUMN_SCALE_TOTAL_SCRAPPED)
     private BigDecimal totalScrapped;
 
     // ---------------------------------------------------------------------------------------------
@@ -765,49 +721,27 @@ public abstract class MappedScrapWasteAnalysisView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_PRODUCED - COLUMN_SCALE_TOTAL_PRODUCED,
             fraction = COLUMN_SCALE_TOTAL_PRODUCED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_PRODUCED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_PRODUCED,
-            scale = COLUMN_SCALE_TOTAL_PRODUCED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_PRODUCED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_PRODUCED, scale = COLUMN_SCALE_TOTAL_PRODUCED)
     private BigDecimal totalProduced;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_RATE - COLUMN_SCALE_SCRAP_RATE, fraction = COLUMN_SCALE_SCRAP_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCRAP_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SCRAP_RATE,
-            scale = COLUMN_SCALE_SCRAP_RATE
-    )
+    @Column(name = COLUMN_NAME_SCRAP_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SCRAP_RATE, scale = COLUMN_SCALE_SCRAP_RATE)
     private BigDecimal scrapRate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SCRAP_VALUE - COLUMN_SCALE_SCRAP_VALUE, fraction = COLUMN_SCALE_SCRAP_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCRAP_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SCRAP_VALUE,
-            scale = COLUMN_SCALE_SCRAP_VALUE
-    )
+    @Column(name = COLUMN_NAME_SCRAP_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SCRAP_VALUE, scale = COLUMN_SCALE_SCRAP_VALUE)
     private BigDecimal scrapValue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_OF_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_NUMBER_OF_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer numberOfOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -815,13 +749,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Digits(integer = COLUMN_PRECISION_AVG_UNIT_COST - COLUMN_SCALE_AVG_UNIT_COST,
             fraction = COLUMN_SCALE_AVG_UNIT_COST)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_UNIT_COST,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_UNIT_COST,
-            scale = COLUMN_SCALE_AVG_UNIT_COST
-    )
+    @Column(name = COLUMN_NAME_AVG_UNIT_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_UNIT_COST, scale = COLUMN_SCALE_AVG_UNIT_COST)
     private BigDecimal avgUnitCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -829,12 +757,7 @@ public abstract class MappedScrapWasteAnalysisView {
     @Size(max = COLUMN_LENGTH_SCRAP_LEVEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCRAP_LEVEL,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SCRAP_LEVEL
-    )
+    @Column(name = COLUMN_NAME_SCRAP_LEVEL, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SCRAP_LEVEL)
     private String scrapLevel;
 }
 

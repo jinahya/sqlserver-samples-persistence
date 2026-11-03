@@ -43,9 +43,6 @@ class BusinessEntityAddress_Persister
         final var addressType = EntityPersisterUtils.newPersistedInstanceOf(entityManager, AddressType.class);
         // the identifiers of the three are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setBusinessEntity(businessEntity);
-        entityInstance.setAddress(address);
-        entityInstance.setAddressType(addressType);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, BusinessEntityAddress.of(businessEntity, address, addressType));
     }
 }

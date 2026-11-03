@@ -558,141 +558,84 @@ public abstract class MappedPersonDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_PURCHASE_YTD,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_PURCHASE_YTD, nullable = true, insertable = false, updatable = false)
     private BigDecimal totalPurchaseYtd;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DATE_FIRST_PURCHASE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DATE_FIRST_PURCHASE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime dateFirstPurchase;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BIRTH_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BIRTH_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime birthDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MARITAL_STATUS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MARITAL_STATUS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_MARITAL_STATUS
-    )
+    @Column(name = COLUMN_NAME_MARITAL_STATUS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MARITAL_STATUS)
     private String maritalStatus;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_YEARLY_INCOME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEARLY_INCOME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_YEARLY_INCOME
-    )
+    @Column(name = COLUMN_NAME_YEARLY_INCOME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_YEARLY_INCOME)
     private String yearlyIncome;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_GENDER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GENDER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_GENDER
-    )
+    @Column(name = COLUMN_NAME_GENDER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_GENDER)
     private String gender;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_CHILDREN,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_CHILDREN, nullable = true, insertable = false, updatable = false)
     private Integer totalChildren;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_CHILDREN_AT_HOME,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_NUMBER_CHILDREN_AT_HOME, nullable = true, insertable = false, updatable = false)
     private Integer numberChildrenAtHome;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDUCATION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDUCATION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EDUCATION
-    )
+    @Column(name = COLUMN_NAME_EDUCATION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDUCATION)
     private String education;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_OCCUPATION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_OCCUPATION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_OCCUPATION
-    )
+    @Column(name = COLUMN_NAME_OCCUPATION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_OCCUPATION)
     private String occupation;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_HOME_OWNER_FLAG,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_HOME_OWNER_FLAG, nullable = true, insertable = false, updatable = false)
     private Boolean homeOwnerFlag;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_CARS_OWNED,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_NUMBER_CARS_OWNED, nullable = true, insertable = false, updatable = false)
     private Integer numberCarsOwned;
 }
 

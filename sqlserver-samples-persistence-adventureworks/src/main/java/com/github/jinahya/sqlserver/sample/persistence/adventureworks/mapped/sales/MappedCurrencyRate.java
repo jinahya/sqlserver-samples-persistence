@@ -389,11 +389,7 @@ public abstract class MappedCurrencyRate {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CURRENCY_RATE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
                           value = "Primary key for CurrencyRate records.")
     private Integer currencyRateId;
@@ -401,11 +397,7 @@ public abstract class MappedCurrencyRate {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CURRENCY_RATE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CURRENCY_RATE_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_DATE,
                           value = "Date and time the exchange rate was obtained.")
     private LocalDateTime currencyRateDate;
@@ -415,12 +407,7 @@ public abstract class MappedCurrencyRate {
     @Size(max = COLUMN_LENGTH_FROM_CURRENCY_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FROM_CURRENCY_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FROM_CURRENCY_CODE
-    )
+    @Column(name = COLUMN_NAME_FROM_CURRENCY_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FROM_CURRENCY_CODE)
     @MsDescription.Column(name = COLUMN_NAME_FROM_CURRENCY_CODE,
                           value = "Exchange rate was converted from this currency code.")
     private String fromCurrencyCode;
@@ -430,12 +417,7 @@ public abstract class MappedCurrencyRate {
     @Size(max = COLUMN_LENGTH_TO_CURRENCY_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TO_CURRENCY_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_TO_CURRENCY_CODE
-    )
+    @Column(name = COLUMN_NAME_TO_CURRENCY_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_TO_CURRENCY_CODE)
     @MsDescription.Column(name = COLUMN_NAME_TO_CURRENCY_CODE,
                           value = "Exchange rate was converted to this currency code.")
     private String toCurrencyCode;
@@ -443,11 +425,7 @@ public abstract class MappedCurrencyRate {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AVERAGE_RATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_AVERAGE_RATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_AVERAGE_RATE,
                           value = "Average exchange rate for the day.")
     private BigDecimal averageRate;
@@ -455,11 +433,7 @@ public abstract class MappedCurrencyRate {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_OF_DAY_RATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_OF_DAY_RATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_OF_DAY_RATE,
                           value = "Final exchange rate for the day.")
     private BigDecimal endOfDayRate;
@@ -468,11 +442,7 @@ public abstract class MappedCurrencyRate {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_CurrencyRate_ModifiedDate", value = "(getdate())")

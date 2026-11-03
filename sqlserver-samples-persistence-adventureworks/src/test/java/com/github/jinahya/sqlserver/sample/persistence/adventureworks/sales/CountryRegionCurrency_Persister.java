@@ -39,9 +39,8 @@ class CountryRegionCurrency_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public CountryRegionCurrency apply(final EntityManager entityManager, final CountryRegionCurrency entityInstance) {
-        entityInstance.setCountryRegion(
-                EntityPersisterUtils.newPersistedInstanceOf(entityManager, CountryRegion.class));
-        entityInstance.setCurrency(EntityPersisterUtils.newPersistedInstanceOf(entityManager, Currency.class));
-        return super.apply(entityManager, entityInstance);
+        final var countryRegion = EntityPersisterUtils.newPersistedInstanceOf(entityManager, CountryRegion.class);
+        final var currency = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Currency.class);
+        return super.apply(entityManager, CountryRegionCurrency.of(countryRegion, currency));
     }
 }

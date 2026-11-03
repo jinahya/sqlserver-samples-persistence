@@ -595,55 +595,34 @@ public abstract class MappedSalesReturn {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_RETURN_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RETURN_ID, nullable = false, insertable = true, updatable = false)
     private Integer returnId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RETURN_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RETURN_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_RETURN_NUMBER
-    )
+    @Column(name = COLUMN_NAME_RETURN_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_RETURN_NUMBER)
     private String returnNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = false, updatable = false)
     private Integer salesOrderId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RETURN_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RETURN_DATE, nullable = false, insertable = true, updatable = true)
     @MsDefault("(CONVERT([date],getdate()))")
     private LocalDate returnDate;
 
@@ -651,23 +630,14 @@ public abstract class MappedSalesReturn {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RETURN_REASON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RETURN_REASON_ID, nullable = false, insertable = false, updatable = false)
     private Integer returnReasonId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATUS)
     @MsDefault("('Pending')")
     private String status;
 
@@ -675,13 +645,7 @@ public abstract class MappedSalesReturn {
     @Digits(integer = COLUMN_PRECISION_REFUND_AMOUNT - COLUMN_SCALE_REFUND_AMOUNT,
             fraction = COLUMN_SCALE_REFUND_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REFUND_AMOUNT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_REFUND_AMOUNT,
-            scale = COLUMN_SCALE_REFUND_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_REFUND_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_REFUND_AMOUNT, scale = COLUMN_SCALE_REFUND_AMOUNT)
     @MsDefault("((0))")
     private BigDecimal refundAmount;
 
@@ -689,52 +653,29 @@ public abstract class MappedSalesReturn {
     @Digits(integer = COLUMN_PRECISION_RESTOCKING_FEE - COLUMN_SCALE_RESTOCKING_FEE,
             fraction = COLUMN_SCALE_RESTOCKING_FEE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RESTOCKING_FEE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_RESTOCKING_FEE,
-            scale = COLUMN_SCALE_RESTOCKING_FEE
-    )
+    @Column(name = COLUMN_NAME_RESTOCKING_FEE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_RESTOCKING_FEE, scale = COLUMN_SCALE_RESTOCKING_FEE)
     @MsDefault("((0))")
     private BigDecimal restockingFee;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NOTES,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_NOTES, nullable = true, insertable = true, updatable = true)
     private String notes;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_APPROVED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_APPROVED_BY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_APPROVED_BY
-    )
+    @Column(name = COLUMN_NAME_APPROVED_BY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_APPROVED_BY)
     private String approvedBy;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_APPROVED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_APPROVED_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDateTime approvedDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 }

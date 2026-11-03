@@ -187,8 +187,8 @@ public abstract class MappedProductListPriceHistory {
         if (!(obj instanceof MappedProductListPriceHistory that)) {
             return false;
         }
-        return Objects.equals(productId, that.productId) &&
-               Objects.equals(startDate, that.startDate);
+        return Objects.equals(getProductId(), that.getProductId()) &&
+               Objects.equals(getStartDate(), that.getStartDate());
     }
 
     /**
@@ -199,7 +199,7 @@ public abstract class MappedProductListPriceHistory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(productId, startDate);
+        return Objects.hash(getProductId(), getStartDate());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION
@@ -231,8 +231,12 @@ public abstract class MappedProductListPriceHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getProductId() {
+    protected Integer getProductId() {
         return productId;
     }
 
@@ -241,7 +245,7 @@ public abstract class MappedProductListPriceHistory {
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public void setProductId(final Integer productId) {
+    protected void setProductId(final Integer productId) {
         this.productId = productId;
     }
 
@@ -261,7 +265,7 @@ public abstract class MappedProductListPriceHistory {
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
-    public void setStartDate(final LocalDateTime startDate) {
+    protected void setStartDate(final LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
@@ -329,11 +333,7 @@ public abstract class MappedProductListPriceHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to Product.ProductID")
     private Integer productId;
@@ -342,21 +342,13 @@ public abstract class MappedProductListPriceHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_START_DATE, value = "List price start date.")
     private LocalDateTime startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_DATE, value = "List price end date")
     private LocalDateTime endDate;
 
@@ -365,11 +357,7 @@ public abstract class MappedProductListPriceHistory {
     @DecimalMin(value = COLUMN_MIN_LIST_PRICE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LIST_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LIST_PRICE, value = "Product list price.")
     private BigDecimal listPrice;
 
@@ -377,11 +365,7 @@ public abstract class MappedProductListPriceHistory {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductListPriceHistory_ModifiedDate", value = "(getdate())")

@@ -1139,11 +1139,7 @@ public abstract class MappedSupplierArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
     private Integer supplierId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1151,101 +1147,62 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUPPLIER_NAME
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SUPPLIER_NAME)
     private String supplierName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, nullable = false, insertable = false, updatable = false)
     private Integer supplierCategoryId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
     private Integer primaryContactPersonId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
     private Integer alternateContactPersonId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = true, insertable = false, updatable = false)
     private Integer deliveryMethodId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer deliveryCityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer postalCityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUPPLIER_REFERENCE
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     private String supplierReference;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_NAME
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_ACCOUNT_NAME)
     @MsMasking("default()")
     private String bankAccountName;
 
@@ -1253,12 +1210,7 @@ public abstract class MappedSupplierArchive {
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH)
     @MsMasking("default()")
     private String bankAccountBranch;
 
@@ -1266,12 +1218,7 @@ public abstract class MappedSupplierArchive {
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_CODE
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_ACCOUNT_CODE)
     @MsMasking("default()")
     private String bankAccountCode;
 
@@ -1279,12 +1226,7 @@ public abstract class MappedSupplierArchive {
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER)
     @MsMasking("default()")
     private String bankAccountNumber;
 
@@ -1292,12 +1234,7 @@ public abstract class MappedSupplierArchive {
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE
-    )
+    @Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE)
     @MsMasking("default()")
     private String bankInternationalCode;
 
@@ -1305,21 +1242,13 @@ public abstract class MappedSupplierArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PAYMENT_DAYS,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PAYMENT_DAYS, nullable = false, insertable = false, updatable = false)
     private Integer paymentDays;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = false, updatable = false)
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------
@@ -1327,12 +1256,7 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PHONE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER)
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -1340,12 +1264,7 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FAX_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FAX_NUMBER
-    )
+    @Column(name = COLUMN_NAME_FAX_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FAX_NUMBER)
     private String faxNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -1353,12 +1272,7 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WEBSITE_URL,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WEBSITE_URL
-    )
+    @Column(name = COLUMN_NAME_WEBSITE_URL, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WEBSITE_URL)
     private String websiteUrl;
 
     // ---------------------------------------------------------------------------------------------
@@ -1366,24 +1280,14 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     private String deliveryAddressLine1;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     private String deliveryAddressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -1391,23 +1295,14 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     private String deliveryPostalCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_LOCATION, nullable = true, insertable = false, updatable = false)
     private Geography deliveryLocation;
 
     // ---------------------------------------------------------------------------------------------
@@ -1415,24 +1310,14 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     private String postalAddressLine1;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     private String postalAddressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -1440,45 +1325,28 @@ public abstract class MappedSupplierArchive {
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     private String postalPostalCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

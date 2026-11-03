@@ -667,12 +667,7 @@ public abstract class MappedPurchaseOrderStatusView {
     @Size(max = COLUMN_LENGTH_PO_NUMBER)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PO_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PO_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PO_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_PO_NUMBER)
     private String poNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -680,12 +675,7 @@ public abstract class MappedPurchaseOrderStatusView {
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATUS)
     private String status;
 
     // ---------------------------------------------------------------------------------------------
@@ -693,12 +683,7 @@ public abstract class MappedPurchaseOrderStatusView {
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUPPLIER_NAME
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SUPPLIER_NAME)
     private String supplierName;
 
     // ---------------------------------------------------------------------------------------------
@@ -706,99 +691,58 @@ public abstract class MappedPurchaseOrderStatusView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_NAME
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_NAME)
     private String warehouseName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = false, updatable = false)
     private LocalDate orderDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate expectedDeliveryDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_DELIVERY_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_DELIVERY_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate actualDeliveryDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_SINCE_ORDER,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_SINCE_ORDER, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceOrder;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_VARIANCE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_VARIANCE, nullable = true, insertable = false, updatable = false)
     private Integer daysVariance;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LINE_ITEMS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer lineItems;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_AMOUNT - COLUMN_SCALE_TOTAL_AMOUNT, fraction = COLUMN_SCALE_TOTAL_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_AMOUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_AMOUNT,
-            scale = COLUMN_SCALE_TOTAL_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TOTAL_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_AMOUNT, scale = COLUMN_SCALE_TOTAL_AMOUNT)
     private BigDecimal totalAmount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_LINES_TOTAL - COLUMN_SCALE_LINES_TOTAL, fraction = COLUMN_SCALE_LINES_TOTAL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LINES_TOTAL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_LINES_TOTAL,
-            scale = COLUMN_SCALE_LINES_TOTAL
-    )
+    @Column(name = COLUMN_NAME_LINES_TOTAL, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_LINES_TOTAL, scale = COLUMN_SCALE_LINES_TOTAL)
     private BigDecimal linesTotal;
 
     // ---------------------------------------------------------------------------------------------
@@ -806,13 +750,7 @@ public abstract class MappedPurchaseOrderStatusView {
     @Digits(integer = COLUMN_PRECISION_RECEIVED_VALUE - COLUMN_SCALE_RECEIVED_VALUE,
             fraction = COLUMN_SCALE_RECEIVED_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RECEIVED_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_RECEIVED_VALUE,
-            scale = COLUMN_SCALE_RECEIVED_VALUE
-    )
+    @Column(name = COLUMN_NAME_RECEIVED_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_RECEIVED_VALUE, scale = COLUMN_SCALE_RECEIVED_VALUE)
     private BigDecimal receivedValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -820,13 +758,7 @@ public abstract class MappedPurchaseOrderStatusView {
     @Digits(integer = COLUMN_PRECISION_PERCENT_RECEIVED - COLUMN_SCALE_PERCENT_RECEIVED,
             fraction = COLUMN_SCALE_PERCENT_RECEIVED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PERCENT_RECEIVED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PERCENT_RECEIVED,
-            scale = COLUMN_SCALE_PERCENT_RECEIVED
-    )
+    @Column(name = COLUMN_NAME_PERCENT_RECEIVED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_RECEIVED, scale = COLUMN_SCALE_PERCENT_RECEIVED)
     private BigDecimal percentReceived;
 
     // ---------------------------------------------------------------------------------------------
@@ -834,12 +766,7 @@ public abstract class MappedPurchaseOrderStatusView {
     @Size(max = COLUMN_LENGTH_DELIVERY_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DELIVERY_STATUS
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DELIVERY_STATUS)
     private String deliveryStatus;
 }
 

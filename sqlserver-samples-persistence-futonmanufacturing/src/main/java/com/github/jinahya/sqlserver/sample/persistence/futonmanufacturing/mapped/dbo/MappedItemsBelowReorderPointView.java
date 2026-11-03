@@ -623,12 +623,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_CODE
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_CODE)
     private String warehouseCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -636,12 +631,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_NAME
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_NAME)
     private String warehouseName;
 
     // ---------------------------------------------------------------------------------------------
@@ -649,12 +639,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -662,12 +647,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -675,12 +655,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -688,13 +663,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_AVAILABLE - COLUMN_SCALE_QUANTITY_AVAILABLE,
             fraction = COLUMN_SCALE_QUANTITY_AVAILABLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_AVAILABLE,
-            scale = COLUMN_SCALE_QUANTITY_AVAILABLE
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_AVAILABLE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_AVAILABLE, scale = COLUMN_SCALE_QUANTITY_AVAILABLE)
     private BigDecimal quantityAvailable;
 
     // ---------------------------------------------------------------------------------------------
@@ -702,26 +671,14 @@ public abstract class MappedItemsBelowReorderPointView {
     @Digits(integer = COLUMN_PRECISION_REORDER_POINT - COLUMN_SCALE_REORDER_POINT,
             fraction = COLUMN_SCALE_REORDER_POINT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REORDER_POINT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_REORDER_POINT,
-            scale = COLUMN_SCALE_REORDER_POINT
-    )
+    @Column(name = COLUMN_NAME_REORDER_POINT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REORDER_POINT, scale = COLUMN_SCALE_REORDER_POINT)
     private BigDecimal reorderPoint;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_SAFETY_STOCK - COLUMN_SCALE_SAFETY_STOCK, fraction = COLUMN_SCALE_SAFETY_STOCK)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SAFETY_STOCK,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SAFETY_STOCK,
-            scale = COLUMN_SCALE_SAFETY_STOCK
-    )
+    @Column(name = COLUMN_NAME_SAFETY_STOCK, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SAFETY_STOCK, scale = COLUMN_SCALE_SAFETY_STOCK)
     private BigDecimal safetyStock;
 
     // ---------------------------------------------------------------------------------------------
@@ -729,13 +686,7 @@ public abstract class MappedItemsBelowReorderPointView {
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SHORTAGE_QUANTITY,
-            scale = COLUMN_SCALE_SHORTAGE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHORTAGE_QUANTITY, scale = COLUMN_SCALE_SHORTAGE_QUANTITY)
     private BigDecimal shortageQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -743,34 +694,20 @@ public abstract class MappedItemsBelowReorderPointView {
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_CODE)
     private String unitCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer leadTimeDays;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PREFERRED_SUPPLIER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PREFERRED_SUPPLIER
-    )
+    @Column(name = COLUMN_NAME_PREFERRED_SUPPLIER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     private String preferredSupplier;
 
     // ---------------------------------------------------------------------------------------------
@@ -778,23 +715,13 @@ public abstract class MappedItemsBelowReorderPointView {
     @Digits(integer = COLUMN_PRECISION_PREFERRED_PRICE - COLUMN_SCALE_PREFERRED_PRICE,
             fraction = COLUMN_SCALE_PREFERRED_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PREFERRED_PRICE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PREFERRED_PRICE,
-            scale = COLUMN_SCALE_PREFERRED_PRICE
-    )
+    @Column(name = COLUMN_NAME_PREFERRED_PRICE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PREFERRED_PRICE, scale = COLUMN_SCALE_PREFERRED_PRICE)
     private BigDecimal preferredPrice;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPECTED_ARRIVAL,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EXPECTED_ARRIVAL, nullable = true, insertable = false, updatable = false)
     private LocalDateTime expectedArrival;
 }
 

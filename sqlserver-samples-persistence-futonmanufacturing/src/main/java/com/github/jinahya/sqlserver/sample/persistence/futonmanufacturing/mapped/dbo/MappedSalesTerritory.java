@@ -290,56 +290,33 @@ public abstract class MappedSalesTerritory {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = true, updatable = false)
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TERRITORY_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TERRITORY_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TERRITORY_CODE
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TERRITORY_CODE)
     private String territoryCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TERRITORY_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TERRITORY_NAME
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TERRITORY_NAME)
     private String territoryName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_REGION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REGION,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REGION
-    )
+    @Column(name = COLUMN_NAME_REGION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_REGION)
     private String region;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

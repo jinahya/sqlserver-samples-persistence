@@ -27,8 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link PurchaseOrderDetail}; the identifier, which SQL Server and the persister set, what SQL Server
- * fills or derives, and the product, which the persister sets, are left out.
+ * Randomizes a new {@link PurchaseOrderDetail}; the identifier, what it references, and what SQL Server fills are left out.
+ * The persister takes the rest of the instance into one which {@link PurchaseOrderDetail#of} creates with the order it
+ * references.
  */
 class PurchaseOrderDetail_Randomizer
         extends PodamObjectRandomizer<PurchaseOrderDetail> {

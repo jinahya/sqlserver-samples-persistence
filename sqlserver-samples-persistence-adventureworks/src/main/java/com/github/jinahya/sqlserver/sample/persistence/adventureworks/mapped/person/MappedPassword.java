@@ -278,15 +278,6 @@ public abstract class MappedPassword {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -311,23 +302,14 @@ public abstract class MappedPassword {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PASSWORD_HASH)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PASSWORD_HASH,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PASSWORD_HASH
-    )
+    @Column(name = COLUMN_NAME_PASSWORD_HASH, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PASSWORD_HASH)
     @MsDescription.Column(name = COLUMN_NAME_PASSWORD_HASH,
                           value = "Password for the e-mail account.")
     private String passwordHash;
@@ -336,12 +318,7 @@ public abstract class MappedPassword {
     @Size(max = COLUMN_LENGTH_PASSWORD_SALT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PASSWORD_SALT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PASSWORD_SALT
-    )
+    @Column(name = COLUMN_NAME_PASSWORD_SALT, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PASSWORD_SALT)
     @MsDescription.Column(name = COLUMN_NAME_PASSWORD_SALT,
                           value = "Random value concatenated with the password string before "
                                   + "the password is hashed.")
@@ -350,11 +327,7 @@ public abstract class MappedPassword {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -365,11 +338,7 @@ public abstract class MappedPassword {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Password_ModifiedDate", value = "(getdate())")

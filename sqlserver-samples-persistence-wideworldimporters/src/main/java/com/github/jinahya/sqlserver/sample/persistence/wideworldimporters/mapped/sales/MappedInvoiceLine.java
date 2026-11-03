@@ -644,11 +644,7 @@ public abstract class MappedInvoiceLine {
                        sequenceName = "InvoiceLineID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.InvoiceLineID")
-    @Column(name = COLUMN_NAME_INVOICE_LINE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INVOICE_LINE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_INVOICE_LINE_ID,
                           value = "Numeric ID used for reference to a line on an invoice within "
                                   + "the database")
@@ -659,11 +655,7 @@ public abstract class MappedInvoiceLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_INVOICE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
                           value = "Invoice that this line is associated with")
     private Integer invoiceId;
@@ -672,11 +664,7 @@ public abstract class MappedInvoiceLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
                           value = "Stock item for this invoice line")
     private Integer stockItemId;
@@ -685,12 +673,7 @@ public abstract class MappedInvoiceLine {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
                           value = "Description of the item supplied (Usually the stock item "
                                   + "name but can be overridden)")
@@ -700,35 +683,21 @@ public abstract class MappedInvoiceLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, value = "Type of package supplied")
     private Integer packageTypeId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Quantity supplied")
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price charged")
     private BigDecimal unitPrice;
 
@@ -736,13 +705,7 @@ public abstract class MappedInvoiceLine {
     @Digits(integer = COLUMN_PRECISION_TAX_RATE - COLUMN_SCALE_TAX_RATE, fraction = COLUMN_SCALE_TAX_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_RATE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TAX_RATE,
-            scale = COLUMN_SCALE_TAX_RATE
-    )
+    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
     @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
     private BigDecimal taxRate;
 
@@ -750,13 +713,7 @@ public abstract class MappedInvoiceLine {
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_AMOUNT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TAX_AMOUNT,
-            scale = COLUMN_SCALE_TAX_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
     @MsDescription.Column(name = COLUMN_NAME_TAX_AMOUNT, value = "Tax amount calculated")
     private BigDecimal taxAmount;
 
@@ -764,13 +721,7 @@ public abstract class MappedInvoiceLine {
     @Digits(integer = COLUMN_PRECISION_LINE_PROFIT - COLUMN_SCALE_LINE_PROFIT, fraction = COLUMN_SCALE_LINE_PROFIT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_PROFIT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_LINE_PROFIT,
-            scale = COLUMN_SCALE_LINE_PROFIT
-    )
+    @Column(name = COLUMN_NAME_LINE_PROFIT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LINE_PROFIT, scale = COLUMN_SCALE_LINE_PROFIT)
     @MsDescription.Column(name = COLUMN_NAME_LINE_PROFIT,
                           value = "Profit made on this line item at current cost price")
     private BigDecimal lineProfit;
@@ -780,13 +731,7 @@ public abstract class MappedInvoiceLine {
             fraction = COLUMN_SCALE_EXTENDED_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EXTENDED_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_EXTENDED_PRICE,
-            scale = COLUMN_SCALE_EXTENDED_PRICE
-    )
+    @Column(name = COLUMN_NAME_EXTENDED_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXTENDED_PRICE, scale = COLUMN_SCALE_EXTENDED_PRICE)
     @MsDescription.Column(name = COLUMN_NAME_EXTENDED_PRICE, value = "Extended line price charged")
     private BigDecimal extendedPrice;
 
@@ -794,21 +739,13 @@ public abstract class MappedInvoiceLine {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Sales_InvoiceLines_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

@@ -26,8 +26,9 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link EmailAddress}; the identifier, which SQL Server and the persister set, the person, which
- * the persister sets, and what SQL Server fills are left out.
+ * Randomizes a new {@link EmailAddress}; the identifier, which the person and SQL Server make up, the person, and what
+ * SQL Server fills are left out. The persister takes the email address of the instance into one which
+ * {@link EmailAddress#of} creates with the person it references.
  */
 class EmailAddress_Randomizer
         extends PodamObjectRandomizer<EmailAddress> {

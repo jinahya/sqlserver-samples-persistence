@@ -24,15 +24,19 @@ import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefau
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SalesOrderHeaderSalesReason} table.
+ * <p>
+ * The key is a {@link SalesOrderHeaderSalesReasonId} embedded with {@link EmbeddedId @EmbeddedId}, whose fields map the columns of the
+ * key; an entity which extends this class derives each of its attributes from an association with
+ * {@link jakarta.persistence.MapsId @MapsId}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.SalesOrderHeaderSalesReason}</caption>
@@ -79,6 +83,13 @@ public abstract class MappedSalesOrderHeaderSalesReason {
      */
     public static final String TABLE_NAME = "SalesOrderHeaderSalesReason";
 
+    // ------------------------------------------------------------------------------------------ id
+
+    /**
+     * The name of the attribute which embeds the key. The value is {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_ID = "id";
+
     // -------------------------------------------------------------------------------- SalesOrderID
 
     /**
@@ -87,9 +98,10 @@ public abstract class MappedSalesOrderHeaderSalesReason {
     public static final String COLUMN_NAME_SALES_ORDER_ID = "SalesOrderID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column -- a path into the
+     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
      */
-    public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
+    public static final String ATTRIBUTE_PATH_ID_SALES_ORDER_ID = "id.salesOrderId";
 
     // ------------------------------------------------------------------------------- SalesReasonID
 
@@ -99,9 +111,10 @@ public abstract class MappedSalesOrderHeaderSalesReason {
     public static final String COLUMN_NAME_SALES_REASON_ID = "SalesReasonID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REASON_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REASON_ID} column -- a path into the
+     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
      */
-    public static final String ATTRIBUTE_NAME_SALES_REASON_ID = "salesReasonId";
+    public static final String ATTRIBUTE_PATH_ID_SALES_REASON_ID = "id.salesReasonId";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
@@ -129,8 +142,7 @@ public abstract class MappedSalesOrderHeaderSalesReason {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "salesOrderId=" + salesOrderId
-               + ",salesReasonId=" + salesReasonId
+               + "id=" + id
                + ",modifiedDate=" + modifiedDate
                + "}";
     }
@@ -140,7 +152,9 @@ public abstract class MappedSalesOrderHeaderSalesReason {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
+     *         identifier is not yet assigned, which {@link jakarta.persistence.MapsId @MapsId} does on persist,
+     *         equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -150,59 +164,38 @@ public abstract class MappedSalesOrderHeaderSalesReason {
         if (!(obj instanceof MappedSalesOrderHeaderSalesReason that)) {
             return false;
         }
-        return Objects.equals(salesOrderId, that.salesOrderId) &&
-               Objects.equals(salesReasonId, that.salesReasonId);
+        final var id = getId();
+        return id != null
+               && id.getSalesOrderId() != null
+               && id.getSalesReasonId() != null
+               && id.equals(that.getId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when persist assigns the
+     *         identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(salesOrderId, salesReasonId);
+        return MappedSalesOrderHeaderSalesReason.class.hashCode();
     }
 
-    // -------------------------------------------------------------------------------- salesOrderId
+    // ------------------------------------------------------------------------------------------ id
 
     /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID} attribute.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
+     * @return current value of {@value #ATTRIBUTE_NAME_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getSalesOrderId() {
-        return salesOrderId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute with the specified value.
-     *
-     * @param salesOrderId new value for {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
-     */
-    public void setSalesOrderId(final Integer salesOrderId) {
-        this.salesOrderId = salesOrderId;
-    }
-
-    // ------------------------------------------------------------------------------- salesReasonId
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute.
-     */
-    public Integer getSalesReasonId() {
-        return salesReasonId;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute with the specified value.
-     *
-     * @param salesReasonId new value for {@value #ATTRIBUTE_NAME_SALES_REASON_ID} attribute.
-     */
-    public void setSalesReasonId(final Integer salesReasonId) {
-        this.salesReasonId = salesReasonId;
+    protected SalesOrderHeaderSalesReasonId getId() {
+        return id;
     }
 
     // -------------------------------------------------------------------------------- modifiedDate
@@ -226,40 +219,17 @@ public abstract class MappedSalesOrderHeaderSalesReason {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an entity
+    @Valid
     @NotNull
-    @Id
-    @Column(name = COLUMN_NAME_SALES_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID,
-                          value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
-    private Integer salesOrderId;
-
-    // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @NotNull
-    @Id
-    @Column(name = COLUMN_NAME_SALES_REASON_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
-    @MsDescription.Column(name = COLUMN_NAME_SALES_REASON_ID,
-                          value = "Primary key. Foreign key to SalesReason.SalesReasonID.")
-    private Integer salesReasonId;
+    @EmbeddedId
+    private SalesOrderHeaderSalesReasonId id = new SalesOrderHeaderSalesReasonId();
 
     // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesOrderHeaderSalesReason_ModifiedDate", value = "(getdate())")

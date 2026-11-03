@@ -541,22 +541,14 @@ public abstract class MappedWorkOrder {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_WORK_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true, updatable = false)
     private Integer workOrderId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -565,21 +557,13 @@ public abstract class MappedWorkOrder {
     @Min(COLUMN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true)
     private Integer orderQty;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCKED_QTY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STOCKED_QTY, nullable = false, insertable = false, updatable = false)
     @MsComputedColumn("(isnull([OrderQty]-[ScrappedQty],(0)))")
     private Integer stockedQty;
 
@@ -589,40 +573,24 @@ public abstract class MappedWorkOrder {
     @Min(COLUMN_MIN_SCRAPPED_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCRAPPED_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SCRAPPED_QTY, nullable = false, insertable = true, updatable = true)
     private Integer scrappedQty;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDateTime startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDateTime endDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DUE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DUE_DATE, nullable = false, insertable = true, updatable = true)
     private LocalDateTime dueDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -630,21 +598,13 @@ public abstract class MappedWorkOrder {
     @Max(COLUMN_MAX_SCRAP_REASON_ID)
     @Min(COLUMN_MIN_SCRAP_REASON_ID)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCRAP_REASON_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = true, insertable = false, updatable = false)
     private Integer scrapReasonId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     @MsDefault(name = "DF_WorkOrder_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

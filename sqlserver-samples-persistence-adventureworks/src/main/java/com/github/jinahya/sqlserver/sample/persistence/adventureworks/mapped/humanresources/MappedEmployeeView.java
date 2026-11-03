@@ -778,23 +778,14 @@ public abstract class MappedEmployeeView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TITLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_TITLE
-    )
+    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TITLE)
     private String title;
 
     // ---------------------------------------------------------------------------------------------
@@ -802,24 +793,14 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FIRST_NAME
-    )
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FIRST_NAME)
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIDDLE_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_MIDDLE_NAME
-    )
+    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MIDDLE_NAME)
     private String middleName;
 
     // ---------------------------------------------------------------------------------------------
@@ -827,24 +808,14 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_LAST_NAME
-    )
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_LAST_NAME)
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUFFIX,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUFFIX
-    )
+    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SUFFIX)
     private String suffix;
 
     // ---------------------------------------------------------------------------------------------
@@ -852,59 +823,35 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_JOB_TITLE
-    )
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_JOB_TITLE)
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PHONE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER)
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PHONE_NUMBER_TYPE
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER_TYPE)
     private String phoneNumberType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_EMAIL_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMAIL_ADDRESS)
     private String emailAddress;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMAIL_PROMOTION,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = false, updatable = false)
     private Integer emailPromotion;
 
     // ---------------------------------------------------------------------------------------------
@@ -912,24 +859,14 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_1)
     private String addressLine1;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_2)
     private String addressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -937,12 +874,7 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CITY
-    )
+    @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
@@ -950,12 +882,7 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATE_PROVINCE_NAME
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     private String stateProvinceName;
 
     // ---------------------------------------------------------------------------------------------
@@ -963,12 +890,7 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_CODE)
     private String postalCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -976,23 +898,14 @@ public abstract class MappedEmployeeView {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_REGION_NAME
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     private String countryRegionName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Convert(converter = AdditionalContactInfoStringAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO, nullable = true, insertable = false, updatable = false)
     private AdditionalContactInfo additionalContactInfo;
 }
 

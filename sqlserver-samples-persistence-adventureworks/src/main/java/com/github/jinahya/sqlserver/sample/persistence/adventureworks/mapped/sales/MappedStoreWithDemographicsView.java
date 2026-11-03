@@ -527,11 +527,7 @@ public abstract class MappedStoreWithDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -539,122 +535,72 @@ public abstract class MappedStoreWithDemographicsView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ANNUAL_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ANNUAL_SALES, nullable = true, insertable = false, updatable = false)
     private BigDecimal annualSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ANNUAL_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ANNUAL_REVENUE, nullable = true, insertable = false, updatable = false)
     private BigDecimal annualRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BANK_NAME
-    )
+    @Column(name = COLUMN_NAME_BANK_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_NAME)
     private String bankName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BUSINESS_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUSINESS_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BUSINESS_TYPE
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BUSINESS_TYPE)
     private String businessType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR_OPENED,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR_OPENED, nullable = true, insertable = false, updatable = false)
     private Integer yearOpened;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SPECIALTY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SPECIALTY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SPECIALTY
-    )
+    @Column(name = COLUMN_NAME_SPECIALTY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SPECIALTY)
     private String specialty;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SQUARE_FEET,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SQUARE_FEET, nullable = true, insertable = false, updatable = false)
     private Integer squareFeet;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BRANDS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BRANDS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BRANDS
-    )
+    @Column(name = COLUMN_NAME_BRANDS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BRANDS)
     private String brands;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_INTERNET)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNET,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_INTERNET
-    )
+    @Column(name = COLUMN_NAME_INTERNET, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_INTERNET)
     private String internet;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_EMPLOYEES,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_NUMBER_EMPLOYEES, nullable = true, insertable = false, updatable = false)
     private Integer numberEmployees;
 }
 

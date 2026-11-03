@@ -212,8 +212,8 @@ public abstract class MappedEmployeePayHistory {
         if (!(obj instanceof MappedEmployeePayHistory that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(rateChangeDate, that.rateChangeDate);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId()) &&
+               Objects.equals(getRateChangeDate(), that.getRateChangeDate());
     }
 
     /**
@@ -224,7 +224,7 @@ public abstract class MappedEmployeePayHistory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, rateChangeDate);
+        return Objects.hash(getBusinessEntityId(), getRateChangeDate());
     }
 
     // ---------------------------------------------------------------------------- businessEntityId
@@ -233,8 +233,12 @@ public abstract class MappedEmployeePayHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -331,11 +335,7 @@ public abstract class MappedEmployeePayHistory {
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Employee identification number. Foreign key to "
                                   + "Employee.BusinessEntityID.")
@@ -345,11 +345,7 @@ public abstract class MappedEmployeePayHistory {
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_RATE_CHANGE_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RATE_CHANGE_DATE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_RATE_CHANGE_DATE,
                           value = "Date the change in pay is effective")
     private LocalDateTime rateChangeDate;
@@ -361,11 +357,7 @@ public abstract class MappedEmployeePayHistory {
     @DecimalMin(COLUMN_MIN_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RATE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_RATE, value = "Salary hourly rate.")
     private BigDecimal rate;
 
@@ -376,11 +368,7 @@ public abstract class MappedEmployeePayHistory {
     @Min(COLUMN_MIN_PAY_FREQUENCY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PAY_FREQUENCY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PAY_FREQUENCY, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PAY_FREQUENCY,
                           value = "1 = Salary received monthly, 2 = Salary received biweekly")
     private Integer payFrequency;
@@ -389,11 +377,7 @@ public abstract class MappedEmployeePayHistory {
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
     // the database's DEFAULT (getdate()) fills it on the INSERT of the procedure
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmployeePayHistory_ModifiedDate", value = "(getdate())")

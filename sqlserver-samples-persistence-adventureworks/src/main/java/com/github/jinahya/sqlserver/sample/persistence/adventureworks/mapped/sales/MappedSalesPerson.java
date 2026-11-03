@@ -446,15 +446,6 @@ public abstract class MappedSalesPerson {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -479,11 +470,7 @@ public abstract class MappedSalesPerson {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for SalesPerson records. Foreign key to "
                                   + "Employee.BusinessEntityID")
@@ -492,11 +479,7 @@ public abstract class MappedSalesPerson {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
                           value = "Territory currently assigned to. Foreign key to "
                                   + "SalesTerritory.SalesTerritoryID.")
@@ -506,11 +489,7 @@ public abstract class MappedSalesPerson {
     // CK_SalesPerson_SalesQuota: ([SalesQuota]>(0.00))
     @DecimalMin(value = COLUMN_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_QUOTA,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SALES_QUOTA, value = "Projected yearly sales.")
     private BigDecimal salesQuota;
 
@@ -519,11 +498,7 @@ public abstract class MappedSalesPerson {
     @DecimalMin(COLUMN_MIN_BONUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BONUS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_BONUS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_BONUS, value = "Bonus due if quota is met.")
     @MsDefault(name = "DF_SalesPerson_Bonus", value = "((0.00))")
     private BigDecimal bonus;
@@ -533,11 +508,7 @@ public abstract class MappedSalesPerson {
     @DecimalMin(COLUMN_MIN_COMMISSION_PCT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COMMISSION_PCT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_COMMISSION_PCT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COMMISSION_PCT,
                           value = "Commision percent received per sale.")
     @MsDefault(name = "DF_SalesPerson_CommissionPct", value = "((0.00))")
@@ -548,11 +519,7 @@ public abstract class MappedSalesPerson {
     @DecimalMin(COLUMN_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_YTD,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SALES_YTD, value = "Sales total year to date.")
     @MsDefault(name = "DF_SalesPerson_SalesYTD", value = "((0.00))")
     private BigDecimal salesYtd;
@@ -562,11 +529,7 @@ public abstract class MappedSalesPerson {
     @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_LAST_YEAR,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
                           value = "Sales total of previous year.")
     @MsDefault(name = "DF_SalesPerson_SalesLastYear", value = "((0.00))")
@@ -575,11 +538,7 @@ public abstract class MappedSalesPerson {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -590,11 +549,7 @@ public abstract class MappedSalesPerson {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesPerson_ModifiedDate", value = "(getdate())")

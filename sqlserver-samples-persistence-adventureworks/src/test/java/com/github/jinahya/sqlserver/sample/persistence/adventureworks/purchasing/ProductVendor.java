@@ -23,8 +23,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedUnitMeasure;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedProductVendor;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedProductVendorId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedVendor;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.ProductVendorId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Product;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.UnitMeasure;
 import jakarta.persistence.CheckConstraint;
@@ -34,6 +34,11 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Purchasing.ProductVendor} table.
@@ -68,7 +73,7 @@ import jakarta.persistence.Table;
                )
        }
 )
-@IdClass(MappedProductVendorId.class)
+@IdClass(ProductVendorId.class)
 public class ProductVendor extends MappedProductVendor {
 
     /**
@@ -87,6 +92,26 @@ public class ProductVendor extends MappedProductVendor {
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code product} and {@code businessEntity}.
+     *
+     * @param product        the {@code Product} to reference.
+     * @param businessEntity the {@code Vendor} to reference.
+     * @return a new instance which references {@code product} and {@code businessEntity}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static ProductVendor of(final Product product,
+                                   final Vendor businessEntity) {
+        Objects.requireNonNull(product, "product is null");
+        Objects.requireNonNull(businessEntity, "businessEntity is null");
+        final var instance = new ProductVendor();
+        instance.setProduct(product);
+        instance.setBusinessEntity(businessEntity);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -114,9 +139,9 @@ public class ProductVendor extends MappedProductVendor {
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
-    public void setProduct(final Product product) {
+    private void setProduct(final Product product) {
         this.product = product;
-        setProductId(product == null ? null : product.getProductId());
+        setProductId(Optional.ofNullable(product).map(Product::getProductId).orElse(null));
     }
 
     // --------------------------------------------------------------------------------- unitMeasure
@@ -139,7 +164,7 @@ public class ProductVendor extends MappedProductVendor {
      */
     public void setUnitMeasure(final UnitMeasure unitMeasure) {
         this.unitMeasure = unitMeasure;
-        setUnitMeasureCode(unitMeasure == null ? null : unitMeasure.getUnitMeasureCode());
+        setUnitMeasureCode(Optional.ofNullable(unitMeasure).map(UnitMeasure::getUnitMeasureCode).orElse(null));
     }
 
     // ------------------------------------------------------------------------------ businessEntity
@@ -159,12 +184,14 @@ public class ProductVendor extends MappedProductVendor {
      *
      * @param businessEntity the {@code Vendor} to reference; {@code null} for none.
      */
-    public void setBusinessEntity(final Vendor businessEntity) {
+    private void setBusinessEntity(final Vendor businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
+        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Vendor::getBusinessEntityId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -175,6 +202,8 @@ public class ProductVendor extends MappedProductVendor {
     private Product product;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_UNIT_MEASURE_CODE,
                 referencedColumnName = MappedUnitMeasure.COLUMN_NAME_UNIT_MEASURE_CODE,
@@ -185,6 +214,8 @@ public class ProductVendor extends MappedProductVendor {
     private UnitMeasure unitMeasure;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedVendor.COLUMN_NAME_BUSINESS_ENTITY_ID,

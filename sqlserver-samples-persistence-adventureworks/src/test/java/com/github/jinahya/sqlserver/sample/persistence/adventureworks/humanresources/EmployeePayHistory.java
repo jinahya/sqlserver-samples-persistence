@@ -20,9 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeePayHistoryId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeePayHistory;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeePayHistoryId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,6 +30,10 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code HumanResources.EmployeePayHistory} table.
@@ -50,7 +54,7 @@ import jakarta.persistence.Table;
                )
        }
 )
-@IdClass(MappedEmployeePayHistoryId.class)
+@IdClass(EmployeePayHistoryId.class)
 public class EmployeePayHistory extends MappedEmployeePayHistory {
 
     /**
@@ -88,10 +92,12 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
      */
     protected void setBusinessEntity(final Employee businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(businessEntity == null ? null : businessEntity.getBusinessEntityId());
+        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Employee::getBusinessEntityId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                 referencedColumnName = MappedEmployee.COLUMN_NAME_BUSINESS_ENTITY_ID,

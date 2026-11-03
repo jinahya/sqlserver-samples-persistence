@@ -47,7 +47,7 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 

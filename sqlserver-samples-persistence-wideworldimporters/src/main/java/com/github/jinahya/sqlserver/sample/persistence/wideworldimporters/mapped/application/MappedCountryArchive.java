@@ -575,11 +575,7 @@ public abstract class MappedCountryArchive {
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_ID, nullable = false, insertable = false, updatable = false)
     private Integer countryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -587,12 +583,7 @@ public abstract class MappedCountryArchive {
     @Size(max = COLUMN_LENGTH_COUNTRY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_NAME
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_NAME)
     private String countryName;
 
     // ---------------------------------------------------------------------------------------------
@@ -600,56 +591,33 @@ public abstract class MappedCountryArchive {
     @Size(max = COLUMN_LENGTH_FORMAL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FORMAL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FORMAL_NAME
-    )
+    @Column(name = COLUMN_NAME_FORMAL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FORMAL_NAME)
     private String formalName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_ISO_ALPHA_3_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ISO_ALPHA_3_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ISO_ALPHA_3_CODE
-    )
+    @Column(name = COLUMN_NAME_ISO_ALPHA_3_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_ISO_ALPHA_3_CODE)
     private String isoAlpha3Code;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE, nullable = true, insertable = false, updatable = false)
     private Integer isoNumericCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COUNTRY_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_TYPE
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_TYPE)
     private String countryType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = false, updatable = false)
     private Long latestRecordedPopulation;
 
     // ---------------------------------------------------------------------------------------------
@@ -657,12 +625,7 @@ public abstract class MappedCountryArchive {
     @Size(max = COLUMN_LENGTH_CONTINENT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTINENT,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CONTINENT
-    )
+    @Column(name = COLUMN_NAME_CONTINENT, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CONTINENT)
     private String continent;
 
     // ---------------------------------------------------------------------------------------------
@@ -670,12 +633,7 @@ public abstract class MappedCountryArchive {
     @Size(max = COLUMN_LENGTH_REGION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REGION,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_REGION
-    )
+    @Column(name = COLUMN_NAME_REGION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_REGION)
     private String region;
 
     // ---------------------------------------------------------------------------------------------
@@ -683,56 +641,35 @@ public abstract class MappedCountryArchive {
     @Size(max = COLUMN_LENGTH_SUBREGION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUBREGION,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUBREGION
-    )
+    @Column(name = COLUMN_NAME_SUBREGION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SUBREGION)
     private String subregion;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BORDER,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BORDER, nullable = true, insertable = false, updatable = false)
     private Geography border;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a temporal history table; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

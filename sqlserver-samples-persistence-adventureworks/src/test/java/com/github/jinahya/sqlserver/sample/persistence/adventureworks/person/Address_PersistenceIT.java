@@ -20,28 +20,30 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Address_PersistenceIT extends _Entity_PersistenceIT<Address> {
+class Address_PersistenceIT
+        extends _Entity_PersistenceIT<Address> {
 
     Address_PersistenceIT() {
         super(Address.class);
     }
 
     // ---------------------------------------------------------------------------------------------
-    private static Object storedSpatialLocation(final EntityManager entityManager, final Address address) {
+    private static Object storedSpatialLocation(final EntityManager entityManager,
+                                                final Address address) {
         return entityManager.createNativeQuery("""
-                        SELECT CAST(a.SpatialLocation AS varbinary(max))
-                        FROM Person.Address AS a
-                        WHERE a.AddressID = ?1""")
+                                                       SELECT CAST(a.SpatialLocation AS varbinary(max))
+                                                       FROM Person.Address AS a
+                                                       WHERE a.AddressID = ?1""")
                 .setParameter(1, address.getAddressId())
                 .getSingleResult();
     }
@@ -49,23 +51,29 @@ class Address_PersistenceIT extends _Entity_PersistenceIT<Address> {
     /**
      * {@inheritDoc}
      *
-     * @implNote The spatial location SQL Server stored is the randomized point, byte for byte.
+     * @implNote The spatial location SQL Server stored is the randomized point, byte for
+     *         byte.
      */
     @Override
-    protected void targetInstancePersisted(final EntityManager entityManager, final Address entityInstance) {
+    protected void randomEntityInstancePersisted(final EntityManager entityManager,
+                                                 final Address entityInstance) {
         assertThat(entityInstance.getSpatialLocation()).isNotNull();
         assertThat((byte[]) storedSpatialLocation(entityManager, entityInstance))
                 .as("the SpatialLocation stored for %s", entityInstance.getSpatialLocation())
                 .isEqualTo(entityInstance.getSpatialLocation().getBytes());
     }
 
-    @DisplayName("a new instance with no spatial location is persisted, and SQL Server stores a NULL")
+    @DisplayName(
+            "a new instance with no spatial location is persisted, and SQL Server stores a NULL")
     @Test
-    void persistTargetInstance_SpatialLocationNull() {
+    void persistRandomEntityInstance_SpatialLocationNull() {
         ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
-            final var instance = ObjectRandomizerUtils.newRandomizedInstanceOf(Address.class).orElseThrow();
+            final var instance =
+                    ObjectRandomizerUtils.newRandomizedInstanceOf(Address.class)
+                            .orElseThrow();
             instance.setSpatialLocation(null);
-            EntityPersisterUtils.newPersisterInstanceOf(Address.class).orElseThrow().apply(em, instance);
+            EntityPersisterUtils.newPersisterInstanceOf(Address.class).orElseThrow()
+                    .apply(em, instance);
             em.flush();
             assertThat(storedSpatialLocation(em, instance)).isNull();
             return null;

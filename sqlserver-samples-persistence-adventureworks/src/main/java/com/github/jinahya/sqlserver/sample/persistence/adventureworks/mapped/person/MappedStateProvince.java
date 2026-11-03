@@ -406,15 +406,6 @@ public abstract class MappedStateProvince {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -440,11 +431,7 @@ public abstract class MappedStateProvince {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
                           value = "Primary key for StateProvince records.")
     private Integer stateProvinceId;
@@ -453,12 +440,7 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATE_PROVINCE_CODE
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
                           value = "ISO standard state or province code.")
     private String stateProvinceCode;
@@ -468,12 +450,7 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_REGION_CODE
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
                           value = "ISO standard country or region code. Foreign key to "
                                   + "CountryRegion.CountryRegionCode.")
@@ -482,11 +459,7 @@ public abstract class MappedStateProvince {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
                           value = "0 = StateProvinceCode exists. 1 = StateProvinceCode "
                                   + "unavailable, using CountryRegionCode.")
@@ -497,12 +470,7 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "State or province description.")
     private String name;
 
@@ -510,11 +478,7 @@ public abstract class MappedStateProvince {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
                           value = "ID of the territory in which the state or province is "
                                   + "located. Foreign key to SalesTerritory.SalesTerritoryID.")
@@ -523,11 +487,7 @@ public abstract class MappedStateProvince {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -538,11 +498,7 @@ public abstract class MappedStateProvince {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_StateProvince_ModifiedDate", value = "(getdate())")

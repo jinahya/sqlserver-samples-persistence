@@ -547,15 +547,6 @@ public abstract class MappedSpecialOffer {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -581,11 +572,7 @@ public abstract class MappedSpecialOffer {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
                           value = "Primary key for SpecialOffer records.")
     private Integer specialOfferId;
@@ -594,12 +581,7 @@ public abstract class MappedSpecialOffer {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION, value = "Discount description.")
     private String description;
 
@@ -608,11 +590,7 @@ public abstract class MappedSpecialOffer {
     @DecimalMin(COLUMN_MIN_DISCOUNT_PCT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DISCOUNT_PCT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_PCT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PCT, value = "Discount precentage.")
     @MsDefault(name = "DF_SpecialOffer_DiscountPct", value = "((0.00))")
     private BigDecimal discountPct;
@@ -621,12 +599,7 @@ public abstract class MappedSpecialOffer {
     @Size(max = COLUMN_LENGTH_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TYPE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TYPE
-    )
+    @Column(name = COLUMN_NAME_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_TYPE, value = "Discount type category.")
     private String type;
 
@@ -634,12 +607,7 @@ public abstract class MappedSpecialOffer {
     @Size(max = COLUMN_LENGTH_CATEGORY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CATEGORY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CATEGORY
-    )
+    @Column(name = COLUMN_NAME_CATEGORY, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CATEGORY)
     @MsDescription.Column(name = COLUMN_NAME_CATEGORY,
                           value = "Group the discount applies to such as Reseller or Customer.")
     private String category;
@@ -647,22 +615,14 @@ public abstract class MappedSpecialOffer {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_START_DATE, value = "Discount start date.")
     private LocalDateTime startDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_DATE, value = "Discount end date.")
     private LocalDateTime endDate;
 
@@ -672,11 +632,7 @@ public abstract class MappedSpecialOffer {
     @Min(COLUMN_MIN_MIN_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MIN_QTY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MIN_QTY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MIN_QTY, value = "Minimum discount percent allowed.")
     @MsDefault(name = "DF_SpecialOffer_MinQty", value = "((0))")
     private Integer minQty;
@@ -686,22 +642,14 @@ public abstract class MappedSpecialOffer {
     @Max(COLUMN_MAX_MAX_QTY)
     @Min(COLUMN_MIN_MAX_QTY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MAX_QTY,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MAX_QTY, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MAX_QTY, value = "Maximum discount percent allowed.")
     private Integer maxQty;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -712,11 +660,7 @@ public abstract class MappedSpecialOffer {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SpecialOffer_ModifiedDate", value = "(getdate())")

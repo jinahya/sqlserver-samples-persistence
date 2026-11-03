@@ -1272,11 +1272,7 @@ public abstract class MappedSupplier {
                        sequenceName = "SupplierID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.SupplierID")
-    @Column(name = COLUMN_NAME_SUPPLIER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
                           value = "Numeric ID used for reference to a supplier within the database")
     @MsDefault(name = "DF_Purchasing_Suppliers_SupplierID", value = "(NEXT VALUE FOR [Sequences].[SupplierID])")
@@ -1286,12 +1282,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_SUPPLIER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUPPLIER_NAME
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_NAME)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_NAME,
                           value = "Supplier's full name (usually a trading name)")
     private String supplierName;
@@ -1300,11 +1291,7 @@ public abstract class MappedSupplier {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, value = "Supplier's category")
     private Integer supplierCategoryId;
 
@@ -1312,11 +1299,7 @@ public abstract class MappedSupplier {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, value = "Primary contact")
     private Integer primaryContactPersonId;
 
@@ -1324,11 +1307,7 @@ public abstract class MappedSupplier {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
                           value = "Alternate contact")
     private Integer alternateContactPersonId;
@@ -1336,11 +1315,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
                           value = "Standard delivery method for stock items received from this "
                                   + "supplier")
@@ -1350,11 +1325,7 @@ public abstract class MappedSupplier {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
                           value = "ID of the delivery city for this address")
     private Integer deliveryCityId;
@@ -1363,11 +1334,7 @@ public abstract class MappedSupplier {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_CITY_ID,
                           value = "ID of the mailing city for this address")
     private Integer postalCityId;
@@ -1375,12 +1342,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUPPLIER_REFERENCE
-    )
+    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
                           value = "Supplier reference for our organization (might be our "
                                   + "account number at the supplier)")
@@ -1389,12 +1351,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_NAME
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BANK_ACCOUNT_NAME)
     @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_NAME,
                           value = "Supplier's bank account name (ie name on the account)")
     @MsMasking("default()")
@@ -1403,12 +1360,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BANK_ACCOUNT_BRANCH)
     @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_BRANCH, value = "Supplier's bank branch")
     @MsMasking("default()")
     private String bankAccountBranch;
@@ -1416,12 +1368,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_CODE
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BANK_ACCOUNT_CODE)
     @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_CODE,
                           value = "Supplier's bank account code (usually a numeric reference "
                                   + "for the bank branch)")
@@ -1431,12 +1378,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER
-    )
+    @Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BANK_ACCOUNT_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_BANK_ACCOUNT_NUMBER,
                           value = "Supplier's bank account number")
     @MsMasking("default()")
@@ -1445,12 +1387,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE
-    )
+    @Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_BANK_INTERNATIONAL_CODE)
     @MsDescription.Column(name = COLUMN_NAME_BANK_INTERNATIONAL_CODE,
                           value = "Supplier's bank's international code (such as a SWIFT code)")
     @MsMasking("default()")
@@ -1459,22 +1396,14 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PAYMENT_DAYS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PAYMENT_DAYS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PAYMENT_DAYS,
                           value = "Number of days for payment of an invoice (ie payment terms)")
     private Integer paymentDays;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
                           value = "Internal comments (not exposed outside organization)")
     private String internalComments;
@@ -1483,12 +1412,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PHONE_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER, value = "Phone number")
     private String phoneNumber;
 
@@ -1496,12 +1420,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FAX_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FAX_NUMBER
-    )
+    @Column(name = COLUMN_NAME_FAX_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FAX_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_FAX_NUMBER, value = "Fax number")
     private String faxNumber;
 
@@ -1509,12 +1428,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WEBSITE_URL,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_WEBSITE_URL
-    )
+    @Column(name = COLUMN_NAME_WEBSITE_URL, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WEBSITE_URL)
     @MsDescription.Column(name = COLUMN_NAME_WEBSITE_URL,
                           value = "URL for the website for this supplier")
     private String websiteUrl;
@@ -1523,12 +1437,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
                           value = "First delivery address line for the supplier")
     private String deliveryAddressLine1;
@@ -1536,12 +1445,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
                           value = "Second delivery address line for the supplier")
     private String deliveryAddressLine2;
@@ -1550,12 +1454,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
                           value = "Delivery postal code for the supplier")
     private String deliveryPostalCode;
@@ -1563,11 +1462,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_LOCATION, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_LOCATION,
                           value = "Geographic location for the supplier's office/warehouse")
     private Geography deliveryLocation;
@@ -1576,12 +1471,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
                           value = "First postal address line for the supplier")
     private String postalAddressLine1;
@@ -1589,12 +1479,7 @@ public abstract class MappedSupplier {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
                           value = "Second postal address line for the supplier")
     private String postalAddressLine2;
@@ -1603,12 +1488,7 @@ public abstract class MappedSupplier {
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
                           value = "Postal code for the supplier when sending by mail")
     private String postalPostalCode;
@@ -1617,33 +1497,21 @@ public abstract class MappedSupplier {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

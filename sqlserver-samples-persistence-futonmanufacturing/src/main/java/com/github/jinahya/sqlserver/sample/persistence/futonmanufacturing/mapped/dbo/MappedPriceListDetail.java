@@ -304,59 +304,35 @@ public abstract class MappedPriceListDetail {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRICE_LIST_DETAIL_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRICE_LIST_DETAIL_ID, nullable = false, insertable = true, updatable = false)
     private Integer priceListDetailId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRICE_LIST_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRICE_LIST_ID, nullable = false, insertable = false, updatable = false)
     private Integer priceListId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_UNIT_PRICE - COLUMN_SCALE_UNIT_PRICE, fraction = COLUMN_SCALE_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_UNIT_PRICE,
-            scale = COLUMN_SCALE_UNIT_PRICE
-    )
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_MINIMUM_QUANTITY - COLUMN_SCALE_MINIMUM_QUANTITY,
             fraction = COLUMN_SCALE_MINIMUM_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MINIMUM_QUANTITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_MINIMUM_QUANTITY,
-            scale = COLUMN_SCALE_MINIMUM_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_MINIMUM_QUANTITY, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_MINIMUM_QUANTITY, scale = COLUMN_SCALE_MINIMUM_QUANTITY)
     @MsDefault("((1))")
     private BigDecimal minimumQuantity;
 }

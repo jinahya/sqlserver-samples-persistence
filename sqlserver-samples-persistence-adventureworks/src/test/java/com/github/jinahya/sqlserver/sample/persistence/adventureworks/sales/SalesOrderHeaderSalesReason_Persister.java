@@ -43,8 +43,6 @@ class SalesOrderHeaderSalesReason_Persister
         final var salesReason = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesReason.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setSalesOrder(salesOrder);
-        entityInstance.setSalesReason(salesReason);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, SalesOrderHeaderSalesReason.of(salesOrder, salesReason));
     }
 }

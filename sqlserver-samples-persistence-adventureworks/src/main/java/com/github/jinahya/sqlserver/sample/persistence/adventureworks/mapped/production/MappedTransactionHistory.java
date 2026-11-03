@@ -503,11 +503,7 @@ public abstract class MappedTransactionHistory {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_TRANSACTION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_ID,
                           value = "Primary key for TransactionHistory records.")
     private Integer transactionId;
@@ -517,11 +513,7 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -532,11 +524,7 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
                           value = "Purchase order, sales order, or work order identification "
                                   + "number.")
@@ -547,11 +535,7 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
                           value = "Line number associated with the purchase order, sales order, "
                                   + "or work order.")
@@ -563,11 +547,7 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE,
                           value = "Date and time of the transaction.")
     @MsDefault(name = "DF_TransactionHistory_TransactionDate", value = "(getdate())")
@@ -579,12 +559,7 @@ public abstract class MappedTransactionHistory {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_TRANSACTION_TYPE
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_TRANSACTION_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE,
                           value = "W = WorkOrder, S = SalesOrder, P = PurchaseOrder")
     private TransactionType transactionType;
@@ -594,11 +569,7 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity.")
     private Integer quantity;
 
@@ -607,11 +578,7 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTUAL_COST,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ACTUAL_COST, value = "Product cost.")
     private BigDecimal actualCost;
 
@@ -619,11 +586,7 @@ public abstract class MappedTransactionHistory {
     // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
     // class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_TransactionHistory_ModifiedDate", value = "(getdate())")

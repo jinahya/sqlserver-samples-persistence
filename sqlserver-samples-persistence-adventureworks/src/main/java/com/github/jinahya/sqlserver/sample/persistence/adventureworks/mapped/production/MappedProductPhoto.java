@@ -344,22 +344,14 @@ public abstract class MappedProductPhoto {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
                           value = "Primary key for ProductPhoto records.")
     private Integer productPhotoId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO,
                           value = "Small image of the product.")
     private byte[] thumbNailPhoto;
@@ -367,35 +359,21 @@ public abstract class MappedProductPhoto {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME
-    )
+    @Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME)
     @MsDescription.Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME,
                           value = "Small image file name.")
     private String thumbnailPhotoFileName;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LARGE_PHOTO,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LARGE_PHOTO, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LARGE_PHOTO, value = "Large image of the product.")
     private byte[] largePhoto;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME
-    )
+    @Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME)
     @MsDescription.Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME,
                           value = "Large image file name.")
     private String largePhotoFileName;
@@ -404,11 +382,7 @@ public abstract class MappedProductPhoto {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductPhoto_ModifiedDate", value = "(getdate())")

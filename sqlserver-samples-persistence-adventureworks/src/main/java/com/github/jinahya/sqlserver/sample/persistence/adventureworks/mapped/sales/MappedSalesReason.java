@@ -274,11 +274,7 @@ public abstract class MappedSalesReason {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_REASON_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_REASON_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_REASON_ID,
                           value = "Primary key for SalesReason records.")
     private Integer salesReasonId;
@@ -287,12 +283,7 @@ public abstract class MappedSalesReason {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Sales reason description.")
     private String name;
 
@@ -300,12 +291,7 @@ public abstract class MappedSalesReason {
     @Size(max = COLUMN_LENGTH_REASON_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REASON_TYPE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_REASON_TYPE
-    )
+    @Column(name = COLUMN_NAME_REASON_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REASON_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_REASON_TYPE,
                           value = "Category the sales reason belongs to.")
     private String reasonType;
@@ -314,11 +300,7 @@ public abstract class MappedSalesReason {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesReason_ModifiedDate", value = "(getdate())")

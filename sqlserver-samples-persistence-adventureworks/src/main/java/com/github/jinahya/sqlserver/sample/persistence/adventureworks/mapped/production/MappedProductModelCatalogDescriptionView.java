@@ -1027,11 +1027,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false, updatable = false)
     private Integer productModelId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1039,280 +1035,165 @@ public abstract class MappedProductModelCatalogDescriptionView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUMMARY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SUMMARY, nullable = true, insertable = false, updatable = false)
     private String summary;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MANUFACTURER,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MANUFACTURER, nullable = true, insertable = false, updatable = false)
     private String manufacturer;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COPYRIGHT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COPYRIGHT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COPYRIGHT
-    )
+    @Column(name = COLUMN_NAME_COPYRIGHT, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COPYRIGHT)
     private String copyright;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_URL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_URL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PRODUCT_URL
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_URL, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PRODUCT_URL)
     private String productUrl;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WARRANTY_PERIOD)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WARRANTY_PERIOD,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WARRANTY_PERIOD
-    )
+    @Column(name = COLUMN_NAME_WARRANTY_PERIOD, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WARRANTY_PERIOD)
     private String warrantyPeriod;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WARRANTY_DESCRIPTION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WARRANTY_DESCRIPTION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WARRANTY_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_WARRANTY_DESCRIPTION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WARRANTY_DESCRIPTION)
     private String warrantyDescription;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_NO_OF_YEARS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NO_OF_YEARS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_NO_OF_YEARS
-    )
+    @Column(name = COLUMN_NAME_NO_OF_YEARS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_NO_OF_YEARS)
     private String noOfYears;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MAINTENANCE_DESCRIPTION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MAINTENANCE_DESCRIPTION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_MAINTENANCE_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_MAINTENANCE_DESCRIPTION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MAINTENANCE_DESCRIPTION)
     private String maintenanceDescription;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WHEEL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WHEEL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WHEEL
-    )
+    @Column(name = COLUMN_NAME_WHEEL, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WHEEL)
     private String wheel;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SADDLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SADDLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SADDLE
-    )
+    @Column(name = COLUMN_NAME_SADDLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SADDLE)
     private String saddle;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PEDAL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PEDAL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PEDAL
-    )
+    @Column(name = COLUMN_NAME_PEDAL, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PEDAL)
     private String pedal;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BIKE_FRAME,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BIKE_FRAME, nullable = true, insertable = false, updatable = false)
     private String bikeFrame;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CRANKSET)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CRANKSET,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CRANKSET
-    )
+    @Column(name = COLUMN_NAME_CRANKSET, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CRANKSET)
     private String crankset;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PICTURE_ANGLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PICTURE_ANGLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PICTURE_ANGLE
-    )
+    @Column(name = COLUMN_NAME_PICTURE_ANGLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PICTURE_ANGLE)
     private String pictureAngle;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PICTURE_SIZE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PICTURE_SIZE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PICTURE_SIZE
-    )
+    @Column(name = COLUMN_NAME_PICTURE_SIZE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PICTURE_SIZE)
     private String pictureSize;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_PHOTO_ID)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PRODUCT_PHOTO_ID
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PRODUCT_PHOTO_ID)
     private String productPhotoId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MATERIAL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MATERIAL,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_MATERIAL
-    )
+    @Column(name = COLUMN_NAME_MATERIAL, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MATERIAL)
     private String material;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COLOR)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COLOR,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COLOR
-    )
+    @Column(name = COLUMN_NAME_COLOR, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COLOR)
     private String color;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PRODUCT_LINE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_LINE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PRODUCT_LINE
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_LINE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PRODUCT_LINE)
     private String productLine;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STYLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STYLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STYLE
-    )
+    @Column(name = COLUMN_NAME_STYLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_STYLE)
     private String style;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_RIDER_EXPERIENCE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RIDER_EXPERIENCE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_RIDER_EXPERIENCE
-    )
+    @Column(name = COLUMN_NAME_RIDER_EXPERIENCE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_RIDER_EXPERIENCE)
     private String riderExperience;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
     private LocalDateTime modifiedDate;
 }
 

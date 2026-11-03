@@ -169,8 +169,8 @@ public abstract class MappedSpecialOfferProduct {
         if (!(obj instanceof MappedSpecialOfferProduct that)) {
             return false;
         }
-        return Objects.equals(specialOfferId, that.specialOfferId) &&
-               Objects.equals(productId, that.productId);
+        return Objects.equals(getSpecialOfferId(), that.getSpecialOfferId()) &&
+               Objects.equals(getProductId(), that.getProductId());
     }
 
     /**
@@ -181,7 +181,7 @@ public abstract class MappedSpecialOfferProduct {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(specialOfferId, productId);
+        return Objects.hash(getSpecialOfferId(), getProductId());
     }
 
     // ------------------------------------------------------------------------------ specialOfferId
@@ -190,6 +190,10 @@ public abstract class MappedSpecialOfferProduct {
      * Returns current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. It is {@code public}, since {@code SalesOrderDetail} references the key with a
+     *         composite foreign key.
      */
     public Integer getSpecialOfferId() {
         return specialOfferId;
@@ -200,7 +204,7 @@ public abstract class MappedSpecialOfferProduct {
      *
      * @param specialOfferId new value for {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
      */
-    public void setSpecialOfferId(final Integer specialOfferId) {
+    protected void setSpecialOfferId(final Integer specialOfferId) {
         this.specialOfferId = specialOfferId;
     }
 
@@ -210,6 +214,10 @@ public abstract class MappedSpecialOfferProduct {
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. It is {@code public}, since {@code SalesOrderDetail} references the key with a
+     *         composite foreign key.
      */
     public Integer getProductId() {
         return productId;
@@ -220,7 +228,7 @@ public abstract class MappedSpecialOfferProduct {
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
-    public void setProductId(final Integer productId) {
+    protected void setProductId(final Integer productId) {
         this.productId = productId;
     }
 
@@ -233,15 +241,6 @@ public abstract class MappedSpecialOfferProduct {
      */
     public UUID getRowguid() {
         return rowguid;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
     }
 
     // -------------------------------------------------------------------------------- modifiedDate
@@ -268,11 +267,7 @@ public abstract class MappedSpecialOfferProduct {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
                           value = "Primary key for SpecialOfferProduct records.")
     private Integer specialOfferId;
@@ -281,11 +276,7 @@ public abstract class MappedSpecialOfferProduct {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -294,11 +285,7 @@ public abstract class MappedSpecialOfferProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -309,11 +296,7 @@ public abstract class MappedSpecialOfferProduct {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SpecialOfferProduct_ModifiedDate", value = "(getdate())")

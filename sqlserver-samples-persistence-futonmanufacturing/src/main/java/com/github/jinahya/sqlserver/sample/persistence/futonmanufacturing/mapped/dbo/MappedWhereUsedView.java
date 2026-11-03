@@ -476,126 +476,74 @@ public abstract class MappedWhereUsedView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer componentItemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_ITEM_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COMPONENT_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ITEM_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COMPONENT_ITEM_CODE)
     private String componentItemCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_ITEM_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COMPONENT_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ITEM_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COMPONENT_ITEM_NAME)
     private String componentItemName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_ITEM_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PARENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer parentItemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_ITEM_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PARENT_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_PARENT_ITEM_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PARENT_ITEM_CODE)
     private String parentItemCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_ITEM_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PARENT_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_PARENT_ITEM_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PARENT_ITEM_NAME)
     private String parentItemName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PARENT_TYPE
-    )
+    @Column(name = COLUMN_NAME_PARENT_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PARENT_TYPE)
     private String parentType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LEVEL,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LEVEL, nullable = true, insertable = false, updatable = false)
     private Integer level;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_QUANTITY - COLUMN_SCALE_QUANTITY, fraction = COLUMN_SCALE_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY,
-            scale = COLUMN_SCALE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY, scale = COLUMN_SCALE_QUANTITY)
     private BigDecimal quantity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_CODE)
     private String unitCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_USAGE_PATH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_USAGE_PATH, nullable = true, insertable = false, updatable = false)
     private String usagePath;
 }
 

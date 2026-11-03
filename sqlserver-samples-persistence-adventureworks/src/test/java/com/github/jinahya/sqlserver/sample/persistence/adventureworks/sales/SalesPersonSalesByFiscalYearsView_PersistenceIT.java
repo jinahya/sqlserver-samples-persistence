@@ -38,7 +38,7 @@ class SalesPersonSalesByFiscalYearsView_PersistenceIT extends _Entity_Persistenc
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 }

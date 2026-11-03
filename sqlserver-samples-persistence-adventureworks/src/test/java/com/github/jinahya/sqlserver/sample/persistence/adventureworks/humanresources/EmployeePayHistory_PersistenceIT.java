@@ -22,7 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployeePayHistoryId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeePayHistoryId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePay
     @Disabled("read-only: HumanResources.uspUpdateEmployeeHireInfo inserts into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 
@@ -81,7 +81,7 @@ class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePay
                     .setParameter(7, employee.getCurrentFlag())
                     .execute();
             // the procedure logs a failure to dbo.ErrorLog and raises nothing, so the row is what tells
-            final var id = new MappedEmployeePayHistoryId();
+            final var id = new EmployeePayHistoryId();
             id.setBusinessEntityId(employee.getBusinessEntityId());
             id.setRateChangeDate(rateChangeDate);
             em.clear();

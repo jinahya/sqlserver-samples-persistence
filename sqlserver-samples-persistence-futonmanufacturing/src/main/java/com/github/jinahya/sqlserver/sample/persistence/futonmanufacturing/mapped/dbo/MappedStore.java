@@ -590,142 +590,81 @@ public abstract class MappedStore {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_STORE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STORE_ID, nullable = false, insertable = true, updatable = false)
     private Integer storeId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STORE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STORE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STORE_CODE
-    )
+    @Column(name = COLUMN_NAME_STORE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STORE_CODE)
     private String storeCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STORE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STORE_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STORE_NAME
-    )
+    @Column(name = COLUMN_NAME_STORE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STORE_NAME)
     private String storeName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_CHANNEL_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_CHANNEL_ID, nullable = false, insertable = false, updatable = false)
     private Integer salesChannelId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_MANAGER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MANAGER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_MANAGER
-    )
+    @Column(name = COLUMN_NAME_MANAGER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_MANAGER)
     private String manager;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PHONE
-    )
+    @Column(name = COLUMN_NAME_PHONE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE)
     private String phone;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_EMAIL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_EMAIL
-    )
+    @Column(name = COLUMN_NAME_EMAIL, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL)
     private String email;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ADDRESS
-    )
+    @Column(name = COLUMN_NAME_ADDRESS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ADDRESS)
     private String address;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CITY,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CITY
-    )
+    @Column(name = COLUMN_NAME_CITY, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STATE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATE
-    )
+    @Column(name = COLUMN_NAME_STATE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE)
     private String state;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ZIP_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ZIP_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ZIP_CODE
-    )
+    @Column(name = COLUMN_NAME_ZIP_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ZIP_CODE)
     private String zipCode;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_OPEN_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_OPEN_DATE, nullable = true, insertable = true, updatable = true)
     private LocalDate openDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 }

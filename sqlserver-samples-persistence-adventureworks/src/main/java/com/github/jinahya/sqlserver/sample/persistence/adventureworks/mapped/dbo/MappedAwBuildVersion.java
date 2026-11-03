@@ -67,11 +67,7 @@ import java.util.Objects;
  * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
-                   column = @Column(name = MappedAwBuildVersion.COLUMN_NAME_SYSTEM_INFORMATION_ID,
-                                    nullable = false,
-                                    insertable = true,
-                                    updatable = false
-                   )
+                   column = @Column(name = MappedAwBuildVersion.COLUMN_NAME_SYSTEM_INFORMATION_ID, nullable = false, insertable = true, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -265,12 +261,7 @@ public abstract class MappedAwBuildVersion
     @Size(max = COLUMN_LENGTH_DATABASE_VERSION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DATABASE_VERSION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DATABASE_VERSION
-    )
+    @Column(name = COLUMN_NAME_DATABASE_VERSION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DATABASE_VERSION)
     @MsDescription.Column(name = COLUMN_NAME_DATABASE_VERSION,
                           value = "Version number of the database in 9.yy.mm.dd.00 format.")
     private String databaseVersion;
@@ -278,11 +269,7 @@ public abstract class MappedAwBuildVersion
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VERSION_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_VERSION_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_VERSION_DATE,
                           value = "Date and time the record was last updated.")
     private LocalDateTime versionDate;
@@ -291,11 +278,7 @@ public abstract class MappedAwBuildVersion
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_AWBuildVersion_ModifiedDate", value = "(getdate())")

@@ -467,11 +467,7 @@ public abstract class MappedTransactionHistoryArchive {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_TRANSACTION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_ID,
                           value = "Primary key for TransactionHistoryArchive records.")
     private Integer transactionId;
@@ -479,11 +475,7 @@ public abstract class MappedTransactionHistoryArchive {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -492,11 +484,7 @@ public abstract class MappedTransactionHistoryArchive {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
                           value = "Purchase order, sales order, or work order identification "
                                   + "number.")
@@ -505,11 +493,7 @@ public abstract class MappedTransactionHistoryArchive {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
                           value = "Line number associated with the purchase order, sales order, "
                                   + "or work order.")
@@ -519,11 +503,7 @@ public abstract class MappedTransactionHistoryArchive {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE,
                           value = "Date and time of the transaction.")
     @MsDefault(name = "DF_TransactionHistoryArchive_TransactionDate", value = "(getdate())")
@@ -536,12 +516,7 @@ public abstract class MappedTransactionHistoryArchive {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TRANSACTION_TYPE
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TRANSACTION_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE,
                           value = "W = Work Order, S = Sales Order, P = Purchase Order")
     private MappedTransactionHistory.TransactionType transactionType;
@@ -549,22 +524,14 @@ public abstract class MappedTransactionHistoryArchive {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity.")
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTUAL_COST,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ACTUAL_COST, value = "Product cost.")
     private BigDecimal actualCost;
 
@@ -572,11 +539,7 @@ public abstract class MappedTransactionHistoryArchive {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_TransactionHistoryArchive_ModifiedDate", value = "(getdate())")

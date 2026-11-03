@@ -46,9 +46,6 @@ class ProductModelProductDescriptionCulture_Persister
         final var culture = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Culture.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setProductModel(productModel);
-        entityInstance.setProductDescription(productDescription);
-        entityInstance.setCulture(culture);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, ProductModelProductDescriptionCulture.of(productModel, productDescription, culture));
     }
 }

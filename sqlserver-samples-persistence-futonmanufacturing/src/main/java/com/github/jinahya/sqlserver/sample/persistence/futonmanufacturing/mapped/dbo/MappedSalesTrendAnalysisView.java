@@ -787,100 +787,58 @@ public abstract class MappedSalesTrendAnalysisView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUARTER,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_QUARTER, nullable = true, insertable = false, updatable = false)
     private Integer quarter;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH_START,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH_START, nullable = true, insertable = false, updatable = false)
     private LocalDate monthStart;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_SALES,
-            scale = COLUMN_SCALE_GROSS_SALES
-    )
+    @Column(name = COLUMN_NAME_GROSS_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_SALES, scale = COLUMN_SCALE_GROSS_SALES)
     private BigDecimal grossSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNTS - COLUMN_SCALE_DISCOUNTS, fraction = COLUMN_SCALE_DISCOUNTS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNTS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DISCOUNTS,
-            scale = COLUMN_SCALE_DISCOUNTS
-    )
+    @Column(name = COLUMN_NAME_DISCOUNTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DISCOUNTS, scale = COLUMN_SCALE_DISCOUNTS)
     private BigDecimal discounts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NET_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_NET_SALES,
-            scale = COLUMN_SCALE_NET_SALES
-    )
+    @Column(name = COLUMN_NAME_NET_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_NET_SALES, scale = COLUMN_SCALE_NET_SALES)
     private BigDecimal netSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -888,13 +846,7 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
-            scale = COLUMN_SCALE_AVG_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -902,26 +854,14 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_PRIOR_MONTH_SALES - COLUMN_SCALE_PRIOR_MONTH_SALES,
             fraction = COLUMN_SCALE_PRIOR_MONTH_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIOR_MONTH_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PRIOR_MONTH_SALES,
-            scale = COLUMN_SCALE_PRIOR_MONTH_SALES
-    )
+    @Column(name = COLUMN_NAME_PRIOR_MONTH_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRIOR_MONTH_SALES, scale = COLUMN_SCALE_PRIOR_MONTH_SALES)
     private BigDecimal priorMonthSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_MO_M_CHANGE - COLUMN_SCALE_MO_M_CHANGE, fraction = COLUMN_SCALE_MO_M_CHANGE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MO_M_CHANGE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_MO_M_CHANGE,
-            scale = COLUMN_SCALE_MO_M_CHANGE
-    )
+    @Column(name = COLUMN_NAME_MO_M_CHANGE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MO_M_CHANGE, scale = COLUMN_SCALE_MO_M_CHANGE)
     private BigDecimal moMChange;
 
     // ---------------------------------------------------------------------------------------------
@@ -929,13 +869,7 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_MO_M_CHANGE_PERCENT - COLUMN_SCALE_MO_M_CHANGE_PERCENT,
             fraction = COLUMN_SCALE_MO_M_CHANGE_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MO_M_CHANGE_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_MO_M_CHANGE_PERCENT,
-            scale = COLUMN_SCALE_MO_M_CHANGE_PERCENT
-    )
+    @Column(name = COLUMN_NAME_MO_M_CHANGE_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MO_M_CHANGE_PERCENT, scale = COLUMN_SCALE_MO_M_CHANGE_PERCENT)
     private BigDecimal moMChangePercent;
 
     // ---------------------------------------------------------------------------------------------
@@ -943,26 +877,14 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_PRIOR_YEAR_SALES - COLUMN_SCALE_PRIOR_YEAR_SALES,
             fraction = COLUMN_SCALE_PRIOR_YEAR_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIOR_YEAR_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PRIOR_YEAR_SALES,
-            scale = COLUMN_SCALE_PRIOR_YEAR_SALES
-    )
+    @Column(name = COLUMN_NAME_PRIOR_YEAR_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRIOR_YEAR_SALES, scale = COLUMN_SCALE_PRIOR_YEAR_SALES)
     private BigDecimal priorYearSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_YO_Y_CHANGE - COLUMN_SCALE_YO_Y_CHANGE, fraction = COLUMN_SCALE_YO_Y_CHANGE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YO_Y_CHANGE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_YO_Y_CHANGE,
-            scale = COLUMN_SCALE_YO_Y_CHANGE
-    )
+    @Column(name = COLUMN_NAME_YO_Y_CHANGE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_YO_Y_CHANGE, scale = COLUMN_SCALE_YO_Y_CHANGE)
     private BigDecimal yoYChange;
 
     // ---------------------------------------------------------------------------------------------
@@ -970,13 +892,7 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_YO_Y_CHANGE_PERCENT - COLUMN_SCALE_YO_Y_CHANGE_PERCENT,
             fraction = COLUMN_SCALE_YO_Y_CHANGE_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YO_Y_CHANGE_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_YO_Y_CHANGE_PERCENT,
-            scale = COLUMN_SCALE_YO_Y_CHANGE_PERCENT
-    )
+    @Column(name = COLUMN_NAME_YO_Y_CHANGE_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_YO_Y_CHANGE_PERCENT, scale = COLUMN_SCALE_YO_Y_CHANGE_PERCENT)
     private BigDecimal yoYChangePercent;
 
     // ---------------------------------------------------------------------------------------------
@@ -984,13 +900,7 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_THREE_MONTH_AVG - COLUMN_SCALE_THREE_MONTH_AVG,
             fraction = COLUMN_SCALE_THREE_MONTH_AVG)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_THREE_MONTH_AVG,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_THREE_MONTH_AVG,
-            scale = COLUMN_SCALE_THREE_MONTH_AVG
-    )
+    @Column(name = COLUMN_NAME_THREE_MONTH_AVG, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_THREE_MONTH_AVG, scale = COLUMN_SCALE_THREE_MONTH_AVG)
     private BigDecimal threeMonthAvg;
 
     // ---------------------------------------------------------------------------------------------
@@ -998,13 +908,7 @@ public abstract class MappedSalesTrendAnalysisView {
     @Digits(integer = COLUMN_PRECISION_SIX_MONTH_AVG - COLUMN_SCALE_SIX_MONTH_AVG,
             fraction = COLUMN_SCALE_SIX_MONTH_AVG)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SIX_MONTH_AVG,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SIX_MONTH_AVG,
-            scale = COLUMN_SCALE_SIX_MONTH_AVG
-    )
+    @Column(name = COLUMN_NAME_SIX_MONTH_AVG, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SIX_MONTH_AVG, scale = COLUMN_SCALE_SIX_MONTH_AVG)
     private BigDecimal sixMonthAvg;
 }
 

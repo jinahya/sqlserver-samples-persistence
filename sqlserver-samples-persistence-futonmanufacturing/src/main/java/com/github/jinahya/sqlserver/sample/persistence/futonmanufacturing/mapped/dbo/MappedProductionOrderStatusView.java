@@ -834,12 +834,7 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     private String workOrderNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -847,12 +842,7 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATUS)
     private String status;
 
     // ---------------------------------------------------------------------------------------------
@@ -860,12 +850,7 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -873,12 +858,7 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -886,12 +866,7 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -900,13 +875,7 @@ public abstract class MappedProductionOrderStatusView {
             fraction = COLUMN_SCALE_ORDER_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QUANTITY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_ORDER_QUANTITY,
-            scale = COLUMN_SCALE_ORDER_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_ORDER_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_ORDER_QUANTITY, scale = COLUMN_SCALE_ORDER_QUANTITY)
     private BigDecimal orderQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -914,13 +883,7 @@ public abstract class MappedProductionOrderStatusView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_COMPLETED - COLUMN_SCALE_QUANTITY_COMPLETED,
             fraction = COLUMN_SCALE_QUANTITY_COMPLETED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_COMPLETED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_COMPLETED,
-            scale = COLUMN_SCALE_QUANTITY_COMPLETED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_COMPLETED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_COMPLETED, scale = COLUMN_SCALE_QUANTITY_COMPLETED)
     private BigDecimal quantityCompleted;
 
     // ---------------------------------------------------------------------------------------------
@@ -928,13 +891,7 @@ public abstract class MappedProductionOrderStatusView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_SCRAPPED - COLUMN_SCALE_QUANTITY_SCRAPPED,
             fraction = COLUMN_SCALE_QUANTITY_SCRAPPED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_SCRAPPED,
-            scale = COLUMN_SCALE_QUANTITY_SCRAPPED
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_SCRAPPED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_SCRAPPED, scale = COLUMN_SCALE_QUANTITY_SCRAPPED)
     private BigDecimal quantityScrapped;
 
     // ---------------------------------------------------------------------------------------------
@@ -942,13 +899,7 @@ public abstract class MappedProductionOrderStatusView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_REMAINING - COLUMN_SCALE_QUANTITY_REMAINING,
             fraction = COLUMN_SCALE_QUANTITY_REMAINING)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_REMAINING,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_REMAINING,
-            scale = COLUMN_SCALE_QUANTITY_REMAINING
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_REMAINING, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_REMAINING, scale = COLUMN_SCALE_QUANTITY_REMAINING)
     private BigDecimal quantityRemaining;
 
     // ---------------------------------------------------------------------------------------------
@@ -956,25 +907,14 @@ public abstract class MappedProductionOrderStatusView {
     @Digits(integer = COLUMN_PRECISION_PERCENT_COMPLETE - COLUMN_SCALE_PERCENT_COMPLETE,
             fraction = COLUMN_SCALE_PERCENT_COMPLETE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PERCENT_COMPLETE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PERCENT_COMPLETE,
-            scale = COLUMN_SCALE_PERCENT_COMPLETE
-    )
+    @Column(name = COLUMN_NAME_PERCENT_COMPLETE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_COMPLETE, scale = COLUMN_SCALE_PERCENT_COMPLETE)
     private BigDecimal percentComplete;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_CENTER_NAME
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_CENTER_NAME)
     private String workCenterName;
 
     // ---------------------------------------------------------------------------------------------
@@ -982,52 +922,31 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_WAREHOUSE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WAREHOUSE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WAREHOUSE_NAME
-    )
+    @Column(name = COLUMN_NAME_WAREHOUSE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WAREHOUSE_NAME)
     private String warehouseName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate startDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PLANNED_COMPLETION_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate plannedCompletionDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_COMPLETION_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ACTUAL_COMPLETION_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate actualCompletionDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_VARIANCE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_VARIANCE, nullable = true, insertable = false, updatable = false)
     private Integer daysVariance;
 
     // ---------------------------------------------------------------------------------------------
@@ -1035,44 +954,26 @@ public abstract class MappedProductionOrderStatusView {
     @Size(max = COLUMN_LENGTH_SCHEDULE_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCHEDULE_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SCHEDULE_STATUS
-    )
+    @Column(name = COLUMN_NAME_SCHEDULE_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SCHEDULE_STATUS)
     private String scheduleStatus;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIORITY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = false, updatable = false)
     private Integer priority;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CREATED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_BY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CREATED_BY
-    )
+    @Column(name = COLUMN_NAME_CREATED_BY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CREATED_BY)
     private String createdBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDateTime createdDate;
 }
 

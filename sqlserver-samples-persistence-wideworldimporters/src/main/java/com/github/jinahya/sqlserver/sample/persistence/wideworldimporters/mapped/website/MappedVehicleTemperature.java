@@ -327,11 +327,7 @@ public abstract class MappedVehicleTemperature {
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID, nullable = false, insertable = false, updatable = false)
     private Long vehicleTemperatureId;
 
     // ---------------------------------------------------------------------------------------------
@@ -339,34 +335,21 @@ public abstract class MappedVehicleTemperature {
     @Size(max = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VEHICLE_REGISTRATION,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_VEHICLE_REGISTRATION
-    )
+    @Column(name = COLUMN_NAME_VEHICLE_REGISTRATION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     private String vehicleRegistration;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER, nullable = false, insertable = false, updatable = false)
     private Integer chillerSensorNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECORDED_WHEN,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RECORDED_WHEN, nullable = false, insertable = false, updatable = false)
     private LocalDateTime recordedWhen;
 
     // ---------------------------------------------------------------------------------------------
@@ -374,25 +357,14 @@ public abstract class MappedVehicleTemperature {
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TEMPERATURE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TEMPERATURE,
-            scale = COLUMN_SCALE_TEMPERATURE
-    )
+    @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE)
     private BigDecimal temperature;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_SENSOR_DATA)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FULL_SENSOR_DATA,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FULL_SENSOR_DATA
-    )
+    @Column(name = COLUMN_NAME_FULL_SENSOR_DATA, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_FULL_SENSOR_DATA)
     private String fullSensorData;
 }
 

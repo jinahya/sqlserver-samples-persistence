@@ -43,8 +43,6 @@ class SpecialOfferProduct_Persister
         final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setSpecialOffer(specialOffer);
-        entityInstance.setProduct(product);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, SpecialOfferProduct.of(specialOffer, product));
     }
 }

@@ -221,10 +221,10 @@ public abstract class MappedEmployeeDepartmentHistory {
         if (!(obj instanceof MappedEmployeeDepartmentHistory that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId) &&
-               Objects.equals(startDate, that.startDate) &&
-               Objects.equals(departmentId, that.departmentId) &&
-               Objects.equals(shiftId, that.shiftId);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId()) &&
+               Objects.equals(getStartDate(), that.getStartDate()) &&
+               Objects.equals(getDepartmentId(), that.getDepartmentId()) &&
+               Objects.equals(getShiftId(), that.getShiftId());
     }
 
     /**
@@ -235,7 +235,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId, startDate, departmentId, shiftId);
+        return Objects.hash(getBusinessEntityId(), getStartDate(), getDepartmentId(), getShiftId());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION
@@ -267,8 +267,12 @@ public abstract class MappedEmployeeDepartmentHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getBusinessEntityId() {
+    protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
@@ -277,7 +281,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -287,8 +291,12 @@ public abstract class MappedEmployeeDepartmentHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getDepartmentId() {
+    protected Integer getDepartmentId() {
         return departmentId;
     }
 
@@ -297,7 +305,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param departmentId new value for {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
      */
-    public void setDepartmentId(final Integer departmentId) {
+    protected void setDepartmentId(final Integer departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -307,8 +315,12 @@ public abstract class MappedEmployeeDepartmentHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
+     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
+     *         package of the entity, and overrides only what that package sees.
      */
-    public Integer getShiftId() {
+    protected Integer getShiftId() {
         return shiftId;
     }
 
@@ -317,7 +329,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param shiftId new value for {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
      */
-    public void setShiftId(final Integer shiftId) {
+    protected void setShiftId(final Integer shiftId) {
         this.shiftId = shiftId;
     }
 
@@ -337,7 +349,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
-    public void setStartDate(final LocalDate startDate) {
+    protected void setStartDate(final LocalDate startDate) {
         this.startDate = startDate;
     }
 
@@ -385,11 +397,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Employee identification number. Foreign key to "
                                   + "Employee.BusinessEntityID.")
@@ -401,11 +409,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     @Min(COLUMN_MIN_DEPARTMENT_ID)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_DEPARTMENT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DEPARTMENT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DEPARTMENT_ID,
                           value = "Department in which the employee worked including currently. "
                                   + "Foreign key to Department.DepartmentID.")
@@ -417,11 +421,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     @Min(COLUMN_MIN_SHIFT_ID)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_SHIFT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SHIFT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SHIFT_ID,
                           value = "Identifies which 8-hour shift the employee works. Foreign "
                                   + "key to Shift.Shift.ID.")
@@ -431,22 +431,14 @@ public abstract class MappedEmployeeDepartmentHistory {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_START_DATE,
                           value = "Date the employee started work in the department.")
     private LocalDate startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_DATE,
                           value = "Date the employee left the department. NULL = Current "
                                   + "department.")
@@ -456,11 +448,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmployeeDepartmentHistory_ModifiedDate", value = "(getdate())")

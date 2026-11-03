@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import jakarta.persistence.EntityManager;
 
 /**
@@ -42,8 +43,7 @@ class PersonPhone_Persister
         final var phoneNumberType = EntityPersisterUtils.newPersistedInstanceOf(entityManager, PhoneNumberType.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setBusinessEntity(person);
-        entityInstance.setPhoneNumberType(phoneNumberType);
-        return super.apply(entityManager, entityInstance);
+        final var instance = PersonPhone.of(person, __Random_TestUtils.code(12), phoneNumberType);
+        return super.apply(entityManager, instance);
     }
 }

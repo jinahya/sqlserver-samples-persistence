@@ -467,24 +467,14 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_TYPE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_TYPE)
     private String customerType;
 
     // ---------------------------------------------------------------------------------------------
@@ -492,12 +482,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Size(max = COLUMN_LENGTH_ORDER_SIZE_BUCKET)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_SIZE_BUCKET,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ORDER_SIZE_BUCKET
-    )
+    @Column(name = COLUMN_NAME_ORDER_SIZE_BUCKET, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ORDER_SIZE_BUCKET)
     private String orderSizeBucket;
 
     // ---------------------------------------------------------------------------------------------
@@ -505,22 +490,13 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Size(max = COLUMN_LENGTH_BASKET_SIZE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BASKET_SIZE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_BASKET_SIZE
-    )
+    @Column(name = COLUMN_NAME_BASKET_SIZE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_BASKET_SIZE)
     private String basketSize;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
@@ -528,13 +504,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_REVENUE - COLUMN_SCALE_TOTAL_REVENUE,
             fraction = COLUMN_SCALE_TOTAL_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_REVENUE,
-            scale = COLUMN_SCALE_TOTAL_REVENUE
-    )
+    @Column(name = COLUMN_NAME_TOTAL_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REVENUE, scale = COLUMN_SCALE_TOTAL_REVENUE)
     private BigDecimal totalRevenue;
 
     // ---------------------------------------------------------------------------------------------
@@ -542,13 +512,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
-            scale = COLUMN_SCALE_AVG_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -556,23 +520,13 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Digits(integer = COLUMN_PRECISION_AVG_UNITS_PER_ORDER - COLUMN_SCALE_AVG_UNITS_PER_ORDER,
             fraction = COLUMN_SCALE_AVG_UNITS_PER_ORDER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_UNITS_PER_ORDER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_UNITS_PER_ORDER,
-            scale = COLUMN_SCALE_AVG_UNITS_PER_ORDER
-    )
+    @Column(name = COLUMN_NAME_AVG_UNITS_PER_ORDER, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_UNITS_PER_ORDER, scale = COLUMN_SCALE_AVG_UNITS_PER_ORDER)
     private BigDecimal avgUnitsPerOrder;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_LINE_ITEMS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_AVG_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer avgLineItems;
 
     // ---------------------------------------------------------------------------------------------
@@ -580,13 +534,7 @@ public abstract class MappedSalesOrderSizeDistributionView {
     @Digits(integer = COLUMN_PRECISION_PERCENT_OF_CHANNEL_ORDERS - COLUMN_SCALE_PERCENT_OF_CHANNEL_ORDERS,
             fraction = COLUMN_SCALE_PERCENT_OF_CHANNEL_ORDERS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PERCENT_OF_CHANNEL_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PERCENT_OF_CHANNEL_ORDERS,
-            scale = COLUMN_SCALE_PERCENT_OF_CHANNEL_ORDERS
-    )
+    @Column(name = COLUMN_NAME_PERCENT_OF_CHANNEL_ORDERS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PERCENT_OF_CHANNEL_ORDERS, scale = COLUMN_SCALE_PERCENT_OF_CHANNEL_ORDERS)
     private BigDecimal percentOfChannelOrders;
 }
 

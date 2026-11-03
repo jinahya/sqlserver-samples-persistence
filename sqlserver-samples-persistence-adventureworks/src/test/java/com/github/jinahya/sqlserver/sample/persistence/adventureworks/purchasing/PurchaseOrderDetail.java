@@ -22,8 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedPurchaseOrderDetail;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedPurchaseOrderDetailId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.MappedPurchaseOrderHeader;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.PurchaseOrderDetailId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Product;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
@@ -32,6 +32,11 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Purchasing.PurchaseOrderDetail} table.
@@ -58,7 +63,7 @@ import jakarta.persistence.Table;
                )
        }
 )
-@IdClass(MappedPurchaseOrderDetailId.class)
+@IdClass(PurchaseOrderDetailId.class)
 public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
 
     /**
@@ -72,6 +77,22 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
      * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER = "purchaseOrder";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code purchaseOrder}.
+     *
+     * @param purchaseOrder the {@code PurchaseOrderHeader} to reference.
+     * @return a new instance which references {@code purchaseOrder}.
+     * @throws NullPointerException if {@code purchaseOrder} is {@code null}.
+     */
+    public static PurchaseOrderDetail of(final PurchaseOrderHeader purchaseOrder) {
+        Objects.requireNonNull(purchaseOrder, "purchaseOrder is null");
+        final var instance = new PurchaseOrderDetail();
+        instance.setPurchaseOrder(purchaseOrder);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -101,7 +122,7 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
      */
     public void setProduct(final Product product) {
         this.product = product;
-        setProductId(product == null ? null : product.getProductId());
+        setProductId(Optional.ofNullable(product).map(Product::getProductId).orElse(null));
     }
 
     // ------------------------------------------------------------------------------- purchaseOrder
@@ -123,12 +144,14 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
      *
      * @param purchaseOrder the {@code PurchaseOrderHeader} to reference; {@code null} for none.
      */
-    public void setPurchaseOrder(final PurchaseOrderHeader purchaseOrder) {
+    private void setPurchaseOrder(final PurchaseOrderHeader purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
-        setPurchaseOrderId(purchaseOrder == null ? null : purchaseOrder.getPurchaseOrderId());
+        setPurchaseOrderId(Optional.ofNullable(purchaseOrder).map(PurchaseOrderHeader::getPurchaseOrderId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,
@@ -139,6 +162,8 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
     private Product product;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PURCHASE_ORDER_ID,
                 referencedColumnName = MappedPurchaseOrderHeader.COLUMN_NAME_PURCHASE_ORDER_ID,

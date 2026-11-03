@@ -22,7 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductListPriceHistory;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductListPriceHistoryId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductListPriceHistoryId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,6 +30,12 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Production.ProductListPriceHistory} table.
@@ -48,7 +54,7 @@ import jakarta.persistence.Table;
                )
        }
 )
-@IdClass(MappedProductListPriceHistoryId.class)
+@IdClass(ProductListPriceHistoryId.class)
 public class ProductListPriceHistory extends MappedProductListPriceHistory {
 
     /**
@@ -56,6 +62,26 @@ public class ProductListPriceHistory extends MappedProductListPriceHistory {
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code product}, with {@code startDate}.
+     *
+     * @param product   the {@code Product} to reference.
+     * @param startDate the value of the {@value #COLUMN_NAME_START_DATE} column.
+     * @return a new instance which references {@code product}, with {@code startDate}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static ProductListPriceHistory of(final Product product,
+                                             final LocalDateTime startDate) {
+        Objects.requireNonNull(product, "product is null");
+        Objects.requireNonNull(startDate, "startDate is null");
+        final var instance = new ProductListPriceHistory();
+        instance.setProduct(product);
+        instance.setStartDate(startDate);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -84,12 +110,14 @@ public class ProductListPriceHistory extends MappedProductListPriceHistory {
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
-    public void setProduct(final Product product) {
+    private void setProduct(final Product product) {
         this.product = product;
-        setProductId(product == null ? null : product.getProductId());
+        setProductId(Optional.ofNullable(product).map(Product::getProductId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,
                 referencedColumnName = MappedProduct.COLUMN_NAME_PRODUCT_ID,

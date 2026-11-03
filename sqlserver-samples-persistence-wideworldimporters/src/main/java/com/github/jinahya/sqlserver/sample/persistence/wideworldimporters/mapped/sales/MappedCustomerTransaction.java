@@ -693,11 +693,7 @@ public abstract class MappedCustomerTransaction {
                        sequenceName = "TransactionID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.TransactionID")
-    @Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID,
                           value = "Numeric ID used to refer to a customer transaction within "
                                   + "the database")
@@ -709,11 +705,7 @@ public abstract class MappedCustomerTransaction {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this transaction")
     private Integer customerId;
 
@@ -721,22 +713,14 @@ public abstract class MappedCustomerTransaction {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, value = "Type of transaction")
     private Integer transactionTypeId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INVOICE_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
                           value = "ID of an invoice (for transactions associated with an invoice)")
     private Integer invoiceId;
@@ -744,11 +728,7 @@ public abstract class MappedCustomerTransaction {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
                           value = "ID of a payment method (for transactions involving payments)")
     private Integer paymentMethodId;
@@ -756,11 +736,7 @@ public abstract class MappedCustomerTransaction {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE, value = "Date for the transaction")
     private LocalDate transactionDate;
 
@@ -769,13 +745,7 @@ public abstract class MappedCustomerTransaction {
             fraction = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX,
-            scale = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX
-    )
+    @Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX, scale = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX)
     @MsDescription.Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX,
                           value = "Transaction amount (excluding tax)")
     private BigDecimal amountExcludingTax;
@@ -784,13 +754,7 @@ public abstract class MappedCustomerTransaction {
     @Digits(integer = COLUMN_PRECISION_TAX_AMOUNT - COLUMN_SCALE_TAX_AMOUNT, fraction = COLUMN_SCALE_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_AMOUNT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TAX_AMOUNT,
-            scale = COLUMN_SCALE_TAX_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
     @MsDescription.Column(name = COLUMN_NAME_TAX_AMOUNT, value = "Tax amount calculated")
     private BigDecimal taxAmount;
 
@@ -799,13 +763,7 @@ public abstract class MappedCustomerTransaction {
             fraction = COLUMN_SCALE_TRANSACTION_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_AMOUNT,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TRANSACTION_AMOUNT,
-            scale = COLUMN_SCALE_TRANSACTION_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_TRANSACTION_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TRANSACTION_AMOUNT, scale = COLUMN_SCALE_TRANSACTION_AMOUNT)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_AMOUNT,
                           value = "Transaction amount (including tax)")
     private BigDecimal transactionAmount;
@@ -815,24 +773,14 @@ public abstract class MappedCustomerTransaction {
             fraction = COLUMN_SCALE_OUTSTANDING_BALANCE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_OUTSTANDING_BALANCE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_OUTSTANDING_BALANCE,
-            scale = COLUMN_SCALE_OUTSTANDING_BALANCE
-    )
+    @Column(name = COLUMN_NAME_OUTSTANDING_BALANCE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_OUTSTANDING_BALANCE, scale = COLUMN_SCALE_OUTSTANDING_BALANCE)
     @MsDescription.Column(name = COLUMN_NAME_OUTSTANDING_BALANCE,
                           value = "Amount still outstanding for this transaction")
     private BigDecimal outstandingBalance;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FINALIZATION_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_FINALIZATION_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_FINALIZATION_DATE,
                           value = "Date that this transaction was finalized (if it has been)")
     private LocalDate finalizationDate;
@@ -840,11 +788,7 @@ public abstract class MappedCustomerTransaction {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_IS_FINALIZED,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_IS_FINALIZED, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_IS_FINALIZED,
                           value = "Is this transaction finalized (invoices, credits and "
                                   + "payments have been matched)")
@@ -857,21 +801,13 @@ public abstract class MappedCustomerTransaction {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Sales_CustomerTransactions_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

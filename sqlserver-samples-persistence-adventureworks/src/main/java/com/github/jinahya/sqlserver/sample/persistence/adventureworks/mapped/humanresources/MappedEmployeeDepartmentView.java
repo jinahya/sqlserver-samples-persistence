@@ -471,23 +471,14 @@ public abstract class MappedEmployeeDepartmentView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TITLE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_TITLE
-    )
+    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TITLE)
     private String title;
 
     // ---------------------------------------------------------------------------------------------
@@ -495,24 +486,14 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_FIRST_NAME
-    )
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FIRST_NAME)
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIDDLE_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_MIDDLE_NAME
-    )
+    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MIDDLE_NAME)
     private String middleName;
 
     // ---------------------------------------------------------------------------------------------
@@ -520,24 +501,14 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_LAST_NAME
-    )
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_LAST_NAME)
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUFFIX,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUFFIX
-    )
+    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SUFFIX)
     private String suffix;
 
     // ---------------------------------------------------------------------------------------------
@@ -545,12 +516,7 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_JOB_TITLE
-    )
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_JOB_TITLE)
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
@@ -558,12 +524,7 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_DEPARTMENT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DEPARTMENT,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DEPARTMENT
-    )
+    @Column(name = COLUMN_NAME_DEPARTMENT, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DEPARTMENT)
     private String department;
 
     // ---------------------------------------------------------------------------------------------
@@ -571,23 +532,14 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_GROUP_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_GROUP_NAME
-    )
+    @Column(name = COLUMN_NAME_GROUP_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_GROUP_NAME)
     private String groupName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = false, updatable = false)
     private LocalDate startDate;
 }
 

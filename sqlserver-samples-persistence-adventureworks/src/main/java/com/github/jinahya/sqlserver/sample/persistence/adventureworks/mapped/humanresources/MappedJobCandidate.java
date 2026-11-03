@@ -70,11 +70,7 @@ import java.util.Objects;
 // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
 // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
-                   column = @Column(name = MappedJobCandidate.COLUMN_NAME_JOB_CANDIDATE_ID,
-                                    nullable = false,
-                                    insertable = true,
-                                    updatable = false
-                   )
+                   column = @Column(name = MappedJobCandidate.COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = true, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -264,11 +260,7 @@ public abstract class MappedJobCandidate
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Employee identification number if applicant was hired. "
                                   + "Foreign key to Employee.BusinessEntityID.")
@@ -276,11 +268,7 @@ public abstract class MappedJobCandidate
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RESUME,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RESUME, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RESUME, value = "Résumé in XML format.")
     private String resume;
 
@@ -288,11 +276,7 @@ public abstract class MappedJobCandidate
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_JobCandidate_ModifiedDate", value = "(getdate())")

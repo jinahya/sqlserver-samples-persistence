@@ -39,7 +39,7 @@ class TransactionHistory_PersistenceIT extends _Entity_PersistenceIT<Transaction
     @Disabled("written by the order and work-order triggers: nothing else inserts into it")
     @Override
     @Test
-    protected void persistTargetInstance() {
+    protected void persistRandomEntityInstance() {
         // empty
     }
 }

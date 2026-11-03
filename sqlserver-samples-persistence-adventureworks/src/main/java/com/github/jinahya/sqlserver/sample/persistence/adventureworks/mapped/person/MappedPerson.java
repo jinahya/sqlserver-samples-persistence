@@ -689,15 +689,6 @@ public abstract class MappedPerson {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -722,11 +713,7 @@ public abstract class MappedPerson {
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for Person records.")
     private Integer businessEntityId;
@@ -735,12 +722,7 @@ public abstract class MappedPerson {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PERSON_TYPE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PERSON_TYPE
-    )
+    @Column(name = COLUMN_NAME_PERSON_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PERSON_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_PERSON_TYPE,
                           value = "Primary type of person: SC = Store Contact, IN = Individual "
                                   + "(retail) customer, SP = Sales person, EM = Employee "
@@ -750,11 +732,7 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME_STYLE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_NAME_STYLE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_NAME_STYLE,
                           value = "0 = The data in FirstName and LastName are stored in western "
                                   + "style (first name, last name) order.  1 = Eastern style "
@@ -765,12 +743,7 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TITLE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_TITLE
-    )
+    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_TITLE)
     @MsDescription.Column(name = COLUMN_NAME_TITLE,
                           value = "A courtesy title. For example, Mr. or Ms.")
     private String title;
@@ -779,24 +752,14 @@ public abstract class MappedPerson {
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FIRST_NAME
-    )
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FIRST_NAME)
     @MsDescription.Column(name = COLUMN_NAME_FIRST_NAME, value = "First name of the person.")
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIDDLE_NAME,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_MIDDLE_NAME
-    )
+    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_MIDDLE_NAME)
     @MsDescription.Column(name = COLUMN_NAME_MIDDLE_NAME,
                           value = "Middle name or middle initial of the person.")
     private String middleName;
@@ -805,24 +768,14 @@ public abstract class MappedPerson {
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_LAST_NAME
-    )
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_LAST_NAME)
     @MsDescription.Column(name = COLUMN_NAME_LAST_NAME, value = "Last name of the person.")
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUFFIX,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SUFFIX
-    )
+    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUFFIX)
     @MsDescription.Column(name = COLUMN_NAME_SUFFIX,
                           value = "Surname suffix. For example, Sr. or Jr.")
     private String suffix;
@@ -833,11 +786,7 @@ public abstract class MappedPerson {
     @Min(COLUMN_MIN_EMAIL_PROMOTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMAIL_PROMOTION,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_PROMOTION,
                           value = "0 = Contact does not wish to receive e-mail promotions, 1 = "
                                   + "Contact does wish to receive e-mail promotions from "
@@ -848,11 +797,7 @@ public abstract class MappedPerson {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO,
                           value = "Additional contact information about the person stored in "
                                   + "xml format.")
@@ -860,11 +805,7 @@ public abstract class MappedPerson {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DEMOGRAPHICS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DEMOGRAPHICS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DEMOGRAPHICS,
                           value = "Personal information such as hobbies, and income collected "
                                   + "from online shoppers. Used for sales analysis.")
@@ -873,11 +814,7 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -888,11 +825,7 @@ public abstract class MappedPerson {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Person_ModifiedDate", value = "(getdate())")

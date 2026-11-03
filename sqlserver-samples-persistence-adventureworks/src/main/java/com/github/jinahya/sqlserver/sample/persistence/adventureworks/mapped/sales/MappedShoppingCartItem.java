@@ -359,11 +359,7 @@ public abstract class MappedShoppingCartItem {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID,
                           value = "Primary key for ShoppingCartItem records.")
     private Integer shoppingCartItemId;
@@ -372,12 +368,7 @@ public abstract class MappedShoppingCartItem {
     @Size(max = COLUMN_LENGTH_SHOPPING_CART_ID)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHOPPING_CART_ID,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SHOPPING_CART_ID
-    )
+    @Column(name = COLUMN_NAME_SHOPPING_CART_ID, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SHOPPING_CART_ID)
     @MsDescription.Column(name = COLUMN_NAME_SHOPPING_CART_ID,
                           value = "Shopping cart identification number.")
     private String shoppingCartId;
@@ -388,11 +379,7 @@ public abstract class MappedShoppingCartItem {
     @Min(COLUMN_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity ordered.")
     @MsDefault(name = "DF_ShoppingCartItem_Quantity", value = "((1))")
     private Integer quantity;
@@ -401,11 +388,7 @@ public abstract class MappedShoppingCartItem {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product ordered. Foreign key to Product.ProductID.")
     private Integer productId;
@@ -413,11 +396,7 @@ public abstract class MappedShoppingCartItem {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DATE_CREATED,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DATE_CREATED, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DATE_CREATED,
                           value = "Date the time the record was created.")
     @MsDefault(name = "DF_ShoppingCartItem_DateCreated", value = "(getdate())")
@@ -427,11 +406,7 @@ public abstract class MappedShoppingCartItem {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ShoppingCartItem_ModifiedDate", value = "(getdate())")

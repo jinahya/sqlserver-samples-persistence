@@ -384,56 +384,33 @@ public abstract class MappedSalesPipelineView {
     @Size(max = COLUMN_LENGTH_STAGE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STAGE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STAGE
-    )
+    @Column(name = COLUMN_NAME_STAGE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STAGE)
     private String stage;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STAGE_ORDER,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STAGE_ORDER, nullable = false, insertable = false, updatable = false)
     private Integer stageOrder;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer count;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_VALUE - COLUMN_SCALE_VALUE, fraction = COLUMN_SCALE_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_VALUE,
-            scale = COLUMN_SCALE_VALUE
-    )
+    @Column(name = COLUMN_NAME_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_VALUE, scale = COLUMN_SCALE_VALUE)
     private BigDecimal value;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIOR_STAGE_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRIOR_STAGE_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer priorStageCount;
 
     // ---------------------------------------------------------------------------------------------
@@ -441,13 +418,7 @@ public abstract class MappedSalesPipelineView {
     @Digits(integer = COLUMN_PRECISION_PRIOR_STAGE_VALUE - COLUMN_SCALE_PRIOR_STAGE_VALUE,
             fraction = COLUMN_SCALE_PRIOR_STAGE_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIOR_STAGE_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PRIOR_STAGE_VALUE,
-            scale = COLUMN_SCALE_PRIOR_STAGE_VALUE
-    )
+    @Column(name = COLUMN_NAME_PRIOR_STAGE_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRIOR_STAGE_VALUE, scale = COLUMN_SCALE_PRIOR_STAGE_VALUE)
     private BigDecimal priorStageValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -455,13 +426,7 @@ public abstract class MappedSalesPipelineView {
     @Digits(integer = COLUMN_PRECISION_CONVERSION_RATE - COLUMN_SCALE_CONVERSION_RATE,
             fraction = COLUMN_SCALE_CONVERSION_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONVERSION_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_CONVERSION_RATE,
-            scale = COLUMN_SCALE_CONVERSION_RATE
-    )
+    @Column(name = COLUMN_NAME_CONVERSION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_CONVERSION_RATE, scale = COLUMN_SCALE_CONVERSION_RATE)
     private BigDecimal conversionRate;
 
     // ---------------------------------------------------------------------------------------------
@@ -469,13 +434,7 @@ public abstract class MappedSalesPipelineView {
     @Digits(integer = COLUMN_PRECISION_VALUE_RETENTION_RATE - COLUMN_SCALE_VALUE_RETENTION_RATE,
             fraction = COLUMN_SCALE_VALUE_RETENTION_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_VALUE_RETENTION_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_VALUE_RETENTION_RATE,
-            scale = COLUMN_SCALE_VALUE_RETENTION_RATE
-    )
+    @Column(name = COLUMN_NAME_VALUE_RETENTION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_VALUE_RETENTION_RATE, scale = COLUMN_SCALE_VALUE_RETENTION_RATE)
     private BigDecimal valueRetentionRate;
 }
 

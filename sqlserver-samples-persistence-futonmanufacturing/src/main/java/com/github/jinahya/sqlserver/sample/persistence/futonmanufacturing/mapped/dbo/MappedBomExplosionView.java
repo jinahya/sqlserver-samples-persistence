@@ -562,91 +562,54 @@ public abstract class MappedBomExplosionView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_ITEM_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PARENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer parentItemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_ITEM_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PARENT_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_PARENT_ITEM_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PARENT_ITEM_CODE)
     private String parentItemCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PARENT_ITEM_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PARENT_ITEM_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PARENT_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_PARENT_ITEM_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PARENT_ITEM_NAME)
     private String parentItemName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer componentItemId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_ITEM_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COMPONENT_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ITEM_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COMPONENT_ITEM_CODE)
     private String componentItemCode;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_ITEM_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_ITEM_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COMPONENT_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_ITEM_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COMPONENT_ITEM_NAME)
     private String componentItemName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_COMPONENT_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPONENT_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COMPONENT_TYPE
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_COMPONENT_TYPE)
     private String componentType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LEVEL,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LEVEL, nullable = true, insertable = false, updatable = false)
     private Integer level;
 
     // ---------------------------------------------------------------------------------------------
@@ -654,25 +617,14 @@ public abstract class MappedBomExplosionView {
     @Digits(integer = COLUMN_PRECISION_EFFECTIVE_QUANTITY - COLUMN_SCALE_EFFECTIVE_QUANTITY,
             fraction = COLUMN_SCALE_EFFECTIVE_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EFFECTIVE_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_EFFECTIVE_QUANTITY,
-            scale = COLUMN_SCALE_EFFECTIVE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_EFFECTIVE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_EFFECTIVE_QUANTITY, scale = COLUMN_SCALE_EFFECTIVE_QUANTITY)
     private BigDecimal effectiveQuantity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_CODE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_UNIT_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_CODE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_CODE)
     private String unitCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -680,13 +632,7 @@ public abstract class MappedBomExplosionView {
     @Digits(integer = COLUMN_PRECISION_STANDARD_COST - COLUMN_SCALE_STANDARD_COST,
             fraction = COLUMN_SCALE_STANDARD_COST)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STANDARD_COST,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_STANDARD_COST,
-            scale = COLUMN_SCALE_STANDARD_COST
-    )
+    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_STANDARD_COST, scale = COLUMN_SCALE_STANDARD_COST)
     private BigDecimal standardCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -694,23 +640,13 @@ public abstract class MappedBomExplosionView {
     @Digits(integer = COLUMN_PRECISION_EXTENDED_COST - COLUMN_SCALE_EXTENDED_COST,
             fraction = COLUMN_SCALE_EXTENDED_COST)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXTENDED_COST,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_EXTENDED_COST,
-            scale = COLUMN_SCALE_EXTENDED_COST
-    )
+    @Column(name = COLUMN_NAME_EXTENDED_COST, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_EXTENDED_COST, scale = COLUMN_SCALE_EXTENDED_COST)
     private BigDecimal extendedCost;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BOM_PATH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BOM_PATH, nullable = true, insertable = false, updatable = false)
     private String bomPath;
 }
 

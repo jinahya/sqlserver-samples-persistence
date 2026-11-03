@@ -439,11 +439,7 @@ public abstract class MappedVendorWithAddressesView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -451,12 +447,7 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_NAME
-    )
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -464,12 +455,7 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_ADDRESS_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ADDRESS_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ADDRESS_TYPE
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_TYPE)
     private String addressType;
 
     // ---------------------------------------------------------------------------------------------
@@ -477,24 +463,14 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_1)
     private String addressLine1;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_2)
     private String addressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -502,12 +478,7 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CITY
-    )
+    @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
@@ -515,12 +486,7 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATE_PROVINCE_NAME
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     private String stateProvinceName;
 
     // ---------------------------------------------------------------------------------------------
@@ -528,12 +494,7 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_CODE)
     private String postalCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -541,12 +502,7 @@ public abstract class MappedVendorWithAddressesView {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_COUNTRY_REGION_NAME
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     private String countryRegionName;
 }
 

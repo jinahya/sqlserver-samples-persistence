@@ -599,12 +599,7 @@ public abstract class MappedComponentShortageView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -612,12 +607,7 @@ public abstract class MappedComponentShortageView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -625,12 +615,7 @@ public abstract class MappedComponentShortageView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -638,13 +623,7 @@ public abstract class MappedComponentShortageView {
     @Digits(integer = COLUMN_PRECISION_REQUIRED_QUANTITY - COLUMN_SCALE_REQUIRED_QUANTITY,
             fraction = COLUMN_SCALE_REQUIRED_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REQUIRED_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_REQUIRED_QUANTITY,
-            scale = COLUMN_SCALE_REQUIRED_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_REQUIRED_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REQUIRED_QUANTITY, scale = COLUMN_SCALE_REQUIRED_QUANTITY)
     private BigDecimal requiredQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -653,13 +632,7 @@ public abstract class MappedComponentShortageView {
             fraction = COLUMN_SCALE_AVAILABLE_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVAILABLE_QUANTITY,
-            scale = COLUMN_SCALE_AVAILABLE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_AVAILABLE_QUANTITY, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVAILABLE_QUANTITY, scale = COLUMN_SCALE_AVAILABLE_QUANTITY)
     private BigDecimal availableQuantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -667,43 +640,25 @@ public abstract class MappedComponentShortageView {
     @Digits(integer = COLUMN_PRECISION_SHORTAGE_QUANTITY - COLUMN_SCALE_SHORTAGE_QUANTITY,
             fraction = COLUMN_SCALE_SHORTAGE_QUANTITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SHORTAGE_QUANTITY,
-            scale = COLUMN_SCALE_SHORTAGE_QUANTITY
-    )
+    @Column(name = COLUMN_NAME_SHORTAGE_QUANTITY, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHORTAGE_QUANTITY, scale = COLUMN_SCALE_SHORTAGE_QUANTITY)
     private BigDecimal shortageQuantity;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EARLIEST_NEED_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_EARLIEST_NEED_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate earliestNeedDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAYS_UNTIL_NEEDED,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DAYS_UNTIL_NEEDED, nullable = true, insertable = false, updatable = false)
     private Integer daysUntilNeeded;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AFFECTED_ORDERS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_AFFECTED_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer affectedOrders;
 
     // ---------------------------------------------------------------------------------------------
@@ -711,44 +666,26 @@ public abstract class MappedComponentShortageView {
     @Size(max = COLUMN_LENGTH_URGENCY_LEVEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_URGENCY_LEVEL,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_URGENCY_LEVEL
-    )
+    @Column(name = COLUMN_NAME_URGENCY_LEVEL, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_URGENCY_LEVEL)
     private String urgencyLevel;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PREFERRED_SUPPLIER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PREFERRED_SUPPLIER
-    )
+    @Column(name = COLUMN_NAME_PREFERRED_SUPPLIER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PREFERRED_SUPPLIER)
     private String preferredSupplier;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer leadTimeDays;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_POSSIBLE_ARRIVAL,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_POSSIBLE_ARRIVAL, nullable = true, insertable = false, updatable = false)
     private LocalDateTime possibleArrival;
 
     // ---------------------------------------------------------------------------------------------
@@ -756,12 +693,7 @@ public abstract class MappedComponentShortageView {
     @Size(max = COLUMN_LENGTH_SUPPLY_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLY_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SUPPLY_STATUS
-    )
+    @Column(name = COLUMN_NAME_SUPPLY_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SUPPLY_STATUS)
     private String supplyStatus;
 }
 

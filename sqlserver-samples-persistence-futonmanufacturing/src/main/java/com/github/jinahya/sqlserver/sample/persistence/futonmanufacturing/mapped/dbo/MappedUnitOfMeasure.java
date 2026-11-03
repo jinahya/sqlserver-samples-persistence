@@ -245,46 +245,27 @@ public abstract class MappedUnitOfMeasure {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_UNIT_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_UNIT_ID, nullable = false, insertable = true, updatable = false)
     private Integer unitId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_UNIT_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_UNIT_CODE
-    )
+    @Column(name = COLUMN_NAME_UNIT_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_UNIT_CODE)
     private String unitCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_UNIT_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_UNIT_NAME
-    )
+    @Column(name = COLUMN_NAME_UNIT_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_UNIT_NAME)
     private String unitName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
     private String description;
 }
 

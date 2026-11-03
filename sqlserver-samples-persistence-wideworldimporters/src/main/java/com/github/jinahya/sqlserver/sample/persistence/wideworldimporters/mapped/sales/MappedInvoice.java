@@ -1076,11 +1076,7 @@ public abstract class MappedInvoice {
                        sequenceName = "InvoiceID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.InvoiceID")
-    @Column(name = COLUMN_NAME_INVOICE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
                           value = "Numeric ID used for reference to an invoice within the database")
     @MsDefault(name = "DF_Sales_Invoices_InvoiceID", value = "(NEXT VALUE FOR [Sequences].[InvoiceID])")
@@ -1090,11 +1086,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this invoice")
     private Integer customerId;
 
@@ -1102,11 +1094,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
                           value = "Bill to customer for this invoice (invoices might be billed "
                                   + "to a head office)")
@@ -1115,11 +1103,7 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
                           value = "Sales order (if any) for this invoice")
     private Integer orderId;
@@ -1128,11 +1112,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
                           value = "How these stock items are beign delivered")
     private Integer deliveryMethodId;
@@ -1141,11 +1121,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
                           value = "Customer contact for this invoice")
     private Integer contactPersonId;
@@ -1154,11 +1130,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID,
                           value = "Customer accounts contact for this invoice")
     private Integer accountsPersonId;
@@ -1167,11 +1139,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
                           value = "Salesperson for this invoice")
     private Integer salespersonPersonId;
@@ -1180,11 +1148,7 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID,
                           value = "Person who packed this shipment (or checked the packing)")
     private Integer packedByPersonId;
@@ -1192,11 +1156,7 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_INVOICE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_INVOICE_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INVOICE_DATE,
                           value = "Date that this invoice was raised")
     private LocalDate invoiceDate;
@@ -1204,12 +1164,7 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
                           value = "Purchase Order Number received from customer")
     private String customerPurchaseOrderNumber;
@@ -1217,22 +1172,14 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_CREDIT_NOTE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_CREDIT_NOTE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_CREDIT_NOTE,
                           value = "Is this a credit note (rather than an invoice)")
     private Boolean isCreditNote;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREDIT_NOTE_REASON,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREDIT_NOTE_REASON, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CREDIT_NOTE_REASON,
                           value = "Reason that this credit note needed to be generated (if "
                                   + "applicable)")
@@ -1240,33 +1187,21 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
                           value = "Any comments related to this invoice (sent to customer)")
     private String comments;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
                           value = "Any comments related to delivery (sent to customer)")
     private String deliveryInstructions;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
                           value = "Any internal comments related to this invoice (not sent to "
                                   + "the customer)")
@@ -1275,11 +1210,7 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS,
                           value = "Total number of dry packages (information for the delivery "
                                   + "driver)")
@@ -1288,11 +1219,7 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS,
                           value = "Total number of chiller packages (information for the "
                                   + "delivery driver)")
@@ -1301,35 +1228,21 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_RUN,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_RUN
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_RUN, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_RUN)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_RUN, value = "Delivery run for this shipment")
     private String deliveryRun;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RUN_POSITION,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_RUN_POSITION
-    )
+    @Column(name = COLUMN_NAME_RUN_POSITION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_RUN_POSITION)
     @MsDescription.Column(name = COLUMN_NAME_RUN_POSITION,
                           value = "Position in the delivery run for this shipment")
     private String runPosition;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA,
                           value = "JSON-structured data returned from delivery devices for "
                                   + "deliveries made directly by the organization")
@@ -1338,11 +1251,7 @@ public abstract class MappedInvoice {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME,
                           value = "Confirmed delivery date and time promoted from JSON delivery "
                                   + "data")
@@ -1353,12 +1262,7 @@ public abstract class MappedInvoice {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY
-    )
+    @Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY)
     @MsDescription.Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY,
                           value = "Confirmed receiver promoted from JSON delivery data")
     @MsComputedColumn("(json_value([ReturnedDeliveryData],N'$.ReceivedBy'))")
@@ -1368,21 +1272,13 @@ public abstract class MappedInvoice {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Sales_Invoices_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

@@ -763,12 +763,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Size(max = COLUMN_LENGTH_CHANNEL_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CHANNEL_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_CODE
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_CODE)
     private String channelCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -776,74 +771,41 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_COUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_TOTAL_UNITS - COLUMN_SCALE_TOTAL_UNITS, fraction = COLUMN_SCALE_TOTAL_UNITS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_UNITS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_UNITS,
-            scale = COLUMN_SCALE_TOTAL_UNITS
-    )
+    @Column(name = COLUMN_NAME_TOTAL_UNITS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_UNITS, scale = COLUMN_SCALE_TOTAL_UNITS)
     private BigDecimal totalUnits;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_SALES - COLUMN_SCALE_GROSS_SALES, fraction = COLUMN_SCALE_GROSS_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_SALES,
-            scale = COLUMN_SCALE_GROSS_SALES
-    )
+    @Column(name = COLUMN_NAME_GROSS_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_SALES, scale = COLUMN_SCALE_GROSS_SALES)
     private BigDecimal grossSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_DISCOUNTS - COLUMN_SCALE_DISCOUNTS, fraction = COLUMN_SCALE_DISCOUNTS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNTS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DISCOUNTS,
-            scale = COLUMN_SCALE_DISCOUNTS
-    )
+    @Column(name = COLUMN_NAME_DISCOUNTS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DISCOUNTS, scale = COLUMN_SCALE_DISCOUNTS)
     private BigDecimal discounts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_NET_SALES - COLUMN_SCALE_NET_SALES, fraction = COLUMN_SCALE_NET_SALES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NET_SALES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_NET_SALES,
-            scale = COLUMN_SCALE_NET_SALES
-    )
+    @Column(name = COLUMN_NAME_NET_SALES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_NET_SALES, scale = COLUMN_SCALE_NET_SALES)
     private BigDecimal netSales;
 
     // ---------------------------------------------------------------------------------------------
@@ -851,39 +813,21 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Digits(integer = COLUMN_PRECISION_SHIPPING_REVENUE - COLUMN_SCALE_SHIPPING_REVENUE,
             fraction = COLUMN_SCALE_SHIPPING_REVENUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHIPPING_REVENUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_SHIPPING_REVENUE,
-            scale = COLUMN_SCALE_SHIPPING_REVENUE
-    )
+    @Column(name = COLUMN_NAME_SHIPPING_REVENUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SHIPPING_REVENUE, scale = COLUMN_SCALE_SHIPPING_REVENUE)
     private BigDecimal shippingRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_COGS - COLUMN_SCALE_COGS, fraction = COLUMN_SCALE_COGS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COGS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_COGS,
-            scale = COLUMN_SCALE_COGS
-    )
+    @Column(name = COLUMN_NAME_COGS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_COGS, scale = COLUMN_SCALE_COGS)
     private BigDecimal cogs;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_PROFIT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_PROFIT,
-            scale = COLUMN_SCALE_GROSS_PROFIT
-    )
+    @Column(name = COLUMN_NAME_GROSS_PROFIT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_PROFIT, scale = COLUMN_SCALE_GROSS_PROFIT)
     private BigDecimal grossProfit;
 
     // ---------------------------------------------------------------------------------------------
@@ -891,13 +835,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Digits(integer = COLUMN_PRECISION_AVG_ORDER_VALUE - COLUMN_SCALE_AVG_ORDER_VALUE,
             fraction = COLUMN_SCALE_AVG_ORDER_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_ORDER_VALUE,
-            scale = COLUMN_SCALE_AVG_ORDER_VALUE
-    )
+    @Column(name = COLUMN_NAME_AVG_ORDER_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_ORDER_VALUE, scale = COLUMN_SCALE_AVG_ORDER_VALUE)
     private BigDecimal avgOrderValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -905,13 +843,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT,
-            scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT
-    )
+    @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT, scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     private BigDecimal grossMarginPercent;
 
     // ---------------------------------------------------------------------------------------------
@@ -919,13 +851,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Digits(integer = COLUMN_PRECISION_DISCOUNT_PERCENT - COLUMN_SCALE_DISCOUNT_PERCENT,
             fraction = COLUMN_SCALE_DISCOUNT_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_DISCOUNT_PERCENT,
-            scale = COLUMN_SCALE_DISCOUNT_PERCENT
-    )
+    @Column(name = COLUMN_NAME_DISCOUNT_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_DISCOUNT_PERCENT, scale = COLUMN_SCALE_DISCOUNT_PERCENT)
     private BigDecimal discountPercent;
 
     // ---------------------------------------------------------------------------------------------
@@ -933,13 +859,7 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Digits(integer = COLUMN_PRECISION_PROFIT_PER_ORDER - COLUMN_SCALE_PROFIT_PER_ORDER,
             fraction = COLUMN_SCALE_PROFIT_PER_ORDER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PROFIT_PER_ORDER,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PROFIT_PER_ORDER,
-            scale = COLUMN_SCALE_PROFIT_PER_ORDER
-    )
+    @Column(name = COLUMN_NAME_PROFIT_PER_ORDER, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PROFIT_PER_ORDER, scale = COLUMN_SCALE_PROFIT_PER_ORDER)
     private BigDecimal profitPerOrder;
 
     // ---------------------------------------------------------------------------------------------
@@ -947,23 +867,13 @@ public abstract class MappedSalesChannelProfitabilityView {
     @Digits(integer = COLUMN_PRECISION_PROFIT_PER_UNIT - COLUMN_SCALE_PROFIT_PER_UNIT,
             fraction = COLUMN_SCALE_PROFIT_PER_UNIT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PROFIT_PER_UNIT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PROFIT_PER_UNIT,
-            scale = COLUMN_SCALE_PROFIT_PER_UNIT
-    )
+    @Column(name = COLUMN_NAME_PROFIT_PER_UNIT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PROFIT_PER_UNIT, scale = COLUMN_SCALE_PROFIT_PER_UNIT)
     private BigDecimal profitPerUnit;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PROFITABILITY_RANK,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PROFITABILITY_RANK, nullable = true, insertable = false, updatable = false)
     private Long profitabilityRank;
 }
 

@@ -43,8 +43,6 @@ class PersonCreditCard_Persister
         final var creditCard = EntityPersisterUtils.newPersistedInstanceOf(entityManager, CreditCard.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setBusinessEntity(person);
-        entityInstance.setCreditCard(creditCard);
-        return super.apply(entityManager, entityInstance);
+        return super.apply(entityManager, PersonCreditCard.of(person, creditCard));
     }
 }

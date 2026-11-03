@@ -21,9 +21,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderDetail;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderDetailId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderHeader;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSpecialOfferProduct;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesOrderDetailId;
 import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,6 +33,11 @@ import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An entity which maps the {@code Sales.SalesOrderDetail} table.
@@ -63,7 +68,7 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-@IdClass(MappedSalesOrderDetailId.class)
+@IdClass(SalesOrderDetailId.class)
 public class SalesOrderDetail extends MappedSalesOrderDetail {
 
     /**
@@ -77,6 +82,22 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
      * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_PRODUCT = "specialOfferProduct";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code salesOrder}.
+     *
+     * @param salesOrder the {@code SalesOrderHeader} to reference.
+     * @return a new instance which references {@code salesOrder}.
+     * @throws NullPointerException if {@code salesOrder} is {@code null}.
+     */
+    public static SalesOrderDetail of(final SalesOrderHeader salesOrder) {
+        Objects.requireNonNull(salesOrder, "salesOrder is null");
+        final var instance = new SalesOrderDetail();
+        instance.setSalesOrder(salesOrder);
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -105,9 +126,9 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
      *
      * @param salesOrder the {@code SalesOrderHeader} to reference; {@code null} for none.
      */
-    public void setSalesOrder(final SalesOrderHeader salesOrder) {
+    private void setSalesOrder(final SalesOrderHeader salesOrder) {
         this.salesOrder = salesOrder;
-        setSalesOrderId(salesOrder == null ? null : salesOrder.getSalesOrderId());
+        setSalesOrderId(Optional.ofNullable(salesOrder).map(SalesOrderHeader::getSalesOrderId).orElse(null));
     }
 
     // ------------------------------------------------------------------------- specialOfferProduct
@@ -131,11 +152,13 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
      */
     public void setSpecialOfferProduct(final SpecialOfferProduct specialOfferProduct) {
         this.specialOfferProduct = specialOfferProduct;
-        setSpecialOfferId(specialOfferProduct == null ? null : specialOfferProduct.getSpecialOfferId());
-        setProductId(specialOfferProduct == null ? null : specialOfferProduct.getProductId());
+        setSpecialOfferId(Optional.ofNullable(specialOfferProduct).map(SpecialOfferProduct::getSpecialOfferId).orElse(null));
+        setProductId(Optional.ofNullable(specialOfferProduct).map(SpecialOfferProduct::getProductId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_SALES_ORDER_ID,
                 referencedColumnName = MappedSalesOrderHeader.COLUMN_NAME_SALES_ORDER_ID,
@@ -146,6 +169,8 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
     private SalesOrderHeader salesOrder;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = COLUMN_NAME_SPECIAL_OFFER_ID,

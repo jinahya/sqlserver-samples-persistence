@@ -640,66 +640,40 @@ public abstract class MappedItem {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_ITEM_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = true, updatable = false)
     private Integer itemId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE_ID, nullable = false, insertable = false, updatable = false)
     private Integer itemTypeId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_UNIT_ID, nullable = false, insertable = false, updatable = false)
     private Integer unitId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DESCRIPTION,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = true, insertable = true, updatable = true)
     private String description;
 
     // ---------------------------------------------------------------------------------------------
@@ -707,13 +681,7 @@ public abstract class MappedItem {
             fraction = COLUMN_SCALE_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STANDARD_COST,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_STANDARD_COST,
-            scale = COLUMN_SCALE_STANDARD_COST
-    )
+    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_STANDARD_COST, scale = COLUMN_SCALE_STANDARD_COST)
     @MsDefault("((0))")
     private BigDecimal standardCost;
 
@@ -721,34 +689,20 @@ public abstract class MappedItem {
     @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LIST_PRICE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_LIST_PRICE,
-            scale = COLUMN_SCALE_LIST_PRICE
-    )
+    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LIST_PRICE, scale = COLUMN_SCALE_LIST_PRICE)
     @MsDefault("((0))")
     private BigDecimal listPrice;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ACTIVE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_ACTIVE, nullable = false, insertable = true, updatable = true)
     @MsDefault("((1))")
     private Boolean isActive;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = true, updatable = true)
     @MsDefault("((0))")
     private Integer leadTimeDays;
 
@@ -756,46 +710,26 @@ public abstract class MappedItem {
     @Digits(integer = COLUMN_PRECISION_REORDER_POINT - COLUMN_SCALE_REORDER_POINT,
             fraction = COLUMN_SCALE_REORDER_POINT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REORDER_POINT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_REORDER_POINT,
-            scale = COLUMN_SCALE_REORDER_POINT
-    )
+    @Column(name = COLUMN_NAME_REORDER_POINT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_REORDER_POINT, scale = COLUMN_SCALE_REORDER_POINT)
     @MsDefault("((0))")
     private BigDecimal reorderPoint;
 
     // ---------------------------------------------------------------------------------------------
     @Digits(integer = COLUMN_PRECISION_SAFETY_STOCK - COLUMN_SCALE_SAFETY_STOCK, fraction = COLUMN_SCALE_SAFETY_STOCK)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SAFETY_STOCK,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_SAFETY_STOCK,
-            scale = COLUMN_SCALE_SAFETY_STOCK
-    )
+    @Column(name = COLUMN_NAME_SAFETY_STOCK, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_SAFETY_STOCK, scale = COLUMN_SCALE_SAFETY_STOCK)
     @MsDefault("((0))")
     private BigDecimal safetyStock;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = true, insertable = true, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 }

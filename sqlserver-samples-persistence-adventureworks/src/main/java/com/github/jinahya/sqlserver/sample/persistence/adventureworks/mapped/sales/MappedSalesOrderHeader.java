@@ -1184,15 +1184,6 @@ public abstract class MappedSalesOrderHeader {
         return rowguid;
     }
 
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
-     *
-     * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
-     */
-    public void setRowguid(final UUID rowguid) {
-        this.rowguid = rowguid;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -1218,11 +1209,7 @@ public abstract class MappedSalesOrderHeader {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_ORDER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID, value = "Primary key.")
     private Integer salesOrderId;
 
@@ -1231,11 +1218,7 @@ public abstract class MappedSalesOrderHeader {
     @Min(COLUMN_MIN_REVISION_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVISION_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_REVISION_NUMBER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REVISION_NUMBER,
                           value = "Incremental number to track changes to the sales order over "
                                   + "time.")
@@ -1245,11 +1228,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE,
                           value = "Dates the sales order was created.")
     @MsDefault(name = "DF_SalesOrderHeader_OrderDate", value = "(getdate())")
@@ -1258,22 +1237,14 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DUE_DATE,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DUE_DATE, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DUE_DATE,
                           value = "Date the order is due to the customer.")
     private LocalDateTime dueDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SHIP_DATE,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SHIP_DATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_DATE,
                           value = "Date the order was shipped to the customer.")
     private LocalDateTime shipDate;
@@ -1284,11 +1255,7 @@ public abstract class MappedSalesOrderHeader {
     @Min(COLUMN_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_STATUS,
                           value = "Order current status. 1 = In process; 2 = Approved; 3 = "
                                   + "Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled")
@@ -1298,11 +1265,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ONLINE_ORDER_FLAG,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_ONLINE_ORDER_FLAG, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ONLINE_ORDER_FLAG,
                           value = "0 = Order placed by sales person. 1 = Order placed online by "
                                   + "customer.")
@@ -1313,12 +1276,7 @@ public abstract class MappedSalesOrderHeader {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_SALES_ORDER_NUMBER)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_ORDER_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_SALES_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_SALES_ORDER_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SALES_ORDER_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_NUMBER,
                           value = "Unique sales order identification number.")
     @MsComputedColumn("(isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID]),N'*** ERROR ***'))")
@@ -1327,12 +1285,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_PURCHASE_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PURCHASE_ORDER_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_NUMBER,
                           value = "Customer purchase order number reference.")
     private String purchaseOrderNumber;
@@ -1340,12 +1293,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_ACCOUNT_NUMBER
-    )
+    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
                           value = "Financial accounting number reference.")
     private String accountNumber;
@@ -1354,11 +1302,7 @@ public abstract class MappedSalesOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
                           value = "Customer identification number. Foreign key to "
                                   + "Customer.BusinessEntityID.")
@@ -1367,11 +1311,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_PERSON_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_PERSON_ID,
                           value = "Sales person who created the sales order. Foreign key to "
                                   + "SalesPerson.BusinessEntityID.")
@@ -1380,11 +1320,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
                           value = "Territory in which the sale was made. Foreign key to "
                                   + "SalesTerritory.SalesTerritoryID.")
@@ -1394,11 +1330,7 @@ public abstract class MappedSalesOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BILL_TO_ADDRESS_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_BILL_TO_ADDRESS_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BILL_TO_ADDRESS_ID,
                           value = "Customer billing address. Foreign key to Address.AddressID.")
     private Integer billToAddressId;
@@ -1407,11 +1339,7 @@ public abstract class MappedSalesOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_TO_ADDRESS_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SHIP_TO_ADDRESS_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_TO_ADDRESS_ID,
                           value = "Customer shipping address. Foreign key to Address.AddressID.")
     private Integer shipToAddressId;
@@ -1420,11 +1348,7 @@ public abstract class MappedSalesOrderHeader {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_METHOD_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_METHOD_ID,
                           value = "Shipping method. Foreign key to ShipMethod.ShipMethodID.")
     private Integer shipMethodId;
@@ -1432,11 +1356,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREDIT_CARD_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CREDIT_CARD_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CREDIT_CARD_ID,
                           value = "Credit card identification number. Foreign key to "
                                   + "CreditCard.CreditCardID.")
@@ -1445,12 +1365,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CREDIT_CARD_APPROVAL_CODE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREDIT_CARD_APPROVAL_CODE,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_CREDIT_CARD_APPROVAL_CODE
-    )
+    @Column(name = COLUMN_NAME_CREDIT_CARD_APPROVAL_CODE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CREDIT_CARD_APPROVAL_CODE)
     @MsDescription.Column(name = COLUMN_NAME_CREDIT_CARD_APPROVAL_CODE,
                           value = "Approval code provided by the credit card company.")
     private String creditCardApprovalCode;
@@ -1458,11 +1373,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_CURRENCY_RATE_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
                           value = "Currency exchange rate used. Foreign key to "
                                   + "CurrencyRate.CurrencyRateID.")
@@ -1473,11 +1384,7 @@ public abstract class MappedSalesOrderHeader {
     @DecimalMin(COLUMN_MIN_SUB_TOTAL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUB_TOTAL,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_SUB_TOTAL, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SUB_TOTAL,
                           value = "Sales subtotal. Computed as "
                                   + "SUM(SalesOrderDetail.LineTotal)for the appropriate "
@@ -1490,11 +1397,7 @@ public abstract class MappedSalesOrderHeader {
     @DecimalMin(COLUMN_MIN_TAX_AMT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_AMT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_TAX_AMT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_TAX_AMT, value = "Tax amount.")
     @MsDefault(name = "DF_SalesOrderHeader_TaxAmt", value = "((0.00))")
     private BigDecimal taxAmt;
@@ -1504,11 +1407,7 @@ public abstract class MappedSalesOrderHeader {
     @DecimalMin(COLUMN_MIN_FREIGHT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FREIGHT,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_FREIGHT, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_FREIGHT, value = "Shipping cost.")
     @MsDefault(name = "DF_SalesOrderHeader_Freight", value = "((0.00))")
     private BigDecimal freight;
@@ -1516,11 +1415,7 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TOTAL_DUE,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_TOTAL_DUE, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TOTAL_DUE,
                           value = "Total due from customer. Computed as Subtotal + TaxAmt + "
                                   + "Freight.")
@@ -1530,23 +1425,14 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COMMENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENT,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_COMMENT
-    )
+    @Column(name = COLUMN_NAME_COMMENT, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COMMENT)
     @MsDescription.Column(name = COLUMN_NAME_COMMENT, value = "Sales representative comments.")
     private String comment;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Used to "
                                   + "support a merge replication sample.")
@@ -1557,11 +1443,7 @@ public abstract class MappedSalesOrderHeader {
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE,
-            nullable = false,
-            insertable = false,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesOrderHeader_ModifiedDate", value = "(getdate())")

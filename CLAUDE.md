@@ -15,28 +15,61 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   NULL with the driver's own `GEOGRAPHY` type, which the driver rejects), and the mysql and oracle projects keep both
   providers.
 - **Main holds mapped superclasses; the entities are test code.** Main is a package per schema,
-  `<database>.mapped.<schema>` (the schema in lower case): `Mapped<Entity>` per table and view and `Mapped<Entity>Id`
-  per composite key (an `@IdClass`).
+  `<database>.mapped.<schema>` (the schema in lower case): `Mapped<Entity>` per table and view and `<Entity>Id`
+  per composite key (an `@IdClass` or an `@Embeddable`, which no class extends, so it carries no `Mapped` prefix).
   No association, fetch type, cascade or named query in main. Each entity, its keyless class and its IT are in
   `<database>.<schema>`; the test bases and the exercises stay in `<database>`.
+- **A composite key is an `@IdClass` or an `@EmbeddedId`, by what it is made of**, and the mapped superclass fixes
+  which; the entity does not choose.
+  - `@EmbeddedId` with `@MapsId`, when every key column is a foreign key to another entity's `@Id` of the same Java
+    type (a link table): `ProductModelIllustration`, `ProductModelProductDescriptionCulture`, `ProductProductPhoto`,
+    `BusinessEntityContact`, `CountryRegionCurrency`, `PersonCreditCard`, `SalesOrderHeaderSalesReason`. The id class
+    is an `@Embeddable` which maps the key columns; the mapped superclass holds `@Valid @NotNull @EmbeddedId id`, a
+    `protected getId()` and no setter, `ATTRIBUTE_NAME_ID` and an `ATTRIBUTE_PATH_ID_<COLUMN>` per key column. The
+    entity puts `@MapsId(<Entity>Id.ATTRIBUTE_NAME_<COLUMN>)` on each association of the key, which writes its
+    column, and has no setter for them.
+  - `@IdClass` otherwise: a key with a value of the row's own (a date, a number, an `IDENTITY` column), a view, and
+    `BusinessEntityAddress`, `ProductInventory` (an `Integer` key column over `Location`'s `Short` id), `ProductVendor`
+    and `SpecialOfferProduct` (the book quotes both as `@IdClass`). The `@Id` attributes stay in the mapped
+    superclass: a key column which is a foreign key has a `protected` getter and setter; a value of the row's own a
+    `public` getter and a `protected` setter. `SpecialOfferProduct`'s key getters are `public`, since
+    `SalesOrderDetail` references the key with a composite foreign key.
+  - Either way, `equals` and `hashCode` are `final` and read the key through its getters, never the fields, so that a
+    Hibernate proxy, whose own fields are unset, answers; the getters are `protected` or `public`, never
+    package-private, since a proxy is a subclass in the entity's package. Where the key is assigned only on persist
+    (`@MapsId`, an `IDENTITY` column), `equals` holds only once every key attribute is assigned, and `hashCode` is the
+    same for every instance.
+  - The entity's `public static of(...)` takes the associations and values of the key, in key order, and sets them;
+    nothing else changes them. Its persister persists `of(...)`, and copies into it what the randomizer fills.
+  - The id class has `ATTRIBUTE_NAME_*` constants, `@NotNull` attributes and `final` `equals` and `hashCode` over
+    its getters, and a `<Entity>Id_Test` (a `_NonEntity_Test`: `toString`, EqualsVerifier and the accessors) with its
+    `<Entity>Id_Randomizer`, in `<database>.mapped.<schema>` of the tests.
+- **Every `@Column` and `@JoinColumn` names `nullable`, `insertable` and `updatable`**, even where they take their
+  default values.
+- **A read-only `rowguid` has no setter.** Every table's `rowguid` is filled by the database's `DEFAULT (newid())` and
+  never written; `Production.Document`'s, its `@Id`, and the views' keep theirs.
 - **Every entity name carries its schema**, with no exception: `@Entity(name = "<Schema><Entity>")`, the schema as
   the database spells it with its first letter in upper case (`SalesCustomer`, `HumanResourcesEmployee`, `DboItem`).
   A class is named after its table within its schema, never with a schema prefix; where one class uses two of the
   same simple name, the second is qualified.
 - **A foreign-key column is read-only in the mapped superclass** unless the column is part of the primary key or of
-  another foreign key; then the basic attribute writes it and the association is read-only. A column has exactly one
-  writable mapping.
+  another foreign key; then the basic attribute writes it and the association is read-only, except under an
+  `@EmbeddedId`, where the association writes it through `@MapsId`. A column has exactly one writable mapping.
 - **No H2, ITs only.** Each module has one persistence unit, `<database>-it`, on the database `compose.yaml` brings
   up. A test that needs the database is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`). `-common` has no
   persistence unit; its `*Test`s, run by surefire, test what needs no database (the `hierarchyid` and `geography`
-  codecs), and a database module's ITs test them against SQL Server.
+  codecs), and a database module's ITs test them against SQL Server. The other surefire tests are AdventureWorks'
+  `<Entity>Id_Test`s, of the id classes, which need no database either.
 - **Exercises are registered.** Each module's `EXERCISES.asciidoc` states every problem, and the `EXERCISES.yaml`
   beside it registers every id, `<DB>_<SCHEMA>_<TIER>_<NN>` (`AW`, `FUTON`, `WWI`), with its `sql` file and its
   `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused
   number of its schema and tier, and a removed one is marked `retired: true`, never reused. The id is the asciidoc
   anchor and heading prefix, and the marker above the statement in the `.sql` file.
 - **Test bases, one copy per module**: `___Persistence_TestUtils`, `_Entity_PersistenceIT`, `_Keyless_PersistenceIT`.
-  A fix to one is carried to the other two.
+  A fix to one is carried to the other two. `_Entity_PersistenceIT.attributePaths` resolves every `ATTRIBUTE_PATH_*`
+  constant of an entity through the metamodel. The unit-test bases of the id classes, `__Test`, `__Object_Test` and
+  `_NonEntity_Test` (from `oracle-sample-schemas-persistence`), are in AdventureWorks only, the one module with
+  composite keys, and run by surefire.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested
   types, constructors, `java.lang.Object`, accessors, then the private fields; markers padded with dashes to column
   100.

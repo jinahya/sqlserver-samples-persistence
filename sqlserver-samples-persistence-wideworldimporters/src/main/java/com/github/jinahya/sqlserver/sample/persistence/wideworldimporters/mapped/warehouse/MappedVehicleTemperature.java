@@ -418,11 +418,7 @@ public abstract class MappedVehicleTemperature {
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID,
                           value = "Instantaneous temperature readings for vehicle freezers and "
                                   + "chillers")
@@ -432,12 +428,7 @@ public abstract class MappedVehicleTemperature {
     @Size(max = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VEHICLE_REGISTRATION,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_VEHICLE_REGISTRATION
-    )
+    @Column(name = COLUMN_NAME_VEHICLE_REGISTRATION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_VEHICLE_REGISTRATION)
     @MsDescription.Column(name = COLUMN_NAME_VEHICLE_REGISTRATION,
                           value = "Vehicle registration number")
     private String vehicleRegistration;
@@ -445,11 +436,7 @@ public abstract class MappedVehicleTemperature {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER,
                           value = "Cold room sensor number")
     private Integer chillerSensorNumber;
@@ -457,11 +444,7 @@ public abstract class MappedVehicleTemperature {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECORDED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_RECORDED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_RECORDED_WHEN,
                           value = "Time when this temperature recording was taken")
     private LocalDateTime recordedWhen;
@@ -470,13 +453,7 @@ public abstract class MappedVehicleTemperature {
     @Digits(integer = COLUMN_PRECISION_TEMPERATURE - COLUMN_SCALE_TEMPERATURE, fraction = COLUMN_SCALE_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TEMPERATURE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            precision = COLUMN_PRECISION_TEMPERATURE,
-            scale = COLUMN_SCALE_TEMPERATURE
-    )
+    @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE)
     @MsDescription.Column(name = COLUMN_NAME_TEMPERATURE,
                           value = "Temperature at the time of recording")
     private BigDecimal temperature;
@@ -484,11 +461,7 @@ public abstract class MappedVehicleTemperature {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_COMPRESSED,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_IS_COMPRESSED, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_IS_COMPRESSED,
                           value = "Is the sensor data compressed for archival storage?")
     private Boolean isCompressed;
@@ -496,23 +469,14 @@ public abstract class MappedVehicleTemperature {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FULL_SENSOR_DATA)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FULL_SENSOR_DATA,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_FULL_SENSOR_DATA
-    )
+    @Column(name = COLUMN_NAME_FULL_SENSOR_DATA, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_FULL_SENSOR_DATA)
     @MsDescription.Column(name = COLUMN_NAME_FULL_SENSOR_DATA,
                           value = "Full JSON data received from sensor")
     private String fullSensorData;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMPRESSED_SENSOR_DATA,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_COMPRESSED_SENSOR_DATA, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COMPRESSED_SENSOR_DATA,
                           value = "Compressed JSON data for archival purposes")
     private byte[] compressedSensorData;

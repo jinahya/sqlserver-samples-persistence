@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import jakarta.persistence.EntityManager;
 
 /**
@@ -40,7 +41,8 @@ class SalesPersonQuotaHistory_Persister
     public SalesPersonQuotaHistory apply(final EntityManager entityManager,
                                          final SalesPersonQuotaHistory entityInstance) {
         final var salesPerson = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);
-        entityInstance.setBusinessEntity(salesPerson);
-        return super.apply(entityManager, entityInstance);
+        final var instance = SalesPersonQuotaHistory.of(salesPerson, __Random_TestUtils.dateTime());
+        instance.setSalesQuota(entityInstance.getSalesQuota());
+        return super.apply(entityManager, instance);
     }
 }

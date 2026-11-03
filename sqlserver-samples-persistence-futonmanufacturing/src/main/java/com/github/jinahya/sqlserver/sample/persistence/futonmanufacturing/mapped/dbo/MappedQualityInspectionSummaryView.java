@@ -574,31 +574,19 @@ public abstract class MappedQualityInspectionSummaryView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INSPECTION_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_INSPECTION_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate inspectionDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
@@ -606,12 +594,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Size(max = COLUMN_LENGTH_INSPECTION_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_INSPECTION_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_INSPECTION_TYPE
-    )
+    @Column(name = COLUMN_NAME_INSPECTION_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_INSPECTION_TYPE)
     private String inspectionType;
 
     // ---------------------------------------------------------------------------------------------
@@ -619,12 +602,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -632,12 +610,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -645,22 +618,13 @@ public abstract class MappedQualityInspectionSummaryView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_OF_INSPECTIONS,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_NUMBER_OF_INSPECTIONS, nullable = true, insertable = false, updatable = false)
     private Integer numberOfInspections;
 
     // ---------------------------------------------------------------------------------------------
@@ -668,13 +632,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_INSPECTED - COLUMN_SCALE_TOTAL_INSPECTED,
             fraction = COLUMN_SCALE_TOTAL_INSPECTED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_INSPECTED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_INSPECTED,
-            scale = COLUMN_SCALE_TOTAL_INSPECTED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_INSPECTED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_INSPECTED, scale = COLUMN_SCALE_TOTAL_INSPECTED)
     private BigDecimal totalInspected;
 
     // ---------------------------------------------------------------------------------------------
@@ -682,13 +640,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_ACCEPTED - COLUMN_SCALE_TOTAL_ACCEPTED,
             fraction = COLUMN_SCALE_TOTAL_ACCEPTED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_ACCEPTED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_ACCEPTED,
-            scale = COLUMN_SCALE_TOTAL_ACCEPTED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_ACCEPTED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_ACCEPTED, scale = COLUMN_SCALE_TOTAL_ACCEPTED)
     private BigDecimal totalAccepted;
 
     // ---------------------------------------------------------------------------------------------
@@ -696,13 +648,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_REJECTED - COLUMN_SCALE_TOTAL_REJECTED,
             fraction = COLUMN_SCALE_TOTAL_REJECTED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_REJECTED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_REJECTED,
-            scale = COLUMN_SCALE_TOTAL_REJECTED
-    )
+    @Column(name = COLUMN_NAME_TOTAL_REJECTED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REJECTED, scale = COLUMN_SCALE_TOTAL_REJECTED)
     private BigDecimal totalRejected;
 
     // ---------------------------------------------------------------------------------------------
@@ -710,13 +656,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Digits(integer = COLUMN_PRECISION_ACCEPTANCE_RATE - COLUMN_SCALE_ACCEPTANCE_RATE,
             fraction = COLUMN_SCALE_ACCEPTANCE_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACCEPTANCE_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_ACCEPTANCE_RATE,
-            scale = COLUMN_SCALE_ACCEPTANCE_RATE
-    )
+    @Column(name = COLUMN_NAME_ACCEPTANCE_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ACCEPTANCE_RATE, scale = COLUMN_SCALE_ACCEPTANCE_RATE)
     private BigDecimal acceptanceRate;
 
     // ---------------------------------------------------------------------------------------------
@@ -724,13 +664,7 @@ public abstract class MappedQualityInspectionSummaryView {
     @Digits(integer = COLUMN_PRECISION_REJECTION_RATE - COLUMN_SCALE_REJECTION_RATE,
             fraction = COLUMN_SCALE_REJECTION_RATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_REJECTION_RATE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_REJECTION_RATE,
-            scale = COLUMN_SCALE_REJECTION_RATE
-    )
+    @Column(name = COLUMN_NAME_REJECTION_RATE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_REJECTION_RATE, scale = COLUMN_SCALE_REJECTION_RATE)
     private BigDecimal rejectionRate;
 }
 

@@ -723,31 +723,19 @@ public abstract class MappedSalesReturnsAnalysisView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_RETURN_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_RETURN_ID, nullable = false, insertable = false, updatable = false)
     private Integer returnId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEAR,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MONTH,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
@@ -755,12 +743,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Size(max = COLUMN_LENGTH_REASON_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REASON_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_REASON_CODE
-    )
+    @Column(name = COLUMN_NAME_REASON_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_REASON_CODE)
     private String reasonCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -768,12 +751,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Size(max = COLUMN_LENGTH_REASON_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REASON_DESCRIPTION,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_REASON_DESCRIPTION
-    )
+    @Column(name = COLUMN_NAME_REASON_DESCRIPTION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_REASON_DESCRIPTION)
     private String reasonDescription;
 
     // ---------------------------------------------------------------------------------------------
@@ -781,24 +759,14 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_NAME
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_NAME)
     private String customerName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_CUSTOMER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_TYPE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CUSTOMER_TYPE
-    )
+    @Column(name = COLUMN_NAME_CUSTOMER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CUSTOMER_TYPE)
     private String customerType;
 
     // ---------------------------------------------------------------------------------------------
@@ -806,12 +774,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Size(max = COLUMN_LENGTH_CHANNEL_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANNEL_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_CHANNEL_NAME
-    )
+    @Column(name = COLUMN_NAME_CHANNEL_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CHANNEL_NAME)
     private String channelName;
 
     // ---------------------------------------------------------------------------------------------
@@ -819,13 +782,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_REFUNDS - COLUMN_SCALE_TOTAL_REFUNDS,
             fraction = COLUMN_SCALE_TOTAL_REFUNDS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_REFUNDS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_REFUNDS,
-            scale = COLUMN_SCALE_TOTAL_REFUNDS
-    )
+    @Column(name = COLUMN_NAME_TOTAL_REFUNDS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_REFUNDS, scale = COLUMN_SCALE_TOTAL_REFUNDS)
     private BigDecimal totalRefunds;
 
     // ---------------------------------------------------------------------------------------------
@@ -833,13 +790,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Digits(integer = COLUMN_PRECISION_AVG_REFUND_AMOUNT - COLUMN_SCALE_AVG_REFUND_AMOUNT,
             fraction = COLUMN_SCALE_AVG_REFUND_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_AVG_REFUND_AMOUNT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_AVG_REFUND_AMOUNT,
-            scale = COLUMN_SCALE_AVG_REFUND_AMOUNT
-    )
+    @Column(name = COLUMN_NAME_AVG_REFUND_AMOUNT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_AVG_REFUND_AMOUNT, scale = COLUMN_SCALE_AVG_REFUND_AMOUNT)
     private BigDecimal avgRefundAmount;
 
     // ---------------------------------------------------------------------------------------------
@@ -847,13 +798,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Digits(integer = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES - COLUMN_SCALE_TOTAL_RESTOCKING_FEES,
             fraction = COLUMN_SCALE_TOTAL_RESTOCKING_FEES)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_RESTOCKING_FEES,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES,
-            scale = COLUMN_SCALE_TOTAL_RESTOCKING_FEES
-    )
+    @Column(name = COLUMN_NAME_TOTAL_RESTOCKING_FEES, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_TOTAL_RESTOCKING_FEES, scale = COLUMN_SCALE_TOTAL_RESTOCKING_FEES)
     private BigDecimal totalRestockingFees;
 
     // ---------------------------------------------------------------------------------------------
@@ -861,12 +806,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -874,12 +814,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -887,25 +822,14 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Digits(integer = COLUMN_PRECISION_UNITS_RETURNED - COLUMN_SCALE_UNITS_RETURNED,
             fraction = COLUMN_SCALE_UNITS_RETURNED)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNITS_RETURNED,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_UNITS_RETURNED,
-            scale = COLUMN_SCALE_UNITS_RETURNED
-    )
+    @Column(name = COLUMN_NAME_UNITS_RETURNED, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_UNITS_RETURNED, scale = COLUMN_SCALE_UNITS_RETURNED)
     private BigDecimal unitsReturned;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DISPOSITION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISPOSITION,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DISPOSITION
-    )
+    @Column(name = COLUMN_NAME_DISPOSITION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_DISPOSITION)
     private String disposition;
 
     // ---------------------------------------------------------------------------------------------
@@ -913,13 +837,7 @@ public abstract class MappedSalesReturnsAnalysisView {
     @Digits(integer = COLUMN_PRECISION_RETURN_RATE_PERCENT - COLUMN_SCALE_RETURN_RATE_PERCENT,
             fraction = COLUMN_SCALE_RETURN_RATE_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RETURN_RATE_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_RETURN_RATE_PERCENT,
-            scale = COLUMN_SCALE_RETURN_RATE_PERCENT
-    )
+    @Column(name = COLUMN_NAME_RETURN_RATE_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_RETURN_RATE_PERCENT, scale = COLUMN_SCALE_RETURN_RATE_PERCENT)
     private BigDecimal returnRatePercent;
 }
 

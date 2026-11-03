@@ -512,12 +512,7 @@ public abstract class MappedCostRollUpView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -525,12 +520,7 @@ public abstract class MappedCostRollUpView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -538,12 +528,7 @@ public abstract class MappedCostRollUpView {
     @Size(max = COLUMN_LENGTH_ITEM_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_TYPE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_TYPE
-    )
+    @Column(name = COLUMN_NAME_ITEM_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_TYPE)
     private String itemType;
 
     // ---------------------------------------------------------------------------------------------
@@ -552,13 +537,7 @@ public abstract class MappedCostRollUpView {
             fraction = COLUMN_SCALE_CURRENT_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CURRENT_STANDARD_COST,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_CURRENT_STANDARD_COST,
-            scale = COLUMN_SCALE_CURRENT_STANDARD_COST
-    )
+    @Column(name = COLUMN_NAME_CURRENT_STANDARD_COST, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_CURRENT_STANDARD_COST, scale = COLUMN_SCALE_CURRENT_STANDARD_COST)
     private BigDecimal currentStandardCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -567,13 +546,7 @@ public abstract class MappedCostRollUpView {
             fraction = COLUMN_SCALE_CALCULATED_MATERIAL_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CALCULATED_MATERIAL_COST,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_CALCULATED_MATERIAL_COST,
-            scale = COLUMN_SCALE_CALCULATED_MATERIAL_COST
-    )
+    @Column(name = COLUMN_NAME_CALCULATED_MATERIAL_COST, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_CALCULATED_MATERIAL_COST, scale = COLUMN_SCALE_CALCULATED_MATERIAL_COST)
     private BigDecimal calculatedMaterialCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -581,24 +554,14 @@ public abstract class MappedCostRollUpView {
     @Digits(integer = COLUMN_PRECISION_LABOR_AND_OVERHEAD - COLUMN_SCALE_LABOR_AND_OVERHEAD,
             fraction = COLUMN_SCALE_LABOR_AND_OVERHEAD)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LABOR_AND_OVERHEAD,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_LABOR_AND_OVERHEAD,
-            scale = COLUMN_SCALE_LABOR_AND_OVERHEAD
-    )
+    @Column(name = COLUMN_NAME_LABOR_AND_OVERHEAD, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_LABOR_AND_OVERHEAD, scale = COLUMN_SCALE_LABOR_AND_OVERHEAD)
     private BigDecimal laborAndOverhead;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COMPONENT_COUNT,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COMPONENT_COUNT, nullable = false, insertable = false, updatable = false)
     private Integer componentCount;
 
     // ---------------------------------------------------------------------------------------------
@@ -606,26 +569,14 @@ public abstract class MappedCostRollUpView {
     @Digits(integer = COLUMN_PRECISION_LIST_PRICE - COLUMN_SCALE_LIST_PRICE, fraction = COLUMN_SCALE_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LIST_PRICE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_LIST_PRICE,
-            scale = COLUMN_SCALE_LIST_PRICE
-    )
+    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_LIST_PRICE, scale = COLUMN_SCALE_LIST_PRICE)
     private BigDecimal listPrice;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Digits(integer = COLUMN_PRECISION_GROSS_PROFIT - COLUMN_SCALE_GROSS_PROFIT, fraction = COLUMN_SCALE_GROSS_PROFIT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_PROFIT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_PROFIT,
-            scale = COLUMN_SCALE_GROSS_PROFIT
-    )
+    @Column(name = COLUMN_NAME_GROSS_PROFIT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_PROFIT, scale = COLUMN_SCALE_GROSS_PROFIT)
     private BigDecimal grossProfit;
 
     // ---------------------------------------------------------------------------------------------
@@ -633,13 +584,7 @@ public abstract class MappedCostRollUpView {
     @Digits(integer = COLUMN_PRECISION_GROSS_MARGIN_PERCENT - COLUMN_SCALE_GROSS_MARGIN_PERCENT,
             fraction = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT,
-            scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT
-    )
+    @Column(name = COLUMN_NAME_GROSS_MARGIN_PERCENT, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_GROSS_MARGIN_PERCENT, scale = COLUMN_SCALE_GROSS_MARGIN_PERCENT)
     private BigDecimal grossMarginPercent;
 }
 

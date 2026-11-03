@@ -45,9 +45,15 @@ class ProductVendor_Persister
         final var unitMeasure = EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        entityInstance.setProduct(product);
-        entityInstance.setBusinessEntity(vendor);
-        entityInstance.setUnitMeasure(unitMeasure);
-        return super.apply(entityManager, entityInstance);
+        final var instance = ProductVendor.of(product, vendor);
+        instance.setUnitMeasure(unitMeasure);
+        instance.setAverageLeadTime(entityInstance.getAverageLeadTime());
+        instance.setStandardPrice(entityInstance.getStandardPrice());
+        instance.setLastReceiptCost(entityInstance.getLastReceiptCost());
+        instance.setLastReceiptDate(entityInstance.getLastReceiptDate());
+        instance.setMinOrderQty(entityInstance.getMinOrderQty());
+        instance.setMaxOrderQty(entityInstance.getMaxOrderQty());
+        instance.setOnOrderQty(entityInstance.getOnOrderQty());
+        return super.apply(entityManager, instance);
     }
 }

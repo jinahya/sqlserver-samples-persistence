@@ -631,11 +631,7 @@ public abstract class MappedSystemParameter {
                        sequenceName = "SystemParameterID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.SystemParameterID")
-    @Column(name = COLUMN_NAME_SYSTEM_PARAMETER_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SYSTEM_PARAMETER_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SYSTEM_PARAMETER_ID,
                           value = "Numeric ID used for row holding system parameters")
     @MsDefault(name = "DF_Application_SystemParameters_SystemParameterID",
@@ -646,12 +642,7 @@ public abstract class MappedSystemParameter {
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
                           value = "First address line for the company")
     private String deliveryAddressLine1;
@@ -659,12 +650,7 @@ public abstract class MappedSystemParameter {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
                           value = "Second address line for the company")
     private String deliveryAddressLine2;
@@ -673,11 +659,7 @@ public abstract class MappedSystemParameter {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
                           value = "ID of the city for this address")
     private Integer deliveryCityId;
@@ -686,12 +668,7 @@ public abstract class MappedSystemParameter {
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
                           value = "Postal code for the company")
     private String deliveryPostalCode;
@@ -700,11 +677,7 @@ public abstract class MappedSystemParameter {
     @NotNull
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_LOCATION,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_DELIVERY_LOCATION, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DELIVERY_LOCATION,
                           value = "Geographic location for the company office")
     private Geography deliveryLocation;
@@ -713,12 +686,7 @@ public abstract class MappedSystemParameter {
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1
-    )
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
                           value = "First postal address line for the company")
     private String postalAddressLine1;
@@ -726,12 +694,7 @@ public abstract class MappedSystemParameter {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
-            nullable = true,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2
-    )
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
                           value = "Second postaladdress line for the company")
     private String postalAddressLine2;
@@ -740,11 +703,7 @@ public abstract class MappedSystemParameter {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CITY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_CITY_ID,
                           value = "ID of the city for this postaladdress")
     private Integer postalCityId;
@@ -753,12 +712,7 @@ public abstract class MappedSystemParameter {
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_POSTAL_POSTAL_CODE
-    )
+    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @MsDescription.Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
                           value = "Postal code for the company when sending via mail")
     private String postalPostalCode;
@@ -766,11 +720,7 @@ public abstract class MappedSystemParameter {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_APPLICATION_SETTINGS,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_APPLICATION_SETTINGS, nullable = false, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_APPLICATION_SETTINGS,
                           value = "JSON-structured application settings")
     private String applicationSettings;
@@ -779,21 +729,13 @@ public abstract class MappedSystemParameter {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN,
-            nullable = false,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
     @MsDefault(name = "DF_Application_SystemParameters_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

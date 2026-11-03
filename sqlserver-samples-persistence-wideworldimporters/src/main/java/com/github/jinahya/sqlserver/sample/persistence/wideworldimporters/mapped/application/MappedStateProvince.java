@@ -513,11 +513,7 @@ public abstract class MappedStateProvince {
                        sequenceName = "StateProvinceID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.StateProvinceID")
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-            nullable = false,
-            insertable = true,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
                           value = "Numeric ID used for reference to a state or province within "
                                   + "the database")
@@ -529,12 +525,7 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATE_PROVINCE_CODE
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
                           value = "Common code for this state or province (such as WA - "
                                   + "Washington for the USA)")
@@ -544,12 +535,7 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_STATE_PROVINCE_NAME
-    )
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
                           value = "Formal name of the state or province")
     private String stateProvinceName;
@@ -558,11 +544,7 @@ public abstract class MappedStateProvince {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_ID,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_COUNTRY_ID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COUNTRY_ID, value = "Country for this StateProvince")
     private Integer countryId;
 
@@ -570,12 +552,7 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_TERRITORY,
-            nullable = false,
-            insertable = true,
-            updatable = true,
-            length = COLUMN_LENGTH_SALES_TERRITORY
-    )
+    @Column(name = COLUMN_NAME_SALES_TERRITORY, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SALES_TERRITORY)
     @MsDescription.Column(name = COLUMN_NAME_SALES_TERRITORY,
                           value = "Sales territory for this StateProvince")
     private String salesTerritory;
@@ -583,22 +560,14 @@ public abstract class MappedStateProvince {
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BORDER,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_BORDER, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_BORDER,
                           value = "Geographic boundary of the state or province")
     private Geography border;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
-            nullable = true,
-            insertable = true,
-            updatable = true
-    )
+    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
                           value = "Latest available population for the StateProvince")
     private Long latestRecordedPopulation;
@@ -607,33 +576,21 @@ public abstract class MappedStateProvince {
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_BY,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_FROM,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_FROM, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validFrom;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a GENERATED ALWAYS period column; SQL Server sets it, and rejects a value for it in an INSERT
     // (error 13536) or an UPDATE (error 13537)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VALID_TO,
-            nullable = false,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_VALID_TO, nullable = false, insertable = false, updatable = false)
     private LocalDateTime validTo;
 }
 

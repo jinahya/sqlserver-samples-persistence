@@ -24,21 +24,27 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pro
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductDescription;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductModel;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductModelProductDescriptionCulture;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductModelProductDescriptionCultureId;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductModelProductDescriptionCultureId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
 
 /**
  * An entity which maps the {@code Production.ProductModelProductDescriptionCulture} table.
+ * <p>
+ * Each attribute of the embedded {@link ProductModelProductDescriptionCultureId} is derived, with {@link MapsId @MapsId}, from the association
+ * which references the same column.
  */
 @Entity(name = "ProductionProductModelProductDescriptionCulture")
 @Table(schema = MappedProductModelProductDescriptionCulture.TABLE_SCHEMA,
        name = MappedProductModelProductDescriptionCulture.TABLE_NAME)
-@IdClass(MappedProductModelProductDescriptionCultureId.class)
 public class ProductModelProductDescriptionCulture extends MappedProductModelProductDescriptionCulture {
 
     /**
@@ -59,6 +65,30 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
      * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL = "productModel";
+
+    // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
+
+    /**
+     * Creates a new instance which references {@code productModel}, {@code productDescription} and {@code culture}.
+     *
+     * @param productModel       the {@code ProductModel} to reference.
+     * @param productDescription the {@code ProductDescription} to reference.
+     * @param culture            the {@code Culture} to reference.
+     * @return a new instance which references {@code productModel}, {@code productDescription} and {@code culture}.
+     * @throws NullPointerException if any of the arguments is {@code null}.
+     */
+    public static ProductModelProductDescriptionCulture of(final ProductModel productModel,
+                                                           final ProductDescription productDescription,
+                                                           final Culture culture) {
+        Objects.requireNonNull(productModel, "productModel is null");
+        Objects.requireNonNull(productDescription, "productDescription is null");
+        Objects.requireNonNull(culture, "culture is null");
+        final var instance = new ProductModelProductDescriptionCulture();
+        instance.productModel = productModel;
+        instance.productDescription = productDescription;
+        instance.culture = culture;
+        return instance;
+    }
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -81,18 +111,6 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
         return productDescription;
     }
 
-    /**
-     * Replaces the {@code ProductDescription} which the
-     * {@code FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID} foreign key references,
-     * and the value of the column it consists of.
-     *
-     * @param productDescription the {@code ProductDescription} to reference; {@code null} for none.
-     */
-    public void setProductDescription(final ProductDescription productDescription) {
-        this.productDescription = productDescription;
-        setProductDescriptionId(productDescription == null ? null : productDescription.getProductDescriptionId());
-    }
-
     // ------------------------------------------------------------------------------------- culture
 
     /**
@@ -103,17 +121,6 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
      */
     public Culture getCulture() {
         return culture;
-    }
-
-    /**
-     * Replaces the {@code Culture} which the {@code FK_ProductModelProductDescriptionCulture_Culture_CultureID} foreign
-     * key references, and the value of the column it consists of.
-     *
-     * @param culture the {@code Culture} to reference; {@code null} for none.
-     */
-    public void setCulture(final Culture culture) {
-        this.culture = culture;
-        setCultureId(culture == null ? null : culture.getCultureId());
     }
 
     // -------------------------------------------------------------------------------- productModel
@@ -128,44 +135,41 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
         return productModel;
     }
 
-    /**
-     * Replaces the {@code ProductModel} which the
-     * {@code FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID} foreign key references, and the
-     * value of the column it consists of.
-     *
-     * @param productModel the {@code ProductModel} to reference; {@code null} for none.
-     */
-    public void setProductModel(final ProductModel productModel) {
-        this.productModel = productModel;
-        setProductModelId(productModel == null ? null : productModel.getProductModelId());
-    }
-
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(ProductModelProductDescriptionCultureId.ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
                 referencedColumnName = MappedProductDescription.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private ProductDescription productDescription;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(ProductModelProductDescriptionCultureId.ATTRIBUTE_NAME_CULTURE_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_CULTURE_ID,
                 referencedColumnName = MappedCulture.COLUMN_NAME_CULTURE_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private Culture culture;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @MapsId(ProductModelProductDescriptionCultureId.ATTRIBUTE_NAME_PRODUCT_MODEL_ID)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_MODEL_ID,
                 referencedColumnName = MappedProductModel.COLUMN_NAME_PRODUCT_MODEL_ID,
                 nullable = false,
-                insertable = false,
+                insertable = true,
                 updatable = false
     )
     private ProductModel productModel;

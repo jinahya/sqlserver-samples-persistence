@@ -535,35 +535,21 @@ public abstract class MappedDailyProductionScheduleView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCHEDULED_DATE,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_SCHEDULED_DATE, nullable = true, insertable = false, updatable = false)
     private LocalDate scheduledDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_DAY_OF_WEEK)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DAY_OF_WEEK,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_DAY_OF_WEEK
-    )
+    @Column(name = COLUMN_NAME_DAY_OF_WEEK, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_DAY_OF_WEEK)
     private String dayOfWeek;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_WORK_CENTER_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORK_CENTER_NAME,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_CENTER_NAME
-    )
+    @Column(name = COLUMN_NAME_WORK_CENTER_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_CENTER_NAME)
     private String workCenterName;
 
     // ---------------------------------------------------------------------------------------------
@@ -571,12 +557,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Size(max = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_WORK_ORDER_NUMBER
-    )
+    @Column(name = COLUMN_NAME_WORK_ORDER_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_WORK_ORDER_NUMBER)
     private String workOrderNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -584,12 +565,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Size(max = COLUMN_LENGTH_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_STATUS
-    )
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATUS)
     private String status;
 
     // ---------------------------------------------------------------------------------------------
@@ -597,12 +573,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Size(max = COLUMN_LENGTH_ITEM_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_CODE,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_CODE
-    )
+    @Column(name = COLUMN_NAME_ITEM_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_CODE)
     private String itemCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -610,12 +581,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Size(max = COLUMN_LENGTH_ITEM_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ITEM_NAME,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_ITEM_NAME
-    )
+    @Column(name = COLUMN_NAME_ITEM_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ITEM_NAME)
     private String itemName;
 
     // ---------------------------------------------------------------------------------------------
@@ -623,23 +589,13 @@ public abstract class MappedDailyProductionScheduleView {
     @Digits(integer = COLUMN_PRECISION_QUANTITY_TO_PRODUCE - COLUMN_SCALE_QUANTITY_TO_PRODUCE,
             fraction = COLUMN_SCALE_QUANTITY_TO_PRODUCE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_QUANTITY_TO_PRODUCE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_QUANTITY_TO_PRODUCE,
-            scale = COLUMN_SCALE_QUANTITY_TO_PRODUCE
-    )
+    @Column(name = COLUMN_NAME_QUANTITY_TO_PRODUCE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_QUANTITY_TO_PRODUCE, scale = COLUMN_SCALE_QUANTITY_TO_PRODUCE)
     private BigDecimal quantityToProduce;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRIORITY,
-            nullable = true,
-            insertable = false,
-            updatable = false
-    )
+    @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = false, updatable = false)
     private Integer priority;
 
     // ---------------------------------------------------------------------------------------------
@@ -647,13 +603,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Digits(integer = COLUMN_PRECISION_ESTIMATED_DAYS - COLUMN_SCALE_ESTIMATED_DAYS,
             fraction = COLUMN_SCALE_ESTIMATED_DAYS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ESTIMATED_DAYS,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_ESTIMATED_DAYS,
-            scale = COLUMN_SCALE_ESTIMATED_DAYS
-    )
+    @Column(name = COLUMN_NAME_ESTIMATED_DAYS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_ESTIMATED_DAYS, scale = COLUMN_SCALE_ESTIMATED_DAYS)
     private BigDecimal estimatedDays;
 
     // ---------------------------------------------------------------------------------------------
@@ -661,13 +611,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Digits(integer = COLUMN_PRECISION_PRODUCTION_VALUE - COLUMN_SCALE_PRODUCTION_VALUE,
             fraction = COLUMN_SCALE_PRODUCTION_VALUE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCTION_VALUE,
-            nullable = true,
-            insertable = false,
-            updatable = false,
-            precision = COLUMN_PRECISION_PRODUCTION_VALUE,
-            scale = COLUMN_SCALE_PRODUCTION_VALUE
-    )
+    @Column(name = COLUMN_NAME_PRODUCTION_VALUE, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_PRODUCTION_VALUE, scale = COLUMN_SCALE_PRODUCTION_VALUE)
     private BigDecimal productionValue;
 
     // ---------------------------------------------------------------------------------------------
@@ -675,12 +619,7 @@ public abstract class MappedDailyProductionScheduleView {
     @Size(max = COLUMN_LENGTH_PRODUCTION_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCTION_STATUS,
-            nullable = false,
-            insertable = false,
-            updatable = false,
-            length = COLUMN_LENGTH_PRODUCTION_STATUS
-    )
+    @Column(name = COLUMN_NAME_PRODUCTION_STATUS, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_PRODUCTION_STATUS)
     private String productionStatus;
 }
 
