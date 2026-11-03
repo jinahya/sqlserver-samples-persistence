@@ -27,6 +27,21 @@
 --
 
 
+-- ---------------------------------------------------------------------------------------------------- tables and views
+-- the tables and the views of each schema, and of the database, the last row; 71 tables and 20 views, 91 in all.
+-- Tables/views by schema: dbo 3/0, HumanResources 6/6, Person 13/2, Production 25/3, Purchasing 5/2, Sales 19/7.
+SELECT COALESCE(SCHEMA_NAME(o.schema_id), '(all)') AS [schema],
+       SUM(IIF(o.type = 'U', 1, 0))                AS tables,
+       SUM(IIF(o.type = 'V', 1, 0))                AS views,
+       COUNT(*)                                    AS total
+FROM sys.objects o
+WHERE o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+GROUP BY ROLLUP (o.schema_id)
+ORDER BY GROUPING(o.schema_id) ASC, [schema] ASC
+;
+
+
 -- --------------------------------------------------------------------------------------------------------- alias types
 -- An alias type belongs to a database, and in it to a schema; columns of any schema in the same database can use it.
 -- sys.types gives max_length in bytes, so an nvarchar alias holds half as many characters.
@@ -102,3 +117,4 @@ WHERE c.system_type_id = TYPE_ID('varbinary')
 ;
 EXEC sp_executesql @varbinary_sql
 ;
+

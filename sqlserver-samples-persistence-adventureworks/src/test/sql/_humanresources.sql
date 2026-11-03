@@ -27,6 +27,28 @@
 --
 
 
+-- ---------------------------------------------------------------------------------------------------- tables and views
+-- the tables and the views of the schema; 6 tables and 6 views, 12 in all.
+SELECT SUM(IIF(o.type = 'U', 1, 0)) AS tables,
+       SUM(IIF(o.type = 'V', 1, 0)) AS views,
+       COUNT(*)                     AS total
+FROM sys.objects o
+WHERE o.schema_id = SCHEMA_ID('HumanResources')
+  AND o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+;
+
+-- each of them, the tables first.
+SELECT IIF(o.type = 'U', 'table', 'view') AS kind,
+       o.name
+FROM sys.objects o
+WHERE o.schema_id = SCHEMA_ID('HumanResources')
+  AND o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+ORDER BY o.type ASC, o.name ASC
+;
+
+
 -- --------------------------------------------------------------------------------------------------------- alias types
 -- the columns of the schema's tables and views which use an alias type, and the base type each maps as; 23 columns,
 -- all of the dbo types: 5 in 3 tables (Department.Name and GroupName, and Shift.Name, dbo.Name; Employee.SalariedFlag
