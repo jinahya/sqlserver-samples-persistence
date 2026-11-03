@@ -49,7 +49,7 @@ class Culture_Randomizer
     @Override
     public Culture get() {
         final var instance = super.get();
-        instance.setCultureId(__Random_TestUtils.code(Culture.COLUMN_LENGTH_CULTURE_ID));
+        instance.setCultureId(__Random_TestUtils.distinctCode(Culture.COLUMN_LENGTH_CULTURE_ID));
         return instance;
     }
 }

@@ -49,7 +49,7 @@ class Currency_Randomizer
     @Override
     public Currency get() {
         final var instance = super.get();
-        instance.setCurrencyCode(__Random_TestUtils.code(Currency.COLUMN_LENGTH_CURRENCY_CODE));
+        instance.setCurrencyCode(__Random_TestUtils.distinctCode(Currency.COLUMN_LENGTH_CURRENCY_CODE));
         return instance;
     }
 }

@@ -205,9 +205,9 @@ that its public constructor takes them all.
 
 | Module | Entity and keyless ITs | Exercise ITs | Skipped |
 |---|---|---|---|
-| adventureworks | 582 | 42 | 57 |
-| futonmanufacturing | 344 | 28 | 58 |
-| wideworldimporters | 252 | 31 | 9 |
+| adventureworks | 419 | 42 | 56 |
+| futonmanufacturing | 244 | 28 | 54 |
+| wideworldimporters | 184 | 31 | 9 |
 
 Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
 Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.

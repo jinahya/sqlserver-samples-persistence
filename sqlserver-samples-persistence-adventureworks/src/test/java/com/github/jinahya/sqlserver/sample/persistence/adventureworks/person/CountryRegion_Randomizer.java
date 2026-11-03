@@ -50,7 +50,7 @@ class CountryRegion_Randomizer
     public CountryRegion get() {
         final var instance = super.get();
         instance.setCountryRegionCode(
-                __Random_TestUtils.code(CountryRegion.COLUMN_LENGTH_COUNTRY_REGION_CODE));
+                __Random_TestUtils.distinctCode(CountryRegion.COLUMN_LENGTH_COUNTRY_REGION_CODE));
         return instance;
     }
 }

@@ -25,7 +25,6 @@ import com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.metamodel.Attribute;
-import jakarta.persistence.metamodel.EntityType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -70,21 +69,17 @@ public abstract class _Entity_PersistenceIT<T> {
         return entityManager.createQuery(query).setMaxResults(MAX_RESULTS).getResultList();
     }
 
-    private EntityType<T> entityType() {
-        return ___PersistenceIT_Utils.entityManagerFactory().getMetamodel().entity(entityClass);
-    }
-
     // ---------------------------------------------------------------------------------------------
     @DisplayName("every association of the installed rows is loaded")
     @Test
     void associations() {
-        final var associations = entityType().getSingularAttributes().stream()
-                .filter(Attribute::isAssociation)
-                .map(a -> (Field) a.getJavaMember())
-                .toList();
-        assumeFalse(associations.isEmpty(),
-                    () -> entityClass.getSimpleName() + " maps no association");
         ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var associations = em.getMetamodel().entity(entityClass).getSingularAttributes().stream()
+                    .filter(Attribute::isAssociation)
+                    .map(a -> (Field) a.getJavaMember())
+                    .toList();
+            assumeFalse(associations.isEmpty(),
+                        () -> entityClass.getSimpleName() + " maps no association");
             final var util = em.getEntityManagerFactory().getPersistenceUnitUtil();
             var referenced = 0;
             for (final var instance : select(em)) {
