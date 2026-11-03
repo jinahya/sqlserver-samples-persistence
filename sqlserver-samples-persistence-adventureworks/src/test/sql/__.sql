@@ -42,7 +42,8 @@ SELECT SCHEMA_NAME(t.schema_id) AS [schema],
        t.scale,
        t.is_nullable
 FROM sys.types t
-         JOIN sys.types b ON b.user_type_id = t.system_type_id
+    JOIN sys.types b
+ON b.user_type_id = t.system_type_id
 WHERE t.is_user_defined = 1
   AND t.is_table_type = 0
 ORDER BY [schema] ASC, t.name ASC
@@ -68,7 +69,7 @@ FROM sys.types t
 WHERE t.is_user_defined = 1
   AND t.is_table_type = 0
   AND NOT EXISTS (SELECT 1
-                  FROM sys.columns c
-                  WHERE c.user_type_id = t.user_type_id)
+    FROM sys.columns c
+    WHERE c.user_type_id = t.user_type_id)
 ;
 

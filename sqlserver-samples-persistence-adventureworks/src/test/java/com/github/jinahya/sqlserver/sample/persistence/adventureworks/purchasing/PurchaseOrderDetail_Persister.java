@@ -38,9 +38,12 @@ class PurchaseOrderDetail_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public PurchaseOrderDetail apply(final EntityManager entityManager, final PurchaseOrderDetail entityInstance) {
-        final var purchaseOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, PurchaseOrderHeader.class);
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+    public PurchaseOrderDetail apply(final EntityManager entityManager,
+                                     final PurchaseOrderDetail entityInstance) {
+        final var purchaseOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager,
+                                                                              PurchaseOrderHeader.class);
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = PurchaseOrderDetail.of(purchaseOrder);

@@ -20,14 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link SpecialOffer}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link SpecialOffer}; the generated identifier and what SQL Server fills are
+ * left out.
  */
 class SpecialOffer_Randomizer
         extends PodamObjectRandomizer<SpecialOffer> {
@@ -53,11 +54,13 @@ class SpecialOffer_Randomizer
         // DiscountPct, a smallmoney, is >= 0; EndDate >= StartDate; MaxQty, when any, >= MinQty
         instance.setDiscountPct(__Random_TestUtils.positive(0, 4));
         instance.setStartDate(__Random_TestUtils.dateTime());
-        instance.setEndDate(instance.getStartDate().plusDays(ThreadLocalRandom.current().nextLong(366L)));
+        instance.setEndDate(
+                instance.getStartDate().plusDays(ThreadLocalRandom.current().nextLong(366L)));
         instance.setMinQty(ThreadLocalRandom.current().nextInt(100));
         instance.setMaxQty(ThreadLocalRandom.current().nextBoolean()
-                           ? null
-                           : instance.getMinQty() + ThreadLocalRandom.current().nextInt(100));
+                                   ? null
+                                   :
+                                   instance.getMinQty() + ThreadLocalRandom.current().nextInt(100));
         return instance;
     }
 }

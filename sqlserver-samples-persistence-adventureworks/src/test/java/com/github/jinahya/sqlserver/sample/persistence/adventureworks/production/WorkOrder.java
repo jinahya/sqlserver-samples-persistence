@@ -51,16 +51,18 @@ import jakarta.persistence.Table;
                )
        }
 )
-public class WorkOrder extends MappedWorkOrder {
+public class WorkOrder
+        extends MappedWorkOrder {
 
     /**
-     * The name of the attribute of the {@code FK_WorkOrder_Product_ProductID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_WorkOrder_Product_ProductID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
     /**
-     * The name of the attribute of the {@code FK_WorkOrder_ScrapReason_ScrapReasonID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_WorkOrder_ScrapReason_ScrapReasonID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCRAP_REASON = "scrapReason";
 
@@ -76,7 +78,8 @@ public class WorkOrder extends MappedWorkOrder {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_WorkOrder_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_WorkOrder_Product_ProductID} foreign key
+     * references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -85,8 +88,8 @@ public class WorkOrder extends MappedWorkOrder {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_WorkOrder_Product_ProductID} foreign key references, and the
-     * value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_WorkOrder_Product_ProductID} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
@@ -98,7 +101,8 @@ public class WorkOrder extends MappedWorkOrder {
     // --------------------------------------------------------------------------------- scrapReason
 
     /**
-     * Returns the {@code ScrapReason} which the {@code FK_WorkOrder_ScrapReason_ScrapReasonID} foreign key references.
+     * Returns the {@code ScrapReason} which the {@code FK_WorkOrder_ScrapReason_ScrapReasonID}
+     * foreign key references.
      *
      * @return the {@code ScrapReason} referenced; {@code null} when none is.
      */
@@ -107,15 +111,15 @@ public class WorkOrder extends MappedWorkOrder {
     }
 
     /**
-     * Replaces the {@code ScrapReason} which the {@code FK_WorkOrder_ScrapReason_ScrapReasonID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code ScrapReason} which the {@code FK_WorkOrder_ScrapReason_ScrapReasonID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param scrapReason the {@code ScrapReason} to reference; {@code null} for none.
      */
     public void setScrapReason(final ScrapReason scrapReason) {
         this.scrapReason = scrapReason;
         setScrapReasonId(scrapReason == null || scrapReason.getScrapReasonId() == null
-                         ? null : scrapReason.getScrapReasonId().intValue());
+                                 ? null : scrapReason.getScrapReasonId().intValue());
     }
 
     // ---------------------------------------------------------------------------------------------

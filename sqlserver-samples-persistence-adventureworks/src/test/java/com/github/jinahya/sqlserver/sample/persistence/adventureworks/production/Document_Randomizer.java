@@ -29,8 +29,8 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link Document}; the node and the identifier, which Podam can not build, the owner, which the
- * persister sets, and what SQL Server fills or derives are left out.
+ * Randomizes a new {@link Document}; the node and the identifier, which Podam can not build, the
+ * owner, which the persister sets, and what SQL Server fills or derives are left out.
  */
 class Document_Randomizer
         extends PodamObjectRandomizer<Document> {
@@ -52,7 +52,8 @@ class Document_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has a node no installed document has, and a new identifier.
+     * @implNote The returned instance has a node no installed document has, and a new
+     *         identifier.
      */
     @Override
     public Document get() {
@@ -60,7 +61,8 @@ class Document_Randomizer
         final var random = ThreadLocalRandom.current();
         // no installed node is this deep
         instance.setDocumentNode(Heirarchyid.parse(
-                "/" + random.nextLong(1L, Integer.MAX_VALUE) + "/" + random.nextLong(1L, Integer.MAX_VALUE) + "/"));
+                "/" + random.nextLong(1L, Integer.MAX_VALUE) + "/" +
+                random.nextLong(1L, Integer.MAX_VALUE) + "/"));
         instance.setRowguid(UUID.randomUUID().toString());
         return instance;
     }

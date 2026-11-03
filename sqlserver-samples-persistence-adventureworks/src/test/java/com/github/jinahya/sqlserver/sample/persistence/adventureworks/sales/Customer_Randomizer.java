@@ -26,8 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link Customer}; the generated identifier, what SQL Server fills or derives, and what it
- * references, which the persister sets, are left out.
+ * Randomizes a new {@link Customer}; the generated identifier, what SQL Server fills or derives,
+ * and what it references, which the persister sets, are left out.
  */
 class Customer_Randomizer
         extends PodamObjectRandomizer<Customer> {

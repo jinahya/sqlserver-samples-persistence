@@ -26,7 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductModel}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link ProductModel}; the generated identifier and what SQL Server fills are
+ * left out.
  */
 class ProductModel_Randomizer
         extends PodamObjectRandomizer<ProductModel> {
@@ -44,8 +45,9 @@ class ProductModel_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has no CatalogDescription and no Instructions; each is an xml column typed by a
-     *         schema collection, which no random text is valid against.
+     * @implNote The returned instance has no CatalogDescription and no Instructions; each
+     *         is an xml column typed by a schema collection, which no random text is valid
+     *         against.
      */
     @Override
     public ProductModel get() {

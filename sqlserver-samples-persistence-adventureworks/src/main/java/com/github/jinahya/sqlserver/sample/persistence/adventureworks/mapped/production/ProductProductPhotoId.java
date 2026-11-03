@@ -25,16 +25,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Production.ProductProductPhoto} table, whose rows are identified by
- * {@code ProductID}, {@code ProductPhotoID}.
+ * The identifier class of the {@code Production.ProductProductPhoto} table, whose rows are
+ * identified by {@code ProductID}, {@code ProductPhotoID}.
  * <p>
- * {@link MappedProductProductPhoto} embeds this class with {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of
- * this class map the columns of the key.
+ * {@link MappedProductProductPhoto} embeds this class with
+ * {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of this class map the columns
+ * of the key.
  */
 @Embeddable
 public class ProductProductPhotoId {
@@ -47,7 +46,8 @@ public class ProductProductPhotoId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductProductPhoto#COLUMN_NAME_PRODUCT_PHOTO_ID} column. The value is {@value}.
+     * {@value MappedProductProductPhoto#COLUMN_NAME_PRODUCT_PHOTO_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO_ID = "productPhotoId";
 
@@ -128,12 +128,15 @@ public class ProductProductPhotoId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code productId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -142,9 +145,11 @@ public class ProductProductPhotoId {
     /**
      * The value of the {@code productPhotoId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID,
                           value = "Product photo identification number. Foreign key to "
                                   + "ProductPhoto.ProductPhotoID.")

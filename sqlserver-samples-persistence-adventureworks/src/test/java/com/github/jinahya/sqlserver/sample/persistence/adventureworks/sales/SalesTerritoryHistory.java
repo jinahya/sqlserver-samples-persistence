@@ -61,29 +61,33 @@ import java.util.Optional;
        }
 )
 @IdClass(SalesTerritoryHistoryId.class)
-public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
+public class SalesTerritoryHistory
+        extends MappedSalesTerritoryHistory {
 
     /**
-     * The name of the attribute of the {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
     /**
-     * The name of the attribute of the {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
     // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
 
     /**
-     * Creates a new instance which references {@code businessEntity} and {@code territory}, with {@code startDate}.
+     * Creates a new instance which references {@code businessEntity} and {@code territory}, with
+     * {@code startDate}.
      *
      * @param businessEntity the {@code SalesPerson} to reference.
      * @param startDate      the value of the {@value #COLUMN_NAME_START_DATE} column.
      * @param territory      the {@code SalesTerritory} to reference.
-     * @return a new instance which references {@code businessEntity} and {@code territory}, with {@code startDate}.
+     * @return a new instance which references {@code businessEntity} and {@code territory}, with
+     *         {@code startDate}.
      * @throws NullPointerException if any of the arguments is {@code null}.
      */
     public static SalesTerritoryHistory of(final SalesPerson businessEntity,
@@ -111,8 +115,8 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code SalesPerson} which the {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign
-     * key references.
+     * Returns the {@code SalesPerson} which the
+     * {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign key references.
      *
      * @return the {@code SalesPerson} referenced; {@code null} when none is.
      */
@@ -121,21 +125,24 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
     }
 
     /**
-     * Replaces the {@code SalesPerson} which the {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign
-     * key references, and the value of the column it consists of.
+     * Replaces the {@code SalesPerson} which the
+     * {@code FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param businessEntity the {@code SalesPerson} to reference; {@code null} for none.
      */
     private void setBusinessEntity(final SalesPerson businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(Optional.ofNullable(businessEntity).map(SalesPerson::getBusinessEntityId).orElse(null));
+        setBusinessEntityId(
+                Optional.ofNullable(businessEntity).map(SalesPerson::getBusinessEntityId)
+                        .orElse(null));
     }
 
     // ----------------------------------------------------------------------------------- territory
 
     /**
-     * Returns the {@code SalesTerritory} which the {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID} foreign
-     * key references.
+     * Returns the {@code SalesTerritory} which the
+     * {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID} foreign key references.
      *
      * @return the {@code SalesTerritory} referenced; {@code null} when none is.
      */
@@ -144,14 +151,16 @@ public class SalesTerritoryHistory extends MappedSalesTerritoryHistory {
     }
 
     /**
-     * Replaces the {@code SalesTerritory} which the {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID} foreign
-     * key references, and the value of the column it consists of.
+     * Replaces the {@code SalesTerritory} which the
+     * {@code FK_SalesTerritoryHistory_SalesTerritory_TerritoryID} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param territory the {@code SalesTerritory} to reference; {@code null} for none.
      */
     private void setTerritory(final SalesTerritory territory) {
         this.territory = territory;
-        setTerritoryId(Optional.ofNullable(territory).map(SalesTerritory::getTerritoryId).orElse(null));
+        setTerritoryId(
+                Optional.ofNullable(territory).map(SalesTerritory::getTerritoryId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

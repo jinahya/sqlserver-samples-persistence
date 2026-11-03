@@ -46,7 +46,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class ProductCategory extends MappedProductCategory {
+public class ProductCategory
+        extends MappedProductCategory {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

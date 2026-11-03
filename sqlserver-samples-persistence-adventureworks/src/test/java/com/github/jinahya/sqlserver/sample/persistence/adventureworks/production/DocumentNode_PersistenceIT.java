@@ -20,7 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,7 +44,7 @@ class DocumentNode_PersistenceIT {
     @DisplayName("every installed Document.DocumentNode maps to what ToString and GetLevel return")
     @Test
     void document() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT CAST(d.rowguid AS char(36)), d.DocumentNode.ToString(), d.DocumentLevel
@@ -65,7 +65,7 @@ class DocumentNode_PersistenceIT {
     @DisplayName("every installed ProductDocument.DocumentNode decodes to what ToString returns")
     @Test
     void productDocument() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT pd.ProductID,
@@ -78,9 +78,11 @@ class DocumentNode_PersistenceIT {
             for (final var row : rows) {
                 final var productDocument = new ProductDocument(
                         ((Number) row[0]).intValue(), (byte[]) row[1],
-                        row[2] instanceof Timestamp t ? t.toLocalDateTime() : (LocalDateTime) row[2]);
+                        row[2] instanceof Timestamp t ? t.toLocalDateTime() :
+                                (LocalDateTime) row[2]);
                 assertThat(productDocument.getDocumentNode()).hasToString((String) row[3]);
-                assertThat(productDocument.getDocumentNode()).isEqualTo(Heirarchyid.parse((String) row[3]));
+                assertThat(productDocument.getDocumentNode()).isEqualTo(
+                        Heirarchyid.parse((String) row[3]));
             }
             return null;
         });

@@ -37,8 +37,10 @@ class ProductSubcategory_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ProductSubcategory apply(final EntityManager entityManager, final ProductSubcategory entityInstance) {
-        final var category = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductCategory.class);
+    public ProductSubcategory apply(final EntityManager entityManager,
+                                    final ProductSubcategory entityInstance) {
+        final var category =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductCategory.class);
         // the category's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setProductCategory(category);

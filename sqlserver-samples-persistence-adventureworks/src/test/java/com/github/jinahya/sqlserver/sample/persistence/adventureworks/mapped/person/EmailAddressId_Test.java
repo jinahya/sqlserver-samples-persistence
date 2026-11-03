@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link EmailAddressId} id class.
  */
-class EmailAddressId_Test extends _NonEntity_Test<EmailAddressId> {
+class EmailAddressId_Test
+        extends _NonEntity_Test<EmailAddressId> {
 
     EmailAddressId_Test() {
         super(EmailAddressId.class);

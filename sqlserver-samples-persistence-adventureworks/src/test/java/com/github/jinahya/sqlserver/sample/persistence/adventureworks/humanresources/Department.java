@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Department extends MappedDepartment {
+public class Department
+        extends MappedDepartment {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

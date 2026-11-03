@@ -39,42 +39,47 @@ import java.util.Objects;
 /**
  * An entity which maps the {@code Production.ProductModelProductDescriptionCulture} table.
  * <p>
- * Each attribute of the embedded {@link ProductModelProductDescriptionCultureId} is derived, with {@link MapsId @MapsId}, from the association
- * which references the same column.
+ * Each attribute of the embedded {@link ProductModelProductDescriptionCultureId} is derived, with
+ * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "ProductionProductModelProductDescriptionCulture")
 @Table(schema = MappedProductModelProductDescriptionCulture.TABLE_SCHEMA,
        name = MappedProductModelProductDescriptionCulture.TABLE_NAME)
-public class ProductModelProductDescriptionCulture extends MappedProductModelProductDescriptionCulture {
+public class ProductModelProductDescriptionCulture
+        extends MappedProductModelProductDescriptionCulture {
 
     /**
      * The name of the attribute of the
-     * {@code FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID} foreign key. The value
-     * is {@value}.
+     * {@code FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_DESCRIPTION = "productDescription";
 
     /**
-     * The name of the attribute of the {@code FK_ProductModelProductDescriptionCulture_Culture_CultureID} foreign key.
-     * The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_ProductModelProductDescriptionCulture_Culture_CultureID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CULTURE = "culture";
 
     /**
-     * The name of the attribute of the {@code FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID}
-     * foreign key. The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL = "productModel";
 
     // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
 
     /**
-     * Creates a new instance which references {@code productModel}, {@code productDescription} and {@code culture}.
+     * Creates a new instance which references {@code productModel}, {@code productDescription} and
+     * {@code culture}.
      *
      * @param productModel       the {@code ProductModel} to reference.
      * @param productDescription the {@code ProductDescription} to reference.
      * @param culture            the {@code Culture} to reference.
-     * @return a new instance which references {@code productModel}, {@code productDescription} and {@code culture}.
+     * @return a new instance which references {@code productModel}, {@code productDescription} and
+     *         {@code culture}.
      * @throws NullPointerException if any of the arguments is {@code null}.
      */
     public static ProductModelProductDescriptionCulture of(final ProductModel productModel,
@@ -103,7 +108,8 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
 
     /**
      * Returns the {@code ProductDescription} which the
-     * {@code FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID} foreign key references.
+     * {@code FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID}
+     * foreign key references.
      *
      * @return the {@code ProductDescription} referenced; {@code null} when none is.
      */
@@ -114,8 +120,8 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
     // ------------------------------------------------------------------------------------- culture
 
     /**
-     * Returns the {@code Culture} which the {@code FK_ProductModelProductDescriptionCulture_Culture_CultureID} foreign
-     * key references.
+     * Returns the {@code Culture} which the
+     * {@code FK_ProductModelProductDescriptionCulture_Culture_CultureID} foreign key references.
      *
      * @return the {@code Culture} referenced; {@code null} when none is.
      */
@@ -127,7 +133,8 @@ public class ProductModelProductDescriptionCulture extends MappedProductModelPro
 
     /**
      * Returns the {@code ProductModel} which the
-     * {@code FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID} foreign key references.
+     * {@code FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID} foreign key
+     * references.
      *
      * @return the {@code ProductModel} referenced; {@code null} when none is.
      */

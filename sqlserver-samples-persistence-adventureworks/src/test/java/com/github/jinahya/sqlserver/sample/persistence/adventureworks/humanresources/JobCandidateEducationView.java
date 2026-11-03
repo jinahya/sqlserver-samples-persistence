@@ -25,13 +25,14 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hum
 import java.time.LocalDateTime;
 
 /**
- * A plain class which holds a row of the {@code HumanResources.vJobCandidateEducation} view, which no entity can map:
- * the view declares no key, and no identifier column of it is unique.
+ * A plain class which holds a row of the {@code HumanResources.vJobCandidateEducation} view, which
+ * no entity can map: the view declares no key, and no identifier column of it is unique.
  * <p>
  * The public constructor takes every column, in the order the view declares them, for a
  * {@link jakarta.persistence.ConstructorResult @ConstructorResult} or a row mapper.
  */
-public class JobCandidateEducationView extends MappedJobCandidateEducationView {
+public class JobCandidateEducationView
+        extends MappedJobCandidateEducationView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -55,7 +56,8 @@ public class JobCandidateEducationView extends MappedJobCandidateEducationView {
      * @param eduGpa              the value of the {@value #COLUMN_NAME_EDU_GPA} column.
      * @param eduGpaScale         the value of the {@value #COLUMN_NAME_EDU_GPA_SCALE} column.
      * @param eduSchool           the value of the {@value #COLUMN_NAME_EDU_SCHOOL} column.
-     * @param eduLocCountryRegion the value of the {@value #COLUMN_NAME_EDU_LOC_COUNTRY_REGION} column.
+     * @param eduLocCountryRegion the value of the {@value #COLUMN_NAME_EDU_LOC_COUNTRY_REGION}
+     *                            column.
      * @param eduLocState         the value of the {@value #COLUMN_NAME_EDU_LOC_STATE} column.
      * @param eduLocCity          the value of the {@value #COLUMN_NAME_EDU_LOC_CITY} column.
      */

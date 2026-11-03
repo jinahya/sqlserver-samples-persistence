@@ -35,7 +35,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * A mapped superclass which holds the mappings of the {@code Production.ProductListPriceHistory} table.
+ * A mapped superclass which holds the mappings of the {@code Production.ProductListPriceHistory}
+ * table.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.ProductListPriceHistory}</caption>
@@ -63,7 +64,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -91,7 +94,8 @@ public abstract class MappedProductListPriceHistory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -103,7 +107,8 @@ public abstract class MappedProductListPriceHistory {
     public static final String COLUMN_NAME_START_DATE = "StartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
@@ -115,7 +120,8 @@ public abstract class MappedProductListPriceHistory {
     public static final String COLUMN_NAME_END_DATE = "EndDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
@@ -128,25 +134,28 @@ public abstract class MappedProductListPriceHistory {
 
     /**
      * The exclusive minimum value of the {@value #COLUMN_NAME_LIST_PRICE} column, as the
-     * {@code CK_ProductListPriceHistory_ListPrice} check constraint ({@code [ListPrice]>(0.00)}) requires. The value
-     * is {@value}.
+     * {@code CK_ProductListPriceHistory_ListPrice} check constraint ({@code [ListPrice]>(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_LIST_PRICE_EXCLUSIVE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LIST_PRICE = "listPrice";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -205,17 +214,17 @@ public abstract class MappedProductListPriceHistory {
     // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
-     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
-     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_ProductListPriceHistory_EndDate}
-     * constraint requires.
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before
+     * the {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's
+     * {@code CK_ProductListPriceHistory_EndDate} constraint requires.
      * {@snippet lang = "sql":
      * ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_START_DATE}
-     *         attribute; {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or
+     *         the {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute; {@code false} otherwise.
      */
     @AssertTrue(message = "endDate must be null or not before startDate")
     protected boolean isEndDateValid() {
@@ -231,17 +240,19 @@ public abstract class MappedProductListPriceHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getProductId() {
         return productId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -261,7 +272,8 @@ public abstract class MappedProductListPriceHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified
+     * value.
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
@@ -281,7 +293,8 @@ public abstract class MappedProductListPriceHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified
+     * value.
      *
      * @param endDate new value for {@value #ATTRIBUTE_NAME_END_DATE} attribute.
      */
@@ -301,7 +314,8 @@ public abstract class MappedProductListPriceHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute with the specified
+     * value.
      *
      * @param listPrice new value for {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute.
      */
@@ -321,7 +335,8 @@ public abstract class MappedProductListPriceHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -330,7 +345,8 @@ public abstract class MappedProductListPriceHistory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -339,7 +355,8 @@ public abstract class MappedProductListPriceHistory {
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
@@ -362,10 +379,12 @@ public abstract class MappedProductListPriceHistory {
     private BigDecimal listPrice;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductListPriceHistory_ModifiedDate", value = "(getdate())")

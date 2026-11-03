@@ -39,13 +39,17 @@ class WorkOrderRouting_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public WorkOrderRouting apply(final EntityManager entityManager, final WorkOrderRouting entityInstance) {
-        final var workOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, WorkOrder.class);
-        final var location = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Location.class);
+    public WorkOrderRouting apply(final EntityManager entityManager,
+                                  final WorkOrderRouting entityInstance) {
+        final var workOrder =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, WorkOrder.class);
+        final var location =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Location.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = WorkOrderRouting.of(
-                workOrder, ThreadLocalRandom.current().nextInt(1, WorkOrderRouting.COLUMN_MAX_OPERATION_SEQUENCE + 1));
+                workOrder, ThreadLocalRandom.current()
+                        .nextInt(1, WorkOrderRouting.COLUMN_MAX_OPERATION_SEQUENCE + 1));
         instance.setLocation(location);
         instance.setScheduledStartDate(entityInstance.getScheduledStartDate());
         instance.setScheduledEndDate(entityInstance.getScheduledEndDate());

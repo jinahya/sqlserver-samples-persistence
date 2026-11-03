@@ -20,9 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesTerritory;
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesTerritory;
 import jakarta.persistence.EntityManager;
 
 /**
@@ -37,10 +37,12 @@ class StateProvince_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public StateProvince apply(final EntityManager entityManager, final StateProvince entityInstance) {
+    public StateProvince apply(final EntityManager entityManager,
+                               final StateProvince entityInstance) {
         entityInstance.setCountryRegion(
                 EntityPersisterUtils.newPersistedInstanceOf(entityManager, CountryRegion.class));
-        final var territory = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
+        final var territory =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
         // the territory's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setTerritory(territory);

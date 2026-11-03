@@ -21,10 +21,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class InventoryTurnoverView_PersistenceIT extends _Entity_PersistenceIT<InventoryTurnoverView> {
 
     InventoryTurnoverView_PersistenceIT() {
         super(InventoryTurnoverView.class);
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code dbo.vw_InventoryTurnover} is a view, which no row is inserted into.
+     */
+    @Disabled("a view: nothing is inserted into it")
+    @Override
+    @Test
+    protected void persistRandomEntityInstance() {
+        // empty
+    }
 }
+

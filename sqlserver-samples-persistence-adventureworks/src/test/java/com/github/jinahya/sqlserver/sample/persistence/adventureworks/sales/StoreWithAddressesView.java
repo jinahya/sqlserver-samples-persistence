@@ -23,13 +23,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedStoreWithAddressesView;
 
 /**
- * A plain class which holds a row of the {@code Sales.vStoreWithAddresses} view, which no entity can map: the view
- * declares no key, and no identifier column of it is unique.
+ * A plain class which holds a row of the {@code Sales.vStoreWithAddresses} view, which no entity
+ * can map: the view declares no key, and no identifier column of it is unique.
  * <p>
  * The public constructor takes every column, in the order the view declares them, for a
  * {@link jakarta.persistence.ConstructorResult @ConstructorResult} or a row mapper.
  */
-public class StoreWithAddressesView extends MappedStoreWithAddressesView {
+public class StoreWithAddressesView
+        extends MappedStoreWithAddressesView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

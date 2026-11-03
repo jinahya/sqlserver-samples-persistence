@@ -26,10 +26,11 @@ import org.junit.platform.commons.util.ReflectionUtils;
 import java.util.Objects;
 
 /**
- * The root of every unit-test base of this module; it holds the target class, and the factories of its instances.
+ * The root of every unit-test base of this module; it holds the target class, and the factories of
+ * its instances.
  * <p>
- * The checks a class has to pass on its own are not here but in {@link __Object_Test}, which {@link _NonEntity_Test}
- * implements.
+ * The checks a class has to pass on its own are not here but in {@link __Object_Test}, which
+ * {@link _NonEntity_Test} implements.
  *
  * @param <T> the type of the target class.
  */

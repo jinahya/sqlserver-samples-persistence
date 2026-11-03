@@ -52,7 +52,8 @@ FROM Purchasing.Vendor
 SELECT BusinessEntityID, AccountNumber
 FROM Purchasing.Vendor
 WHERE AccountNumber COLLATE Latin1_General_CS_AS NOT LIKE '%[A-Z][0-9][0-9][0-9][0-9]'
-   OR LEFT(AccountNumber, LEN(AccountNumber) - 4) COLLATE Latin1_General_CS_AS LIKE '%[^A-Z]%'
+   OR LEFT (AccountNumber
+    , LEN(AccountNumber) - 4) COLLATE Latin1_General_CS_AS LIKE '%[^A-Z]%'
 ;
 
 -- AK_Vendor_AccountNumber keeps AccountNumber unique.

@@ -120,10 +120,14 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
- *      GetLevel (Database Engine)</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
+ *         GetLevel (Database Engine)</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -931,7 +935,8 @@ public abstract class MappedEmployee {
     // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for Employee records.  Foreign key to "
                                   + "BusinessEntity.BusinessEntityID.")
@@ -941,7 +946,8 @@ public abstract class MappedEmployee {
     @Size(max = COLUMN_LENGTH_NATIONAL_ID_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NATIONAL_ID_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NATIONAL_ID_NUMBER)
+    @Column(name = COLUMN_NAME_NATIONAL_ID_NUMBER, nullable = false, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_NATIONAL_ID_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_NATIONAL_ID_NUMBER,
                           value = "Unique national identification number such as a social "
                                   + "security number.")
@@ -951,14 +957,16 @@ public abstract class MappedEmployee {
     @Size(max = COLUMN_LENGTH_LOGIN_ID)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LOGIN_ID, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_LOGIN_ID)
+    @Column(name = COLUMN_NAME_LOGIN_ID, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_LOGIN_ID)
     @MsDescription.Column(name = COLUMN_NAME_LOGIN_ID, value = "Network login.")
     private String loginId;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORGANIZATION_NODE, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_ORGANIZATION_NODE, nullable = true, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ORGANIZATION_NODE,
                           value = "Where the employee is located in corporate hierarchy.")
     private Heirarchyid organizationNode;
@@ -968,7 +976,8 @@ public abstract class MappedEmployee {
     @Max(COLUMN_MAX_ORGANIZATION_LEVEL)
     @Min(COLUMN_MIN_ORGANIZATION_LEVEL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORGANIZATION_LEVEL, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_ORGANIZATION_LEVEL, nullable = true, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ORGANIZATION_LEVEL,
                           value = "The depth of the employee in the corporate hierarchy.")
     @MsComputedColumn("([OrganizationNode].[GetLevel]())")
@@ -978,7 +987,8 @@ public abstract class MappedEmployee {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_JOB_TITLE)
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_JOB_TITLE)
     @MsDescription.Column(name = COLUMN_NAME_JOB_TITLE,
                           value = "Work title such as Buyer or Sales Representative.")
     private String jobTitle;
@@ -994,7 +1004,8 @@ public abstract class MappedEmployee {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MARITAL_STATUS, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_MARITAL_STATUS)
+    @Column(name = COLUMN_NAME_MARITAL_STATUS, nullable = false, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_MARITAL_STATUS)
     @MsDescription.Column(name = COLUMN_NAME_MARITAL_STATUS, value = "M = Married, S = Single")
     private MaritalStatus maritalStatus;
 
@@ -1002,7 +1013,8 @@ public abstract class MappedEmployee {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_GENDER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_GENDER)
+    @Column(name = COLUMN_NAME_GENDER, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_GENDER)
     @MsDescription.Column(name = COLUMN_NAME_GENDER, value = "M = Male, F = Female")
     private Gender gender;
 
@@ -1029,7 +1041,8 @@ public abstract class MappedEmployee {
     @Min(COLUMN_MIN_VACATION_HOURS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VACATION_HOURS, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_VACATION_HOURS, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_VACATION_HOURS,
                           value = "Number of available vacation hours.")
     @MsDefault(name = "DF_Employee_VacationHours", value = "((0))")
@@ -1041,7 +1054,8 @@ public abstract class MappedEmployee {
     @Min(COLUMN_MIN_SICK_LEAVE_HOURS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SICK_LEAVE_HOURS, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SICK_LEAVE_HOURS, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SICK_LEAVE_HOURS,
                           value = "Number of available sick leave hours.")
     @MsDefault(name = "DF_Employee_SickLeaveHours", value = "((0))")
@@ -1056,7 +1070,8 @@ public abstract class MappedEmployee {
     private Boolean currentFlag;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -1070,7 +1085,8 @@ public abstract class MappedEmployee {
     // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Employee_ModifiedDate", value = "(getdate())")

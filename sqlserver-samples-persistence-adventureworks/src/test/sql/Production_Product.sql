@@ -134,7 +134,9 @@ WHERE ReorderPoint * 4 <> SafetyStockLevel * 3
 
 -- -------------------------------------------------------------------------------------------------------- StandardCost
 -- the smallest and the largest StandardCost, and how many cost nothing; 0.0000 and 2171.2942; 200 cost nothing.
-SELECT MIN(StandardCost), MAX(StandardCost), SUM(CASE WHEN StandardCost = 0 THEN 1 ELSE 0 END) AS free
+SELECT MIN(StandardCost),
+       MAX(StandardCost),
+       SUM(CASE WHEN StandardCost = 0 THEN 1 ELSE 0 END) AS free
 FROM Production.Product
 ;
 
@@ -172,7 +174,7 @@ FROM Production.Product
 ;
 
 -- the sizes which are not numbers, and the products of each; L for 11, M for 11, S for 9, XL for 3.
-SELECT Size, COUNT(*) AS products
+SELECT Size, COUNT (*) AS products
 FROM Production.Product
 WHERE TRY_CAST(Size AS int) IS NULL
   AND Size IS NOT NULL
@@ -184,7 +186,9 @@ ORDER BY Size ASC
 -- ------------------------------------------------------------------------------------------------- SizeUnitMeasureCode
 -- the size units, NULL for none, against whether the size is a number; 328 with no unit, the 293 with no size, the 34
 -- letter sizes and 880 (Hydration Pack - 70 oz.), a size of 70; CM for the other 176 numeric sizes.
-SELECT SizeUnitMeasureCode, CASE WHEN TRY_CAST(Size AS int) IS NULL THEN 0 ELSE 1 END AS numeric_, COUNT(*) AS products
+SELECT SizeUnitMeasureCode,
+       CASE WHEN TRY_CAST(Size AS int) IS NULL THEN 0 ELSE 1 END AS numeric_,
+       COUNT(*)                                                  AS products
 FROM Production.Product
 GROUP BY SizeUnitMeasureCode, CASE WHEN TRY_CAST(Size AS int) IS NULL THEN 0 ELSE 1 END
 ORDER BY SizeUnitMeasureCode ASC, numeric_ ASC
@@ -262,7 +266,8 @@ WHERE ProductLine COLLATE Latin1_General_BIN <> UPPER(ProductLine)
 -- ------------------------------------------------------------------------------------------------ ProductSubcategoryID
 -- how many products have no subcategory, and how many subcategories the others fall in; 209 have none; 37
 -- subcategories, all of them.
-SELECT COUNT(*) - COUNT(ProductSubcategoryID) AS without, COUNT(DISTINCT ProductSubcategoryID) AS subcategories
+SELECT COUNT(*) - COUNT(ProductSubcategoryID) AS without,
+       COUNT(DISTINCT ProductSubcategoryID)   AS subcategories
 FROM Production.Product
 ;
 
@@ -277,7 +282,8 @@ WHERE ProductSubcategoryID IS NULL
 
 -- ------------------------------------------------------------------------------------------------------ ProductModelID
 -- how many products have no model, and how many models the others are built on; 209 have none; 119 models.
-SELECT COUNT(*) - COUNT(ProductModelID) AS without, COUNT(DISTINCT ProductModelID) AS productModels
+SELECT COUNT(*) - COUNT(ProductModelID) AS without,
+       COUNT(DISTINCT ProductModelID)   AS productModels
 FROM Production.Product
 ;
 

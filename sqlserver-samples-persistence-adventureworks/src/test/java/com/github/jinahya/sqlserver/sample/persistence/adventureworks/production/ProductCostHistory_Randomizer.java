@@ -27,9 +27,10 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductCostHistory}; the identifier, what it references, the dates, which the persister
- * relates, and what SQL Server fills are left out. The persister takes the rest of the instance into one which
- * {@link ProductCostHistory#of} creates with the product it references and a start date of its own.
+ * Randomizes a new {@link ProductCostHistory}; the identifier, what it references, the dates, which
+ * the persister relates, and what SQL Server fills are left out. The persister takes the rest of
+ * the instance into one which {@link ProductCostHistory#of} creates with the product it references
+ * and a start date of its own.
  */
 class ProductCostHistory_Randomizer
         extends PodamObjectRandomizer<ProductCostHistory> {
@@ -50,7 +51,8 @@ class ProductCostHistory_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has an amount within its column and CHECK constraint, and its dates in order.
+     * @implNote The returned instance has an amount within its column and CHECK constraint,
+     *         and its dates in order.
      */
     @Override
     public ProductCostHistory get() {

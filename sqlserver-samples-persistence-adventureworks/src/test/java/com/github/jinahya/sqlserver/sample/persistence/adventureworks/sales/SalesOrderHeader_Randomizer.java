@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link SalesOrderHeader}; the generated identifier, what SQL Server fills or derives, and what it
- * references, which the persister sets, are left out.
+ * Randomizes a new {@link SalesOrderHeader}; the generated identifier, what SQL Server fills or
+ * derives, and what it references, which the persister sets, are left out.
  */
 class SalesOrderHeader_Randomizer
         extends PodamObjectRandomizer<SalesOrderHeader> {
@@ -65,23 +65,27 @@ class SalesOrderHeader_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints, its dates in order, and
-     *         room in its revision number for the updates its details make.
+     * @implNote The returned instance has amounts within their columns and CHECK
+     *         constraints, its dates in order, and room in its revision number for the updates its
+     *         details make.
      */
     @Override
     public SalesOrderHeader get() {
         final var instance = super.get();
         final var random = ThreadLocalRandom.current();
-        // RevisionNumber, a tinyint, which uSalesOrderHeader increments on each update, as each detail inserted makes
+        // RevisionNumber, a tinyint, which uSalesOrderHeader increments on each update, as each
+        // detail inserted makes
         instance.setRevisionNumber(random.nextInt(100));
         // SubTotal, TaxAmt and Freight, all money, >= 0
         instance.setSubTotal(__Random_TestUtils.positive(5, 4));
         instance.setTaxAmt(__Random_TestUtils.positive(5, 4));
         instance.setFreight(__Random_TestUtils.positive(5, 4));
-        // CK_SalesOrderHeader_DueDate and CK_SalesOrderHeader_ShipDate: DueDate, and ShipDate when any, >= OrderDate
+        // CK_SalesOrderHeader_DueDate and CK_SalesOrderHeader_ShipDate: DueDate, and ShipDate
+        // when any, >= OrderDate
         instance.setOrderDate(__Random_TestUtils.dateTime());
         instance.setDueDate(instance.getOrderDate().plusDays(random.nextLong(366L)));
-        instance.setShipDate(random.nextBoolean() ? null : instance.getOrderDate().plusDays(random.nextLong(366L)));
+        instance.setShipDate(random.nextBoolean() ? null : instance.getOrderDate()
+                .plusDays(random.nextLong(366L)));
         return instance;
     }
 }

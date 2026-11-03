@@ -56,7 +56,9 @@ ORDER BY RevisionNumber ASC, OnlineOrderFlag ASC
 -- ----------------------------------------------------------------------------------------------------------- OrderDate
 -- the range of OrderDate, how many days it has, and how many carry a time of day; 2022-05-30 to 2025-06-29, on 1124
 -- days, all midnights.
-SELECT MIN(OrderDate), MAX(OrderDate), COUNT(DISTINCT OrderDate) AS days,
+SELECT MIN(OrderDate),
+       MAX(OrderDate),
+       COUNT(DISTINCT OrderDate)                                           AS days,
        SUM(CASE WHEN CAST(OrderDate AS time) <> '00:00' THEN 1 ELSE 0 END) AS timed
 FROM Sales.SalesOrderHeader
 ;
@@ -100,8 +102,12 @@ ORDER BY Status ASC
 -- ----------------------------------------------------------------------------------------------------- OnlineOrderFlag
 -- how many orders each OnlineOrderFlag has, and how many of them have a sales person, a purchase order number, a
 -- card and a rate; 27659 online orders with no sales person and no purchase order number, 3806 others with both.
-SELECT OnlineOrderFlag, COUNT(*) AS orders, COUNT(SalesPersonID) AS sales_persons,
-       COUNT(PurchaseOrderNumber) AS purchase_orders, COUNT(CreditCardID) AS cards, COUNT(CurrencyRateID) AS rates
+SELECT OnlineOrderFlag,
+       COUNT(*)                   AS orders,
+       COUNT(SalesPersonID)       AS sales_persons,
+       COUNT(PurchaseOrderNumber) AS purchase_orders,
+       COUNT(CreditCardID)        AS cards,
+       COUNT(CurrencyRateID)      AS rates
 FROM Sales.SalesOrderHeader
 GROUP BY OnlineOrderFlag
 ORDER BY OnlineOrderFlag ASC
@@ -152,16 +158,18 @@ HAVING COUNT(*) > 1
 
 -- ------------------------------------------------------------------------------------------------------- AccountNumber
 -- AccountNumber is nullable; how many orders have none, and how long the others are. None; 14 characters each.
-SELECT COUNT(*) - COUNT(AccountNumber) AS without, MIN(LEN(AccountNumber)), MAX(LEN(AccountNumber))
+SELECT COUNT(*) - COUNT(AccountNumber) AS without,
+       MIN(LEN(AccountNumber)),
+       MAX(LEN(AccountNumber))
 FROM Sales.SalesOrderHeader
 ;
 
 -- the forms of AccountNumber, which is not the customer's; 10-4020-nnnnnn for the 3806 orders not online, and
 -- 10-4030-nnnnnn for the 27659 online.
-SELECT LEFT(AccountNumber, 8) AS prefix, OnlineOrderFlag, COUNT(*) AS orders
+SELECT LEFT (AccountNumber, 8) AS prefix, OnlineOrderFlag, COUNT (*) AS orders
 FROM Sales.SalesOrderHeader
 WHERE AccountNumber LIKE '10-40[0-9]0-[0-9][0-9][0-9][0-9][0-9][0-9]'
-GROUP BY LEFT(AccountNumber, 8), OnlineOrderFlag
+GROUP BY LEFT (AccountNumber, 8), OnlineOrderFlag
 ORDER BY prefix ASC
 ;
 
@@ -325,7 +333,8 @@ FROM Sales.SalesOrderHeader
 
 -- how far SubTotal is from the sum of its LineTotals; 695 orders differ, by at most .00005, LineTotal having six
 -- decimals and money four.
-SELECT SUM(CASE WHEN h.SubTotal <> d.total THEN 1 ELSE 0 END) AS orders, MAX(ABS(h.SubTotal - d.total)) AS largest
+SELECT SUM(CASE WHEN h.SubTotal <> d.total THEN 1 ELSE 0 END) AS orders,
+       MAX(ABS(h.SubTotal - d.total))                         AS largest
 FROM Sales.SalesOrderHeader h
          JOIN (SELECT SalesOrderID, SUM(LineTotal) AS total
                FROM Sales.SalesOrderDetail

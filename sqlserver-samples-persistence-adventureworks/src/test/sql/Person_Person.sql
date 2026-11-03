@@ -56,7 +56,8 @@ SELECT p.BusinessEntityID, p.PersonType
 FROM Person.Person p
          FULL JOIN HumanResources.Employee e ON e.BusinessEntityID = p.BusinessEntityID
 WHERE (p.PersonType IN ('EM', 'SP') AND e.BusinessEntityID IS NULL)
-   OR (e.BusinessEntityID IS NOT NULL AND (p.PersonType IS NULL OR p.PersonType NOT IN ('EM', 'SP')))
+   OR (e.BusinessEntityID IS NOT NULL AND
+       (p.PersonType IS NULL OR p.PersonType NOT IN ('EM', 'SP')))
 ;
 
 
@@ -111,8 +112,10 @@ WHERE TRIM(MiddleName) = ''
 
 -- a MiddleName is mostly an initial; 10894 of 1 character, 551 of 2, each an initial with a period (J.), and 28
 -- longer.
-SELECT CASE WHEN LEN(MiddleName) > 2 THEN 'longer' ELSE CAST(LEN(MiddleName) AS varchar) END AS length,
-       COUNT(*) AS persons
+SELECT CASE
+           WHEN LEN(MiddleName) > 2 THEN 'longer'
+           ELSE CAST(LEN(MiddleName) AS varchar) END AS length,
+       COUNT(*)                                      AS persons
 FROM Person.Person
 WHERE MiddleName IS NOT NULL
 GROUP BY CASE WHEN LEN(MiddleName) > 2 THEN 'longer' ELSE CAST(LEN(MiddleName) AS varchar) END
@@ -136,7 +139,7 @@ WHERE TRIM(LastName) = ''
 ;
 
 -- the three most common last names; Diaz with 211, Hernandez with 188 and Sanchez with 175.
-SELECT TOP (3) LastName, COUNT(*) AS persons
+SELECT TOP(3) LastName, COUNT(*) AS persons
 FROM Person.Person
 GROUP BY LastName
 ORDER BY persons DESC, LastName ASC
@@ -171,14 +174,18 @@ ORDER BY EmailPromotion ASC
 
 -- ----------------------------------------------------------------------------------------------- AdditionalContactInfo
 -- AdditionalContactInfo is a nullable xml; how many persons have one, and how large it is. 10; 1170 to 2973 bytes.
-SELECT COUNT(AdditionalContactInfo), MIN(DATALENGTH(AdditionalContactInfo)), MAX(DATALENGTH(AdditionalContactInfo))
+SELECT COUNT(AdditionalContactInfo),
+       MIN(DATALENGTH(AdditionalContactInfo)),
+       MAX(DATALENGTH(AdditionalContactInfo))
 FROM Person.Person
 ;
 
 
 -- -------------------------------------------------------------------------------------------------------- Demographics
 -- Demographics is a nullable xml; how many persons have none, and how large the others are. None; 472 to 1327 bytes.
-SELECT COUNT(*) - COUNT(Demographics) AS without, MIN(DATALENGTH(Demographics)), MAX(DATALENGTH(Demographics))
+SELECT COUNT(*) - COUNT(Demographics) AS without,
+       MIN(DATALENGTH(Demographics)),
+       MAX(DATALENGTH(Demographics))
 FROM Person.Person
 ;
 
@@ -200,9 +207,9 @@ FROM Person.Person
 ;
 
 -- how many rows each year; most in the last years, 8822 in 2024 and 5989 in 2025, 10 in 2015.
-SELECT YEAR(ModifiedDate) AS year, COUNT(*) AS persons
+SELECT YEAR (ModifiedDate) AS year, COUNT (*) AS persons
 FROM Person.Person
-GROUP BY YEAR(ModifiedDate)
+GROUP BY YEAR (ModifiedDate)
 ORDER BY year ASC
 ;
 

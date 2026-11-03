@@ -24,7 +24,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class SalesPersonSalesByFiscalYearsView_PersistenceIT extends _Entity_PersistenceIT<SalesPersonSalesByFiscalYearsView> {
+class SalesPersonSalesByFiscalYearsView_PersistenceIT
+        extends _Entity_PersistenceIT<SalesPersonSalesByFiscalYearsView> {
 
     SalesPersonSalesByFiscalYearsView_PersistenceIT() {
         super(SalesPersonSalesByFiscalYearsView.class);
@@ -33,7 +34,8 @@ class SalesPersonSalesByFiscalYearsView_PersistenceIT extends _Entity_Persistenc
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; {@code Sales.vSalesPersonSalesByFiscalYears} is a view, which no row is inserted into.
+     * Does nothing; {@code Sales.vSalesPersonSalesByFiscalYears} is a view, which no row is
+     * inserted into.
      */
     @Disabled("a view: nothing is inserted into it")
     @Override

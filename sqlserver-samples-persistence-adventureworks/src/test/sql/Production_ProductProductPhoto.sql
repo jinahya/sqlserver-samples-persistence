@@ -46,8 +46,10 @@ WHERE NOT EXISTS (SELECT 1
 -- ------------------------------------------------------------------------------------------------------ ProductPhotoID
 -- the photos the rows cover, and the most shown, with the products of each; 42 photos; 1 (no_image_available) shows 346
 -- products, 160 shows 15, 87 shows 13.
-SELECT TOP (3) ProductPhotoID, COUNT(*) AS products, (SELECT COUNT(DISTINCT ProductPhotoID)
-                                                       FROM Production.ProductProductPhoto) AS photos
+SELECT TOP(3)                                   ProductPhotoID,
+       COUNT(*)                              AS products,
+       (SELECT COUNT(DISTINCT ProductPhotoID)
+        FROM Production.ProductProductPhoto) AS photos
 FROM Production.ProductProductPhoto
 GROUP BY ProductPhotoID
 ORDER BY products DESC, ProductPhotoID ASC
@@ -56,7 +58,7 @@ ORDER BY products DESC, ProductPhotoID ASC
 
 -- ------------------------------------------------------------------------------------------------------------- Primary
 -- the primary photos and the others; all 504 are primary.
-SELECT [Primary], COUNT(*) AS photos
+SELECT [Primary], COUNT (*) AS photos
 FROM Production.ProductProductPhoto
 GROUP BY [Primary]
 ORDER BY [Primary] ASC

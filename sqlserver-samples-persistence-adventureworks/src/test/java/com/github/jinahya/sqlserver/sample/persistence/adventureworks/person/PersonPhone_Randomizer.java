@@ -26,9 +26,10 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link PersonPhone}; the identifier, what it references, and what SQL Server fills are left out,
- * which leaves nothing to randomize. The persister does not use the instance; it persists one which
- * {@link PersonPhone#of} creates with the instances it references, and a phone number of its own.
+ * Randomizes a new {@link PersonPhone}; the identifier, what it references, and what SQL Server
+ * fills are left out, which leaves nothing to randomize. The persister does not use the instance;
+ * it persists one which {@link PersonPhone#of} creates with the instances it references, and a
+ * phone number of its own.
  */
 class PersonPhone_Randomizer
         extends PodamObjectRandomizer<PersonPhone> {

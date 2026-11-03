@@ -79,7 +79,9 @@ ORDER BY CostRate ASC
 
 -- -------------------------------------------------------------------------------------------------------- Availability
 -- the smallest and the largest Availability, and how many locations have none; 0.00 and 120.00; 7 with none.
-SELECT MIN(Availability), MAX(Availability), SUM(CASE WHEN Availability = 0 THEN 1 ELSE 0 END) AS zero
+SELECT MIN(Availability),
+       MAX(Availability),
+       SUM(CASE WHEN Availability = 0 THEN 1 ELSE 0 END) AS zero
 FROM Production.Location
 ;
 
@@ -102,9 +104,14 @@ FROM Production.Location
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the inventory rows and the work order routings at each location; every location holds inventory; only 10 to 60, the
 -- shop floor, route work orders, Subassembly (50) the most with 30107.
-SELECT l.LocationID, l.Name,
-       (SELECT COUNT(*) FROM Production.ProductInventory i WHERE i.LocationID = l.LocationID) AS inventories,
-       (SELECT COUNT(*) FROM Production.WorkOrderRouting r WHERE r.LocationID = l.LocationID) AS routings
+SELECT l.LocationID,
+       l.Name,
+       (SELECT COUNT(*)
+        FROM Production.ProductInventory i
+        WHERE i.LocationID = l.LocationID)                                                    AS inventories,
+       (SELECT COUNT(*)
+        FROM Production.WorkOrderRouting r
+        WHERE r.LocationID = l.LocationID)                                                    AS routings
 FROM Production.Location l
 ORDER BY l.LocationID ASC
 ;

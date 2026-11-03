@@ -21,7 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter;
 import io.github.jinahya.sqlserver.xml.schema.binding.b80e2e.ContactRecord;
 import jakarta.xml.bind.JAXBElement;
@@ -33,7 +33,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
+class EmployeeView_PersistenceIT
+        extends _Entity_PersistenceIT<EmployeeView> {
 
     EmployeeView_PersistenceIT() {
         super(EmployeeView.class);
@@ -52,21 +53,25 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
     }
 
     // ----------------------------------------------------------------------- additionalContactInfo
-    @DisplayName("every additionalContactInfo is read, and a flush with none of them changed writes nothing")
+    @DisplayName(
+            "every additionalContactInfo is read, and a flush with none of them changed writes " +
+            "nothing")
     @Test
     void additionalContactInfo() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var builder = em.getCriteriaBuilder();
             final var query = builder.createQuery(EmployeeView.class);
-            final var views = em.createQuery(query.select(query.from(EmployeeView.class))).getResultList();
+            final var views =
+                    em.createQuery(query.select(query.from(EmployeeView.class))).getResultList();
             assertThat(views).isNotEmpty();
             em.flush();
             // the log records the current transaction wrote; an UPDATE writes some, a read none
             final var written = (Number) em.createNativeQuery("""
-                    SELECT COALESCE(SUM(database_transaction_log_record_count), 0)
-                    FROM sys.dm_tran_database_transactions
-                    WHERE transaction_id = CURRENT_TRANSACTION_ID()
-                      AND database_id = DB_ID()""").getSingleResult();
+                                                                      SELECT COALESCE(SUM(database_transaction_log_record_count), 0)
+                                                                      FROM sys.dm_tran_database_transactions
+                                                                      WHERE transaction_id = CURRENT_TRANSACTION_ID()
+                                                                        AND database_id = DB_ID()""")
+                    .getSingleResult();
             assertThat(written.longValue())
                     .as("the log records written by a flush of %d unchanged entities", views.size())
                     .isZero();
@@ -74,18 +79,22 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
         });
     }
 
-    // no employee has an AdditionalContactInfo, so the view's own column holds no value to convert; the column it reads
+    // no employee has an AdditionalContactInfo, so the view's own column holds no value to
+    // convert; the column it reads
     // from, Person.Person.AdditionalContactInfo, does
-    @DisplayName("the converter binds every Person.Person.AdditionalContactInfo, its content to the classes, and back")
+    @DisplayName(
+            "the converter binds every Person.Person.AdditionalContactInfo, its content to the " +
+            "classes, and back")
     @Test
     void additionalContactInfo_converter() {
         final var converter = new AdditionalContactInfoStringAttributeConverter();
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final var texts = (List<String>) em.createNativeQuery("""
-                    SELECT CONVERT(nvarchar(max), AdditionalContactInfo)
-                    FROM Person.Person
-                    WHERE AdditionalContactInfo IS NOT NULL""").getResultList();
+                                                                          SELECT CONVERT(nvarchar(max), AdditionalContactInfo)
+                                                                          FROM Person.Person
+                                                                          WHERE AdditionalContactInfo IS NOT NULL""")
+                    .getResultList();
             assertThat(texts).isNotEmpty();
             for (final var text : texts) {
                 final var value = converter.convertToEntityAttribute(text);
@@ -94,7 +103,8 @@ class EmployeeView_PersistenceIT extends _Entity_PersistenceIT<EmployeeView> {
                         .allSatisfy(c -> assertThat(c).isInstanceOfAny(
                                 String.class, JAXBElement.class, ContactRecord.class));
                 final var written = converter.convertToDatabaseColumn(value);
-                assertThat(converter.convertToDatabaseColumn(converter.convertToEntityAttribute(written)))
+                assertThat(converter.convertToDatabaseColumn(
+                        converter.convertToEntityAttribute(written)))
                         .as("the text written back of %s", text)
                         .isEqualTo(written);
             }

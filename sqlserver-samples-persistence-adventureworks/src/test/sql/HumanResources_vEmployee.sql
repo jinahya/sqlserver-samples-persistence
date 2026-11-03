@@ -30,7 +30,10 @@
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows, how many distinct BusinessEntityID, and the smallest and the largest; 290, one per employee, 1 to 290;
 -- every employee has a single address, phone and email address.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM HumanResources.vEmployee
 ;
 
@@ -115,7 +118,9 @@ WHERE TRIM(JobTitle) = ''
 
 -- --------------------------------------------------------------------------------------------------------- PhoneNumber
 -- how many rows leave PhoneNumber NULL, and the shortest and the longest; no NULL; 12 to 19 characters.
-SELECT COUNT(*) - COUNT(PhoneNumber) AS nulls, MIN(LEN(PhoneNumber)), MAX(LEN(PhoneNumber))
+SELECT COUNT(*) - COUNT(PhoneNumber) AS nulls,
+       MIN(LEN(PhoneNumber)),
+       MAX(LEN(PhoneNumber))
 FROM HumanResources.vEmployee
 ;
 
@@ -139,7 +144,9 @@ ORDER BY PhoneNumberType ASC
 
 -- -------------------------------------------------------------------------------------------------------- EmailAddress
 -- how many rows leave EmailAddress NULL, and the shortest and the longest; no NULL; 23 to 32 characters.
-SELECT COUNT(*) - COUNT(EmailAddress) AS nulls, MIN(LEN(EmailAddress)), MAX(LEN(EmailAddress))
+SELECT COUNT(*) - COUNT(EmailAddress) AS nulls,
+       MIN(LEN(EmailAddress)),
+       MAX(LEN(EmailAddress))
 FROM HumanResources.vEmployee
 ;
 
@@ -178,7 +185,9 @@ WHERE TRIM(AddressLine1) = ''
 
 -- -------------------------------------------------------------------------------------------------------- AddressLine2
 -- how many rows leave AddressLine2 NULL, and the shortest and the longest; 282 NULLs; 3 to 6 characters.
-SELECT COUNT(*) - COUNT(AddressLine2) AS nulls, MIN(LEN(AddressLine2)), MAX(LEN(AddressLine2))
+SELECT COUNT(*) - COUNT(AddressLine2) AS nulls,
+       MIN(LEN(AddressLine2)),
+       MAX(LEN(AddressLine2))
 FROM HumanResources.vEmployee
 ;
 
@@ -208,7 +217,7 @@ WHERE TRIM(City) = ''
 
 -- --------------------------------------------------------------------------------------------------- StateProvinceName
 -- how many states and provinces, and the most common; 14; Washington with 275, then California and Minnesota with 2.
-SELECT TOP (3) StateProvinceName, COUNT(*) AS employees, COUNT(*) OVER () AS provinces
+SELECT TOP(3) StateProvinceName, COUNT(*) AS employees, COUNT(*) OVER () AS provinces
 FROM HumanResources.vEmployee
 GROUP BY StateProvinceName
 ORDER BY employees DESC, StateProvinceName ASC
@@ -243,7 +252,8 @@ ORDER BY CountryRegionName ASC
 -- how many rows leave AdditionalContactInfo NULL, and the smallest and the largest in bytes; all 290 NULL: no employee
 -- has additional contact info.
 SELECT COUNT(*) - COUNT(AdditionalContactInfo) AS nulls,
-       MIN(DATALENGTH(AdditionalContactInfo)), MAX(DATALENGTH(AdditionalContactInfo))
+       MIN(DATALENGTH(AdditionalContactInfo)),
+       MAX(DATALENGTH(AdditionalContactInfo))
 FROM HumanResources.vEmployee
 ;
 

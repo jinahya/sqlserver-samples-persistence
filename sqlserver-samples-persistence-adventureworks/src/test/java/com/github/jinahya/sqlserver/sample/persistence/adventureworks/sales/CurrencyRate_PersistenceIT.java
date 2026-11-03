@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class CurrencyRate_PersistenceIT extends _Entity_PersistenceIT<CurrencyRate> {
+class CurrencyRate_PersistenceIT
+        extends _Entity_PersistenceIT<CurrencyRate> {
 
     CurrencyRate_PersistenceIT() {
         super(CurrencyRate.class);

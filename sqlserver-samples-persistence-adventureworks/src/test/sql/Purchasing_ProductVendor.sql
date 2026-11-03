@@ -56,10 +56,10 @@ ORDER BY p.MakeFlag ASC, p.FinishedGoodsFlag ASC
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many vendors, and how many products a vendor has at most; 86 vendors, the busiest with 30 products.
 SELECT COUNT(DISTINCT BusinessEntityID),
-       (SELECT TOP (1) COUNT(*)
-        FROM Purchasing.ProductVendor
-        GROUP BY BusinessEntityID
-        ORDER BY COUNT(*) DESC) AS most_products
+       (SELECT TOP(1) COUNT (*)
+FROM Purchasing.ProductVendor
+GROUP BY BusinessEntityID
+ORDER BY COUNT (*) DESC) AS most_products
 FROM Purchasing.ProductVendor
 ;
 
@@ -67,7 +67,7 @@ FROM Purchasing.ProductVendor
 -- ----------------------------------------------------------------------------------------------------- AverageLeadTime
 -- how many distinct AverageLeadTime, the smallest, the largest and the most common; CK_ProductVendor_AverageLeadTime
 -- keeps it at 1 or more; 13 values, 10 to 120 days; 17 the most common, on 109 rows.
-SELECT TOP (1) COUNT(*) OVER () AS distinct_values, MIN(AverageLeadTime) OVER () AS smallest,
+SELECT TOP(1) COUNT(*) OVER () AS distinct_values, MIN(AverageLeadTime) OVER () AS smallest,
        MAX(AverageLeadTime) OVER () AS largest, AverageLeadTime AS most_common, COUNT(*) AS products
 FROM Purchasing.ProductVendor
 GROUP BY AverageLeadTime
@@ -82,7 +82,7 @@ FROM Purchasing.ProductVendor
 ;
 
 -- StandardPrice against the StandardCost of the product; 427 above the cost, 33 below it, none at it.
-SELECT COUNT(*) AS products,
+SELECT COUNT(*)                                               AS products,
        COUNT(IIF(pv.StandardPrice > p.StandardCost, 1, NULL)) AS above_cost,
        COUNT(IIF(pv.StandardPrice < p.StandardCost, 1, NULL)) AS below_cost
 FROM Purchasing.ProductVendor pv
@@ -98,9 +98,10 @@ FROM Purchasing.ProductVendor
 ;
 
 -- LastReceiptCost against StandardPrice; 406 of the 460 are exactly 5% above; the ratio runs from 0.3055 to 1.2822.
-SELECT COUNT(*) AS products,
+SELECT COUNT(*)                                                    AS products,
        COUNT(IIF(LastReceiptCost = StandardPrice * 1.05, 1, NULL)) AS five_percent_above,
-       MIN(LastReceiptCost / StandardPrice), MAX(LastReceiptCost / StandardPrice)
+       MIN(LastReceiptCost / StandardPrice),
+       MAX(LastReceiptCost / StandardPrice)
 FROM Purchasing.ProductVendor
 ;
 
@@ -123,7 +124,7 @@ WHERE (LastReceiptCost IS NULL AND LastReceiptDate IS NOT NULL)
 -- --------------------------------------------------------------------------------------------------------- MinOrderQty
 -- how many distinct MinOrderQty, the smallest, the largest and the most common; CK_ProductVendor_MinOrderQty keeps it
 -- at 1 or more; 11 values, 1 to 5000; 1 the most common, on 285 rows.
-SELECT TOP (1) COUNT(*) OVER () AS distinct_values, MIN(MinOrderQty) OVER () AS smallest,
+SELECT TOP(1) COUNT(*) OVER () AS distinct_values, MIN(MinOrderQty) OVER () AS smallest,
        MAX(MinOrderQty) OVER () AS largest, MinOrderQty AS most_common, COUNT(*) AS products
 FROM Purchasing.ProductVendor
 GROUP BY MinOrderQty
@@ -134,7 +135,7 @@ ORDER BY products DESC, MinOrderQty ASC
 -- --------------------------------------------------------------------------------------------------------- MaxOrderQty
 -- how many distinct MaxOrderQty, the smallest, the largest and the most common; CK_ProductVendor_MaxOrderQty keeps it
 -- at 1 or more; 16 values, 5 to 15000; 5 the most common, on 285 rows.
-SELECT TOP (1) COUNT(*) OVER () AS distinct_values, MIN(MaxOrderQty) OVER () AS smallest,
+SELECT TOP(1) COUNT(*) OVER () AS distinct_values, MIN(MaxOrderQty) OVER () AS smallest,
        MAX(MaxOrderQty) OVER () AS largest, MaxOrderQty AS most_common, COUNT(*) AS products
 FROM Purchasing.ProductVendor
 GROUP BY MaxOrderQty
@@ -157,7 +158,7 @@ FROM Purchasing.ProductVendor
 ;
 
 -- an OnOrderQty outside MinOrderQty and MaxOrderQty; 0 and 0: every OnOrderQty lies between the two.
-SELECT COUNT(*) AS on_order,
+SELECT COUNT(*)                                      AS on_order,
        COUNT(IIF(OnOrderQty < MinOrderQty, 1, NULL)) AS below_min,
        COUNT(IIF(OnOrderQty > MaxOrderQty, 1, NULL)) AS above_max
 FROM Purchasing.ProductVendor
@@ -198,7 +199,8 @@ SELECT COUNT(*)
 FROM Purchasing.ProductVendor pv
 WHERE NOT EXISTS (SELECT 1
                   FROM Purchasing.PurchaseOrderDetail d
-                           JOIN Purchasing.PurchaseOrderHeader h ON h.PurchaseOrderID = d.PurchaseOrderID
+                           JOIN Purchasing.PurchaseOrderHeader h
+                                ON h.PurchaseOrderID = d.PurchaseOrderID
                   WHERE d.ProductID = pv.ProductID
                     AND h.VendorID = pv.BusinessEntityID)
 ;

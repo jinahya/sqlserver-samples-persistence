@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
 
-class ProductDocument_PersistenceIT extends _Keyless_PersistenceIT<ProductDocument> {
+class ProductDocument_PersistenceIT
+        extends _Keyless_PersistenceIT<ProductDocument> {
 
     ProductDocument_PersistenceIT() {
         super(ProductDocument.class);

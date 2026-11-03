@@ -37,7 +37,8 @@ class Address_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public Address apply(final EntityManager entityManager, final Address entityInstance) {
-        final var stateProvince = EntityPersisterUtils.newPersistedInstanceOf(entityManager, StateProvince.class);
+        final var stateProvince =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, StateProvince.class);
         // the state's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setStateProvince(stateProvince);

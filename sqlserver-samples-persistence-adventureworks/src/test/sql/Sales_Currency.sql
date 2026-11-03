@@ -73,7 +73,8 @@ FROM Sales.Currency
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- how many currencies a CurrencyRate converts from, and how many it converts to; only USD, to 14 currencies.
-SELECT COUNT(DISTINCT FromCurrencyCode) AS from_currencies, COUNT(DISTINCT ToCurrencyCode) AS to_currencies
+SELECT COUNT(DISTINCT FromCurrencyCode) AS from_currencies,
+       COUNT(DISTINCT ToCurrencyCode)   AS to_currencies
 FROM Sales.CurrencyRate
 ;
 

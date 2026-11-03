@@ -21,10 +21,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class SalesReturnsAnalysisView_PersistenceIT extends _Entity_PersistenceIT<SalesReturnsAnalysisView> {
 
     SalesReturnsAnalysisView_PersistenceIT() {
         super(SalesReturnsAnalysisView.class);
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code dbo.vw_Sales_ReturnsAnalysis} is a view, which no row is inserted into.
+     */
+    @Disabled("a view: nothing is inserted into it")
+    @Override
+    @Test
+    protected void persistRandomEntityInstance() {
+        // empty
+    }
 }
+

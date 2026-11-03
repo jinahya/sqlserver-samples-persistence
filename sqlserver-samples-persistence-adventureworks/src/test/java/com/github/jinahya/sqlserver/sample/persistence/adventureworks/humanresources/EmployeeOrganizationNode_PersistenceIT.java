@@ -20,7 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,26 +35,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
 /**
- * Checks {@link Heirarchyid} against what SQL Server does with {@code HumanResources.Employee.OrganizationNode} and
- * with {@code hierarchyid::Parse}.
+ * Checks {@link Heirarchyid} against what SQL Server does with
+ * {@code HumanResources.Employee.OrganizationNode} and with {@code hierarchyid::Parse}.
  */
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
 })
 class EmployeeOrganizationNode_PersistenceIT {
 
-    @DisplayName("every installed OrganizationNode maps to what ToString, GetLevel and GetAncestor return")
+    @DisplayName(
+            "every installed OrganizationNode maps to what ToString, GetLevel and GetAncestor " +
+            "return")
     @Test
     void decode() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
-                        SELECT e.BusinessEntityID,
-                               e.OrganizationNode.ToString(),
-                               e.OrganizationNode.GetLevel(),
-                               CAST(e.OrganizationNode.GetAncestor(1) AS varbinary(892))
-                        FROM HumanResources.Employee AS e
-                        WHERE e.OrganizationNode IS NOT NULL""")
+                                                                     SELECT e.BusinessEntityID,
+                                                                            e.OrganizationNode.ToString(),
+                                                                            e.OrganizationNode.GetLevel(),
+                                                                            CAST(e.OrganizationNode.GetAncestor(1) AS varbinary(892))
+                                                                     FROM HumanResources.Employee AS e
+                                                                     WHERE e.OrganizationNode IS NOT NULL""")
                     .getResultList();
             assumeThat(rows).isNotEmpty();
             for (final var row : rows) {
@@ -72,7 +74,7 @@ class EmployeeOrganizationNode_PersistenceIT {
     @DisplayName("the installed OrganizationNodes sort as ORDER BY OrganizationNode does")
     @Test
     void order() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final List<byte[]> nodes = em.createNativeQuery("""
                                                                     SELECT CAST(e.OrganizationNode AS varbinary(892))
@@ -83,7 +85,8 @@ class EmployeeOrganizationNode_PersistenceIT {
                     .map(b -> Optional.ofNullable(b).map(Heirarchyid::decode).orElse(null))
                     .toList();
             assumeThat(decoded).isNotEmpty();
-            assertThat(decoded).isSortedAccordingTo(Comparator.nullsFirst(Comparator.naturalOrder()));
+            assertThat(decoded).isSortedAccordingTo(
+                    Comparator.nullsFirst(Comparator.naturalOrder()));
             return null;
         });
     }
@@ -93,14 +96,17 @@ class EmployeeOrganizationNode_PersistenceIT {
     @ParameterizedTest
     @ValueSource(strings = {
             "/", "/1/", "/1/-2.18/", "/1.1/", "/0.3.-7/",
-            "/-281479271682120/", "/-4294971465/", "/-4294971464/", "/-4169/", "/-4168/", "/-73/", "/-72/",
-            "/-9/", "/-8/", "/-1/", "/0/", "/3/", "/4/", "/7/", "/8/", "/15/", "/16/", "/79/", "/80/", "/1103/",
+            "/-281479271682120/", "/-4294971465/", "/-4294971464/", "/-4169/", "/-4168/", "/-73/"
+            , "/-72/",
+            "/-9/", "/-8/", "/-1/", "/0/", "/3/", "/4/", "/7/", "/8/", "/15/", "/16/", "/79/",
+            "/80/", "/1103/",
             "/1104/", "/5199/", "/5200/", "/4294972495/", "/4294972496/", "/281479271683151/",
             "/1/-281479271682121.0/", "/1/4294972495.7/2/", "/-73.-9.-1.3.7.15.79.1103.5199/"
     })
     void encode(final String string) {
-        final var expected = ___Persistence_TestUtils.applyInTransactionAndRollback(
-                em -> (byte[]) em.createNativeQuery("SELECT CAST(hierarchyid::Parse(?1) AS varbinary(892))")
+        final var expected = ___PersistenceIT_Utils.applyInTransactionAndRollback(
+                em -> (byte[]) em.createNativeQuery(
+                                "SELECT CAST(hierarchyid::Parse(?1) AS varbinary(892))")
                         .setParameter(1, string)
                         .getSingleResult()
         );
@@ -109,10 +115,12 @@ class EmployeeOrganizationNode_PersistenceIT {
         assertThat(Heirarchyid.decode(expected)).hasToString(string);
     }
 
-    @DisplayName("an OrganizationNode set through the entity is written as SQL Server reads it, and so is a null")
+    @DisplayName(
+            "an OrganizationNode set through the entity is written as SQL Server reads it, and so" +
+            " is a null")
     @Test
     void write() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var ids = em.createNativeQuery("""
                                                          SELECT TOP (2) e.BusinessEntityID
                                                          FROM HumanResources.Employee AS e
@@ -131,7 +139,8 @@ class EmployeeOrganizationNode_PersistenceIT {
                                                           SELECT e.OrganizationNode.ToString()
                                                           FROM HumanResources.Employee AS e
                                                           WHERE e.BusinessEntityID = ?1""");
-            assertThat(read.setParameter(1, ids.get(0)).getSingleResult()).isEqualTo(node.toString());
+            assertThat(read.setParameter(1, ids.get(0)).getSingleResult()).isEqualTo(
+                    node.toString());
             assertThat(read.setParameter(1, ids.get(1)).getSingleResult()).isNull();
             em.clear();
             assertThat(em.find(Employee.class, ids.get(0)).getOrganizationNode()).isEqualTo(node);

@@ -32,15 +32,17 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * A mapped superclass which holds the mappings of the {@code Production.vProductModelInstructions} view.
+ * A mapped superclass which holds the mappings of the {@code Production.vProductModelInstructions}
+ * view.
  * <p>
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
- * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * As nothing identifies a row, no entity can extend this class; a plain class does, which a native
+ * query fills.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
- * updatable; some of its columns are derived or constant (error 4406); one of its columns is an identity column of its
- * base table, which no UPDATE sets (error 8102).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is insertable or updatable; some of its columns are derived or constant (error 4406); one of
+ * its columns is an identity column of its base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedProductModelInstructionsView {
@@ -63,7 +65,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
 
@@ -80,7 +83,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
@@ -92,7 +96,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_INSTRUCTIONS = "Instructions";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_INSTRUCTIONS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_INSTRUCTIONS} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_INSTRUCTIONS = "instructions";
 
@@ -104,7 +109,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
@@ -126,7 +132,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_SCALE_SETUP_HOURS = 4;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SETUP_HOURS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SETUP_HOURS} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SETUP_HOURS = "setupHours";
 
@@ -148,7 +155,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_SCALE_MACHINE_HOURS = 4;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MACHINE_HOURS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MACHINE_HOURS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MACHINE_HOURS = "machineHours";
 
@@ -170,7 +178,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_SCALE_LABOR_HOURS = 4;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LABOR_HOURS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LABOR_HOURS} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LABOR_HOURS = "laborHours";
 
@@ -182,7 +191,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_LOT_SIZE = "LotSize";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LOT_SIZE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LOT_SIZE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOT_SIZE = "lotSize";
 
@@ -199,7 +209,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final int COLUMN_LENGTH_STEP = 1024;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STEP} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STEP} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_STEP = "step";
 
@@ -211,7 +222,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
@@ -223,7 +235,8 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -267,7 +280,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute with the
+     * specified value.
      *
      * @param productModelId new value for {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute.
      */
@@ -307,7 +321,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute with the specified
+     * value.
      *
      * @param instructions new value for {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
      */
@@ -327,7 +342,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified
+     * value.
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
@@ -347,7 +363,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SETUP_HOURS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SETUP_HOURS} attribute with the specified
+     * value.
      *
      * @param setupHours new value for {@value #ATTRIBUTE_NAME_SETUP_HOURS} attribute.
      */
@@ -367,7 +384,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MACHINE_HOURS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MACHINE_HOURS} attribute with the specified
+     * value.
      *
      * @param machineHours new value for {@value #ATTRIBUTE_NAME_MACHINE_HOURS} attribute.
      */
@@ -387,7 +405,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LABOR_HOURS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LABOR_HOURS} attribute with the specified
+     * value.
      *
      * @param laborHours new value for {@value #ATTRIBUTE_NAME_LABOR_HOURS} attribute.
      */
@@ -407,7 +426,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute with the specified
+     * value.
      *
      * @param lotSize new value for {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute.
      */
@@ -447,7 +467,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified
+     * value.
      *
      * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
      */
@@ -467,7 +488,8 @@ public abstract class MappedProductModelInstructionsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -478,7 +500,8 @@ public abstract class MappedProductModelInstructionsView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer productModelId;
 
     // ---------------------------------------------------------------------------------------------
@@ -486,7 +509,8 @@ public abstract class MappedProductModelInstructionsView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -503,9 +527,11 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_SETUP_HOURS - COLUMN_SCALE_SETUP_HOURS, fraction = COLUMN_SCALE_SETUP_HOURS)
+    @Digits(integer = COLUMN_PRECISION_SETUP_HOURS - COLUMN_SCALE_SETUP_HOURS,
+            fraction = COLUMN_SCALE_SETUP_HOURS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SETUP_HOURS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_SETUP_HOURS, scale = COLUMN_SCALE_SETUP_HOURS)
+    @Column(name = COLUMN_NAME_SETUP_HOURS, nullable = true, insertable = false, updatable = false,
+            precision = COLUMN_PRECISION_SETUP_HOURS, scale = COLUMN_SCALE_SETUP_HOURS)
     private BigDecimal setupHours;
 
     // ---------------------------------------------------------------------------------------------
@@ -513,14 +539,18 @@ public abstract class MappedProductModelInstructionsView {
     @Digits(integer = COLUMN_PRECISION_MACHINE_HOURS - COLUMN_SCALE_MACHINE_HOURS,
             fraction = COLUMN_SCALE_MACHINE_HOURS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MACHINE_HOURS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_MACHINE_HOURS, scale = COLUMN_SCALE_MACHINE_HOURS)
+    @Column(name = COLUMN_NAME_MACHINE_HOURS, nullable = true, insertable = false,
+            updatable = false, precision = COLUMN_PRECISION_MACHINE_HOURS,
+            scale = COLUMN_SCALE_MACHINE_HOURS)
     private BigDecimal machineHours;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Digits(integer = COLUMN_PRECISION_LABOR_HOURS - COLUMN_SCALE_LABOR_HOURS, fraction = COLUMN_SCALE_LABOR_HOURS)
+    @Digits(integer = COLUMN_PRECISION_LABOR_HOURS - COLUMN_SCALE_LABOR_HOURS,
+            fraction = COLUMN_SCALE_LABOR_HOURS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LABOR_HOURS, nullable = true, insertable = false, updatable = false, precision = COLUMN_PRECISION_LABOR_HOURS, scale = COLUMN_SCALE_LABOR_HOURS)
+    @Column(name = COLUMN_NAME_LABOR_HOURS, nullable = true, insertable = false, updatable = false,
+            precision = COLUMN_PRECISION_LABOR_HOURS, scale = COLUMN_SCALE_LABOR_HOURS)
     private BigDecimal laborHours;
 
     // ---------------------------------------------------------------------------------------------
@@ -533,7 +563,8 @@ public abstract class MappedProductModelInstructionsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_STEP)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STEP, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_STEP)
+    @Column(name = COLUMN_NAME_STEP, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_STEP)
     private String step;
 
     // ---------------------------------------------------------------------------------------------
@@ -547,7 +578,8 @@ public abstract class MappedProductModelInstructionsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = false)
     private LocalDateTime modifiedDate;
 }
 

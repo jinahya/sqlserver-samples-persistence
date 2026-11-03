@@ -69,7 +69,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -97,7 +99,8 @@ public abstract class MappedLocation {
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
@@ -114,32 +117,37 @@ public abstract class MappedLocation {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
     // ------------------------------------------------------------------------------------ CostRate
 
     /**
-     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_COST_RATE = "CostRate";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_COST_RATE} column, as the {@code CK_Location_CostRate} check
-     * constraint ({@code [CostRate]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_COST_RATE} column, as the
+     * {@code CK_Location_CostRate} check constraint ({@code [CostRate]>=(0.00)}) requires. The
+     * value is {@value}.
      */
     public static final String COLUMN_MIN_COST_RATE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COST_RATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COST_RATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_COST_RATE = "costRate";
 
     // -------------------------------------------------------------------------------- Availability
 
     /**
-     * The name of the {@code decimal(8, 2), DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code decimal(8, 2), DEFAULT ((0.00)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_AVAILABILITY = "Availability";
 
@@ -154,25 +162,29 @@ public abstract class MappedLocation {
     public static final int COLUMN_SCALE_AVAILABILITY = 2;
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_AVAILABILITY} column, as the {@code CK_Location_Availability}
-     * check constraint ({@code [Availability]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_AVAILABILITY} column, as the
+     * {@code CK_Location_Availability} check constraint ({@code [Availability]>=(0.00)}) requires.
+     * The value is {@value}.
      */
     public static final String COLUMN_MIN_AVAILABILITY = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABILITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_AVAILABILITY} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVAILABILITY = "availability";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -239,7 +251,8 @@ public abstract class MappedLocation {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified
+     * value.
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
@@ -279,7 +292,8 @@ public abstract class MappedLocation {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COST_RATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COST_RATE} attribute with the specified
+     * value.
      *
      * @param costRate new value for {@value #ATTRIBUTE_NAME_COST_RATE} attribute.
      */
@@ -299,7 +313,8 @@ public abstract class MappedLocation {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_AVAILABILITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_AVAILABILITY} attribute with the specified
+     * value.
      *
      * @param availability new value for {@value #ATTRIBUTE_NAME_AVAILABILITY} attribute.
      */
@@ -319,7 +334,8 @@ public abstract class MappedLocation {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -328,7 +344,8 @@ public abstract class MappedLocation {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -341,7 +358,8 @@ public abstract class MappedLocation {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Location description.")
     private String name;
 
@@ -359,20 +377,24 @@ public abstract class MappedLocation {
     // ---------------------------------------------------------------------------------------------
     // CK_Location_Availability: ([Availability]>=(0.00))
     @DecimalMin(COLUMN_MIN_AVAILABILITY)
-    @Digits(integer = COLUMN_PRECISION_AVAILABILITY - COLUMN_SCALE_AVAILABILITY, fraction = COLUMN_SCALE_AVAILABILITY)
+    @Digits(integer = COLUMN_PRECISION_AVAILABILITY - COLUMN_SCALE_AVAILABILITY,
+            fraction = COLUMN_SCALE_AVAILABILITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AVAILABILITY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_AVAILABILITY, scale = COLUMN_SCALE_AVAILABILITY)
+    @Column(name = COLUMN_NAME_AVAILABILITY, nullable = false, insertable = true, updatable = true,
+            precision = COLUMN_PRECISION_AVAILABILITY, scale = COLUMN_SCALE_AVAILABILITY)
     @MsDescription.Column(name = COLUMN_NAME_AVAILABILITY,
                           value = "Work capacity (in hours) of the manufacturing location.")
     @MsDefault(name = "DF_Location_Availability", value = "((0.00))")
     private BigDecimal availability;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Location_ModifiedDate", value = "(getdate())")

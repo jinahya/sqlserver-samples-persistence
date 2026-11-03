@@ -90,7 +90,7 @@ FROM Person.StateProvince
 
 -- the five countries and regions with the most state provinces; France (FR) with 96, United States (US) with 53,
 -- Canada (CA) with 13, Germany (DE) with 7 and Australia (AU) with 5.
-SELECT TOP (5) c.CountryRegionCode, c.Name, COUNT(*) AS state_provinces
+SELECT TOP(5) c.CountryRegionCode, c.Name, COUNT(*) AS state_provinces
 FROM Person.CountryRegion c
          JOIN Person.StateProvince s ON s.CountryRegionCode = c.CountryRegionCode
 GROUP BY c.CountryRegionCode, c.Name

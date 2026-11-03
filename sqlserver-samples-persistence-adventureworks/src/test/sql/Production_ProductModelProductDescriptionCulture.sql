@@ -79,12 +79,12 @@ HAVING COUNT(*) > 1
 
 -- an English description which is the same text in another culture.
 -- no rows: no other culture copies the English text.
-SELECT TOP (3) e.ProductModelID, o.CultureID, LEFT(d.Description, 40) AS Description
+SELECT TOP(3) e.ProductModelID, o.CultureID, LEFT (d.Description, 40) AS Description
 FROM Production.ProductModelProductDescriptionCulture e
-         JOIN Production.ProductModelProductDescriptionCulture o
-              ON o.ProductModelID = e.ProductModelID AND o.CultureID <> e.CultureID
-         JOIN Production.ProductDescription d ON d.ProductDescriptionID = e.ProductDescriptionID
-         JOIN Production.ProductDescription od ON od.ProductDescriptionID = o.ProductDescriptionID
+    JOIN Production.ProductModelProductDescriptionCulture o
+ON o.ProductModelID = e.ProductModelID AND o.CultureID <> e.CultureID
+    JOIN Production.ProductDescription d ON d.ProductDescriptionID = e.ProductDescriptionID
+    JOIN Production.ProductDescription od ON od.ProductDescriptionID = o.ProductDescriptionID
 WHERE e.CultureID = 'en'
   AND od.Description = d.Description
 ORDER BY e.ProductModelID ASC, o.CultureID ASC

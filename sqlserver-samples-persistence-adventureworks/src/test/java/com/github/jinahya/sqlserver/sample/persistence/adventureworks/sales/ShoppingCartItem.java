@@ -43,11 +43,12 @@ import jakarta.persistence.Table;
                )
        }
 )
-public class ShoppingCartItem extends MappedShoppingCartItem {
+public class ShoppingCartItem
+        extends MappedShoppingCartItem {
 
     /**
-     * The name of the attribute of the {@code FK_ShoppingCartItem_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ShoppingCartItem_Product_ProductID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
@@ -63,7 +64,8 @@ public class ShoppingCartItem extends MappedShoppingCartItem {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_ShoppingCartItem_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_ShoppingCartItem_Product_ProductID} foreign
+     * key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -72,8 +74,8 @@ public class ShoppingCartItem extends MappedShoppingCartItem {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_ShoppingCartItem_Product_ProductID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_ShoppingCartItem_Product_ProductID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */

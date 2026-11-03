@@ -25,8 +25,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link StateProvince}; the generated identifier, what SQL Server fills, and
- * the country and the territory, which the persister sets, are left out.
+ * Randomizes a new {@link StateProvince}; the generated identifier, what SQL Server fills, and the
+ * country and the territory, which the persister sets, are left out.
  */
 class StateProvince_Randomizer
         extends PodamObjectRandomizer<StateProvince> {

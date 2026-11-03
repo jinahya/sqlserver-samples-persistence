@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link Product}; the generated identifier, what SQL Server fills, and what it references, which
- * the persister sets, are left out.
+ * Randomizes a new {@link Product}; the generated identifier, what SQL Server fills, and what it
+ * references, which the persister sets, are left out.
  */
 class Product_Randomizer
         extends PodamObjectRandomizer<Product> {
@@ -55,7 +55,8 @@ class Product_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints, and its dates in order.
+     * @implNote The returned instance has amounts within their columns and CHECK
+     *         constraints, and its dates in order.
      */
     @Override
     public Product get() {
@@ -64,13 +65,15 @@ class Product_Randomizer
         // StandardCost and ListPrice, both money, >= 0; Weight, a decimal(8, 2), > 0
         instance.setStandardCost(__Random_TestUtils.positive(5, 4));
         instance.setListPrice(__Random_TestUtils.positive(5, 4));
-        instance.setWeight(__Random_TestUtils.positive(Product.COLUMN_PRECISION_WEIGHT - Product.COLUMN_SCALE_WEIGHT,
-                                                       Product.COLUMN_SCALE_WEIGHT));
+        instance.setWeight(__Random_TestUtils.positive(
+                Product.COLUMN_PRECISION_WEIGHT - Product.COLUMN_SCALE_WEIGHT,
+                Product.COLUMN_SCALE_WEIGHT));
         // CK_Product_SellEndDate: SellEndDate, when any, >= SellStartDate
         instance.setSellStartDate(__Random_TestUtils.dateTime());
         instance.setSellEndDate(random.nextBoolean()
-                                ? null
-                                : instance.getSellStartDate().plusDays(random.nextLong(366L)));
+                                        ? null
+                                        : instance.getSellStartDate()
+                .plusDays(random.nextLong(366L)));
         instance.setDiscontinuedDate(random.nextBoolean() ? null : __Random_TestUtils.dateTime());
         return instance;
     }

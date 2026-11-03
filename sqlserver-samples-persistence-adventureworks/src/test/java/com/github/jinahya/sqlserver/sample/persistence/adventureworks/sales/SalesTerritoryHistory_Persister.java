@@ -40,16 +40,20 @@ class SalesTerritoryHistory_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public SalesTerritoryHistory apply(final EntityManager entityManager, final SalesTerritoryHistory entityInstance) {
-        final var salesPerson = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);
-        final var territory = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
+    public SalesTerritoryHistory apply(final EntityManager entityManager,
+                                       final SalesTerritoryHistory entityInstance) {
+        final var salesPerson =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);
+        final var territory =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var random = ThreadLocalRandom.current();
         // CK_SalesTerritoryHistory_EndDate: EndDate, when any, >= StartDate
         final var startDate = __Random_TestUtils.dateTime();
         final var instance = SalesTerritoryHistory.of(salesPerson, startDate, territory);
-        instance.setEndDate(random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
+        instance.setEndDate(
+                random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
         return super.apply(entityManager, instance);
     }
 }

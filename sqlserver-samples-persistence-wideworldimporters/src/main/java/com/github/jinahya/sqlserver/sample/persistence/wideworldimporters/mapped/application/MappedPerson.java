@@ -445,7 +445,8 @@ public abstract class MappedPerson {
                + ",isPermittedToLogon=" + isPermittedToLogon
                + ",logonName=" + logonName
                + ",isExternalLogonProvider=" + isExternalLogonProvider
-               + ",hashedPassword=" + (this.hashedPassword == null ? null : this.hashedPassword.length + " bytes")
+               // a credential, which a log should not hold
+               // + ",hashedPassword=" + (this.hashedPassword == null ? null : this.hashedPassword.length + " bytes")
                + ",isSystemUser=" + isSystemUser
                + ",isEmployee=" + isEmployee
                + ",isSalesperson=" + isSalesperson

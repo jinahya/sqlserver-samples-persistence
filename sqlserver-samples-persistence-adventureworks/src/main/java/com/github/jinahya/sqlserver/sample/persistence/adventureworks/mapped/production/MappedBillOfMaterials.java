@@ -44,8 +44,9 @@ import java.util.Objects;
  * A mapped superclass which holds the mappings of the {@code Production.BillOfMaterials} table.
  * <p>
  * The {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID}, {@value #COLUMN_NAME_COMPONENT_ID},
- * {@value #COLUMN_NAME_UNIT_MEASURE_CODE} columns are mapped read-only, as a foreign key; the extending entity owns the
- * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * {@value #COLUMN_NAME_UNIT_MEASURE_CODE} columns are mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.BillOfMaterials}</caption>
@@ -86,7 +87,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -115,8 +118,8 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_BILL_OF_MATERIALS_ID = "BillOfMaterialsID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BILL_OF_MATERIALS_ID} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BILL_OF_MATERIALS_ID} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID = "billOfMaterialsId";
 
@@ -128,8 +131,8 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_PRODUCT_ASSEMBLY_ID = "ProductAssemblyID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID = "productAssemblyId";
 
@@ -141,19 +144,22 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_COMPONENT_ID = "ComponentID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_ID = "componentId";
 
     // ----------------------------------------------------------------------------------- StartDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_START_DATE = "StartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
@@ -165,7 +171,8 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_END_DATE = "EndDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
@@ -182,7 +189,8 @@ public abstract class MappedBillOfMaterials {
     public static final int COLUMN_LENGTH_UNIT_MEASURE_CODE = 3;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_MEASURE_CODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_MEASURE_CODE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_MEASURE_CODE = "unitMeasureCode";
 
@@ -195,9 +203,9 @@ public abstract class MappedBillOfMaterials {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_BOM_LEVEL} column, as the table's
-     * {@code CK_BillOfMaterials_BOMLevel} check constraint ({@code [BOMLevel]=(0)} for an assembly with no
-     * {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID}, {@code [BOMLevel]>=(1)} for any other) requires. The value is
-     * {@value}.
+     * {@code CK_BillOfMaterials_BOMLevel} check constraint ({@code [BOMLevel]=(0)} for an assembly
+     * with no {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID}, {@code [BOMLevel]>=(1)} for any other)
+     * requires. The value is {@value}.
      */
     public static final int COLUMN_MIN_BOM_LEVEL = 0;
 
@@ -207,14 +215,16 @@ public abstract class MappedBillOfMaterials {
     public static final int COLUMN_MAX_BOM_LEVEL = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BOM_LEVEL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BOM_LEVEL} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BOM_LEVEL = "bomLevel";
 
     // ------------------------------------------------------------------------------ PerAssemblyQty
 
     /**
-     * The name of the {@code decimal(8, 2), DEFAULT ((1.00)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code decimal(8, 2), DEFAULT ((1.00)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_PER_ASSEMBLY_QTY = "PerAssemblyQty";
 
@@ -230,25 +240,28 @@ public abstract class MappedBillOfMaterials {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_PER_ASSEMBLY_QTY} column, as the
-     * {@code CK_BillOfMaterials_PerAssemblyQty} check constraint ({@code [PerAssemblyQty]>=(1.00)}) requires. The
-     * value is {@value}.
+     * {@code CK_BillOfMaterials_PerAssemblyQty} check constraint ({@code [PerAssemblyQty]>=(1.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_PER_ASSEMBLY_QTY = "1.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PER_ASSEMBLY_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PER_ASSEMBLY_QTY} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PER_ASSEMBLY_QTY = "perAssemblyQty";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -310,16 +323,16 @@ public abstract class MappedBillOfMaterials {
     // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
-     * Checks whether the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null} or not equal to the
-     * {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute, as the table's {@code CK_BillOfMaterials_ProductAssemblyID}
-     * constraint requires.
+     * Checks whether the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null} or
+     * not equal to the {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute, as the table's
+     * {@code CK_BillOfMaterials_ProductAssemblyID} constraint requires.
      * {@snippet lang = "sql":
      * ([ProductAssemblyID]<>[ComponentID])
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute is {@code null}, or the two attributes are not equal;
-     *         {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is
+     *         {@code null}, or the {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute is {@code null},
+     *         or the two attributes are not equal; {@code false} otherwise.
      */
     @AssertTrue(message = "productAssemblyId must be null or not equal to componentId")
     protected boolean isProductAssemblyIdValid() {
@@ -331,16 +344,16 @@ public abstract class MappedBillOfMaterials {
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or after the
-     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_BillOfMaterials_EndDate} constraint
-     * requires.
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's
+     * {@code CK_BillOfMaterials_EndDate} constraint requires.
      * {@snippet lang = "sql":
      * ([EndDate]>[StartDate] OR [EndDate] IS NULL)
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is after the {@value #ATTRIBUTE_NAME_START_DATE} attribute;
-     *         {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or
+     *         the {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is after the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute; {@code false} otherwise.
      */
     @AssertTrue(message = "endDate must be null or after startDate")
     protected boolean isEndDateValid() {
@@ -352,22 +365,26 @@ public abstract class MappedBillOfMaterials {
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute agrees with the
-     * {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} and {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attributes, as the
-     * table's {@code CK_BillOfMaterials_BOMLevel} constraint requires: a top-level assembly, with no
-     * {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID}, is at level {@code 0} with a quantity of {@code 1.00}; any other
-     * component is at level {@code 1} or more.
+     * {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} and {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY}
+     * attributes, as the table's {@code CK_BillOfMaterials_BOMLevel} constraint requires: a
+     * top-level assembly, with no {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID}, is at level
+     * {@code 0} with a quantity of {@code 1.00}; any other component is at level {@code 1} or
+     * more.
      * {@snippet lang = "sql":
-     * ([ProductAssemblyID] IS NULL AND [BOMLevel]=(0) AND [PerAssemblyQty]=(1.00) OR [ProductAssemblyID] IS NOT NULL AND [BOMLevel]>=(1))
+     * ([ProductAssemblyID] IS NULL AND [BOMLevel]=(0) AND [PerAssemblyQty]=(1.00) OR
+     * [ProductAssemblyID] IS NOT NULL AND [BOMLevel]>=(1))
      *}
      *
-     * @return {@code false} if the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is {@code null} and the
-     *         {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute is not {@code 0} or the
-     *         {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute is not {@code 1.00}, or if the
-     *         {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is not {@code null} and the
-     *         {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute is less than {@code 1}; {@code true} otherwise, including
-     *         when an attribute the constraint compares is {@code null}.
+     * @return {@code false} if the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is
+     *         {@code null} and the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute is not {@code 0} or
+     *         the {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute is not {@code 1.00}, or if
+     *         the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute is not {@code null} and
+     *         the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute is less than {@code 1}; {@code true}
+     *         otherwise, including when an attribute the constraint compares is {@code null}.
      */
-    @AssertTrue(message = "bomLevel must be 0, with perAssemblyQty 1.00, for no productAssemblyId, or 1 or more")
+    @AssertTrue(
+            message = "bomLevel must be 0, with perAssemblyQty 1.00, for no productAssemblyId, or" +
+                      " 1 or more")
     protected boolean isBomLevelValid() {
         if (productAssemblyId == null) {
             if (bomLevel != null && bomLevel != 0) {
@@ -390,9 +407,11 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID} attribute with the
+     * specified value.
      *
-     * @param billOfMaterialsId new value for {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID} attribute.
+     * @param billOfMaterialsId new value for {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID}
+     *                          attribute.
      */
     protected void setBillOfMaterialsId(final Integer billOfMaterialsId) {
         this.billOfMaterialsId = billOfMaterialsId;
@@ -410,11 +429,12 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
-     * @param productAssemblyId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute.
+     * @param productAssemblyId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID}
+     *                          attribute.
      */
     protected void setProductAssemblyId(final Integer productAssemblyId) {
         this.productAssemblyId = productAssemblyId;
@@ -432,8 +452,9 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param componentId new value for {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute.
      */
@@ -453,7 +474,8 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified
+     * value.
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
@@ -473,7 +495,8 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified
+     * value.
      *
      * @param endDate new value for {@value #ATTRIBUTE_NAME_END_DATE} attribute.
      */
@@ -493,9 +516,9 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param unitMeasureCode new value for {@value #ATTRIBUTE_NAME_UNIT_MEASURE_CODE} attribute.
      */
@@ -515,7 +538,8 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute with the specified
+     * value.
      *
      * @param bomLevel new value for {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute.
      */
@@ -535,7 +559,8 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute with the
+     * specified value.
      *
      * @param perAssemblyQty new value for {@value #ATTRIBUTE_NAME_PER_ASSEMBLY_QTY} attribute.
      */
@@ -555,7 +580,8 @@ public abstract class MappedBillOfMaterials {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -564,29 +590,35 @@ public abstract class MappedBillOfMaterials {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID,
                           value = "Primary key for BillOfMaterials records.")
     private Integer billOfMaterialsId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID, nullable = true, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
                           value = "Parent product identification number. Foreign key to "
                                   + "Product.ProductID.")
     private Integer productAssemblyId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COMPONENT_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_COMPONENT_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COMPONENT_ID,
                           value = "Component identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -609,17 +641,20 @@ public abstract class MappedBillOfMaterials {
     private LocalDateTime endDate;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Size(max = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
+    @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
                           value = "Standard code identifying the unit of measure for the quantity.")
     private String unitMeasureCode;
 
     // ---------------------------------------------------------------------------------------------
-    // CK_BillOfMaterials_BOMLevel, of the table: 0 for an assembly with no ProductAssemblyID, 1 or more for any other;
+    // CK_BillOfMaterials_BOMLevel, of the table: 0 for an assembly with no ProductAssemblyID, 1
+    // or more for any other;
     // smallint's upper bound
     @Max(COLUMN_MAX_BOM_LEVEL)
     @Min(COLUMN_MIN_BOM_LEVEL)
@@ -638,17 +673,21 @@ public abstract class MappedBillOfMaterials {
             fraction = COLUMN_SCALE_PER_ASSEMBLY_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_PER_ASSEMBLY_QTY, scale = COLUMN_SCALE_PER_ASSEMBLY_QTY)
+    @Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY, nullable = false, insertable = true,
+            updatable = true, precision = COLUMN_PRECISION_PER_ASSEMBLY_QTY,
+            scale = COLUMN_SCALE_PER_ASSEMBLY_QTY)
     @MsDescription.Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY,
                           value = "Quantity of the component needed to create the assembly.")
     @MsDefault(name = "DF_BillOfMaterials_PerAssemblyQty", value = "((1.00))")
     private BigDecimal perAssemblyQty;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_BillOfMaterials_ModifiedDate", value = "(getdate())")

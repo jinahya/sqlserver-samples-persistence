@@ -37,8 +37,10 @@ class JobCandidate_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public JobCandidate apply(final EntityManager entityManager, final JobCandidate entityInstance) {
-        final var employee = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
+    public JobCandidate apply(final EntityManager entityManager,
+                              final JobCandidate entityInstance) {
+        final var employee =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
         entityInstance.setBusinessEntity(employee);
         return super.apply(entityManager, entityInstance);
     }

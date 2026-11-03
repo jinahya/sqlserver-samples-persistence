@@ -51,7 +51,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Location extends MappedLocation {
+public class Location
+        extends MappedLocation {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

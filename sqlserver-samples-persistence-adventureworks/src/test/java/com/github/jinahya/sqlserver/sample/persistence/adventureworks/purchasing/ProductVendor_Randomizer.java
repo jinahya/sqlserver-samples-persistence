@@ -53,7 +53,8 @@ class ProductVendor_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints.
+     * @implNote The returned instance has amounts within their columns and CHECK
+     *         constraints.
      */
     @Override
     public ProductVendor get() {
@@ -61,7 +62,8 @@ class ProductVendor_Randomizer
         final var random = ThreadLocalRandom.current();
         // StandardPrice and LastReceiptCost, when any, both money, > 0; LastReceiptDate, a datetime
         instance.setStandardPrice(__Random_TestUtils.positive(5, 4));
-        instance.setLastReceiptCost(random.nextBoolean() ? null : __Random_TestUtils.positive(5, 4));
+        instance.setLastReceiptCost(
+                random.nextBoolean() ? null : __Random_TestUtils.positive(5, 4));
         instance.setLastReceiptDate(random.nextBoolean() ? null : __Random_TestUtils.dateTime());
         return instance;
     }

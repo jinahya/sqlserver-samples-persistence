@@ -55,11 +55,12 @@ import java.util.Optional;
        }
 )
 @IdClass(ProductListPriceHistoryId.class)
-public class ProductListPriceHistory extends MappedProductListPriceHistory {
+public class ProductListPriceHistory
+        extends MappedProductListPriceHistory {
 
     /**
-     * The name of the attribute of the {@code FK_ProductListPriceHistory_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ProductListPriceHistory_Product_ProductID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
@@ -95,8 +96,8 @@ public class ProductListPriceHistory extends MappedProductListPriceHistory {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_ProductListPriceHistory_Product_ProductID} foreign key
-     * references.
+     * Returns the {@code Product} which the {@code FK_ProductListPriceHistory_Product_ProductID}
+     * foreign key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -105,8 +106,8 @@ public class ProductListPriceHistory extends MappedProductListPriceHistory {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_ProductListPriceHistory_Product_ProductID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_ProductListPriceHistory_Product_ProductID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */

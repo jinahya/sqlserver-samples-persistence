@@ -57,7 +57,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class ShipMethod extends MappedShipMethod {
+public class ShipMethod
+        extends MappedShipMethod {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

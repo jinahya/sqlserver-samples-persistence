@@ -87,7 +87,9 @@ ORDER BY p.BusinessEntityID ASC
 
 -- -------------------------------------------------------------------------------------------------------- Demographics
 -- Demographics is a nullable xml; how many stores have none, and its size in bytes. None; 968 to 1000.
-SELECT COUNT(*) - COUNT(Demographics) AS without, MIN(DATALENGTH(Demographics)), MAX(DATALENGTH(Demographics))
+SELECT COUNT(*) - COUNT(Demographics) AS without,
+       MIN(DATALENGTH(Demographics)),
+       MAX(DATALENGTH(Demographics))
 FROM Sales.Store
 ;
 

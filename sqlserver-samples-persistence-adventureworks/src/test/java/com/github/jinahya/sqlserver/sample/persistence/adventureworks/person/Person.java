@@ -52,17 +52,18 @@ import jakarta.persistence.UniqueConstraint;
                @CheckConstraint(
                        name = "CK_Person_PersonType",
                        constraint = "([PersonType] IS NULL OR (upper([PersonType])='GC' OR "
-                               + "upper([PersonType])='SP' OR upper([PersonType])='EM' OR "
-                               + "upper([PersonType])='IN' OR upper([PersonType])='VC' OR "
-                               + "upper([PersonType])='SC'))"
+                                    + "upper([PersonType])='SP' OR upper([PersonType])='EM' OR "
+                                    + "upper([PersonType])='IN' OR upper([PersonType])='VC' OR "
+                                    + "upper([PersonType])='SC'))"
                )
        }
 )
-public class Person extends MappedPerson {
+public class Person
+        extends MappedPerson {
 
     /**
-     * The name of the attribute of the {@code FK_Person_BusinessEntity_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_Person_BusinessEntity_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -78,8 +79,8 @@ public class Person extends MappedPerson {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code BusinessEntity} which the {@code FK_Person_BusinessEntity_BusinessEntityID} foreign key
-     * references.
+     * Returns the {@code BusinessEntity} which the
+     * {@code FK_Person_BusinessEntity_BusinessEntityID} foreign key references.
      *
      * @return the {@code BusinessEntity} referenced; {@code null} when none is.
      */
@@ -88,8 +89,9 @@ public class Person extends MappedPerson {
     }
 
     /**
-     * Replaces the {@code BusinessEntity} which the {@code FK_Person_BusinessEntity_BusinessEntityID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code BusinessEntity} which the
+     * {@code FK_Person_BusinessEntity_BusinessEntityID} foreign key references, and the value of
+     * the column it consists of.
      *
      * @param businessEntity the {@code BusinessEntity} to reference; {@code null} for none.
      */

@@ -27,8 +27,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductReview}; the generated identifier, what SQL Server fills, and what it references,
- * which the persister sets, are left out.
+ * Randomizes a new {@link ProductReview}; the generated identifier, what SQL Server fills, and what
+ * it references, which the persister sets, are left out.
  */
 class ProductReview_Randomizer
         extends PodamObjectRandomizer<ProductReview> {

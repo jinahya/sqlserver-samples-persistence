@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class EmployeeDepartmentHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeeDepartmentHistory> {
+class EmployeeDepartmentHistory_PersistenceIT
+        extends _Entity_PersistenceIT<EmployeeDepartmentHistory> {
 
     EmployeeDepartmentHistory_PersistenceIT() {
         super(EmployeeDepartmentHistory.class);

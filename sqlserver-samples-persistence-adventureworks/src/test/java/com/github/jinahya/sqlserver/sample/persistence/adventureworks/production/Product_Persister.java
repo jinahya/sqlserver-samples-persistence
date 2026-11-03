@@ -39,10 +39,14 @@ class Product_Persister
     @Override
     public Product apply(final EntityManager entityManager, final Product entityInstance) {
         final var productSubcategory =
-                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductSubcategory.class);
-        final var productModel = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductModel.class);
-        final var sizeUnitMeasure = EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
-        final var weightUnitMeasure = EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager,
+                                                            ProductSubcategory.class);
+        final var productModel =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductModel.class);
+        final var sizeUnitMeasure =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
+        final var weightUnitMeasure =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         entityInstance.setProductSubcategory(productSubcategory);

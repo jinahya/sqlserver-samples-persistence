@@ -42,29 +42,32 @@ import java.util.Optional;
 @Entity(name = "PersonPersonPhone")
 @Table(schema = MappedPersonPhone.TABLE_SCHEMA, name = MappedPersonPhone.TABLE_NAME)
 @IdClass(PersonPhoneId.class)
-public class PersonPhone extends MappedPersonPhone {
+public class PersonPhone
+        extends MappedPersonPhone {
 
     /**
-     * The name of the attribute of the {@code FK_PersonPhone_Person_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PersonPhone_Person_BusinessEntityID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
     /**
-     * The name of the attribute of the {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID} foreign key. The value
-     * is {@value}.
+     * The name of the attribute of the {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER_TYPE = "phoneNumberType";
 
     // ---------------------------------------------------------------------- STATIC_FACTORY_METHODS
 
     /**
-     * Creates a new instance which references {@code businessEntity} and {@code phoneNumberType}, with {@code phoneNumber}.
+     * Creates a new instance which references {@code businessEntity} and {@code phoneNumberType},
+     * with {@code phoneNumber}.
      *
      * @param businessEntity  the {@code Person} to reference.
      * @param phoneNumber     the value of the {@value #COLUMN_NAME_PHONE_NUMBER} column.
      * @param phoneNumberType the {@code PhoneNumberType} to reference.
-     * @return a new instance which references {@code businessEntity} and {@code phoneNumberType}, with {@code phoneNumber}.
+     * @return a new instance which references {@code businessEntity} and {@code phoneNumberType},
+     *         with {@code phoneNumber}.
      * @throws NullPointerException if any of the arguments is {@code null}.
      */
     public static PersonPhone of(final Person businessEntity,
@@ -92,7 +95,8 @@ public class PersonPhone extends MappedPersonPhone {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Person} which the {@code FK_PersonPhone_Person_BusinessEntityID} foreign key references.
+     * Returns the {@code Person} which the {@code FK_PersonPhone_Person_BusinessEntityID} foreign
+     * key references.
      *
      * @return the {@code Person} referenced; {@code null} when none is.
      */
@@ -101,21 +105,22 @@ public class PersonPhone extends MappedPersonPhone {
     }
 
     /**
-     * Replaces the {@code Person} which the {@code FK_PersonPhone_Person_BusinessEntityID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code Person} which the {@code FK_PersonPhone_Person_BusinessEntityID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Person} to reference; {@code null} for none.
      */
     private void setBusinessEntity(final Person businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Person::getBusinessEntityId).orElse(null));
+        setBusinessEntityId(
+                Optional.ofNullable(businessEntity).map(Person::getBusinessEntityId).orElse(null));
     }
 
     // ----------------------------------------------------------------------------- phoneNumberType
 
     /**
-     * Returns the {@code PhoneNumberType} which the {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID} foreign
-     * key references.
+     * Returns the {@code PhoneNumberType} which the
+     * {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID} foreign key references.
      *
      * @return the {@code PhoneNumberType} referenced; {@code null} when none is.
      */
@@ -124,14 +129,17 @@ public class PersonPhone extends MappedPersonPhone {
     }
 
     /**
-     * Replaces the {@code PhoneNumberType} which the {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID} foreign
-     * key references, and the value of the column it consists of.
+     * Replaces the {@code PhoneNumberType} which the
+     * {@code FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param phoneNumberType the {@code PhoneNumberType} to reference; {@code null} for none.
      */
     private void setPhoneNumberType(final PhoneNumberType phoneNumberType) {
         this.phoneNumberType = phoneNumberType;
-        setPhoneNumberTypeId(Optional.ofNullable(phoneNumberType).map(PhoneNumberType::getPhoneNumberTypeId).orElse(null));
+        setPhoneNumberTypeId(
+                Optional.ofNullable(phoneNumberType).map(PhoneNumberType::getPhoneNumberTypeId)
+                        .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

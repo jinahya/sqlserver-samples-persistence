@@ -20,13 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
 
 /**
- * Randomizes a new {@link CountryRegion}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link CountryRegion}; the generated identifier and what SQL Server fills are
+ * left out.
  */
 class CountryRegion_Randomizer
         extends PodamObjectRandomizer<CountryRegion> {
@@ -48,7 +49,8 @@ class CountryRegion_Randomizer
     @Override
     public CountryRegion get() {
         final var instance = super.get();
-        instance.setCountryRegionCode(__Random_TestUtils.code(CountryRegion.COLUMN_LENGTH_COUNTRY_REGION_CODE));
+        instance.setCountryRegionCode(
+                __Random_TestUtils.code(CountryRegion.COLUMN_LENGTH_COUNTRY_REGION_CODE));
         return instance;
     }
 }

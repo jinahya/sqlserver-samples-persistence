@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Currency extends MappedCurrency {
+public class Currency
+        extends MappedCurrency {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

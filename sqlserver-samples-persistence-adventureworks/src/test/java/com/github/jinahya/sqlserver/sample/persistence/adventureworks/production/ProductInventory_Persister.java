@@ -37,9 +37,12 @@ class ProductInventory_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ProductInventory apply(final EntityManager entityManager, final ProductInventory entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
-        final var location = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Location.class);
+    public ProductInventory apply(final EntityManager entityManager,
+                                  final ProductInventory entityInstance) {
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+        final var location =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Location.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = ProductInventory.of(product, location);

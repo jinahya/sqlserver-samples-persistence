@@ -30,8 +30,10 @@ import jakarta.persistence.Table;
  * A view is read, not written; the entity maps no association.
  */
 @Entity(name = "SalesPersonDemographicsView")
-@Table(schema = MappedPersonDemographicsView.TABLE_SCHEMA, name = MappedPersonDemographicsView.TABLE_NAME)
-public class PersonDemographicsView extends MappedPersonDemographicsView {
+@Table(schema = MappedPersonDemographicsView.TABLE_SCHEMA,
+       name = MappedPersonDemographicsView.TABLE_NAME)
+public class PersonDemographicsView
+        extends MappedPersonDemographicsView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

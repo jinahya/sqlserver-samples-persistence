@@ -21,10 +21,24 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.websi
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class VehicleTemperature_PersistenceIT extends _Entity_PersistenceIT<VehicleTemperature> {
 
     VehicleTemperature_PersistenceIT() {
         super(VehicleTemperature.class);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code Website.VehicleTemperatures} is a view, and the entity is read-only.
+     */
+    @Disabled("read-only: Website.VehicleTemperatures is a view")
+    @Override
+    @Test
+    protected void persistRandomEntityInstance() {
+        // empty
     }
 }

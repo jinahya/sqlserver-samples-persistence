@@ -21,7 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +29,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
+class DatabaseLog_PersistenceIT
+        extends _Entity_PersistenceIT<DatabaseLog> {
 
     DatabaseLog_PersistenceIT() {
         super(DatabaseLog.class);
@@ -38,8 +39,8 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; the {@code ddlDatabaseTriggerLog} database trigger inserts every row of {@code dbo.DatabaseLog},
-     * on each DDL statement, and nothing else inserts into it.
+     * Does nothing; the {@code ddlDatabaseTriggerLog} database trigger inserts every row of
+     * {@code dbo.DatabaseLog}, on each DDL statement, and nothing else inserts into it.
      */
     @Disabled("written by the ddlDatabaseTriggerLog trigger: nothing else inserts into it")
     @Override
@@ -49,13 +50,16 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
     }
 
     // ------------------------------------------------------------------------------------ xmlEvent
-    @DisplayName("every xmlEvent is bound to the class of its event, and a flush with none of them changed writes nothing")
+    @DisplayName(
+            "every xmlEvent is bound to the class of its event, and a flush with none of them " +
+            "changed writes nothing")
     @Test
     void xmlEvent() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var builder = em.getCriteriaBuilder();
             final var query = builder.createQuery(DatabaseLog.class);
-            final var logs = em.createQuery(query.select(query.from(DatabaseLog.class))).getResultList();
+            final var logs =
+                    em.createQuery(query.select(query.from(DatabaseLog.class))).getResultList();
             assertThat(logs).isNotEmpty();
             for (final var log : logs) {
                 assertThat(log.getXmlEvent())
@@ -68,10 +72,11 @@ class DatabaseLog_PersistenceIT extends _Entity_PersistenceIT<DatabaseLog> {
             em.flush();
             // the log records the current transaction wrote; an UPDATE writes some, a read none
             final var written = (Number) em.createNativeQuery("""
-                    SELECT COALESCE(SUM(database_transaction_log_record_count), 0)
-                    FROM sys.dm_tran_database_transactions
-                    WHERE transaction_id = CURRENT_TRANSACTION_ID()
-                      AND database_id = DB_ID()""").getSingleResult();
+                                                                      SELECT COALESCE(SUM(database_transaction_log_record_count), 0)
+                                                                      FROM sys.dm_tran_database_transactions
+                                                                      WHERE transaction_id = CURRENT_TRANSACTION_ID()
+                                                                        AND database_id = DB_ID()""")
+                    .getSingleResult();
             assertThat(written.longValue())
                     .as("the log records written by a flush of %d unchanged entities", logs.size())
                     .isZero();

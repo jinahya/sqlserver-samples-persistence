@@ -25,12 +25,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Person.PersonPhone} table, whose rows are identified by {@code BusinessEntityID},
- * {@code PhoneNumber}, {@code PhoneNumberTypeID}.
+ * The identifier class of the {@code Person.PersonPhone} table, whose rows are identified by
+ * {@code BusinessEntityID}, {@code PhoneNumber}, {@code PhoneNumberTypeID}.
  * <p>
- * An entity which extends {@link MappedPersonPhone} names this class with {@link jakarta.persistence.IdClass @IdClass};
- * its attributes are the same as the mapped superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by
- * type.
+ * An entity which extends {@link MappedPersonPhone} names this class with
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class PersonPhoneId {
 
@@ -41,8 +41,8 @@ public class PersonPhoneId {
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
     /**
-     * The name of the attribute which maps the
-     * {@value MappedPersonPhone#COLUMN_NAME_PHONE_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value MappedPersonPhone#COLUMN_NAME_PHONE_NUMBER}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
@@ -151,6 +151,7 @@ public class PersonPhoneId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code businessEntityId} attribute.
      */

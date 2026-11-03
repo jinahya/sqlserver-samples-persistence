@@ -69,17 +69,18 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class SalesPerson extends MappedSalesPerson {
+public class SalesPerson
+        extends MappedSalesPerson {
 
     /**
-     * The name of the attribute of the {@code FK_SalesPerson_Employee_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesPerson_Employee_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
     /**
-     * The name of the attribute of the {@code FK_SalesPerson_SalesTerritory_TerritoryID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesPerson_SalesTerritory_TerritoryID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
@@ -95,7 +96,8 @@ public class SalesPerson extends MappedSalesPerson {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Employee} which the {@code FK_SalesPerson_Employee_BusinessEntityID} foreign key references.
+     * Returns the {@code Employee} which the {@code FK_SalesPerson_Employee_BusinessEntityID}
+     * foreign key references.
      *
      * @return the {@code Employee} referenced; {@code null} when none is.
      */
@@ -104,8 +106,8 @@ public class SalesPerson extends MappedSalesPerson {
     }
 
     /**
-     * Replaces the {@code Employee} which the {@code FK_SalesPerson_Employee_BusinessEntityID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Employee} which the {@code FK_SalesPerson_Employee_BusinessEntityID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Employee} to reference; {@code null} for none.
      */
@@ -117,8 +119,8 @@ public class SalesPerson extends MappedSalesPerson {
     // ----------------------------------------------------------------------------------- territory
 
     /**
-     * Returns the {@code SalesTerritory} which the {@code FK_SalesPerson_SalesTerritory_TerritoryID} foreign key
-     * references.
+     * Returns the {@code SalesTerritory} which the
+     * {@code FK_SalesPerson_SalesTerritory_TerritoryID} foreign key references.
      *
      * @return the {@code SalesTerritory} referenced; {@code null} when none is.
      */
@@ -127,8 +129,9 @@ public class SalesPerson extends MappedSalesPerson {
     }
 
     /**
-     * Replaces the {@code SalesTerritory} which the {@code FK_SalesPerson_SalesTerritory_TerritoryID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code SalesTerritory} which the
+     * {@code FK_SalesPerson_SalesTerritory_TerritoryID} foreign key references, and the value of
+     * the column it consists of.
      *
      * @param territory the {@code SalesTerritory} to reference; {@code null} for none.
      */

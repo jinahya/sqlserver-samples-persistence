@@ -41,7 +41,8 @@ class Customer_Persister
     public Customer apply(final EntityManager entityManager, final Customer entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
         final var store = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Store.class);
-        final var territory = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
+        final var territory =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         entityInstance.setPerson(person);

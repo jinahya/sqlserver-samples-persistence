@@ -20,7 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,8 +39,8 @@ import static org.assertj.core.api.Assertions.within;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
 /**
- * Checks {@link Geography} against what SQL Server does with {@code Person.Address.SpatialLocation} and with
- * {@code geography::STGeomFromText}.
+ * Checks {@link Geography} against what SQL Server does with {@code Person.Address.SpatialLocation}
+ * and with {@code geography::STGeomFromText}.
  */
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
@@ -50,12 +50,14 @@ class AddressSpatialLocation_PersistenceIT {
     private static final Pattern NUMBER = Pattern.compile("-?\\d+(?:\\.\\d+)?(?:E[-+]?\\d+)?");
 
     private static double[] coordinates(final String text) {
-        return NUMBER.matcher(text).results().mapToDouble(r -> Double.parseDouble(r.group())).toArray();
+        return NUMBER.matcher(text).results().mapToDouble(r -> Double.parseDouble(r.group()))
+                .toArray();
     }
 
     /**
-     * Asserts that the specified Well-Known Texts are the same but for how their coordinates are written; SQL Server
-     * writes each with 15 significant digits, or 17, so a coordinate is the same within 15 significant digits.
+     * Asserts that the specified Well-Known Texts are the same but for how their coordinates are
+     * written; SQL Server writes each with 15 significant digits, or 17, so a coordinate is the
+     * same within 15 significant digits.
      */
     private static void assertSameText(final String actual, final String expected) {
         assertThat(NUMBER.matcher(actual).replaceAll("#")).as("the text of %s", expected)
@@ -69,10 +71,11 @@ class AddressSpatialLocation_PersistenceIT {
         }
     }
 
-    @DisplayName("every installed SpatialLocation maps to what STAsText, STSrid, Lat and Long return")
+    @DisplayName(
+            "every installed SpatialLocation maps to what STAsText, STSrid, Lat and Long return")
     @Test
     void spatialLocation() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT a.AddressID,
@@ -84,11 +87,13 @@ class AddressSpatialLocation_PersistenceIT {
                                                                      WHERE a.SpatialLocation IS NOT NULL""")
                     .getResultList();
             assumeThat(rows).isNotEmpty();
-            final Map<Integer, Address> addresses = em.createQuery("SELECT a FROM PersonAddress a", Address.class)
-                    .getResultStream()
-                    .collect(Collectors.toMap(Address::getAddressId, Function.identity()));
+            final Map<Integer, Address> addresses =
+                    em.createQuery("SELECT a FROM PersonAddress a", Address.class)
+                            .getResultStream()
+                            .collect(Collectors.toMap(Address::getAddressId, Function.identity()));
             for (final var row : rows) {
-                final var location = addresses.get(((Number) row[0]).intValue()).getSpatialLocation();
+                final var location =
+                        addresses.get(((Number) row[0]).intValue()).getSpatialLocation();
                 assertSameText(location.toString(), (String) row[1]);
                 assertThat(location.getSrid()).isEqualTo(((Number) row[2]).intValue());
                 assertThat(location.getLatitude(0)).isEqualTo(((Number) row[3]).doubleValue());
@@ -101,16 +106,19 @@ class AddressSpatialLocation_PersistenceIT {
     @DisplayName("a point is serialized as geography::Point serializes it")
     @Test
     void point() {
-        final var expected = ___Persistence_TestUtils.applyInTransactionAndRollback(
+        final var expected = ___PersistenceIT_Utils.applyInTransactionAndRollback(
                 em -> (byte[]) em.createNativeQuery(
-                                "SELECT CAST(geography::Point(47.651, -122.349, 4326) AS varbinary(max))")
+                                "SELECT CAST(geography::Point(47.651, -122.349, 4326) AS " +
+                                "varbinary(max))")
                         .getSingleResult()
         );
-        assertThat(Geography.point(Geography.SRID_WGS84, 47.651, -122.349).getBytes()).isEqualTo(expected);
+        assertThat(Geography.point(Geography.SRID_WGS84, 47.651, -122.349).getBytes()).isEqualTo(
+                expected);
     }
 
     // a value of each type, and of each figure and segment kind of version 2
-    @DisplayName("a value decodes to what STAsText and AsTextZM return, and encodes back to its bytes")
+    @DisplayName(
+            "a value decodes to what STAsText and AsTextZM return, and encodes back to its bytes")
     @ParameterizedTest
     @ValueSource(strings = {
             "POINT (-122.349 47.651)",
@@ -121,30 +129,37 @@ class AddressSpatialLocation_PersistenceIT {
             "LINESTRING (-122.36 47.656, -122.343 47.656)",
             "LINESTRING (-122.36 47.656, -122.343 47.656, -122.35 47.66)",
             "LINESTRING EMPTY",
-            "POLYGON ((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, -122.358 47.653))",
-            "POLYGON ((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, -122.358 47.653), "
+            "POLYGON ((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, -122" +
+            ".358 47.653))",
+            "POLYGON ((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, -122" +
+            ".358 47.653), "
             + "(-122.351 47.654, -122.354 47.656, -122.351 47.657, -122.351 47.654))",
             "MULTIPOINT ((-122.36 47.656), (-122.343 47.656))",
-            "MULTILINESTRING ((-122.36 47.656, -122.343 47.656), (-122.341 47.656, -122.341 47.661))",
-            "MULTIPOLYGON (((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, -122.358 47.653)), "
+            "MULTILINESTRING ((-122.36 47.656, -122.343 47.656), (-122.341 47.656, -122.341 47" +
+            ".661))",
+            "MULTIPOLYGON (((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, " +
+            "-122.358 47.653)), "
             + "((-122.341 47.656, -122.341 47.661, -122.351 47.661, -122.341 47.656)))",
-            "GEOMETRYCOLLECTION (POINT (-122.349 47.651), LINESTRING (-122.36 47.656, -122.343 47.656))",
+            "GEOMETRYCOLLECTION (POINT (-122.349 47.651), LINESTRING (-122.36 47.656, -122.343 47" +
+            ".656))",
             "GEOMETRYCOLLECTION (MULTIPOINT ((-122.36 47.656), (-122.343 47.656)), POINT EMPTY)",
             "GEOMETRYCOLLECTION EMPTY",
             "CIRCULARSTRING (-122.358 47.653, -122.348 47.649, -122.348 47.658)",
             "COMPOUNDCURVE (CIRCULARSTRING (-122.358 47.653, -122.348 47.649, -122.348 47.658), "
             + "(-122.348 47.658, -122.358 47.658, -122.358 47.653))",
-            "CURVEPOLYGON (CIRCULARSTRING (-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, "
+            "CURVEPOLYGON (CIRCULARSTRING (-122.358 47.653, -122.348 47.649, -122.348 47.658, " +
+            "-122.358 47.658, "
             + "-122.358 47.653))",
-            "CURVEPOLYGON (COMPOUNDCURVE (CIRCULARSTRING (-122.358 47.653, -122.348 47.649, -122.348 47.658), "
+            "CURVEPOLYGON (COMPOUNDCURVE (CIRCULARSTRING (-122.358 47.653, -122.348 47.649, -122" +
+            ".348 47.658), "
             + "(-122.348 47.658, -122.358 47.658, -122.358 47.653)))",
             "FULLGLOBE"
     })
     void wkt(final String wkt) {
-        final var row = ___Persistence_TestUtils.applyInTransactionAndRollback(
+        final var row = ___PersistenceIT_Utils.applyInTransactionAndRollback(
                 em -> (Object[]) em.createNativeQuery("""
-                                SELECT CAST(g.v AS varbinary(max)), g.v.STAsText(), g.v.AsTextZM()
-                                FROM (SELECT geography::STGeomFromText(?1, 4326) AS v) AS g""")
+                                                              SELECT CAST(g.v AS varbinary(max)), g.v.STAsText(), g.v.AsTextZM()
+                                                              FROM (SELECT geography::STGeomFromText(?1, 4326) AS v) AS g""")
                         .setParameter(1, wkt)
                         .getSingleResult()
         );
@@ -155,10 +170,12 @@ class AddressSpatialLocation_PersistenceIT {
         assertThat(geography.getBytes()).isEqualTo(bytes);
     }
 
-    @DisplayName("a SpatialLocation set through the entity is written as SQL Server reads it, and so is a null")
+    @DisplayName(
+            "a SpatialLocation set through the entity is written as SQL Server reads it, and so " +
+            "is a null")
     @Test
     void write() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var ids = em.createNativeQuery("""
                                                          SELECT TOP (3) a.AddressID
                                                          FROM Person.Address AS a
@@ -170,7 +187,9 @@ class AddressSpatialLocation_PersistenceIT {
             final var point = Geography.point(Geography.SRID_WGS84, 47.651, -122.349);
             final var polygon = Geography.decode((byte[]) em.createNativeQuery(
                             "SELECT CAST(geography::STGeomFromText(?1, 4326) AS varbinary(max))")
-                    .setParameter(1, "POLYGON ((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.653))")
+                    .setParameter(1,
+                                  "POLYGON ((-122.358 47.653, -122.348 47.649, -122.348 47.658, " +
+                                  "-122.358 47.653))")
                     .getSingleResult());
             em.find(Address.class, ids.get(0)).setSpatialLocation(point);
             em.find(Address.class, ids.get(1)).setSpatialLocation(polygon);
@@ -180,8 +199,10 @@ class AddressSpatialLocation_PersistenceIT {
                                                           SELECT a.SpatialLocation.STAsText()
                                                           FROM Person.Address AS a
                                                           WHERE a.AddressID = ?1""");
-            assertSameText(point.toString(), (String) read.setParameter(1, ids.get(0)).getSingleResult());
-            assertSameText(polygon.toString(), (String) read.setParameter(1, ids.get(1)).getSingleResult());
+            assertSameText(point.toString(),
+                           (String) read.setParameter(1, ids.get(0)).getSingleResult());
+            assertSameText(polygon.toString(),
+                           (String) read.setParameter(1, ids.get(1)).getSingleResult());
             assertThat(read.setParameter(1, ids.get(2)).getSingleResult()).isNull();
             em.clear();
             assertThat(em.find(Address.class, ids.get(0)).getSpatialLocation()).isEqualTo(point);

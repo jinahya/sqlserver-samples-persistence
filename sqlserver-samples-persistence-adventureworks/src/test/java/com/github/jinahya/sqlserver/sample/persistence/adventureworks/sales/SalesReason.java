@@ -29,7 +29,8 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "SalesSalesReason")
 @Table(schema = MappedSalesReason.TABLE_SCHEMA, name = MappedSalesReason.TABLE_NAME)
-public class SalesReason extends MappedSalesReason {
+public class SalesReason
+        extends MappedSalesReason {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

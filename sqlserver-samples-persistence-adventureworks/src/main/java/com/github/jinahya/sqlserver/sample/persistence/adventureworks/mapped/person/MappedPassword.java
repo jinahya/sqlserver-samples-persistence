@@ -20,15 +20,19 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
+import com.github.jinahya.persistence.more.converter.javautil.Base64StringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -65,8 +69,10 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -94,7 +100,8 @@ public abstract class MappedPassword {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -111,9 +118,17 @@ public abstract class MappedPassword {
     public static final int COLUMN_LENGTH_PASSWORD_HASH = 128;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PASSWORD_HASH} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PASSWORD_HASH} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PASSWORD_HASH = "passwordHash";
+
+    /**
+     * The maximum size of the {@value #ATTRIBUTE_NAME_PASSWORD_HASH} attribute, the most bytes
+     * whose padded {@link java.util.Base64} text fits the {@value #COLUMN_NAME_PASSWORD_HASH}
+     * column. The value is {@value}.
+     */
+    private static final int SIZE_MAX_PASSWORD_HASH = COLUMN_LENGTH_PASSWORD_HASH / 4 * 3;
 
     // -------------------------------------------------------------------------------- PasswordSalt
 
@@ -128,31 +143,43 @@ public abstract class MappedPassword {
     public static final int COLUMN_LENGTH_PASSWORD_SALT = 10;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PASSWORD_SALT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PASSWORD_SALT} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PASSWORD_SALT = "passwordSalt";
+
+    /**
+     * The maximum size of the {@value #ATTRIBUTE_NAME_PASSWORD_SALT} attribute, the most bytes
+     * whose padded {@link java.util.Base64} text fits the {@value #COLUMN_NAME_PASSWORD_SALT}
+     * column. The value is {@value}.
+     */
+    private static final int SIZE_MAX_PASSWORD_SALT = COLUMN_LENGTH_PASSWORD_SALT / 4 * 3;
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -171,8 +198,8 @@ public abstract class MappedPassword {
     public String toString() {
         return super.toString() + "{"
                + "businessEntityId=" + businessEntityId
-               + ",passwordHash=" + passwordHash
-               + ",passwordSalt=" + passwordSalt
+               // + ",passwordHash=" + passwordHash // a credential, which a log should not hold
+               // + ",passwordSalt=" + passwordSalt // a credential, which a log should not hold
                + ",rowguid=" + rowguid
                + ",modifiedDate=" + modifiedDate
                + "}";
@@ -219,52 +246,13 @@ public abstract class MappedPassword {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
     public void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
-    }
-
-    // -------------------------------------------------------------------------------- passwordHash
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_PASSWORD_HASH} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_PASSWORD_HASH} attribute.
-     */
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PASSWORD_HASH} attribute with the specified value.
-     *
-     * @param passwordHash new value for {@value #ATTRIBUTE_NAME_PASSWORD_HASH} attribute.
-     */
-    public void setPasswordHash(final String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    // -------------------------------------------------------------------------------- passwordSalt
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_PASSWORD_SALT} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_PASSWORD_SALT} attribute.
-     */
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PASSWORD_SALT} attribute with the specified value.
-     *
-     * @param passwordSalt new value for {@value #ATTRIBUTE_NAME_PASSWORD_SALT} attribute.
-     */
-    public void setPasswordSalt(final String passwordSalt) {
-        this.passwordSalt = passwordSalt;
     }
 
     // ------------------------------------------------------------------------------------- rowguid
@@ -290,7 +278,8 @@ public abstract class MappedPassword {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -299,33 +288,42 @@ public abstract class MappedPassword {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_PASSWORD_HASH)
+    // the column holds the padded Base64 text of the bytes
+    @Size(max = SIZE_MAX_PASSWORD_HASH)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PASSWORD_HASH, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PASSWORD_HASH)
+    @Convert(converter = Base64StringAttributeConverter.OfBasic.class)
+    @Column(name = COLUMN_NAME_PASSWORD_HASH, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_PASSWORD_HASH)
     @MsDescription.Column(name = COLUMN_NAME_PASSWORD_HASH,
                           value = "Password for the e-mail account.")
-    private String passwordHash;
+    private byte[] passwordHash;
 
     // ---------------------------------------------------------------------------------------------
-    @Size(max = COLUMN_LENGTH_PASSWORD_SALT)
+    // the column holds the padded Base64 text of the bytes
+    @Size(max = SIZE_MAX_PASSWORD_SALT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PASSWORD_SALT, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PASSWORD_SALT)
+    @Convert(converter = Base64StringAttributeConverter.OfBasic.class)
+    @Column(name = COLUMN_NAME_PASSWORD_SALT, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_PASSWORD_SALT)
     @MsDescription.Column(name = COLUMN_NAME_PASSWORD_SALT,
                           value = "Random value concatenated with the password string before "
                                   + "the password is hashed.")
-    private String passwordSalt;
+    private byte[] passwordSalt;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -335,13 +333,59 @@ public abstract class MappedPassword {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Password_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
+
+    // ---------------------------------------------------------------------------------------------
+    public void setPassword(final byte[] passwordBytes, final byte[] saltBytes) {
+        Objects.requireNonNull(passwordBytes, "passwordBytes is null");
+        Objects.requireNonNull(saltBytes, "saltBytes is null");
+        this.passwordHash = passwordBytes.clone();
+        this.passwordSalt = saltBytes.clone();
+    }
+
+    private void setPassword(final byte[] passwordBytes, final SecureRandom random) {
+        Objects.requireNonNull(passwordBytes, "passwordBytes is null");
+        Objects.requireNonNull(random, "random is null");
+        final var saltBytes = new byte[SIZE_MAX_PASSWORD_SALT];
+        random.nextBytes(saltBytes);
+        setPassword(passwordBytes, saltBytes);
+    }
+
+    public void setPassword(final byte[] passwordBytes) {
+        Objects.requireNonNull(passwordBytes, "passwordBytes is null");
+        final SecureRandom random;
+        try {
+            random = SecureRandom.getInstanceStrong();
+        } catch (final NoSuchAlgorithmException nsae) {
+            throw new RuntimeException("no strong SecureRandom", nsae);
+        }
+        setPassword(passwordBytes, random);
+    }
+
+    private void setPassword(final SecureRandom random) {
+        Objects.requireNonNull(random, "random is null");
+        final var passwordBytes = new byte[SIZE_MAX_PASSWORD_HASH];
+        random.nextBytes(passwordBytes);
+        setPassword(passwordBytes, random);
+    }
+
+    public void setPassword() {
+        final SecureRandom random;
+        try {
+            random = SecureRandom.getInstanceStrong();
+        } catch (final NoSuchAlgorithmException nsae) {
+            throw new RuntimeException("no strong SecureRandom", nsae);
+        }
+        setPassword(random);
+    }
 }
 

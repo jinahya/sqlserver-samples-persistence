@@ -33,10 +33,12 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "PersonPassword")
 @Table(schema = MappedPassword.TABLE_SCHEMA, name = MappedPassword.TABLE_NAME)
-public class Password extends MappedPassword {
+public class Password
+        extends MappedPassword {
 
     /**
-     * The name of the attribute of the {@code FK_Password_Person_BusinessEntityID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_Password_Person_BusinessEntityID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -52,7 +54,8 @@ public class Password extends MappedPassword {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Person} which the {@code FK_Password_Person_BusinessEntityID} foreign key references.
+     * Returns the {@code Person} which the {@code FK_Password_Person_BusinessEntityID} foreign key
+     * references.
      *
      * @return the {@code Person} referenced; {@code null} when none is.
      */
@@ -61,8 +64,8 @@ public class Password extends MappedPassword {
     }
 
     /**
-     * Replaces the {@code Person} which the {@code FK_Password_Person_BusinessEntityID} foreign key references, and the
-     * value of the column it consists of.
+     * Replaces the {@code Person} which the {@code FK_Password_Person_BusinessEntityID} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Person} to reference; {@code null} for none.
      */

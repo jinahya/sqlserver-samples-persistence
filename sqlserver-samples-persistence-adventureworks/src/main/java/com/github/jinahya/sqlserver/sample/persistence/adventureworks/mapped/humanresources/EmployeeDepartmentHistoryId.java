@@ -26,30 +26,34 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code HumanResources.EmployeeDepartmentHistory} table, whose rows are identified by
- * {@code BusinessEntityID}, {@code StartDate}, {@code DepartmentID}, {@code ShiftID}.
+ * The identifier class of the {@code HumanResources.EmployeeDepartmentHistory} table, whose rows
+ * are identified by {@code BusinessEntityID}, {@code StartDate}, {@code DepartmentID},
+ * {@code ShiftID}.
  * <p>
  * An entity which extends {@link MappedEmployeeDepartmentHistory} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class EmployeeDepartmentHistoryId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedEmployeeDepartmentHistory#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * {@value MappedEmployeeDepartmentHistory#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedEmployeeDepartmentHistory#COLUMN_NAME_START_DATE} column. The value is {@value}.
+     * {@value MappedEmployeeDepartmentHistory#COLUMN_NAME_START_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedEmployeeDepartmentHistory#COLUMN_NAME_DEPARTMENT_ID} column. The value is {@value}.
+     * {@value MappedEmployeeDepartmentHistory#COLUMN_NAME_DEPARTMENT_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_DEPARTMENT_ID = "departmentId";
 
@@ -180,6 +184,7 @@ public class EmployeeDepartmentHistoryId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code businessEntityId} attribute.
      */

@@ -29,7 +29,7 @@
 
 -- ------------------------------------------------------------------------------------------------------- SalesPersonID
 -- how many rows, and which sales persons are missing; 14 rows, the 3 managers, who have no territory, left out.
-SELECT COUNT(*) AS sales_persons,
+SELECT COUNT(*)                      AS sales_persons,
        (SELECT COUNT(*)
         FROM Sales.SalesPerson s
         WHERE NOT EXISTS (SELECT 1

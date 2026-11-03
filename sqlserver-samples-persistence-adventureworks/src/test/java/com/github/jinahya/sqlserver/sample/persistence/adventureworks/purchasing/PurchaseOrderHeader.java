@@ -61,23 +61,24 @@ import jakarta.persistence.Table;
                )
        }
 )
-public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
+public class PurchaseOrderHeader
+        extends MappedPurchaseOrderHeader {
 
     /**
-     * The name of the attribute of the {@code FK_PurchaseOrderHeader_Employee_EmployeeID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PurchaseOrderHeader_Employee_EmployeeID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMPLOYEE = "employee";
 
     /**
-     * The name of the attribute of the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_VENDOR = "vendor";
 
     /**
-     * The name of the attribute of the {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIP_METHOD = "shipMethod";
 
@@ -93,8 +94,8 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     // ------------------------------------------------------------------------------------ employee
 
     /**
-     * Returns the {@code Employee} which the {@code FK_PurchaseOrderHeader_Employee_EmployeeID} foreign key
-     * references.
+     * Returns the {@code Employee} which the {@code FK_PurchaseOrderHeader_Employee_EmployeeID}
+     * foreign key references.
      *
      * @return the {@code Employee} referenced; {@code null} when none is.
      */
@@ -103,8 +104,8 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces the {@code Employee} which the {@code FK_PurchaseOrderHeader_Employee_EmployeeID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code Employee} which the {@code FK_PurchaseOrderHeader_Employee_EmployeeID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param employee the {@code Employee} to reference; {@code null} for none.
      */
@@ -116,7 +117,8 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     // -------------------------------------------------------------------------------------- vendor
 
     /**
-     * Returns the {@code Vendor} which the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign key references.
+     * Returns the {@code Vendor} which the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign
+     * key references.
      *
      * @return the {@code Vendor} referenced; {@code null} when none is.
      */
@@ -125,8 +127,8 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces the {@code Vendor} which the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code Vendor} which the {@code FK_PurchaseOrderHeader_Vendor_VendorID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param vendor the {@code Vendor} to reference; {@code null} for none.
      */
@@ -138,8 +140,8 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------- shipMethod
 
     /**
-     * Returns the {@code ShipMethod} which the {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID} foreign key
-     * references.
+     * Returns the {@code ShipMethod} which the
+     * {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID} foreign key references.
      *
      * @return the {@code ShipMethod} referenced; {@code null} when none is.
      */
@@ -148,8 +150,9 @@ public class PurchaseOrderHeader extends MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces the {@code ShipMethod} which the {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code ShipMethod} which the
+     * {@code FK_PurchaseOrderHeader_ShipMethod_ShipMethodID} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param shipMethod the {@code ShipMethod} to reference; {@code null} for none.
      */

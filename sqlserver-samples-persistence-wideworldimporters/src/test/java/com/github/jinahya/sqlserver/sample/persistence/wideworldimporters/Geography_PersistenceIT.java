@@ -106,7 +106,7 @@ class Geography_PersistenceIT {
     @SuppressWarnings({"unchecked", "rawtypes"})
     void entity(final String name, final String table, final String idColumn, final String column,
                 final Class entityClass, final Function id, final Function geography) {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final List<Object[]> rows = em.createNativeQuery(
                             "SELECT t." + idColumn + ", t." + column + ".STAsText(), t." + column + ".STSrid"
                             + " FROM " + table + " AS t WHERE t." + column + " IS NOT NULL")
@@ -140,7 +140,7 @@ class Geography_PersistenceIT {
     void keyless(final String qualified) {
         final var table = qualified.substring(0, qualified.lastIndexOf('.'));
         final var column = qualified.substring(qualified.lastIndexOf('.') + 1);
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery(
                             "SELECT CAST(t." + column + " AS varbinary(max)), t." + column + ".STAsText()"
@@ -160,7 +160,7 @@ class Geography_PersistenceIT {
     @DisplayName("a Border set through the entity is written as SQL Server reads it, and so is a null")
     @Test
     void write() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var ids = em.createNativeQuery("""
                                                          SELECT TOP (2) t.StateProvinceID
                                                          FROM Application.StateProvinces AS t

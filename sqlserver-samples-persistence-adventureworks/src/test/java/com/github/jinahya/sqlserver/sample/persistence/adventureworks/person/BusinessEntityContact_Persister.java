@@ -26,7 +26,8 @@ import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link BusinessEntityContact}, of a new business entity, a new person, and a new contact type.
+ * Persists a new {@link BusinessEntityContact}, of a new business entity, a new person, and a new
+ * contact type.
  */
 class BusinessEntityContact_Persister
         extends AbstractEntityPersister<BusinessEntityContact> {
@@ -37,12 +38,16 @@ class BusinessEntityContact_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public BusinessEntityContact apply(final EntityManager entityManager, final BusinessEntityContact entityInstance) {
-        final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);
+    public BusinessEntityContact apply(final EntityManager entityManager,
+                                       final BusinessEntityContact entityInstance) {
+        final var businessEntity =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
-        final var contactType = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ContactType.class);
+        final var contactType =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ContactType.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        return super.apply(entityManager, BusinessEntityContact.of(businessEntity, person, contactType));
+        return super.apply(entityManager,
+                           BusinessEntityContact.of(businessEntity, person, contactType));
     }
 }

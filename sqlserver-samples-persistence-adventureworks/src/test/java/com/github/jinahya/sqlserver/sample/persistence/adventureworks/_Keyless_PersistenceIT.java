@@ -30,11 +30,12 @@ import java.util.Objects;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * The integration tests of a class which maps a view, or a table, that no entity can map, against the
- * {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit.
+ * The integration tests of a class which maps a view, or a table, that no entity can map, against
+ * the {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit.
  * <p>
- * The class is no managed type, so what is checked is that every column its mapped superclass names exists, by a native
- * query of them all, and that the class takes every one of them in its public constructor.
+ * The class is no managed type, so what is checked is that every column its mapped superclass names
+ * exists, by a native query of them all, and that the class takes every one of them in its public
+ * constructor.
  *
  * @param <T> the type of the class.
  */
@@ -74,10 +75,11 @@ public abstract class _Keyless_PersistenceIT<T> {
         assertThat(columns).isNotEmpty();
         final var sql = "SELECT TOP (1) " + String.join(", ", columns)
                         + " FROM " + constant("TABLE_SCHEMA") + "." + constant("TABLE_NAME");
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var rows = em.createNativeQuery(sql).getResultList();
             for (final var row : rows) {
-                assertThat(columns.length == 1 ? new Object[]{row} : (Object[]) row).hasSize(columns.length);
+                assertThat(columns.length == 1 ? new Object[]{row} : (Object[]) row).hasSize(
+                        columns.length);
             }
             return null;
         });

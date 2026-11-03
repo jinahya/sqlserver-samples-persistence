@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link SpecialOfferProductId} id class.
  */
-class SpecialOfferProductId_Test extends _NonEntity_Test<SpecialOfferProductId> {
+class SpecialOfferProductId_Test
+        extends _NonEntity_Test<SpecialOfferProductId> {
 
     SpecialOfferProductId_Test() {
         super(SpecialOfferProductId.class);

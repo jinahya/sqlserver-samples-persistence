@@ -27,8 +27,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link TransactionHistoryArchive}; the identifier, which the persister sets, and what SQL Server
- * fills are left out.
+ * Randomizes a new {@link TransactionHistoryArchive}; the identifier, which the persister sets, and
+ * what SQL Server fills are left out.
  */
 class TransactionHistoryArchive_Randomizer
         extends PodamObjectRandomizer<TransactionHistoryArchive> {

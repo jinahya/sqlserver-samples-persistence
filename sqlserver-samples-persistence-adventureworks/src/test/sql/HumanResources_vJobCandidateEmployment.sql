@@ -67,9 +67,11 @@ ORDER BY JobCandidateID ASC
 -- --------------------------------------------------------------------------------------------------------- Emp.OrgName
 -- how many rows leave Emp.OrgName NULL, blank or padded with spaces, and the shortest and the longest; no NULL or
 -- blank; 5 padded, 9 to 28 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.OrgName] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
@@ -78,9 +80,11 @@ FROM (SELECT [Emp.OrgName] AS v
 -- -------------------------------------------------------------------------------------------------------- Emp.JobTitle
 -- how many rows leave Emp.JobTitle NULL, blank or padded with spaces, and the shortest and the longest; no NULL or
 -- blank; 6 padded, 3 to 27 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.JobTitle] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
@@ -89,9 +93,11 @@ FROM (SELECT [Emp.JobTitle] AS v
 -- -------------------------------------------------------------------------------------------------- Emp.Responsibility
 -- how many rows leave Emp.Responsibility NULL, blank or padded with spaces, and the shortest and the longest; no NULL
 -- or blank; all 30 padded, 38 to 745 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.Responsibility] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
@@ -100,9 +106,11 @@ FROM (SELECT [Emp.Responsibility] AS v
 -- ------------------------------------------------------------------------------------------------ Emp.FunctionCategory
 -- how many rows leave Emp.FunctionCategory NULL, blank or padded with spaces, and the shortest and the longest; no NULL
 -- or blank; 5 padded, 2 to 10 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.FunctionCategory] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
@@ -116,9 +124,11 @@ FROM HumanResources.vJobCandidateEmployment
 -- ------------------------------------------------------------------------------------------------ Emp.IndustryCategory
 -- how many rows leave Emp.IndustryCategory NULL, blank or padded with spaces, and the shortest and the longest; no NULL
 -- or blank; 7 padded, 2 to 19 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.IndustryCategory] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
@@ -132,16 +142,18 @@ FROM HumanResources.vJobCandidateEmployment
 -- ----------------------------------------------------------------------------------------------- Emp.Loc.CountryRegion
 -- how many rows leave Emp.Loc.CountryRegion NULL, blank or padded with spaces, and the shortest and the longest; no
 -- NULL or blank; 20 padded, 2 to 9 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.Loc.CountryRegion] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
 
 -- the values, bracketed to show the spaces; France 7, US 16 with a trailing space, and ประเทศไทย 4
 -- with a trailing space and 3 without.
-SELECT '[' + [Emp.Loc.CountryRegion] + ']' AS [Emp.Loc.CountryRegion], COUNT(*) AS jobs
+SELECT '[' + [Emp.Loc.CountryRegion] + ']' AS [Emp.Loc.CountryRegion], COUNT (*) AS jobs
 FROM HumanResources.vJobCandidateEmployment
 GROUP BY '[' + [Emp.Loc.CountryRegion] + ']'
 ORDER BY [Emp.Loc.CountryRegion] ASC
@@ -151,9 +163,11 @@ ORDER BY [Emp.Loc.CountryRegion] ASC
 -- ------------------------------------------------------------------------------------------------------- Emp.Loc.State
 -- how many rows leave Emp.Loc.State NULL, blank or padded with spaces, and the shortest and the longest; no NULL or
 -- blank; 20 padded, 2 to 19 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.Loc.State] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;
@@ -167,9 +181,11 @@ FROM HumanResources.vJobCandidateEmployment
 -- -------------------------------------------------------------------------------------------------------- Emp.Loc.City
 -- how many rows leave Emp.Loc.City NULL, blank or padded with spaces, and the shortest and the longest; no NULL or
 -- blank; 4 padded, 4 to 15 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Emp.Loc.City] AS v
       FROM HumanResources.vJobCandidateEmployment) c
 ;

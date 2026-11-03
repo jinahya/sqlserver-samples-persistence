@@ -29,7 +29,10 @@
 
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows, and how many persons they cover; 10 rows, 10 persons, 291 to 309.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM Person.vAdditionalContactInfo
 ;
 
@@ -154,13 +157,15 @@ FROM Person.vAdditionalContactInfo
 SELECT SUBSTRING(EMailAddress, CHARINDEX('@', EMailAddress) + 1, 128) AS domain, COUNT(*) AS persons
 FROM Person.vAdditionalContactInfo
 WHERE EMailAddress IS NOT NULL
-GROUP BY SUBSTRING(EMailAddress, CHARINDEX('@', EMailAddress) + 1, 128)
+GROUP BY SUBSTRING (EMailAddress, CHARINDEX('@', EMailAddress) + 1, 128)
 ;
 
 
 -- -------------------------------------------------------------------------------------------- EMailSpecialInstructions
 -- how many rows have EMailSpecialInstructions, and how long they are; 4, 32 to 79 characters.
-SELECT COUNT(EMailSpecialInstructions), MIN(LEN(EMailSpecialInstructions)), MAX(LEN(EMailSpecialInstructions))
+SELECT COUNT(EMailSpecialInstructions),
+       MIN(LEN(EMailSpecialInstructions)),
+       MAX(LEN(EMailSpecialInstructions))
 FROM Person.vAdditionalContactInfo
 ;
 

@@ -40,7 +40,8 @@ class SalesPersonQuotaHistory_Persister
     @Override
     public SalesPersonQuotaHistory apply(final EntityManager entityManager,
                                          final SalesPersonQuotaHistory entityInstance) {
-        final var salesPerson = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);
+        final var salesPerson =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesPerson.class);
         final var instance = SalesPersonQuotaHistory.of(salesPerson, __Random_TestUtils.dateTime());
         instance.setSalesQuota(entityInstance.getSalesQuota());
         return super.apply(entityManager, instance);

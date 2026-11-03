@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class WorkOrderRouting_PersistenceIT extends _Entity_PersistenceIT<WorkOrderRouting> {
+class WorkOrderRouting_PersistenceIT
+        extends _Entity_PersistenceIT<WorkOrderRouting> {
 
     WorkOrderRouting_PersistenceIT() {
         super(WorkOrderRouting.class);

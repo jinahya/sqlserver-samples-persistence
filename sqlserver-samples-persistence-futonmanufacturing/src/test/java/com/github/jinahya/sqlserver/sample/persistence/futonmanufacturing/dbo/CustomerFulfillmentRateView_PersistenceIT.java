@@ -21,10 +21,25 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class CustomerFulfillmentRateView_PersistenceIT extends _Entity_PersistenceIT<CustomerFulfillmentRateView> {
 
     CustomerFulfillmentRateView_PersistenceIT() {
         super(CustomerFulfillmentRateView.class);
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code dbo.vw_CustomerFulfillmentRate} is a view, which no row is inserted into.
+     */
+    @Disabled("a view: nothing is inserted into it")
+    @Override
+    @Test
+    protected void persistRandomEntityInstance() {
+        // empty
+    }
 }
+

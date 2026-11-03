@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link BillOfMaterials}; the generated identifier, what SQL Server fills, and what it references,
- * which the persister sets, are left out.
+ * Randomizes a new {@link BillOfMaterials}; the generated identifier, what SQL Server fills, and
+ * what it references, which the persister sets, are left out.
  */
 class BillOfMaterials_Randomizer
         extends PodamObjectRandomizer<BillOfMaterials> {
@@ -54,8 +54,8 @@ class BillOfMaterials_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance is of a component in an assembly, within the CHECK constraints, and has its dates
-     *         in order.
+     * @implNote The returned instance is of a component in an assembly, within the CHECK
+     *         constraints, and has its dates in order.
      */
     @Override
     public BillOfMaterials get() {
@@ -68,8 +68,8 @@ class BillOfMaterials_Randomizer
         // CK_BillOfMaterials_EndDate: EndDate, when any, > StartDate
         instance.setStartDate(__Random_TestUtils.dateTime());
         instance.setEndDate(random.nextBoolean()
-                            ? null
-                            : instance.getStartDate().plusDays(random.nextLong(1L, 366L)));
+                                    ? null
+                                    : instance.getStartDate().plusDays(random.nextLong(1L, 366L)));
         return instance;
     }
 }

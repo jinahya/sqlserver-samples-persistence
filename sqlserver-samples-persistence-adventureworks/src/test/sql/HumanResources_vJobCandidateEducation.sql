@@ -38,9 +38,11 @@ FROM HumanResources.vJobCandidateEducation
 -- ----------------------------------------------------------------------------------------------------------- Edu.Level
 -- how many rows leave Edu.Level NULL, blank or padded with spaces, and the shortest and the longest; no NULL or blank;
 -- 2 padded, 2 to 11 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Level] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -75,9 +77,11 @@ WHERE [Edu.EndDate] < [Edu.StartDate]
 -- ---------------------------------------------------------------------------------------------------------- Edu.Degree
 -- how many rows leave Edu.Degree NULL, blank or padded with spaces, and the shortest and the longest; no NULL or blank;
 -- 1 padded, 2 to 50 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Degree] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -91,9 +95,11 @@ FROM HumanResources.vJobCandidateEducation
 -- ----------------------------------------------------------------------------------------------------------- Edu.Major
 -- how many rows leave Edu.Major NULL, blank or padded with spaces, and the shortest and the longest; no NULL; 2 blank
 -- and 1 padded, up to 23 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Major] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -102,9 +108,11 @@ FROM (SELECT [Edu.Major] AS v
 -- ----------------------------------------------------------------------------------------------------------- Edu.Minor
 -- how many rows leave Edu.Minor NULL, blank or padded with spaces, and the shortest and the longest; all 16 blank,
 -- never NULL.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Minor] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -113,15 +121,17 @@ FROM (SELECT [Edu.Minor] AS v
 -- ------------------------------------------------------------------------------------------------------------- Edu.GPA
 -- how many rows leave Edu.GPA NULL, blank or padded with spaces, and the shortest and the longest; no NULL, blank or
 -- padded; 3 to 5 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.GPA] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
 
 -- the values, bracketed to show the spaces; 3.2 to 3.8 on 12 rows, and Menti, not a number, on 4.
-SELECT '[' + [Edu.GPA] + ']' AS [Edu.GPA], COUNT(*) AS educations
+SELECT '[' + [Edu.GPA] + ']' AS [Edu.GPA], COUNT (*) AS educations
 FROM HumanResources.vJobCandidateEducation
 GROUP BY '[' + [Edu.GPA] + ']'
 ORDER BY [Edu.GPA] ASC
@@ -131,15 +141,17 @@ ORDER BY [Edu.GPA] ASC
 -- -------------------------------------------------------------------------------------------------------- Edu.GPAScale
 -- how many rows leave Edu.GPAScale NULL, blank or padded with spaces, and the shortest and the longest; no NULL, blank
 -- or padded; a single character.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.GPAScale] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
 
 -- the values, bracketed to show the spaces; 4 on all 16.
-SELECT '[' + [Edu.GPAScale] + ']' AS [Edu.GPAScale], COUNT(*) AS educations
+SELECT '[' + [Edu.GPAScale] + ']' AS [Edu.GPAScale], COUNT (*) AS educations
 FROM HumanResources.vJobCandidateEducation
 GROUP BY '[' + [Edu.GPAScale] + ']'
 ORDER BY [Edu.GPAScale] ASC
@@ -149,9 +161,11 @@ ORDER BY [Edu.GPAScale] ASC
 -- ---------------------------------------------------------------------------------------------------------- Edu.School
 -- how many rows leave Edu.School NULL, blank or padded with spaces, and the shortest and the longest; no NULL or blank;
 -- 2 padded, 15 to 41 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.School] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -160,9 +174,11 @@ FROM (SELECT [Edu.School] AS v
 -- ----------------------------------------------------------------------------------------------- Edu.Loc.CountryRegion
 -- how many rows leave Edu.Loc.CountryRegion NULL, blank or padded with spaces, and the shortest and the longest; no
 -- NULL or blank; 10 padded, 2 to 9 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Loc.CountryRegion] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -170,7 +186,7 @@ FROM (SELECT [Edu.Loc.CountryRegion] AS v
 -- the values, bracketed to show the spaces; France 4, US 9 with a trailing space, and Thailand three ways,
 -- ประเทศไท cut short, ประเทศไทย with a trailing space and ประเทศไทย
 -- without, 1 each.
-SELECT '[' + [Edu.Loc.CountryRegion] + ']' AS [Edu.Loc.CountryRegion], COUNT(*) AS educations
+SELECT '[' + [Edu.Loc.CountryRegion] + ']' AS [Edu.Loc.CountryRegion], COUNT (*) AS educations
 FROM HumanResources.vJobCandidateEducation
 GROUP BY '[' + [Edu.Loc.CountryRegion] + ']'
 ORDER BY [Edu.Loc.CountryRegion] ASC
@@ -180,9 +196,11 @@ ORDER BY [Edu.Loc.CountryRegion] ASC
 -- ------------------------------------------------------------------------------------------------------- Edu.Loc.State
 -- how many rows leave Edu.Loc.State NULL, blank or padded with spaces, and the shortest and the longest; no NULL or
 -- blank; 10 padded, 2 to 19 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Loc.State] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;
@@ -196,9 +214,11 @@ FROM HumanResources.vJobCandidateEducation
 -- -------------------------------------------------------------------------------------------------------- Edu.Loc.City
 -- how many rows leave Edu.Loc.City NULL, blank or padded with spaces, and the shortest and the longest; no NULL or
 -- blank; 1 padded, 4 to 11 characters.
-SELECT COUNT(*) - COUNT(v) AS nulls, COUNT(IIF(TRIM(v) = '', 1, NULL)) AS blanks,
+SELECT COUNT(*) - COUNT(v)                                                         AS nulls,
+       COUNT(IIF(TRIM(v) = '', 1, NULL))                                           AS blanks,
        COUNT(IIF(TRIM(v) <> '' AND DATALENGTH(v) <> DATALENGTH(TRIM(v)), 1, NULL)) AS padded,
-       MIN(LEN(v)), MAX(LEN(v))
+       MIN(LEN(v)),
+       MAX(LEN(v))
 FROM (SELECT [Edu.Loc.City] AS v
       FROM HumanResources.vJobCandidateEducation) c
 ;

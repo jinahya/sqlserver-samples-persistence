@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Culture extends MappedCulture {
+public class Culture
+        extends MappedCulture {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

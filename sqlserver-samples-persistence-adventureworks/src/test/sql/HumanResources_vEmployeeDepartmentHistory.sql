@@ -30,7 +30,10 @@
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows, how many distinct BusinessEntityID, and the smallest and the largest; 296 histories of the 290
 -- employees, 1 to 290.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM HumanResources.vEmployeeDepartmentHistory
 ;
 

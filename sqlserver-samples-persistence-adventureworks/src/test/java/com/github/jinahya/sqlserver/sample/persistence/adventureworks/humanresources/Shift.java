@@ -47,7 +47,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Shift extends MappedShift {
+public class Shift
+        extends MappedShift {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

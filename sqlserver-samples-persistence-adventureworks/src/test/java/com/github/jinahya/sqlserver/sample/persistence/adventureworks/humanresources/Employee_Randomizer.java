@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link Employee}; the identifier and the person, which the persister sets, the organization node,
- * which Podam can not build, and what SQL Server fills or derives are left out.
+ * Randomizes a new {@link Employee}; the identifier and the person, which the persister sets, the
+ * organization node, which Podam can not build, and what SQL Server fills or derives are left out.
  */
 class Employee_Randomizer
         extends PodamObjectRandomizer<Employee> {
@@ -51,7 +51,8 @@ class Employee_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has a node no installed employee has, and dates within the CHECK constraints.
+     * @implNote The returned instance has a node no installed employee has, and dates
+     *         within the CHECK constraints.
      */
     @Override
     public Employee get() {
@@ -59,9 +60,11 @@ class Employee_Randomizer
         final var random = ThreadLocalRandom.current();
         // no installed node is this deep
         instance.setOrganizationNode(Heirarchyid.parse(
-                "/" + random.nextLong(1L, Integer.MAX_VALUE) + "/" + random.nextLong(1L, Integer.MAX_VALUE) + "/"));
+                "/" + random.nextLong(1L, Integer.MAX_VALUE) + "/" +
+                random.nextLong(1L, Integer.MAX_VALUE) + "/"));
         // CK_Employee_BirthDate: from 1930-01-01 to 18 years ago
-        instance.setBirthDate(LocalDate.now().minusYears(18L).minusDays(random.nextLong(365L * 50)));
+        instance.setBirthDate(
+                LocalDate.now().minusYears(18L).minusDays(random.nextLong(365L * 50)));
         // CK_Employee_HireDate: from 1996-07-01 to tomorrow
         instance.setHireDate(LocalDate.now().minusDays(random.nextLong(365L * 20)));
         return instance;

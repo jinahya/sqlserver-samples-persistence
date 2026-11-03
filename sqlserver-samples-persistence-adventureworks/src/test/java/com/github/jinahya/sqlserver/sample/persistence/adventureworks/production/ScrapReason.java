@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class ScrapReason extends MappedScrapReason {
+public class ScrapReason
+        extends MappedScrapReason {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

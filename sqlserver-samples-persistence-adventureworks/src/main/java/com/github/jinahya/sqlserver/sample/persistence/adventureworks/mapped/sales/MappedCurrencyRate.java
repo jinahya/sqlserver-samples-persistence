@@ -38,9 +38,9 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.CurrencyRate} table.
  * <p>
- * The {@value #COLUMN_NAME_FROM_CURRENCY_CODE}, {@value #COLUMN_NAME_TO_CURRENCY_CODE} columns are mapped read-only, as
- * a foreign key; the extending entity owns the writable mapping, through an association's
- * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_FROM_CURRENCY_CODE}, {@value #COLUMN_NAME_TO_CURRENCY_CODE} columns are
+ * mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an
+ * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.CurrencyRate}</caption>
@@ -73,7 +73,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -101,7 +103,8 @@ public abstract class MappedCurrencyRate {
     public static final String COLUMN_NAME_CURRENCY_RATE_ID = "CurrencyRateID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_RATE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_RATE_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_RATE_ID = "currencyRateId";
 
@@ -113,7 +116,8 @@ public abstract class MappedCurrencyRate {
     public static final String COLUMN_NAME_CURRENCY_RATE_DATE = "CurrencyRateDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_RATE_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CURRENCY_RATE_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_RATE_DATE = "currencyRateDate";
 
@@ -130,7 +134,8 @@ public abstract class MappedCurrencyRate {
     public static final int COLUMN_LENGTH_FROM_CURRENCY_CODE = 3;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FROM_CURRENCY_CODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FROM_CURRENCY_CODE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FROM_CURRENCY_CODE = "fromCurrencyCode";
 
@@ -147,7 +152,8 @@ public abstract class MappedCurrencyRate {
     public static final int COLUMN_LENGTH_TO_CURRENCY_CODE = 3;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TO_CURRENCY_CODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TO_CURRENCY_CODE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TO_CURRENCY_CODE = "toCurrencyCode";
 
@@ -159,7 +165,8 @@ public abstract class MappedCurrencyRate {
     public static final String COLUMN_NAME_AVERAGE_RATE = "AverageRate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_AVERAGE_RATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_AVERAGE_RATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVERAGE_RATE = "averageRate";
 
@@ -171,19 +178,22 @@ public abstract class MappedCurrencyRate {
     public static final String COLUMN_NAME_END_OF_DAY_RATE = "EndOfDayRate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_END_OF_DAY_RATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_END_OF_DAY_RATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_END_OF_DAY_RATE = "endOfDayRate";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -252,7 +262,8 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute with the
+     * specified value.
      *
      * @param currencyRateId new value for {@value #ATTRIBUTE_NAME_CURRENCY_RATE_ID} attribute.
      */
@@ -272,7 +283,8 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CURRENCY_RATE_DATE} attribute with the
+     * specified value.
      *
      * @param currencyRateDate new value for {@value #ATTRIBUTE_NAME_CURRENCY_RATE_DATE} attribute.
      */
@@ -292,9 +304,9 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FROM_CURRENCY_CODE} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FROM_CURRENCY_CODE} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param fromCurrencyCode new value for {@value #ATTRIBUTE_NAME_FROM_CURRENCY_CODE} attribute.
      */
@@ -314,9 +326,9 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TO_CURRENCY_CODE} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TO_CURRENCY_CODE} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param toCurrencyCode new value for {@value #ATTRIBUTE_NAME_TO_CURRENCY_CODE} attribute.
      */
@@ -336,7 +348,8 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_AVERAGE_RATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_AVERAGE_RATE} attribute with the specified
+     * value.
      *
      * @param averageRate new value for {@value #ATTRIBUTE_NAME_AVERAGE_RATE} attribute.
      */
@@ -356,7 +369,8 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_END_OF_DAY_RATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_END_OF_DAY_RATE} attribute with the
+     * specified value.
      *
      * @param endOfDayRate new value for {@value #ATTRIBUTE_NAME_END_OF_DAY_RATE} attribute.
      */
@@ -376,7 +390,8 @@ public abstract class MappedCurrencyRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -385,11 +400,13 @@ public abstract class MappedCurrencyRate {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_CURRENCY_RATE_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_CURRENCY_RATE_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_ID,
                           value = "Primary key for CurrencyRate records.")
     private Integer currencyRateId;
@@ -397,27 +414,32 @@ public abstract class MappedCurrencyRate {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CURRENCY_RATE_DATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_CURRENCY_RATE_DATE, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_CURRENCY_RATE_DATE,
                           value = "Date and time the exchange rate was obtained.")
     private LocalDateTime currencyRateDate;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Size(max = COLUMN_LENGTH_FROM_CURRENCY_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FROM_CURRENCY_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FROM_CURRENCY_CODE)
+    @Column(name = COLUMN_NAME_FROM_CURRENCY_CODE, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_FROM_CURRENCY_CODE)
     @MsDescription.Column(name = COLUMN_NAME_FROM_CURRENCY_CODE,
                           value = "Exchange rate was converted from this currency code.")
     private String fromCurrencyCode;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Size(max = COLUMN_LENGTH_TO_CURRENCY_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TO_CURRENCY_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_TO_CURRENCY_CODE)
+    @Column(name = COLUMN_NAME_TO_CURRENCY_CODE, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_TO_CURRENCY_CODE)
     @MsDescription.Column(name = COLUMN_NAME_TO_CURRENCY_CODE,
                           value = "Exchange rate was converted to this currency code.")
     private String toCurrencyCode;
@@ -433,16 +455,19 @@ public abstract class MappedCurrencyRate {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_OF_DAY_RATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_END_OF_DAY_RATE, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_END_OF_DAY_RATE,
                           value = "Final exchange rate for the day.")
     private BigDecimal endOfDayRate;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_CurrencyRate_ModifiedDate", value = "(getdate())")

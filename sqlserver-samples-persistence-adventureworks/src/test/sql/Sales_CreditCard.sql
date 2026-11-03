@@ -39,7 +39,7 @@ FROM Sales.CreditCard
 ;
 
 -- the first five gaps in CreditCardID; from 16405, 16428, 16477, 16480 and 16482, none below 16405.
-SELECT TOP (5) a.CreditCardID + 1 AS missing_from
+SELECT TOP(5) a.CreditCardID + 1 AS missing_from
 FROM Sales.CreditCard a
 WHERE a.CreditCardID < (SELECT MAX(CreditCardID) FROM Sales.CreditCard)
   AND NOT EXISTS (SELECT 1
@@ -73,7 +73,11 @@ WHERE CardNumber LIKE '%[^0-9]%'
 
 -- the length and the leading digits of CardNumber per CardType; 14 digits each, and a prefix per type: ColonialVoice
 -- 77, Distinguish 55, SuperiorCard 33 and Vista 11.
-SELECT CardType, MIN(LEN(CardNumber)), MAX(LEN(CardNumber)), MIN(LEFT(CardNumber, 2)), MAX(LEFT(CardNumber, 2))
+SELECT CardType,
+       MIN(LEN(CardNumber)),
+       MAX(LEN(CardNumber)),
+       MIN(LEFT (CardNumber, 2)),
+       MAX(LEFT (CardNumber, 2))
 FROM Sales.CreditCard
 GROUP BY CardType
 ORDER BY CardType ASC

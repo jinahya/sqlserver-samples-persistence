@@ -21,8 +21,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
  */
 
 /**
- * An abstract base class for testing a value class -- an id class, an embeddable -- which has no identity of its own,
- * and so no persistence test either.
+ * An abstract base class for testing a value class -- an id class, an embeddable -- which has no
+ * identity of its own, and so no persistence test either.
  *
  * @param <T> the type of the value class.
  */
@@ -30,7 +30,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
         "java:S101", // Class names should comply with a naming convention
         "java:S118"  // Abstract class names should comply with a naming convention
 })
-public abstract class _NonEntity_Test<T> extends __Test<T> implements __Object_Test<T> {
+public abstract class _NonEntity_Test<T>
+        extends __Test<T>
+        implements __Object_Test<T> {
 
     /**
      * Creates a new instance for the specified target class.

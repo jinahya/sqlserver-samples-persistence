@@ -23,7 +23,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped;
 /**
  * Utilities shared across the classes of this package.
  * <p>
- * Only what more than one class shares goes here; what belongs to a single class stays in that class.
+ * Only what more than one class shares goes here; what belongs to a single class stays in that
+ * class.
  */
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention

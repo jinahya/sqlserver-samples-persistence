@@ -37,10 +37,12 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * A mapped superclass which holds the mappings of the {@code HumanResources.EmployeePayHistory} table.
+ * A mapped superclass which holds the mappings of the {@code HumanResources.EmployeePayHistory}
+ * table.
  * <p>
- * Read-only: the application writes this table only through {@code HumanResources.uspUpdateEmployeeHireInfo}, which
- * inserts a row, and nothing updates or deletes one; so no column of it is insertable, nor updatable.
+ * Read-only: the application writes this table only through
+ * {@code HumanResources.uspUpdateEmployeeHireInfo}, which inserts a row, and nothing updates or
+ * deletes one; so no column of it is insertable, nor updatable.
  *
  * <table class="striped">
  * <caption>Columns of {@code HumanResources.EmployeePayHistory}</caption>
@@ -69,7 +71,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -97,7 +101,8 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -109,7 +114,8 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_RATE_CHANGE_DATE = "RateChangeDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_RATE_CHANGE_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_RATE_CHANGE_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RATE_CHANGE_DATE = "rateChangeDate";
 
@@ -121,19 +127,22 @@ public abstract class MappedEmployeePayHistory {
     public static final String COLUMN_NAME_RATE = "Rate";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_RATE} column, as the {@code CK_EmployeePayHistory_Rate} check
-     * constraint ({@code [Rate]>=(6.50)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_RATE} column, as the
+     * {@code CK_EmployeePayHistory_Rate} check constraint ({@code [Rate]>=(6.50)}) requires. The
+     * value is {@value}.
      */
     public static final String COLUMN_MIN_RATE = "6.50";
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_RATE} column, as the {@code CK_EmployeePayHistory_Rate} check
-     * constraint ({@code [Rate]<=(200.00)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_RATE} column, as the
+     * {@code CK_EmployeePayHistory_Rate} check constraint ({@code [Rate]<=(200.00)}) requires. The
+     * value is {@value}.
      */
     public static final String COLUMN_MAX_RATE = "200.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_RATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_RATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_RATE = "rate";
 
@@ -146,32 +155,35 @@ public abstract class MappedEmployeePayHistory {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_PAY_FREQUENCY} column, as the
-     * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(1)}) requires. The value is
-     * {@value}.
+     * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(1)})
+     * requires. The value is {@value}.
      */
     public static final int COLUMN_MIN_PAY_FREQUENCY = +1;
 
     /**
      * The maximum value of the {@value #COLUMN_NAME_PAY_FREQUENCY} column, as the
-     * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(2)}) requires. The value is
-     * {@value}.
+     * {@code CK_EmployeePayHistory_PayFrequency} check constraint ({@code [PayFrequency]=(2)})
+     * requires. The value is {@value}.
      */
     public static final int COLUMN_MAX_PAY_FREQUENCY = +2;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PAY_FREQUENCY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PAY_FREQUENCY} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PAY_FREQUENCY = "payFrequency";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -233,17 +245,19 @@ public abstract class MappedEmployeePayHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -263,7 +277,8 @@ public abstract class MappedEmployeePayHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_RATE_CHANGE_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_RATE_CHANGE_DATE} attribute with the
+     * specified value.
      *
      * @param rateChangeDate new value for {@value #ATTRIBUTE_NAME_RATE_CHANGE_DATE} attribute.
      */
@@ -303,7 +318,8 @@ public abstract class MappedEmployeePayHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute with the specified
+     * value.
      *
      * @param payFrequency new value for {@value #ATTRIBUTE_NAME_PAY_FREQUENCY} attribute.
      */
@@ -323,7 +339,8 @@ public abstract class MappedEmployeePayHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -332,26 +349,31 @@ public abstract class MappedEmployeePayHistory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
+    // documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Employee identification number. Foreign key to "
                                   + "Employee.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
+    // documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_RATE_CHANGE_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_RATE_CHANGE_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_RATE_CHANGE_DATE,
                           value = "Date the change in pay is effective")
     private LocalDateTime rateChangeDate;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
+    // documentation
     // CK_EmployeePayHistory_Rate: ([Rate]>=(6.50) AND [Rate]<=(200.00))
     @DecimalMax(COLUMN_MAX_RATE)
     @DecimalMin(COLUMN_MIN_RATE)
@@ -362,22 +384,26 @@ public abstract class MappedEmployeePayHistory {
     private BigDecimal rate;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
+    // documentation
     // CK_EmployeePayHistory_PayFrequency: ([PayFrequency]=(2) OR [PayFrequency]=(1))
     @Max(COLUMN_MAX_PAY_FREQUENCY)
     @Min(COLUMN_MIN_PAY_FREQUENCY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PAY_FREQUENCY, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_PAY_FREQUENCY, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PAY_FREQUENCY,
                           value = "1 = Salary received monthly, 2 = Salary received biweekly")
     private Integer payFrequency;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class documentation
+    // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
+    // documentation
     // the database's DEFAULT (getdate()) fills it on the INSERT of the procedure
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmployeePayHistory_ModifiedDate", value = "(getdate())")

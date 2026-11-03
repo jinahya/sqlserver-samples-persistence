@@ -90,21 +90,35 @@ FROM Production.UnitMeasure
 -- the units in use, and by what; 6 units; CM for 176 sizes, G and LB for 29 and 176 weights, EA, IN and OZ for 2578, 9
 -- and 92 bills of materials.
 SELECT u.UnitMeasureCode,
-       (SELECT COUNT(*) FROM Production.Product p WHERE p.SizeUnitMeasureCode = u.UnitMeasureCode) AS sizes,
-       (SELECT COUNT(*) FROM Production.Product p WHERE p.WeightUnitMeasureCode = u.UnitMeasureCode) AS weights,
-       (SELECT COUNT(*) FROM Production.BillOfMaterials b WHERE b.UnitMeasureCode = u.UnitMeasureCode) AS boms
+       (SELECT COUNT(*)
+        FROM Production.Product p
+        WHERE p.SizeUnitMeasureCode = u.UnitMeasureCode)   AS sizes,
+       (SELECT COUNT(*)
+        FROM Production.Product p
+        WHERE p.WeightUnitMeasureCode = u.UnitMeasureCode) AS weights,
+       (SELECT COUNT(*)
+        FROM Production.BillOfMaterials b
+        WHERE b.UnitMeasureCode = u.UnitMeasureCode)       AS boms
 FROM Production.UnitMeasure u
 WHERE EXISTS (SELECT 1 FROM Production.Product p WHERE p.SizeUnitMeasureCode = u.UnitMeasureCode)
    OR EXISTS (SELECT 1 FROM Production.Product p WHERE p.WeightUnitMeasureCode = u.UnitMeasureCode)
-   OR EXISTS (SELECT 1 FROM Production.BillOfMaterials b WHERE b.UnitMeasureCode = u.UnitMeasureCode)
+   OR EXISTS (SELECT 1
+              FROM Production.BillOfMaterials b
+              WHERE b.UnitMeasureCode = u.UnitMeasureCode)
 ORDER BY u.UnitMeasureCode ASC
 ;
 
 -- how many units nothing refers to; 32 of the 38.
 SELECT COUNT(*) AS unused
 FROM Production.UnitMeasure u
-WHERE NOT EXISTS (SELECT 1 FROM Production.Product p WHERE p.SizeUnitMeasureCode = u.UnitMeasureCode)
-  AND NOT EXISTS (SELECT 1 FROM Production.Product p WHERE p.WeightUnitMeasureCode = u.UnitMeasureCode)
-  AND NOT EXISTS (SELECT 1 FROM Production.BillOfMaterials b WHERE b.UnitMeasureCode = u.UnitMeasureCode)
+WHERE NOT EXISTS (SELECT 1
+                  FROM Production.Product p
+                  WHERE p.SizeUnitMeasureCode = u.UnitMeasureCode)
+  AND NOT EXISTS (SELECT 1
+                  FROM Production.Product p
+                  WHERE p.WeightUnitMeasureCode = u.UnitMeasureCode)
+  AND NOT EXISTS (SELECT 1
+                  FROM Production.BillOfMaterials b
+                  WHERE b.UnitMeasureCode = u.UnitMeasureCode)
 ;
 

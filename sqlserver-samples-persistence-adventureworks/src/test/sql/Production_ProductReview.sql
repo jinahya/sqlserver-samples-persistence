@@ -86,7 +86,7 @@ WHERE DATALENGTH(EmailAddress) <> DATALENGTH(TRIM(EmailAddress))
 -- one each.
 SELECT SUBSTRING(EmailAddress, CHARINDEX('@', EmailAddress) + 1, 50) AS domain, COUNT(*) AS reviews
 FROM Production.ProductReview
-GROUP BY SUBSTRING(EmailAddress, CHARINDEX('@', EmailAddress) + 1, 50)
+GROUP BY SUBSTRING (EmailAddress, CHARINDEX('@', EmailAddress) + 1, 50)
 ;
 
 

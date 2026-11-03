@@ -153,7 +153,7 @@ WHERE TRIM(JobTitle) = ''
 ;
 
 -- the most common titles; Production Technician - WC40, WC50 and WC60, 26 each.
-SELECT TOP (3) JobTitle, COUNT(*) AS employees
+SELECT TOP(3) JobTitle, COUNT(*) AS employees
 FROM HumanResources.Employee
 GROUP BY JobTitle
 ORDER BY employees DESC, JobTitle ASC
@@ -211,9 +211,9 @@ FROM HumanResources.Employee
 ;
 
 -- the hires of each year; 8 years; 2009 the busiest with 148, 2006 a single hire.
-SELECT YEAR(HireDate) AS year, COUNT(*) AS employees
+SELECT YEAR (HireDate) AS year, COUNT (*) AS employees
 FROM HumanResources.Employee
-GROUP BY YEAR(HireDate)
+GROUP BY YEAR (HireDate)
 ORDER BY year ASC
 ;
 
@@ -296,7 +296,7 @@ WHERE NOT EXISTS (SELECT 1
 
 -- the employees with the most direct reports; 26, the Production Control Manager, with 22; then 166 with 13 and 27 with
 -- 12.
-SELECT TOP (3) m.BusinessEntityID, m.JobTitle, COUNT(*) AS reports
+SELECT TOP(3) m.BusinessEntityID, m.JobTitle, COUNT(*) AS reports
 FROM HumanResources.Employee m
          JOIN HumanResources.Employee e ON e.OrganizationNode.GetAncestor(1) = m.OrganizationNode
 GROUP BY m.BusinessEntityID, m.JobTitle

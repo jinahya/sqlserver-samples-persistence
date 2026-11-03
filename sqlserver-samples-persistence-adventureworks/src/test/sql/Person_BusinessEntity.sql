@@ -90,7 +90,8 @@ SELECT b.BusinessEntityID
 FROM Person.BusinessEntity b
 WHERE (SELECT COUNT(*) FROM Person.Person p WHERE p.BusinessEntityID = b.BusinessEntityID)
           + (SELECT COUNT(*) FROM Sales.Store s WHERE s.BusinessEntityID = b.BusinessEntityID)
-          + (SELECT COUNT(*) FROM Purchasing.Vendor v WHERE v.BusinessEntityID = b.BusinessEntityID) <> 1
+          +
+      (SELECT COUNT(*) FROM Purchasing.Vendor v WHERE v.BusinessEntityID = b.BusinessEntityID) <> 1
 ;
 
 -- a business entity with no BusinessEntityAddress; 1198.

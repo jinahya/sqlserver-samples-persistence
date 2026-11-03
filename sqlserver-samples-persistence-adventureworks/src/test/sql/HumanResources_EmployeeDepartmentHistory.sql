@@ -106,7 +106,8 @@ WHERE EndDate < StartDate
 -- a closed history whose next one does not start the day after it ends.
 -- no rows: each closed history is followed the next day by another; no employee leaves or has a break.
 SELECT h.BusinessEntityID, h.EndDate, h.next_start
-FROM (SELECT BusinessEntityID, EndDate,
+FROM (SELECT BusinessEntityID,
+             EndDate,
              LEAD(StartDate) OVER (PARTITION BY BusinessEntityID ORDER BY StartDate) AS next_start
       FROM HumanResources.EmployeeDepartmentHistory) h
 WHERE h.EndDate IS NOT NULL
@@ -123,7 +124,8 @@ FROM HumanResources.EmployeeDepartmentHistory
 -- how many days ModifiedDate comes before the StartDate of an open history, and before the EndDate of a closed one; the
 -- 6 closed ones 2 days before the EndDate, the 290 open ones the day before the StartDate. No history was modified
 -- after it took effect.
-SELECT IIF(EndDate IS NULL, 'open', 'closed') AS history, COUNT(*) AS histories,
+SELECT IIF(EndDate IS NULL, 'open', 'closed') AS history,
+       COUNT(*)                               AS histories,
        MIN(DATEDIFF(DAY, ModifiedDate, COALESCE(EndDate, StartDate))),
        MAX(DATEDIFF(DAY, ModifiedDate, COALESCE(EndDate, StartDate)))
 FROM HumanResources.EmployeeDepartmentHistory

@@ -26,7 +26,8 @@ import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link BillOfMaterials}, of a new component in a new assembly, measured in a new unit.
+ * Persists a new {@link BillOfMaterials}, of a new component in a new assembly, measured in a new
+ * unit.
  */
 class BillOfMaterials_Persister
         extends AbstractEntityPersister<BillOfMaterials> {
@@ -37,10 +38,14 @@ class BillOfMaterials_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public BillOfMaterials apply(final EntityManager entityManager, final BillOfMaterials entityInstance) {
-        final var productAssembly = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
-        final var component = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
-        final var unitMeasure = EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
+    public BillOfMaterials apply(final EntityManager entityManager,
+                                 final BillOfMaterials entityInstance) {
+        final var productAssembly =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+        final var component =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+        final var unitMeasure =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         entityInstance.setProductAssembly(productAssembly);

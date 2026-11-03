@@ -54,17 +54,18 @@ import java.util.Optional;
        }
 )
 @IdClass(SpecialOfferProductId.class)
-public class SpecialOfferProduct extends MappedSpecialOfferProduct {
+public class SpecialOfferProduct
+        extends MappedSpecialOfferProduct {
 
     /**
-     * The name of the attribute of the {@code FK_SpecialOfferProduct_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SpecialOfferProduct_Product_ProductID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
     /**
-     * The name of the attribute of the {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER = "specialOffer";
 
@@ -100,7 +101,8 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_SpecialOfferProduct_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_SpecialOfferProduct_Product_ProductID}
+     * foreign key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -109,8 +111,8 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_SpecialOfferProduct_Product_ProductID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_SpecialOfferProduct_Product_ProductID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
@@ -122,8 +124,8 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
     // -------------------------------------------------------------------------------- specialOffer
 
     /**
-     * Returns the {@code SpecialOffer} which the {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID} foreign key
-     * references.
+     * Returns the {@code SpecialOffer} which the
+     * {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID} foreign key references.
      *
      * @return the {@code SpecialOffer} referenced; {@code null} when none is.
      */
@@ -132,14 +134,16 @@ public class SpecialOfferProduct extends MappedSpecialOfferProduct {
     }
 
     /**
-     * Replaces the {@code SpecialOffer} which the {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID} foreign
-     * key references, and the value of the column it consists of.
+     * Replaces the {@code SpecialOffer} which the
+     * {@code FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param specialOffer the {@code SpecialOffer} to reference; {@code null} for none.
      */
     private void setSpecialOffer(final SpecialOffer specialOffer) {
         this.specialOffer = specialOffer;
-        setSpecialOfferId(Optional.ofNullable(specialOffer).map(SpecialOffer::getSpecialOfferId).orElse(null));
+        setSpecialOfferId(Optional.ofNullable(specialOffer).map(SpecialOffer::getSpecialOfferId)
+                                  .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

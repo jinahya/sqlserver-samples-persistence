@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class CreditCard extends MappedCreditCard {
+public class CreditCard
+        extends MappedCreditCard {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

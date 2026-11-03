@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link EmployeePayHistoryId} id class.
  */
-class EmployeePayHistoryId_Test extends _NonEntity_Test<EmployeePayHistoryId> {
+class EmployeePayHistoryId_Test
+        extends _NonEntity_Test<EmployeePayHistoryId> {
 
     EmployeePayHistoryId_Test() {
         super(EmployeePayHistoryId.class);

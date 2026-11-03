@@ -55,17 +55,18 @@ import java.util.Optional;
        }
 )
 @IdClass(ProductInventoryId.class)
-public class ProductInventory extends MappedProductInventory {
+public class ProductInventory
+        extends MappedProductInventory {
 
     /**
-     * The name of the attribute of the {@code FK_ProductInventory_Location_LocationID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ProductInventory_Location_LocationID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOCATION = "location";
 
     /**
-     * The name of the attribute of the {@code FK_ProductInventory_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ProductInventory_Product_ProductID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
@@ -101,7 +102,8 @@ public class ProductInventory extends MappedProductInventory {
     // ------------------------------------------------------------------------------------ location
 
     /**
-     * Returns the {@code Location} which the {@code FK_ProductInventory_Location_LocationID} foreign key references.
+     * Returns the {@code Location} which the {@code FK_ProductInventory_Location_LocationID}
+     * foreign key references.
      *
      * @return the {@code Location} referenced; {@code null} when none is.
      */
@@ -110,20 +112,22 @@ public class ProductInventory extends MappedProductInventory {
     }
 
     /**
-     * Replaces the {@code Location} which the {@code FK_ProductInventory_Location_LocationID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Location} which the {@code FK_ProductInventory_Location_LocationID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param location the {@code Location} to reference; {@code null} for none.
      */
     private void setLocation(final Location location) {
         this.location = location;
-        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId).map(Short::intValue).orElse(null));
+        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId)
+                              .map(Short::intValue).orElse(null));
     }
 
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_ProductInventory_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_ProductInventory_Product_ProductID} foreign
+     * key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -132,8 +136,8 @@ public class ProductInventory extends MappedProductInventory {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_ProductInventory_Product_ProductID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_ProductInventory_Product_ProductID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */

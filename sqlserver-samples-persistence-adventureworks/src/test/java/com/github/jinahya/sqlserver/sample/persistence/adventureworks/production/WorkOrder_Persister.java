@@ -38,8 +38,10 @@ class WorkOrder_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public WorkOrder apply(final EntityManager entityManager, final WorkOrder entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
-        final var scrapReason = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ScrapReason.class);
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+        final var scrapReason =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ScrapReason.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         entityInstance.setProduct(product);

@@ -90,7 +90,7 @@ FROM Person.BusinessEntityContact
 
 -- the three contact types with the most contacts; Owner (11) with 266, Purchasing Manager (15) with 245 and
 -- Purchasing Agent (14) with 242.
-SELECT TOP (3) t.ContactTypeID, t.Name, COUNT(*) AS contacts
+SELECT TOP(3) t.ContactTypeID, t.Name, COUNT(*) AS contacts
 FROM Person.ContactType t
          JOIN Person.BusinessEntityContact c ON c.ContactTypeID = t.ContactTypeID
 GROUP BY t.ContactTypeID, t.Name

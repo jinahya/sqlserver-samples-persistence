@@ -46,7 +46,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class AddressType extends MappedAddressType {
+public class AddressType
+        extends MappedAddressType {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

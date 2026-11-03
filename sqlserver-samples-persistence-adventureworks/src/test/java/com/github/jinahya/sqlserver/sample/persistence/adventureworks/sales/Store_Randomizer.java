@@ -26,8 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link Store}; the identifier and what it references, which the persister sets, and what SQL Server
- * fills are left out.
+ * Randomizes a new {@link Store}; the identifier and what it references, which the persister sets,
+ * and what SQL Server fills are left out.
  */
 class Store_Randomizer
         extends PodamObjectRandomizer<Store> {
@@ -48,8 +48,8 @@ class Store_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has no Demographics, an xml column typed by a schema collection, which no random
-     *         text is valid against.
+     * @implNote The returned instance has no Demographics, an xml column typed by a schema
+     *         collection, which no random text is valid against.
      */
     @Override
     public Store get() {

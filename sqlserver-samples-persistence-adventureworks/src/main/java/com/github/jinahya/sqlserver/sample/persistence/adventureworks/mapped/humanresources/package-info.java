@@ -19,13 +19,14 @@
  */
 
 /**
- * Mapped superclasses for the {@code HumanResources} schema of AdventureWorks, the classic OLTP sample database of SQL
- * Server, one per table and one per view, plus an identifier class per composite key.
+ * Mapped superclasses for the {@code HumanResources} schema of AdventureWorks, the classic OLTP
+ * sample database of SQL Server, one per table and one per view, plus an identifier class per
+ * composite key.
  * <p>
- * Each holds what the database says about its table or view -- the names, the types, the lengths, the nullability, the
- * identity columns, the sequences and the columns the database computes -- and nothing an application decides: no
- * association, no fetch type, no cascade, no named query. A foreign-key column is mapped read-only here, as a basic
- * attribute; the extending entity owns its writable mapping, through an association's
- * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * Each holds what the database says about its table or view -- the names, the types, the lengths,
+ * the nullability, the identity columns, the sequences and the columns the database computes -- and
+ * nothing an application decides: no association, no fetch type, no cascade, no named query. A
+ * foreign-key column is mapped read-only here, as a basic attribute; the extending entity owns its
+ * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
  */
 package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources;

@@ -40,8 +40,9 @@ import java.util.UUID;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SalesTerritory} table.
  * <p>
- * The {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column is mapped read-only, as a foreign key; the extending entity owns
- * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column is mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.SalesTerritory}</caption>
@@ -86,8 +87,11 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -115,7 +119,8 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
@@ -132,7 +137,8 @@ public abstract class MappedSalesTerritory {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
@@ -149,8 +155,8 @@ public abstract class MappedSalesTerritory {
     public static final int COLUMN_LENGTH_COUNTRY_REGION_CODE = 3;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
@@ -167,7 +173,8 @@ public abstract class MappedSalesTerritory {
     public static final int COLUMN_LENGTH_GROUP = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_GROUP} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_GROUP} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROUP = "group";
 
@@ -179,13 +186,15 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_SALES_YTD = "SalesYTD";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the {@code CK_SalesTerritory_SalesYTD} check
-     * constraint ({@code [SalesYTD]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the
+     * {@code CK_SalesTerritory_SalesYTD} check constraint ({@code [SalesYTD]>=(0.00)}) requires.
+     * The value is {@value}.
      */
     public static final String COLUMN_MIN_SALES_YTD = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
 
@@ -198,13 +207,14 @@ public abstract class MappedSalesTerritory {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_SALES_LAST_YEAR} column, as the
-     * {@code CK_SalesTerritory_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)}) requires. The value is
-     * {@value}.
+     * {@code CK_SalesTerritory_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_SALES_LAST_YEAR = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_LAST_YEAR = "salesLastYear";
 
@@ -216,13 +226,15 @@ public abstract class MappedSalesTerritory {
     public static final String COLUMN_NAME_COST_YTD = "CostYTD";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_COST_YTD} column, as the {@code CK_SalesTerritory_CostYTD} check
-     * constraint ({@code [CostYTD]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_COST_YTD} column, as the
+     * {@code CK_SalesTerritory_CostYTD} check constraint ({@code [CostYTD]>=(0.00)}) requires. The
+     * value is {@value}.
      */
     public static final String COLUMN_MIN_COST_YTD = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COST_YTD} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COST_YTD} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_COST_YTD = "costYtd";
 
@@ -235,37 +247,42 @@ public abstract class MappedSalesTerritory {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_COST_LAST_YEAR} column, as the
-     * {@code CK_SalesTerritory_CostLastYear} check constraint ({@code [CostLastYear]>=(0.00)}) requires. The value is
-     * {@value}.
+     * {@code CK_SalesTerritory_CostLastYear} check constraint ({@code [CostLastYear]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_COST_LAST_YEAR = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COST_LAST_YEAR} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COST_LAST_YEAR} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COST_LAST_YEAR = "costLastYear";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -337,7 +354,8 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute with the specified
+     * value.
      *
      * @param territoryId new value for {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
@@ -377,11 +395,12 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
-     * @param countryRegionCode new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE} attribute.
+     * @param countryRegionCode new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_CODE}
+     *                          attribute.
      */
     protected void setCountryRegionCode(final String countryRegionCode) {
         this.countryRegionCode = countryRegionCode;
@@ -419,7 +438,8 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute with the specified
+     * value.
      *
      * @param salesYtd new value for {@value #ATTRIBUTE_NAME_SALES_YTD} attribute.
      */
@@ -439,7 +459,8 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute with the
+     * specified value.
      *
      * @param salesLastYear new value for {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute.
      */
@@ -459,7 +480,8 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COST_YTD} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COST_YTD} attribute with the specified
+     * value.
      *
      * @param costYtd new value for {@value #ATTRIBUTE_NAME_COST_YTD} attribute.
      */
@@ -479,7 +501,8 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COST_LAST_YEAR} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COST_LAST_YEAR} attribute with the
+     * specified value.
      *
      * @param costLastYear new value for {@value #ATTRIBUTE_NAME_COST_LAST_YEAR} attribute.
      */
@@ -510,7 +533,8 @@ public abstract class MappedSalesTerritory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -519,7 +543,8 @@ public abstract class MappedSalesTerritory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -532,16 +557,19 @@ public abstract class MappedSalesTerritory {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Sales territory description")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
                           value = "ISO standard country or region code. Foreign key to "
                                   + "CountryRegion.CountryRegionCode.")
@@ -551,7 +579,8 @@ public abstract class MappedSalesTerritory {
     @Size(max = COLUMN_LENGTH_GROUP)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_GROUP, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_GROUP)
+    @Column(name = COLUMN_NAME_GROUP, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_GROUP)
     @MsDescription.Column(name = COLUMN_NAME_GROUP,
                           value = "Geographic area to which the sales territory belong.")
     private String group;
@@ -572,7 +601,8 @@ public abstract class MappedSalesTerritory {
     @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
                           value = "Sales in the territory the previous year.")
     @MsDefault(name = "DF_SalesTerritory_SalesLastYear", value = "((0.00))")
@@ -594,14 +624,16 @@ public abstract class MappedSalesTerritory {
     @DecimalMin(COLUMN_MIN_COST_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COST_LAST_YEAR, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_COST_LAST_YEAR, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COST_LAST_YEAR,
                           value = "Business costs in the territory the previous year.")
     @MsDefault(name = "DF_SalesTerritory_CostLastYear", value = "((0.00))")
     private BigDecimal costLastYear;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -611,10 +643,12 @@ public abstract class MappedSalesTerritory {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesTerritory_ModifiedDate", value = "(getdate())")

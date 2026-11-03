@@ -20,9 +20,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.CountryRegion;
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.CountryRegion;
 import jakarta.persistence.EntityManager;
 
 /**
@@ -37,7 +37,8 @@ class SalesTerritory_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public SalesTerritory apply(final EntityManager entityManager, final SalesTerritory entityInstance) {
+    public SalesTerritory apply(final EntityManager entityManager,
+                                final SalesTerritory entityInstance) {
         entityInstance.setCountryRegion(
                 EntityPersisterUtils.newPersistedInstanceOf(entityManager, CountryRegion.class));
         return super.apply(entityManager, entityInstance);

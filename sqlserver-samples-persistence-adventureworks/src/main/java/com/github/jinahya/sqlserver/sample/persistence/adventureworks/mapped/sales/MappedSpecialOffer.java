@@ -81,8 +81,11 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -110,7 +113,8 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_SPECIAL_OFFER_ID = "SpecialOfferID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_ID = "specialOfferId";
 
@@ -127,25 +131,29 @@ public abstract class MappedSpecialOffer {
     public static final int COLUMN_LENGTH_DESCRIPTION = 255;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DESCRIPTION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DESCRIPTION} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
     // --------------------------------------------------------------------------------- DiscountPct
 
     /**
-     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_DISCOUNT_PCT = "DiscountPct";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_DISCOUNT_PCT} column, as the {@code CK_SpecialOffer_DiscountPct}
-     * check constraint ({@code [DiscountPct]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_DISCOUNT_PCT} column, as the
+     * {@code CK_SpecialOffer_DiscountPct} check constraint ({@code [DiscountPct]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_DISCOUNT_PCT = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PCT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PCT} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DISCOUNT_PCT = "discountPct";
 
@@ -162,7 +170,8 @@ public abstract class MappedSpecialOffer {
     public static final int COLUMN_LENGTH_TYPE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TYPE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TYPE = "type";
 
@@ -179,7 +188,8 @@ public abstract class MappedSpecialOffer {
     public static final int COLUMN_LENGTH_CATEGORY = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CATEGORY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CATEGORY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CATEGORY = "category";
 
@@ -191,7 +201,8 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_START_DATE = "StartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
@@ -203,7 +214,8 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_END_DATE = "EndDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
@@ -215,8 +227,9 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_MIN_QTY = "MinQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_MIN_QTY} column, as the {@code CK_SpecialOffer_MinQty} check
-     * constraint ({@code [MinQty]>=(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_MIN_QTY} column, as the
+     * {@code CK_SpecialOffer_MinQty} check constraint ({@code [MinQty]>=(0)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MIN_MIN_QTY = 0;
 
@@ -226,7 +239,8 @@ public abstract class MappedSpecialOffer {
     public static final int COLUMN_MAX_MIN_QTY = Integer.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_QTY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIN_QTY = "minQty";
 
@@ -238,8 +252,9 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_MAX_QTY = "MaxQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_MAX_QTY} column, as the {@code CK_SpecialOffer_MaxQty} check
-     * constraint ({@code [MaxQty]>=(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_MAX_QTY} column, as the
+     * {@code CK_SpecialOffer_MaxQty} check constraint ({@code [MaxQty]>=(0)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MIN_MAX_QTY = 0;
 
@@ -249,31 +264,36 @@ public abstract class MappedSpecialOffer {
     public static final int COLUMN_MAX_MAX_QTY = Integer.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_QTY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_MAX_QTY = "maxQty";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -338,15 +358,15 @@ public abstract class MappedSpecialOffer {
 
     /**
      * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
-     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_SpecialOffer_EndDate} constraint
-     * requires.
+     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_SpecialOffer_EndDate}
+     * constraint requires.
      * {@snippet lang = "sql":
      * ([EndDate]>=[StartDate])
      *}
      *
      * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
-     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute, or if either attribute is {@code null}; {@code false}
-     *         otherwise.
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute, or if either attribute is
+     *         {@code null}; {@code false} otherwise.
      */
     @AssertTrue(message = "endDate must not be before startDate")
     protected boolean isEndDateValid() {
@@ -368,7 +388,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute with the
+     * specified value.
      *
      * @param specialOfferId new value for {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
      */
@@ -388,7 +409,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute with the specified
+     * value.
      *
      * @param description new value for {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
      */
@@ -408,7 +430,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute with the specified
+     * value.
      *
      * @param discountPct new value for {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute.
      */
@@ -448,7 +471,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CATEGORY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CATEGORY} attribute with the specified
+     * value.
      *
      * @param category new value for {@value #ATTRIBUTE_NAME_CATEGORY} attribute.
      */
@@ -468,7 +492,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified
+     * value.
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
@@ -488,7 +513,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified
+     * value.
      *
      * @param endDate new value for {@value #ATTRIBUTE_NAME_END_DATE} attribute.
      */
@@ -508,7 +534,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MIN_QTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MIN_QTY} attribute with the specified
+     * value.
      *
      * @param minQty new value for {@value #ATTRIBUTE_NAME_MIN_QTY} attribute.
      */
@@ -528,7 +555,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MAX_QTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MAX_QTY} attribute with the specified
+     * value.
      *
      * @param maxQty new value for {@value #ATTRIBUTE_NAME_MAX_QTY} attribute.
      */
@@ -559,7 +587,8 @@ public abstract class MappedSpecialOffer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -568,11 +597,13 @@ public abstract class MappedSpecialOffer {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
                           value = "Primary key for SpecialOffer records.")
     private Integer specialOfferId;
@@ -581,7 +612,8 @@ public abstract class MappedSpecialOffer {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_DESCRIPTION)
     @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION, value = "Discount description.")
     private String description;
 
@@ -599,7 +631,8 @@ public abstract class MappedSpecialOffer {
     @Size(max = COLUMN_LENGTH_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TYPE)
+    @Column(name = COLUMN_NAME_TYPE, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_TYPE, value = "Discount type category.")
     private String type;
 
@@ -607,7 +640,8 @@ public abstract class MappedSpecialOffer {
     @Size(max = COLUMN_LENGTH_CATEGORY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CATEGORY, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CATEGORY)
+    @Column(name = COLUMN_NAME_CATEGORY, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_CATEGORY)
     @MsDescription.Column(name = COLUMN_NAME_CATEGORY,
                           value = "Group the discount applies to such as Reseller or Customer.")
     private String category;
@@ -647,7 +681,8 @@ public abstract class MappedSpecialOffer {
     private Integer maxQty;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -657,10 +692,12 @@ public abstract class MappedSpecialOffer {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SpecialOffer_ModifiedDate", value = "(getdate())")

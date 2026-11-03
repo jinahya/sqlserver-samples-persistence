@@ -27,8 +27,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link CurrencyRate}; the generated identifier, what SQL Server fills, and the currencies, which
- * the persister sets, are left out.
+ * Randomizes a new {@link CurrencyRate}; the generated identifier, what SQL Server fills, and the
+ * currencies, which the persister sets, are left out.
  */
 class CurrencyRate_Randomizer
         extends PodamObjectRandomizer<CurrencyRate> {

@@ -60,7 +60,9 @@ HAVING COUNT(*) > 1
 -- -------------------------------------------------------------------------------------------------------- PasswordSalt
 -- the shortest and the longest PasswordSalt; 8 characters each, of the 10 the column allows: a 4 byte salt in
 -- Base64, padded with a single =.
-SELECT MIN(LEN(PasswordSalt)), MAX(LEN(PasswordSalt)), SUM(CASE WHEN PasswordSalt LIKE '%[^=]=' THEN 1 END)
+SELECT MIN(LEN(PasswordSalt)),
+       MAX(LEN(PasswordSalt)),
+       SUM(CASE WHEN PasswordSalt LIKE '%[^=]=' THEN 1 END)
 FROM Person.Password
 ;
 

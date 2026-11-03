@@ -33,10 +33,11 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.vStoreWithDemographics} view.
  * <p>
- * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it
+ * returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
- * insertable; some of its columns are derived or constant (error 4406).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is updatable, nor insertable; some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedStoreWithDemographicsView {
@@ -59,7 +60,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -76,7 +78,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
@@ -88,7 +91,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_ANNUAL_SALES = "AnnualSales";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_SALES} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_SALES} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_SALES = "annualSales";
 
@@ -100,7 +104,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_ANNUAL_REVENUE = "AnnualRevenue";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_REVENUE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_REVENUE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ANNUAL_REVENUE = "annualRevenue";
 
@@ -117,7 +122,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final int COLUMN_LENGTH_BANK_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BANK_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BANK_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BANK_NAME = "bankName";
 
@@ -134,7 +140,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final int COLUMN_LENGTH_BUSINESS_TYPE = 5;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_TYPE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_TYPE = "businessType";
 
@@ -146,7 +153,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_YEAR_OPENED = "YearOpened";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_OPENED} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_OPENED} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR_OPENED = "yearOpened";
 
@@ -163,7 +171,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final int COLUMN_LENGTH_SPECIALTY = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIALTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIALTY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIALTY = "specialty";
 
@@ -175,7 +184,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_SQUARE_FEET = "SquareFeet";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SQUARE_FEET} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SQUARE_FEET} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SQUARE_FEET = "squareFeet";
 
@@ -192,7 +202,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final int COLUMN_LENGTH_BRANDS = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BRANDS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BRANDS} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BRANDS = "brands";
 
@@ -209,7 +220,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final int COLUMN_LENGTH_INTERNET = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_INTERNET} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_INTERNET} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_INTERNET = "internet";
 
@@ -221,7 +233,8 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_NUMBER_EMPLOYEES = "NumberEmployees";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_EMPLOYEES} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_EMPLOYEES} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NUMBER_EMPLOYEES = "numberEmployees";
 
@@ -295,7 +308,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -335,7 +349,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ANNUAL_SALES} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ANNUAL_SALES} attribute with the specified
+     * value.
      *
      * @param annualSales new value for {@value #ATTRIBUTE_NAME_ANNUAL_SALES} attribute.
      */
@@ -355,7 +370,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ANNUAL_REVENUE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ANNUAL_REVENUE} attribute with the
+     * specified value.
      *
      * @param annualRevenue new value for {@value #ATTRIBUTE_NAME_ANNUAL_REVENUE} attribute.
      */
@@ -375,7 +391,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BANK_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BANK_NAME} attribute with the specified
+     * value.
      *
      * @param bankName new value for {@value #ATTRIBUTE_NAME_BANK_NAME} attribute.
      */
@@ -395,7 +412,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_TYPE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_TYPE} attribute with the specified
+     * value.
      *
      * @param businessType new value for {@value #ATTRIBUTE_NAME_BUSINESS_TYPE} attribute.
      */
@@ -415,7 +433,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_OPENED} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_OPENED} attribute with the specified
+     * value.
      *
      * @param yearOpened new value for {@value #ATTRIBUTE_NAME_YEAR_OPENED} attribute.
      */
@@ -435,7 +454,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SPECIALTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SPECIALTY} attribute with the specified
+     * value.
      *
      * @param specialty new value for {@value #ATTRIBUTE_NAME_SPECIALTY} attribute.
      */
@@ -455,7 +475,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SQUARE_FEET} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SQUARE_FEET} attribute with the specified
+     * value.
      *
      * @param squareFeet new value for {@value #ATTRIBUTE_NAME_SQUARE_FEET} attribute.
      */
@@ -475,7 +496,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BRANDS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BRANDS} attribute with the specified
+     * value.
      *
      * @param brands new value for {@value #ATTRIBUTE_NAME_BRANDS} attribute.
      */
@@ -495,7 +517,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_INTERNET} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_INTERNET} attribute with the specified
+     * value.
      *
      * @param internet new value for {@value #ATTRIBUTE_NAME_INTERNET} attribute.
      */
@@ -515,7 +538,8 @@ public abstract class MappedStoreWithDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_EMPLOYEES} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_EMPLOYEES} attribute with the
+     * specified value.
      *
      * @param numberEmployees new value for {@value #ATTRIBUTE_NAME_NUMBER_EMPLOYEES} attribute.
      */
@@ -527,7 +551,8 @@ public abstract class MappedStoreWithDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -535,7 +560,8 @@ public abstract class MappedStoreWithDemographicsView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -547,21 +573,24 @@ public abstract class MappedStoreWithDemographicsView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ANNUAL_REVENUE, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_ANNUAL_REVENUE, nullable = true, insertable = false,
+            updatable = false)
     private BigDecimal annualRevenue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BANK_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BANK_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BANK_NAME)
+    @Column(name = COLUMN_NAME_BANK_NAME, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_BANK_NAME)
     private String bankName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BUSINESS_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUSINESS_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BUSINESS_TYPE)
+    @Column(name = COLUMN_NAME_BUSINESS_TYPE, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_BUSINESS_TYPE)
     private String businessType;
 
     // ---------------------------------------------------------------------------------------------
@@ -574,7 +603,8 @@ public abstract class MappedStoreWithDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SPECIALTY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SPECIALTY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SPECIALTY)
+    @Column(name = COLUMN_NAME_SPECIALTY, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_SPECIALTY)
     private String specialty;
 
     // ---------------------------------------------------------------------------------------------
@@ -587,20 +617,23 @@ public abstract class MappedStoreWithDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_BRANDS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BRANDS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_BRANDS)
+    @Column(name = COLUMN_NAME_BRANDS, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_BRANDS)
     private String brands;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_INTERNET)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNET, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_INTERNET)
+    @Column(name = COLUMN_NAME_INTERNET, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_INTERNET)
     private String internet;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_EMPLOYEES, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_NUMBER_EMPLOYEES, nullable = true, insertable = false,
+            updatable = false)
     private Integer numberEmployees;
 }
 

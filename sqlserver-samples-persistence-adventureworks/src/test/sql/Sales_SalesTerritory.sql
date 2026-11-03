@@ -68,10 +68,13 @@ ORDER BY CountryRegionCode ASC
 
 -- --------------------------------------------------------------------------------------------------------------- Group
 -- how many territories each Group has; Europe 3, North America 6 and Pacific 1.
-SELECT [Group], COUNT(*) AS territories
+SELECT [
+Group], COUNT (*) AS territories
 FROM Sales.SalesTerritory
-GROUP BY [Group]
-ORDER BY [Group] ASC
+GROUP BY [
+Group]
+ORDER BY [
+Group] ASC
 ;
 
 -- a country whose territories fall in more than one Group.
@@ -149,10 +152,15 @@ WHERE NOT EXISTS (SELECT 1
 ;
 
 -- the customers, orders and sales persons of each territory; 113 (2) to 4696 (4) customers, 352 (2) to 6843 (9) orders.
-SELECT t.TerritoryID, t.Name,
-       (SELECT COUNT(*) FROM Sales.Customer c WHERE c.TerritoryID = t.TerritoryID) AS customers,
-       (SELECT COUNT(*) FROM Sales.SalesOrderHeader h WHERE h.TerritoryID = t.TerritoryID) AS orders,
-       (SELECT COUNT(*) FROM Sales.SalesPerson p WHERE p.TerritoryID = t.TerritoryID) AS sales_persons
+SELECT t.TerritoryID,
+       t.Name,
+       (SELECT COUNT(*) FROM Sales.Customer c WHERE c.TerritoryID = t.TerritoryID)         AS customers,
+       (SELECT COUNT(*)
+        FROM Sales.SalesOrderHeader h
+        WHERE h.TerritoryID = t.TerritoryID)                                               AS orders,
+       (SELECT COUNT(*)
+        FROM Sales.SalesPerson p
+        WHERE p.TerritoryID = t.TerritoryID)                                               AS sales_persons
 FROM Sales.SalesTerritory t
 ORDER BY t.TerritoryID ASC
 ;

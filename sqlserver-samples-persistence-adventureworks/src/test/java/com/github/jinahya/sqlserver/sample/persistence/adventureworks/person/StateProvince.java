@@ -59,17 +59,18 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class StateProvince extends MappedStateProvince {
+public class StateProvince
+        extends MappedStateProvince {
 
     /**
-     * The name of the attribute of the {@code FK_StateProvince_CountryRegion_CountryRegionCode} foreign key. The value
-     * is {@value}.
+     * The name of the attribute of the {@code FK_StateProvince_CountryRegion_CountryRegionCode}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION = "countryRegion";
 
     /**
-     * The name of the attribute of the {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
@@ -85,8 +86,8 @@ public class StateProvince extends MappedStateProvince {
     // ------------------------------------------------------------------------------- countryRegion
 
     /**
-     * Returns the {@code CountryRegion} which the {@code FK_StateProvince_CountryRegion_CountryRegionCode} foreign key
-     * references.
+     * Returns the {@code CountryRegion} which the
+     * {@code FK_StateProvince_CountryRegion_CountryRegionCode} foreign key references.
      *
      * @return the {@code CountryRegion} referenced; {@code null} when none is.
      */
@@ -95,8 +96,9 @@ public class StateProvince extends MappedStateProvince {
     }
 
     /**
-     * Replaces the {@code CountryRegion} which the {@code FK_StateProvince_CountryRegion_CountryRegionCode} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code CountryRegion} which the
+     * {@code FK_StateProvince_CountryRegion_CountryRegionCode} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param countryRegion the {@code CountryRegion} to reference; {@code null} for none.
      */
@@ -108,8 +110,8 @@ public class StateProvince extends MappedStateProvince {
     // ----------------------------------------------------------------------------------- territory
 
     /**
-     * Returns the {@code SalesTerritory} which the {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign key
-     * references.
+     * Returns the {@code SalesTerritory} which the
+     * {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign key references.
      *
      * @return the {@code SalesTerritory} referenced; {@code null} when none is.
      */
@@ -118,8 +120,9 @@ public class StateProvince extends MappedStateProvince {
     }
 
     /**
-     * Replaces the {@code SalesTerritory} which the {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code SalesTerritory} which the
+     * {@code FK_StateProvince_SalesTerritory_TerritoryID} foreign key references, and the value of
+     * the column it consists of.
      *
      * @param territory the {@code SalesTerritory} to reference; {@code null} for none.
      */

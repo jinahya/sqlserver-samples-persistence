@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class ContactType extends MappedContactType {
+public class ContactType
+        extends MappedContactType {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

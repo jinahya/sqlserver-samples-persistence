@@ -21,7 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeePayHistoryId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +34,8 @@ import java.time.temporal.ChronoUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
-class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePayHistory> {
+class EmployeePayHistory_PersistenceIT
+        extends _Entity_PersistenceIT<EmployeePayHistory> {
 
     EmployeePayHistory_PersistenceIT() {
         super(EmployeePayHistory.class);
@@ -43,8 +44,8 @@ class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePay
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; the application inserts into {@code HumanResources.EmployeePayHistory} only through
-     * {@code HumanResources.uspUpdateEmployeeHireInfo}, and the entity is read-only.
+     * Does nothing; the application inserts into {@code HumanResources.EmployeePayHistory} only
+     * through {@code HumanResources.uspUpdateEmployeeHireInfo}, and the entity is read-only.
      */
     @Disabled("read-only: HumanResources.uspUpdateEmployeeHireInfo inserts into it")
     @Override
@@ -53,25 +54,29 @@ class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePay
         // empty
     }
 
-    // the employee's own JobTitle, HireDate and CurrentFlag go back in, so only the new pay row changes anything
+    // the employee's own JobTitle, HireDate and CurrentFlag go back in, so only the new pay row
+    // changes anything
     @DisplayName("a row HumanResources.uspUpdateEmployeeHireInfo inserts is found as an entity")
     @Test
     void uspUpdateEmployeeHireInfo() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var employee = em.createQuery("""
                                                         SELECT e
                                                         FROM HumanResourcesEmployee e
-                                                        ORDER BY e.businessEntityId""", Employee.class)
+                                                        ORDER BY e.businessEntityId""",
+                                                Employee.class)
                     .setMaxResults(1)
                     .getResultStream()
                     .findFirst()
                     .orElse(null);
             assumeThat(employee).as("an installed employee").isNotNull();
-            // datetime keeps no more than a 300th of a second; a whole second comes back as it went in
+            // datetime keeps no more than a 300th of a second; a whole second comes back as it
+            // went in
             final var rateChangeDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
             final var rate = new BigDecimal("12.3400");
             final var payFrequency = 2;
-            em.createNamedStoredProcedureQuery(Employee.NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO)
+            em.createNamedStoredProcedureQuery(
+                            Employee.NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO)
                     .setParameter(1, employee.getBusinessEntityId())
                     .setParameter(2, employee.getJobTitle())
                     .setParameter(3, employee.getHireDate().atStartOfDay())
@@ -80,13 +85,15 @@ class EmployeePayHistory_PersistenceIT extends _Entity_PersistenceIT<EmployeePay
                     .setParameter(6, payFrequency)
                     .setParameter(7, employee.getCurrentFlag())
                     .execute();
-            // the procedure logs a failure to dbo.ErrorLog and raises nothing, so the row is what tells
+            // the procedure logs a failure to dbo.ErrorLog and raises nothing, so the row is
+            // what tells
             final var id = new EmployeePayHistoryId();
             id.setBusinessEntityId(employee.getBusinessEntityId());
             id.setRateChangeDate(rateChangeDate);
             em.clear();
             final var found = em.find(EmployeePayHistory.class, id);
-            assertThat(found).as("the %s inserted, by %s", EmployeePayHistory.class.getSimpleName(), id).isNotNull();
+            assertThat(found).as("the %s inserted, by %s", EmployeePayHistory.class.getSimpleName(),
+                                 id).isNotNull();
             assertThat(found.getRate()).isEqualByComparingTo(rate);
             assertThat(found.getPayFrequency()).isEqualTo(payFrequency);
             assertThat(found.getModifiedDate()).isNotNull();

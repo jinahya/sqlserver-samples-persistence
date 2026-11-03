@@ -44,7 +44,9 @@ FROM (SELECT PurchaseOrderID, COUNT(*) AS lines
 -- ----------------------------------------------------------------------------------------------- PurchaseOrderDetailID
 -- the smallest and the largest PurchaseOrderDetailID, and how many distinct; an identity, unique across orders though
 -- the key pairs it with PurchaseOrderID; 1 to 8845, all distinct.
-SELECT MIN(PurchaseOrderDetailID), MAX(PurchaseOrderDetailID), COUNT(DISTINCT PurchaseOrderDetailID)
+SELECT MIN(PurchaseOrderDetailID),
+       MAX(PurchaseOrderDetailID),
+       COUNT(DISTINCT PurchaseOrderDetailID)
 FROM Purchasing.PurchaseOrderDetail
 ;
 
@@ -57,8 +59,10 @@ FROM Purchasing.PurchaseOrderDetail
 
 -- how many days after the OrderDate a line is due, by the status of the order; 14 days for every status but approved
 -- (2); its 57 lines, of orders 4001 to 4012, run from -162 to 223.
-SELECT h.Status, COUNT(*) AS lines,
-       MIN(DATEDIFF(DAY, h.OrderDate, d.DueDate)), MAX(DATEDIFF(DAY, h.OrderDate, d.DueDate))
+SELECT h.Status,
+       COUNT(*) AS lines,
+       MIN(DATEDIFF(DAY, h.OrderDate, d.DueDate)),
+       MAX(DATEDIFF(DAY, h.OrderDate, d.DueDate))
 FROM Purchasing.PurchaseOrderDetail d
          JOIN Purchasing.PurchaseOrderHeader h ON h.PurchaseOrderID = d.PurchaseOrderID
 GROUP BY h.Status
@@ -84,12 +88,13 @@ FROM Purchasing.PurchaseOrderDetail
 
 -- an OrderQty outside MinOrderQty and MaxOrderQty of the product and the vendor; 0 and 0: every OrderQty lies between
 -- the two.
-SELECT COUNT(*) AS lines,
+SELECT COUNT(*)                                         AS lines,
        COUNT(IIF(d.OrderQty < pv.MinOrderQty, 1, NULL)) AS below_min,
        COUNT(IIF(d.OrderQty > pv.MaxOrderQty, 1, NULL)) AS above_max
 FROM Purchasing.PurchaseOrderDetail d
          JOIN Purchasing.PurchaseOrderHeader h ON h.PurchaseOrderID = d.PurchaseOrderID
-         JOIN Purchasing.ProductVendor pv ON pv.ProductID = d.ProductID AND pv.BusinessEntityID = h.VendorID
+         JOIN Purchasing.ProductVendor pv
+              ON pv.ProductID = d.ProductID AND pv.BusinessEntityID = h.VendorID
 ;
 
 
@@ -116,12 +121,14 @@ FROM Purchasing.PurchaseOrderDetail
 
 -- UnitPrice against StandardPrice of the product and the vendor; only 6 of the 8845 lines are at the StandardPrice; the
 -- ratio runs from 0.3055 to 1.2822, the same as LastReceiptCost against StandardPrice.
-SELECT COUNT(*) AS lines,
+SELECT COUNT(*)                                            AS lines,
        COUNT(IIF(d.UnitPrice = pv.StandardPrice, 1, NULL)) AS at_standard,
-       MIN(d.UnitPrice / pv.StandardPrice), MAX(d.UnitPrice / pv.StandardPrice)
+       MIN(d.UnitPrice / pv.StandardPrice),
+       MAX(d.UnitPrice / pv.StandardPrice)
 FROM Purchasing.PurchaseOrderDetail d
          JOIN Purchasing.PurchaseOrderHeader h ON h.PurchaseOrderID = d.PurchaseOrderID
-         JOIN Purchasing.ProductVendor pv ON pv.ProductID = d.ProductID AND pv.BusinessEntityID = h.VendorID
+         JOIN Purchasing.ProductVendor pv
+              ON pv.ProductID = d.ProductID AND pv.BusinessEntityID = h.VendorID
 ;
 
 
@@ -183,8 +190,10 @@ FROM Purchasing.PurchaseOrderDetail
 
 -- how many days a line was modified before its order, by the status of the order; 2 days before for every status but
 -- approved (2), whose 57 lines were modified with their orders, 16 of them a few milliseconds later.
-SELECT h.Status, COUNT(*) AS lines,
-       MIN(DATEDIFF(DAY, d.ModifiedDate, h.ModifiedDate)), MAX(DATEDIFF(DAY, d.ModifiedDate, h.ModifiedDate)),
+SELECT h.Status,
+       COUNT(*)                                             AS lines,
+       MIN(DATEDIFF(DAY, d.ModifiedDate, h.ModifiedDate)),
+       MAX(DATEDIFF(DAY, d.ModifiedDate, h.ModifiedDate)),
        COUNT(IIF(d.ModifiedDate > h.ModifiedDate, 1, NULL)) AS later
 FROM Purchasing.PurchaseOrderDetail d
          JOIN Purchasing.PurchaseOrderHeader h ON h.PurchaseOrderID = d.PurchaseOrderID
@@ -196,7 +205,10 @@ ORDER BY h.Status ASC
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the receipts against the status of the order; rejected (3) orders receive 46746 and reject 46745 of the 46747
 -- ordered; approved (2) ones reject nothing; pending (1) and complete (4) reject 1510 and 24445.
-SELECT h.Status, COUNT(*) AS lines, SUM(d.OrderQty) AS ordered, SUM(d.ReceivedQty) AS received,
+SELECT h.Status,
+       COUNT(*)           AS lines,
+       SUM(d.OrderQty)    AS ordered,
+       SUM(d.ReceivedQty) AS received,
        SUM(d.RejectedQty) AS rejected
 FROM Purchasing.PurchaseOrderDetail d
          JOIN Purchasing.PurchaseOrderHeader h ON h.PurchaseOrderID = d.PurchaseOrderID

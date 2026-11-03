@@ -41,8 +41,9 @@ import java.util.UUID;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SalesTaxRate} table.
  * <p>
- * The {@value #COLUMN_NAME_STATE_PROVINCE_ID} column is mapped read-only, as a foreign key; the extending entity owns
- * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_STATE_PROVINCE_ID} column is mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.SalesTaxRate}</caption>
@@ -79,8 +80,11 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -108,7 +112,8 @@ public abstract class MappedSalesTaxRate {
     public static final String COLUMN_NAME_SALES_TAX_RATE_ID = "SalesTaxRateID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_TAX_RATE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_TAX_RATE_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_TAX_RATE_ID = "salesTaxRateId";
 
@@ -120,7 +125,8 @@ public abstract class MappedSalesTaxRate {
     public static final String COLUMN_NAME_STATE_PROVINCE_ID = "StateProvinceID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_ID = "stateProvinceId";
 
@@ -132,31 +138,36 @@ public abstract class MappedSalesTaxRate {
     public static final String COLUMN_NAME_TAX_TYPE = "TaxType";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_TAX_TYPE} column, as the {@code CK_SalesTaxRate_TaxType} check
-     * constraint ({@code [TaxType]>=(1)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_TAX_TYPE} column, as the
+     * {@code CK_SalesTaxRate_TaxType} check constraint ({@code [TaxType]>=(1)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MIN_TAX_TYPE = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_TAX_TYPE} column, as the {@code CK_SalesTaxRate_TaxType} check
-     * constraint ({@code [TaxType]<=(3)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_TAX_TYPE} column, as the
+     * {@code CK_SalesTaxRate_TaxType} check constraint ({@code [TaxType]<=(3)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MAX_TAX_TYPE = +3;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_TYPE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_TYPE = "taxType";
 
     // ------------------------------------------------------------------------------------- TaxRate
 
     /**
-     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_TAX_RATE = "TaxRate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_RATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_RATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_RATE = "taxRate";
 
@@ -173,31 +184,36 @@ public abstract class MappedSalesTaxRate {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -266,7 +282,8 @@ public abstract class MappedSalesTaxRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_TAX_RATE_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_TAX_RATE_ID} attribute with the
+     * specified value.
      *
      * @param salesTaxRateId new value for {@value #ATTRIBUTE_NAME_SALES_TAX_RATE_ID} attribute.
      */
@@ -286,9 +303,9 @@ public abstract class MappedSalesTaxRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param stateProvinceId new value for {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute.
      */
@@ -308,7 +325,8 @@ public abstract class MappedSalesTaxRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TAX_TYPE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TAX_TYPE} attribute with the specified
+     * value.
      *
      * @param taxType new value for {@value #ATTRIBUTE_NAME_TAX_TYPE} attribute.
      */
@@ -328,7 +346,8 @@ public abstract class MappedSalesTaxRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TAX_RATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TAX_RATE} attribute with the specified
+     * value.
      *
      * @param taxRate new value for {@value #ATTRIBUTE_NAME_TAX_RATE} attribute.
      */
@@ -379,7 +398,8 @@ public abstract class MappedSalesTaxRate {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -388,20 +408,24 @@ public abstract class MappedSalesTaxRate {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_TAX_RATE_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_SALES_TAX_RATE_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_TAX_RATE_ID,
                           value = "Primary key for SalesTaxRate records.")
     private Integer salesTaxRateId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
                           value = "State, province, or country/region the sales tax applies to.")
     private Integer stateProvinceId;
@@ -431,12 +455,14 @@ public abstract class MappedSalesTaxRate {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Tax rate description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -446,10 +472,12 @@ public abstract class MappedSalesTaxRate {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesTaxRate_ModifiedDate", value = "(getdate())")

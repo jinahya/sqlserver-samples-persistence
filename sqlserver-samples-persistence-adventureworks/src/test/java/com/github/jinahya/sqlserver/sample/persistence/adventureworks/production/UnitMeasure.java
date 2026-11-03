@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class UnitMeasure extends MappedUnitMeasure {
+public class UnitMeasure
+        extends MappedUnitMeasure {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

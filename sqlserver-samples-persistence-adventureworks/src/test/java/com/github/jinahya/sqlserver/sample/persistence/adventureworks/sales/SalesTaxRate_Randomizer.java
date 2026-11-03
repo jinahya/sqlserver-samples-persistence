@@ -27,8 +27,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_T
 import java.util.List;
 
 /**
- * Randomizes a new {@link SalesTaxRate}; the generated identifier, what SQL Server fills, and the state or province,
- * which the persister sets, are left out.
+ * Randomizes a new {@link SalesTaxRate}; the generated identifier, what SQL Server fills, and the
+ * state or province, which the persister sets, are left out.
  */
 class SalesTaxRate_Randomizer
         extends PodamObjectRandomizer<SalesTaxRate> {

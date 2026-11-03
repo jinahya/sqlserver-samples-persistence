@@ -38,7 +38,8 @@ import java.util.Optional;
 /**
  * An entity which maps the {@code HumanResources.EmployeePayHistory} table.
  * <p>
- * The application adds a row through {@link Employee#NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}.
+ * The application adds a row through
+ * {@link Employee#NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}.
  */
 @Entity(name = "HumanResourcesEmployeePayHistory")
 @Table(schema = MappedEmployeePayHistory.TABLE_SCHEMA,
@@ -55,11 +56,12 @@ import java.util.Optional;
        }
 )
 @IdClass(EmployeePayHistoryId.class)
-public class EmployeePayHistory extends MappedEmployeePayHistory {
+public class EmployeePayHistory
+        extends MappedEmployeePayHistory {
 
     /**
-     * The name of the attribute of the {@code FK_EmployeePayHistory_Employee_BusinessEntityID} foreign key. The value
-     * is {@value}.
+     * The name of the attribute of the {@code FK_EmployeePayHistory_Employee_BusinessEntityID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -75,8 +77,8 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Employee} which the {@code FK_EmployeePayHistory_Employee_BusinessEntityID} foreign key
-     * references.
+     * Returns the {@code Employee} which the
+     * {@code FK_EmployeePayHistory_Employee_BusinessEntityID} foreign key references.
      *
      * @return the {@code Employee} referenced; {@code null} when none is.
      */
@@ -85,14 +87,16 @@ public class EmployeePayHistory extends MappedEmployeePayHistory {
     }
 
     /**
-     * Replaces the {@code Employee} which the {@code FK_EmployeePayHistory_Employee_BusinessEntityID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code Employee} which the
+     * {@code FK_EmployeePayHistory_Employee_BusinessEntityID} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param businessEntity the {@code Employee} to reference; {@code null} for none.
      */
     protected void setBusinessEntity(final Employee businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Employee::getBusinessEntityId).orElse(null));
+        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Employee::getBusinessEntityId)
+                                    .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

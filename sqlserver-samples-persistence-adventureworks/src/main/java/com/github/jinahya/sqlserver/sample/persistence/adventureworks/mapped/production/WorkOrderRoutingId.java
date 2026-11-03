@@ -25,12 +25,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Production.WorkOrderRouting} table, whose rows are identified by
- * {@code WorkOrderID}, {@code ProductID}, {@code OperationSequence}.
+ * The identifier class of the {@code Production.WorkOrderRouting} table, whose rows are identified
+ * by {@code WorkOrderID}, {@code ProductID}, {@code OperationSequence}.
  * <p>
  * An entity which extends {@link MappedWorkOrderRouting} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class WorkOrderRoutingId {
 
@@ -48,7 +48,8 @@ public class WorkOrderRoutingId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedWorkOrderRouting#COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
+     * {@value MappedWorkOrderRouting#COLUMN_NAME_OPERATION_SEQUENCE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_OPERATION_SEQUENCE = "operationSequence";
 
@@ -151,6 +152,7 @@ public class WorkOrderRoutingId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code workOrderId} attribute.
      */

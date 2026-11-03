@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
 
-class VendorWithContactsView_PersistenceIT extends _Keyless_PersistenceIT<VendorWithContactsView> {
+class VendorWithContactsView_PersistenceIT
+        extends _Keyless_PersistenceIT<VendorWithContactsView> {
 
     VendorWithContactsView_PersistenceIT() {
         super(VendorWithContactsView.class);

@@ -24,7 +24,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class PersonDemographicsView_PersistenceIT extends _Entity_PersistenceIT<PersonDemographicsView> {
+class PersonDemographicsView_PersistenceIT
+        extends _Entity_PersistenceIT<PersonDemographicsView> {
 
     PersonDemographicsView_PersistenceIT() {
         super(PersonDemographicsView.class);

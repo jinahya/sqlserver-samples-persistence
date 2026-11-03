@@ -32,7 +32,8 @@ import jakarta.persistence.Table;
 @Entity(name = "ProductionProductModelCatalogDescriptionView")
 @Table(schema = MappedProductModelCatalogDescriptionView.TABLE_SCHEMA,
        name = MappedProductModelCatalogDescriptionView.TABLE_NAME)
-public class ProductModelCatalogDescriptionView extends MappedProductModelCatalogDescriptionView {
+public class ProductModelCatalogDescriptionView
+        extends MappedProductModelCatalogDescriptionView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

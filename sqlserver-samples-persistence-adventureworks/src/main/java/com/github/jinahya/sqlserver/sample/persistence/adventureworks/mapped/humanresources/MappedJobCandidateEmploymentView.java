@@ -28,15 +28,17 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 /**
- * A mapped superclass which holds the mappings of the {@code HumanResources.vJobCandidateEmployment} view.
+ * A mapped superclass which holds the mappings of the
+ * {@code HumanResources.vJobCandidateEmployment} view.
  * <p>
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
- * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * As nothing identifies a row, no entity can extend this class; a plain class does, which a native
+ * query fills.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
- * updatable; some of its columns are derived or constant (error 4406); one of its columns is an identity column of its
- * base table, which no UPDATE sets (error 8102).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is insertable or updatable; some of its columns are derived or constant (error 4406); one of
+ * its columns is an identity column of its base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedJobCandidateEmploymentView {
@@ -59,7 +61,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_JOB_CANDIDATE_ID = "JobCandidateID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_JOB_CANDIDATE_ID = "jobCandidateId";
 
@@ -71,7 +74,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_START_DATE = "\"Emp.StartDate\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_START_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_START_DATE = "empStartDate";
 
@@ -83,7 +87,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_END_DATE = "\"Emp.EndDate\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_END_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_END_DATE = "empEndDate";
 
@@ -100,7 +105,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final int COLUMN_LENGTH_EMP_ORG_NAME = 100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_ORG_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_ORG_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_ORG_NAME = "empOrgName";
 
@@ -117,7 +123,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final int COLUMN_LENGTH_EMP_JOB_TITLE = 100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_JOB_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_JOB_TITLE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_JOB_TITLE = "empJobTitle";
 
@@ -129,7 +136,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_RESPONSIBILITY = "\"Emp.Responsibility\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_RESPONSIBILITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_RESPONSIBILITY} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_RESPONSIBILITY = "empResponsibility";
 
@@ -141,8 +149,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_FUNCTION_CATEGORY = "\"Emp.FunctionCategory\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_FUNCTION_CATEGORY} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_FUNCTION_CATEGORY} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY = "empFunctionCategory";
 
@@ -154,8 +162,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_INDUSTRY_CATEGORY = "\"Emp.IndustryCategory\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_INDUSTRY_CATEGORY} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_INDUSTRY_CATEGORY} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY = "empIndustryCategory";
 
@@ -167,8 +175,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_LOC_COUNTRY_REGION = "\"Emp.Loc.CountryRegion\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_LOC_COUNTRY_REGION} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_LOC_COUNTRY_REGION} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION = "empLocCountryRegion";
 
@@ -180,7 +188,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_LOC_STATE = "\"Emp.Loc.State\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_LOC_STATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_LOC_STATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_LOC_STATE = "empLocState";
 
@@ -192,7 +201,8 @@ public abstract class MappedJobCandidateEmploymentView {
     public static final String COLUMN_NAME_EMP_LOC_CITY = "\"Emp.Loc.City\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_LOC_CITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMP_LOC_CITY} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMP_LOC_CITY = "empLocCity";
 
@@ -236,7 +246,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute with the
+     * specified value.
      *
      * @param jobCandidateId new value for {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
      */
@@ -256,7 +267,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_START_DATE} attribute with the
+     * specified value.
      *
      * @param empStartDate new value for {@value #ATTRIBUTE_NAME_EMP_START_DATE} attribute.
      */
@@ -276,7 +288,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_END_DATE} attribute with the specified
+     * value.
      *
      * @param empEndDate new value for {@value #ATTRIBUTE_NAME_EMP_END_DATE} attribute.
      */
@@ -296,7 +309,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_ORG_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_ORG_NAME} attribute with the specified
+     * value.
      *
      * @param empOrgName new value for {@value #ATTRIBUTE_NAME_EMP_ORG_NAME} attribute.
      */
@@ -316,7 +330,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_JOB_TITLE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_JOB_TITLE} attribute with the specified
+     * value.
      *
      * @param empJobTitle new value for {@value #ATTRIBUTE_NAME_EMP_JOB_TITLE} attribute.
      */
@@ -336,9 +351,11 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_RESPONSIBILITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_RESPONSIBILITY} attribute with the
+     * specified value.
      *
-     * @param empResponsibility new value for {@value #ATTRIBUTE_NAME_EMP_RESPONSIBILITY} attribute.
+     * @param empResponsibility new value for {@value #ATTRIBUTE_NAME_EMP_RESPONSIBILITY}
+     *                          attribute.
      */
     protected void setEmpResponsibility(final String empResponsibility) {
         this.empResponsibility = empResponsibility;
@@ -356,9 +373,11 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY} attribute with the
+     * specified value.
      *
-     * @param empFunctionCategory new value for {@value #ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY} attribute.
+     * @param empFunctionCategory new value for {@value #ATTRIBUTE_NAME_EMP_FUNCTION_CATEGORY}
+     *                            attribute.
      */
     protected void setEmpFunctionCategory(final String empFunctionCategory) {
         this.empFunctionCategory = empFunctionCategory;
@@ -376,9 +395,11 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY} attribute with the
+     * specified value.
      *
-     * @param empIndustryCategory new value for {@value #ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY} attribute.
+     * @param empIndustryCategory new value for {@value #ATTRIBUTE_NAME_EMP_INDUSTRY_CATEGORY}
+     *                            attribute.
      */
     protected void setEmpIndustryCategory(final String empIndustryCategory) {
         this.empIndustryCategory = empIndustryCategory;
@@ -396,9 +417,11 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION} attribute with the
+     * specified value.
      *
-     * @param empLocCountryRegion new value for {@value #ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION} attribute.
+     * @param empLocCountryRegion new value for {@value #ATTRIBUTE_NAME_EMP_LOC_COUNTRY_REGION}
+     *                            attribute.
      */
     protected void setEmpLocCountryRegion(final String empLocCountryRegion) {
         this.empLocCountryRegion = empLocCountryRegion;
@@ -416,7 +439,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_LOC_STATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_LOC_STATE} attribute with the specified
+     * value.
      *
      * @param empLocState new value for {@value #ATTRIBUTE_NAME_EMP_LOC_STATE} attribute.
      */
@@ -436,7 +460,8 @@ public abstract class MappedJobCandidateEmploymentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_LOC_CITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMP_LOC_CITY} attribute with the specified
+     * value.
      *
      * @param empLocCity new value for {@value #ATTRIBUTE_NAME_EMP_LOC_CITY} attribute.
      */
@@ -447,13 +472,15 @@ public abstract class MappedJobCandidateEmploymentView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer jobCandidateId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_START_DATE, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMP_START_DATE, nullable = true, insertable = false,
+            updatable = false)
     private LocalDateTime empStartDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -466,44 +493,51 @@ public abstract class MappedJobCandidateEmploymentView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMP_ORG_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_ORG_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMP_ORG_NAME)
+    @Column(name = COLUMN_NAME_EMP_ORG_NAME, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EMP_ORG_NAME)
     private String empOrgName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMP_JOB_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_JOB_TITLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMP_JOB_TITLE)
+    @Column(name = COLUMN_NAME_EMP_JOB_TITLE, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_EMP_JOB_TITLE)
     private String empJobTitle;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_RESPONSIBILITY, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMP_RESPONSIBILITY, nullable = true, insertable = false,
+            updatable = false)
     private String empResponsibility;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_FUNCTION_CATEGORY, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMP_FUNCTION_CATEGORY, nullable = true, insertable = false,
+            updatable = false)
     private String empFunctionCategory;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_INDUSTRY_CATEGORY, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMP_INDUSTRY_CATEGORY, nullable = true, insertable = false,
+            updatable = false)
     private String empIndustryCategory;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_LOC_COUNTRY_REGION, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMP_LOC_COUNTRY_REGION, nullable = true, insertable = false,
+            updatable = false)
     private String empLocCountryRegion;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMP_LOC_STATE, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMP_LOC_STATE, nullable = true, insertable = false,
+            updatable = false)
     private String empLocState;
 
     // ---------------------------------------------------------------------------------------------

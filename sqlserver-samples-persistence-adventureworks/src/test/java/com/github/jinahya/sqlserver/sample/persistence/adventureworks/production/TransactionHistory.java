@@ -39,15 +39,17 @@ import jakarta.persistence.Table;
                @CheckConstraint(
                        name = "CK_TransactionHistory_TransactionType",
                        constraint = "(upper([TransactionType])='P' OR "
-                               + "upper([TransactionType])='S' OR upper([TransactionType])='W')"
+                                    +
+                                    "upper([TransactionType])='S' OR upper([TransactionType])='W')"
                )
        }
 )
-public class TransactionHistory extends MappedTransactionHistory {
+public class TransactionHistory
+        extends MappedTransactionHistory {
 
     /**
-     * The name of the attribute of the {@code FK_TransactionHistory_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_TransactionHistory_Product_ProductID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
@@ -63,7 +65,8 @@ public class TransactionHistory extends MappedTransactionHistory {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_TransactionHistory_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_TransactionHistory_Product_ProductID} foreign
+     * key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -72,8 +75,8 @@ public class TransactionHistory extends MappedTransactionHistory {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_TransactionHistory_Product_ProductID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_TransactionHistory_Product_ProductID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
@@ -83,7 +86,8 @@ public class TransactionHistory extends MappedTransactionHistory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table; see the documentation of
+    // read-only: only the order and work-order triggers insert a row of this table; see the
+    // documentation of
     // MappedTransactionHistory
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = COLUMN_NAME_PRODUCT_ID,

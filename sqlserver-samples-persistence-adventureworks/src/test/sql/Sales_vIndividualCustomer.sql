@@ -29,7 +29,10 @@
 
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows and persons; 18508 rows of 18484 persons, 1699 to 20777, the view having a row per address.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM Sales.vIndividualCustomer
 ;
 
@@ -50,7 +53,9 @@ WHERE c.StoreID IS NULL
 UNION ALL
 SELECT v.BusinessEntityID, 'extra'
 FROM Sales.vIndividualCustomer v
-WHERE NOT EXISTS (SELECT 1 FROM Sales.Customer c WHERE c.PersonID = v.BusinessEntityID AND c.StoreID IS NULL)
+WHERE NOT EXISTS (SELECT 1
+                  FROM Sales.Customer c
+                  WHERE c.PersonID = v.BusinessEntityID AND c.StoreID IS NULL)
 ;
 
 
@@ -104,7 +109,9 @@ ORDER BY customers DESC
 
 -- --------------------------------------------------------------------------------------------------------- PhoneNumber
 -- how many rows have no PhoneNumber, and how long the others are; none; 12 to 19 characters.
-SELECT COUNT(*) - COUNT(PhoneNumber) AS without, MIN(LEN(PhoneNumber)), MAX(LEN(PhoneNumber))
+SELECT COUNT(*) - COUNT(PhoneNumber) AS without,
+       MIN(LEN(PhoneNumber)),
+       MAX(LEN(PhoneNumber))
 FROM Sales.vIndividualCustomer
 ;
 
@@ -120,7 +127,9 @@ ORDER BY PhoneNumberType ASC
 
 -- -------------------------------------------------------------------------------------------------------- EmailAddress
 -- how many rows have no EmailAddress, and how long the others are; none; 22 to 33 characters.
-SELECT COUNT(*) - COUNT(EmailAddress) AS without, MIN(LEN(EmailAddress)), MAX(LEN(EmailAddress))
+SELECT COUNT(*) - COUNT(EmailAddress) AS without,
+       MIN(LEN(EmailAddress)),
+       MAX(LEN(EmailAddress))
 FROM Sales.vIndividualCustomer
 ;
 
@@ -196,7 +205,9 @@ ORDER BY CountryRegionName ASC
 
 -- -------------------------------------------------------------------------------------------------------- Demographics
 -- how many rows have no Demographics, and its size in bytes; none; 1271 to 1327.
-SELECT COUNT(*) - COUNT(Demographics) AS without, MIN(DATALENGTH(Demographics)), MAX(DATALENGTH(Demographics))
+SELECT COUNT(*) - COUNT(Demographics) AS without,
+       MIN(DATALENGTH(Demographics)),
+       MAX(DATALENGTH(Demographics))
 FROM Sales.vIndividualCustomer
 ;
 

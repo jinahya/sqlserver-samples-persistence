@@ -29,14 +29,15 @@ import java.util.Objects;
  * {@code SpecialOfferID}, {@code ProductID}.
  * <p>
  * An entity which extends {@link MappedSpecialOfferProduct} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class SpecialOfferProductId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedSpecialOfferProduct#COLUMN_NAME_SPECIAL_OFFER_ID} column. The value is {@value}.
+     * {@value MappedSpecialOfferProduct#COLUMN_NAME_SPECIAL_OFFER_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_ID = "specialOfferId";
 
@@ -123,6 +124,7 @@ public class SpecialOfferProductId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code specialOfferId} attribute.
      */

@@ -20,13 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
 
 /**
- * Randomizes a new {@link ShipMethod}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link ShipMethod}; the generated identifier and what SQL Server fills are left
+ * out.
  */
 class ShipMethod_Randomizer
         extends PodamObjectRandomizer<ShipMethod> {
@@ -44,7 +45,8 @@ class ShipMethod_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has rates within their columns and CHECK constraints.
+     * @implNote The returned instance has rates within their columns and CHECK
+     *         constraints.
      */
     @Override
     public ShipMethod get() {

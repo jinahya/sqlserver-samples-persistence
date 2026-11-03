@@ -26,10 +26,11 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link SalesTerritoryHistory}; the identifier, what it references, the dates, which the
- * {@code CK_SalesTerritoryHistory_EndDate} constraint relates, and what SQL Server fills are left out, which leaves
- * nothing to randomize. The persister does not use the instance; it persists one which
- * {@link SalesTerritoryHistory#of} creates with the instances it references, and dates of its own.
+ * Randomizes a new {@link SalesTerritoryHistory}; the identifier, what it references, the dates,
+ * which the {@code CK_SalesTerritoryHistory_EndDate} constraint relates, and what SQL Server fills
+ * are left out, which leaves nothing to randomize. The persister does not use the instance; it
+ * persists one which {@link SalesTerritoryHistory#of} creates with the instances it references, and
+ * dates of its own.
  */
 class SalesTerritoryHistory_Randomizer
         extends PodamObjectRandomizer<SalesTerritoryHistory> {

@@ -31,13 +31,15 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * A mapped superclass which holds the mappings of the {@code Sales.vSalesPersonSalesByFiscalYears} view.
+ * A mapped superclass which holds the mappings of the {@code Sales.vSalesPersonSalesByFiscalYears}
+ * view.
  * <p>
- * Identifier: the view declares no key; SalesPersonID is unique, and not null, in every row it returns.
+ * Identifier: the view declares no key; SalesPersonID is unique, and not null, in every row it
+ * returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
- * insertable; it contains aggregates, or a DISTINCT or GROUP BY clause (error 4403); some of its columns are derived or
- * constant (error 4406).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is updatable, nor insertable; it contains aggregates, or a DISTINCT or GROUP BY clause (error
+ * 4403); some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedSalesPersonSalesByFiscalYearsView {
@@ -60,7 +62,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_SALES_PERSON_ID = "SalesPersonID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_PERSON_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_PERSON_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_PERSON_ID = "salesPersonId";
 
@@ -77,7 +80,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final int COLUMN_LENGTH_FULL_NAME = 152;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FULL_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FULL_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_FULL_NAME = "fullName";
 
@@ -94,7 +98,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final int COLUMN_LENGTH_JOB_TITLE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
@@ -111,7 +116,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final int COLUMN_LENGTH_SALES_TERRITORY = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_TERRITORY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_TERRITORY} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_TERRITORY = "salesTerritory";
 
@@ -123,7 +129,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_YEAR_2002 = "\"2002\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2002} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2002} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR_2002 = "year2002";
 
@@ -135,7 +142,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_YEAR_2003 = "\"2003\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2003} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2003} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR_2003 = "year2003";
 
@@ -147,7 +155,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_YEAR_2004 = "\"2004\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2004} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2004} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR_2004 = "year2004";
 
@@ -216,7 +225,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute with the
+     * specified value.
      *
      * @param salesPersonId new value for {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute.
      */
@@ -236,7 +246,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FULL_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FULL_NAME} attribute with the specified
+     * value.
      *
      * @param fullName new value for {@value #ATTRIBUTE_NAME_FULL_NAME} attribute.
      */
@@ -256,7 +267,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified
+     * value.
      *
      * @param jobTitle new value for {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
      */
@@ -276,7 +288,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_TERRITORY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_TERRITORY} attribute with the
+     * specified value.
      *
      * @param salesTerritory new value for {@value #ATTRIBUTE_NAME_SALES_TERRITORY} attribute.
      */
@@ -296,7 +309,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_2002} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_2002} attribute with the specified
+     * value.
      *
      * @param year2002 new value for {@value #ATTRIBUTE_NAME_YEAR_2002} attribute.
      */
@@ -316,7 +330,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_2003} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_2003} attribute with the specified
+     * value.
      *
      * @param year2003 new value for {@value #ATTRIBUTE_NAME_YEAR_2003} attribute.
      */
@@ -336,7 +351,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_2004} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_YEAR_2004} attribute with the specified
+     * value.
      *
      * @param year2004 new value for {@value #ATTRIBUTE_NAME_YEAR_2004} attribute.
      */
@@ -347,14 +363,16 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Id
-    @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false,
+            updatable = false)
     private Integer salesPersonId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_FULL_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FULL_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_FULL_NAME)
+    @Column(name = COLUMN_NAME_FULL_NAME, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_FULL_NAME)
     private String fullName;
 
     // ---------------------------------------------------------------------------------------------
@@ -362,7 +380,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_JOB_TITLE)
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_JOB_TITLE)
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
@@ -370,7 +389,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_TERRITORY, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_SALES_TERRITORY)
+    @Column(name = COLUMN_NAME_SALES_TERRITORY, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_SALES_TERRITORY)
     private String salesTerritory;
 
     // ---------------------------------------------------------------------------------------------

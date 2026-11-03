@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class PhoneNumberType_PersistenceIT extends _Entity_PersistenceIT<PhoneNumberType> {
+class PhoneNumberType_PersistenceIT
+        extends _Entity_PersistenceIT<PhoneNumberType> {
 
     PhoneNumberType_PersistenceIT() {
         super(PhoneNumberType.class);

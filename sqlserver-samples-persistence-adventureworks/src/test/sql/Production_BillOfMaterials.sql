@@ -42,7 +42,8 @@ FROM Production.BillOfMaterials
 -- --------------------------------------------------------------------------------------------------- ProductAssemblyID
 -- how many rows have no assembly, the top of a bill, and how many assemblies the others name; 103 tops, under 238
 -- assemblies.
-SELECT COUNT(*) - COUNT(ProductAssemblyID) AS tops, COUNT(DISTINCT ProductAssemblyID) AS assemblies
+SELECT COUNT(*) - COUNT(ProductAssemblyID) AS tops,
+       COUNT(DISTINCT ProductAssemblyID)   AS assemblies
 FROM Production.BillOfMaterials
 ;
 
@@ -130,7 +131,8 @@ WHERE NOT ((ProductAssemblyID IS NULL AND BOMLevel = 0 AND PerAssemblyQty = 1.00
 -- 0: the current levels step one at a time.
 SELECT COUNT(*) AS offLevel
 FROM Production.BillOfMaterials c
-         JOIN Production.BillOfMaterials a ON a.ComponentID = c.ProductAssemblyID AND a.EndDate IS NULL
+         JOIN Production.BillOfMaterials a
+              ON a.ComponentID = c.ProductAssemblyID AND a.EndDate IS NULL
 WHERE c.EndDate IS NULL
   AND c.BOMLevel <> a.BOMLevel + 1
 ;

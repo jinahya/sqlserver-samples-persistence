@@ -29,7 +29,8 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "DboAwBuildVersion")
 @Table(schema = MappedAwBuildVersion.TABLE_SCHEMA, name = MappedAwBuildVersion.TABLE_NAME)
-public class AwBuildVersion extends MappedAwBuildVersion {
+public class AwBuildVersion
+        extends MappedAwBuildVersion {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

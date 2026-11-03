@@ -26,8 +26,9 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link Password}; the identifier and what it references, which the persister sets, and what SQL
- * Server fills are left out.
+ * Randomizes a new {@link Password}; the identifier and what it references, which the persister
+ * sets, and what SQL Server fills are left out. The hash and the salt, which must not be
+ * {@code null}, are set by {@link #get()} through {@link Password#setPassword()}.
  */
 class Password_Randomizer
         extends PodamObjectRandomizer<Password> {
@@ -36,7 +37,25 @@ class Password_Randomizer
         super(Password.class, List.of(
                 Password.ATTRIBUTE_NAME_BUSINESS_ENTITY_ID,
                 Password.ATTRIBUTE_NAME_BUSINESS_ENTITY,
+                Password.ATTRIBUTE_NAME_PASSWORD_HASH,
+                Password.ATTRIBUTE_NAME_PASSWORD_SALT,
                 Password.ATTRIBUTE_NAME_MODIFIED_DATE
         ));
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implNote The returned instance has a random hash and a random salt, which
+     *         {@link Password#setPassword()} sets.
+     */
+    @Override
+    public Password get() {
+        final var instance = super.get();
+        instance.setPassword();
+        return instance;
     }
 }

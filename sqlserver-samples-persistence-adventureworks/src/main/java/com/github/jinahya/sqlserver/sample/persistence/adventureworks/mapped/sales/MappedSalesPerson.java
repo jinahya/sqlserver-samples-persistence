@@ -37,8 +37,9 @@ import java.util.UUID;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SalesPerson} table.
  * <p>
- * The {@value #COLUMN_NAME_TERRITORY_ID} column is mapped read-only, as a foreign key; the extending entity owns the
- * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_TERRITORY_ID} column is mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.SalesPerson}</caption>
@@ -79,8 +80,11 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -108,7 +112,8 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -120,7 +125,8 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
@@ -133,12 +139,14 @@ public abstract class MappedSalesPerson {
 
     /**
      * The exclusive minimum value of the {@value #COLUMN_NAME_SALES_QUOTA} column, as the
-     * {@code CK_SalesPerson_SalesQuota} check constraint ({@code [SalesQuota]>(0.00)}) requires. The value is {@value}.
+     * {@code CK_SalesPerson_SalesQuota} check constraint ({@code [SalesQuota]>(0.00)}) requires.
+     * The value is {@value}.
      */
     public static final String COLUMN_MIN_SALES_QUOTA_EXCLUSIVE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_QUOTA = "salesQuota";
 
@@ -150,31 +158,36 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_BONUS = "Bonus";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_BONUS} column, as the {@code CK_SalesPerson_Bonus} check constraint
-     * ({@code [Bonus]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_BONUS} column, as the
+     * {@code CK_SalesPerson_Bonus} check constraint ({@code [Bonus]>=(0.00)}) requires. The value
+     * is {@value}.
      */
     public static final String COLUMN_MIN_BONUS = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BONUS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BONUS} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BONUS = "bonus";
 
     // ------------------------------------------------------------------------------- CommissionPct
 
     /**
-     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code smallmoney, DEFAULT ((0.00)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_COMMISSION_PCT = "CommissionPct";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_COMMISSION_PCT} column, as the {@code CK_SalesPerson_CommissionPct}
-     * check constraint ({@code [CommissionPct]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_COMMISSION_PCT} column, as the
+     * {@code CK_SalesPerson_CommissionPct} check constraint ({@code [CommissionPct]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_COMMISSION_PCT = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COMMISSION_PCT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COMMISSION_PCT} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMMISSION_PCT = "commissionPct";
 
@@ -186,13 +199,15 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_SALES_YTD = "SalesYTD";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the {@code CK_SalesPerson_SalesYTD} check
-     * constraint ({@code [SalesYTD]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_SALES_YTD} column, as the
+     * {@code CK_SalesPerson_SalesYTD} check constraint ({@code [SalesYTD]>=(0.00)}) requires. The
+     * value is {@value}.
      */
     public static final String COLUMN_MIN_SALES_YTD = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
 
@@ -205,37 +220,42 @@ public abstract class MappedSalesPerson {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_SALES_LAST_YEAR} column, as the
-     * {@code CK_SalesPerson_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)}) requires. The value is
-     * {@value}.
+     * {@code CK_SalesPerson_SalesLastYear} check constraint ({@code [SalesLastYear]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_SALES_LAST_YEAR = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_LAST_YEAR = "salesLastYear";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -306,7 +326,8 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -326,8 +347,9 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param territoryId new value for {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
@@ -347,7 +369,8 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute with the specified
+     * value.
      *
      * @param salesQuota new value for {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute.
      */
@@ -387,7 +410,8 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COMMISSION_PCT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COMMISSION_PCT} attribute with the
+     * specified value.
      *
      * @param commissionPct new value for {@value #ATTRIBUTE_NAME_COMMISSION_PCT} attribute.
      */
@@ -407,7 +431,8 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute with the specified
+     * value.
      *
      * @param salesYtd new value for {@value #ATTRIBUTE_NAME_SALES_YTD} attribute.
      */
@@ -427,7 +452,8 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute with the
+     * specified value.
      *
      * @param salesLastYear new value for {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute.
      */
@@ -458,7 +484,8 @@ public abstract class MappedSalesPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -467,17 +494,20 @@ public abstract class MappedSalesPerson {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for SalesPerson records. Foreign key to "
                                   + "Employee.BusinessEntityID")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -508,7 +538,8 @@ public abstract class MappedSalesPerson {
     @DecimalMin(COLUMN_MIN_COMMISSION_PCT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COMMISSION_PCT, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_COMMISSION_PCT, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_COMMISSION_PCT,
                           value = "Commision percent received per sale.")
     @MsDefault(name = "DF_SalesPerson_CommissionPct", value = "((0.00))")
@@ -529,14 +560,16 @@ public abstract class MappedSalesPerson {
     @DecimalMin(COLUMN_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
                           value = "Sales total of previous year.")
     @MsDefault(name = "DF_SalesPerson_SalesLastYear", value = "((0.00))")
     private BigDecimal salesLastYear;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -546,10 +579,12 @@ public abstract class MappedSalesPerson {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesPerson_ModifiedDate", value = "(getdate())")

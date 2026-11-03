@@ -25,29 +25,30 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Production.ProductModelIllustration} table, whose rows are identified by
- * {@code ProductModelID}, {@code IllustrationID}.
+ * The identifier class of the {@code Production.ProductModelIllustration} table, whose rows are
+ * identified by {@code ProductModelID}, {@code IllustrationID}.
  * <p>
- * {@link MappedProductModelIllustration} embeds this class with {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of
- * this class map the columns of the key.
+ * {@link MappedProductModelIllustration} embeds this class with
+ * {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of this class map the columns
+ * of the key.
  */
 @Embeddable
 public class ProductModelIllustrationId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductModelIllustration#COLUMN_NAME_PRODUCT_MODEL_ID} column. The value is {@value}.
+     * {@value MappedProductModelIllustration#COLUMN_NAME_PRODUCT_MODEL_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductModelIllustration#COLUMN_NAME_ILLUSTRATION_ID} column. The value is {@value}.
+     * {@value MappedProductModelIllustration#COLUMN_NAME_ILLUSTRATION_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ILLUSTRATION_ID = "illustrationId";
 
@@ -128,12 +129,15 @@ public class ProductModelIllustrationId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code productModelId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedProductModelIllustration.COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedProductModelIllustration.COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedProductModelIllustration.COLUMN_NAME_PRODUCT_MODEL_ID,
                           value = "Primary key. Foreign key to ProductModel.ProductModelID.")
     private Integer productModelId;
@@ -141,9 +145,11 @@ public class ProductModelIllustrationId {
     /**
      * The value of the {@code illustrationId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedProductModelIllustration.COLUMN_NAME_ILLUSTRATION_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedProductModelIllustration.COLUMN_NAME_ILLUSTRATION_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedProductModelIllustration.COLUMN_NAME_ILLUSTRATION_ID,
                           value = "Primary key. Foreign key to Illustration.IllustrationID.")
     private Integer illustrationId;

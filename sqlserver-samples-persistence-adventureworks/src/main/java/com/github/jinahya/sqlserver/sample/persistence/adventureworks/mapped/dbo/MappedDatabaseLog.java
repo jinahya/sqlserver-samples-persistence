@@ -38,9 +38,10 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.DatabaseLog} table.
  * <p>
- * Read-only: the database DDL trigger ddlDatabaseTriggerLog, ON DATABASE FOR DDL_DATABASE_LEVEL_EVENTS, inserts every
- * row of this table, out of EVENTDATA(), and nothing in the database updates one; so no column of it is insertable or
- * updatable, but for the identifier, which is generated.
+ * Read-only: the database DDL trigger ddlDatabaseTriggerLog, ON DATABASE FOR
+ * DDL_DATABASE_LEVEL_EVENTS, inserts every row of this table, out of EVENTDATA(), and nothing in
+ * the database updates one; so no column of it is insertable or updatable, but for the identifier,
+ * which is generated.
  *
  * <table class="striped">
  * <caption>Columns of {@code dbo.DatabaseLog}</caption>
@@ -64,10 +65,13 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
-                   column = @Column(name = MappedDatabaseLog.COLUMN_NAME_DATABASE_LOG_ID, nullable = false, insertable = true, updatable = false)
+                   column = @Column(name = MappedDatabaseLog.COLUMN_NAME_DATABASE_LOG_ID,
+                                    nullable = false, insertable = true, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -104,7 +108,8 @@ public abstract class MappedDatabaseLog
     public static final String COLUMN_NAME_POST_TIME = "PostTime";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_POST_TIME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_POST_TIME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_POST_TIME = "postTime";
 
@@ -121,7 +126,8 @@ public abstract class MappedDatabaseLog
     public static final int COLUMN_LENGTH_DATABASE_USER = 128;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DATABASE_USER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DATABASE_USER} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DATABASE_USER = "databaseUser";
 
@@ -138,7 +144,8 @@ public abstract class MappedDatabaseLog
     public static final int COLUMN_LENGTH_EVENT = 128;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EVENT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EVENT} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_EVENT = "event";
 
@@ -155,7 +162,8 @@ public abstract class MappedDatabaseLog
     public static final int COLUMN_LENGTH_SCHEMA = 128;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SCHEMA} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SCHEMA} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCHEMA = "schema";
 
@@ -172,7 +180,8 @@ public abstract class MappedDatabaseLog
     public static final int COLUMN_LENGTH_OBJECT = 128;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_OBJECT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_OBJECT} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_OBJECT = "object";
 
@@ -184,7 +193,8 @@ public abstract class MappedDatabaseLog
     public static final String COLUMN_NAME_TSQL = "TSQL";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TSQL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TSQL} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TSQL = "tsql";
 
@@ -193,30 +203,36 @@ public abstract class MappedDatabaseLog
     /**
      * The name of the {@code xml, NOT NULL} column. The value is {@value}.
      * <p>
-     * The column is untyped {@code xml}, so it takes content as well as a document, and nothing in the column holds
-     * its value to any shape. What fixes the shape is its one writer: the database DDL trigger
-     * {@code ddlDatabaseTriggerLog}, {@code ON DATABASE FOR DDL_DATABASE_LEVEL_EVENTS}, inserts a row for each DDL
-     * statement, with {@code EVENTDATA()} in this column. That is one {@code <EVENT_INSTANCE>} document, a snapshot of
-     * the event, never changed afterwards, which the other columns of the row are read out of.
+     * The column is untyped {@code xml}, so it takes content as well as a document, and nothing in
+     * the column holds its value to any shape. What fixes the shape is its one writer: the database
+     * DDL trigger {@code ddlDatabaseTriggerLog}, {@code ON DATABASE FOR DDL_DATABASE_LEVEL_EVENTS},
+     * inserts a row for each DDL statement, with {@code EVENTDATA()} in this column. That is one
+     * {@code <EVENT_INSTANCE>} document, a snapshot of the event, never changed afterwards, which
+     * the other columns of the row are read out of.
      * <p>
-     * The children of the root depend on the event type, each of which has one layout, the complex type
-     * {@code EVENT_INSTANCE_<event type>} of the {@code EVENTDATA()} schema, {@code events.xsd}, which SQL Server on
-     * Windows installs under {@code Tools\Binn\schemas\sqlserver\2006\11\events}; see
-     * <a href="https://learn.microsoft.com/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA (Transact-SQL)</a>.
-     * {@code EventType}, {@code PostTime}, {@code SPID}, {@code ServerName}, {@code LoginName}, {@code UserName} and
-     * {@code DatabaseName} come first, then the elements of the event type, {@code SchemaName}, {@code ObjectName} and
-     * {@code ObjectType} for a {@code CREATE_TABLE}, say, and {@code TSQLCommand}, the statement, last. A new version
-     * of SQL Server may add elements and event types; read the value by element names, not by positions.
+     * The children of the root depend on the event type, each of which has one layout, the complex
+     * type {@code EVENT_INSTANCE_<event type>} of the {@code EVENTDATA()} schema,
+     * {@code events.xsd}, which SQL Server on Windows installs under
+     * {@code Tools\Binn\schemas\sqlserver\2006\11\events}; see
+     * <a href="https://learn.microsoft.com/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA
+     * (Transact-SQL)</a>.
+     * {@code EventType}, {@code PostTime}, {@code SPID}, {@code ServerName}, {@code LoginName},
+     * {@code UserName} and {@code DatabaseName} come first, then the elements of the event type,
+     * {@code SchemaName}, {@code ObjectName} and {@code ObjectType} for a {@code CREATE_TABLE},
+     * say, and {@code TSQLCommand}, the statement, last. A new version of SQL Server may add
+     * elements and event types; read the value by element names, not by positions.
      * <p>
      * The attribute is the document bound to the class of its event type, through
-     * {@link EventInstanceStringAttributeConverter}. It is read-only: the trigger, its one writer, inserts it, and
-     * nothing updates it; and a provider which compares a snapshot of it by {@code equals}, which the bound classes do
-     * not override, would otherwise update every row it loads.
+     * {@link EventInstanceStringAttributeConverter}. It is read-only: the trigger, its one writer,
+     * inserts it, and nothing updates it; and a provider which compares a snapshot of it by
+     * {@code equals}, which the bound classes do not override, would otherwise update every row it
+     * loads.
      */
     public static final String COLUMN_NAME_XML_EVENT = "XmlEvent";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_XML_EVENT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_XML_EVENT} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_XML_EVENT = "xmlEvent";
 
@@ -277,7 +293,8 @@ public abstract class MappedDatabaseLog
     // ------------------------------------------------------------------------------- databaseLogId
 
     /**
-     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_DATABASE_LOG_ID} column.
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_DATABASE_LOG_ID}
+     * column.
      *
      * @return current value of the identifier.
      */
@@ -297,7 +314,8 @@ public abstract class MappedDatabaseLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_POST_TIME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_POST_TIME} attribute with the specified
+     * value.
      *
      * @param postTime new value for {@value #ATTRIBUTE_NAME_POST_TIME} attribute.
      */
@@ -317,7 +335,8 @@ public abstract class MappedDatabaseLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DATABASE_USER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DATABASE_USER} attribute with the specified
+     * value.
      *
      * @param databaseUser new value for {@value #ATTRIBUTE_NAME_DATABASE_USER} attribute.
      */
@@ -357,7 +376,8 @@ public abstract class MappedDatabaseLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SCHEMA} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SCHEMA} attribute with the specified
+     * value.
      *
      * @param schema new value for {@value #ATTRIBUTE_NAME_SCHEMA} attribute.
      */
@@ -377,7 +397,8 @@ public abstract class MappedDatabaseLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_OBJECT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_OBJECT} attribute with the specified
+     * value.
      *
      * @param object new value for {@value #ATTRIBUTE_NAME_OBJECT} attribute.
      */
@@ -410,16 +431,19 @@ public abstract class MappedDatabaseLog
     /**
      * Returns current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute.
      *
-     * @return current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute; an instance of the class
-     * {@link io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances#typeOf(String)} names for its event
-     * type.
+     * @return current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute; an instance of the
+     *         class
+     *         {@link
+     *         io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances#typeOf(String)}
+     *         names for its event type.
      */
     public EventInstance getXmlEvent() {
         return xmlEvent;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_XML_EVENT} attribute with the specified
+     * value.
      *
      * @param xmlEvent new value for {@value #ATTRIBUTE_NAME_XML_EVENT} attribute.
      */
@@ -428,7 +452,8 @@ public abstract class MappedDatabaseLog
     }
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
@@ -438,49 +463,58 @@ public abstract class MappedDatabaseLog
     private LocalDateTime postTime;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // class documentation
     @Size(max = COLUMN_LENGTH_DATABASE_USER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DATABASE_USER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DATABASE_USER)
+    @Column(name = COLUMN_NAME_DATABASE_USER, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_DATABASE_USER)
     @MsDescription.Column(name = COLUMN_NAME_DATABASE_USER,
                           value = "The user who implemented the DDL change.")
     private String databaseUser;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // class documentation
     @Size(max = COLUMN_LENGTH_EVENT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EVENT, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_EVENT)
+    @Column(name = COLUMN_NAME_EVENT, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EVENT)
     @MsDescription.Column(name = COLUMN_NAME_EVENT,
                           value = "The type of DDL statement that was executed.")
     private String event;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // class documentation
     @Size(max = COLUMN_LENGTH_SCHEMA)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCHEMA, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SCHEMA)
+    @Column(name = COLUMN_NAME_SCHEMA, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_SCHEMA)
     @MsDescription.Column(name = COLUMN_NAME_SCHEMA,
                           value = "The schema to which the changed object belongs.")
     private String schema;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // class documentation
     @Size(max = COLUMN_LENGTH_OBJECT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_OBJECT, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_OBJECT)
+    @Column(name = COLUMN_NAME_OBJECT, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_OBJECT)
     @MsDescription.Column(name = COLUMN_NAME_OBJECT,
                           value = "The object that was changed by the DDL statment.")
     private String object;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
@@ -490,7 +524,8 @@ public abstract class MappedDatabaseLog
     private String tsql;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates it; see the
+    // read-only: the database DDL trigger ddlDatabaseTriggerLog inserts it, and nothing updates
+    // it; see the
     // documentation of COLUMN_NAME_XML_EVENT
     @NotNull
     @Convert(converter = EventInstanceStringAttributeConverter.class)

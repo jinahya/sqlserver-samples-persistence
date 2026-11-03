@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class BusinessEntity extends MappedBusinessEntity {
+public class BusinessEntity
+        extends MappedBusinessEntity {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

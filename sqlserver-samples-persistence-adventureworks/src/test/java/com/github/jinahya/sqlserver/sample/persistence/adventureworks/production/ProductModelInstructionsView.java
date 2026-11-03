@@ -27,13 +27,14 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * A plain class which holds a row of the {@code Production.vProductModelInstructions} view, which no entity can map:
- * the view declares no key, and no identifier column of it is unique.
+ * A plain class which holds a row of the {@code Production.vProductModelInstructions} view, which
+ * no entity can map: the view declares no key, and no identifier column of it is unique.
  * <p>
  * The public constructor takes every column, in the order the view declares them, for a
  * {@link jakarta.persistence.ConstructorResult @ConstructorResult} or a row mapper.
  */
-public class ProductModelInstructionsView extends MappedProductModelInstructionsView {
+public class ProductModelInstructionsView
+        extends MappedProductModelInstructionsView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

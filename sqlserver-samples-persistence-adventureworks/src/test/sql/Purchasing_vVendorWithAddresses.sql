@@ -30,7 +30,10 @@
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows, how many distinct BusinessEntityID, and the smallest and the largest; 104, one per vendor, 1492 to
 -- 1698.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM Purchasing.vVendorWithAddresses
 ;
 
@@ -76,7 +79,9 @@ WHERE TRIM(AddressLine1) = ''
 
 -- -------------------------------------------------------------------------------------------------------- AddressLine2
 -- how many rows leave AddressLine2 NULL, and the shortest and the longest; 97 NULLs; 2 to 10 characters.
-SELECT COUNT(*) - COUNT(AddressLine2) AS nulls, MIN(LEN(AddressLine2)), MAX(LEN(AddressLine2))
+SELECT COUNT(*) - COUNT(AddressLine2) AS nulls,
+       MIN(LEN(AddressLine2)),
+       MAX(LEN(AddressLine2))
 FROM Purchasing.vVendorWithAddresses
 ;
 
@@ -106,7 +111,7 @@ WHERE TRIM(City) = ''
 
 -- --------------------------------------------------------------------------------------------------- StateProvinceName
 -- how many states, and the most common; 21; California with 39, Washington 25 and Oregon 13.
-SELECT TOP (3) StateProvinceName, COUNT(*) AS addresses, COUNT(*) OVER () AS provinces
+SELECT TOP(3) StateProvinceName, COUNT(*) AS addresses, COUNT(*) OVER () AS provinces
 FROM Purchasing.vVendorWithAddresses
 GROUP BY StateProvinceName
 ORDER BY addresses DESC, StateProvinceName ASC

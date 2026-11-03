@@ -29,7 +29,8 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "ProductionProductPhoto")
 @Table(schema = MappedProductPhoto.TABLE_SCHEMA, name = MappedProductPhoto.TABLE_NAME)
-public class ProductPhoto extends MappedProductPhoto {
+public class ProductPhoto
+        extends MappedProductPhoto {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

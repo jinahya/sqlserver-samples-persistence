@@ -99,7 +99,9 @@ FROM Sales.SalesPerson
 
 -- ------------------------------------------------------------------------------------------------------- CommissionPct
 -- the range of CommissionPct; 0 to .02, 0 only for the 3 with no territory.
-SELECT MIN(CommissionPct), MAX(CommissionPct), SUM(CASE WHEN CommissionPct = 0 THEN 1 ELSE 0 END) AS without
+SELECT MIN(CommissionPct),
+       MAX(CommissionPct),
+       SUM(CASE WHEN CommissionPct = 0 THEN 1 ELSE 0 END) AS without
 FROM Sales.SalesPerson
 ;
 
@@ -113,7 +115,9 @@ FROM Sales.SalesPerson
 
 -- ------------------------------------------------------------------------------------------------------- SalesLastYear
 -- the range of SalesLastYear, and how many are 0; 0 to 2396539.7601, 0 for 4.
-SELECT MIN(SalesLastYear), MAX(SalesLastYear), SUM(CASE WHEN SalesLastYear = 0 THEN 1 ELSE 0 END) AS zero
+SELECT MIN(SalesLastYear),
+       MAX(SalesLastYear),
+       SUM(CASE WHEN SalesLastYear = 0 THEN 1 ELSE 0 END) AS zero
 FROM Sales.SalesPerson
 ;
 
@@ -137,7 +141,7 @@ FROM Sales.SalesPerson
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the orders of each sales person, the five most; 277 with 473, 275 with 450, 279, 276 and 289 with 348.
-SELECT TOP (5) s.BusinessEntityID, COUNT(h.SalesOrderID) AS orders
+SELECT TOP(5) s.BusinessEntityID, COUNT(h.SalesOrderID) AS orders
 FROM Sales.SalesPerson s
          LEFT JOIN Sales.SalesOrderHeader h ON h.SalesPersonID = s.BusinessEntityID
 GROUP BY s.BusinessEntityID

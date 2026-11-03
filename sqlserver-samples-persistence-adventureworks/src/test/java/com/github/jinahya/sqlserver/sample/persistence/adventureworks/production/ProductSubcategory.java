@@ -50,11 +50,13 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class ProductSubcategory extends MappedProductSubcategory {
+public class ProductSubcategory
+        extends MappedProductSubcategory {
 
     /**
-     * The name of the attribute of the {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_CATEGORY = "productCategory";
 
@@ -70,8 +72,8 @@ public class ProductSubcategory extends MappedProductSubcategory {
     // ----------------------------------------------------------------------------- productCategory
 
     /**
-     * Returns the {@code ProductCategory} which the {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID}
-     * foreign key references.
+     * Returns the {@code ProductCategory} which the
+     * {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID} foreign key references.
      *
      * @return the {@code ProductCategory} referenced; {@code null} when none is.
      */
@@ -80,14 +82,16 @@ public class ProductSubcategory extends MappedProductSubcategory {
     }
 
     /**
-     * Replaces the {@code ProductCategory} which the {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID}
-     * foreign key references, and the value of the column it consists of.
+     * Replaces the {@code ProductCategory} which the
+     * {@code FK_ProductSubcategory_ProductCategory_ProductCategoryID} foreign key references, and
+     * the value of the column it consists of.
      *
      * @param productCategory the {@code ProductCategory} to reference; {@code null} for none.
      */
     public void setProductCategory(final ProductCategory productCategory) {
         this.productCategory = productCategory;
-        setProductCategoryId(productCategory == null ? null : productCategory.getProductCategoryId());
+        setProductCategoryId(
+                productCategory == null ? null : productCategory.getProductCategoryId());
     }
 
     // ---------------------------------------------------------------------------------------------

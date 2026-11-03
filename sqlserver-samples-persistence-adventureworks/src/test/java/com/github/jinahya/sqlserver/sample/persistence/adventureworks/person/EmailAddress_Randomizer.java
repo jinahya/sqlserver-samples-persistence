@@ -22,13 +22,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
 
 /**
- * Randomizes a new {@link EmailAddress}; the identifier, which the person and SQL Server make up, the person, and what
- * SQL Server fills are left out. The persister takes the email address of the instance into one which
- * {@link EmailAddress#of} creates with the person it references.
+ * Randomizes a new {@link EmailAddress}; the identifier, which the person and SQL Server make up,
+ * the person, and what SQL Server fills are left out. The persister takes the email address of the
+ * instance into one which {@link EmailAddress#of} creates with the person it references.
  */
 class EmailAddress_Randomizer
         extends PodamObjectRandomizer<EmailAddress> {
@@ -40,5 +41,21 @@ class EmailAddress_Randomizer
                 EmailAddress.ATTRIBUTE_NAME_BUSINESS_ENTITY,
                 EmailAddress.ATTRIBUTE_NAME_MODIFIED_DATE
         ));
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     * @implNote The returned instance has an e-mail address, which its
+     *         {@link jakarta.validation.constraints.Email @Email} requires.
+     */
+    @Override
+    public EmailAddress get() {
+        final var instance = super.get();
+        instance.setEmailAddress("x" + __Random_TestUtils.code(8) + "@example.com");
+        return instance;
     }
 }

@@ -44,8 +44,8 @@ FROM dbo.AWBuildVersion
 -- no rows: the version is trimmed and not blank.
 SELECT SystemInformationID, '[' + [Database Version] + ']' AS [Database Version]
 FROM dbo.AWBuildVersion
-WHERE TRIM([Database Version]) = ''
-   OR DATALENGTH([Database Version]) <> DATALENGTH(TRIM([Database Version]))
+WHERE TRIM ([Database Version]) = ''
+   OR DATALENGTH([Database Version]) <> DATALENGTH(TRIM ([Database Version]))
 ;
 
 

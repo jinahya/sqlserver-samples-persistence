@@ -51,7 +51,8 @@ GO
 -- stored in their Demographics document.
 WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey')
 SELECT i.YearlyIncome, COUNT(*) AS Persons
-FROM (SELECT p.Demographics.value('(/IndividualSurvey/YearlyIncome)[1]', 'nvarchar(30)') AS YearlyIncome
+FROM (SELECT p.Demographics.value('(/IndividualSurvey/YearlyIncome)[1]',
+                                  'nvarchar(30)') AS YearlyIncome
       FROM Person.Person p
       WHERE p.PersonType = 'IN') AS i
 GROUP BY i.YearlyIncome

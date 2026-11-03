@@ -52,11 +52,12 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Vendor extends MappedVendor {
+public class Vendor
+        extends MappedVendor {
 
     /**
-     * The name of the attribute of the {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -72,8 +73,8 @@ public class Vendor extends MappedVendor {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code BusinessEntity} which the {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign key
-     * references.
+     * Returns the {@code BusinessEntity} which the
+     * {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign key references.
      *
      * @return the {@code BusinessEntity} referenced; {@code null} when none is.
      */
@@ -82,8 +83,9 @@ public class Vendor extends MappedVendor {
     }
 
     /**
-     * Replaces the {@code BusinessEntity} which the {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code BusinessEntity} which the
+     * {@code FK_Vendor_BusinessEntity_BusinessEntityID} foreign key references, and the value of
+     * the column it consists of.
      *
      * @param businessEntity the {@code BusinessEntity} to reference; {@code null} for none.
      */

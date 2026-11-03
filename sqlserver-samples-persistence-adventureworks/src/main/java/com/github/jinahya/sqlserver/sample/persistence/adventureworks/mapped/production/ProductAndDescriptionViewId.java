@@ -25,24 +25,26 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Production.vProductAndDescription} view, whose rows are identified by
- * {@code ProductID}, {@code CultureID}.
+ * The identifier class of the {@code Production.vProductAndDescription} view, whose rows are
+ * identified by {@code ProductID}, {@code CultureID}.
  * <p>
  * An entity which extends {@link MappedProductAndDescriptionView} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class ProductAndDescriptionViewId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductAndDescriptionView#COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * {@value MappedProductAndDescriptionView#COLUMN_NAME_PRODUCT_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductAndDescriptionView#COLUMN_NAME_CULTURE_ID} column. The value is {@value}.
+     * {@value MappedProductAndDescriptionView#COLUMN_NAME_CULTURE_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CULTURE_ID = "cultureId";
 
@@ -123,6 +125,7 @@ public class ProductAndDescriptionViewId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code productId} attribute.
      */

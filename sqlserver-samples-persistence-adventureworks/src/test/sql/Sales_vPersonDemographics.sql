@@ -29,7 +29,10 @@
 
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows and persons; 19972 rows, one for every person, 1 to 20777.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM Sales.vPersonDemographics
 ;
 
@@ -46,7 +49,9 @@ ORDER BY p.PersonType ASC
 -- ---------------------------------------------------------------------------------------------------- TotalPurchaseYTD
 -- how many rows have no TotalPurchaseYTD, its range, and how many are negative; none; -48895.7939 to 7214.5636, 11262
 -- below zero.
-SELECT COUNT(*) - COUNT(TotalPurchaseYTD) AS without, MIN(TotalPurchaseYTD), MAX(TotalPurchaseYTD),
+SELECT COUNT(*) - COUNT(TotalPurchaseYTD)                    AS without,
+       MIN(TotalPurchaseYTD),
+       MAX(TotalPurchaseYTD),
        SUM(CASE WHEN TotalPurchaseYTD < 0 THEN 1 ELSE 0 END) AS negative
 FROM Sales.vPersonDemographics
 ;
@@ -55,7 +60,9 @@ FROM Sales.vPersonDemographics
 -- --------------------------------------------------------------------------------------------------- DateFirstPurchase
 -- how many rows have no DateFirstPurchase, and the range of the others; 1488; 2001-07-01 to 2004-07-31, while the
 -- installed orders run from 2022-05-30.
-SELECT COUNT(*) - COUNT(DateFirstPurchase) AS without, MIN(DateFirstPurchase), MAX(DateFirstPurchase)
+SELECT COUNT(*) - COUNT(DateFirstPurchase) AS without,
+       MIN(DateFirstPurchase),
+       MAX(DateFirstPurchase)
 FROM Sales.vPersonDemographics
 ;
 

@@ -34,10 +34,11 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.vPersonDemographics} view.
  * <p>
- * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it
+ * returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
- * insertable; some of its columns are derived or constant (error 4406).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is updatable, nor insertable; some of its columns are derived or constant (error 4406).
  */
 @MappedSuperclass
 public abstract class MappedPersonDemographicsView {
@@ -60,7 +61,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -72,7 +74,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_TOTAL_PURCHASE_YTD = "TotalPurchaseYTD";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_PURCHASE_YTD} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_PURCHASE_YTD} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD = "totalPurchaseYtd";
 
@@ -84,8 +87,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_DATE_FIRST_PURCHASE = "DateFirstPurchase";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DATE_FIRST_PURCHASE} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DATE_FIRST_PURCHASE} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DATE_FIRST_PURCHASE = "dateFirstPurchase";
 
@@ -97,7 +100,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_BIRTH_DATE = "BirthDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BIRTH_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BIRTH_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BIRTH_DATE = "birthDate";
 
@@ -114,7 +118,8 @@ public abstract class MappedPersonDemographicsView {
     public static final int COLUMN_LENGTH_MARITAL_STATUS = 1;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MARITAL_STATUS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MARITAL_STATUS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MARITAL_STATUS = "maritalStatus";
 
@@ -131,7 +136,8 @@ public abstract class MappedPersonDemographicsView {
     public static final int COLUMN_LENGTH_YEARLY_INCOME = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_YEARLY_INCOME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_YEARLY_INCOME} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEARLY_INCOME = "yearlyIncome";
 
@@ -148,7 +154,8 @@ public abstract class MappedPersonDemographicsView {
     public static final int COLUMN_LENGTH_GENDER = 1;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_GENDER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_GENDER} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_GENDER = "gender";
 
@@ -160,7 +167,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_TOTAL_CHILDREN = "TotalChildren";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_CHILDREN} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_CHILDREN} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_CHILDREN = "totalChildren";
 
@@ -172,8 +180,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_NUMBER_CHILDREN_AT_HOME = "NumberChildrenAtHome";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_CHILDREN_AT_HOME} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_CHILDREN_AT_HOME}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME = "numberChildrenAtHome";
 
@@ -190,7 +198,8 @@ public abstract class MappedPersonDemographicsView {
     public static final int COLUMN_LENGTH_EDUCATION = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDUCATION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDUCATION} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDUCATION = "education";
 
@@ -207,7 +216,8 @@ public abstract class MappedPersonDemographicsView {
     public static final int COLUMN_LENGTH_OCCUPATION = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_OCCUPATION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_OCCUPATION} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_OCCUPATION = "occupation";
 
@@ -219,7 +229,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_HOME_OWNER_FLAG = "HomeOwnerFlag";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_HOME_OWNER_FLAG} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_HOME_OWNER_FLAG} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_HOME_OWNER_FLAG = "homeOwnerFlag";
 
@@ -231,7 +242,8 @@ public abstract class MappedPersonDemographicsView {
     public static final String COLUMN_NAME_NUMBER_CARS_OWNED = "NumberCarsOwned";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_CARS_OWNED} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_CARS_OWNED} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NUMBER_CARS_OWNED = "numberCarsOwned";
 
@@ -306,7 +318,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -326,7 +339,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute with the
+     * specified value.
      *
      * @param totalPurchaseYtd new value for {@value #ATTRIBUTE_NAME_TOTAL_PURCHASE_YTD} attribute.
      */
@@ -346,9 +360,11 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute with the
+     * specified value.
      *
-     * @param dateFirstPurchase new value for {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE} attribute.
+     * @param dateFirstPurchase new value for {@value #ATTRIBUTE_NAME_DATE_FIRST_PURCHASE}
+     *                          attribute.
      */
     protected void setDateFirstPurchase(final LocalDateTime dateFirstPurchase) {
         this.dateFirstPurchase = dateFirstPurchase;
@@ -366,7 +382,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute with the specified
+     * value.
      *
      * @param birthDate new value for {@value #ATTRIBUTE_NAME_BIRTH_DATE} attribute.
      */
@@ -386,7 +403,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute with the
+     * specified value.
      *
      * @param maritalStatus new value for {@value #ATTRIBUTE_NAME_MARITAL_STATUS} attribute.
      */
@@ -406,7 +424,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute with the specified
+     * value.
      *
      * @param yearlyIncome new value for {@value #ATTRIBUTE_NAME_YEARLY_INCOME} attribute.
      */
@@ -426,7 +445,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_GENDER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_GENDER} attribute with the specified
+     * value.
      *
      * @param gender new value for {@value #ATTRIBUTE_NAME_GENDER} attribute.
      */
@@ -446,7 +466,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute with the
+     * specified value.
      *
      * @param totalChildren new value for {@value #ATTRIBUTE_NAME_TOTAL_CHILDREN} attribute.
      */
@@ -466,9 +487,11 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute with the
+     * specified value.
      *
-     * @param numberChildrenAtHome new value for {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME} attribute.
+     * @param numberChildrenAtHome new value for {@value #ATTRIBUTE_NAME_NUMBER_CHILDREN_AT_HOME}
+     *                             attribute.
      */
     protected void setNumberChildrenAtHome(final Integer numberChildrenAtHome) {
         this.numberChildrenAtHome = numberChildrenAtHome;
@@ -486,7 +509,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDUCATION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDUCATION} attribute with the specified
+     * value.
      *
      * @param education new value for {@value #ATTRIBUTE_NAME_EDUCATION} attribute.
      */
@@ -506,7 +530,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_OCCUPATION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_OCCUPATION} attribute with the specified
+     * value.
      *
      * @param occupation new value for {@value #ATTRIBUTE_NAME_OCCUPATION} attribute.
      */
@@ -526,7 +551,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute with the
+     * specified value.
      *
      * @param homeOwnerFlag new value for {@value #ATTRIBUTE_NAME_HOME_OWNER_FLAG} attribute.
      */
@@ -546,7 +572,8 @@ public abstract class MappedPersonDemographicsView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute with the
+     * specified value.
      *
      * @param numberCarsOwned new value for {@value #ATTRIBUTE_NAME_NUMBER_CARS_OWNED} attribute.
      */
@@ -558,19 +585,22 @@ public abstract class MappedPersonDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_PURCHASE_YTD, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_TOTAL_PURCHASE_YTD, nullable = true, insertable = false,
+            updatable = false)
     private BigDecimal totalPurchaseYtd;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DATE_FIRST_PURCHASE, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_DATE_FIRST_PURCHASE, nullable = true, insertable = false,
+            updatable = false)
     private LocalDateTime dateFirstPurchase;
 
     // ---------------------------------------------------------------------------------------------
@@ -583,59 +613,68 @@ public abstract class MappedPersonDemographicsView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MARITAL_STATUS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MARITAL_STATUS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MARITAL_STATUS)
+    @Column(name = COLUMN_NAME_MARITAL_STATUS, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_MARITAL_STATUS)
     private String maritalStatus;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_YEARLY_INCOME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_YEARLY_INCOME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_YEARLY_INCOME)
+    @Column(name = COLUMN_NAME_YEARLY_INCOME, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_YEARLY_INCOME)
     private String yearlyIncome;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_GENDER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_GENDER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_GENDER)
+    @Column(name = COLUMN_NAME_GENDER, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_GENDER)
     private String gender;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TOTAL_CHILDREN, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_TOTAL_CHILDREN, nullable = true, insertable = false,
+            updatable = false)
     private Integer totalChildren;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_CHILDREN_AT_HOME, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_NUMBER_CHILDREN_AT_HOME, nullable = true, insertable = false,
+            updatable = false)
     private Integer numberChildrenAtHome;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDUCATION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDUCATION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDUCATION)
+    @Column(name = COLUMN_NAME_EDUCATION, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDUCATION)
     private String education;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_OCCUPATION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_OCCUPATION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_OCCUPATION)
+    @Column(name = COLUMN_NAME_OCCUPATION, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_OCCUPATION)
     private String occupation;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_HOME_OWNER_FLAG, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_HOME_OWNER_FLAG, nullable = true, insertable = false,
+            updatable = false)
     private Boolean homeOwnerFlag;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_NUMBER_CARS_OWNED, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_NUMBER_CARS_OWNED, nullable = true, insertable = false,
+            updatable = false)
     private Integer numberCarsOwned;
 }
 

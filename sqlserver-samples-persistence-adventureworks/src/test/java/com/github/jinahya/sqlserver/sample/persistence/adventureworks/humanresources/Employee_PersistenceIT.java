@@ -21,7 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import jakarta.persistence.EntityManager;
@@ -61,7 +61,7 @@ class Employee_PersistenceIT
     @DisplayName("HumanResources.uspUpdateEmployeeLogin updates an employee")
     @Test
     void uspUpdateEmployeeLogin() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var employee = first(em);
             assumeThat(employee).as("an installed employee").isNotNull();
             final var loginId = employee.getLoginId() + "-updated";
@@ -92,7 +92,7 @@ class Employee_PersistenceIT
     @DisplayName("HumanResources.uspUpdateEmployeePersonalInfo updates an employee")
     @Test
     void uspUpdateEmployeePersonalInfo() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var employee = first(em);
             assumeThat(employee).as("an installed employee").isNotNull();
             final var maritalStatus = employee.getMaritalStatus() == MappedEmployee.MaritalStatus.M

@@ -39,22 +39,25 @@ import java.util.Objects;
 /**
  * An entity which maps the {@code Sales.CountryRegionCurrency} table.
  * <p>
- * Each attribute of the embedded {@link CountryRegionCurrencyId} is derived, with {@link MapsId @MapsId}, from the association
- * which references the same column.
+ * Each attribute of the embedded {@link CountryRegionCurrencyId} is derived, with
+ * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "SalesCountryRegionCurrency")
-@Table(schema = MappedCountryRegionCurrency.TABLE_SCHEMA, name = MappedCountryRegionCurrency.TABLE_NAME)
-public class CountryRegionCurrency extends MappedCountryRegionCurrency {
+@Table(schema = MappedCountryRegionCurrency.TABLE_SCHEMA,
+       name = MappedCountryRegionCurrency.TABLE_NAME)
+public class CountryRegionCurrency
+        extends MappedCountryRegionCurrency {
 
     /**
-     * The name of the attribute of the {@code FK_CountryRegionCurrency_CountryRegion_CountryRegionCode} foreign key.
-     * The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_CountryRegionCurrency_CountryRegion_CountryRegionCode} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION = "countryRegion";
 
     /**
-     * The name of the attribute of the {@code FK_CountryRegionCurrency_Currency_CurrencyCode} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_CountryRegionCurrency_Currency_CurrencyCode}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CURRENCY = "currency";
 
@@ -90,8 +93,8 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
     // ------------------------------------------------------------------------------- countryRegion
 
     /**
-     * Returns the {@code CountryRegion} which the {@code FK_CountryRegionCurrency_CountryRegion_CountryRegionCode}
-     * foreign key references.
+     * Returns the {@code CountryRegion} which the
+     * {@code FK_CountryRegionCurrency_CountryRegion_CountryRegionCode} foreign key references.
      *
      * @return the {@code CountryRegion} referenced; {@code null} when none is.
      */
@@ -102,8 +105,8 @@ public class CountryRegionCurrency extends MappedCountryRegionCurrency {
     // ------------------------------------------------------------------------------------ currency
 
     /**
-     * Returns the {@code Currency} which the {@code FK_CountryRegionCurrency_Currency_CurrencyCode} foreign key
-     * references.
+     * Returns the {@code Currency} which the {@code FK_CountryRegionCurrency_Currency_CurrencyCode}
+     * foreign key references.
      *
      * @return the {@code Currency} referenced; {@code null} when none is.
      */

@@ -40,8 +40,9 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.WorkOrderRouting} table.
  * <p>
- * The {@value #COLUMN_NAME_LOCATION_ID} column is mapped read-only, as a foreign key; the extending entity owns the
- * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_LOCATION_ID} column is mapped read-only, as a foreign key; the extending
+ * entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Defaults of {@code Production.WorkOrderRouting}</caption>
@@ -53,7 +54,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedWorkOrderRouting {
@@ -76,7 +79,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_WORK_ORDER_ID = "WorkOrderID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_ORDER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_ORDER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_ID = "workOrderId";
 
@@ -88,7 +92,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -100,17 +105,20 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_OPERATION_SEQUENCE = "OperationSequence";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_MIN_OPERATION_SEQUENCE = Short.MIN_VALUE;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_MAX_OPERATION_SEQUENCE = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_OPERATION_SEQUENCE = "operationSequence";
 
@@ -132,7 +140,8 @@ public abstract class MappedWorkOrderRouting {
     public static final int COLUMN_MAX_LOCATION_ID = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
@@ -144,8 +153,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_SCHEDULED_START_DATE = "ScheduledStartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SCHEDULED_START_DATE} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SCHEDULED_START_DATE} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCHEDULED_START_DATE = "scheduledStartDate";
 
@@ -157,7 +166,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_SCHEDULED_END_DATE = "ScheduledEndDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SCHEDULED_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SCHEDULED_END_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCHEDULED_END_DATE = "scheduledEndDate";
 
@@ -169,7 +179,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_ACTUAL_START_DATE = "ActualStartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_START_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_START_DATE = "actualStartDate";
 
@@ -181,7 +192,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_ACTUAL_END_DATE = "ActualEndDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_END_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_END_DATE = "actualEndDate";
 
@@ -193,7 +205,8 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_ACTUAL_RESOURCE_HRS = "ActualResourceHrs";
 
     /**
-     * The precision of the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column. The value is {@value}.
+     * The precision of the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_PRECISION_ACTUAL_RESOURCE_HRS = 9;
 
@@ -204,14 +217,14 @@ public abstract class MappedWorkOrderRouting {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column, as the
-     * {@code CK_WorkOrderRouting_ActualResourceHrs} check constraint ({@code [ActualResourceHrs]>=(0.0000)})
-     * requires. The value is {@value}.
+     * {@code CK_WorkOrderRouting_ActualResourceHrs} check constraint
+     * ({@code [ActualResourceHrs]>=(0.0000)}) requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_ACTUAL_RESOURCE_HRS = "0.0000";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_RESOURCE_HRS} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_RESOURCE_HRS = "actualResourceHrs";
 
@@ -224,13 +237,14 @@ public abstract class MappedWorkOrderRouting {
 
     /**
      * The exclusive minimum value of the {@value #COLUMN_NAME_PLANNED_COST} column, as the
-     * {@code CK_WorkOrderRouting_PlannedCost} check constraint ({@code [PlannedCost]>(0.00)}) requires. The value is
-     * {@value}.
+     * {@code CK_WorkOrderRouting_PlannedCost} check constraint ({@code [PlannedCost]>(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_PLANNED_COST_EXCLUSIVE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PLANNED_COST} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PLANNED_COST} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PLANNED_COST = "plannedCost";
 
@@ -243,25 +257,28 @@ public abstract class MappedWorkOrderRouting {
 
     /**
      * The exclusive minimum value of the {@value #COLUMN_NAME_ACTUAL_COST} column, as the
-     * {@code CK_WorkOrderRouting_ActualCost} check constraint ({@code [ActualCost]>(0.00)}) requires. The value is
-     * {@value}.
+     * {@code CK_WorkOrderRouting_ActualCost} check constraint ({@code [ActualCost]>(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_ACTUAL_COST_EXCLUSIVE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_COST = "actualCost";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -335,10 +352,11 @@ public abstract class MappedWorkOrderRouting {
      * ([ScheduledEndDate]>=[ScheduledStartDate])
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is not before the
-     *         {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute; {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is
+     *         {@code null}, or the {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute is
+     *         {@code null}, or the {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute is not
+     *         before the {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute; {@code false}
+     *         otherwise.
      */
     @AssertTrue(message = "scheduledEndDate must not be before scheduledStartDate")
     protected boolean isScheduledEndDateValid() {
@@ -349,17 +367,17 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Checks whether the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is {@code null} or not before the
-     * {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute, as the table's {@code CK_WorkOrderRouting_ActualEndDate}
-     * constraint requires.
+     * Checks whether the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is {@code null} or not
+     * before the {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute, as the table's
+     * {@code CK_WorkOrderRouting_ActualEndDate} constraint requires.
      * {@snippet lang = "sql":
      * ([ActualEndDate]>=[ActualStartDate] OR [ActualEndDate] IS NULL OR [ActualStartDate] IS NULL)
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is not before the
-     *         {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute; {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is
+     *         {@code null}, or the {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute is
+     *         {@code null}, or the {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute is not before
+     *         the {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute; {@code false} otherwise.
      */
     @AssertTrue(message = "actualEndDate must be null or not before actualStartDate")
     protected boolean isActualEndDateValid() {
@@ -375,17 +393,19 @@ public abstract class MappedWorkOrderRouting {
      * Returns current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getWorkOrderId() {
         return workOrderId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute with the specified
+     * value.
      *
      * @param workOrderId new value for {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
      */
@@ -405,7 +425,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -425,9 +446,11 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute with the
+     * specified value.
      *
-     * @param operationSequence new value for {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute.
+     * @param operationSequence new value for {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE}
+     *                          attribute.
      */
     protected void setOperationSequence(final Integer operationSequence) {
         this.operationSequence = operationSequence;
@@ -445,8 +468,9 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
@@ -466,9 +490,11 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute with the
+     * specified value.
      *
-     * @param scheduledStartDate new value for {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE} attribute.
+     * @param scheduledStartDate new value for {@value #ATTRIBUTE_NAME_SCHEDULED_START_DATE}
+     *                           attribute.
      */
     public void setScheduledStartDate(final LocalDateTime scheduledStartDate) {
         this.scheduledStartDate = scheduledStartDate;
@@ -486,7 +512,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute with the
+     * specified value.
      *
      * @param scheduledEndDate new value for {@value #ATTRIBUTE_NAME_SCHEDULED_END_DATE} attribute.
      */
@@ -506,7 +533,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute with the
+     * specified value.
      *
      * @param actualStartDate new value for {@value #ATTRIBUTE_NAME_ACTUAL_START_DATE} attribute.
      */
@@ -526,7 +554,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute with the
+     * specified value.
      *
      * @param actualEndDate new value for {@value #ATTRIBUTE_NAME_ACTUAL_END_DATE} attribute.
      */
@@ -546,9 +575,11 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_RESOURCE_HRS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_RESOURCE_HRS} attribute with the
+     * specified value.
      *
-     * @param actualResourceHrs new value for {@value #ATTRIBUTE_NAME_ACTUAL_RESOURCE_HRS} attribute.
+     * @param actualResourceHrs new value for {@value #ATTRIBUTE_NAME_ACTUAL_RESOURCE_HRS}
+     *                          attribute.
      */
     public void setActualResourceHrs(final BigDecimal actualResourceHrs) {
         this.actualResourceHrs = actualResourceHrs;
@@ -566,7 +597,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PLANNED_COST} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PLANNED_COST} attribute with the specified
+     * value.
      *
      * @param plannedCost new value for {@value #ATTRIBUTE_NAME_PLANNED_COST} attribute.
      */
@@ -586,7 +618,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute with the specified
+     * value.
      *
      * @param actualCost new value for {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute.
      */
@@ -606,7 +639,8 @@ public abstract class MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -615,30 +649,36 @@ public abstract class MappedWorkOrderRouting {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true,
+            updatable = false)
     private Integer workOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @Max(COLUMN_MAX_OPERATION_SEQUENCE)
     @Min(COLUMN_MIN_OPERATION_SEQUENCE)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_OPERATION_SEQUENCE, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_OPERATION_SEQUENCE, nullable = false, insertable = true,
+            updatable = false)
     private Integer operationSequence;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Max(COLUMN_MAX_LOCATION_ID)
     @Min(COLUMN_MIN_LOCATION_ID)
     @NotNull
@@ -649,23 +689,27 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCHEDULED_START_DATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SCHEDULED_START_DATE, nullable = false, insertable = true,
+            updatable = true)
     private LocalDateTime scheduledStartDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SCHEDULED_END_DATE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_SCHEDULED_END_DATE, nullable = false, insertable = true,
+            updatable = true)
     private LocalDateTime scheduledEndDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_START_DATE, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_ACTUAL_START_DATE, nullable = true, insertable = true,
+            updatable = true)
     private LocalDateTime actualStartDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_END_DATE, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_ACTUAL_END_DATE, nullable = true, insertable = true,
+            updatable = true)
     private LocalDateTime actualEndDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -674,7 +718,9 @@ public abstract class MappedWorkOrderRouting {
     @Digits(integer = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS - COLUMN_SCALE_ACTUAL_RESOURCE_HRS,
             fraction = COLUMN_SCALE_ACTUAL_RESOURCE_HRS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ACTUAL_RESOURCE_HRS, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS, scale = COLUMN_SCALE_ACTUAL_RESOURCE_HRS)
+    @Column(name = COLUMN_NAME_ACTUAL_RESOURCE_HRS, nullable = true, insertable = true,
+            updatable = true, precision = COLUMN_PRECISION_ACTUAL_RESOURCE_HRS,
+            scale = COLUMN_SCALE_ACTUAL_RESOURCE_HRS)
     private BigDecimal actualResourceHrs;
 
     // ---------------------------------------------------------------------------------------------
@@ -693,9 +739,11 @@ public abstract class MappedWorkOrderRouting {
     private BigDecimal actualCost;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing
+    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents
+    // it as changing
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDefault(name = "DF_WorkOrderRouting_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -25,29 +25,30 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Sales.SalesOrderHeaderSalesReason} table, whose rows are identified by
- * {@code SalesOrderID}, {@code SalesReasonID}.
+ * The identifier class of the {@code Sales.SalesOrderHeaderSalesReason} table, whose rows are
+ * identified by {@code SalesOrderID}, {@code SalesReasonID}.
  * <p>
- * {@link MappedSalesOrderHeaderSalesReason} embeds this class with {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of
- * this class map the columns of the key.
+ * {@link MappedSalesOrderHeaderSalesReason} embeds this class with
+ * {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of this class map the columns
+ * of the key.
  */
 @Embeddable
 public class SalesOrderHeaderSalesReasonId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedSalesOrderHeaderSalesReason#COLUMN_NAME_SALES_ORDER_ID} column. The value is {@value}.
+     * {@value MappedSalesOrderHeaderSalesReason#COLUMN_NAME_SALES_ORDER_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedSalesOrderHeaderSalesReason#COLUMN_NAME_SALES_REASON_ID} column. The value is {@value}.
+     * {@value MappedSalesOrderHeaderSalesReason#COLUMN_NAME_SALES_REASON_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_REASON_ID = "salesReasonId";
 
@@ -128,12 +129,15 @@ public class SalesOrderHeaderSalesReasonId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code salesOrderId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_ORDER_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_ORDER_ID,
                           value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
     private Integer salesOrderId;
@@ -141,9 +145,11 @@ public class SalesOrderHeaderSalesReasonId {
     /**
      * The value of the {@code salesReasonId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_REASON_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_REASON_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_REASON_ID,
                           value = "Primary key. Foreign key to SalesReason.SalesReasonID.")
     private Integer salesReasonId;

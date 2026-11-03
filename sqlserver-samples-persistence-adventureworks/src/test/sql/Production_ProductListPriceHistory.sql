@@ -142,7 +142,8 @@ WHERE NOT EXISTS (SELECT 1
 -- a product whose list price is below its standard cost, in the same period; 0: no product is priced below its cost.
 SELECT COUNT(*) AS belowCost
 FROM Production.ProductListPriceHistory l
-         JOIN Production.ProductCostHistory c ON c.ProductID = l.ProductID AND c.StartDate = l.StartDate
+         JOIN Production.ProductCostHistory c
+              ON c.ProductID = l.ProductID AND c.StartDate = l.StartDate
 WHERE l.ListPrice < c.StandardCost
 ;
 

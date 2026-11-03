@@ -26,29 +26,30 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Sales.CountryRegionCurrency} table, whose rows are identified by
- * {@code CountryRegionCode}, {@code CurrencyCode}.
+ * The identifier class of the {@code Sales.CountryRegionCurrency} table, whose rows are identified
+ * by {@code CountryRegionCode}, {@code CurrencyCode}.
  * <p>
- * {@link MappedCountryRegionCurrency} embeds this class with {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of
- * this class map the columns of the key.
+ * {@link MappedCountryRegionCurrency} embeds this class with
+ * {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of this class map the columns
+ * of the key.
  */
 @Embeddable
 public class CountryRegionCurrencyId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedCountryRegionCurrency#COLUMN_NAME_COUNTRY_REGION_CODE} column. The value is {@value}.
+     * {@value MappedCountryRegionCurrency#COLUMN_NAME_COUNTRY_REGION_CODE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_CODE = "countryRegionCode";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedCountryRegionCurrency#COLUMN_NAME_CURRENCY_CODE} column. The value is {@value}.
+     * {@value MappedCountryRegionCurrency#COLUMN_NAME_CURRENCY_CODE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_CODE = "currencyCode";
 
@@ -129,13 +130,17 @@ public class CountryRegionCurrencyId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code countryRegionCode} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @Size(max = MappedCountryRegionCurrency.COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @NotNull
-    @Column(name = MappedCountryRegionCurrency.COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = true, updatable = false, length = MappedCountryRegionCurrency.COLUMN_LENGTH_COUNTRY_REGION_CODE)
+    @Column(name = MappedCountryRegionCurrency.COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false,
+            insertable = true, updatable = false,
+            length = MappedCountryRegionCurrency.COLUMN_LENGTH_COUNTRY_REGION_CODE)
     @MsDescription.Column(name = MappedCountryRegionCurrency.COLUMN_NAME_COUNTRY_REGION_CODE,
                           value = "ISO code for countries and regions. Foreign key to "
                                   + "CountryRegion.CountryRegionCode.")
@@ -144,10 +149,13 @@ public class CountryRegionCurrencyId {
     /**
      * The value of the {@code currencyCode} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @Size(max = MappedCountryRegionCurrency.COLUMN_LENGTH_CURRENCY_CODE)
     @NotNull
-    @Column(name = MappedCountryRegionCurrency.COLUMN_NAME_CURRENCY_CODE, nullable = false, insertable = true, updatable = false, length = MappedCountryRegionCurrency.COLUMN_LENGTH_CURRENCY_CODE)
+    @Column(name = MappedCountryRegionCurrency.COLUMN_NAME_CURRENCY_CODE, nullable = false,
+            insertable = true, updatable = false,
+            length = MappedCountryRegionCurrency.COLUMN_LENGTH_CURRENCY_CODE)
     @MsDescription.Column(name = MappedCountryRegionCurrency.COLUMN_NAME_CURRENCY_CODE,
                           value = "ISO standard currency code. Foreign key to "
                                   + "Currency.CurrencyCode.")

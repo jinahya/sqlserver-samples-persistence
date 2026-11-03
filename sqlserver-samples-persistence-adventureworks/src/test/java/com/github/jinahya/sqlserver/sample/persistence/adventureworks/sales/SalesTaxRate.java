@@ -59,11 +59,12 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class SalesTaxRate extends MappedSalesTaxRate {
+public class SalesTaxRate
+        extends MappedSalesTaxRate {
 
     /**
-     * The name of the attribute of the {@code FK_SalesTaxRate_StateProvince_StateProvinceID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesTaxRate_StateProvince_StateProvinceID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE = "stateProvince";
 
@@ -79,8 +80,8 @@ public class SalesTaxRate extends MappedSalesTaxRate {
     // ------------------------------------------------------------------------------- stateProvince
 
     /**
-     * Returns the {@code StateProvince} which the {@code FK_SalesTaxRate_StateProvince_StateProvinceID} foreign key
-     * references.
+     * Returns the {@code StateProvince} which the
+     * {@code FK_SalesTaxRate_StateProvince_StateProvinceID} foreign key references.
      *
      * @return the {@code StateProvince} referenced; {@code null} when none is.
      */
@@ -89,8 +90,9 @@ public class SalesTaxRate extends MappedSalesTaxRate {
     }
 
     /**
-     * Replaces the {@code StateProvince} which the {@code FK_SalesTaxRate_StateProvince_StateProvinceID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code StateProvince} which the
+     * {@code FK_SalesTaxRate_StateProvince_StateProvinceID} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param stateProvince the {@code StateProvince} to reference; {@code null} for none.
      */

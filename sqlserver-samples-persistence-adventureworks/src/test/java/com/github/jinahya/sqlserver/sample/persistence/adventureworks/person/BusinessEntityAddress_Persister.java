@@ -26,7 +26,8 @@ import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link BusinessEntityAddress}, of a new business entity, a new address, and a new address type.
+ * Persists a new {@link BusinessEntityAddress}, of a new business entity, a new address, and a new
+ * address type.
  */
 class BusinessEntityAddress_Persister
         extends AbstractEntityPersister<BusinessEntityAddress> {
@@ -37,12 +38,17 @@ class BusinessEntityAddress_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public BusinessEntityAddress apply(final EntityManager entityManager, final BusinessEntityAddress entityInstance) {
-        final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);
-        final var address = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Address.class);
-        final var addressType = EntityPersisterUtils.newPersistedInstanceOf(entityManager, AddressType.class);
+    public BusinessEntityAddress apply(final EntityManager entityManager,
+                                       final BusinessEntityAddress entityInstance) {
+        final var businessEntity =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);
+        final var address =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Address.class);
+        final var addressType =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, AddressType.class);
         // the identifiers of the three are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        return super.apply(entityManager, BusinessEntityAddress.of(businessEntity, address, addressType));
+        return super.apply(entityManager,
+                           BusinessEntityAddress.of(businessEntity, address, addressType));
     }
 }

@@ -26,8 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link Person}; the identifier and the business entity, which the persister sets, and what SQL
- * Server fills are left out.
+ * Randomizes a new {@link Person}; the identifier and the business entity, which the persister
+ * sets, and what SQL Server fills are left out.
  */
 class Person_Randomizer
         extends PodamObjectRandomizer<Person> {
@@ -46,8 +46,9 @@ class Person_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has no AdditionalContactInfo and no Demographics; each is an xml column typed by
-     *         a schema collection, which no random text is valid against.
+     * @implNote The returned instance has no AdditionalContactInfo and no Demographics;
+     *         each is an xml column typed by a schema collection, which no random text is valid
+     *         against.
      */
     @Override
     public Person get() {

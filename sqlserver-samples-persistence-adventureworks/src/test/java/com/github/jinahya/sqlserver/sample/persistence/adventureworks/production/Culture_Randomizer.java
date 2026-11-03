@@ -20,13 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
 
 /**
- * Randomizes a new {@link Culture}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link Culture}; the generated identifier and what SQL Server fills are left
+ * out.
  */
 class Culture_Randomizer
         extends PodamObjectRandomizer<Culture> {

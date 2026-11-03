@@ -24,7 +24,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class ErrorLog_PersistenceIT extends _Entity_PersistenceIT<ErrorLog> {
+class ErrorLog_PersistenceIT
+        extends _Entity_PersistenceIT<ErrorLog> {
 
     ErrorLog_PersistenceIT() {
         super(ErrorLog.class);
@@ -33,8 +34,8 @@ class ErrorLog_PersistenceIT extends _Entity_PersistenceIT<ErrorLog> {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; {@code dbo.uspLogError} inserts every row of {@code dbo.ErrorLog}, and nothing else inserts into
-     * it.
+     * Does nothing; {@code dbo.uspLogError} inserts every row of {@code dbo.ErrorLog}, and nothing
+     * else inserts into it.
      */
     @Disabled("written by dbo.uspLogError: nothing else inserts into it")
     @Override

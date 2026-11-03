@@ -31,10 +31,16 @@
 -- the columns of the schema's tables and views which use an alias type, and the base type each maps as; 23 columns,
 -- all of the dbo types: 5 in 3 tables (Department.Name and GroupName, and Shift.Name, dbo.Name; Employee.SalariedFlag
 -- and CurrentFlag, dbo.Flag), and 18 in 3 views (dbo.Name, but vEmployee.PhoneNumber, dbo.Phone).
-SELECT t.TABLE_TYPE, c.TABLE_NAME, c.COLUMN_NAME, c.DOMAIN_SCHEMA + '.' + c.DOMAIN_NAME AS alias, c.DATA_TYPE,
-       c.CHARACTER_MAXIMUM_LENGTH, c.IS_NULLABLE
+SELECT t.TABLE_TYPE,
+       c.TABLE_NAME,
+       c.COLUMN_NAME,
+       c.DOMAIN_SCHEMA + '.' + c.DOMAIN_NAME AS alias,
+       c.DATA_TYPE,
+       c.CHARACTER_MAXIMUM_LENGTH,
+       c.IS_NULLABLE
 FROM INFORMATION_SCHEMA.COLUMNS c
-         JOIN INFORMATION_SCHEMA.TABLES t ON t.TABLE_SCHEMA = c.TABLE_SCHEMA AND t.TABLE_NAME = c.TABLE_NAME
+         JOIN INFORMATION_SCHEMA.TABLES t
+              ON t.TABLE_SCHEMA = c.TABLE_SCHEMA AND t.TABLE_NAME = c.TABLE_NAME
 WHERE c.TABLE_SCHEMA = 'HumanResources'
   AND c.DOMAIN_NAME IS NOT NULL
 ORDER BY t.TABLE_TYPE ASC, c.TABLE_NAME ASC, c.ORDINAL_POSITION ASC

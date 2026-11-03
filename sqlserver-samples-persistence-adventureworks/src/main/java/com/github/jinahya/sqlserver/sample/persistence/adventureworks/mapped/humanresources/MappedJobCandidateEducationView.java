@@ -28,15 +28,17 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 /**
- * A mapped superclass which holds the mappings of the {@code HumanResources.vJobCandidateEducation} view.
+ * A mapped superclass which holds the mappings of the {@code HumanResources.vJobCandidateEducation}
+ * view.
  * <p>
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
- * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * As nothing identifies a row, no entity can extend this class; a plain class does, which a native
+ * query fills.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
- * updatable; some of its columns are derived or constant (error 4406); one of its columns is an identity column of its
- * base table, which no UPDATE sets (error 8102).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is insertable or updatable; some of its columns are derived or constant (error 4406); one of
+ * its columns is an identity column of its base table, which no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedJobCandidateEducationView {
@@ -59,7 +61,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final String COLUMN_NAME_JOB_CANDIDATE_ID = "JobCandidateID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_JOB_CANDIDATE_ID = "jobCandidateId";
 
@@ -71,7 +74,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final String COLUMN_NAME_EDU_LEVEL = "\"Edu.Level\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LEVEL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LEVEL} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_LEVEL = "eduLevel";
 
@@ -83,7 +87,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final String COLUMN_NAME_EDU_START_DATE = "\"Edu.StartDate\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_START_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_START_DATE = "eduStartDate";
 
@@ -95,7 +100,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final String COLUMN_NAME_EDU_END_DATE = "\"Edu.EndDate\"";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_END_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_END_DATE = "eduEndDate";
 
@@ -112,7 +118,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_DEGREE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_DEGREE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_DEGREE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_DEGREE = "eduDegree";
 
@@ -129,7 +136,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_MAJOR = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_MAJOR} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_MAJOR} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_MAJOR = "eduMajor";
 
@@ -146,7 +154,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_MINOR = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_MINOR} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_MINOR} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_MINOR = "eduMinor";
 
@@ -163,7 +172,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_GPA = 5;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_GPA} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_GPA} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_GPA = "eduGpa";
 
@@ -180,7 +190,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_GPA_SCALE = 5;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_GPA_SCALE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_GPA_SCALE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_GPA_SCALE = "eduGpaScale";
 
@@ -197,7 +208,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_SCHOOL = 100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_SCHOOL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_SCHOOL} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_SCHOOL = "eduSchool";
 
@@ -209,13 +221,14 @@ public abstract class MappedJobCandidateEducationView {
     public static final String COLUMN_NAME_EDU_LOC_COUNTRY_REGION = "\"Edu.Loc.CountryRegion\"";
 
     /**
-     * The length of the {@value #COLUMN_NAME_EDU_LOC_COUNTRY_REGION} column. The value is {@value}.
+     * The length of the {@value #COLUMN_NAME_EDU_LOC_COUNTRY_REGION} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION = 100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LOC_COUNTRY_REGION} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LOC_COUNTRY_REGION} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION = "eduLocCountryRegion";
 
@@ -232,7 +245,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_LOC_STATE = 100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LOC_STATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LOC_STATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_LOC_STATE = "eduLocState";
 
@@ -249,7 +263,8 @@ public abstract class MappedJobCandidateEducationView {
     public static final int COLUMN_LENGTH_EDU_LOC_CITY = 100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LOC_CITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EDU_LOC_CITY} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EDU_LOC_CITY = "eduLocCity";
 
@@ -295,7 +310,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute with the
+     * specified value.
      *
      * @param jobCandidateId new value for {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute.
      */
@@ -315,7 +331,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LEVEL} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LEVEL} attribute with the specified
+     * value.
      *
      * @param eduLevel new value for {@value #ATTRIBUTE_NAME_EDU_LEVEL} attribute.
      */
@@ -335,7 +352,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_START_DATE} attribute with the
+     * specified value.
      *
      * @param eduStartDate new value for {@value #ATTRIBUTE_NAME_EDU_START_DATE} attribute.
      */
@@ -355,7 +373,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_END_DATE} attribute with the specified
+     * value.
      *
      * @param eduEndDate new value for {@value #ATTRIBUTE_NAME_EDU_END_DATE} attribute.
      */
@@ -375,7 +394,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_DEGREE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_DEGREE} attribute with the specified
+     * value.
      *
      * @param eduDegree new value for {@value #ATTRIBUTE_NAME_EDU_DEGREE} attribute.
      */
@@ -395,7 +415,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_MAJOR} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_MAJOR} attribute with the specified
+     * value.
      *
      * @param eduMajor new value for {@value #ATTRIBUTE_NAME_EDU_MAJOR} attribute.
      */
@@ -415,7 +436,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_MINOR} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_MINOR} attribute with the specified
+     * value.
      *
      * @param eduMinor new value for {@value #ATTRIBUTE_NAME_EDU_MINOR} attribute.
      */
@@ -435,7 +457,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_GPA} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_GPA} attribute with the specified
+     * value.
      *
      * @param eduGpa new value for {@value #ATTRIBUTE_NAME_EDU_GPA} attribute.
      */
@@ -455,7 +478,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_GPA_SCALE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_GPA_SCALE} attribute with the specified
+     * value.
      *
      * @param eduGpaScale new value for {@value #ATTRIBUTE_NAME_EDU_GPA_SCALE} attribute.
      */
@@ -475,7 +499,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_SCHOOL} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_SCHOOL} attribute with the specified
+     * value.
      *
      * @param eduSchool new value for {@value #ATTRIBUTE_NAME_EDU_SCHOOL} attribute.
      */
@@ -495,9 +520,11 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION} attribute with the
+     * specified value.
      *
-     * @param eduLocCountryRegion new value for {@value #ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION} attribute.
+     * @param eduLocCountryRegion new value for {@value #ATTRIBUTE_NAME_EDU_LOC_COUNTRY_REGION}
+     *                            attribute.
      */
     protected void setEduLocCountryRegion(final String eduLocCountryRegion) {
         this.eduLocCountryRegion = eduLocCountryRegion;
@@ -515,7 +542,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LOC_STATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LOC_STATE} attribute with the specified
+     * value.
      *
      * @param eduLocState new value for {@value #ATTRIBUTE_NAME_EDU_LOC_STATE} attribute.
      */
@@ -535,7 +563,8 @@ public abstract class MappedJobCandidateEducationView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LOC_CITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EDU_LOC_CITY} attribute with the specified
+     * value.
      *
      * @param eduLocCity new value for {@value #ATTRIBUTE_NAME_EDU_LOC_CITY} attribute.
      */
@@ -546,7 +575,8 @@ public abstract class MappedJobCandidateEducationView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer jobCandidateId;
 
     // ---------------------------------------------------------------------------------------------
@@ -558,7 +588,8 @@ public abstract class MappedJobCandidateEducationView {
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_START_DATE, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EDU_START_DATE, nullable = true, insertable = false,
+            updatable = false)
     private LocalDateTime eduStartDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -571,63 +602,72 @@ public abstract class MappedJobCandidateEducationView {
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_DEGREE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_DEGREE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_DEGREE)
+    @Column(name = COLUMN_NAME_EDU_DEGREE, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDU_DEGREE)
     private String eduDegree;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_MAJOR)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_MAJOR, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_MAJOR)
+    @Column(name = COLUMN_NAME_EDU_MAJOR, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDU_MAJOR)
     private String eduMajor;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_MINOR)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_MINOR, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_MINOR)
+    @Column(name = COLUMN_NAME_EDU_MINOR, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDU_MINOR)
     private String eduMinor;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_GPA)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_GPA, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_GPA)
+    @Column(name = COLUMN_NAME_EDU_GPA, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDU_GPA)
     private String eduGpa;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_GPA_SCALE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_GPA_SCALE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_GPA_SCALE)
+    @Column(name = COLUMN_NAME_EDU_GPA_SCALE, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_EDU_GPA_SCALE)
     private String eduGpaScale;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_SCHOOL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_SCHOOL, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_SCHOOL)
+    @Column(name = COLUMN_NAME_EDU_SCHOOL, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDU_SCHOOL)
     private String eduSchool;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LOC_COUNTRY_REGION, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION)
+    @Column(name = COLUMN_NAME_EDU_LOC_COUNTRY_REGION, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_EDU_LOC_COUNTRY_REGION)
     private String eduLocCountryRegion;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_STATE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LOC_STATE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_LOC_STATE)
+    @Column(name = COLUMN_NAME_EDU_LOC_STATE, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_EDU_LOC_STATE)
     private String eduLocState;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EDU_LOC_CITY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EDU_LOC_CITY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EDU_LOC_CITY)
+    @Column(name = COLUMN_NAME_EDU_LOC_CITY, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_EDU_LOC_CITY)
     private String eduLocCity;
 }
 

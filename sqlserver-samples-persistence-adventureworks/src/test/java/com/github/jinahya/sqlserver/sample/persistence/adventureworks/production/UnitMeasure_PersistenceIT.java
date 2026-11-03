@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class UnitMeasure_PersistenceIT extends _Entity_PersistenceIT<UnitMeasure> {
+class UnitMeasure_PersistenceIT
+        extends _Entity_PersistenceIT<UnitMeasure> {
 
     UnitMeasure_PersistenceIT() {
         super(UnitMeasure.class);

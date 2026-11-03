@@ -26,35 +26,37 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Production.ProductModelProductDescriptionCulture} table, whose rows are identified
- * by {@code ProductModelID}, {@code ProductDescriptionID}, {@code CultureID}.
+ * The identifier class of the {@code Production.ProductModelProductDescriptionCulture} table, whose
+ * rows are identified by {@code ProductModelID}, {@code ProductDescriptionID}, {@code CultureID}.
  * <p>
- * {@link MappedProductModelProductDescriptionCulture} embeds this class with {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of
- * this class map the columns of the key.
+ * {@link MappedProductModelProductDescriptionCulture} embeds this class with
+ * {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of this class map the columns
+ * of the key.
  */
 @Embeddable
 public class ProductModelProductDescriptionCultureId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_PRODUCT_MODEL_ID} column. The value is {@value}.
+     * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_PRODUCT_MODEL_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_PRODUCT_DESCRIPTION_ID} column. The value is {@value}.
+     * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_PRODUCT_DESCRIPTION_ID}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID = "productDescriptionId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_CULTURE_ID} column. The value is {@value}.
+     * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_CULTURE_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CULTURE_ID = "cultureId";
 
@@ -128,7 +130,8 @@ public class ProductModelProductDescriptionCultureId {
     }
 
     /**
-     * Replaces current value of the {@code productDescriptionId} attribute with the specified value.
+     * Replaces current value of the {@code productDescriptionId} attribute with the specified
+     * value.
      *
      * @param productDescriptionId new value for the {@code productDescriptionId} attribute.
      */
@@ -157,34 +160,44 @@ public class ProductModelProductDescriptionCultureId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code productModelId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID,
-                          value = "Primary key. Foreign key to ProductModel.ProductModelID.")
+    @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID,
+            nullable = false, insertable = true, updatable = false)
+    @MsDescription.Column(
+            name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID,
+            value = "Primary key. Foreign key to ProductModel.ProductModelID.")
     private Integer productModelId;
 
     /**
      * The value of the {@code productDescriptionId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_DESCRIPTION_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
-                          value = "Primary key. Foreign key to "
-                                  + "ProductDescription.ProductDescriptionID.")
+    @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
+            nullable = false, insertable = true, updatable = false)
+    @MsDescription.Column(
+            name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
+            value = "Primary key. Foreign key to "
+                    + "ProductDescription.ProductDescriptionID.")
     private Integer productDescriptionId;
 
     /**
      * The value of the {@code cultureId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @Size(max = MappedProductModelProductDescriptionCulture.COLUMN_LENGTH_CULTURE_ID)
     @NotNull
-    @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_CULTURE_ID, nullable = false, insertable = true, updatable = false, length = MappedProductModelProductDescriptionCulture.COLUMN_LENGTH_CULTURE_ID)
+    @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_CULTURE_ID,
+            nullable = false, insertable = true, updatable = false,
+            length = MappedProductModelProductDescriptionCulture.COLUMN_LENGTH_CULTURE_ID)
     @MsDescription.Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_CULTURE_ID,
                           value = "Culture identification number. Foreign key to "
                                   + "Culture.CultureID.")

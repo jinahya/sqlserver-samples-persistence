@@ -24,7 +24,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class AwBuildVersion_PersistenceIT extends _Entity_PersistenceIT<AwBuildVersion> {
+class AwBuildVersion_PersistenceIT
+        extends _Entity_PersistenceIT<AwBuildVersion> {
 
     AwBuildVersion_PersistenceIT() {
         super(AwBuildVersion.class);
@@ -33,7 +34,8 @@ class AwBuildVersion_PersistenceIT extends _Entity_PersistenceIT<AwBuildVersion>
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; the installer inserts the one row of {@code dbo.AWBuildVersion}, and nothing else inserts into it.
+     * Does nothing; the installer inserts the one row of {@code dbo.AWBuildVersion}, and nothing
+     * else inserts into it.
      */
     @Disabled("written by the installer: nothing else inserts into it")
     @Override

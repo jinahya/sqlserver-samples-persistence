@@ -48,11 +48,13 @@ GO
 -- ------------------------------------------------------------------------------------------------------- AW_SALES_I_01
 -- The sales director compares the territories. Show, for each territory, its group, how many orders it had and how
 -- much they came to, the largest first.
-SELECT t.Name, t.[Group], COUNT (*) AS Orders, SUM (h.TotalDue) AS TotalDue
+SELECT t.Name, t.[
+Group], COUNT (*) AS Orders, SUM (h.TotalDue) AS TotalDue
 FROM Sales.SalesOrderHeader h
     JOIN Sales.SalesTerritory t
 ON t.TerritoryID = h.TerritoryID
-GROUP BY t.TerritoryID, t.Name, t.[Group]
+GROUP BY t.TerritoryID, t.Name, t.[
+Group]
 ORDER BY TotalDue DESC
 ;
 GO
@@ -111,12 +113,14 @@ GO
 -- ------------------------------------------------------------------------------------------------------- AW_SALES_A_02
 -- The sales director ranks the sales persons of each territory group. Show every sales person with a territory, ranked
 -- by this year's sales within the group of their territory.
-SELECT t.[Group], t.Name AS Territory, p.LastName, sp.SalesYTD,
+SELECT t.[
+Group], t.Name AS Territory, p.LastName, sp.SalesYTD,
     RANK() OVER (PARTITION BY t.[Group] ORDER BY sp.SalesYTD DESC) AS GroupRank
 FROM Sales.SalesPerson sp
     JOIN Person.Person p
 ON p.BusinessEntityID = sp.BusinessEntityID
     JOIN Sales.SalesTerritory t ON t.TerritoryID = sp.TerritoryID
-ORDER BY t.[Group], GroupRank
+ORDER BY t.[
+Group], GroupRank
 ;
 GO

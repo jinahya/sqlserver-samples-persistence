@@ -60,11 +60,13 @@ import java.util.Optional;
        }
 )
 @IdClass(SalesPersonQuotaHistoryId.class)
-public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
+public class SalesPersonQuotaHistory
+        extends MappedSalesPersonQuotaHistory {
 
     /**
-     * The name of the attribute of the {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -100,8 +102,8 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code SalesPerson} which the {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID} foreign
-     * key references.
+     * Returns the {@code SalesPerson} which the
+     * {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID} foreign key references.
      *
      * @return the {@code SalesPerson} referenced; {@code null} when none is.
      */
@@ -110,14 +112,17 @@ public class SalesPersonQuotaHistory extends MappedSalesPersonQuotaHistory {
     }
 
     /**
-     * Replaces the {@code SalesPerson} which the {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID}
-     * foreign key references, and the value of the column it consists of.
+     * Replaces the {@code SalesPerson} which the
+     * {@code FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID} foreign key references, and
+     * the value of the column it consists of.
      *
      * @param businessEntity the {@code SalesPerson} to reference; {@code null} for none.
      */
     private void setBusinessEntity(final SalesPerson businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(Optional.ofNullable(businessEntity).map(SalesPerson::getBusinessEntityId).orElse(null));
+        setBusinessEntityId(
+                Optional.ofNullable(businessEntity).map(SalesPerson::getBusinessEntityId)
+                        .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -39,8 +39,10 @@ class ProductModelIllustration_Persister
     @Override
     public ProductModelIllustration apply(final EntityManager entityManager,
                                           final ProductModelIllustration entityInstance) {
-        final var productModel = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductModel.class);
-        final var illustration = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Illustration.class);
+        final var productModel =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductModel.class);
+        final var illustration =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Illustration.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         return super.apply(entityManager, ProductModelIllustration.of(productModel, illustration));

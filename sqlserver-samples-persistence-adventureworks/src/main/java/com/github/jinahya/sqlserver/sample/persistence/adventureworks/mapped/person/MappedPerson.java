@@ -96,12 +96,16 @@ import java.util.UUID;
  * <tr><th scope="col">Trigger</th><th scope="col">Timing</th><th scope="col">Events</th></tr>
  * </thead>
  * <tbody>
- * <tr><th scope="row">{@code iuPerson}</th><td>{@code AFTER}</td><td>{@code INSERT}, {@code UPDATE}</td></tr>
+ * <tr><th scope="row">{@code iuPerson}</th><td>{@code AFTER}</td><td>{@code INSERT}, {@code
+ * UPDATE}</td></tr>
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -134,7 +138,8 @@ public abstract class MappedPerson {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -151,80 +156,91 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_PERSON_TYPE = 2;
 
     /**
-     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a store contact. The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a store contact. The value is
+     * {@value}.
      */
     public static final String COLUMN_VALUE_PERSON_TYPE_STORE_CONTACT = "SC";
 
     /**
-     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for an individual (retail) customer. The value is
-     * {@value}.
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for an individual (retail) customer.
+     * The value is {@value}.
      */
     public static final String COLUMN_VALUE_PERSON_TYPE_INDIVIDUAL_CUSTOMER = "IN";
 
     /**
-     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a sales person. The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a sales person. The value is
+     * {@value}.
      */
     public static final String COLUMN_VALUE_PERSON_TYPE_SALES_PERSON = "SP";
 
     /**
-     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for an employee (non-sales). The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for an employee (non-sales). The
+     * value is {@value}.
      */
     public static final String COLUMN_VALUE_PERSON_TYPE_EMPLOYEE = "EM";
 
     /**
-     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a vendor contact. The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a vendor contact. The value is
+     * {@value}.
      */
     public static final String COLUMN_VALUE_PERSON_TYPE_VENDOR_CONTACT = "VC";
 
     /**
-     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a general contact. The value is {@value}.
+     * A value of the {@value #COLUMN_NAME_PERSON_TYPE} column, for a general contact. The value is
+     * {@value}.
      */
     public static final String COLUMN_VALUE_PERSON_TYPE_GENERAL_CONTACT = "GC";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_TYPE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PERSON_TYPE = "personType";
 
     /**
-     * An enum for the {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute, of the values the {@code CK_Person_PersonType}
-     * constraint allows.
+     * An enum for the {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute, of the values the
+     * {@code CK_Person_PersonType} constraint allows.
      * {@snippet lang = "sql":
-     * ([PersonType] IS NULL OR (upper([PersonType])='GC' OR upper([PersonType])='SP' OR upper([PersonType])='EM' OR upper([PersonType])='IN' OR upper([PersonType])='VC' OR upper([PersonType])='SC'))
+     * ([PersonType] IS NULL OR (upper([PersonType])='GC' OR upper([PersonType])='SP' OR upper
+     * ([PersonType])='EM' OR upper([PersonType])='IN' OR upper([PersonType])='VC' OR upper
+     * ([PersonType])='SC'))
      *} The constants are named after the column values, which are stored in upper case.
      */
     public enum PersonType {
 
         /**
-         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_STORE_CONTACT} value, for a store contact.
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_STORE_CONTACT} value,
+         * for a store contact.
          */
         SC,
 
         /**
-         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_INDIVIDUAL_CUSTOMER} value, for an
-         * individual (retail) customer.
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_INDIVIDUAL_CUSTOMER}
+         * value, for an individual (retail) customer.
          */
         IN,
 
         /**
-         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_SALES_PERSON} value, for a sales person.
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_SALES_PERSON} value, for
+         * a sales person.
          */
         SP,
 
         /**
-         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_EMPLOYEE} value, for an employee
-         * (non-sales).
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_EMPLOYEE} value, for an
+         * employee (non-sales).
          */
         EM,
 
         /**
-         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_VENDOR_CONTACT} value, for a vendor contact.
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_VENDOR_CONTACT} value,
+         * for a vendor contact.
          */
         VC,
 
         /**
-         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_GENERAL_CONTACT} value, for a general
-         * contact.
+         * A constant for the {@value MappedPerson#COLUMN_VALUE_PERSON_TYPE_GENERAL_CONTACT} value,
+         * for a general contact.
          */
         GC
     }
@@ -232,12 +248,14 @@ public abstract class MappedPerson {
     // ----------------------------------------------------------------------------------- NameStyle
 
     /**
-     * The name of the {@code NameStyle (bit), DEFAULT ((0)), NOT NULL} column. The value is {@value}.
+     * The name of the {@code NameStyle (bit), DEFAULT ((0)), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_NAME_STYLE = "NameStyle";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME_STYLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME_STYLE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME_STYLE = "nameStyle";
 
@@ -254,7 +272,8 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_TITLE = 8;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
@@ -271,7 +290,8 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_FIRST_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FIRST_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FIRST_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
@@ -288,7 +308,8 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_MIDDLE_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MIDDLE_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MIDDLE_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIDDLE_NAME = "middleName";
 
@@ -305,7 +326,8 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_LAST_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
@@ -322,7 +344,8 @@ public abstract class MappedPerson {
     public static final int COLUMN_LENGTH_SUFFIX = 10;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SUFFIX} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SUFFIX} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUFFIX = "suffix";
 
@@ -334,19 +357,22 @@ public abstract class MappedPerson {
     public static final String COLUMN_NAME_EMAIL_PROMOTION = "EmailPromotion";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the {@code CK_Person_EmailPromotion}
-     * check constraint ({@code [EmailPromotion]>=(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the
+     * {@code CK_Person_EmailPromotion} check constraint ({@code [EmailPromotion]>=(0)}) requires.
+     * The value is {@value}.
      */
     public static final int COLUMN_MIN_EMAIL_PROMOTION = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the {@code CK_Person_EmailPromotion}
-     * check constraint ({@code [EmailPromotion]<=(2)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_EMAIL_PROMOTION} column, as the
+     * {@code CK_Person_EmailPromotion} check constraint ({@code [EmailPromotion]<=(2)}) requires.
+     * The value is {@value}.
      */
     public static final int COLUMN_MAX_EMAIL_PROMOTION = +2;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMAIL_PROMOTION = "emailPromotion";
 
@@ -358,8 +384,8 @@ public abstract class MappedPerson {
     public static final String COLUMN_NAME_ADDITIONAL_CONTACT_INFO = "AdditionalContactInfo";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDITIONAL_CONTACT_INFO} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDITIONAL_CONTACT_INFO}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO = "additionalContactInfo";
 
@@ -371,31 +397,36 @@ public abstract class MappedPerson {
     public static final String COLUMN_NAME_DEMOGRAPHICS = "Demographics";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DEMOGRAPHICS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DEMOGRAPHICS} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DEMOGRAPHICS = "demographics";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -470,7 +501,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -490,7 +522,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute with the specified
+     * value.
      *
      * @param personType new value for {@value #ATTRIBUTE_NAME_PERSON_TYPE} attribute.
      */
@@ -510,7 +543,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_NAME_STYLE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_NAME_STYLE} attribute with the specified
+     * value.
      *
      * @param nameStyle new value for {@value #ATTRIBUTE_NAME_NAME_STYLE} attribute.
      */
@@ -550,7 +584,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute with the specified
+     * value.
      *
      * @param firstName new value for {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
      */
@@ -570,7 +605,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute with the specified
+     * value.
      *
      * @param middleName new value for {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute.
      */
@@ -590,7 +626,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute with the specified
+     * value.
      *
      * @param lastName new value for {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
      */
@@ -610,7 +647,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute with the specified
+     * value.
      *
      * @param suffix new value for {@value #ATTRIBUTE_NAME_SUFFIX} attribute.
      */
@@ -630,7 +668,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute with the
+     * specified value.
      *
      * @param emailPromotion new value for {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute.
      */
@@ -650,9 +689,11 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO} attribute with the
+     * specified value.
      *
-     * @param additionalContactInfo new value for {@value #ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO} attribute.
+     * @param additionalContactInfo new value for {@value #ATTRIBUTE_NAME_ADDITIONAL_CONTACT_INFO}
+     *                              attribute.
      */
     public void setAdditionalContactInfo(final String additionalContactInfo) {
         this.additionalContactInfo = additionalContactInfo;
@@ -670,7 +711,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute with the specified
+     * value.
      *
      * @param demographics new value for {@value #ATTRIBUTE_NAME_DEMOGRAPHICS} attribute.
      */
@@ -701,7 +743,8 @@ public abstract class MappedPerson {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -710,10 +753,12 @@ public abstract class MappedPerson {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for Person records.")
     private Integer businessEntityId;
@@ -722,7 +767,8 @@ public abstract class MappedPerson {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PERSON_TYPE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PERSON_TYPE)
+    @Column(name = COLUMN_NAME_PERSON_TYPE, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_PERSON_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_PERSON_TYPE,
                           value = "Primary type of person: SC = Store Contact, IN = Individual "
                                   + "(retail) customer, SP = Sales person, EM = Employee "
@@ -743,7 +789,8 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_TITLE)
+    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_TITLE)
     @MsDescription.Column(name = COLUMN_NAME_TITLE,
                           value = "A courtesy title. For example, Mr. or Ms.")
     private String title;
@@ -752,14 +799,16 @@ public abstract class MappedPerson {
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FIRST_NAME)
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_FIRST_NAME)
     @MsDescription.Column(name = COLUMN_NAME_FIRST_NAME, value = "First name of the person.")
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_MIDDLE_NAME)
+    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_MIDDLE_NAME)
     @MsDescription.Column(name = COLUMN_NAME_MIDDLE_NAME,
                           value = "Middle name or middle initial of the person.")
     private String middleName;
@@ -768,14 +817,16 @@ public abstract class MappedPerson {
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_LAST_NAME)
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_LAST_NAME)
     @MsDescription.Column(name = COLUMN_NAME_LAST_NAME, value = "Last name of the person.")
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUFFIX)
+    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_SUFFIX)
     @MsDescription.Column(name = COLUMN_NAME_SUFFIX,
                           value = "Surname suffix. For example, Sr. or Jr.")
     private String suffix;
@@ -786,7 +837,8 @@ public abstract class MappedPerson {
     @Min(COLUMN_MIN_EMAIL_PROMOTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_PROMOTION,
                           value = "0 = Contact does not wish to receive e-mail promotions, 1 = "
                                   + "Contact does wish to receive e-mail promotions from "
@@ -797,7 +849,8 @@ public abstract class MappedPerson {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO, nullable = true, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ADDITIONAL_CONTACT_INFO,
                           value = "Additional contact information about the person stored in "
                                   + "xml format.")
@@ -812,7 +865,8 @@ public abstract class MappedPerson {
     private String demographics;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -822,10 +876,12 @@ public abstract class MappedPerson {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Person_ModifiedDate", value = "(getdate())")

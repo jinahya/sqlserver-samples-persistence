@@ -50,7 +50,10 @@ FROM Production.TransactionHistory
 -- ---------------------------------------------------------------------------------------------------- ReferenceOrderID
 -- the orders referred to, by TransactionType; P 3584 purchase orders, 417 to 4000; S 21674 sales orders, 53450 to
 -- 75123; W 31002 work orders, 41590 to 72591.
-SELECT TransactionType, COUNT(DISTINCT ReferenceOrderID) AS orders, MIN(ReferenceOrderID), MAX(ReferenceOrderID)
+SELECT TransactionType,
+       COUNT(DISTINCT ReferenceOrderID) AS orders,
+       MIN(ReferenceOrderID),
+       MAX(ReferenceOrderID)
 FROM Production.TransactionHistory
 GROUP BY TransactionType
 ORDER BY TransactionType ASC
@@ -83,7 +86,7 @@ FROM Production.TransactionHistory
 
 -- a TransactionDate with a time of day.
 -- no rows: every TransactionDate is midnight.
-SELECT TOP (3) TransactionID, TransactionDate
+SELECT TOP(3) TransactionID, TransactionDate
 FROM Production.TransactionHistory
 WHERE TransactionDate <> CAST(CAST(TransactionDate AS date) AS datetime)
 ORDER BY TransactionID ASC
@@ -100,7 +103,7 @@ ORDER BY TransactionType ASC
 
 -- a TransactionType in lower case; the check constraint compares UPPER, so it lets one in.
 -- no rows: every type is upper case.
-SELECT TOP (3) TransactionID, TransactionType
+SELECT TOP(3) TransactionID, TransactionType
 FROM Production.TransactionHistory
 WHERE TransactionType COLLATE Latin1_General_BIN <> UPPER(TransactionType)
 ;
@@ -118,7 +121,10 @@ ORDER BY TransactionType ASC
 -- ---------------------------------------------------------------------------------------------------------- ActualCost
 -- the smallest and the largest ActualCost, and how many are zero, by TransactionType; P 0.2100 to 82.8345 and S 1.3740
 -- to 2443.3500, none zero; W 0.0000 for all 31002.
-SELECT TransactionType, MIN(ActualCost), MAX(ActualCost), SUM(CASE WHEN ActualCost = 0 THEN 1 ELSE 0 END) AS zero
+SELECT TransactionType,
+       MIN(ActualCost),
+       MAX(ActualCost),
+       SUM(CASE WHEN ActualCost = 0 THEN 1 ELSE 0 END) AS zero
 FROM Production.TransactionHistory
 GROUP BY TransactionType
 ORDER BY TransactionType ASC
@@ -143,7 +149,7 @@ WHERE ModifiedDate < TransactionDate
 -- ---------------------------------------------------------------------------------------------------------------------
 -- a transaction also in the archive, by TransactionID.
 -- no rows: the archive holds 1 to 89253, the history starts at 100000.
-SELECT TOP (3) h.TransactionID
+SELECT TOP(3) h.TransactionID
 FROM Production.TransactionHistory h
          JOIN Production.TransactionHistoryArchive a ON a.TransactionID = h.TransactionID
 ;

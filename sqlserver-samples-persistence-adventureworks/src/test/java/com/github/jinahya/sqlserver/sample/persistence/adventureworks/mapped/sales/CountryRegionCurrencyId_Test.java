@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link CountryRegionCurrencyId} id class.
  */
-class CountryRegionCurrencyId_Test extends _NonEntity_Test<CountryRegionCurrencyId> {
+class CountryRegionCurrencyId_Test
+        extends _NonEntity_Test<CountryRegionCurrencyId> {
 
     CountryRegionCurrencyId_Test() {
         super(CountryRegionCurrencyId.class);

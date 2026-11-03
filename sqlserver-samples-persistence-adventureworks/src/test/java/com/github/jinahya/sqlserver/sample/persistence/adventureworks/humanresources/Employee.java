@@ -39,13 +39,13 @@ import java.time.LocalDateTime;
 /**
  * An entity which maps the {@code HumanResources.Employee} table.
  * <p>
- * Three named stored procedure queries call the procedures of {@code HumanResources}, each of which updates an
- * employee: {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}, which also adds a row to
- * {@code HumanResources.EmployeePayHistory}, in one transaction;
+ * Three named stored procedure queries call the procedures of {@code HumanResources}, each of which
+ * updates an employee: {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO}, which
+ * also adds a row to {@code HumanResources.EmployeePayHistory}, in one transaction;
  * {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_LOGIN}; and
- * {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO}. Their parameters are positional, in the
- * order each procedure declares them; every one is required. A procedure logs a failure to {@code dbo.ErrorLog} and
- * raises nothing.
+ * {@value #NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO}. Their parameters are
+ * positional, in the order each procedure declares them; every one is required. A procedure logs a
+ * failure to {@code dbo.ErrorLog} and raises nothing.
  */
 @NamedStoredProcedureQuery(
         name = Employee.NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO,
@@ -65,7 +65,8 @@ import java.time.LocalDateTime;
         procedureName = "HumanResources.uspUpdateEmployeeLogin",
         parameters = {
                 @StoredProcedureParameter(type = Integer.class),       // @BusinessEntityID int
-                @StoredProcedureParameter(type = byte[].class),        // @OrganizationNode hierarchyid
+                @StoredProcedureParameter(
+                        type = byte[].class),        // @OrganizationNode hierarchyid
                 @StoredProcedureParameter(type = String.class),        // @LoginID nvarchar(256)
                 @StoredProcedureParameter(type = String.class),        // @JobTitle nvarchar(50)
                 @StoredProcedureParameter(type = LocalDateTime.class), // @HireDate datetime
@@ -77,7 +78,8 @@ import java.time.LocalDateTime;
         procedureName = "HumanResources.uspUpdateEmployeePersonalInfo",
         parameters = {
                 @StoredProcedureParameter(type = Integer.class),       // @BusinessEntityID int
-                @StoredProcedureParameter(type = String.class),        // @NationalIDNumber nvarchar(15)
+                @StoredProcedureParameter(
+                        type = String.class),        // @NationalIDNumber nvarchar(15)
                 @StoredProcedureParameter(type = LocalDateTime.class), // @BirthDate datetime
                 @StoredProcedureParameter(type = String.class),        // @MaritalStatus nchar(1)
                 @StoredProcedureParameter(type = String.class)         // @Gender nchar(1)
@@ -110,7 +112,7 @@ import java.time.LocalDateTime;
                @CheckConstraint(
                        name = "CK_Employee_BirthDate",
                        constraint = "([BirthDate]>='1930-01-01' AND "
-                               + "[BirthDate]<=dateadd(year,(-18),getdate()))"
+                                    + "[BirthDate]<=dateadd(year,(-18),getdate()))"
                ),
                @CheckConstraint(
                        name = "CK_Employee_Gender",
@@ -119,7 +121,7 @@ import java.time.LocalDateTime;
                @CheckConstraint(
                        name = "CK_Employee_HireDate",
                        constraint = "([HireDate]>='1996-07-01' AND "
-                               + "[HireDate]<=dateadd(day,(1),getdate()))"
+                                    + "[HireDate]<=dateadd(day,(1),getdate()))"
                ),
                @CheckConstraint(
                        name = "CK_Employee_MaritalStatus",
@@ -135,31 +137,35 @@ import java.time.LocalDateTime;
                )
        }
 )
-public class Employee extends MappedEmployee {
+public class Employee
+        extends MappedEmployee {
 
     /**
-     * The name of the attribute of the {@code FK_Employee_Person_BusinessEntityID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_Employee_Person_BusinessEntityID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
     /**
-     * The name of the named stored procedure query which calls {@code HumanResources.uspUpdateEmployeeHireInfo}. The
-     * value is {@value}.
+     * The name of the named stored procedure query which calls
+     * {@code HumanResources.uspUpdateEmployeeHireInfo}. The value is {@value}.
      */
     public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_HIRE_INFO =
             "HumanResourcesEmployee.uspUpdateEmployeeHireInfo";
 
     /**
-     * The name of the named stored procedure query which calls {@code HumanResources.uspUpdateEmployeeLogin}; its
-     * {@code @OrganizationNode} takes the bytes of a {@code hierarchyid}, which SQL Server converts from
-     * {@code varbinary}. The value is {@value}.
+     * The name of the named stored procedure query which calls
+     * {@code HumanResources.uspUpdateEmployeeLogin}; its {@code @OrganizationNode} takes the bytes
+     * of a {@code hierarchyid}, which SQL Server converts from {@code varbinary}. The value is
+     * {@value}.
      */
     public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_LOGIN =
             "HumanResourcesEmployee.uspUpdateEmployeeLogin";
 
     /**
-     * The name of the named stored procedure query which calls {@code HumanResources.uspUpdateEmployeePersonalInfo};
-     * its {@code @MaritalStatus} and {@code @Gender} take the names of the constants. The value is {@value}.
+     * The name of the named stored procedure query which calls
+     * {@code HumanResources.uspUpdateEmployeePersonalInfo}; its {@code @MaritalStatus} and
+     * {@code @Gender} take the names of the constants. The value is {@value}.
      */
     public static final String NAMED_STORED_PROCEDURE_QUERY_USP_UPDATE_EMPLOYEE_PERSONAL_INFO =
             "HumanResourcesEmployee.uspUpdateEmployeePersonalInfo";
@@ -176,7 +182,8 @@ public class Employee extends MappedEmployee {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Person} which the {@code FK_Employee_Person_BusinessEntityID} foreign key references.
+     * Returns the {@code Person} which the {@code FK_Employee_Person_BusinessEntityID} foreign key
+     * references.
      *
      * @return the {@code Person} referenced; {@code null} when none is.
      */
@@ -185,8 +192,8 @@ public class Employee extends MappedEmployee {
     }
 
     /**
-     * Replaces the {@code Person} which the {@code FK_Employee_Person_BusinessEntityID} foreign key references, and the
-     * value of the column it consists of.
+     * Replaces the {@code Person} which the {@code FK_Employee_Person_BusinessEntityID} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Person} to reference; {@code null} for none.
      */

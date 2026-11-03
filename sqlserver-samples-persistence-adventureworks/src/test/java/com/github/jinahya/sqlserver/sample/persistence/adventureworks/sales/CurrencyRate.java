@@ -46,17 +46,18 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class CurrencyRate extends MappedCurrencyRate {
+public class CurrencyRate
+        extends MappedCurrencyRate {
 
     /**
-     * The name of the attribute of the {@code FK_CurrencyRate_Currency_FromCurrencyCode} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_CurrencyRate_Currency_FromCurrencyCode} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FROM_CURRENCY = "fromCurrency";
 
     /**
-     * The name of the attribute of the {@code FK_CurrencyRate_Currency_ToCurrencyCode} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_CurrencyRate_Currency_ToCurrencyCode} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TO_CURRENCY = "toCurrency";
 
@@ -72,7 +73,8 @@ public class CurrencyRate extends MappedCurrencyRate {
     // -------------------------------------------------------------------------------- fromCurrency
 
     /**
-     * Returns the {@code Currency} which the {@code FK_CurrencyRate_Currency_FromCurrencyCode} foreign key references.
+     * Returns the {@code Currency} which the {@code FK_CurrencyRate_Currency_FromCurrencyCode}
+     * foreign key references.
      *
      * @return the {@code Currency} referenced; {@code null} when none is.
      */
@@ -81,8 +83,8 @@ public class CurrencyRate extends MappedCurrencyRate {
     }
 
     /**
-     * Replaces the {@code Currency} which the {@code FK_CurrencyRate_Currency_FromCurrencyCode} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Currency} which the {@code FK_CurrencyRate_Currency_FromCurrencyCode}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param fromCurrency the {@code Currency} to reference; {@code null} for none.
      */
@@ -94,7 +96,8 @@ public class CurrencyRate extends MappedCurrencyRate {
     // ---------------------------------------------------------------------------------- toCurrency
 
     /**
-     * Returns the {@code Currency} which the {@code FK_CurrencyRate_Currency_ToCurrencyCode} foreign key references.
+     * Returns the {@code Currency} which the {@code FK_CurrencyRate_Currency_ToCurrencyCode}
+     * foreign key references.
      *
      * @return the {@code Currency} referenced; {@code null} when none is.
      */
@@ -103,8 +106,8 @@ public class CurrencyRate extends MappedCurrencyRate {
     }
 
     /**
-     * Replaces the {@code Currency} which the {@code FK_CurrencyRate_Currency_ToCurrencyCode} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Currency} which the {@code FK_CurrencyRate_Currency_ToCurrencyCode}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param toCurrency the {@code Currency} to reference; {@code null} for none.
      */

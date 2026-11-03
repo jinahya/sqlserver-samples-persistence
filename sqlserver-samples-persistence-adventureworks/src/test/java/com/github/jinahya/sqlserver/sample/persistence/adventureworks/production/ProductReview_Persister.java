@@ -37,8 +37,10 @@ class ProductReview_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ProductReview apply(final EntityManager entityManager, final ProductReview entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+    public ProductReview apply(final EntityManager entityManager,
+                               final ProductReview entityInstance) {
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the product's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setProduct(product);

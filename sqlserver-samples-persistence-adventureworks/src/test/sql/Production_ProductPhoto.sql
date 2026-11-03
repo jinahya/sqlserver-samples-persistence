@@ -42,14 +42,16 @@ FROM Production.ProductPhoto
 -- ------------------------------------------------------------------------------------------------------ ThumbNailPhoto
 -- ThumbNailPhoto is a nullable varbinary(max); how many photos have none, and how large the others are; none; 1077 to
 -- 17623 bytes.
-SELECT COUNT(*) - COUNT(ThumbNailPhoto) AS without, MIN(DATALENGTH(ThumbNailPhoto)), MAX(DATALENGTH(ThumbNailPhoto))
+SELECT COUNT(*) - COUNT(ThumbNailPhoto) AS without,
+       MIN(DATALENGTH(ThumbNailPhoto)),
+       MAX(DATALENGTH(ThumbNailPhoto))
 FROM Production.ProductPhoto
 ;
 
 -- the first bytes of the thumbnails, the format they are in; 474946, 'GIF', for all 101.
-SELECT CONVERT(varchar(8), SUBSTRING(ThumbNailPhoto, 1, 3), 2) AS magic, COUNT(*) AS photos
+SELECT CONVERT(varchar (8), SUBSTRING(ThumbNailPhoto, 1, 3), 2) AS magic, COUNT(*) AS photos
 FROM Production.ProductPhoto
-GROUP BY CONVERT(varchar(8), SUBSTRING(ThumbNailPhoto, 1, 3), 2)
+GROUP BY CONVERT(varchar (8), SUBSTRING(ThumbNailPhoto, 1, 3), 2)
 ;
 
 
@@ -71,16 +73,18 @@ HAVING COUNT(*) > 1
 ;
 
 -- the file extensions of the thumbnails; .gif for all 101.
-SELECT RIGHT(ThumbnailPhotoFileName, 4) AS extension, COUNT(*) AS photos
+SELECT RIGHT (ThumbnailPhotoFileName, 4) AS extension, COUNT (*) AS photos
 FROM Production.ProductPhoto
-GROUP BY RIGHT(ThumbnailPhotoFileName, 4)
+GROUP BY RIGHT (ThumbnailPhotoFileName, 4)
 ;
 
 
 -- ---------------------------------------------------------------------------------------------------------- LargePhoto
 -- LargePhoto is a nullable varbinary(max); how many photos have none, and how large the others are; none; 1673 to 25925
 -- bytes.
-SELECT COUNT(*) - COUNT(LargePhoto) AS without, MIN(DATALENGTH(LargePhoto)), MAX(DATALENGTH(LargePhoto))
+SELECT COUNT(*) - COUNT(LargePhoto) AS without,
+       MIN(DATALENGTH(LargePhoto)),
+       MAX(DATALENGTH(LargePhoto))
 FROM Production.ProductPhoto
 ;
 
@@ -88,7 +92,9 @@ FROM Production.ProductPhoto
 -- -------------------------------------------------------------------------------------------------- LargePhotoFileName
 -- how many photos have no LargePhotoFileName, and the shortest and the longest; none; 14 and 35 characters, of the 50
 -- the column allows.
-SELECT COUNT(*) - COUNT(LargePhotoFileName) AS without, MIN(LEN(LargePhotoFileName)), MAX(LEN(LargePhotoFileName))
+SELECT COUNT(*) - COUNT(LargePhotoFileName) AS without,
+       MIN(LEN(LargePhotoFileName)),
+       MAX(LEN(LargePhotoFileName))
 FROM Production.ProductPhoto
 ;
 
@@ -115,9 +121,9 @@ SELECT (SELECT COUNT(*)
         WHERE NOT EXISTS (SELECT 1
                           FROM Production.ProductProductPhoto pp
                           WHERE pp.ProductPhotoID = f.ProductPhotoID)) AS unused,
-       (SELECT TOP (1) COUNT(*)
-        FROM Production.ProductProductPhoto
-        GROUP BY ProductPhotoID
-        ORDER BY COUNT(*) DESC) AS mostProducts
+       (SELECT TOP(1) COUNT (*)
+FROM Production.ProductProductPhoto
+GROUP BY ProductPhotoID
+ORDER BY COUNT (*) DESC) AS mostProducts
 ;
 

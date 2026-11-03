@@ -67,8 +67,11 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -96,7 +99,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -108,7 +112,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     public static final String COLUMN_NAME_QUOTA_DATE = "QuotaDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTA_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTA_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUOTA_DATE = "quotaDate";
 
@@ -121,37 +126,42 @@ public abstract class MappedSalesPersonQuotaHistory {
 
     /**
      * The exclusive minimum value of the {@value #COLUMN_NAME_SALES_QUOTA} column, as the
-     * {@code CK_SalesPersonQuotaHistory_SalesQuota} check constraint ({@code [SalesQuota]>(0.00)}) requires. The value
-     * is {@value}.
+     * {@code CK_SalesPersonQuotaHistory_SalesQuota} check constraint ({@code [SalesQuota]>(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_SALES_QUOTA_EXCLUSIVE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_QUOTA = "salesQuota";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -213,17 +223,19 @@ public abstract class MappedSalesPersonQuotaHistory {
      * Returns current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getBusinessEntityId() {
         return businessEntityId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -243,7 +255,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_QUOTA_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_QUOTA_DATE} attribute with the specified
+     * value.
      *
      * @param quotaDate new value for {@value #ATTRIBUTE_NAME_QUOTA_DATE} attribute.
      */
@@ -263,7 +276,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute with the specified
+     * value.
      *
      * @param salesQuota new value for {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute.
      */
@@ -294,7 +308,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -303,17 +318,20 @@ public abstract class MappedSalesPersonQuotaHistory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Sales person identification number. Foreign key to "
                                   + "SalesPerson.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_QUOTA_DATE, nullable = false, insertable = true, updatable = false)
@@ -330,7 +348,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     private BigDecimal salesQuota;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -340,10 +359,12 @@ public abstract class MappedSalesPersonQuotaHistory {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesPersonQuotaHistory_ModifiedDate", value = "(getdate())")

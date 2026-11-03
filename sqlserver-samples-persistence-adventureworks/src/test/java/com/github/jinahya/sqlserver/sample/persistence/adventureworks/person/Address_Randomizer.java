@@ -20,15 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link Address}; the generated identifier, what SQL Server fills, and
- * the state or province, which the persister sets, are left out.
+ * Randomizes a new {@link Address}; the generated identifier, what SQL Server fills, and the state
+ * or province, which the persister sets, are left out.
  */
 class Address_Randomizer
         extends PodamObjectRandomizer<Address> {
@@ -48,7 +48,8 @@ class Address_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has a valid point as its spatial location, which Podam can not build.
+     * @implNote The returned instance has a valid point as its spatial location, which
+     *         Podam can not build.
      */
     @Override
     public Address get() {

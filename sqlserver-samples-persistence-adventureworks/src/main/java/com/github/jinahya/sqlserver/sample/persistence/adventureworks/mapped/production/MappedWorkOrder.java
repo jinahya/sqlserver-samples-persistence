@@ -41,9 +41,9 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.WorkOrder} table.
  * <p>
- * The {@value #COLUMN_NAME_PRODUCT_ID}, {@value #COLUMN_NAME_SCRAP_REASON_ID} columns are mapped read-only, as a
- * foreign key; the extending entity owns the writable mapping, through an association's
- * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_PRODUCT_ID}, {@value #COLUMN_NAME_SCRAP_REASON_ID} columns are mapped
+ * read-only, as a foreign key; the extending entity owns the writable mapping, through an
+ * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Defaults of {@code Production.WorkOrder}</caption>
@@ -77,8 +77,12 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  */
 @MappedSuperclass
 @MsTrigger(
@@ -109,7 +113,8 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_WORK_ORDER_ID = "WorkOrderID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_ORDER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_ORDER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER_ID = "workOrderId";
 
@@ -121,7 +126,8 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -133,8 +139,9 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_ORDER_QTY = "OrderQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the {@code CK_WorkOrder_OrderQty} check
-     * constraint ({@code [OrderQty]>(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the
+     * {@code CK_WorkOrder_OrderQty} check constraint ({@code [OrderQty]>(0)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MIN_ORDER_QTY = +1;
 
@@ -144,20 +151,22 @@ public abstract class MappedWorkOrder {
     public static final int COLUMN_MAX_ORDER_QTY = Integer.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_QTY = "orderQty";
 
     // ---------------------------------------------------------------------------------- StockedQty
 
     /**
-     * The name of the {@code int, computed as (isnull([OrderQty]-[ScrappedQty],(0))), NOT NULL} column. The value is
-     * {@value}.
+     * The name of the {@code int, computed as (isnull([OrderQty]-[ScrappedQty],(0))), NOT NULL}
+     * column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STOCKED_QTY = "StockedQty";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STOCKED_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STOCKED_QTY} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STOCKED_QTY = "stockedQty";
 
@@ -169,8 +178,9 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_SCRAPPED_QTY = "ScrappedQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SCRAPPED_QTY} column, as the {@code CK_WorkOrder_ScrappedQty}
-     * check constraint ({@code [ScrappedQty]>=(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_SCRAPPED_QTY} column, as the
+     * {@code CK_WorkOrder_ScrappedQty} check constraint ({@code [ScrappedQty]>=(0)}) requires. The
+     * value is {@value}.
      */
     public static final int COLUMN_MIN_SCRAPPED_QTY = 0;
 
@@ -180,7 +190,8 @@ public abstract class MappedWorkOrder {
     public static final int COLUMN_MAX_SCRAPPED_QTY = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAPPED_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAPPED_QTY} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCRAPPED_QTY = "scrappedQty";
 
@@ -192,7 +203,8 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_START_DATE = "StartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
@@ -204,7 +216,8 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_END_DATE = "EndDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_END_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_END_DATE = "endDate";
 
@@ -216,7 +229,8 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_DUE_DATE = "DueDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DUE_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DUE_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_DUE_DATE = "dueDate";
 
@@ -228,29 +242,34 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_SCRAP_REASON_ID = "ScrapReasonID";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_MIN_SCRAP_REASON_ID = Short.MIN_VALUE;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_MAX_SCRAP_REASON_ID = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SCRAP_REASON_ID = "scrapReasonId";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -313,16 +332,17 @@ public abstract class MappedWorkOrder {
     // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
-     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before the
-     * {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's {@code CK_WorkOrder_EndDate} constraint requires.
+     * Checks whether the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null} or not before
+     * the {@value #ATTRIBUTE_NAME_START_DATE} attribute, as the table's
+     * {@code CK_WorkOrder_EndDate} constraint requires.
      * {@snippet lang = "sql":
      * ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_START_DATE}
-     *         attribute; {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_END_DATE} attribute is {@code null}, or
+     *         the {@value #ATTRIBUTE_NAME_START_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_END_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_START_DATE} attribute; {@code false} otherwise.
      */
     @AssertTrue(message = "endDate must be null or not before startDate")
     protected boolean isEndDateValid() {
@@ -344,7 +364,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute with the specified
+     * value.
      *
      * @param workOrderId new value for {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute.
      */
@@ -364,8 +385,9 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -385,7 +407,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute with the specified
+     * value.
      *
      * @param orderQty new value for {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute.
      */
@@ -405,8 +428,9 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STOCKED_QTY} attribute with the specified value. The database
-     * writes the column; this is for the provider and the extending class only.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STOCKED_QTY} attribute with the specified
+     * value. The database writes the column; this is for the provider and the extending class
+     * only.
      *
      * @param stockedQty new value for {@value #ATTRIBUTE_NAME_STOCKED_QTY} attribute.
      */
@@ -426,7 +450,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SCRAPPED_QTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SCRAPPED_QTY} attribute with the specified
+     * value.
      *
      * @param scrappedQty new value for {@value #ATTRIBUTE_NAME_SCRAPPED_QTY} attribute.
      */
@@ -446,7 +471,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified
+     * value.
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
@@ -466,7 +492,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_END_DATE} attribute with the specified
+     * value.
      *
      * @param endDate new value for {@value #ATTRIBUTE_NAME_END_DATE} attribute.
      */
@@ -486,7 +513,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DUE_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DUE_DATE} attribute with the specified
+     * value.
      *
      * @param dueDate new value for {@value #ATTRIBUTE_NAME_DUE_DATE} attribute.
      */
@@ -506,9 +534,9 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param scrapReasonId new value for {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
@@ -528,7 +556,8 @@ public abstract class MappedWorkOrder {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -537,15 +566,18 @@ public abstract class MappedWorkOrder {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true,
+            updatable = false)
     private Integer workOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
@@ -594,17 +626,21 @@ public abstract class MappedWorkOrder {
     private LocalDateTime dueDate;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Max(COLUMN_MAX_SCRAP_REASON_ID)
     @Min(COLUMN_MIN_SCRAP_REASON_ID)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = true, insertable = false,
+            updatable = false)
     private Integer scrapReasonId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing
+    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents
+    // it as changing
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDefault(name = "DF_WorkOrder_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

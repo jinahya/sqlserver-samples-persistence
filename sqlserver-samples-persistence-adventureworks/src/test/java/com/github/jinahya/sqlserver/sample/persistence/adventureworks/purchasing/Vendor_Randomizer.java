@@ -26,8 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link Vendor}; the identifier and the business entity, which the persister sets, and what SQL
- * Server fills are left out.
+ * Randomizes a new {@link Vendor}; the identifier and the business entity, which the persister
+ * sets, and what SQL Server fills are left out.
  */
 class Vendor_Randomizer
         extends PodamObjectRandomizer<Vendor> {

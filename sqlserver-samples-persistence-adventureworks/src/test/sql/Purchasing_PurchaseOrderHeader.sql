@@ -37,7 +37,7 @@ FROM Purchasing.PurchaseOrderHeader
 -- ------------------------------------------------------------------------------------------------------ RevisionNumber
 -- how many distinct RevisionNumber, the smallest, the largest and the most common; 10 values, 5 to 21; 5 on 3813
 -- orders.
-SELECT TOP (1) COUNT(*) OVER () AS distinct_values, MIN(RevisionNumber) OVER () AS smallest,
+SELECT TOP(1) COUNT(*) OVER () AS distinct_values, MIN(RevisionNumber) OVER () AS smallest,
        MAX(RevisionNumber) OVER () AS largest, RevisionNumber AS most_common, COUNT(*) AS orders
 FROM Purchasing.PurchaseOrderHeader
 GROUP BY RevisionNumber
@@ -105,9 +105,9 @@ WHERE CAST(OrderDate AS time) <> '00:00'
 ;
 
 -- the orders of each year; 2022 28, 2023 252, 2024 1323 and 2025 2409.
-SELECT YEAR(OrderDate) AS year, COUNT(*) AS orders
+SELECT YEAR (OrderDate) AS year, COUNT (*) AS orders
 FROM Purchasing.PurchaseOrderHeader
-GROUP BY YEAR(OrderDate)
+GROUP BY YEAR (OrderDate)
 ORDER BY year ASC
 ;
 
@@ -189,15 +189,20 @@ FROM Purchasing.PurchaseOrderHeader
 
 -- ModifiedDate against OrderDate and ShipDate; 4000 modified on their ShipDate, none before the OrderDate, 12 after the
 -- ShipDate.
-SELECT COUNT(IIF(ModifiedDate = ShipDate, 1, NULL)) AS at_ship,
+SELECT COUNT(IIF(ModifiedDate = ShipDate, 1, NULL))  AS at_ship,
        COUNT(IIF(ModifiedDate < OrderDate, 1, NULL)) AS before_order,
-       COUNT(IIF(ModifiedDate > ShipDate, 1, NULL)) AS after_ship
+       COUNT(IIF(ModifiedDate > ShipDate, 1, NULL))  AS after_ship
 FROM Purchasing.PurchaseOrderHeader
 ;
 
 -- the orders modified after they shipped; a finding: the 12 approved orders, 4001 to 4012, all modified at 2026-08-11
 -- 12:25:46, well after the install of 2025-11-14.
-SELECT Status, COUNT(*) AS orders, MIN(PurchaseOrderID), MAX(PurchaseOrderID), MIN(ModifiedDate), MAX(ModifiedDate)
+SELECT Status,
+       COUNT(*) AS orders,
+       MIN(PurchaseOrderID),
+       MAX(PurchaseOrderID),
+       MIN(ModifiedDate),
+       MAX(ModifiedDate)
 FROM Purchasing.PurchaseOrderHeader
 WHERE ModifiedDate > ShipDate
 GROUP BY Status

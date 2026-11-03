@@ -35,8 +35,9 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code HumanResources.JobCandidate} table.
  * <p>
- * The {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column is mapped read-only, as a foreign key; the extending entity owns
- * the writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column is mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code HumanResources.JobCandidate}</caption>
@@ -65,12 +66,16 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
-// not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+// not updatable: an identity column, which SQL Server does not update (error 8102); and the
+// identifier, which
 // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
-                   column = @Column(name = MappedJobCandidate.COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = true, updatable = false)
+                   column = @Column(name = MappedJobCandidate.COLUMN_NAME_JOB_CANDIDATE_ID,
+                                    nullable = false, insertable = true, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -106,7 +111,8 @@ public abstract class MappedJobCandidate
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -118,19 +124,22 @@ public abstract class MappedJobCandidate
     public static final String COLUMN_NAME_RESUME = "Resume";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_RESUME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_RESUME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_RESUME = "resume";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -187,7 +196,8 @@ public abstract class MappedJobCandidate
     // ------------------------------------------------------------------------------ jobCandidateId
 
     /**
-     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column.
+     * Returns current value of the identifier, which maps the
+     * {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column.
      *
      * @return current value of the identifier.
      */
@@ -207,9 +217,9 @@ public abstract class MappedJobCandidate
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -229,7 +239,8 @@ public abstract class MappedJobCandidate
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_RESUME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_RESUME} attribute with the specified
+     * value.
      *
      * @param resume new value for {@value #ATTRIBUTE_NAME_RESUME} attribute.
      */
@@ -249,7 +260,8 @@ public abstract class MappedJobCandidate
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -258,9 +270,11 @@ public abstract class MappedJobCandidate
     }
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = true, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Employee identification number if applicant was hired. "
                                   + "Foreign key to Employee.BusinessEntityID.")
@@ -273,10 +287,12 @@ public abstract class MappedJobCandidate
     private String resume;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_JobCandidate_ModifiedDate", value = "(getdate())")

@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Path;
@@ -40,8 +41,8 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * The integration tests of an entity, against the
- * {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit on the database {@code compose.yaml}
- * brings up. Each reads installed rows only, and rolls back.
+ * {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit on the database {@code compose.yaml}
+ * brings up. Each reads installed rows, or persists a new randomized instance, and rolls back.
  *
  * @param <T> the type of the entity.
  */
@@ -70,33 +71,10 @@ public abstract class _Entity_PersistenceIT<T> {
     }
 
     private EntityType<T> entityType() {
-        return ___Persistence_TestUtils.entityManagerFactory().getMetamodel().entity(entityClass);
+        return ___PersistenceIT_Utils.entityManagerFactory().getMetamodel().entity(entityClass);
     }
 
     // ---------------------------------------------------------------------------------------------
-    @DisplayName("the installed rows are read, and each is found again by its identifier")
-    @Test
-    void find() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
-            final var selected = select(em);
-            assumeFalse(selected.isEmpty(),
-                        () -> "no row of " + entityClass.getSimpleName() + " is installed");
-            final var util = em.getEntityManagerFactory().getPersistenceUnitUtil();
-            for (final var instance : selected) {
-                final var identifier = util.getIdentifier(instance);
-                assertThat(identifier).as("the identifier of %s", instance).isNotNull();
-                em.clear();
-                final var found = em.find(entityClass, identifier);
-                assertThat(found).as("the %s found by %s", entityClass.getSimpleName(), identifier)
-                        .isNotNull()
-                        .isNotSameAs(instance)
-                        .isEqualTo(instance);
-                assertThat(util.getIdentifier(found)).isEqualTo(identifier);
-            }
-            return null;
-        });
-    }
-
     @DisplayName("every association of the installed rows is loaded")
     @Test
     void associations() {
@@ -106,7 +84,7 @@ public abstract class _Entity_PersistenceIT<T> {
                 .toList();
         assumeFalse(associations.isEmpty(),
                     () -> entityClass.getSimpleName() + " maps no association");
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var util = em.getEntityManagerFactory().getPersistenceUnitUtil();
             var referenced = 0;
             for (final var instance : select(em)) {
@@ -135,17 +113,45 @@ public abstract class _Entity_PersistenceIT<T> {
         });
     }
 
-    @DisplayName("the installed rows satisfy the validation constraints of the mapping")
+    /**
+     * Persists a new, randomized instance of the entity, through its persister, and flushes it.
+     * <p>
+     * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister},
+     * are found by name, beside the entity. An entity which is not persisted -- a view, or a table
+     * which only SQL Server, the installer, or a procedure writes -- overrides this method with an
+     * empty one, {@link org.junit.jupiter.api.Disabled @Disabled} with the reason.
+     *
+     * @implNote The flush is what makes the {@code INSERT} reach the database, with its
+     *         constraints and triggers; the transaction is rolled back, so without it nothing would
+     *         be written, and nothing tested.
+     */
+    @DisplayName("a new randomized instance is persisted")
     @Test
-    void validate() {
-        final var validator = ___Persistence_TestUtils.validatorFactory().getValidator();
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
-            for (final var instance : select(em)) {
-                assertThat(validator.validate(instance)).as("the violations of %s", instance)
-                        .isEmpty();
-            }
+    protected void persistRandomEntityInstance() {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var persisted = EntityPersisterUtils.newPersistedInstanceOf(em, entityClass);
+            em.flush();
+            assertThat(
+                    em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(persisted))
+                    .as("the identifier of the persisted %s", persisted)
+                    .isNotNull();
+            randomEntityInstancePersisted(em, persisted);
             return null;
         });
+    }
+
+    /**
+     * Called with the instance {@link #persistRandomEntityInstance()} persisted and flushed, while
+     * it is still managed.
+     *
+     * @param entityManager  the entity manager which persisted the instance.
+     * @param entityInstance the persisted instance.
+     * @implSpec This class does nothing; a subclass overrides it to assert what its table
+     *         does with a new row.
+     */
+    protected void randomEntityInstancePersisted(final EntityManager entityManager,
+                                                 final T entityInstance) {
+        // empty
     }
 
     /**
@@ -162,7 +168,7 @@ public abstract class _Entity_PersistenceIT<T> {
                 paths.add((String) field.get(null));
             }
         }
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             for (final var attributePath : paths) {
                 Path<?> path = em.getCriteriaBuilder().createQuery().from(entityClass);
                 for (final var name : attributePath.split("\\.")) {
@@ -175,8 +181,11 @@ public abstract class _Entity_PersistenceIT<T> {
     }
 
     /**
-     * Selects a random instance of the entity, from the installed rows, and hands it to
-     * {@link #randomEntityInstanceSelected(Object)}.
+     * Selects a random instance of the entity, from the installed rows, validates it against the
+     * constraints of the mapping, and hands it to {@link #randomEntityInstanceSelected(Object)}.
+     * <p>
+     * The validation is here, since Jakarta Persistence validates an entity only when it persists,
+     * updates, or removes it, never when it loads it.
      *
      * @implNote The selection and the callback both run inside a transaction which is
      *         rolled back, so the instance handed over is still managed, and nothing the callback
@@ -184,13 +193,14 @@ public abstract class _Entity_PersistenceIT<T> {
      * @implSpec An empty table is not a failure; the test aborts, since the table's content
      *         is the installer's.
      */
-    @DisplayName("a randomly selected installed row is handed to randomTargetInstanceSelected")
+    @DisplayName("a randomly selected installed row is valid, and is handed to randomEntityInstanceSelected")
     @Test
     void selectRandomEntityInstance() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var selected = JinahyaEntityManagerTestUtils.selectRandomEntity(em, entityClass);
             assumeTrue(selected.isPresent(),
                        () -> "no row of " + entityClass.getSimpleName() + " is installed");
+            ___Validation_TestUtils.assertValid(selected.get());
             randomEntityInstanceSelected(selected.get());
             return null;
         });

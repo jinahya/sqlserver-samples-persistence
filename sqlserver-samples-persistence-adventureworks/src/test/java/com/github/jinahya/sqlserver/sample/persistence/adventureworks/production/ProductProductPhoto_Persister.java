@@ -37,9 +37,12 @@ class ProductProductPhoto_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ProductProductPhoto apply(final EntityManager entityManager, final ProductProductPhoto entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
-        final var productPhoto = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductPhoto.class);
+    public ProductProductPhoto apply(final EntityManager entityManager,
+                                     final ProductProductPhoto entityInstance) {
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+        final var productPhoto =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductPhoto.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = ProductProductPhoto.of(product, productPhoto);

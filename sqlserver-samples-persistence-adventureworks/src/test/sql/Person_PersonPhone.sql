@@ -51,15 +51,19 @@ WHERE TRIM(PhoneNumber) = ''
 
 -- the two shapes of PhoneNumber; 1 (99) 500 555-9999 on 9187, 999-999-9999 on 10784, and one of neither.
 SELECT CASE
-           WHEN PhoneNumber LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]' THEN '999-999-9999'
-           WHEN PhoneNumber LIKE '1 ([0-9][0-9]) 500 555-[0-9][0-9][0-9][0-9]' THEN '1 (99) 500 555-9999'
+           WHEN PhoneNumber LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
+               THEN '999-999-9999'
+           WHEN PhoneNumber LIKE '1 ([0-9][0-9]) 500 555-[0-9][0-9][0-9][0-9]'
+               THEN '1 (99) 500 555-9999'
            ELSE 'other'
            END  AS shape,
        COUNT(*) AS phone_numbers
 FROM Person.PersonPhone
 GROUP BY CASE
-             WHEN PhoneNumber LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]' THEN '999-999-9999'
-             WHEN PhoneNumber LIKE '1 ([0-9][0-9]) 500 555-[0-9][0-9][0-9][0-9]' THEN '1 (99) 500 555-9999'
+             WHEN PhoneNumber LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
+                 THEN '999-999-9999'
+             WHEN PhoneNumber LIKE '1 ([0-9][0-9]) 500 555-[0-9][0-9][0-9][0-9]'
+                 THEN '1 (99) 500 555-9999'
              ELSE 'other'
              END
 ORDER BY shape ASC

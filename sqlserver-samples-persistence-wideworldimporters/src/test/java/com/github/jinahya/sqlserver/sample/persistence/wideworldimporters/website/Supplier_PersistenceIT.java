@@ -21,10 +21,24 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.websi
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 class Supplier_PersistenceIT extends _Entity_PersistenceIT<Supplier> {
 
     Supplier_PersistenceIT() {
         super(Supplier.class);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Does nothing; {@code Website.Suppliers} is a view, and the entity is read-only.
+     */
+    @Disabled("read-only: Website.Suppliers is a view")
+    @Override
+    @Test
+    protected void persistRandomEntityInstance() {
+        // empty
     }
 }

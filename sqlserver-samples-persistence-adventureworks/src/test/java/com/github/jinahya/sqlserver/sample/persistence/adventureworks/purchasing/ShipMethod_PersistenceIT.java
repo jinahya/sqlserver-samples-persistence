@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class ShipMethod_PersistenceIT extends _Entity_PersistenceIT<ShipMethod> {
+class ShipMethod_PersistenceIT
+        extends _Entity_PersistenceIT<ShipMethod> {
 
     ShipMethod_PersistenceIT() {
         super(ShipMethod.class);

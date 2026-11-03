@@ -124,7 +124,9 @@ ORDER BY Internet ASC
 
 -- ----------------------------------------------------------------------------------------------------- NumberEmployees
 -- how many rows have no NumberEmployees, and the range of the others; none; 2 to 100.
-SELECT COUNT(*) - COUNT(NumberEmployees) AS without, MIN(NumberEmployees), MAX(NumberEmployees)
+SELECT COUNT(*) - COUNT(NumberEmployees) AS without,
+       MIN(NumberEmployees),
+       MAX(NumberEmployees)
 FROM Sales.vStoreWithDemographics
 ;
 

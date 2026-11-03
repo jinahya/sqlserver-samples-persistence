@@ -34,8 +34,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class __Random_TestUtils {
 
     /**
-     * Returns a code of the specified length, of digits only; the installed codes are of letters, so it takes no key
-     * of theirs, which a case-insensitive collation compares.
+     * Returns a code of the specified length, of digits only; the installed codes are of letters,
+     * so it takes no key of theirs, which a case-insensitive collation compares.
      *
      * @param length the length of the code.
      * @return a code of {@code length} digits.
@@ -50,8 +50,8 @@ public final class __Random_TestUtils {
     }
 
     /**
-     * Returns a positive decimal of the specified scale, less than ten to the power of the specified number of integer
-     * digits.
+     * Returns a positive decimal of the specified scale, less than ten to the power of the
+     * specified number of integer digits.
      *
      * @param integerDigits the number of integer digits.
      * @param scale         the scale.
@@ -69,7 +69,8 @@ public final class __Random_TestUtils {
      */
     public static LocalDateTime dateTime() {
         return LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS)
-                .minusSeconds(ThreadLocalRandom.current().nextLong(ChronoUnit.YEARS.getDuration().getSeconds() * 10));
+                .minusSeconds(ThreadLocalRandom.current()
+                                      .nextLong(ChronoUnit.YEARS.getDuration().getSeconds() * 10));
     }
 
     private __Random_TestUtils() {

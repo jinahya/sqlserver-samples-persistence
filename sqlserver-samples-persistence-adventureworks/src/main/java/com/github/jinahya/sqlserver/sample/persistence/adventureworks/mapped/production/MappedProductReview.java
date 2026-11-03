@@ -39,8 +39,9 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductReview} table.
  * <p>
- * The {@value #COLUMN_NAME_PRODUCT_ID} column is mapped read-only, as a foreign key; the extending entity owns the
- * writable mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_PRODUCT_ID} column is mapped read-only, as a foreign key; the extending
+ * entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.ProductReview}</caption>
@@ -75,7 +76,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -103,7 +106,8 @@ public abstract class MappedProductReview {
     public static final String COLUMN_NAME_PRODUCT_REVIEW_ID = "ProductReviewID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_REVIEW_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_REVIEW_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_REVIEW_ID = "productReviewId";
 
@@ -115,7 +119,8 @@ public abstract class MappedProductReview {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -132,19 +137,22 @@ public abstract class MappedProductReview {
     public static final int COLUMN_LENGTH_REVIEWER_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_REVIEWER_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REVIEWER_NAME} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVIEWER_NAME = "reviewerName";
 
     // ---------------------------------------------------------------------------------- ReviewDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_REVIEW_DATE = "ReviewDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_REVIEW_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REVIEW_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVIEW_DATE = "reviewDate";
 
@@ -161,7 +169,8 @@ public abstract class MappedProductReview {
     public static final int COLUMN_LENGTH_EMAIL_ADDRESS = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_ADDRESS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_ADDRESS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
 
@@ -173,19 +182,22 @@ public abstract class MappedProductReview {
     public static final String COLUMN_NAME_RATING = "Rating";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_RATING} column, as the {@code CK_ProductReview_Rating} check
-     * constraint ({@code [Rating]>=(1)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_RATING} column, as the
+     * {@code CK_ProductReview_Rating} check constraint ({@code [Rating]>=(1)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MIN_RATING = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_RATING} column, as the {@code CK_ProductReview_Rating} check
-     * constraint ({@code [Rating]<=(5)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_RATING} column, as the
+     * {@code CK_ProductReview_Rating} check constraint ({@code [Rating]<=(5)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MAX_RATING = +5;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_RATING} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_RATING} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_RATING = "rating";
 
@@ -202,19 +214,22 @@ public abstract class MappedProductReview {
     public static final int COLUMN_LENGTH_COMMENTS = 3850;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COMMENTS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COMMENTS} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMMENTS = "comments";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -284,7 +299,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute with the
+     * specified value.
      *
      * @param productReviewId new value for {@value #ATTRIBUTE_NAME_PRODUCT_REVIEW_ID} attribute.
      */
@@ -304,8 +320,9 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -325,7 +342,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute with the specified
+     * value.
      *
      * @param reviewerName new value for {@value #ATTRIBUTE_NAME_REVIEWER_NAME} attribute.
      */
@@ -345,7 +363,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute with the specified
+     * value.
      *
      * @param reviewDate new value for {@value #ATTRIBUTE_NAME_REVIEW_DATE} attribute.
      */
@@ -365,7 +384,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute with the specified
+     * value.
      *
      * @param emailAddress new value for {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
      */
@@ -385,7 +405,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_RATING} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_RATING} attribute with the specified
+     * value.
      *
      * @param rating new value for {@value #ATTRIBUTE_NAME_RATING} attribute.
      */
@@ -405,7 +426,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COMMENTS} attribute with the specified
+     * value.
      *
      * @param comments new value for {@value #ATTRIBUTE_NAME_COMMENTS} attribute.
      */
@@ -425,7 +447,8 @@ public abstract class MappedProductReview {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -434,17 +457,20 @@ public abstract class MappedProductReview {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_REVIEW_ID,
                           value = "Primary key for ProductReview records.")
     private Integer productReviewId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
@@ -457,7 +483,8 @@ public abstract class MappedProductReview {
     @Size(max = COLUMN_LENGTH_REVIEWER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVIEWER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REVIEWER_NAME)
+    @Column(name = COLUMN_NAME_REVIEWER_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_REVIEWER_NAME)
     @MsDescription.Column(name = COLUMN_NAME_REVIEWER_NAME, value = "Name of the reviewer.")
     private String reviewerName;
 
@@ -473,7 +500,8 @@ public abstract class MappedProductReview {
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_EMAIL_ADDRESS)
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_EMAIL_ADDRESS)
     @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS, value = "Reviewer's e-mail address.")
     private String emailAddress;
 
@@ -492,15 +520,18 @@ public abstract class MappedProductReview {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_COMMENTS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_COMMENTS)
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_COMMENTS)
     @MsDescription.Column(name = COLUMN_NAME_COMMENTS, value = "Reviewer's comments")
     private String comments;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductReview_ModifiedDate", value = "(getdate())")

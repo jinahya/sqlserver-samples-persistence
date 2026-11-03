@@ -102,7 +102,7 @@ WHERE NOT EXISTS (SELECT 1
 
 -- the subcategories with the most products; Road Bikes (2) with 43, Road Frames (14) with 33, Mountain Bikes (1) with
 -- 32.
-SELECT TOP (3) s.ProductSubcategoryID, s.Name, COUNT(*) AS products
+SELECT TOP(3) s.ProductSubcategoryID, s.Name, COUNT(*) AS products
 FROM Production.ProductSubcategory s
          JOIN Production.Product p ON p.ProductSubcategoryID = s.ProductSubcategoryID
 GROUP BY s.ProductSubcategoryID, s.Name

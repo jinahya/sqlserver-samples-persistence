@@ -31,10 +31,12 @@ import jakarta.validation.constraints.Size;
  * <p>
  * Identifier: the view declares no key, and no identifier column of it is unique.
  * <p>
- * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * As nothing identifies a row, no entity can extend this class; a plain class does, which a native
+ * query fills.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is insertable or
- * updatable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is insertable or updatable; an INSERT or an UPDATE of a whole row affects more than one of its
+ * base tables (error 4405).
  */
 @MappedSuperclass
 public abstract class MappedStoreWithAddressesView {
@@ -57,7 +59,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -74,7 +77,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
@@ -91,7 +95,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_ADDRESS_TYPE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_TYPE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_TYPE = "addressType";
 
@@ -108,7 +113,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_ADDRESS_LINE_1 = 60;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_1} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_1} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_1 = "addressLine1";
 
@@ -125,7 +131,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_ADDRESS_LINE_2 = 60;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_2} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_2} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_2 = "addressLine2";
 
@@ -142,7 +149,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_CITY = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CITY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
@@ -159,8 +167,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_STATE_PROVINCE_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_NAME} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_NAME} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_NAME = "stateProvinceName";
 
@@ -177,7 +185,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_POSTAL_CODE = 15;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CODE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CODE = "postalCode";
 
@@ -194,8 +203,8 @@ public abstract class MappedStoreWithAddressesView {
     public static final int COLUMN_LENGTH_COUNTRY_REGION_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_NAME} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_NAME} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_NAME = "countryRegionName";
 
@@ -237,7 +246,8 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -277,7 +287,8 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_TYPE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_TYPE} attribute with the specified
+     * value.
      *
      * @param addressType new value for {@value #ATTRIBUTE_NAME_ADDRESS_TYPE} attribute.
      */
@@ -297,7 +308,8 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute with the
+     * specified value.
      *
      * @param addressLine1 new value for {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute.
      */
@@ -317,7 +329,8 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute with the
+     * specified value.
      *
      * @param addressLine2 new value for {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute.
      */
@@ -357,9 +370,11 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute with the
+     * specified value.
      *
-     * @param stateProvinceName new value for {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute.
+     * @param stateProvinceName new value for {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME}
+     *                          attribute.
      */
     protected void setStateProvinceName(final String stateProvinceName) {
         this.stateProvinceName = stateProvinceName;
@@ -377,7 +392,8 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute with the specified
+     * value.
      *
      * @param postalCode new value for {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute.
      */
@@ -397,9 +413,11 @@ public abstract class MappedStoreWithAddressesView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute with the
+     * specified value.
      *
-     * @param countryRegionName new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute.
+     * @param countryRegionName new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME}
+     *                          attribute.
      */
     protected void setCountryRegionName(final String countryRegionName) {
         this.countryRegionName = countryRegionName;
@@ -409,7 +427,8 @@ public abstract class MappedStoreWithAddressesView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -417,7 +436,8 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -425,7 +445,8 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_ADDRESS_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ADDRESS_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_TYPE)
+    @Column(name = COLUMN_NAME_ADDRESS_TYPE, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_ADDRESS_TYPE)
     private String addressType;
 
     // ---------------------------------------------------------------------------------------------
@@ -433,14 +454,16 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_1)
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_1)
     private String addressLine1;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_2)
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_2)
     private String addressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -448,7 +471,8 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CITY)
+    @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
@@ -456,7 +480,8 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     private String stateProvinceName;
 
     // ---------------------------------------------------------------------------------------------
@@ -464,7 +489,8 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_CODE)
+    @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_POSTAL_CODE)
     private String postalCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -472,7 +498,8 @@ public abstract class MappedStoreWithAddressesView {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     private String countryRegionName;
 }
 

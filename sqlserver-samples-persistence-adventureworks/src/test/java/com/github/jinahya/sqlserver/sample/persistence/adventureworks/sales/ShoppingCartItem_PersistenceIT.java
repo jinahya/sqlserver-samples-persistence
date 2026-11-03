@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class ShoppingCartItem_PersistenceIT extends _Entity_PersistenceIT<ShoppingCartItem> {
+class ShoppingCartItem_PersistenceIT
+        extends _Entity_PersistenceIT<ShoppingCartItem> {
 
     ShoppingCartItem_PersistenceIT() {
         super(ShoppingCartItem.class);

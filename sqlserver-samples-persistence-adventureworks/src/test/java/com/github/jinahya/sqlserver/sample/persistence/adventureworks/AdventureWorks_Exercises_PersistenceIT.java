@@ -78,12 +78,13 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * The exercises of {@code EXERCISES.asciidoc}, answered in the query language and with the criteria API, each against
- * the rows its SQL, in {@code src/test/sql/exercises}, returns from the installed database.
+ * The exercises of {@code EXERCISES.asciidoc}, answered in the query language and with the criteria
+ * API, each against the rows its SQL, in {@code src/test/sql/exercises}, returns from the installed
+ * database.
  * <p>
- * The exercises which need what only SQL Server's SQL has -- the methods of {@code hierarchyid}, a recursive common
- * table expression, {@code PIVOT}, a window function -- or which read a class that is no entity, are answered with a
- * native query instead, which is the exercise's SQL.
+ * The exercises which need what only SQL Server's SQL has -- the methods of {@code hierarchyid}, a
+ * recursive common table expression, {@code PIVOT}, a window function -- or which read a class that
+ * is no entity, are answered with a native query instead, which is the exercise's SQL.
  */
 @SuppressWarnings({
         "java:S100", // Method names should comply with a naming convention
@@ -93,12 +94,12 @@ class AdventureWorks_Exercises_PersistenceIT {
 
     // ---------------------------------------------------------------------------------------------
     private static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
-        return ___Persistence_TestUtils.applyInTransactionAndRollback(function);
+        return ___PersistenceIT_Utils.applyInTransactionAndRollback(function);
     }
 
     /**
-     * Returns a row's values as the SQL's output shows them, separated by {@code " | "}; a decimal without its trailing
-     * zeros, a {@code null} as {@code NULL}.
+     * Returns a row's values as the SQL's output shows them, separated by {@code " | "}; a decimal
+     * without its trailing zeros, a {@code null} as {@code NULL}.
      */
     private static String row(final Object... values) {
         return Arrays.stream(values)
@@ -165,7 +166,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var employees = builder.count(h);
                 query.multiselect(d.get(Department_.name), d.get(Department_.groupName), employees);
                 query.where(builder.isNull(h.get(EmployeeDepartmentHistory_.endDate)));
-                query.groupBy(d.get(Department_.id_), d.get(Department_.name), d.get(Department_.groupName));
+                query.groupBy(d.get(Department_.id_), d.get(Department_.name),
+                              d.get(Department_.groupName));
                 query.orderBy(builder.desc(employees), builder.asc(d.get(Department_.name)));
                 return entityManager.createQuery(query).getResultList();
             }));
@@ -224,7 +226,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                     "Brian | Welcker | Vice President of Sales | 72.1154 | 2011-02-15T00:00",
                     "Terri | Duffy | Vice President of Engineering | 63.4615 | 2008-01-31T00:00",
                     "Laura | Norman | Chief Financial Officer | 60.0962 | 2012-01-29T00:00",
-                    "Dylan | Miller | Research and Development Manager | 50.4808 | 2009-02-08T00:00",
+                    "Dylan | Miller | Research and Development Manager | 50.4808 | " +
+                    "2009-02-08T00:00",
                     "Jean | Trenary | Information Services Manager | 50.4808 | 2008-12-11T00:00",
                     "Stephen | Jiang | North American Sales Manager | 48.101 | 2011-01-04T00:00",
                     "Syed | Abbas | Pacific Sales Manager | 48.101 | 2013-03-14T00:00",
@@ -261,8 +264,10 @@ class AdventureWorks_Exercises_PersistenceIT {
                 latest.select(builder.greatest(ph2.get(EmployeePayHistory_.rateChangeDate)));
                 latest.where(builder.equal(ph2.get(EmployeePayHistory_.businessEntityId),
                                            ph.get(EmployeePayHistory_.businessEntityId)));
-                query.multiselect(p.get(Person_.firstName), p.get(Person_.lastName), e.get(Employee_.jobTitle),
-                                  ph.get(EmployeePayHistory_.rate), ph.get(EmployeePayHistory_.rateChangeDate));
+                query.multiselect(p.get(Person_.firstName), p.get(Person_.lastName),
+                                  e.get(Employee_.jobTitle),
+                                  ph.get(EmployeePayHistory_.rate),
+                                  ph.get(EmployeePayHistory_.rateChangeDate));
                 query.where(builder.equal(ph.get(EmployeePayHistory_.rateChangeDate), latest));
                 query.orderBy(builder.desc(ph.get(EmployeePayHistory_.rate)),
                               builder.asc(e.get(Employee_.businessEntityId)));
@@ -278,16 +283,17 @@ class AdventureWorks_Exercises_PersistenceIT {
         @Test
         @SuppressWarnings({"unchecked"})
         void __NativeQuery() {
-            final var found = apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
-                    """
-                            SELECT e.OrganizationNode.ToString() AS Node, e.JobTitle, p.FirstName, p.LastName
-                            FROM HumanResources.Employee e
-                                     JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
-                            WHERE e.OrganizationNode.GetAncestor(1) = (SELECT m.OrganizationNode
-                                                                       FROM HumanResources.Employee m
-                                                                       WHERE m.BusinessEntityID = ?1)
-                            ORDER BY e.OrganizationNode"""
-            ).setParameter(1, 25).getResultList());
+            final var found =
+                    apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
+                            """
+                                    SELECT e.OrganizationNode.ToString() AS Node, e.JobTitle, p.FirstName, p.LastName
+                                    FROM HumanResources.Employee e
+                                             JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
+                                    WHERE e.OrganizationNode.GetAncestor(1) = (SELECT m.OrganizationNode
+                                                                               FROM HumanResources.Employee m
+                                                                               WHERE m.BusinessEntityID = ?1)
+                                    ORDER BY e.OrganizationNode"""
+                    ).setParameter(1, 25).getResultList());
             assertThat(rows(found)).containsExactly(
                     "/3/1/ | Production Control Manager | Peter | Krebs",
                     "/3/2/ | Quality Assurance Manager | Hazem | Abolrous",
@@ -304,17 +310,18 @@ class AdventureWorks_Exercises_PersistenceIT {
         @Test
         @SuppressWarnings({"unchecked"})
         void __NativeQuery() {
-            final var found = apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
-                    """
-                            SELECT m.OrganizationNode.ToString() AS Node, m.OrganizationLevel, m.JobTitle,
-                                   p.FirstName, p.LastName
-                            FROM HumanResources.Employee e
-                                     JOIN HumanResources.Employee m
-                                          ON e.OrganizationNode.IsDescendantOf(m.OrganizationNode) = 1
-                                     JOIN Person.Person p ON p.BusinessEntityID = m.BusinessEntityID
-                            WHERE e.BusinessEntityID = ?1
-                            ORDER BY m.OrganizationLevel"""
-            ).setParameter(1, 100).getResultList());
+            final var found =
+                    apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
+                            """
+                                    SELECT m.OrganizationNode.ToString() AS Node, m.OrganizationLevel, m.JobTitle,
+                                           p.FirstName, p.LastName
+                                    FROM HumanResources.Employee e
+                                             JOIN HumanResources.Employee m
+                                                  ON e.OrganizationNode.IsDescendantOf(m.OrganizationNode) = 1
+                                             JOIN Person.Person p ON p.BusinessEntityID = m.BusinessEntityID
+                                    WHERE e.BusinessEntityID = ?1
+                                    ORDER BY m.OrganizationLevel"""
+                    ).setParameter(1, 100).getResultList());
             assertThat(rows(found)).containsExactly(
                     "/3/ | 1 | Vice President of Production | James | Hamilton",
                     "/3/1/ | 2 | Production Control Manager | Peter | Krebs",
@@ -403,7 +410,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var a = query.from(Address.class);
                 final var c = a.join(Address_.stateProvince).join(StateProvince_.countryRegion);
                 final var addresses = builder.count(a);
-                query.multiselect(c.get(CountryRegion_.countryRegionCode), c.get(CountryRegion_.name), addresses);
+                query.multiselect(c.get(CountryRegion_.countryRegionCode),
+                                  c.get(CountryRegion_.name), addresses);
                 query.groupBy(c.get(CountryRegion_.countryRegionCode), c.get(CountryRegion_.name));
                 query.orderBy(builder.desc(addresses));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList();
@@ -446,7 +454,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var query = builder.createQuery(Object[].class);
                 final var v = query.from(PersonDemographicsView.class);
                 final var p = v.join(Person.class);
-                p.on(builder.equal(p.get(Person_.businessEntityId), v.get(PersonDemographicsView_.businessEntityId)));
+                p.on(builder.equal(p.get(Person_.businessEntityId),
+                                   v.get(PersonDemographicsView_.businessEntityId)));
                 final var yearlyIncome = v.get(PersonDemographicsView_.yearlyIncome);
                 query.multiselect(yearlyIncome, builder.count(v));
                 query.where(builder.equal(p.get(Person_.personType), Person.PersonType.IN));
@@ -492,18 +501,23 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var builder = entityManager.getCriteriaBuilder();
                 final var query = builder.createQuery(Object[].class);
                 final var p = query.from(Product.class);
-                final var c = p.join(Product_.productSubcategory).join(ProductSubcategory_.productCategory);
+                final var c = p.join(Product_.productSubcategory)
+                        .join(ProductSubcategory_.productCategory);
                 query.multiselect(c.get(ProductCategory_.name), builder.count(p),
-                                  builder.min(p.get(Product_.listPrice)), builder.max(p.get(Product_.listPrice)));
+                                  builder.min(p.get(Product_.listPrice)),
+                                  builder.max(p.get(Product_.listPrice)));
                 query.where(builder.isNull(p.get(Product_.sellEndDate)));
-                query.groupBy(c.get(ProductCategory_.productCategoryId), c.get(ProductCategory_.name));
+                query.groupBy(c.get(ProductCategory_.productCategoryId),
+                              c.get(ProductCategory_.name));
                 query.orderBy(builder.asc(c.get(ProductCategory_.name)));
                 return entityManager.createQuery(query).getResultList();
             }));
         }
     }
 
-    @DisplayName("AW_PRODUCTION_I_01: the products whose stock is less than half their safety stock level")
+    @DisplayName(
+            "AW_PRODUCTION_I_01: the products whose stock is less than half their safety stock " +
+            "level")
     @Nested
     class AW_PRODUCTION_I_01_Test {
 
@@ -538,10 +552,13 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var i = query.from(ProductInventory.class);
                 final var p = i.join(ProductInventory_.product);
                 final var quantity = builder.sum(i.get(ProductInventory_.quantity));
-                query.multiselect(p.get(Product_.productId), p.get(Product_.name), p.get(Product_.safetyStockLevel),
+                query.multiselect(p.get(Product_.productId), p.get(Product_.name),
+                                  p.get(Product_.safetyStockLevel),
                                   quantity);
-                query.groupBy(p.get(Product_.productId), p.get(Product_.name), p.get(Product_.safetyStockLevel));
-                query.having(builder.lt(builder.prod(quantity, 2), p.get(Product_.safetyStockLevel)));
+                query.groupBy(p.get(Product_.productId), p.get(Product_.name),
+                              p.get(Product_.safetyStockLevel));
+                query.having(
+                        builder.lt(builder.prod(quantity, 2), p.get(Product_.safetyStockLevel)));
                 query.orderBy(builder.asc(quantity), builder.asc(p.get(Product_.productId)));
                 return entityManager.createQuery(query).getResultList();
             }));
@@ -598,24 +615,25 @@ class AdventureWorks_Exercises_PersistenceIT {
         @Test
         @SuppressWarnings({"unchecked"})
         void __NativeQuery() {
-            final var found = apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
-                    """
-                            WITH Parts (AssemblyID, ComponentID, PerAssemblyQty, BomLevel) AS (
-                                SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, 1
-                                FROM Production.BillOfMaterials b
-                                WHERE b.ProductAssemblyID = ?1
-                                  AND b.EndDate IS NULL
-                                UNION ALL
-                                SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, p.BomLevel + 1
-                                FROM Production.BillOfMaterials b
-                                         JOIN Parts p ON p.ComponentID = b.ProductAssemblyID
-                                WHERE b.EndDate IS NULL
-                            )
-                            SELECT p.AssemblyID, p.ComponentID, c.Name, p.PerAssemblyQty, p.BomLevel
-                            FROM Parts p
-                                     JOIN Production.Product c ON c.ProductID = p.ComponentID
-                            ORDER BY p.BomLevel, p.AssemblyID, p.ComponentID"""
-            ).setParameter(1, 818).getResultList());
+            final var found =
+                    apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
+                            """
+                                    WITH Parts (AssemblyID, ComponentID, PerAssemblyQty, BomLevel) AS (
+                                        SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, 1
+                                        FROM Production.BillOfMaterials b
+                                        WHERE b.ProductAssemblyID = ?1
+                                          AND b.EndDate IS NULL
+                                        UNION ALL
+                                        SELECT b.ProductAssemblyID, b.ComponentID, b.PerAssemblyQty, p.BomLevel + 1
+                                        FROM Production.BillOfMaterials b
+                                                 JOIN Parts p ON p.ComponentID = b.ProductAssemblyID
+                                        WHERE b.EndDate IS NULL
+                                    )
+                                    SELECT p.AssemblyID, p.ComponentID, c.Name, p.PerAssemblyQty, p.BomLevel
+                                    FROM Parts p
+                                             JOIN Production.Product c ON c.ProductID = p.ComponentID
+                                    ORDER BY p.BomLevel, p.AssemblyID, p.ComponentID"""
+                    ).setParameter(1, 818).getResultList());
             assertThat(rows(found)).containsExactly(
                     "818 | 400 | LL Hub | 1 | 1",
                     "818 | 490 | LL Nipple | 36 | 1",
@@ -637,16 +655,17 @@ class AdventureWorks_Exercises_PersistenceIT {
         @Test
         @SuppressWarnings({"unchecked"})
         void __NativeQuery() {
-            final var found = apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
-                    """
-                            SELECT d.DocumentNode.ToString() AS Node, d.Title, COUNT(pd.ProductID) AS Products
-                            FROM Production.Document d
-                                     LEFT JOIN Production.ProductDocument pd ON pd.DocumentNode = d.DocumentNode
-                            WHERE d.DocumentNode.IsDescendantOf(hierarchyid::Parse(?1)) = 1
-                              AND d.FolderFlag = 0
-                            GROUP BY d.DocumentNode, d.Title
-                            ORDER BY d.DocumentNode"""
-            ).setParameter(1, "/3/").getResultList());
+            final var found =
+                    apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
+                            """
+                                    SELECT d.DocumentNode.ToString() AS Node, d.Title, COUNT(pd.ProductID) AS Products
+                                    FROM Production.Document d
+                                             LEFT JOIN Production.ProductDocument pd ON pd.DocumentNode = d.DocumentNode
+                                    WHERE d.DocumentNode.IsDescendantOf(hierarchyid::Parse(?1)) = 1
+                                      AND d.FolderFlag = 0
+                                    GROUP BY d.DocumentNode, d.Title
+                                    ORDER BY d.DocumentNode"""
+                    ).setParameter(1, "/3/").getResultList());
             assertThat(rows(found)).containsExactly(
                     "/3/1/ | Front Reflector Bracket and Reflector Assembly 3 | 1",
                     "/3/2/ | Front Reflector Bracket Installation | 1",
@@ -699,7 +718,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var v = pv.join(ProductVendor_.businessEntity);
                 query.select(pv);
                 query.where(builder.equal(pv.get(ProductVendor_.productId), PRODUCT_ID));
-                query.orderBy(builder.asc(pv.get(ProductVendor_.standardPrice)), builder.asc(v.get(Vendor_.name)));
+                query.orderBy(builder.asc(pv.get(ProductVendor_.standardPrice)),
+                              builder.asc(v.get(Vendor_.name)));
                 verify(entityManager.createQuery(query).getResultList());
                 return null;
             });
@@ -741,8 +761,10 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var h = query.from(PurchaseOrderHeader.class);
                 final var v = h.join(PurchaseOrderHeader_.vendor);
                 final var totalDue = builder.sum(h.get(PurchaseOrderHeader_.totalDue));
-                query.multiselect(v.get(Vendor_.accountNumber), v.get(Vendor_.name), builder.count(h), totalDue);
-                query.groupBy(v.get(Vendor_.businessEntityId), v.get(Vendor_.accountNumber), v.get(Vendor_.name));
+                query.multiselect(v.get(Vendor_.accountNumber), v.get(Vendor_.name),
+                                  builder.count(h), totalDue);
+                query.groupBy(v.get(Vendor_.businessEntityId), v.get(Vendor_.accountNumber),
+                              v.get(Vendor_.name));
                 query.orderBy(builder.desc(totalDue));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList();
             }));
@@ -784,7 +806,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var builder = entityManager.getCriteriaBuilder();
                 final var query = builder.createQuery(Object[].class);
                 final var d = query.from(PurchaseOrderDetail.class);
-                final var v = d.join(PurchaseOrderDetail_.purchaseOrder).join(PurchaseOrderHeader_.vendor);
+                final var v = d.join(PurchaseOrderDetail_.purchaseOrder)
+                        .join(PurchaseOrderHeader_.vendor);
                 final var receivedQty = builder.sum(d.get(PurchaseOrderDetail_.receivedQty));
                 final var rejectedQty = builder.sum(d.get(PurchaseOrderDetail_.rejectedQty));
                 final var rejected = builder.quot(rejectedQty, receivedQty);
@@ -804,8 +827,9 @@ class AdventureWorks_Exercises_PersistenceIT {
         private static final String SALES_ORDER_NUMBER = "SO43659";
 
         private void verify(final SalesOrderHeader found) {
-            assertThat(row(found.getSalesOrderId(), found.getSalesOrderNumber(), found.getSubTotal(),
-                           found.getTaxAmt(), found.getFreight(), found.getTotalDue()))
+            assertThat(
+                    row(found.getSalesOrderId(), found.getSalesOrderNumber(), found.getSubTotal(),
+                        found.getTaxAmt(), found.getFreight(), found.getTotalDue()))
                     .isEqualTo("43659 | SO43659 | 20565.6206 | 1971.5149 | 616.0984 | 23153.2339");
         }
 
@@ -827,7 +851,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var query = builder.createQuery(SalesOrderHeader.class);
                 final var h = query.from(SalesOrderHeader.class);
                 query.select(h);
-                query.where(builder.equal(h.get(SalesOrderHeader_.salesOrderNumber), SALES_ORDER_NUMBER));
+                query.where(builder.equal(h.get(SalesOrderHeader_.salesOrderNumber),
+                                          SALES_ORDER_NUMBER));
                 return entityManager.createQuery(query).getSingleResult();
             }));
         }
@@ -904,7 +929,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var h = query.from(SalesOrderHeader.class);
                 final var t = h.join(SalesOrderHeader_.territory);
                 final var totalDue = builder.sum(h.get(SalesOrderHeader_.totalDue));
-                query.multiselect(t.get(SalesTerritory_.name), t.get(SalesTerritory_.group), builder.count(h),
+                query.multiselect(t.get(SalesTerritory_.name), t.get(SalesTerritory_.group),
+                                  builder.count(h),
                                   totalDue);
                 query.groupBy(t.get(SalesTerritory_.territoryId), t.get(SalesTerritory_.name),
                               t.get(SalesTerritory_.group));
@@ -948,11 +974,13 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var builder = entityManager.getCriteriaBuilder();
                 final var query = builder.createQuery(Object[].class);
                 final var d = query.from(SalesOrderDetail.class);
-                final var p = d.join(SalesOrderDetail_.specialOfferProduct).join(SpecialOfferProduct_.product);
+                final var p = d.join(SalesOrderDetail_.specialOfferProduct)
+                        .join(SpecialOfferProduct_.product);
                 final var lineTotal = builder.sum(d.get(SalesOrderDetail_.lineTotal));
                 query.multiselect(p.get(Product_.productNumber), p.get(Product_.name),
                                   builder.sum(d.get(SalesOrderDetail_.orderQty)), lineTotal);
-                query.groupBy(p.get(Product_.productId), p.get(Product_.productNumber), p.get(Product_.name));
+                query.groupBy(p.get(Product_.productId), p.get(Product_.productNumber),
+                              p.get(Product_.name));
                 query.orderBy(builder.desc(lineTotal));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList();
             }));
@@ -1001,13 +1029,17 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var builder = entityManager.getCriteriaBuilder();
                 final var query = builder.createQuery(Object[].class);
                 final var d = query.from(SalesOrderDetail.class);
-                final var o = d.join(SalesOrderDetail_.specialOfferProduct).join(SpecialOfferProduct_.specialOffer);
+                final var o = d.join(SalesOrderDetail_.specialOfferProduct)
+                        .join(SpecialOfferProduct_.specialOffer);
                 final var discount = builder.sum(builder.prod(
-                        builder.prod(d.get(SalesOrderDetail_.unitPrice), d.get(SalesOrderDetail_.unitPriceDiscount)),
+                        builder.prod(d.get(SalesOrderDetail_.unitPrice),
+                                     d.get(SalesOrderDetail_.unitPriceDiscount)),
                         d.get(SalesOrderDetail_.orderQty)));
-                query.multiselect(o.get(SpecialOffer_.specialOfferId), o.get(SpecialOffer_.description),
+                query.multiselect(o.get(SpecialOffer_.specialOfferId),
+                                  o.get(SpecialOffer_.description),
                                   o.get(SpecialOffer_.discountPct), builder.count(d), discount);
-                query.where(builder.gt(d.get(SalesOrderDetail_.unitPriceDiscount), BigDecimal.ZERO));
+                query.where(
+                        builder.gt(d.get(SalesOrderDetail_.unitPriceDiscount), BigDecimal.ZERO));
                 query.groupBy(o.get(SpecialOffer_.specialOfferId), o.get(SpecialOffer_.description),
                               o.get(SpecialOffer_.discountPct));
                 query.orderBy(builder.desc(discount));
@@ -1052,7 +1084,8 @@ class AdventureWorks_Exercises_PersistenceIT {
                 final var sp = query.from(SalesPerson.class);
                 final var p = sp.join(SalesPerson_.businessEntity).join(Employee_.businessEntity);
                 final var t = sp.join(SalesPerson_.territory, JoinType.LEFT);
-                query.multiselect(p.get(Person_.firstName), p.get(Person_.lastName), t.get(SalesTerritory_.name),
+                query.multiselect(p.get(Person_.firstName), p.get(Person_.lastName),
+                                  t.get(SalesTerritory_.name),
                                   sp.get(SalesPerson_.salesYtd));
                 query.orderBy(builder.desc(sp.get(SalesPerson_.salesYtd)));
                 return entityManager.createQuery(query).setMaxResults(5).getResultList();
@@ -1067,15 +1100,16 @@ class AdventureWorks_Exercises_PersistenceIT {
         @Test
         @SuppressWarnings({"unchecked"})
         void __NativeQuery() {
-            final var found = apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
-                    """
-                            SELECT pvt.LastName, pvt.[2022], pvt.[2023], pvt.[2024], pvt.[2025]
-                            FROM (SELECT p.LastName, h.SubTotal, YEAR(DATEADD(MONTH, 6, h.OrderDate)) AS FiscalYear
-                                  FROM Sales.SalesOrderHeader h
-                                           JOIN Person.Person p ON p.BusinessEntityID = h.SalesPersonID) AS s
-                                     PIVOT (SUM(s.SubTotal) FOR s.FiscalYear IN ([2022], [2023], [2024], [2025])) AS pvt
-                            ORDER BY pvt.[2025] DESC"""
-            ).getResultList());
+            final var found =
+                    apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
+                            """
+                                    SELECT pvt.LastName, pvt.[2022], pvt.[2023], pvt.[2024], pvt.[2025]
+                                    FROM (SELECT p.LastName, h.SubTotal, YEAR(DATEADD(MONTH, 6, h.OrderDate)) AS FiscalYear
+                                          FROM Sales.SalesOrderHeader h
+                                                   JOIN Person.Person p ON p.BusinessEntityID = h.SalesPersonID) AS s
+                                             PIVOT (SUM(s.SubTotal) FOR s.FiscalYear IN ([2022], [2023], [2024], [2025])) AS pvt
+                                    ORDER BY pvt.[2025] DESC"""
+                    ).getResultList());
             assertThat(rows(found)).hasSize(17).startsWith(
                     "Pak | NULL | 963345.1079 | 4188307.0033 | 3351686.5345",
                     "Mitchell | 276440.8521 | 2742919.4886 | 4064078.2392 | 3283568.8466"
@@ -1092,15 +1126,16 @@ class AdventureWorks_Exercises_PersistenceIT {
         @Test
         @SuppressWarnings({"unchecked"})
         void __NativeQuery() {
-            final var found = apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
-                    """
-                            SELECT t.[Group], t.Name AS Territory, p.LastName, sp.SalesYTD,
-                                   RANK() OVER (PARTITION BY t.[Group] ORDER BY sp.SalesYTD DESC) AS GroupRank
-                            FROM Sales.SalesPerson sp
-                                     JOIN Person.Person p ON p.BusinessEntityID = sp.BusinessEntityID
-                                     JOIN Sales.SalesTerritory t ON t.TerritoryID = sp.TerritoryID
-                            ORDER BY t.[Group], GroupRank"""
-            ).getResultList());
+            final var found =
+                    apply(entityManager -> (List<Object[]>) entityManager.createNativeQuery(
+                            """
+                                    SELECT t.[Group], t.Name AS Territory, p.LastName, sp.SalesYTD,
+                                           RANK() OVER (PARTITION BY t.[Group] ORDER BY sp.SalesYTD DESC) AS GroupRank
+                                    FROM Sales.SalesPerson sp
+                                             JOIN Person.Person p ON p.BusinessEntityID = sp.BusinessEntityID
+                                             JOIN Sales.SalesTerritory t ON t.TerritoryID = sp.TerritoryID
+                                    ORDER BY t.[Group], GroupRank"""
+                    ).getResultList());
             assertThat(rows(found)).hasSize(14).startsWith(
                     "Europe | United Kingdom | Pak | 4116871.2277 | 1",
                     "Europe | France | Varkey Chudukatil | 3121616.3202 | 2",

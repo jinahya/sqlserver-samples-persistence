@@ -68,9 +68,9 @@ FROM HumanResources.JobCandidate
 -- a Resume with no Name/Name.Last in the resume namespace.
 -- no rows: every Resume names its candidate.
 WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume')
-SELECT JobCandidateID
-FROM HumanResources.JobCandidate
-WHERE Resume.exist('/Resume/Name/Name.Last') = 0
+         SELECT JobCandidateID
+         FROM HumanResources.JobCandidate
+         WHERE Resume.exist('/Resume/Name/Name.Last') = 0
 ;
 
 

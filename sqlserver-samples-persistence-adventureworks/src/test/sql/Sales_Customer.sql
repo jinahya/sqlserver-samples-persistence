@@ -34,8 +34,9 @@ FROM Sales.Customer
 ;
 
 -- the gaps in CustomerID; a single one, from 702 to 10999.
-SELECT a.CustomerID + 1 AS missing_from,
-       (SELECT MIN(b.CustomerID) FROM Sales.Customer b WHERE b.CustomerID > a.CustomerID) - 1 AS missing_to
+SELECT a.CustomerID + 1                                                                       AS missing_from,
+       (SELECT MIN(b.CustomerID) FROM Sales.Customer b WHERE b.CustomerID > a.CustomerID) -
+       1                                                                                      AS missing_to
 FROM Sales.Customer a
 WHERE a.CustomerID < (SELECT MAX(CustomerID) FROM Sales.Customer)
   AND NOT EXISTS (SELECT 1
@@ -45,7 +46,11 @@ WHERE a.CustomerID < (SELECT MAX(CustomerID) FROM Sales.Customer)
 
 -- the two ranges the gap leaves, and whom they hold; 1 to 701 the 701 stores, 11000 to 30118 the 19119 persons.
 SELECT CASE WHEN CustomerID < 11000 THEN 'below' ELSE 'above' END AS range,
-       MIN(CustomerID), MAX(CustomerID), COUNT(*) AS customers, COUNT(PersonID) AS persons, COUNT(StoreID) AS stores
+       MIN(CustomerID),
+       MAX(CustomerID),
+       COUNT(*)                                                   AS customers,
+       COUNT(PersonID)                                            AS persons,
+       COUNT(StoreID)                                             AS stores
 FROM Sales.Customer
 GROUP BY CASE WHEN CustomerID < 11000 THEN 'below' ELSE 'above' END
 ORDER BY MIN(CustomerID) ASC
@@ -56,10 +61,11 @@ ORDER BY MIN(CustomerID) ASC
 -- which of PersonID and StoreID a customer has; 18484 a person alone, 701 a store alone and 635 both. None has
 -- neither.
 SELECT CASE WHEN PersonID IS NULL THEN 'no' ELSE 'yes' END AS person,
-       CASE WHEN StoreID IS NULL THEN 'no' ELSE 'yes' END AS store,
-       COUNT(*) AS customers
+       CASE WHEN StoreID IS NULL THEN 'no' ELSE 'yes' END  AS store,
+       COUNT(*)                                            AS customers
 FROM Sales.Customer
-GROUP BY CASE WHEN PersonID IS NULL THEN 'no' ELSE 'yes' END, CASE WHEN StoreID IS NULL THEN 'no' ELSE 'yes' END
+GROUP BY CASE WHEN PersonID IS NULL THEN 'no' ELSE 'yes' END,
+         CASE WHEN StoreID IS NULL THEN 'no' ELSE 'yes' END
 ORDER BY person ASC, store ASC
 ;
 
@@ -74,7 +80,9 @@ HAVING COUNT(*) > 1
 
 -- the types of the persons, with or without a store; 18484 individual customers (IN) without, 635 store contacts
 -- (SC) with.
-SELECT p.PersonType, CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END AS store, COUNT(*) AS customers
+SELECT p.PersonType,
+       CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END AS store,
+       COUNT(*)                                             AS customers
 FROM Sales.Customer c
          JOIN Person.Person p ON p.BusinessEntityID = c.PersonID
 GROUP BY p.PersonType, CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END
@@ -130,11 +138,14 @@ ORDER BY TerritoryID ASC
 -- no rows: every AccountNumber follows its CustomerID.
 SELECT CustomerID, AccountNumber
 FROM Sales.Customer
-WHERE AccountNumber <> 'AW' + RIGHT('0000000' + CAST(CustomerID AS varchar(10)), 8)
+WHERE AccountNumber <> 'AW' + RIGHT ('0000000' + CAST (CustomerID AS varchar (10)), 8)
 ;
 
 -- the smallest and the largest AccountNumber, and their lengths; AW00000001 to AW00030118, 10 characters each.
-SELECT MIN(AccountNumber), MAX(AccountNumber), MIN(LEN(AccountNumber)), MAX(LEN(AccountNumber))
+SELECT MIN(AccountNumber),
+       MAX(AccountNumber),
+       MIN(LEN(AccountNumber)),
+       MAX(LEN(AccountNumber))
 FROM Sales.Customer
 ;
 
@@ -159,13 +170,14 @@ FROM Sales.Customer
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the customers who never ordered; 701, every one of them a store with no person.
 SELECT CASE WHEN c.PersonID IS NULL THEN 'no' ELSE 'yes' END AS person,
-       CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END AS store,
-       COUNT(*) AS customers
+       CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END  AS store,
+       COUNT(*)                                              AS customers
 FROM Sales.Customer c
 WHERE NOT EXISTS (SELECT 1
                   FROM Sales.SalesOrderHeader h
                   WHERE h.CustomerID = c.CustomerID)
-GROUP BY CASE WHEN c.PersonID IS NULL THEN 'no' ELSE 'yes' END, CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END
+GROUP BY CASE WHEN c.PersonID IS NULL THEN 'no' ELSE 'yes' END,
+         CASE WHEN c.StoreID IS NULL THEN 'no' ELSE 'yes' END
 ;
 
 -- an order whose TerritoryID is not that of its customer.

@@ -38,9 +38,11 @@ class PersonCreditCard_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public PersonCreditCard apply(final EntityManager entityManager, final PersonCreditCard entityInstance) {
+    public PersonCreditCard apply(final EntityManager entityManager,
+                                  final PersonCreditCard entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
-        final var creditCard = EntityPersisterUtils.newPersistedInstanceOf(entityManager, CreditCard.class);
+        final var creditCard =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, CreditCard.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         return super.apply(entityManager, PersonCreditCard.of(person, creditCard));

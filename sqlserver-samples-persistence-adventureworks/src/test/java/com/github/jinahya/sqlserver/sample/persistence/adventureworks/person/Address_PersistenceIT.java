@@ -23,7 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Persistence_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,7 +67,7 @@ class Address_PersistenceIT
             "a new instance with no spatial location is persisted, and SQL Server stores a NULL")
     @Test
     void persistRandomEntityInstance_SpatialLocationNull() {
-        ___Persistence_TestUtils.applyInTransactionAndRollback(em -> {
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
             final var instance =
                     ObjectRandomizerUtils.newRandomizedInstanceOf(Address.class)
                             .orElseThrow();

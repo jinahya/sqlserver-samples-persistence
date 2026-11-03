@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class BillOfMaterials_PersistenceIT extends _Entity_PersistenceIT<BillOfMaterials> {
+class BillOfMaterials_PersistenceIT
+        extends _Entity_PersistenceIT<BillOfMaterials> {
 
     BillOfMaterials_PersistenceIT() {
         super(BillOfMaterials.class);

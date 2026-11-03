@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
 
-class IndividualCustomerView_PersistenceIT extends _Keyless_PersistenceIT<IndividualCustomerView> {
+class IndividualCustomerView_PersistenceIT
+        extends _Keyless_PersistenceIT<IndividualCustomerView> {
 
     IndividualCustomerView_PersistenceIT() {
         super(IndividualCustomerView.class);

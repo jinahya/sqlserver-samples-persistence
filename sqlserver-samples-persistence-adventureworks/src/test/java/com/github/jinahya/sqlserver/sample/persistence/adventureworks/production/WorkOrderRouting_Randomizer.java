@@ -29,9 +29,10 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link WorkOrderRouting}; the identifier, what it references, and what SQL Server fills are left
- * out. The persister takes the rest of the instance into one which {@link WorkOrderRouting#of} creates with the
- * work order it references and an operation sequence of its own.
+ * Randomizes a new {@link WorkOrderRouting}; the identifier, what it references, and what SQL
+ * Server fills are left out. The persister takes the rest of the instance into one which
+ * {@link WorkOrderRouting#of} creates with the work order it references and an operation sequence
+ * of its own.
  */
 class WorkOrderRouting_Randomizer
         extends PodamObjectRandomizer<WorkOrderRouting> {
@@ -54,7 +55,8 @@ class WorkOrderRouting_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints, and its dates in order.
+     * @implNote The returned instance has amounts within their columns and CHECK
+     *         constraints, and its dates in order.
      */
     @Override
     public WorkOrderRouting get() {
@@ -62,15 +64,19 @@ class WorkOrderRouting_Randomizer
         final var random = ThreadLocalRandom.current();
         // CK_WorkOrderRouting_ScheduledEndDate: ScheduledEndDate >= ScheduledStartDate
         instance.setScheduledStartDate(__Random_TestUtils.dateTime());
-        instance.setScheduledEndDate(instance.getScheduledStartDate().plusDays(random.nextLong(366L)));
-        // CK_WorkOrderRouting_ActualEndDate: ActualEndDate, when both are, >= ActualStartDate; here, only with one
+        instance.setScheduledEndDate(
+                instance.getScheduledStartDate().plusDays(random.nextLong(366L)));
+        // CK_WorkOrderRouting_ActualEndDate: ActualEndDate, when both are, >= ActualStartDate;
+        // here, only with one
         instance.setActualStartDate(random.nextBoolean() ? null : __Random_TestUtils.dateTime());
         instance.setActualEndDate(Optional.ofNullable(instance.getActualStartDate())
                                           .filter(d -> random.nextBoolean())
                                           .map(d -> d.plusDays(random.nextLong(366L)))
                                           .orElse(null));
-        // ActualResourceHrs, when any, a decimal(9, 4), >= 0; PlannedCost and ActualCost, when any, both money, > 0
-        instance.setActualResourceHrs(random.nextBoolean() ? null : __Random_TestUtils.positive(4, 4));
+        // ActualResourceHrs, when any, a decimal(9, 4), >= 0; PlannedCost and ActualCost, when
+        // any, both money, > 0
+        instance.setActualResourceHrs(
+                random.nextBoolean() ? null : __Random_TestUtils.positive(4, 4));
         instance.setPlannedCost(__Random_TestUtils.positive(5, 4));
         instance.setActualCost(random.nextBoolean() ? null : __Random_TestUtils.positive(5, 4));
         return instance;

@@ -25,7 +25,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link ContactType}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link ContactType}; the generated identifier and what SQL Server fills are left
+ * out.
  */
 class ContactType_Randomizer
         extends PodamObjectRandomizer<ContactType> {

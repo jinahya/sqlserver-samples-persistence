@@ -67,9 +67,9 @@ SELECT CASE
            WHEN p.BusinessEntityID IS NOT NULL THEN 'Person'
            WHEN s.BusinessEntityID IS NOT NULL THEN 'Store'
            WHEN v.BusinessEntityID IS NOT NULL THEN 'Vendor'
-           END         AS kind,
+           END  AS kind,
        a.AddressTypeID,
-       COUNT(*)        AS links
+       COUNT(*) AS links
 FROM Person.BusinessEntityAddress a
          LEFT JOIN Person.Person p ON p.BusinessEntityID = a.BusinessEntityID
          LEFT JOIN Sales.Store s ON s.BusinessEntityID = a.BusinessEntityID
@@ -109,9 +109,9 @@ FROM Person.BusinessEntityAddress
 ;
 
 -- how many rows each year; 1474 in 2022, 3048 in 2023, 8810 in 2024 and 6282 in 2025.
-SELECT YEAR(ModifiedDate) AS year, COUNT(*) AS links
+SELECT YEAR (ModifiedDate) AS year, COUNT (*) AS links
 FROM Person.BusinessEntityAddress
-GROUP BY YEAR(ModifiedDate)
+GROUP BY YEAR (ModifiedDate)
 ORDER BY year ASC
 ;
 

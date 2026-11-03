@@ -34,7 +34,8 @@ class ProductModelCatalogDescriptionView_PersistenceIT
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; {@code Production.vProductModelCatalogDescription} is a view, which no row is inserted into.
+     * Does nothing; {@code Production.vProductModelCatalogDescription} is a view, which no row is
+     * inserted into.
      */
     @Disabled("a view: nothing is inserted into it")
     @Override

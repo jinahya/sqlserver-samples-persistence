@@ -106,7 +106,10 @@ FROM Sales.SpecialOffer
 -- ------------------------------------------------------------------------------------------------------------- EndDate
 -- the range of EndDate, on or after StartDate by CK_SpecialOffer_EndDate, and of how long an offer runs; 2023-05-29
 -- to 2025-11-29, 30 to 1309 days.
-SELECT MIN(EndDate), MAX(EndDate), MIN(DATEDIFF(day, StartDate, EndDate)), MAX(DATEDIFF(day, StartDate, EndDate))
+SELECT MIN(EndDate),
+       MAX(EndDate),
+       MIN(DATEDIFF(day, StartDate, EndDate)),
+       MAX(DATEDIFF(day, StartDate, EndDate))
 FROM Sales.SpecialOffer
 ;
 

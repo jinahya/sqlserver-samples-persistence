@@ -26,8 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductSubcategory}; the generated identifier, what SQL Server fills, and the category,
- * which the persister sets, are left out.
+ * Randomizes a new {@link ProductSubcategory}; the generated identifier, what SQL Server fills, and
+ * the category, which the persister sets, are left out.
  */
 class ProductSubcategory_Randomizer
         extends PodamObjectRandomizer<ProductSubcategory> {

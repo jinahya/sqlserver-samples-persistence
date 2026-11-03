@@ -46,16 +46,18 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Store extends MappedStore {
+public class Store
+        extends MappedStore {
 
     /**
-     * The name of the attribute of the {@code FK_Store_BusinessEntity_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_Store_BusinessEntity_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
     /**
-     * The name of the attribute of the {@code FK_Store_SalesPerson_SalesPersonID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_Store_SalesPerson_SalesPersonID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_PERSON = "salesPerson";
 
@@ -71,8 +73,8 @@ public class Store extends MappedStore {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code BusinessEntity} which the {@code FK_Store_BusinessEntity_BusinessEntityID} foreign key
-     * references.
+     * Returns the {@code BusinessEntity} which the {@code FK_Store_BusinessEntity_BusinessEntityID}
+     * foreign key references.
      *
      * @return the {@code BusinessEntity} referenced; {@code null} when none is.
      */
@@ -81,8 +83,9 @@ public class Store extends MappedStore {
     }
 
     /**
-     * Replaces the {@code BusinessEntity} which the {@code FK_Store_BusinessEntity_BusinessEntityID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code BusinessEntity} which the
+     * {@code FK_Store_BusinessEntity_BusinessEntityID} foreign key references, and the value of the
+     * column it consists of.
      *
      * @param businessEntity the {@code BusinessEntity} to reference; {@code null} for none.
      */
@@ -94,7 +97,8 @@ public class Store extends MappedStore {
     // --------------------------------------------------------------------------------- salesPerson
 
     /**
-     * Returns the {@code SalesPerson} which the {@code FK_Store_SalesPerson_SalesPersonID} foreign key references.
+     * Returns the {@code SalesPerson} which the {@code FK_Store_SalesPerson_SalesPersonID} foreign
+     * key references.
      *
      * @return the {@code SalesPerson} referenced; {@code null} when none is.
      */
@@ -103,8 +107,8 @@ public class Store extends MappedStore {
     }
 
     /**
-     * Replaces the {@code SalesPerson} which the {@code FK_Store_SalesPerson_SalesPersonID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code SalesPerson} which the {@code FK_Store_SalesPerson_SalesPersonID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param salesPerson the {@code SalesPerson} to reference; {@code null} for none.
      */

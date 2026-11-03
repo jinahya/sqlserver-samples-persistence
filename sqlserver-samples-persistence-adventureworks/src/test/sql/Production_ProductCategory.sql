@@ -70,9 +70,10 @@ FROM Production.ProductCategory
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the subcategories and the products of each category; Bikes 3 and 97, Components 14 and 134, Clothing 8 and 35,
 -- Accessories 12 and 29.
-SELECT c.ProductCategoryID, c.Name,
+SELECT c.ProductCategoryID,
+       c.Name,
        COUNT(DISTINCT s.ProductSubcategoryID) AS subcategories,
-       COUNT(p.ProductID) AS products
+       COUNT(p.ProductID)                     AS products
 FROM Production.ProductCategory c
          LEFT JOIN Production.ProductSubcategory s ON s.ProductCategoryID = c.ProductCategoryID
          LEFT JOIN Production.Product p ON p.ProductSubcategoryID = s.ProductSubcategoryID

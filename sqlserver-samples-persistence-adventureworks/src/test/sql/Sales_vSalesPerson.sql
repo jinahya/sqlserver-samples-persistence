@@ -89,7 +89,9 @@ ORDER BY JobTitle ASC
 
 -- --------------------------------------------------------------------------------------------------------- PhoneNumber
 -- how many rows have no PhoneNumber, and how long the others are; none; 12 to 19 characters.
-SELECT COUNT(*) - COUNT(PhoneNumber) AS without, MIN(LEN(PhoneNumber)), MAX(LEN(PhoneNumber))
+SELECT COUNT(*) - COUNT(PhoneNumber) AS without,
+       MIN(LEN(PhoneNumber)),
+       MAX(LEN(PhoneNumber))
 FROM Sales.vSalesPerson
 ;
 
@@ -105,7 +107,9 @@ ORDER BY PhoneNumberType ASC
 
 -- -------------------------------------------------------------------------------------------------------- EmailAddress
 -- how many rows have no EmailAddress, and how long the others are; none; 24 to 28 characters.
-SELECT COUNT(*) - COUNT(EmailAddress) AS without, MIN(LEN(EmailAddress)), MAX(LEN(EmailAddress))
+SELECT COUNT(*) - COUNT(EmailAddress) AS without,
+       MIN(LEN(EmailAddress)),
+       MAX(LEN(EmailAddress))
 FROM Sales.vSalesPerson
 ;
 

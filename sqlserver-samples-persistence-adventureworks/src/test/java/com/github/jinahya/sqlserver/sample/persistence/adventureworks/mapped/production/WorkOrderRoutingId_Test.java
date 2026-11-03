@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link WorkOrderRoutingId} id class.
  */
-class WorkOrderRoutingId_Test extends _NonEntity_Test<WorkOrderRoutingId> {
+class WorkOrderRoutingId_Test
+        extends _NonEntity_Test<WorkOrderRoutingId> {
 
     WorkOrderRoutingId_Test() {
         super(WorkOrderRoutingId.class);

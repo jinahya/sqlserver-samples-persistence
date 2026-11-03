@@ -80,7 +80,9 @@ FROM Production.ProductModel
 -- -------------------------------------------------------------------------------------------------------- Instructions
 -- Instructions is a nullable xml; how many models have none, and how large the others are, in bytes; 119 have none;
 -- 3301 to 10697 bytes.
-SELECT COUNT(*) - COUNT(Instructions) AS without, MIN(DATALENGTH(Instructions)), MAX(DATALENGTH(Instructions))
+SELECT COUNT(*) - COUNT(Instructions) AS without,
+       MIN(DATALENGTH(Instructions)),
+       MAX(DATALENGTH(Instructions))
 FROM Production.ProductModel
 ;
 
@@ -128,7 +130,7 @@ WHERE NOT EXISTS (SELECT 1
 ;
 
 -- the models with the most products; LL Road Frame (9) and Road-650 (30) with 12 each, HL Road Frame (6) with 11.
-SELECT TOP (3) m.ProductModelID, m.Name, COUNT(*) AS products
+SELECT TOP(3) m.ProductModelID, m.Name, COUNT(*) AS products
 FROM Production.ProductModel m
          JOIN Production.Product p ON p.ProductModelID = m.ProductModelID
 GROUP BY m.ProductModelID, m.Name

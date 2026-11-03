@@ -39,22 +39,23 @@ import java.util.Objects;
 /**
  * An entity which maps the {@code Sales.PersonCreditCard} table.
  * <p>
- * Each attribute of the embedded {@link PersonCreditCardId} is derived, with {@link MapsId @MapsId}, from the association
- * which references the same column.
+ * Each attribute of the embedded {@link PersonCreditCardId} is derived, with
+ * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "SalesPersonCreditCard")
 @Table(schema = MappedPersonCreditCard.TABLE_SCHEMA, name = MappedPersonCreditCard.TABLE_NAME)
-public class PersonCreditCard extends MappedPersonCreditCard {
+public class PersonCreditCard
+        extends MappedPersonCreditCard {
 
     /**
-     * The name of the attribute of the {@code FK_PersonCreditCard_Person_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PersonCreditCard_Person_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
     /**
-     * The name of the attribute of the {@code FK_PersonCreditCard_CreditCard_CreditCardID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PersonCreditCard_CreditCard_CreditCardID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CREDIT_CARD = "creditCard";
 
@@ -90,7 +91,8 @@ public class PersonCreditCard extends MappedPersonCreditCard {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Person} which the {@code FK_PersonCreditCard_Person_BusinessEntityID} foreign key references.
+     * Returns the {@code Person} which the {@code FK_PersonCreditCard_Person_BusinessEntityID}
+     * foreign key references.
      *
      * @return the {@code Person} referenced; {@code null} when none is.
      */
@@ -101,8 +103,8 @@ public class PersonCreditCard extends MappedPersonCreditCard {
     // ---------------------------------------------------------------------------------- creditCard
 
     /**
-     * Returns the {@code CreditCard} which the {@code FK_PersonCreditCard_CreditCard_CreditCardID} foreign key
-     * references.
+     * Returns the {@code CreditCard} which the {@code FK_PersonCreditCard_CreditCard_CreditCardID}
+     * foreign key references.
      *
      * @return the {@code CreditCard} referenced; {@code null} when none is.
      */

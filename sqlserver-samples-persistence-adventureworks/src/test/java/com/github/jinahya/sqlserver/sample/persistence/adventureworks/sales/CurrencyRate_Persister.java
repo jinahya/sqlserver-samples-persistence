@@ -37,9 +37,12 @@ class CurrencyRate_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public CurrencyRate apply(final EntityManager entityManager, final CurrencyRate entityInstance) {
-        entityInstance.setFromCurrency(EntityPersisterUtils.newPersistedInstanceOf(entityManager, Currency.class));
-        entityInstance.setToCurrency(EntityPersisterUtils.newPersistedInstanceOf(entityManager, Currency.class));
+    public CurrencyRate apply(final EntityManager entityManager,
+                              final CurrencyRate entityInstance) {
+        entityInstance.setFromCurrency(
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Currency.class));
+        entityInstance.setToCurrency(
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Currency.class));
         return super.apply(entityManager, entityInstance);
     }
 }

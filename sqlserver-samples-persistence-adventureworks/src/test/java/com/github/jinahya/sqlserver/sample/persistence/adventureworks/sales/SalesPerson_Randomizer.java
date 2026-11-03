@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link SalesPerson}; the identifier and what it references, which the persister sets, and what SQL
- * Server fills are left out.
+ * Randomizes a new {@link SalesPerson}; the identifier and what it references, which the persister
+ * sets, and what SQL Server fills are left out.
  */
 class SalesPerson_Randomizer
         extends PodamObjectRandomizer<SalesPerson> {
@@ -50,7 +50,8 @@ class SalesPerson_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints.
+     * @implNote The returned instance has amounts within their columns and CHECK
+     *         constraints.
      */
     @Override
     public SalesPerson get() {

@@ -31,12 +31,15 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * A mapped superclass which holds the mappings of the {@code HumanResources.vEmployeeDepartment} view.
+ * A mapped superclass which holds the mappings of the {@code HumanResources.vEmployeeDepartment}
+ * view.
  * <p>
- * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it
+ * returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
- * insertable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is updatable, nor insertable; an INSERT or an UPDATE of a whole row affects more than one of
+ * its base tables (error 4405).
  */
 @MappedSuperclass
 public abstract class MappedEmployeeDepartmentView {
@@ -59,7 +62,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -76,7 +80,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_TITLE = 8;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
@@ -93,7 +98,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_FIRST_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FIRST_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FIRST_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
@@ -110,7 +116,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_MIDDLE_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MIDDLE_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MIDDLE_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIDDLE_NAME = "middleName";
 
@@ -127,7 +134,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_LAST_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
@@ -144,7 +152,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_SUFFIX = 10;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SUFFIX} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SUFFIX} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUFFIX = "suffix";
 
@@ -161,7 +170,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_JOB_TITLE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
@@ -178,7 +188,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_DEPARTMENT = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DEPARTMENT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DEPARTMENT} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DEPARTMENT = "department";
 
@@ -195,7 +206,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final int COLUMN_LENGTH_GROUP_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_GROUP_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_GROUP_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_GROUP_NAME = "groupName";
 
@@ -207,7 +219,8 @@ public abstract class MappedEmployeeDepartmentView {
     public static final String COLUMN_NAME_START_DATE = "StartDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_START_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_START_DATE = "startDate";
 
@@ -279,7 +292,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -319,7 +333,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute with the specified
+     * value.
      *
      * @param firstName new value for {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
      */
@@ -339,7 +354,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute with the specified
+     * value.
      *
      * @param middleName new value for {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute.
      */
@@ -359,7 +375,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute with the specified
+     * value.
      *
      * @param lastName new value for {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
      */
@@ -379,7 +396,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute with the specified
+     * value.
      *
      * @param suffix new value for {@value #ATTRIBUTE_NAME_SUFFIX} attribute.
      */
@@ -399,7 +417,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified
+     * value.
      *
      * @param jobTitle new value for {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
      */
@@ -419,7 +438,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DEPARTMENT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DEPARTMENT} attribute with the specified
+     * value.
      *
      * @param department new value for {@value #ATTRIBUTE_NAME_DEPARTMENT} attribute.
      */
@@ -439,7 +459,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute with the specified
+     * value.
      *
      * @param groupName new value for {@value #ATTRIBUTE_NAME_GROUP_NAME} attribute.
      */
@@ -459,7 +480,8 @@ public abstract class MappedEmployeeDepartmentView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_START_DATE} attribute with the specified
+     * value.
      *
      * @param startDate new value for {@value #ATTRIBUTE_NAME_START_DATE} attribute.
      */
@@ -471,14 +493,16 @@ public abstract class MappedEmployeeDepartmentView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TITLE)
+    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_TITLE)
     private String title;
 
     // ---------------------------------------------------------------------------------------------
@@ -486,14 +510,16 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FIRST_NAME)
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_FIRST_NAME)
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MIDDLE_NAME)
+    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_MIDDLE_NAME)
     private String middleName;
 
     // ---------------------------------------------------------------------------------------------
@@ -501,14 +527,16 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_LAST_NAME)
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_LAST_NAME)
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SUFFIX)
+    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_SUFFIX)
     private String suffix;
 
     // ---------------------------------------------------------------------------------------------
@@ -516,7 +544,8 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_JOB_TITLE)
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_JOB_TITLE)
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
@@ -524,7 +553,8 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_DEPARTMENT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DEPARTMENT, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DEPARTMENT)
+    @Column(name = COLUMN_NAME_DEPARTMENT, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_DEPARTMENT)
     private String department;
 
     // ---------------------------------------------------------------------------------------------
@@ -532,7 +562,8 @@ public abstract class MappedEmployeeDepartmentView {
     @Size(max = COLUMN_LENGTH_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_GROUP_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_GROUP_NAME)
+    @Column(name = COLUMN_NAME_GROUP_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_GROUP_NAME)
     private String groupName;
 
     // ---------------------------------------------------------------------------------------------

@@ -21,10 +21,43 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Validation_TestUtils;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-class EmailAddress_PersistenceIT extends _Entity_PersistenceIT<EmailAddress> {
+import static org.assertj.core.api.Assertions.assertThat;
+
+class EmailAddress_PersistenceIT
+        extends _Entity_PersistenceIT<EmailAddress> {
 
     EmailAddress_PersistenceIT() {
         super(EmailAddress.class);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Verifies that every installed e-mail address is one, as its {@link jakarta.validation.constraints.Email @Email}
+     * requires, and that a string which is not one is rejected.
+     */
+    @DisplayName("every installed e-mail address is valid as @Email")
+    @Test
+    void emailAddress_Valid_Installed() {
+        final var validator = ___Validation_TestUtils.applyValidator(v -> v);
+        assertThat(validator.validateValue(EmailAddress.class, EmailAddress.ATTRIBUTE_NAME_EMAIL_ADDRESS, "not an address"))
+                .isNotEmpty();
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            final var addresses = em.createQuery("""
+                                                         SELECT e.emailAddress
+                                                         FROM PersonEmailAddress e""", String.class)
+                    .getResultList();
+            assertThat(addresses).isNotEmpty();
+            assertThat(addresses)
+                    .filteredOn(a -> !validator.validateValue(
+                            EmailAddress.class, EmailAddress.ATTRIBUTE_NAME_EMAIL_ADDRESS, a).isEmpty())
+                    .isEmpty();
+            return null;
+        });
     }
 }

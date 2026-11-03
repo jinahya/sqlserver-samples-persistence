@@ -47,7 +47,7 @@ FROM Production.ProductDescription
 ;
 
 -- the shortest descriptions, all of them Chinese; 1855 with 3 characters, 1943 with 5, 1882 with 6.
-SELECT TOP (3) ProductDescriptionID, Description
+SELECT TOP(3) ProductDescriptionID, Description
 FROM Production.ProductDescription
 ORDER BY LEN(Description) ASC, ProductDescriptionID ASC
 ;
@@ -102,7 +102,8 @@ WHERE NOT EXISTS (SELECT 1
 -- no rows: each description is used by exactly one model and culture.
 SELECT d.ProductDescriptionID, COUNT(*) AS uses
 FROM Production.ProductDescription d
-         JOIN Production.ProductModelProductDescriptionCulture m ON m.ProductDescriptionID = d.ProductDescriptionID
+         JOIN Production.ProductModelProductDescriptionCulture m
+              ON m.ProductDescriptionID = d.ProductDescriptionID
 GROUP BY d.ProductDescriptionID
 HAVING COUNT(*) > 1
 ;

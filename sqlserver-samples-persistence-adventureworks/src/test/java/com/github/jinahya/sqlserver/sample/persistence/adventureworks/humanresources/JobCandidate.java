@@ -33,11 +33,12 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "HumanResourcesJobCandidate")
 @Table(schema = MappedJobCandidate.TABLE_SCHEMA, name = MappedJobCandidate.TABLE_NAME)
-public class JobCandidate extends MappedJobCandidate {
+public class JobCandidate
+        extends MappedJobCandidate {
 
     /**
-     * The name of the attribute of the {@code FK_JobCandidate_Employee_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_JobCandidate_Employee_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -53,7 +54,8 @@ public class JobCandidate extends MappedJobCandidate {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Employee} which the {@code FK_JobCandidate_Employee_BusinessEntityID} foreign key references.
+     * Returns the {@code Employee} which the {@code FK_JobCandidate_Employee_BusinessEntityID}
+     * foreign key references.
      *
      * @return the {@code Employee} referenced; {@code null} when none is.
      */
@@ -62,8 +64,8 @@ public class JobCandidate extends MappedJobCandidate {
     }
 
     /**
-     * Replaces the {@code Employee} which the {@code FK_JobCandidate_Employee_BusinessEntityID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Employee} which the {@code FK_JobCandidate_Employee_BusinessEntityID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Employee} to reference; {@code null} for none.
      */

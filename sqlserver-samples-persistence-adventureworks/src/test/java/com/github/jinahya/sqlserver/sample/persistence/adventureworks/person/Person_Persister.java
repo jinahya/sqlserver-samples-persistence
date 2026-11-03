@@ -38,7 +38,8 @@ class Person_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public Person apply(final EntityManager entityManager, final Person entityInstance) {
-        final var businessEntity = EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);
+        final var businessEntity =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, BusinessEntity.class);
         // the business entity's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setBusinessEntity(businessEntity);

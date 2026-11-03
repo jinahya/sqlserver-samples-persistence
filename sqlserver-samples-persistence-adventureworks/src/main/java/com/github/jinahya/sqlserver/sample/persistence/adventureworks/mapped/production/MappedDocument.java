@@ -41,11 +41,12 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.Document} table.
  * <p>
- * Identifier: the primary key, DocumentNode, includes a hierarchyid column, which no identifier type of Jakarta
- * Persistence holds; the unique rowguid identifies the row instead.
+ * Identifier: the primary key, DocumentNode, includes a hierarchyid column, which no identifier
+ * type of Jakarta Persistence holds; the unique rowguid identifies the row instead.
  * <p>
- * The {@value #COLUMN_NAME_OWNER} column is mapped read-only, as a foreign key; the extending entity owns the writable
- * mapping, through an association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_OWNER} column is mapped read-only, as a foreign key; the extending
+ * entity owns the writable mapping, through an association's
+ * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.Document}</caption>
@@ -100,10 +101,14 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
- *      GetLevel (Database Engine)</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/getlevel-database-engine">
+ *         GetLevel (Database Engine)</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -131,14 +136,16 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_DOCUMENT_NODE = "DocumentNode";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_NODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_NODE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_NODE = "documentNode";
 
     // ------------------------------------------------------------------------------- DocumentLevel
 
     /**
-     * The name of the {@code smallint, computed as ([DocumentNode].[GetLevel]())} column. The value is {@value}.
+     * The name of the {@code smallint, computed as ([DocumentNode].[GetLevel]())} column. The value
+     * is {@value}.
      */
     public static final String COLUMN_NAME_DOCUMENT_LEVEL = "DocumentLevel";
 
@@ -153,7 +160,8 @@ public abstract class MappedDocument {
     public static final int COLUMN_MAX_DOCUMENT_LEVEL = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_LEVEL = "documentLevel";
 
@@ -170,7 +178,8 @@ public abstract class MappedDocument {
     public static final int COLUMN_LENGTH_TITLE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
@@ -182,7 +191,8 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_OWNER = "Owner";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_OWNER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_OWNER} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_OWNER = "owner";
 
@@ -194,7 +204,8 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_FOLDER_FLAG = "FolderFlag";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FOLDER_FLAG} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FOLDER_FLAG} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FOLDER_FLAG = "folderFlag";
 
@@ -211,7 +222,8 @@ public abstract class MappedDocument {
     public static final int COLUMN_LENGTH_FILE_NAME = 400;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FILE_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FILE_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_FILE_NAME = "fileName";
 
@@ -228,7 +240,8 @@ public abstract class MappedDocument {
     public static final int COLUMN_LENGTH_FILE_EXTENSION = 8;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FILE_EXTENSION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FILE_EXTENSION} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FILE_EXTENSION = "fileExtension";
 
@@ -245,7 +258,8 @@ public abstract class MappedDocument {
     public static final int COLUMN_LENGTH_REVISION = 5;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVISION = "revision";
 
@@ -257,7 +271,8 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_CHANGE_NUMBER = "ChangeNumber";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CHANGE_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CHANGE_NUMBER} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CHANGE_NUMBER = "changeNumber";
 
@@ -269,19 +284,22 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_STATUS = "Status";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_Document_Status} check
-     * constraint ({@code [Status]>=(1)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the
+     * {@code CK_Document_Status} check constraint ({@code [Status]>=(1)}) requires. The value is
+     * {@value}.
      */
     public static final int COLUMN_MIN_STATUS = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_Document_Status} check
-     * constraint ({@code [Status]<=(3)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the
+     * {@code CK_Document_Status} check constraint ({@code [Status]<=(3)}) requires. The value is
+     * {@value}.
      */
     public static final int COLUMN_MAX_STATUS = +3;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
@@ -293,7 +311,8 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_DOCUMENT_SUMMARY = "DocumentSummary";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_SUMMARY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_SUMMARY} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_SUMMARY = "documentSummary";
 
@@ -305,14 +324,16 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_DOCUMENT = "Document";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT = "document";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier(36), DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier(36), DEFAULT (newid()), NOT NULL} column. The value
+     * is {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
@@ -322,19 +343,22 @@ public abstract class MappedDocument {
     public static final int COLUMN_LENGTH_ROWGUID = 36;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -410,7 +434,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute with the specified
+     * value.
      *
      * @param documentNode new value for {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
      */
@@ -430,8 +455,9 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute with the specified value. The
-     * database writes the column; this is for the provider and the extending class only.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute with the
+     * specified value. The database writes the column; this is for the provider and the extending
+     * class only.
      *
      * @param documentLevel new value for {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute.
      */
@@ -471,8 +497,9 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_OWNER} attribute with the specified value. The attribute is
-     * read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_OWNER} attribute with the specified value.
+     * The attribute is read-only; the extending entity calls this to keep it in step with the
+     * association which writes the column.
      *
      * @param owner new value for {@value #ATTRIBUTE_NAME_OWNER} attribute.
      */
@@ -492,7 +519,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FOLDER_FLAG} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FOLDER_FLAG} attribute with the specified
+     * value.
      *
      * @param folderFlag new value for {@value #ATTRIBUTE_NAME_FOLDER_FLAG} attribute.
      */
@@ -512,7 +540,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FILE_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FILE_NAME} attribute with the specified
+     * value.
      *
      * @param fileName new value for {@value #ATTRIBUTE_NAME_FILE_NAME} attribute.
      */
@@ -532,7 +561,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FILE_EXTENSION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FILE_EXTENSION} attribute with the
+     * specified value.
      *
      * @param fileExtension new value for {@value #ATTRIBUTE_NAME_FILE_EXTENSION} attribute.
      */
@@ -552,7 +582,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_REVISION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REVISION} attribute with the specified
+     * value.
      *
      * @param revision new value for {@value #ATTRIBUTE_NAME_REVISION} attribute.
      */
@@ -572,7 +603,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute with the specified
+     * value.
      *
      * @param changeNumber new value for {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute.
      */
@@ -592,7 +624,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STATUS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STATUS} attribute with the specified
+     * value.
      *
      * @param status new value for {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
@@ -612,7 +645,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_SUMMARY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_SUMMARY} attribute with the
+     * specified value.
      *
      * @param documentSummary new value for {@value #ATTRIBUTE_NAME_DOCUMENT_SUMMARY} attribute.
      */
@@ -632,7 +666,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT} attribute with the specified
+     * value.
      *
      * @param document new value for {@value #ATTRIBUTE_NAME_DOCUMENT} attribute.
      */
@@ -652,7 +687,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ROWGUID} attribute with the specified
+     * value.
      *
      * @param rowguid new value for {@value #ATTRIBUTE_NAME_ROWGUID} attribute.
      */
@@ -672,7 +708,8 @@ public abstract class MappedDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -694,7 +731,8 @@ public abstract class MappedDocument {
     @Max(COLUMN_MAX_DOCUMENT_LEVEL)
     @Min(COLUMN_MIN_DOCUMENT_LEVEL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DOCUMENT_LEVEL, nullable = true, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_DOCUMENT_LEVEL, nullable = true, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_LEVEL,
                           value = "Depth in the document hierarchy.")
     @MsComputedColumn("([DocumentNode].[GetLevel]())")
@@ -704,12 +742,14 @@ public abstract class MappedDocument {
     @Size(max = COLUMN_LENGTH_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TITLE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TITLE)
+    @Column(name = COLUMN_NAME_TITLE, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_TITLE)
     @MsDescription.Column(name = COLUMN_NAME_TITLE, value = "Title of the document.")
     private String title;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OWNER, nullable = false, insertable = false, updatable = false)
@@ -731,7 +771,8 @@ public abstract class MappedDocument {
     @Size(max = COLUMN_LENGTH_FILE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FILE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FILE_NAME)
+    @Column(name = COLUMN_NAME_FILE_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_FILE_NAME)
     @MsDescription.Column(name = COLUMN_NAME_FILE_NAME, value = "File name of the document")
     private String fileName;
 
@@ -739,7 +780,8 @@ public abstract class MappedDocument {
     @Size(max = COLUMN_LENGTH_FILE_EXTENSION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FILE_EXTENSION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FILE_EXTENSION)
+    @Column(name = COLUMN_NAME_FILE_EXTENSION, nullable = false, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_FILE_EXTENSION)
     @MsDescription.Column(name = COLUMN_NAME_FILE_EXTENSION,
                           value = "File extension indicating the document type. For example, "
                                   + ".doc or .txt.")
@@ -749,7 +791,8 @@ public abstract class MappedDocument {
     @Size(max = COLUMN_LENGTH_REVISION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVISION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_REVISION)
+    @Column(name = COLUMN_NAME_REVISION, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_REVISION)
     @MsDescription.Column(name = COLUMN_NAME_REVISION, value = "Revision number of the document.")
     private String revision;
 
@@ -775,7 +818,8 @@ public abstract class MappedDocument {
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, nullable = true, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, value = "Document abstract.")
     private String documentSummary;
 
@@ -786,11 +830,13 @@ public abstract class MappedDocument {
     private byte[] document;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @Size(max = COLUMN_LENGTH_ROWGUID)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = true, updatable = false, length = COLUMN_LENGTH_ROWGUID)
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = true, updatable = false,
+            length = COLUMN_LENGTH_ROWGUID)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
                           value = "ROWGUIDCOL number uniquely identifying the record. Required "
                                   + "for FileStream.")
@@ -798,10 +844,12 @@ public abstract class MappedDocument {
     private String rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Document_ModifiedDate", value = "(getdate())")

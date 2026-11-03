@@ -26,8 +26,8 @@ import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link ProductModelProductDescriptionCulture}, of a new product model, a new product description,
- * and a new culture.
+ * Persists a new {@link ProductModelProductDescriptionCulture}, of a new product model, a new
+ * product description, and a new culture.
  */
 class ProductModelProductDescriptionCulture_Persister
         extends AbstractEntityPersister<ProductModelProductDescriptionCulture> {
@@ -40,12 +40,17 @@ class ProductModelProductDescriptionCulture_Persister
     @Override
     public ProductModelProductDescriptionCulture apply(final EntityManager entityManager,
                                                        final ProductModelProductDescriptionCulture entityInstance) {
-        final var productModel = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductModel.class);
+        final var productModel =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductModel.class);
         final var productDescription =
-                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ProductDescription.class);
-        final var culture = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Culture.class);
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager,
+                                                            ProductDescription.class);
+        final var culture =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Culture.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
-        return super.apply(entityManager, ProductModelProductDescriptionCulture.of(productModel, productDescription, culture));
+        return super.apply(entityManager, ProductModelProductDescriptionCulture.of(productModel,
+                                                                                   productDescription,
+                                                                                   culture));
     }
 }

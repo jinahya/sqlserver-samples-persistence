@@ -25,24 +25,26 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Purchasing.PurchaseOrderDetail} table, whose rows are identified by
- * {@code PurchaseOrderID}, {@code PurchaseOrderDetailID}.
+ * The identifier class of the {@code Purchasing.PurchaseOrderDetail} table, whose rows are
+ * identified by {@code PurchaseOrderID}, {@code PurchaseOrderDetailID}.
  * <p>
  * An entity which extends {@link MappedPurchaseOrderDetail} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class PurchaseOrderDetailId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedPurchaseOrderDetail#COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
+     * {@value MappedPurchaseOrderDetail#COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedPurchaseOrderDetail#COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID} column. The value is {@value}.
+     * {@value MappedPurchaseOrderDetail#COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_DETAIL_ID = "purchaseOrderDetailId";
 
@@ -114,7 +116,8 @@ public class PurchaseOrderDetailId {
     }
 
     /**
-     * Replaces current value of the {@code purchaseOrderDetailId} attribute with the specified value.
+     * Replaces current value of the {@code purchaseOrderDetailId} attribute with the specified
+     * value.
      *
      * @param purchaseOrderDetailId new value for the {@code purchaseOrderDetailId} attribute.
      */
@@ -123,6 +126,7 @@ public class PurchaseOrderDetailId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code purchaseOrderId} attribute.
      */

@@ -26,24 +26,26 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code HumanResources.EmployeePayHistory} table, whose rows are identified by
- * {@code BusinessEntityID}, {@code RateChangeDate}.
+ * The identifier class of the {@code HumanResources.EmployeePayHistory} table, whose rows are
+ * identified by {@code BusinessEntityID}, {@code RateChangeDate}.
  * <p>
  * An entity which extends {@link MappedEmployeePayHistory} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class EmployeePayHistoryId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedEmployeePayHistory#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * {@value MappedEmployeePayHistory#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedEmployeePayHistory#COLUMN_NAME_RATE_CHANGE_DATE} column. The value is {@value}.
+     * {@value MappedEmployeePayHistory#COLUMN_NAME_RATE_CHANGE_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_RATE_CHANGE_DATE = "rateChangeDate";
 
@@ -124,6 +126,7 @@ public class EmployeePayHistoryId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code businessEntityId} attribute.
      */

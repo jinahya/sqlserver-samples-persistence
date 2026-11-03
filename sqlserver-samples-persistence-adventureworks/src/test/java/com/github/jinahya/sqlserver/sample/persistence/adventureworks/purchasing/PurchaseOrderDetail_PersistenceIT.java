@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class PurchaseOrderDetail_PersistenceIT extends _Entity_PersistenceIT<PurchaseOrderDetail> {
+class PurchaseOrderDetail_PersistenceIT
+        extends _Entity_PersistenceIT<PurchaseOrderDetail> {
 
     PurchaseOrderDetail_PersistenceIT() {
         super(PurchaseOrderDetail.class);

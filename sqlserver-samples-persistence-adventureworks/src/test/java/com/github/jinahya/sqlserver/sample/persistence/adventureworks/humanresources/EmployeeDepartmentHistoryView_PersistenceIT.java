@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
 
-class EmployeeDepartmentHistoryView_PersistenceIT extends _Keyless_PersistenceIT<EmployeeDepartmentHistoryView> {
+class EmployeeDepartmentHistoryView_PersistenceIT
+        extends _Keyless_PersistenceIT<EmployeeDepartmentHistoryView> {
 
     EmployeeDepartmentHistoryView_PersistenceIT() {
         super(EmployeeDepartmentHistoryView.class);

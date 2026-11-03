@@ -38,8 +38,8 @@ SELECT CASE
            WHEN s.BusinessEntityID IS NOT NULL THEN 'Store'
            WHEN v.BusinessEntityID IS NOT NULL THEN 'Vendor'
            ELSE 'other'
-           END                           AS kind,
-       COUNT(*)                          AS contacts,
+           END                            AS kind,
+       COUNT(*)                           AS contacts,
        COUNT(DISTINCT c.BusinessEntityID) AS business_entities
 FROM Person.BusinessEntityContact c
          LEFT JOIN Sales.Store s ON s.BusinessEntityID = c.BusinessEntityID
@@ -84,7 +84,8 @@ ORDER BY p.PersonType ASC
 SELECT c.BusinessEntityID, c.PersonID, p.PersonType
 FROM Person.BusinessEntityContact c
          JOIN Person.Person p ON p.BusinessEntityID = c.PersonID
-WHERE (p.PersonType = 'SC' AND NOT EXISTS (SELECT 1 FROM Sales.Store s WHERE s.BusinessEntityID = c.BusinessEntityID))
+WHERE (p.PersonType = 'SC' AND
+       NOT EXISTS (SELECT 1 FROM Sales.Store s WHERE s.BusinessEntityID = c.BusinessEntityID))
    OR (p.PersonType = 'VC' AND NOT EXISTS (SELECT 1
                                            FROM Purchasing.Vendor v
                                            WHERE v.BusinessEntityID = c.BusinessEntityID))
@@ -119,9 +120,9 @@ FROM Person.BusinessEntityContact
 ;
 
 -- how many rows each year; 753 in 2017, 63 in 2022 and 93 in 2023.
-SELECT YEAR(ModifiedDate) AS year, COUNT(*) AS contacts
+SELECT YEAR (ModifiedDate) AS year, COUNT (*) AS contacts
 FROM Person.BusinessEntityContact
-GROUP BY YEAR(ModifiedDate)
+GROUP BY YEAR (ModifiedDate)
 ORDER BY year ASC
 ;
 
@@ -130,9 +131,11 @@ ORDER BY year ASC
 -- a store or a vendor with no contact.
 -- no rows: every store and every vendor has at least one.
 SELECT e.BusinessEntityID
-FROM (SELECT BusinessEntityID FROM Sales.Store
+FROM (SELECT BusinessEntityID
+      FROM Sales.Store
       UNION ALL
-      SELECT BusinessEntityID FROM Purchasing.Vendor) e
+      SELECT BusinessEntityID
+      FROM Purchasing.Vendor) e
 WHERE NOT EXISTS (SELECT 1
                   FROM Person.BusinessEntityContact c
                   WHERE c.BusinessEntityID = e.BusinessEntityID)

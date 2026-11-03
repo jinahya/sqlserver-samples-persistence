@@ -39,8 +39,10 @@ class SalesOrderHeaderSalesReason_Persister
     @Override
     public SalesOrderHeaderSalesReason apply(final EntityManager entityManager,
                                              final SalesOrderHeaderSalesReason entityInstance) {
-        final var salesOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesOrderHeader.class);
-        final var salesReason = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesReason.class);
+        final var salesOrder =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesOrderHeader.class);
+        final var salesReason =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesReason.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         return super.apply(entityManager, SalesOrderHeaderSalesReason.of(salesOrder, salesReason));

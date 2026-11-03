@@ -25,12 +25,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Production.ProductInventory} table, whose rows are identified by
- * {@code ProductID}, {@code LocationID}.
+ * The identifier class of the {@code Production.ProductInventory} table, whose rows are identified
+ * by {@code ProductID}, {@code LocationID}.
  * <p>
  * An entity which extends {@link MappedProductInventory} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class ProductInventoryId {
 
@@ -123,6 +123,7 @@ public class ProductInventoryId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code productId} attribute.
      */

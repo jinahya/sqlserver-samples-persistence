@@ -39,11 +39,11 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.TransactionHistory} table.
  * <p>
- * Read-only: the triggers iPurchaseOrderDetail, uPurchaseOrderDetail, Sales.iduSalesOrderDetail, iWorkOrder and
- * uWorkOrder insert every row of this table, a record of each purchase, sales and work order transaction, and nothing
- * in the database updates one; so no column of it is insertable or updatable, but for the identifier, which is
- * generated. The {@value #COLUMN_NAME_PRODUCT_ID} column, a foreign key, is read-only here and in the association of
- * the extending entity alike.
+ * Read-only: the triggers iPurchaseOrderDetail, uPurchaseOrderDetail, Sales.iduSalesOrderDetail,
+ * iWorkOrder and uWorkOrder insert every row of this table, a record of each purchase, sales and
+ * work order transaction, and nothing in the database updates one; so no column of it is insertable
+ * or updatable, but for the identifier, which is generated. The {@value #COLUMN_NAME_PRODUCT_ID}
+ * column, a foreign key, is read-only here and in the association of the extending entity alike.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.TransactionHistory}</caption>
@@ -81,7 +81,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -110,7 +112,8 @@ public abstract class MappedTransactionHistory {
     public static final String COLUMN_NAME_TRANSACTION_ID = "TransactionID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_ID = "transactionId";
 
@@ -122,7 +125,8 @@ public abstract class MappedTransactionHistory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -134,7 +138,8 @@ public abstract class MappedTransactionHistory {
     public static final String COLUMN_NAME_REFERENCE_ORDER_ID = "ReferenceOrderID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_REFERENCE_ORDER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REFERENCE_ORDER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_ORDER_ID = "referenceOrderId";
 
@@ -146,20 +151,22 @@ public abstract class MappedTransactionHistory {
     public static final String COLUMN_NAME_REFERENCE_ORDER_LINE_ID = "ReferenceOrderLineID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_REFERENCE_ORDER_LINE_ID} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REFERENCE_ORDER_LINE_ID}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID = "referenceOrderLineId";
 
     // ----------------------------------------------------------------------------- TransactionDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_TRANSACTION_DATE = "TransactionDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_DATE = "transactionDate";
 
@@ -176,25 +183,26 @@ public abstract class MappedTransactionHistory {
     public static final int COLUMN_LENGTH_TRANSACTION_TYPE = 1;
 
     /**
-     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a work order transaction. The value is
-     * {@value}.
+     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a work order transaction.
+     * The value is {@value}.
      */
     public static final String COLUMN_VALUE_TRANSACTION_TYPE_WORK_ORDER = "W";
 
     /**
-     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a sales order transaction. The value is
-     * {@value}.
+     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a sales order transaction.
+     * The value is {@value}.
      */
     public static final String COLUMN_VALUE_TRANSACTION_TYPE_SALES_ORDER = "S";
 
     /**
-     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a purchase order transaction. The value is
-     * {@value}.
+     * A value of the {@value #COLUMN_NAME_TRANSACTION_TYPE} column, for a purchase order
+     * transaction. The value is {@value}.
      */
     public static final String COLUMN_VALUE_TRANSACTION_TYPE_PURCHASE_ORDER = "P";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_TYPE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TRANSACTION_TYPE = "transactionType";
 
@@ -202,26 +210,30 @@ public abstract class MappedTransactionHistory {
      * An enum for the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute, of the values the
      * {@code CK_TransactionHistory_TransactionType} constraint allows.
      * {@snippet lang = "sql":
-     * (upper([TransactionType])='P' OR upper([TransactionType])='S' OR upper([TransactionType])='W')
+     * (upper([TransactionType])='P' OR upper([TransactionType])='S' OR upper([TransactionType])
+     * ='W')
      *} The constants are named after the column values, which are stored in upper case.
      */
     public enum TransactionType {
 
         /**
-         * A constant for the {@value MappedTransactionHistory#COLUMN_VALUE_TRANSACTION_TYPE_WORK_ORDER} value, for a
+         * A constant for the
+         * {@value MappedTransactionHistory#COLUMN_VALUE_TRANSACTION_TYPE_WORK_ORDER} value, for a
          * work order transaction.
          */
         W,
 
         /**
-         * A constant for the {@value MappedTransactionHistory#COLUMN_VALUE_TRANSACTION_TYPE_SALES_ORDER} value, for
-         * a sales order transaction.
+         * A constant for the
+         * {@value MappedTransactionHistory#COLUMN_VALUE_TRANSACTION_TYPE_SALES_ORDER} value, for a
+         * sales order transaction.
          */
         S,
 
         /**
-         * A constant for the {@value MappedTransactionHistory#COLUMN_VALUE_TRANSACTION_TYPE_PURCHASE_ORDER} value,
-         * for a purchase order transaction.
+         * A constant for the
+         * {@value MappedTransactionHistory#COLUMN_VALUE_TRANSACTION_TYPE_PURCHASE_ORDER} value, for
+         * a purchase order transaction.
          */
         P
     }
@@ -234,7 +246,8 @@ public abstract class MappedTransactionHistory {
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
@@ -246,19 +259,22 @@ public abstract class MappedTransactionHistory {
     public static final String COLUMN_NAME_ACTUAL_COST = "ActualCost";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTUAL_COST = "actualCost";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -329,7 +345,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute with the
+     * specified value.
      *
      * @param transactionId new value for {@value #ATTRIBUTE_NAME_TRANSACTION_ID} attribute.
      */
@@ -349,8 +366,9 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -370,7 +388,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute with the
+     * specified value.
      *
      * @param referenceOrderId new value for {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute.
      */
@@ -390,9 +409,11 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID} attribute with the
+     * specified value.
      *
-     * @param referenceOrderLineId new value for {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID} attribute.
+     * @param referenceOrderLineId new value for {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID}
+     *                             attribute.
      */
     public void setReferenceOrderLineId(final Integer referenceOrderLineId) {
         this.referenceOrderLineId = referenceOrderLineId;
@@ -410,7 +431,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute with the
+     * specified value.
      *
      * @param transactionDate new value for {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute.
      */
@@ -430,7 +452,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute with the
+     * specified value.
      *
      * @param transactionType new value for {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute.
      */
@@ -450,7 +473,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute with the specified
+     * value.
      *
      * @param quantity new value for {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
      */
@@ -470,7 +494,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute with the specified
+     * value.
      *
      * @param actualCost new value for {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute.
      */
@@ -490,7 +515,8 @@ public abstract class MappedTransactionHistory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -499,17 +525,20 @@ public abstract class MappedTransactionHistory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_ID,
                           value = "Primary key for TransactionHistory records.")
     private Integer transactionId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
@@ -520,22 +549,26 @@ public abstract class MappedTransactionHistory {
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
                           value = "Purchase order, sales order, or work order identification "
                                   + "number.")
     private Integer referenceOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
                           value = "Line number associated with the purchase order, sales order, "
                                   + "or work order.")
@@ -543,29 +576,34 @@ public abstract class MappedTransactionHistory {
     private Integer referenceOrderLineId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE,
                           value = "Date and time of the transaction.")
     @MsDefault(name = "DF_TransactionHistory_TransactionDate", value = "(getdate())")
     private LocalDateTime transactionDate;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_TRANSACTION_TYPE)
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_TRANSACTION_TYPE)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE,
                           value = "W = WorkOrder, S = SalesOrder, P = PurchaseOrder")
     private TransactionType transactionType;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
@@ -574,7 +612,8 @@ public abstract class MappedTransactionHistory {
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @NotNull
     @Basic(optional = false)
@@ -583,10 +622,12 @@ public abstract class MappedTransactionHistory {
     private BigDecimal actualCost;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: only the order and work-order triggers insert a row of this table, and nothing updates one; see the
+    // read-only: only the order and work-order triggers insert a row of this table, and nothing
+    // updates one; see the
     // class documentation
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_TransactionHistory_ModifiedDate", value = "(getdate())")

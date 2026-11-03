@@ -59,7 +59,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class SpecialOffer extends MappedSpecialOffer {
+public class SpecialOffer
+        extends MappedSpecialOffer {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

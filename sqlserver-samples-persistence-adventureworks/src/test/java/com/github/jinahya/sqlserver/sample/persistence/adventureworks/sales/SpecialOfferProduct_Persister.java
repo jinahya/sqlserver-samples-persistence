@@ -38,9 +38,12 @@ class SpecialOfferProduct_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public SpecialOfferProduct apply(final EntityManager entityManager, final SpecialOfferProduct entityInstance) {
-        final var specialOffer = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SpecialOffer.class);
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+    public SpecialOfferProduct apply(final EntityManager entityManager,
+                                     final SpecialOfferProduct entityInstance) {
+        final var specialOffer =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SpecialOffer.class);
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         return super.apply(entityManager, SpecialOfferProduct.of(specialOffer, product));

@@ -44,9 +44,9 @@ import java.util.UUID;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.SalesOrderDetail} table.
  * <p>
- * The {@value #COLUMN_NAME_PRODUCT_ID}, {@value #COLUMN_NAME_SPECIAL_OFFER_ID} columns are mapped read-only, as a
- * foreign key; the extending entity owns the writable mapping, through an association's
- * {@link jakarta.persistence.JoinColumn @JoinColumn}.
+ * The {@value #COLUMN_NAME_PRODUCT_ID}, {@value #COLUMN_NAME_SPECIAL_OFFER_ID} columns are mapped
+ * read-only, as a foreign key; the extending entity owns the writable mapping, through an
+ * association's {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.SalesOrderDetail}</caption>
@@ -97,7 +97,8 @@ import java.util.UUID;
  * </thead>
  * <tbody>
  * <tr><th scope="row">{@code LineTotal}</th>
- *     <td>{@code (isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))}</td><td>{@code false}</td></tr>
+ *     <td>{@code (isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))}</td><td
+ *     >{@code false}</td></tr>
  * </tbody>
  * </table>
  *
@@ -112,9 +113,14 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -146,7 +152,8 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_SALES_ORDER_ID = "SalesOrderID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
 
@@ -158,8 +165,8 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_SALES_ORDER_DETAIL_ID = "SalesOrderDetailID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_DETAIL_ID} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_DETAIL_ID} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID = "salesOrderDetailId";
 
@@ -171,13 +178,14 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_CARRIER_TRACKING_NUMBER = "CarrierTrackingNumber";
 
     /**
-     * The length of the {@value #COLUMN_NAME_CARRIER_TRACKING_NUMBER} column. The value is {@value}.
+     * The length of the {@value #COLUMN_NAME_CARRIER_TRACKING_NUMBER} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_LENGTH_CARRIER_TRACKING_NUMBER = 25;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CARRIER_TRACKING_NUMBER} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CARRIER_TRACKING_NUMBER}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER = "carrierTrackingNumber";
 
@@ -189,8 +197,9 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_ORDER_QTY = "OrderQty";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the {@code CK_SalesOrderDetail_OrderQty}
-     * check constraint ({@code [OrderQty]>(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_ORDER_QTY} column, as the
+     * {@code CK_SalesOrderDetail_OrderQty} check constraint ({@code [OrderQty]>(0)}) requires. The
+     * value is {@value}.
      */
     public static final int COLUMN_MIN_ORDER_QTY = +1;
 
@@ -200,7 +209,8 @@ public abstract class MappedSalesOrderDetail {
     public static final int COLUMN_MAX_ORDER_QTY = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_QTY = "orderQty";
 
@@ -212,7 +222,8 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -224,7 +235,8 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_SPECIAL_OFFER_ID = "SpecialOfferID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_ID = "specialOfferId";
 
@@ -236,13 +248,15 @@ public abstract class MappedSalesOrderDetail {
     public static final String COLUMN_NAME_UNIT_PRICE = "UnitPrice";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE} column, as the {@code CK_SalesOrderDetail_UnitPrice}
-     * check constraint ({@code [UnitPrice]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE} column, as the
+     * {@code CK_SalesOrderDetail_UnitPrice} check constraint ({@code [UnitPrice]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_UNIT_PRICE = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE = "unitPrice";
 
@@ -255,14 +269,14 @@ public abstract class MappedSalesOrderDetail {
 
     /**
      * The minimum value of the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column, as the
-     * {@code CK_SalesOrderDetail_UnitPriceDiscount} check constraint ({@code [UnitPriceDiscount]>=(0.00)}) requires.
-     * The value is {@value}.
+     * {@code CK_SalesOrderDetail_UnitPriceDiscount} check constraint
+     * ({@code [UnitPriceDiscount]>=(0.00)}) requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_UNIT_PRICE_DISCOUNT = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PRICE_DISCOUNT} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT = "unitPriceDiscount";
 
@@ -270,8 +284,9 @@ public abstract class MappedSalesOrderDetail {
 
     /**
      * The name of the
-     * {@code numeric(38, 6), computed as (isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0))), NOT
-     * NULL} column. The value is {@value}.
+     * {@code numeric(38, 6), computed as
+     * (isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0))), NOT NULL} column. The
+     * value is {@value}.
      */
     public static final String COLUMN_NAME_LINE_TOTAL = "LineTotal";
 
@@ -286,31 +301,36 @@ public abstract class MappedSalesOrderDetail {
     public static final int COLUMN_SCALE_LINE_TOTAL = 6;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_TOTAL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_TOTAL} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LINE_TOTAL = "lineTotal";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -347,8 +367,9 @@ public abstract class MappedSalesOrderDetail {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
-     *         identifier is not yet assigned, which the database does on insert, equals only itself.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an
+     *         instance whose identifier is not yet assigned, which the database does on insert,
+     *         equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -368,8 +389,8 @@ public abstract class MappedSalesOrderDetail {
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is the same for every instance, so that it does not change when the identifier is
-     *         assigned; consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         the identifier is assigned; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
@@ -382,17 +403,19 @@ public abstract class MappedSalesOrderDetail {
      * Returns current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getSalesOrderId() {
         return salesOrderId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute with the
+     * specified value.
      *
      * @param salesOrderId new value for {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute.
      */
@@ -412,9 +435,11 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID} attribute with the
+     * specified value.
      *
-     * @param salesOrderDetailId new value for {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID} attribute.
+     * @param salesOrderDetailId new value for {@value #ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID}
+     *                           attribute.
      */
     protected void setSalesOrderDetailId(final Integer salesOrderDetailId) {
         this.salesOrderDetailId = salesOrderDetailId;
@@ -432,9 +457,11 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER} attribute with the
+     * specified value.
      *
-     * @param carrierTrackingNumber new value for {@value #ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER} attribute.
+     * @param carrierTrackingNumber new value for {@value #ATTRIBUTE_NAME_CARRIER_TRACKING_NUMBER}
+     *                              attribute.
      */
     public void setCarrierTrackingNumber(final String carrierTrackingNumber) {
         this.carrierTrackingNumber = carrierTrackingNumber;
@@ -452,7 +479,8 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute with the specified
+     * value.
      *
      * @param orderQty new value for {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute.
      */
@@ -472,8 +500,9 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -493,9 +522,9 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param specialOfferId new value for {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute.
      */
@@ -515,7 +544,8 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute with the specified
+     * value.
      *
      * @param unitPrice new value for {@value #ATTRIBUTE_NAME_UNIT_PRICE} attribute.
      */
@@ -535,9 +565,11 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT} attribute with the
+     * specified value.
      *
-     * @param unitPriceDiscount new value for {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT} attribute.
+     * @param unitPriceDiscount new value for {@value #ATTRIBUTE_NAME_UNIT_PRICE_DISCOUNT}
+     *                          attribute.
      */
     public void setUnitPriceDiscount(final BigDecimal unitPriceDiscount) {
         this.unitPriceDiscount = unitPriceDiscount;
@@ -555,8 +587,9 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute with the specified value. The database
-     * writes the column; this is for the provider and the extending class only.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute with the specified
+     * value. The database writes the column; this is for the provider and the extending class
+     * only.
      *
      * @param lineTotal new value for {@value #ATTRIBUTE_NAME_LINE_TOTAL} attribute.
      */
@@ -587,7 +620,8 @@ public abstract class MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -596,20 +630,24 @@ public abstract class MappedSalesOrderDetail {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID,
                           value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
     private Integer salesOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
                           value = "Primary key. One incremental unique number per product sold.")
     private Integer salesOrderDetailId;
@@ -617,7 +655,8 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
+    @Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER, nullable = true, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER,
                           value = "Shipment tracking number supplied by the shipper.")
     private String carrierTrackingNumber;
@@ -633,7 +672,8 @@ public abstract class MappedSalesOrderDetail {
     private Integer orderQty;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
@@ -642,10 +682,12 @@ public abstract class MappedSalesOrderDetail {
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
                           value = "Promotional code. Foreign key to SpecialOffer.SpecialOfferID.")
     private Integer specialOfferId;
@@ -665,16 +707,19 @@ public abstract class MappedSalesOrderDetail {
     @DecimalMin(COLUMN_MIN_UNIT_PRICE_DISCOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, value = "Discount amount.")
     @MsDefault(name = "DF_SalesOrderDetail_UnitPriceDiscount", value = "((0.0))")
     private BigDecimal unitPriceDiscount;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL, fraction = COLUMN_SCALE_LINE_TOTAL)
+    @Digits(integer = COLUMN_PRECISION_LINE_TOTAL - COLUMN_SCALE_LINE_TOTAL,
+            fraction = COLUMN_SCALE_LINE_TOTAL)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false, precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL)
+    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false,
+            precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL)
     @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
                           value = "Per product subtotal. Computed as UnitPrice * (1 - "
                                   + "UnitPriceDiscount) * OrderQty.")
@@ -682,7 +727,8 @@ public abstract class MappedSalesOrderDetail {
     private BigDecimal lineTotal;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -692,10 +738,12 @@ public abstract class MappedSalesOrderDetail {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesOrderDetail_ModifiedDate", value = "(getdate())")

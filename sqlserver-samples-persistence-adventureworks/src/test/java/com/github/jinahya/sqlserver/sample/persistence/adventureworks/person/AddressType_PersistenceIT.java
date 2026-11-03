@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class AddressType_PersistenceIT extends _Entity_PersistenceIT<AddressType> {
+class AddressType_PersistenceIT
+        extends _Entity_PersistenceIT<AddressType> {
 
     AddressType_PersistenceIT() {
         super(AddressType.class);

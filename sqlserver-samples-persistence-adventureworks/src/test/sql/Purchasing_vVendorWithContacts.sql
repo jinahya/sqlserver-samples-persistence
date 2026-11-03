@@ -30,7 +30,10 @@
 -- ---------------------------------------------------------------------------------------------------- BusinessEntityID
 -- how many rows, how many distinct BusinessEntityID, and the smallest and the largest; 156 contacts of the 104 vendors,
 -- 1492 to 1698.
-SELECT COUNT(*), COUNT(DISTINCT BusinessEntityID), MIN(BusinessEntityID), MAX(BusinessEntityID)
+SELECT COUNT(*),
+       COUNT(DISTINCT BusinessEntityID),
+       MIN(BusinessEntityID),
+       MAX(BusinessEntityID)
 FROM Purchasing.vVendorWithContacts
 ;
 
@@ -133,7 +136,9 @@ ORDER BY Suffix ASC
 
 -- --------------------------------------------------------------------------------------------------------- PhoneNumber
 -- how many rows leave PhoneNumber NULL, and the shortest and the longest; no NULL; 12 characters each.
-SELECT COUNT(*) - COUNT(PhoneNumber) AS nulls, MIN(LEN(PhoneNumber)), MAX(LEN(PhoneNumber))
+SELECT COUNT(*) - COUNT(PhoneNumber) AS nulls,
+       MIN(LEN(PhoneNumber)),
+       MAX(LEN(PhoneNumber))
 FROM Purchasing.vVendorWithContacts
 ;
 
@@ -157,7 +162,9 @@ ORDER BY PhoneNumberType ASC
 
 -- -------------------------------------------------------------------------------------------------------- EmailAddress
 -- how many rows leave EmailAddress NULL, and the shortest and the longest; no NULL; 23 to 30 characters.
-SELECT COUNT(*) - COUNT(EmailAddress) AS nulls, MIN(LEN(EmailAddress)), MAX(LEN(EmailAddress))
+SELECT COUNT(*) - COUNT(EmailAddress) AS nulls,
+       MIN(LEN(EmailAddress)),
+       MAX(LEN(EmailAddress))
 FROM Purchasing.vVendorWithContacts
 ;
 

@@ -41,11 +41,12 @@ import java.util.Optional;
 @Entity(name = "PersonEmailAddress")
 @Table(schema = MappedEmailAddress.TABLE_SCHEMA, name = MappedEmailAddress.TABLE_NAME)
 @IdClass(EmailAddressId.class)
-public class EmailAddress extends MappedEmailAddress {
+public class EmailAddress
+        extends MappedEmailAddress {
 
     /**
-     * The name of the attribute of the {@code FK_EmailAddress_Person_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_EmailAddress_Person_BusinessEntityID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -77,7 +78,8 @@ public class EmailAddress extends MappedEmailAddress {
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Person} which the {@code FK_EmailAddress_Person_BusinessEntityID} foreign key references.
+     * Returns the {@code Person} which the {@code FK_EmailAddress_Person_BusinessEntityID} foreign
+     * key references.
      *
      * @return the {@code Person} referenced; {@code null} when none is.
      */
@@ -86,14 +88,15 @@ public class EmailAddress extends MappedEmailAddress {
     }
 
     /**
-     * Replaces the {@code Person} which the {@code FK_EmailAddress_Person_BusinessEntityID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code Person} which the {@code FK_EmailAddress_Person_BusinessEntityID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Person} to reference; {@code null} for none.
      */
     private void setBusinessEntity(final Person businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Person::getBusinessEntityId).orElse(null));
+        setBusinessEntityId(
+                Optional.ofNullable(businessEntity).map(Person::getBusinessEntityId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

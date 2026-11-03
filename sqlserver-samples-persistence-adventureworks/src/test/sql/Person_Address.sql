@@ -35,8 +35,9 @@ FROM Person.Address
 
 -- the runs of AddressID missing below the largest; 3 runs, 1106 to 11379, 11388 to 11399 and 29884 to 32504, 12907
 -- values in all.
-SELECT a.AddressID + 1 AS missing_from,
-       (SELECT MIN(b.AddressID) FROM Person.Address b WHERE b.AddressID > a.AddressID) - 1 AS missing_to
+SELECT a.AddressID + 1                                                                     AS missing_from,
+       (SELECT MIN(b.AddressID) FROM Person.Address b WHERE b.AddressID > a.AddressID) -
+       1                                                                                   AS missing_to
 FROM Person.Address a
 WHERE a.AddressID < (SELECT MAX(AddressID) FROM Person.Address)
   AND NOT EXISTS (SELECT 1
@@ -104,7 +105,7 @@ FROM Person.Address
 ;
 
 -- the four cities with the most addresses; London with 434, Paris with 398, Burien with 215 and Concord with 214.
-SELECT TOP (4) City, COUNT(*) AS addresses
+SELECT TOP(4) City, COUNT(*) AS addresses
 FROM Person.Address
 GROUP BY City
 ORDER BY addresses DESC, City ASC
@@ -133,7 +134,10 @@ WHERE TRIM(PostalCode) = ''
 ;
 
 -- the length of PostalCode in each country or region; AU 4, CA 2 to 7, DE 5, FR 5, GB 3 to 8 and US 5 to 10.
-SELECT s.CountryRegionCode, MIN(LEN(a.PostalCode)), MAX(LEN(a.PostalCode)), COUNT(*) AS addresses
+SELECT s.CountryRegionCode,
+       MIN(LEN(a.PostalCode)),
+       MAX(LEN(a.PostalCode)),
+       COUNT(*) AS addresses
 FROM Person.Address a
          JOIN Person.StateProvince s ON s.StateProvinceID = a.StateProvinceID
 GROUP BY s.CountryRegionCode
@@ -154,18 +158,25 @@ ORDER BY length ASC
 -- ----------------------------------------------------------------------------------------------------- SpatialLocation
 -- SpatialLocation is a nullable geography; how many addresses have none, and how large the others are. None; 22
 -- bytes each.
-SELECT COUNT(*) - COUNT(SpatialLocation) AS without, MIN(DATALENGTH(SpatialLocation)), MAX(DATALENGTH(SpatialLocation))
+SELECT COUNT(*) - COUNT(SpatialLocation) AS without,
+       MIN(DATALENGTH(SpatialLocation)),
+       MAX(DATALENGTH(SpatialLocation))
 FROM Person.Address
 ;
 
 -- the kinds of geography and the spatial reference systems; Point, in 4326 (WGS 84) only.
-SELECT SpatialLocation.STGeometryType() AS type, SpatialLocation.STSrid AS srid, COUNT(*) AS addresses
+SELECT SpatialLocation.STGeometryType() AS type,
+       SpatialLocation.STSrid           AS srid,
+       COUNT(*)                         AS addresses
 FROM Person.Address
 GROUP BY SpatialLocation.STGeometryType(), SpatialLocation.STSrid
 ;
 
 -- the range of the points; latitude -42.90 to 55.06, longitude -124.03 to 153.64.
-SELECT MIN(SpatialLocation.Lat), MAX(SpatialLocation.Lat), MIN(SpatialLocation.Long), MAX(SpatialLocation.Long)
+SELECT MIN(SpatialLocation.Lat),
+       MAX(SpatialLocation.Lat),
+       MIN(SpatialLocation.Long),
+       MAX(SpatialLocation.Long)
 FROM Person.Address
 ;
 
@@ -195,9 +206,9 @@ GROUP BY s.CountryRegionCode
 ;
 
 -- how many rows each year; most in the last years, 9821 in 2024 and 5326 in 2025, a single one in 2017.
-SELECT YEAR(ModifiedDate) AS year, COUNT(*) AS addresses
+SELECT YEAR (ModifiedDate) AS year, COUNT (*) AS addresses
 FROM Person.Address
-GROUP BY YEAR(ModifiedDate)
+GROUP BY YEAR (ModifiedDate)
 ORDER BY year ASC
 ;
 
@@ -215,7 +226,7 @@ HAVING COUNT(*) > 1
 -- one row: every address belongs to exactly one business entity, 19614.
 SELECT b.business_entities, COUNT(*) AS addresses
 FROM Person.Address a
-         CROSS APPLY (SELECT COUNT(*) AS business_entities
+    CROSS APPLY (SELECT COUNT(*) AS business_entities
                       FROM Person.BusinessEntityAddress e
                       WHERE e.AddressID = a.AddressID) b
 GROUP BY b.business_entities

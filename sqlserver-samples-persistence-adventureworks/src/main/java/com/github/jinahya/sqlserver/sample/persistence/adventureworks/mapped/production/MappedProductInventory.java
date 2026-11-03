@@ -75,8 +75,11 @@ import java.util.UUID;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -104,7 +107,8 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -126,7 +130,8 @@ public abstract class MappedProductInventory {
     public static final int COLUMN_MAX_LOCATION_ID = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOCATION_ID = "locationId";
 
@@ -143,7 +148,8 @@ public abstract class MappedProductInventory {
     public static final int COLUMN_LENGTH_SHELF = 10;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SHELF} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SHELF} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHELF = "shelf";
 
@@ -155,19 +161,22 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_BIN = "Bin";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_BIN} column, as the {@code CK_ProductInventory_Bin} check
-     * constraint ({@code [Bin]>=(0)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_BIN} column, as the
+     * {@code CK_ProductInventory_Bin} check constraint ({@code [Bin]>=(0)}) requires. The value is
+     * {@value}.
      */
     public static final int COLUMN_MIN_BIN = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_BIN} column, as the {@code CK_ProductInventory_Bin} check
-     * constraint ({@code [Bin]<=(100)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_BIN} column, as the
+     * {@code CK_ProductInventory_Bin} check constraint ({@code [Bin]<=(100)}) requires. The value
+     * is {@value}.
      */
     public static final int COLUMN_MAX_BIN = +100;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BIN} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BIN} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BIN = "bin";
 
@@ -189,31 +198,36 @@ public abstract class MappedProductInventory {
     public static final int COLUMN_MAX_QUANTITY = Short.MAX_VALUE;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUANTITY = "quantity";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -274,16 +288,17 @@ public abstract class MappedProductInventory {
     // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
-     * Checks whether the {@value #ATTRIBUTE_NAME_SHELF} attribute is {@code null}, a single letter, or {@code N/A},
-     * as the table's {@code CK_ProductInventory_Shelf} constraint requires.
+     * Checks whether the {@value #ATTRIBUTE_NAME_SHELF} attribute is {@code null}, a single letter,
+     * or {@code N/A}, as the table's {@code CK_ProductInventory_Shelf} constraint requires.
      * {@snippet lang = "sql":
      * ([Shelf] like '[A-Za-z]' OR [Shelf]='N/A')
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SHELF} attribute is {@code null}, a single letter from
-     *         {@code A} to {@code Z} or from {@code a} to {@code z}, or {@code N/A}; {@code false} otherwise.
-     * @implNote This method compares with {@code N/A} as it is, while the database compares under the collation of
-     *         the column.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SHELF} attribute is {@code null}, a
+     *         single letter from {@code A} to {@code Z} or from {@code a} to {@code z}, or
+     *         {@code N/A}; {@code false} otherwise.
+     * @implNote This method compares with {@code N/A} as it is, while the database compares
+     *         under the collation of the column.
      */
     @AssertTrue(message = "shelf must be a single letter or N/A")
     protected boolean isShelfValid() {
@@ -299,17 +314,19 @@ public abstract class MappedProductInventory {
      * Returns current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getProductId() {
         return productId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -323,17 +340,19 @@ public abstract class MappedProductInventory {
      * Returns current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected Integer getLocationId() {
         return locationId;
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute with the specified
+     * value.
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
@@ -393,7 +412,8 @@ public abstract class MappedProductInventory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_QUANTITY} attribute with the specified
+     * value.
      *
      * @param quantity new value for {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
      */
@@ -424,7 +444,8 @@ public abstract class MappedProductInventory {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -433,7 +454,8 @@ public abstract class MappedProductInventory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -443,7 +465,8 @@ public abstract class MappedProductInventory {
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @Max(COLUMN_MAX_LOCATION_ID)
     @Min(COLUMN_MIN_LOCATION_ID)
     @NotNull
@@ -458,7 +481,8 @@ public abstract class MappedProductInventory {
     @Size(max = COLUMN_LENGTH_SHELF)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHELF, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SHELF)
+    @Column(name = COLUMN_NAME_SHELF, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_SHELF)
     @MsDescription.Column(name = COLUMN_NAME_SHELF,
                           value = "Storage compartment within an inventory location.")
     private String shelf;
@@ -486,7 +510,8 @@ public abstract class MappedProductInventory {
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -496,10 +521,12 @@ public abstract class MappedProductInventory {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductInventory_ModifiedDate", value = "(getdate())")

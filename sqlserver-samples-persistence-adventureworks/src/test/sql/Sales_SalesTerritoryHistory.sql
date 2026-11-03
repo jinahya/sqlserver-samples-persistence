@@ -59,7 +59,9 @@ ORDER BY s.BusinessEntityID ASC
 
 -- ----------------------------------------------------------------------------------------------------------- StartDate
 -- the range of StartDate; 2022-05-30 to 2024-05-29, 9 rows on the first day.
-SELECT MIN(StartDate), MAX(StartDate), SUM(CASE WHEN StartDate = '2022-05-30' THEN 1 ELSE 0 END) AS first_day
+SELECT MIN(StartDate),
+       MAX(StartDate),
+       SUM(CASE WHEN StartDate = '2022-05-30' THEN 1 ELSE 0 END) AS first_day
 FROM Sales.SalesTerritoryHistory
 ;
 

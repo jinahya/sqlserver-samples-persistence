@@ -25,13 +25,14 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hum
 import java.time.LocalDateTime;
 
 /**
- * A plain class which holds a row of the {@code HumanResources.vJobCandidateEmployment} view, which no entity can map:
- * the view declares no key, and no identifier column of it is unique.
+ * A plain class which holds a row of the {@code HumanResources.vJobCandidateEmployment} view, which
+ * no entity can map: the view declares no key, and no identifier column of it is unique.
  * <p>
  * The public constructor takes every column, in the order the view declares them, for a
  * {@link jakarta.persistence.ConstructorResult @ConstructorResult} or a row mapper.
  */
-public class JobCandidateEmploymentView extends MappedJobCandidateEmploymentView {
+public class JobCandidateEmploymentView
+        extends MappedJobCandidateEmploymentView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -51,9 +52,12 @@ public class JobCandidateEmploymentView extends MappedJobCandidateEmploymentView
      * @param empOrgName          the value of the {@value #COLUMN_NAME_EMP_ORG_NAME} column.
      * @param empJobTitle         the value of the {@value #COLUMN_NAME_EMP_JOB_TITLE} column.
      * @param empResponsibility   the value of the {@value #COLUMN_NAME_EMP_RESPONSIBILITY} column.
-     * @param empFunctionCategory the value of the {@value #COLUMN_NAME_EMP_FUNCTION_CATEGORY} column.
-     * @param empIndustryCategory the value of the {@value #COLUMN_NAME_EMP_INDUSTRY_CATEGORY} column.
-     * @param empLocCountryRegion the value of the {@value #COLUMN_NAME_EMP_LOC_COUNTRY_REGION} column.
+     * @param empFunctionCategory the value of the {@value #COLUMN_NAME_EMP_FUNCTION_CATEGORY}
+     *                            column.
+     * @param empIndustryCategory the value of the {@value #COLUMN_NAME_EMP_INDUSTRY_CATEGORY}
+     *                            column.
+     * @param empLocCountryRegion the value of the {@value #COLUMN_NAME_EMP_LOC_COUNTRY_REGION}
+     *                            column.
      * @param empLocState         the value of the {@value #COLUMN_NAME_EMP_LOC_STATE} column.
      * @param empLocCity          the value of the {@value #COLUMN_NAME_EMP_LOC_CITY} column.
      */

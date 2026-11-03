@@ -76,7 +76,9 @@ FROM HumanResources.EmployeePayHistory
 -- a Rate which goes down from one change to the next.
 -- no rows: no rate ever goes down.
 SELECT p.BusinessEntityID, p.RateChangeDate, p.Rate, p.previous
-FROM (SELECT BusinessEntityID, RateChangeDate, Rate,
+FROM (SELECT BusinessEntityID,
+             RateChangeDate,
+             Rate,
              LAG(Rate) OVER (PARTITION BY BusinessEntityID ORDER BY RateChangeDate) AS previous
       FROM HumanResources.EmployeePayHistory) p
 WHERE p.Rate < p.previous
@@ -118,7 +120,9 @@ FROM HumanResources.EmployeePayHistory
 
 -- a ModifiedDate earlier than its RateChangeDate, and by how many days; 39 rows, modified 14 or 15 days before the rate
 -- they record took effect.
-SELECT COUNT(*), MIN(DATEDIFF(DAY, ModifiedDate, RateChangeDate)), MAX(DATEDIFF(DAY, ModifiedDate, RateChangeDate))
+SELECT COUNT(*),
+       MIN(DATEDIFF(DAY, ModifiedDate, RateChangeDate)),
+       MAX(DATEDIFF(DAY, ModifiedDate, RateChangeDate))
 FROM HumanResources.EmployeePayHistory
 WHERE ModifiedDate < RateChangeDate
 ;

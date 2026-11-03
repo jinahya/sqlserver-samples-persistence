@@ -53,21 +53,24 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Customer extends MappedCustomer {
+public class Customer
+        extends MappedCustomer {
 
     /**
-     * The name of the attribute of the {@code FK_Customer_Person_PersonID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_Customer_Person_PersonID} foreign key. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PERSON = "person";
 
     /**
-     * The name of the attribute of the {@code FK_Customer_Store_StoreID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_Customer_Store_StoreID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_STORE = "store";
 
     /**
-     * The name of the attribute of the {@code FK_Customer_SalesTerritory_TerritoryID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_Customer_SalesTerritory_TerritoryID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
@@ -83,7 +86,8 @@ public class Customer extends MappedCustomer {
     // -------------------------------------------------------------------------------------- person
 
     /**
-     * Returns the {@code Person} which the {@code FK_Customer_Person_PersonID} foreign key references.
+     * Returns the {@code Person} which the {@code FK_Customer_Person_PersonID} foreign key
+     * references.
      *
      * @return the {@code Person} referenced; {@code null} when none is.
      */
@@ -92,8 +96,8 @@ public class Customer extends MappedCustomer {
     }
 
     /**
-     * Replaces the {@code Person} which the {@code FK_Customer_Person_PersonID} foreign key references, and the value
-     * of the column it consists of.
+     * Replaces the {@code Person} which the {@code FK_Customer_Person_PersonID} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param person the {@code Person} to reference; {@code null} for none.
      */
@@ -105,7 +109,8 @@ public class Customer extends MappedCustomer {
     // --------------------------------------------------------------------------------------- store
 
     /**
-     * Returns the {@code Store} which the {@code FK_Customer_Store_StoreID} foreign key references.
+     * Returns the {@code Store} which the {@code FK_Customer_Store_StoreID} foreign key
+     * references.
      *
      * @return the {@code Store} referenced; {@code null} when none is.
      */
@@ -114,8 +119,8 @@ public class Customer extends MappedCustomer {
     }
 
     /**
-     * Replaces the {@code Store} which the {@code FK_Customer_Store_StoreID} foreign key references, and the value of
-     * the column it consists of.
+     * Replaces the {@code Store} which the {@code FK_Customer_Store_StoreID} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param store the {@code Store} to reference; {@code null} for none.
      */
@@ -127,8 +132,8 @@ public class Customer extends MappedCustomer {
     // ----------------------------------------------------------------------------------- territory
 
     /**
-     * Returns the {@code SalesTerritory} which the {@code FK_Customer_SalesTerritory_TerritoryID} foreign key
-     * references.
+     * Returns the {@code SalesTerritory} which the {@code FK_Customer_SalesTerritory_TerritoryID}
+     * foreign key references.
      *
      * @return the {@code SalesTerritory} referenced; {@code null} when none is.
      */
@@ -137,8 +142,8 @@ public class Customer extends MappedCustomer {
     }
 
     /**
-     * Replaces the {@code SalesTerritory} which the {@code FK_Customer_SalesTerritory_TerritoryID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code SalesTerritory} which the {@code FK_Customer_SalesTerritory_TerritoryID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param territory the {@code SalesTerritory} to reference; {@code null} for none.
      */

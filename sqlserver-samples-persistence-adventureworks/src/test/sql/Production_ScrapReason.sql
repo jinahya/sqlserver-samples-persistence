@@ -76,7 +76,7 @@ WHERE NOT EXISTS (SELECT 1
 
 -- the reasons work orders are scrapped for, the most frequent first; 13 (Thermoform temperature too low) with 63, 3
 -- (Gouge in metal) with 54, 11 (Stress test failed) with 52.
-SELECT TOP (3) s.ScrapReasonID, s.Name, COUNT(*) AS workOrders
+SELECT TOP(3) s.ScrapReasonID, s.Name, COUNT(*) AS workOrders
 FROM Production.ScrapReason s
          JOIN Production.WorkOrder w ON w.ScrapReasonID = s.ScrapReasonID
 GROUP BY s.ScrapReasonID, s.Name

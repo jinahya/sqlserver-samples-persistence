@@ -81,7 +81,9 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -114,14 +116,16 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
     // ------------------------------------------------------------------------------- AccountNumber
 
     /**
-     * The name of the {@code AccountNumber (nvarchar)(15), NOT NULL} column. The value is {@value}.
+     * The name of the {@code AccountNumber (nvarchar)(15), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ACCOUNT_NUMBER = "AccountNumber";
 
@@ -131,7 +135,8 @@ public abstract class MappedVendor {
     public static final int COLUMN_LENGTH_ACCOUNT_NUMBER = 15;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACCOUNT_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACCOUNT_NUMBER} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACCOUNT_NUMBER = "accountNumber";
 
@@ -148,7 +153,8 @@ public abstract class MappedVendor {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
@@ -160,19 +166,22 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_CREDIT_RATING = "CreditRating";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the {@code CK_Vendor_CreditRating} check
-     * constraint ({@code [CreditRating]>=(1)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the
+     * {@code CK_Vendor_CreditRating} check constraint ({@code [CreditRating]>=(1)}) requires. The
+     * value is {@value}.
      */
     public static final int COLUMN_MIN_CREDIT_RATING = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the {@code CK_Vendor_CreditRating} check
-     * constraint ({@code [CreditRating]<=(5)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_CREDIT_RATING} column, as the
+     * {@code CK_Vendor_CreditRating} check constraint ({@code [CreditRating]<=(5)}) requires. The
+     * value is {@value}.
      */
     public static final int COLUMN_MAX_CREDIT_RATING = +5;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CREDIT_RATING} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CREDIT_RATING} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CREDIT_RATING = "creditRating";
 
@@ -184,8 +193,8 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_PREFERRED_VENDOR_STATUS = "PreferredVendorStatus";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PREFERRED_VENDOR_STATUS} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PREFERRED_VENDOR_STATUS}
+     * column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PREFERRED_VENDOR_STATUS = "preferredVendorStatus";
 
@@ -197,7 +206,8 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_ACTIVE_FLAG = "ActiveFlag";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTIVE_FLAG} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACTIVE_FLAG} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACTIVE_FLAG = "activeFlag";
 
@@ -209,25 +219,29 @@ public abstract class MappedVendor {
     public static final String COLUMN_NAME_PURCHASING_WEB_SERVICE_URL = "PurchasingWebServiceURL";
 
     /**
-     * The length of the {@value #COLUMN_NAME_PURCHASING_WEB_SERVICE_URL} column. The value is {@value}.
+     * The length of the {@value #COLUMN_NAME_PURCHASING_WEB_SERVICE_URL} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL = 1024;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASING_WEB_SERVICE_URL} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASING_WEB_SERVICE_URL}
+     * column. The value is {@value}.
      */
-    public static final String ATTRIBUTE_NAME_PURCHASING_WEB_SERVICE_URL = "purchasingWebServiceUrl";
+    public static final String ATTRIBUTE_NAME_PURCHASING_WEB_SERVICE_URL =
+            "purchasingWebServiceUrl";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -297,7 +311,8 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -317,7 +332,8 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute with the
+     * specified value.
      *
      * @param accountNumber new value for {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute.
      */
@@ -357,7 +373,8 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute with the specified
+     * value.
      *
      * @param creditRating new value for {@value #ATTRIBUTE_NAME_CREDIT_RATING} attribute.
      */
@@ -377,9 +394,11 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PREFERRED_VENDOR_STATUS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PREFERRED_VENDOR_STATUS} attribute with the
+     * specified value.
      *
-     * @param preferredVendorStatus new value for {@value #ATTRIBUTE_NAME_PREFERRED_VENDOR_STATUS} attribute.
+     * @param preferredVendorStatus new value for {@value #ATTRIBUTE_NAME_PREFERRED_VENDOR_STATUS}
+     *                              attribute.
      */
     public void setPreferredVendorStatus(final Boolean preferredVendorStatus) {
         this.preferredVendorStatus = preferredVendorStatus;
@@ -397,7 +416,8 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTIVE_FLAG} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACTIVE_FLAG} attribute with the specified
+     * value.
      *
      * @param activeFlag new value for {@value #ATTRIBUTE_NAME_ACTIVE_FLAG} attribute.
      */
@@ -417,10 +437,12 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PURCHASING_WEB_SERVICE_URL} attribute with the specified
-     * value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PURCHASING_WEB_SERVICE_URL} attribute with
+     * the specified value.
      *
-     * @param purchasingWebServiceUrl new value for {@value #ATTRIBUTE_NAME_PURCHASING_WEB_SERVICE_URL} attribute.
+     * @param purchasingWebServiceUrl new value for
+     *                                {@value #ATTRIBUTE_NAME_PURCHASING_WEB_SERVICE_URL}
+     *                                attribute.
      */
     public void setPurchasingWebServiceUrl(final String purchasingWebServiceUrl) {
         this.purchasingWebServiceUrl = purchasingWebServiceUrl;
@@ -438,7 +460,8 @@ public abstract class MappedVendor {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -447,10 +470,12 @@ public abstract class MappedVendor {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Primary key for Vendor records.  Foreign key to "
                                   + "BusinessEntity.BusinessEntityID")
@@ -460,7 +485,8 @@ public abstract class MappedVendor {
     @Size(max = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
+    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
                           value = "Vendor account (identification) number.")
     private String accountNumber;
@@ -469,7 +495,8 @@ public abstract class MappedVendor {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_NAME)
     @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Company name.")
     private String name;
 
@@ -488,7 +515,8 @@ public abstract class MappedVendor {
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS,
                           value = "0 = Do not use if another vendor is available. 1 = Preferred "
                                   + "over other vendors supplying the same product.")
@@ -507,13 +535,16 @@ public abstract class MappedVendor {
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PURCHASING_WEB_SERVICE_URL, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL)
+    @Column(name = COLUMN_NAME_PURCHASING_WEB_SERVICE_URL, nullable = true, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_PURCHASING_WEB_SERVICE_URL)
     private String purchasingWebServiceUrl;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents it as changing
+    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents
+    // it as changing
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = false)
     @MsDefault(name = "DF_Vendor_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

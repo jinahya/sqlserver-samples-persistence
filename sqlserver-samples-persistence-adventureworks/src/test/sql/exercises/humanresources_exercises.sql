@@ -50,7 +50,10 @@ GO
 -- ---------------------------------------------------------------------------------------------- AW_HUMANRESOURCES_I_01
 -- Payroll reviews the highest pay. Show the ten employees with the highest current hourly rate, the rate of each one's
 -- latest change.
-SELECT TOP(10) p.FirstName, p.LastName, e.JobTitle, ph.Rate, CAST(ph.RateChangeDate AS date) AS RateChangeDate
+SELECT TOP(10) p.FirstName, p.LastName,
+       e.JobTitle,
+       ph.Rate,
+       CAST(ph.RateChangeDate AS date) AS RateChangeDate
 FROM HumanResources.EmployeePayHistory ph
          JOIN HumanResources.Employee e ON e.BusinessEntityID = ph.BusinessEntityID
          JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
@@ -79,7 +82,11 @@ GO
 -- An employee asks who is above them. Show the chain of managers of an employee, from the top down to the employee.
 DECLARE
 @employeeId int = 100;
-SELECT m.OrganizationNode.ToString() AS Node, m.OrganizationLevel, m.JobTitle, p.FirstName, p.LastName
+SELECT m.OrganizationNode.ToString() AS Node,
+       m.OrganizationLevel,
+       m.JobTitle,
+       p.FirstName,
+       p.LastName
 FROM HumanResources.Employee e
          JOIN HumanResources.Employee m ON e.OrganizationNode.IsDescendantOf(m.OrganizationNode) = 1
          JOIN Person.Person p ON p.BusinessEntityID = m.BusinessEntityID

@@ -25,12 +25,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Person.EmailAddress} table, whose rows are identified by {@code BusinessEntityID},
- * {@code EmailAddressID}.
+ * The identifier class of the {@code Person.EmailAddress} table, whose rows are identified by
+ * {@code BusinessEntityID}, {@code EmailAddressID}.
  * <p>
  * An entity which extends {@link MappedEmailAddress} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class EmailAddressId {
 
@@ -123,6 +123,7 @@ public class EmailAddressId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code businessEntityId} attribute.
      */

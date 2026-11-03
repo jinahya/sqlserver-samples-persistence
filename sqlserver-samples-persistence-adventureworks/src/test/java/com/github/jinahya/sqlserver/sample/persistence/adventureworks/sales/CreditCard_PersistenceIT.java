@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class CreditCard_PersistenceIT extends _Entity_PersistenceIT<CreditCard> {
+class CreditCard_PersistenceIT
+        extends _Entity_PersistenceIT<CreditCard> {
 
     CreditCard_PersistenceIT() {
         super(CreditCard.class);

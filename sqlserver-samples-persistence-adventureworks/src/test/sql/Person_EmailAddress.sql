@@ -60,7 +60,9 @@ HAVING COUNT(*) > 1
 
 -- EmailAddressID does not follow BusinessEntityID; how many rows have the two differ, and by how much. 19681, the
 -- id 1 to 805 below the person's.
-SELECT COUNT(*) AS differ, MIN(BusinessEntityID - EmailAddressID), MAX(BusinessEntityID - EmailAddressID)
+SELECT COUNT(*) AS differ,
+       MIN(BusinessEntityID - EmailAddressID),
+       MAX(BusinessEntityID - EmailAddressID)
 FROM Person.EmailAddress
 WHERE EmailAddressID <> BusinessEntityID
 ;
@@ -69,7 +71,9 @@ WHERE EmailAddressID <> BusinessEntityID
 -- -------------------------------------------------------------------------------------------------------- EmailAddress
 -- EmailAddress is nullable; how many rows have none, and how long the others are. None; 22 to 43 characters, of the
 -- 50 the column allows.
-SELECT COUNT(*) - COUNT(EmailAddress) AS without, MIN(LEN(EmailAddress)), MAX(LEN(EmailAddress))
+SELECT COUNT(*) - COUNT(EmailAddress) AS without,
+       MIN(LEN(EmailAddress)),
+       MAX(LEN(EmailAddress))
 FROM Person.EmailAddress
 ;
 
@@ -83,9 +87,10 @@ WHERE EmailAddress NOT LIKE '_%@_%._%'
 ;
 
 -- the domains; adventure-works.com only, on all 19972.
-SELECT SUBSTRING(EmailAddress, CHARINDEX('@', EmailAddress) + 1, 50) AS domain, COUNT(*) AS email_addresses
+SELECT SUBSTRING(EmailAddress, CHARINDEX('@', EmailAddress) + 1,
+                 50) AS domain, COUNT(*) AS email_addresses
 FROM Person.EmailAddress
-GROUP BY SUBSTRING(EmailAddress, CHARINDEX('@', EmailAddress) + 1, 50)
+GROUP BY SUBSTRING (EmailAddress, CHARINDEX('@', EmailAddress) + 1, 50)
 ;
 
 -- an EmailAddress with an upper case letter.
@@ -109,8 +114,14 @@ HAVING COUNT(*) > 1
 SELECT e.BusinessEntityID, e.EmailAddress, p.FirstName
 FROM Person.EmailAddress e
          JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
-WHERE LEFT(e.EmailAddress, CHARINDEX('@', e.EmailAddress) - 1) COLLATE Latin1_General_BIN
-          NOT LIKE LOWER(REPLACE(REPLACE(p.FirstName, ' ', ''), '.', '')) + '[0-9]%'
+WHERE LEFT (e.EmailAddress
+    , CHARINDEX('@'
+    , e.EmailAddress) - 1) COLLATE Latin1_General_BIN
+    NOT LIKE LOWER (REPLACE(REPLACE(p.FirstName
+    , ' '
+    , '')
+    , '.'
+    , '')) + '[0-9]%'
 ;
 
 

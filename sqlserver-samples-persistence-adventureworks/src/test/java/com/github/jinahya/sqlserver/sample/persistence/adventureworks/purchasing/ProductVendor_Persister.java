@@ -28,7 +28,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link ProductVendor}, of a new product, from a new vendor, measured in a new unit.
+ * Persists a new {@link ProductVendor}, of a new product, from a new vendor, measured in a new
+ * unit.
  */
 class ProductVendor_Persister
         extends AbstractEntityPersister<ProductVendor> {
@@ -39,10 +40,13 @@ class ProductVendor_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ProductVendor apply(final EntityManager entityManager, final ProductVendor entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+    public ProductVendor apply(final EntityManager entityManager,
+                               final ProductVendor entityInstance) {
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         final var vendor = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Vendor.class);
-        final var unitMeasure = EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
+        final var unitMeasure =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, UnitMeasure.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = ProductVendor.of(product, vendor);

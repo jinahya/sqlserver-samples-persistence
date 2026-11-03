@@ -52,11 +52,12 @@ $ ./_docker_exec_sqlcmd.sh adventureworks
 ## The mappings
 
 A mapped superclass holds what the database says -- the names, the types, the lengths, the nullability, the identity
-columns, the sequences, the computed and period columns -- and nothing an application decides. A foreign-key column
-is mapped read-only there; the entity's `@ManyToOne` writes it, and the association's setter keeps the basic attribute
-in step. Where a column cannot be written by one association alone -- it is part of the primary key, or of two
-foreign keys -- the basic attribute writes it, and the association is the read-only one; under an `@EmbeddedId`, the
-association writes it, and `@MapsId` derives the attribute of the key from it.
+columns, the sequences, the computed and period columns -- and nothing an application decides. The one exception is
+`@Email` on `Person.EmailAddress.EmailAddress`, which the table does not check, but which every installed row holds.
+A foreign-key column is mapped read-only there; the entity's `@ManyToOne` writes it, and the association's setter
+keeps the basic attribute in step. Where a column cannot be written by one association alone -- it is part of the
+primary key, or of two foreign keys -- the basic attribute writes it, and the association is the read-only one; under
+an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute of the key from it.
 
 | SQL Server | Attribute | How |
 |---|---|---|
@@ -189,14 +190,15 @@ JDBC URL and the credentials from the root `pom.xml`'s `mssql.*` properties.
 
 Each entity's `*_PersistenceIT` reads up to eight installed rows, inside a transaction it rolls back, and
 
-- finds each again by its identifier, from a cleared persistence context, equal to the one read;
 - loads every association of each, and reads the identifier of the entity it references;
-- validates each against the mapping's constraints;
 - resolves each of its `ATTRIBUTE_PATH_*` constants, such as `id.personId`, through the metamodel.
 
-In AdventureWorks, each also persists a new instance, through its `<Entity>_Persister`, and flushes it. Each id class
-of a composite key has a unit test, `<Entity>Id_Test`, run by surefire: its `toString`, its `equals` and `hashCode`,
-with EqualsVerifier, and its accessors.
+Each also persists a new instance, which its `<Entity>_Randomizer` fills and its `<Entity>_Persister` persists with
+the rows it references, and flushes it. An entity which is not persisted -- a view, or a table which only SQL Server,
+the installer or a procedure writes -- has the test `@Disabled`, with the reason.
+
+Each id class of a composite key has a unit test, `<Entity>Id_Test`, run by surefire: its `toString`, its `equals` and
+`hashCode`, with EqualsVerifier, and its accessors.
 
 Each keyless class's `*_PersistenceIT` reads every column its mapped superclass names by a native query, and checks
 that its public constructor takes them all.
@@ -204,8 +206,8 @@ that its public constructor takes them all.
 | Module | Entity and keyless ITs | Exercise ITs | Skipped |
 |---|---|---|---|
 | adventureworks | 582 | 42 | 57 |
-| futonmanufacturing | 294 | 28 | 40 |
-| wideworldimporters | 218 | 31 | 6 |
+| futonmanufacturing | 344 | 28 | 58 |
+| wideworldimporters | 252 | 31 | 9 |
 
 Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
 Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.

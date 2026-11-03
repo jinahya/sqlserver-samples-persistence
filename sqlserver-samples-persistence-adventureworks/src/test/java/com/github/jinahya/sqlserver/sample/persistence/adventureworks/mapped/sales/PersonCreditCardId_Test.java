@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link PersonCreditCardId} id class.
  */
-class PersonCreditCardId_Test extends _NonEntity_Test<PersonCreditCardId> {
+class PersonCreditCardId_Test
+        extends _NonEntity_Test<PersonCreditCardId> {
 
     PersonCreditCardId_Test() {
         super(PersonCreditCardId.class);

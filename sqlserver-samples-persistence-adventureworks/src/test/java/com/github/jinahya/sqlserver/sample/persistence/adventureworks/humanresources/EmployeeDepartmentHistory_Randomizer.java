@@ -26,10 +26,11 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link EmployeeDepartmentHistory}; the identifier, what it references, the dates, which the
- * {@code CK_EmployeeDepartmentHistory_EndDate} constraint relates, and what SQL Server fills are left out, which
- * leaves nothing to randomize. The persister does not use the instance; it persists one which
- * {@link EmployeeDepartmentHistory#of} creates with the instances it references, and dates of its own.
+ * Randomizes a new {@link EmployeeDepartmentHistory}; the identifier, what it references, the
+ * dates, which the {@code CK_EmployeeDepartmentHistory_EndDate} constraint relates, and what SQL
+ * Server fills are left out, which leaves nothing to randomize. The persister does not use the
+ * instance; it persists one which {@link EmployeeDepartmentHistory#of} creates with the instances
+ * it references, and dates of its own.
  */
 class EmployeeDepartmentHistory_Randomizer
         extends PodamObjectRandomizer<EmployeeDepartmentHistory> {

@@ -25,7 +25,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity
 /**
  * A class for testing the {@link PurchaseOrderDetailId} id class.
  */
-class PurchaseOrderDetailId_Test extends _NonEntity_Test<PurchaseOrderDetailId> {
+class PurchaseOrderDetailId_Test
+        extends _NonEntity_Test<PurchaseOrderDetailId> {
 
     PurchaseOrderDetailId_Test() {
         super(PurchaseOrderDetailId.class);

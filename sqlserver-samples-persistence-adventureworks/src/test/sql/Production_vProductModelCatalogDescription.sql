@@ -64,8 +64,8 @@ FROM Production.vProductModelCatalogDescription
 -- 6: all of them.
 SELECT COUNT(*) AS laidOut
 FROM Production.vProductModelCatalogDescription
-WHERE Summary LIKE '%' + CHAR(10) + '%'
-   OR Summary LIKE '%' + CHAR(9) + '%'
+WHERE Summary LIKE '%' + CHAR (10) + '%'
+   OR Summary LIKE '%' + CHAR (9) + '%'
 ;
 
 
@@ -99,7 +99,9 @@ ORDER BY ProductURL ASC
 -- ------------------------------------------------------------------------------------------------------ WarrantyPeriod
 -- how many models have no WarrantyPeriod, and the shortest and the longest; none; 6 and 7 characters, 1 year to 4
 -- years.
-SELECT COUNT(*) - COUNT(WarrantyPeriod) AS without, MIN(LEN(WarrantyPeriod)), MAX(LEN(WarrantyPeriod))
+SELECT COUNT(*) - COUNT(WarrantyPeriod) AS without,
+       MIN(LEN(WarrantyPeriod)),
+       MAX(LEN(WarrantyPeriod))
 FROM Production.vProductModelCatalogDescription
 ;
 
@@ -169,8 +171,8 @@ FROM Production.vProductModelCatalogDescription
 -- 5 of the 6.
 SELECT COUNT(*) AS laidOut
 FROM Production.vProductModelCatalogDescription
-WHERE BikeFrame LIKE '%' + CHAR(10) + '%'
-   OR BikeFrame LIKE '%' + CHAR(9) + '%'
+WHERE BikeFrame LIKE '%' + CHAR (10) + '%'
+   OR BikeFrame LIKE '%' + CHAR (9) + '%'
 ;
 
 
@@ -268,7 +270,9 @@ ORDER BY Style ASC
 
 -- ----------------------------------------------------------------------------------------------------- RiderExperience
 -- how many models have no RiderExperience, and the shortest and the longest; none; 25 and 35 characters.
-SELECT COUNT(*) - COUNT(RiderExperience) AS without, MIN(LEN(RiderExperience)), MAX(LEN(RiderExperience))
+SELECT COUNT(*) - COUNT(RiderExperience) AS without,
+       MIN(LEN(RiderExperience)),
+       MAX(LEN(RiderExperience))
 FROM Production.vProductModelCatalogDescription
 ;
 

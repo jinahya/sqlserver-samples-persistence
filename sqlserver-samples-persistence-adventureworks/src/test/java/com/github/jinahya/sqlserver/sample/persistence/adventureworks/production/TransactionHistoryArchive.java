@@ -35,11 +35,13 @@ import jakarta.persistence.Table;
                @CheckConstraint(
                        name = "CK_TransactionHistoryArchive_TransactionType",
                        constraint = "(upper([TransactionType])='P' OR "
-                               + "upper([TransactionType])='S' OR upper([TransactionType])='W')"
+                                    +
+                                    "upper([TransactionType])='S' OR upper([TransactionType])='W')"
                )
        }
 )
-public class TransactionHistoryArchive extends MappedTransactionHistoryArchive {
+public class TransactionHistoryArchive
+        extends MappedTransactionHistoryArchive {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

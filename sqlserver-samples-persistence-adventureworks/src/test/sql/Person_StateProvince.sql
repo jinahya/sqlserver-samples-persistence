@@ -149,7 +149,11 @@ ORDER BY TerritoryID ASC
 -- a state province whose territory sells in another country or region; 6, the islands the US and Australia
 -- territories take in: American Samoa (5), Micronesia (16), Marshall Islands (34), Northern Mariana Islands (38),
 -- Palau (62) and Virgin Islands (76).
-SELECT s.StateProvinceID, s.Name, s.CountryRegionCode, t.TerritoryID, t.CountryRegionCode AS TerritoryCountryRegionCode
+SELECT s.StateProvinceID,
+       s.Name,
+       s.CountryRegionCode,
+       t.TerritoryID,
+       t.CountryRegionCode AS TerritoryCountryRegionCode
 FROM Person.StateProvince s
          JOIN Sales.SalesTerritory t ON t.TerritoryID = s.TerritoryID
 WHERE s.CountryRegionCode <> t.CountryRegionCode
@@ -188,7 +192,7 @@ WHERE NOT EXISTS (SELECT 1
 
 -- the three state provinces with the most addresses; California (9) with 4564, Washington (79) with 2636 and England
 -- (14) with 1954.
-SELECT TOP (3) s.StateProvinceID, s.Name, COUNT(*) AS addresses
+SELECT TOP(3) s.StateProvinceID, s.Name, COUNT(*) AS addresses
 FROM Person.StateProvince s
          JOIN Person.Address a ON a.StateProvinceID = s.StateProvinceID
 GROUP BY s.StateProvinceID, s.Name

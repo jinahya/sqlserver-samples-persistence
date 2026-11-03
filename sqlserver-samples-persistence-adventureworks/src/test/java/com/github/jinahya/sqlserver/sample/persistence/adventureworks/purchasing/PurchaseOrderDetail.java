@@ -64,17 +64,19 @@ import java.util.Optional;
        }
 )
 @IdClass(PurchaseOrderDetailId.class)
-public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
+public class PurchaseOrderDetail
+        extends MappedPurchaseOrderDetail {
 
     /**
-     * The name of the attribute of the {@code FK_PurchaseOrderDetail_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_PurchaseOrderDetail_Product_ProductID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
     /**
-     * The name of the attribute of the {@code FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID} foreign key.
-     * The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER = "purchaseOrder";
 
@@ -106,7 +108,8 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_PurchaseOrderDetail_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_PurchaseOrderDetail_Product_ProductID}
+     * foreign key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -115,8 +118,8 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_PurchaseOrderDetail_Product_ProductID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_PurchaseOrderDetail_Product_ProductID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
@@ -139,14 +142,16 @@ public class PurchaseOrderDetail extends MappedPurchaseOrderDetail {
 
     /**
      * Replaces the {@code PurchaseOrderHeader} which the
-     * {@code FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID} foreign key references, and the value of the
-     * column it consists of.
+     * {@code FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID} foreign key references,
+     * and the value of the column it consists of.
      *
      * @param purchaseOrder the {@code PurchaseOrderHeader} to reference; {@code null} for none.
      */
     private void setPurchaseOrder(final PurchaseOrderHeader purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
-        setPurchaseOrderId(Optional.ofNullable(purchaseOrder).map(PurchaseOrderHeader::getPurchaseOrderId).orElse(null));
+        setPurchaseOrderId(
+                Optional.ofNullable(purchaseOrder).map(PurchaseOrderHeader::getPurchaseOrderId)
+                        .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

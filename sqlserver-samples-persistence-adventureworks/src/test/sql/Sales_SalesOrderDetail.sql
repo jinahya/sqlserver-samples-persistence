@@ -134,7 +134,12 @@ WHERE h.OrderDate NOT BETWEEN o.StartDate AND o.EndDate
 
 -- a line whose OrderQty is outside its offer's MinQty and MaxQty; 2118 lines of offer 2 (Volume Discount 11 to 14),
 -- each of a single unit.
-SELECT d.SpecialOfferID, o.MinQty, o.MaxQty, MIN(d.OrderQty), MAX(d.OrderQty), COUNT(*) AS lines
+SELECT d.SpecialOfferID,
+       o.MinQty,
+       o.MaxQty,
+       MIN(d.OrderQty),
+       MAX(d.OrderQty),
+       COUNT(*) AS lines
 FROM Sales.SalesOrderDetail d
          JOIN Sales.SpecialOffer o ON o.SpecialOfferID = d.SpecialOfferID
 WHERE d.OrderQty < o.MinQty

@@ -27,17 +27,19 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Randomizes a new {@link UnitMeasure}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link UnitMeasure}; the generated identifier and what SQL Server fills are left
+ * out.
  */
 class UnitMeasure_Randomizer
         extends PodamObjectRandomizer<UnitMeasure> {
 
     /**
-     * The number of the next code. The codes go through every number of the column's digits before one comes again, so
-     * that the units which one transaction persists, two for a product, take different codes; a code drawn at random
-     * would now and then be taken twice.
+     * The number of the next code. The codes go through every number of the column's digits before
+     * one comes again, so that the units which one transaction persists, two for a product, take
+     * different codes; a code drawn at random would now and then be taken twice.
      */
-    private static final AtomicInteger NEXT_CODE = new AtomicInteger(ThreadLocalRandom.current().nextInt(1000));
+    private static final AtomicInteger NEXT_CODE =
+            new AtomicInteger(ThreadLocalRandom.current().nextInt(1000));
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -53,15 +55,18 @@ class UnitMeasure_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has a code of digits, which no installed unit has, the installed codes being of
-     *         letters, and which no instance this randomizer returned of the last thousand has.
+     * @implNote The returned instance has a code of digits, which no installed unit has,
+     *         the installed codes being of letters, and which no instance this randomizer returned
+     *         of the last thousand has.
      */
     @Override
     public UnitMeasure get() {
         final var instance = super.get();
         final var length = UnitMeasure.COLUMN_LENGTH_UNIT_MEASURE_CODE;
         final var bound = (int) Math.pow(10, length);
-        instance.setUnitMeasureCode(String.format("%0" + length + "d", Math.floorMod(NEXT_CODE.getAndIncrement(), bound)));
+        instance.setUnitMeasureCode(String.format("%0" + length + "d",
+                                                  Math.floorMod(NEXT_CODE.getAndIncrement(),
+                                                                bound)));
         return instance;
     }
 }

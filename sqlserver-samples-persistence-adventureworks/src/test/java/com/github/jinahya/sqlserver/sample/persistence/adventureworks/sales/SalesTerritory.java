@@ -70,11 +70,12 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class SalesTerritory extends MappedSalesTerritory {
+public class SalesTerritory
+        extends MappedSalesTerritory {
 
     /**
-     * The name of the attribute of the {@code FK_SalesTerritory_CountryRegion_CountryRegionCode} foreign key. The value
-     * is {@value}.
+     * The name of the attribute of the {@code FK_SalesTerritory_CountryRegion_CountryRegionCode}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION = "countryRegion";
 
@@ -90,8 +91,8 @@ public class SalesTerritory extends MappedSalesTerritory {
     // ------------------------------------------------------------------------------- countryRegion
 
     /**
-     * Returns the {@code CountryRegion} which the {@code FK_SalesTerritory_CountryRegion_CountryRegionCode} foreign key
-     * references.
+     * Returns the {@code CountryRegion} which the
+     * {@code FK_SalesTerritory_CountryRegion_CountryRegionCode} foreign key references.
      *
      * @return the {@code CountryRegion} referenced; {@code null} when none is.
      */
@@ -100,8 +101,9 @@ public class SalesTerritory extends MappedSalesTerritory {
     }
 
     /**
-     * Replaces the {@code CountryRegion} which the {@code FK_SalesTerritory_CountryRegion_CountryRegionCode} foreign
-     * key references, and the value of the column it consists of.
+     * Replaces the {@code CountryRegion} which the
+     * {@code FK_SalesTerritory_CountryRegion_CountryRegionCode} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param countryRegion the {@code CountryRegion} to reference; {@code null} for none.
      */

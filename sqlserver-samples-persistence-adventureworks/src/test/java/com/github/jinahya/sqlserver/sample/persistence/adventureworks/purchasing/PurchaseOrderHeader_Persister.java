@@ -27,7 +27,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresou
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link PurchaseOrderHeader}, by a new employee, from a new vendor, shipped by a new method.
+ * Persists a new {@link PurchaseOrderHeader}, by a new employee, from a new vendor, shipped by a
+ * new method.
  */
 class PurchaseOrderHeader_Persister
         extends AbstractEntityPersister<PurchaseOrderHeader> {
@@ -38,10 +39,13 @@ class PurchaseOrderHeader_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public PurchaseOrderHeader apply(final EntityManager entityManager, final PurchaseOrderHeader entityInstance) {
-        final var employee = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
+    public PurchaseOrderHeader apply(final EntityManager entityManager,
+                                     final PurchaseOrderHeader entityInstance) {
+        final var employee =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
         final var vendor = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Vendor.class);
-        final var shipMethod = EntityPersisterUtils.newPersistedInstanceOf(entityManager, ShipMethod.class);
+        final var shipMethod =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, ShipMethod.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         entityInstance.setEmployee(employee);

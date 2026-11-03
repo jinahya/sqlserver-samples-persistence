@@ -38,22 +38,26 @@ import java.util.Objects;
 /**
  * An entity which maps the {@code Sales.SalesOrderHeaderSalesReason} table.
  * <p>
- * Each attribute of the embedded {@link SalesOrderHeaderSalesReasonId} is derived, with {@link MapsId @MapsId}, from the association
- * which references the same column.
+ * Each attribute of the embedded {@link SalesOrderHeaderSalesReasonId} is derived, with
+ * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "SalesSalesOrderHeaderSalesReason")
-@Table(schema = MappedSalesOrderHeaderSalesReason.TABLE_SCHEMA, name = MappedSalesOrderHeaderSalesReason.TABLE_NAME)
-public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReason {
+@Table(schema = MappedSalesOrderHeaderSalesReason.TABLE_SCHEMA,
+       name = MappedSalesOrderHeaderSalesReason.TABLE_NAME)
+public class SalesOrderHeaderSalesReason
+        extends MappedSalesOrderHeaderSalesReason {
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID} foreign key.
-     * The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_REASON = "salesReason";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID} foreign
-     * key. The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID} foreign key. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER = "salesOrder";
 
@@ -89,8 +93,8 @@ public class SalesOrderHeaderSalesReason extends MappedSalesOrderHeaderSalesReas
     // --------------------------------------------------------------------------------- salesReason
 
     /**
-     * Returns the {@code SalesReason} which the {@code FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID}
-     * foreign key references.
+     * Returns the {@code SalesReason} which the
+     * {@code FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID} foreign key references.
      *
      * @return the {@code SalesReason} referenced; {@code null} when none is.
      */

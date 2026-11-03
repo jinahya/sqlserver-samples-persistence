@@ -73,10 +73,13 @@ import java.util.Objects;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
-                   column = @Column(name = MappedErrorLog.COLUMN_NAME_ERROR_LOG_ID, nullable = false, insertable = true, updatable = false)
+                   column = @Column(name = MappedErrorLog.COLUMN_NAME_ERROR_LOG_ID,
+                                    nullable = false, insertable = true, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -110,12 +113,14 @@ public abstract class MappedErrorLog
     // ----------------------------------------------------------------------------------- ErrorTime
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ERROR_TIME = "ErrorTime";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_TIME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_TIME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_TIME = "errorTime";
 
@@ -132,7 +137,8 @@ public abstract class MappedErrorLog
     public static final int COLUMN_LENGTH_USER_NAME = 128;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_USER_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_USER_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_USER_NAME = "userName";
 
@@ -144,7 +150,8 @@ public abstract class MappedErrorLog
     public static final String COLUMN_NAME_ERROR_NUMBER = "ErrorNumber";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_NUMBER} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_NUMBER = "errorNumber";
 
@@ -156,7 +163,8 @@ public abstract class MappedErrorLog
     public static final String COLUMN_NAME_ERROR_SEVERITY = "ErrorSeverity";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_SEVERITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_SEVERITY} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_SEVERITY = "errorSeverity";
 
@@ -168,7 +176,8 @@ public abstract class MappedErrorLog
     public static final String COLUMN_NAME_ERROR_STATE = "ErrorState";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_STATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_STATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_STATE = "errorState";
 
@@ -185,7 +194,8 @@ public abstract class MappedErrorLog
     public static final int COLUMN_LENGTH_ERROR_PROCEDURE = 126;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_PROCEDURE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_PROCEDURE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_PROCEDURE = "errorProcedure";
 
@@ -197,7 +207,8 @@ public abstract class MappedErrorLog
     public static final String COLUMN_NAME_ERROR_LINE = "ErrorLine";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_LINE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_LINE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_LINE = "errorLine";
 
@@ -214,7 +225,8 @@ public abstract class MappedErrorLog
     public static final int COLUMN_LENGTH_ERROR_MESSAGE = 4000;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_MESSAGE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_MESSAGE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ERROR_MESSAGE = "errorMessage";
 
@@ -276,7 +288,8 @@ public abstract class MappedErrorLog
     // ---------------------------------------------------------------------------------- errorLogId
 
     /**
-     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_ERROR_LOG_ID} column.
+     * Returns current value of the identifier, which maps the {@value #COLUMN_NAME_ERROR_LOG_ID}
+     * column.
      *
      * @return current value of the identifier.
      */
@@ -296,7 +309,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_TIME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_TIME} attribute with the specified
+     * value.
      *
      * @param errorTime new value for {@value #ATTRIBUTE_NAME_ERROR_TIME} attribute.
      */
@@ -316,7 +330,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_USER_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_USER_NAME} attribute with the specified
+     * value.
      *
      * @param userName new value for {@value #ATTRIBUTE_NAME_USER_NAME} attribute.
      */
@@ -336,7 +351,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_NUMBER} attribute with the specified
+     * value.
      *
      * @param errorNumber new value for {@value #ATTRIBUTE_NAME_ERROR_NUMBER} attribute.
      */
@@ -356,7 +372,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_SEVERITY} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_SEVERITY} attribute with the
+     * specified value.
      *
      * @param errorSeverity new value for {@value #ATTRIBUTE_NAME_ERROR_SEVERITY} attribute.
      */
@@ -376,7 +393,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_STATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_STATE} attribute with the specified
+     * value.
      *
      * @param errorState new value for {@value #ATTRIBUTE_NAME_ERROR_STATE} attribute.
      */
@@ -396,7 +414,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_PROCEDURE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_PROCEDURE} attribute with the
+     * specified value.
      *
      * @param errorProcedure new value for {@value #ATTRIBUTE_NAME_ERROR_PROCEDURE} attribute.
      */
@@ -416,7 +435,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_LINE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_LINE} attribute with the specified
+     * value.
      *
      * @param errorLine new value for {@value #ATTRIBUTE_NAME_ERROR_LINE} attribute.
      */
@@ -436,7 +456,8 @@ public abstract class MappedErrorLog
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_MESSAGE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ERROR_MESSAGE} attribute with the specified
+     * value.
      *
      * @param errorMessage new value for {@value #ATTRIBUTE_NAME_ERROR_MESSAGE} attribute.
      */
@@ -457,7 +478,8 @@ public abstract class MappedErrorLog
     @Size(max = COLUMN_LENGTH_USER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_USER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_USER_NAME)
+    @Column(name = COLUMN_NAME_USER_NAME, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_USER_NAME)
     @MsDescription.Column(name = COLUMN_NAME_USER_NAME,
                           value = "The user who executed the batch in which the error occurred.")
     private String userName;
@@ -487,7 +509,8 @@ public abstract class MappedErrorLog
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ERROR_PROCEDURE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ERROR_PROCEDURE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_ERROR_PROCEDURE)
+    @Column(name = COLUMN_NAME_ERROR_PROCEDURE, nullable = true, insertable = true,
+            updatable = true, length = COLUMN_LENGTH_ERROR_PROCEDURE)
     @MsDescription.Column(name = COLUMN_NAME_ERROR_PROCEDURE,
                           value = "The name of the stored procedure or trigger where the error "
                                   + "occurred.")
@@ -504,7 +527,8 @@ public abstract class MappedErrorLog
     @Size(max = COLUMN_LENGTH_ERROR_MESSAGE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ERROR_MESSAGE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_ERROR_MESSAGE)
+    @Column(name = COLUMN_NAME_ERROR_MESSAGE, nullable = false, insertable = true, updatable = true,
+            length = COLUMN_LENGTH_ERROR_MESSAGE)
     @MsDescription.Column(name = COLUMN_NAME_ERROR_MESSAGE,
                           value = "The message text of the error that occurred.")
     private String errorMessage;

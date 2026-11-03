@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class SalesReason_PersistenceIT extends _Entity_PersistenceIT<SalesReason> {
+class SalesReason_PersistenceIT
+        extends _Entity_PersistenceIT<SalesReason> {
 
     SalesReason_PersistenceIT() {
         super(SalesReason.class);

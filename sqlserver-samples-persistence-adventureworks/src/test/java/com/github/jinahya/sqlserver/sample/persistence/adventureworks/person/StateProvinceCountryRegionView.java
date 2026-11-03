@@ -32,7 +32,8 @@ import jakarta.persistence.Table;
 @Entity(name = "PersonStateProvinceCountryRegionView")
 @Table(schema = MappedStateProvinceCountryRegionView.TABLE_SCHEMA,
        name = MappedStateProvinceCountryRegionView.TABLE_NAME)
-public class StateProvinceCountryRegionView extends MappedStateProvinceCountryRegionView {
+public class StateProvinceCountryRegionView
+        extends MappedStateProvinceCountryRegionView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

@@ -26,8 +26,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link JobCandidate}; the generated identifier, what SQL Server fills, and the employee, which the
- * persister sets, are left out.
+ * Randomizes a new {@link JobCandidate}; the generated identifier, what SQL Server fills, and the
+ * employee, which the persister sets, are left out.
  */
 class JobCandidate_Randomizer
         extends PodamObjectRandomizer<JobCandidate> {
@@ -47,8 +47,8 @@ class JobCandidate_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has no Resume, an xml column typed by a schema collection, which no random text
-     *         is valid against.
+     * @implNote The returned instance has no Resume, an xml column typed by a schema
+     *         collection, which no random text is valid against.
      */
     @Override
     public JobCandidate get() {

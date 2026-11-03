@@ -27,9 +27,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link ProductInventory}; the identifier, what it references, and what SQL Server fills are left
- * out. The persister takes the rest of the instance into one which {@link ProductInventory#of} creates with the
- * instances it references.
+ * Randomizes a new {@link ProductInventory}; the identifier, what it references, and what SQL
+ * Server fills are left out. The persister takes the rest of the instance into one which
+ * {@link ProductInventory#of} creates with the instances it references.
  */
 class ProductInventory_Randomizer
         extends PodamObjectRandomizer<ProductInventory> {

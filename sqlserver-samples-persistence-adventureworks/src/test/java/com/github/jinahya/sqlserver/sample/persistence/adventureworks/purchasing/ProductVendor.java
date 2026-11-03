@@ -74,22 +74,24 @@ import java.util.Optional;
        }
 )
 @IdClass(ProductVendorId.class)
-public class ProductVendor extends MappedProductVendor {
+public class ProductVendor
+        extends MappedProductVendor {
 
     /**
-     * The name of the attribute of the {@code FK_ProductVendor_Product_ProductID} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_ProductVendor_Product_ProductID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
     /**
-     * The name of the attribute of the {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_MEASURE = "unitMeasure";
 
     /**
-     * The name of the attribute of the {@code FK_ProductVendor_Vendor_BusinessEntityID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ProductVendor_Vendor_BusinessEntityID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY = "businessEntity";
 
@@ -125,7 +127,8 @@ public class ProductVendor extends MappedProductVendor {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_ProductVendor_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_ProductVendor_Product_ProductID} foreign key
+     * references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -134,8 +137,8 @@ public class ProductVendor extends MappedProductVendor {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_ProductVendor_Product_ProductID} foreign key references, and the
-     * value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_ProductVendor_Product_ProductID} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param product the {@code Product} to reference; {@code null} for none.
      */
@@ -147,8 +150,8 @@ public class ProductVendor extends MappedProductVendor {
     // --------------------------------------------------------------------------------- unitMeasure
 
     /**
-     * Returns the {@code UnitMeasure} which the {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign key
-     * references.
+     * Returns the {@code UnitMeasure} which the
+     * {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign key references.
      *
      * @return the {@code UnitMeasure} referenced; {@code null} when none is.
      */
@@ -157,20 +160,23 @@ public class ProductVendor extends MappedProductVendor {
     }
 
     /**
-     * Replaces the {@code UnitMeasure} which the {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code UnitMeasure} which the
+     * {@code FK_ProductVendor_UnitMeasure_UnitMeasureCode} foreign key references, and the value of
+     * the column it consists of.
      *
      * @param unitMeasure the {@code UnitMeasure} to reference; {@code null} for none.
      */
     public void setUnitMeasure(final UnitMeasure unitMeasure) {
         this.unitMeasure = unitMeasure;
-        setUnitMeasureCode(Optional.ofNullable(unitMeasure).map(UnitMeasure::getUnitMeasureCode).orElse(null));
+        setUnitMeasureCode(
+                Optional.ofNullable(unitMeasure).map(UnitMeasure::getUnitMeasureCode).orElse(null));
     }
 
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
-     * Returns the {@code Vendor} which the {@code FK_ProductVendor_Vendor_BusinessEntityID} foreign key references.
+     * Returns the {@code Vendor} which the {@code FK_ProductVendor_Vendor_BusinessEntityID} foreign
+     * key references.
      *
      * @return the {@code Vendor} referenced; {@code null} when none is.
      */
@@ -179,14 +185,15 @@ public class ProductVendor extends MappedProductVendor {
     }
 
     /**
-     * Replaces the {@code Vendor} which the {@code FK_ProductVendor_Vendor_BusinessEntityID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Vendor} which the {@code FK_ProductVendor_Vendor_BusinessEntityID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param businessEntity the {@code Vendor} to reference; {@code null} for none.
      */
     private void setBusinessEntity(final Vendor businessEntity) {
         this.businessEntity = businessEntity;
-        setBusinessEntityId(Optional.ofNullable(businessEntity).map(Vendor::getBusinessEntityId).orElse(null));
+        setBusinessEntityId(
+                Optional.ofNullable(businessEntity).map(Vendor::getBusinessEntityId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

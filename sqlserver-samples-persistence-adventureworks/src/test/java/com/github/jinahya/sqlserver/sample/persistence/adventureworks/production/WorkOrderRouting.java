@@ -51,7 +51,7 @@ import java.util.Optional;
                @CheckConstraint(
                        name = "CK_WorkOrderRouting_ActualEndDate",
                        constraint = "([ActualEndDate]>=[ActualStartDate] OR [ActualEndDate] IS "
-                               + "NULL OR [ActualStartDate] IS NULL)"
+                                    + "NULL OR [ActualStartDate] IS NULL)"
                ),
                @CheckConstraint(
                        name = "CK_WorkOrderRouting_ActualResourceHrs",
@@ -68,17 +68,18 @@ import java.util.Optional;
        }
 )
 @IdClass(WorkOrderRoutingId.class)
-public class WorkOrderRouting extends MappedWorkOrderRouting {
+public class WorkOrderRouting
+        extends MappedWorkOrderRouting {
 
     /**
-     * The name of the attribute of the {@code FK_WorkOrderRouting_Location_LocationID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_WorkOrderRouting_Location_LocationID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LOCATION = "location";
 
     /**
-     * The name of the attribute of the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_WORK_ORDER = "workOrder";
 
@@ -114,7 +115,8 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
     // ------------------------------------------------------------------------------------ location
 
     /**
-     * Returns the {@code Location} which the {@code FK_WorkOrderRouting_Location_LocationID} foreign key references.
+     * Returns the {@code Location} which the {@code FK_WorkOrderRouting_Location_LocationID}
+     * foreign key references.
      *
      * @return the {@code Location} referenced; {@code null} when none is.
      */
@@ -123,21 +125,22 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces the {@code Location} which the {@code FK_WorkOrderRouting_Location_LocationID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Location} which the {@code FK_WorkOrderRouting_Location_LocationID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param location the {@code Location} to reference; {@code null} for none.
      */
     public void setLocation(final Location location) {
         this.location = location;
-        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId).map(Short::intValue).orElse(null));
+        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId)
+                              .map(Short::intValue).orElse(null));
     }
 
     // ----------------------------------------------------------------------------------- workOrder
 
     /**
-     * Returns the {@code WorkOrder} which the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID} foreign key
-     * references.
+     * Returns the {@code WorkOrder} which the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID}
+     * foreign key references.
      *
      * @return the {@code WorkOrder} referenced; {@code null} when none is.
      */
@@ -146,8 +149,8 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
     }
 
     /**
-     * Replaces the {@code WorkOrder} which the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code WorkOrder} which the {@code FK_WorkOrderRouting_WorkOrder_WorkOrderID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param workOrder the {@code WorkOrder} to reference; {@code null} for none.
      */
@@ -155,7 +158,8 @@ public class WorkOrderRouting extends MappedWorkOrderRouting {
         this.workOrder = workOrder;
         setWorkOrderId(Optional.ofNullable(workOrder).map(WorkOrder::getWorkOrderId).orElse(null));
         // ProductID, of the key, has no foreign key of its own; it is the product of the work order
-        setProductId(Optional.ofNullable(workOrder).map(MappedWorkOrder::getProductId).orElse(null));
+        setProductId(
+                Optional.ofNullable(workOrder).map(MappedWorkOrder::getProductId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

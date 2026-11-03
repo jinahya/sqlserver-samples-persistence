@@ -50,7 +50,7 @@ FROM dbo.DatabaseLog
 
 -- PostTime against DatabaseLogID: a later row posted earlier than the one before it.
 -- no rows: PostTime never goes back as DatabaseLogID goes up.
-SELECT TOP (5) l.DatabaseLogID, l.PostTime, p.PostTime AS previous
+SELECT TOP(5) l.DatabaseLogID, l.PostTime, p.PostTime AS previous
 FROM dbo.DatabaseLog l
          JOIN dbo.DatabaseLog p ON p.DatabaseLogID = l.DatabaseLogID - 1
 WHERE l.PostTime < p.PostTime
@@ -93,7 +93,7 @@ ORDER BY Event ASC
 
 -- the schemas, the most frequent first; Production with 276 and Sales with 247 lead; sys has 21, and 10 rows carry a
 -- blank Schema.
-SELECT [Schema], COUNT(*) AS events
+SELECT [Schema], COUNT (*) AS events
 FROM dbo.DatabaseLog
 WHERE [Schema] IS NOT NULL
 GROUP BY [Schema]
@@ -121,8 +121,8 @@ FROM dbo.DatabaseLog
 -- Schema, and the 22 UPDATE_STATISTICS name a Schema but no Object.
 SELECT Event, COUNT(*) AS events
 FROM dbo.DatabaseLog
-WHERE ([Schema] IS NULL AND Object IS NOT NULL)
-   OR ([Schema] IS NOT NULL AND Object IS NULL)
+WHERE ([ Schema] IS NULL AND Object IS NOT NULL)
+   OR ([ Schema] IS NOT NULL AND Object IS NULL)
 GROUP BY Event
 ORDER BY Event ASC
 ;
@@ -151,7 +151,9 @@ FROM dbo.DatabaseLog
 
 -- an XmlEvent whose EventType differs from Event.
 -- no rows: the EventType in every XmlEvent is the Event of its row.
-SELECT DatabaseLogID, Event, XmlEvent.value('(/EVENT_INSTANCE/EventType)[1]', 'nvarchar(128)') AS EventType
+SELECT DatabaseLogID,
+       Event,
+       XmlEvent.value('(/EVENT_INSTANCE/EventType)[1]', 'nvarchar(128)') AS EventType
 FROM dbo.DatabaseLog
 WHERE XmlEvent.value('(/EVENT_INSTANCE/EventType)[1]', 'nvarchar(128)') <> Event
 ;

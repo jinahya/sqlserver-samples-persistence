@@ -38,8 +38,9 @@ import java.util.UUID;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.Customer} table.
  * <p>
- * The {@value #COLUMN_NAME_PERSON_ID}, {@value #COLUMN_NAME_STORE_ID}, {@value #COLUMN_NAME_TERRITORY_ID} columns are
- * mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an association's
+ * The {@value #COLUMN_NAME_PERSON_ID}, {@value #COLUMN_NAME_STORE_ID},
+ * {@value #COLUMN_NAME_TERRITORY_ID} columns are mapped read-only, as a foreign key; the extending
+ * entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
@@ -82,13 +83,19 @@ import java.util.UUID;
  * </thead>
  * <tbody>
  * <tr><th scope="row">{@code AccountNumber}</th>
- *     <td>{@code (isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),''))}</td><td>{@code false}</td></tr>
+ *     <td>{@code (isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),''))}</td><td>{@code false}
+ *     </td></tr>
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
+ * @see <a
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -116,7 +123,8 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
 
@@ -128,7 +136,8 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_PERSON_ID = "PersonID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PERSON_ID = "personId";
 
@@ -140,7 +149,8 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_STORE_ID = "StoreID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STORE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STORE_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_STORE_ID = "storeId";
 
@@ -152,7 +162,8 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_ID = "territoryId";
 
@@ -160,8 +171,8 @@ public abstract class MappedCustomer {
 
     /**
      * The name of the
-     * {@code varchar(10), computed as (isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),'')), NOT NULL} column. The
-     * value is {@value}.
+     * {@code varchar(10), computed as (isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),'')), NOT
+     * NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ACCOUNT_NUMBER = "AccountNumber";
 
@@ -171,31 +182,36 @@ public abstract class MappedCustomer {
     public static final int COLUMN_LENGTH_ACCOUNT_NUMBER = 10;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ACCOUNT_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ACCOUNT_NUMBER} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ACCOUNT_NUMBER = "accountNumber";
 
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
-     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code uniqueidentifier, DEFAULT (newid()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ROWGUID = "rowguid";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ROWGUID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ROWGUID = "rowguid";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -264,7 +280,8 @@ public abstract class MappedCustomer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute with the specified
+     * value.
      *
      * @param customerId new value for {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute.
      */
@@ -284,8 +301,9 @@ public abstract class MappedCustomer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PERSON_ID} attribute with the specified value. The attribute is
-     * read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PERSON_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param personId new value for {@value #ATTRIBUTE_NAME_PERSON_ID} attribute.
      */
@@ -305,8 +323,9 @@ public abstract class MappedCustomer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STORE_ID} attribute with the specified value. The attribute is
-     * read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STORE_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param storeId new value for {@value #ATTRIBUTE_NAME_STORE_ID} attribute.
      */
@@ -326,8 +345,9 @@ public abstract class MappedCustomer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param territoryId new value for {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute.
      */
@@ -347,8 +367,9 @@ public abstract class MappedCustomer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute with the specified value. The
-     * database writes the column; this is for the provider and the extending class only.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute with the
+     * specified value. The database writes the column; this is for the provider and the extending
+     * class only.
      *
      * @param accountNumber new value for {@value #ATTRIBUTE_NAME_ACCOUNT_NUMBER} attribute.
      */
@@ -379,7 +400,8 @@ public abstract class MappedCustomer {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -388,7 +410,8 @@ public abstract class MappedCustomer {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -397,7 +420,8 @@ public abstract class MappedCustomer {
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERSON_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PERSON_ID,
@@ -405,7 +429,8 @@ public abstract class MappedCustomer {
     private Integer personId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STORE_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STORE_ID,
@@ -413,7 +438,8 @@ public abstract class MappedCustomer {
     private Integer storeId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -425,7 +451,8 @@ public abstract class MappedCustomer {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
+    @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
                           value = "Unique number identifying the customer assigned by the "
                                   + "accounting system.")
@@ -433,7 +460,8 @@ public abstract class MappedCustomer {
     private String accountNumber;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the database changes it
+    // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
@@ -443,10 +471,12 @@ public abstract class MappedCustomer {
     private UUID rowguid;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Customer_ModifiedDate", value = "(getdate())")

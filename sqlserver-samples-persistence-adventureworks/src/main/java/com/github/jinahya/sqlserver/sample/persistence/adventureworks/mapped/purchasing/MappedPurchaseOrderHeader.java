@@ -41,10 +41,12 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * A mapped superclass which holds the mappings of the {@code Purchasing.PurchaseOrderHeader} table.
+ * A mapped superclass which holds the mappings of the {@code Purchasing.PurchaseOrderHeader}
+ * table.
  * <p>
- * The {@value #COLUMN_NAME_EMPLOYEE_ID}, {@value #COLUMN_NAME_VENDOR_ID}, {@value #COLUMN_NAME_SHIP_METHOD_ID} columns
- * are mapped read-only, as a foreign key; the extending entity owns the writable mapping, through an association's
+ * The {@value #COLUMN_NAME_EMPLOYEE_ID}, {@value #COLUMN_NAME_VENDOR_ID},
+ * {@value #COLUMN_NAME_SHIP_METHOD_ID} columns are mapped read-only, as a foreign key; the
+ * extending entity owns the writable mapping, through an association's
  * {@link jakarta.persistence.JoinColumn @JoinColumn}.
  *
  * <table class="striped">
@@ -113,12 +115,17 @@ import java.util.Objects;
  * <tr><th scope="col">Trigger</th><th scope="col">Timing</th><th scope="col">Events</th></tr>
  * </thead>
  * <tbody>
- * <tr><th scope="row">{@code uPurchaseOrderHeader}</th><td>{@code AFTER}</td><td>{@code UPDATE}</td></tr>
+ * <tr><th scope="row">{@code uPurchaseOrderHeader}</th><td>{@code AFTER}</td><td>{@code UPDATE}
+ * </td></tr>
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -150,7 +157,8 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
 
@@ -162,17 +170,20 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_REVISION_NUMBER = "RevisionNumber";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_MIN_REVISION_NUMBER = 0;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is
+     * {@value}.
      */
     public static final int COLUMN_MAX_REVISION_NUMBER = +255;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION_NUMBER} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_REVISION_NUMBER = "revisionNumber";
 
@@ -184,19 +195,22 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_STATUS = "Status";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_PurchaseOrderHeader_Status} check
-     * constraint ({@code [Status]>=(1)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_STATUS} column, as the
+     * {@code CK_PurchaseOrderHeader_Status} check constraint ({@code [Status]>=(1)}) requires. The
+     * value is {@value}.
      */
     public static final int COLUMN_MIN_STATUS = +1;
 
     /**
-     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the {@code CK_PurchaseOrderHeader_Status} check
-     * constraint ({@code [Status]<=(4)}) requires. The value is {@value}.
+     * The maximum value of the {@value #COLUMN_NAME_STATUS} column, as the
+     * {@code CK_PurchaseOrderHeader_Status} check constraint ({@code [Status]<=(4)}) requires. The
+     * value is {@value}.
      */
     public static final int COLUMN_MAX_STATUS = +4;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STATUS} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATUS = "status";
 
@@ -208,7 +222,8 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_EMPLOYEE_ID = "EmployeeID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMPLOYEE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMPLOYEE_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMPLOYEE_ID = "employeeId";
 
@@ -220,7 +235,8 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_VENDOR_ID = "VendorID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_VENDOR_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_VENDOR_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_VENDOR_ID = "vendorId";
 
@@ -232,19 +248,22 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_SHIP_METHOD_ID = "ShipMethodID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_METHOD_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_METHOD_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIP_METHOD_ID = "shipMethodId";
 
     // ----------------------------------------------------------------------------------- OrderDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_ORDER_DATE = "OrderDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_DATE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_DATE = "orderDate";
 
@@ -256,7 +275,8 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_SHIP_DATE = "ShipDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_DATE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIP_DATE = "shipDate";
 
@@ -268,13 +288,15 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_SUB_TOTAL = "SubTotal";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_SUB_TOTAL} column, as the {@code CK_PurchaseOrderHeader_SubTotal}
-     * check constraint ({@code [SubTotal]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_SUB_TOTAL} column, as the
+     * {@code CK_PurchaseOrderHeader_SubTotal} check constraint ({@code [SubTotal]>=(0.00)})
+     * requires. The value is {@value}.
      */
     public static final String COLUMN_MIN_SUB_TOTAL = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SUB_TOTAL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SUB_TOTAL} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUB_TOTAL = "subTotal";
 
@@ -286,13 +308,15 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_TAX_AMT = "TaxAmt";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_TAX_AMT} column, as the {@code CK_PurchaseOrderHeader_TaxAmt} check
-     * constraint ({@code [TaxAmt]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_TAX_AMT} column, as the
+     * {@code CK_PurchaseOrderHeader_TaxAmt} check constraint ({@code [TaxAmt]>=(0.00)}) requires.
+     * The value is {@value}.
      */
     public static final String COLUMN_MIN_TAX_AMT = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMT} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TAX_AMT = "taxAmt";
 
@@ -304,38 +328,44 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_FREIGHT = "Freight";
 
     /**
-     * The minimum value of the {@value #COLUMN_NAME_FREIGHT} column, as the {@code CK_PurchaseOrderHeader_Freight}
-     * check constraint ({@code [Freight]>=(0.00)}) requires. The value is {@value}.
+     * The minimum value of the {@value #COLUMN_NAME_FREIGHT} column, as the
+     * {@code CK_PurchaseOrderHeader_Freight} check constraint ({@code [Freight]>=(0.00)}) requires.
+     * The value is {@value}.
      */
     public static final String COLUMN_MIN_FREIGHT = "0.00";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FREIGHT} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FREIGHT} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_FREIGHT = "freight";
 
     // ------------------------------------------------------------------------------------ TotalDue
 
     /**
-     * The name of the {@code money, computed as (isnull(([SubTotal]+[TaxAmt])+[Freight],(0))), NOT NULL} column. The
-     * value is {@value}.
+     * The name of the
+     * {@code money, computed as (isnull(([SubTotal]+[TaxAmt])+[Freight],(0))), NOT NULL} column.
+     * The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_DUE = "TotalDue";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_DUE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_DUE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DUE = "totalDue";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -401,17 +431,17 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------- VALIDATION
 
     /**
-     * Checks whether the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null} or not before the
-     * {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, as the table's {@code CK_PurchaseOrderHeader_ShipDate} constraint
-     * requires.
+     * Checks whether the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null} or not before
+     * the {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute, as the table's
+     * {@code CK_PurchaseOrderHeader_ShipDate} constraint requires.
      * {@snippet lang = "sql":
      * ([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)
      *}
      *
-     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute is {@code null}, or the
-     *         {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is not before the {@value #ATTRIBUTE_NAME_ORDER_DATE}
-     *         attribute; {@code false} otherwise.
+     * @return {@code true} if the {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is {@code null}, or
+     *         the {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute is {@code null}, or the
+     *         {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute is not before the
+     *         {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute; {@code false} otherwise.
      */
     @AssertTrue(message = "shipDate must be null or not before orderDate")
     protected boolean isShipDateValid() {
@@ -433,7 +463,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute with the
+     * specified value.
      *
      * @param purchaseOrderId new value for {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute.
      */
@@ -453,7 +484,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute with the
+     * specified value.
      *
      * @param revisionNumber new value for {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute.
      */
@@ -473,7 +505,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STATUS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STATUS} attribute with the specified
+     * value.
      *
      * @param status new value for {@value #ATTRIBUTE_NAME_STATUS} attribute.
      */
@@ -493,8 +526,9 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMPLOYEE_ID} attribute with the specified value. The attribute
-     * is read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMPLOYEE_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param employeeId new value for {@value #ATTRIBUTE_NAME_EMPLOYEE_ID} attribute.
      */
@@ -514,8 +548,9 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_VENDOR_ID} attribute with the specified value. The attribute is
-     * read-only; the extending entity calls this to keep it in step with the association which writes the column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_VENDOR_ID} attribute with the specified
+     * value. The attribute is read-only; the extending entity calls this to keep it in step with
+     * the association which writes the column.
      *
      * @param vendorId new value for {@value #ATTRIBUTE_NAME_VENDOR_ID} attribute.
      */
@@ -535,9 +570,9 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute with the specified value. The
-     * attribute is read-only; the extending entity calls this to keep it in step with the association which writes the
-     * column.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute with the
+     * specified value. The attribute is read-only; the extending entity calls this to keep it in
+     * step with the association which writes the column.
      *
      * @param shipMethodId new value for {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute.
      */
@@ -557,7 +592,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute with the specified
+     * value.
      *
      * @param orderDate new value for {@value #ATTRIBUTE_NAME_ORDER_DATE} attribute.
      */
@@ -577,7 +613,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute with the specified
+     * value.
      *
      * @param shipDate new value for {@value #ATTRIBUTE_NAME_SHIP_DATE} attribute.
      */
@@ -597,7 +634,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SUB_TOTAL} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SUB_TOTAL} attribute with the specified
+     * value.
      *
      * @param subTotal new value for {@value #ATTRIBUTE_NAME_SUB_TOTAL} attribute.
      */
@@ -617,7 +655,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TAX_AMT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TAX_AMT} attribute with the specified
+     * value.
      *
      * @param taxAmt new value for {@value #ATTRIBUTE_NAME_TAX_AMT} attribute.
      */
@@ -637,7 +676,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FREIGHT} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FREIGHT} attribute with the specified
+     * value.
      *
      * @param freight new value for {@value #ATTRIBUTE_NAME_FREIGHT} attribute.
      */
@@ -657,8 +697,9 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_DUE} attribute with the specified value. The database
-     * writes the column; this is for the provider and the extending class only.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TOTAL_DUE} attribute with the specified
+     * value. The database writes the column; this is for the provider and the extending class
+     * only.
      *
      * @param totalDue new value for {@value #ATTRIBUTE_NAME_TOTAL_DUE} attribute.
      */
@@ -678,7 +719,8 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -687,11 +729,13 @@ public abstract class MappedPurchaseOrderHeader {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
+    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
+    // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, value = "Primary key.")
     private Integer purchaseOrderId;
 
@@ -700,7 +744,8 @@ public abstract class MappedPurchaseOrderHeader {
     @Min(COLUMN_MIN_REVISION_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_REVISION_NUMBER, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_REVISION_NUMBER, nullable = false, insertable = true,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_REVISION_NUMBER,
                           value = "Incremental number to track changes to the purchase order "
                                   + "over time.")
@@ -721,7 +766,8 @@ public abstract class MappedPurchaseOrderHeader {
     private Integer status;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMPLOYEE_ID, nullable = false, insertable = false, updatable = false)
@@ -731,7 +777,8 @@ public abstract class MappedPurchaseOrderHeader {
     private Integer employeeId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VENDOR_ID, nullable = false, insertable = false, updatable = false)
@@ -741,10 +788,12 @@ public abstract class MappedPurchaseOrderHeader {
     private Integer vendorId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only: the extending entity owns the writable mapping of this column; see the class documentation
+    // read-only: the extending entity owns the writable mapping of this column; see the class
+    // documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false,
+            updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SHIP_METHOD_ID,
                           value = "Shipping method. Foreign key to ShipMethod.ShipMethodID.")
     private Integer shipMethodId;
@@ -807,10 +856,12 @@ public abstract class MappedPurchaseOrderHeader {
     private BigDecimal totalDue;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PurchaseOrderHeader_ModifiedDate", value = "(getdate())")

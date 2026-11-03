@@ -39,8 +39,10 @@ class SalesPerson_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public SalesPerson apply(final EntityManager entityManager, final SalesPerson entityInstance) {
-        final var employee = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
-        final var territory = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
+        final var employee =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
+        final var territory =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesTerritory.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         entityInstance.setBusinessEntity(employee);

@@ -38,22 +38,26 @@ import java.util.Objects;
 /**
  * An entity which maps the {@code Production.ProductModelIllustration} table.
  * <p>
- * Each attribute of the embedded {@link ProductModelIllustrationId} is derived, with {@link MapsId @MapsId}, from the association
- * which references the same column.
+ * Each attribute of the embedded {@link ProductModelIllustrationId} is derived, with
+ * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "ProductionProductModelIllustration")
-@Table(schema = MappedProductModelIllustration.TABLE_SCHEMA, name = MappedProductModelIllustration.TABLE_NAME)
-public class ProductModelIllustration extends MappedProductModelIllustration {
+@Table(schema = MappedProductModelIllustration.TABLE_SCHEMA,
+       name = MappedProductModelIllustration.TABLE_NAME)
+public class ProductModelIllustration
+        extends MappedProductModelIllustration {
 
     /**
-     * The name of the attribute of the {@code FK_ProductModelIllustration_ProductModel_ProductModelID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_ProductModelIllustration_ProductModel_ProductModelID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL = "productModel";
 
     /**
-     * The name of the attribute of the {@code FK_ProductModelIllustration_Illustration_IllustrationID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_ProductModelIllustration_Illustration_IllustrationID} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_ILLUSTRATION = "illustration";
 
@@ -89,8 +93,8 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
     // -------------------------------------------------------------------------------- productModel
 
     /**
-     * Returns the {@code ProductModel} which the {@code FK_ProductModelIllustration_ProductModel_ProductModelID}
-     * foreign key references.
+     * Returns the {@code ProductModel} which the
+     * {@code FK_ProductModelIllustration_ProductModel_ProductModelID} foreign key references.
      *
      * @return the {@code ProductModel} referenced; {@code null} when none is.
      */
@@ -101,8 +105,8 @@ public class ProductModelIllustration extends MappedProductModelIllustration {
     // -------------------------------------------------------------------------------- illustration
 
     /**
-     * Returns the {@code Illustration} which the {@code FK_ProductModelIllustration_Illustration_IllustrationID}
-     * foreign key references.
+     * Returns the {@code Illustration} which the
+     * {@code FK_ProductModelIllustration_Illustration_IllustrationID} foreign key references.
      *
      * @return the {@code Illustration} referenced; {@code null} when none is.
      */

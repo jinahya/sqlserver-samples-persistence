@@ -85,53 +85,54 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class SalesOrderHeader extends MappedSalesOrderHeader {
+public class SalesOrderHeader
+        extends MappedSalesOrderHeader {
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_Address_BillToAddressID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_Address_BillToAddressID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BILL_TO_ADDRESS = "billToAddress";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_Address_ShipToAddressID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_Address_ShipToAddressID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIP_TO_ADDRESS = "shipToAddress";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_CreditCard_CreditCardID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_CreditCard_CreditCardID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CREDIT_CARD = "creditCard";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID} foreign key. The value
-     * is {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CURRENCY_RATE = "currencyRate";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_Customer_CustomerID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_Customer_CustomerID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER = "customer";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_PERSON = "salesPerson";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SHIP_METHOD = "shipMethod";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY = "territory";
 
@@ -147,8 +148,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // ------------------------------------------------------------------------------- billToAddress
 
     /**
-     * Returns the {@code Address} which the {@code FK_SalesOrderHeader_Address_BillToAddressID} foreign key
-     * references.
+     * Returns the {@code Address} which the {@code FK_SalesOrderHeader_Address_BillToAddressID}
+     * foreign key references.
      *
      * @return the {@code Address} referenced; {@code null} when none is.
      */
@@ -157,8 +158,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code Address} which the {@code FK_SalesOrderHeader_Address_BillToAddressID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code Address} which the {@code FK_SalesOrderHeader_Address_BillToAddressID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param billToAddress the {@code Address} to reference; {@code null} for none.
      */
@@ -170,8 +171,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // ------------------------------------------------------------------------------- shipToAddress
 
     /**
-     * Returns the {@code Address} which the {@code FK_SalesOrderHeader_Address_ShipToAddressID} foreign key
-     * references.
+     * Returns the {@code Address} which the {@code FK_SalesOrderHeader_Address_ShipToAddressID}
+     * foreign key references.
      *
      * @return the {@code Address} referenced; {@code null} when none is.
      */
@@ -180,8 +181,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code Address} which the {@code FK_SalesOrderHeader_Address_ShipToAddressID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code Address} which the {@code FK_SalesOrderHeader_Address_ShipToAddressID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param shipToAddress the {@code Address} to reference; {@code null} for none.
      */
@@ -193,8 +194,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------- creditCard
 
     /**
-     * Returns the {@code CreditCard} which the {@code FK_SalesOrderHeader_CreditCard_CreditCardID} foreign key
-     * references.
+     * Returns the {@code CreditCard} which the {@code FK_SalesOrderHeader_CreditCard_CreditCardID}
+     * foreign key references.
      *
      * @return the {@code CreditCard} referenced; {@code null} when none is.
      */
@@ -203,8 +204,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code CreditCard} which the {@code FK_SalesOrderHeader_CreditCard_CreditCardID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code CreditCard} which the {@code FK_SalesOrderHeader_CreditCard_CreditCardID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param creditCard the {@code CreditCard} to reference; {@code null} for none.
      */
@@ -216,8 +217,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // -------------------------------------------------------------------------------- currencyRate
 
     /**
-     * Returns the {@code CurrencyRate} which the {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID} foreign key
-     * references.
+     * Returns the {@code CurrencyRate} which the
+     * {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID} foreign key references.
      *
      * @return the {@code CurrencyRate} referenced; {@code null} when none is.
      */
@@ -226,8 +227,9 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code CurrencyRate} which the {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code CurrencyRate} which the
+     * {@code FK_SalesOrderHeader_CurrencyRate_CurrencyRateID} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param currencyRate the {@code CurrencyRate} to reference; {@code null} for none.
      */
@@ -239,7 +241,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // ------------------------------------------------------------------------------------ customer
 
     /**
-     * Returns the {@code Customer} which the {@code FK_SalesOrderHeader_Customer_CustomerID} foreign key references.
+     * Returns the {@code Customer} which the {@code FK_SalesOrderHeader_Customer_CustomerID}
+     * foreign key references.
      *
      * @return the {@code Customer} referenced; {@code null} when none is.
      */
@@ -248,8 +251,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code Customer} which the {@code FK_SalesOrderHeader_Customer_CustomerID} foreign key references,
-     * and the value of the column it consists of.
+     * Replaces the {@code Customer} which the {@code FK_SalesOrderHeader_Customer_CustomerID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param customer the {@code Customer} to reference; {@code null} for none.
      */
@@ -261,8 +264,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // --------------------------------------------------------------------------------- salesPerson
 
     /**
-     * Returns the {@code SalesPerson} which the {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID} foreign key
-     * references.
+     * Returns the {@code SalesPerson} which the
+     * {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID} foreign key references.
      *
      * @return the {@code SalesPerson} referenced; {@code null} when none is.
      */
@@ -271,8 +274,9 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code SalesPerson} which the {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code SalesPerson} which the
+     * {@code FK_SalesOrderHeader_SalesPerson_SalesPersonID} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param salesPerson the {@code SalesPerson} to reference; {@code null} for none.
      */
@@ -284,8 +288,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------- shipMethod
 
     /**
-     * Returns the {@code ShipMethod} which the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID} foreign key
-     * references.
+     * Returns the {@code ShipMethod} which the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID}
+     * foreign key references.
      *
      * @return the {@code ShipMethod} referenced; {@code null} when none is.
      */
@@ -294,8 +298,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code ShipMethod} which the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code ShipMethod} which the {@code FK_SalesOrderHeader_ShipMethod_ShipMethodID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param shipMethod the {@code ShipMethod} to reference; {@code null} for none.
      */
@@ -307,8 +311,8 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     // ----------------------------------------------------------------------------------- territory
 
     /**
-     * Returns the {@code SalesTerritory} which the {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID} foreign key
-     * references.
+     * Returns the {@code SalesTerritory} which the
+     * {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID} foreign key references.
      *
      * @return the {@code SalesTerritory} referenced; {@code null} when none is.
      */
@@ -317,8 +321,9 @@ public class SalesOrderHeader extends MappedSalesOrderHeader {
     }
 
     /**
-     * Replaces the {@code SalesTerritory} which the {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code SalesTerritory} which the
+     * {@code FK_SalesOrderHeader_SalesTerritory_TerritoryID} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param territory the {@code SalesTerritory} to reference; {@code null} for none.
      */

@@ -21,11 +21,12 @@
 /**
  * Jakarta Persistence mappings for AdventureWorks, the classic OLTP sample database of SQL Server.
  * <p>
- * The module holds mapped superclasses, one per table and view, and an identifier class per composite key, which an
- * application extends with its own entities. The persistence and validation APIs appear in their public signatures.
+ * The module holds mapped superclasses, one per table and view, and an identifier class per
+ * composite key, which an application extends with its own entities. The persistence and validation
+ * APIs appear in their public signatures.
  * <p>
- * The packages are opened, not only exported, because a persistence provider and a validation provider reach the
- * mapped superclasses' private fields reflectively.
+ * The packages are opened, not only exported, because a persistence provider and a validation
+ * provider reach the mapped superclasses' private fields reflectively.
  */
 module com.github.jinahya.sqlserver.sample.persistence.adventureworks {
 
@@ -34,12 +35,14 @@ module com.github.jinahya.sqlserver.sample.persistence.adventureworks {
     requires transitive jakarta.persistence;
     requires transitive jakarta.validation;
     requires java.xml;
-    // dbo.DatabaseLog.XmlEvent; EventInstanceStringAttributeConverter extends JaxbAttributeConverter, and throws a
+    // dbo.DatabaseLog.XmlEvent; EventInstanceStringAttributeConverter extends
+    // JaxbAttributeConverter, and throws a
     // JAXBException
     requires transitive com.github.jinahya.persistence.more;
     requires io.github.jinahya.sqlserver.xml.schema.binding.b872ce;
     requires transitive jakarta.xml.bind;
-    // Person.AdditionalContactInfoSchemaCollection; MappedEmployeeView returns an AdditionalContactInfo
+    // Person.AdditionalContactInfoSchemaCollection; MappedEmployeeView returns an
+    // AdditionalContactInfo
     requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b7fdbe;
     requires io.github.jinahya.sqlserver.xml.schema.binding.b80e2e;
     requires io.github.jinahya.sqlserver.xml.schema.binding.b2e7ae;

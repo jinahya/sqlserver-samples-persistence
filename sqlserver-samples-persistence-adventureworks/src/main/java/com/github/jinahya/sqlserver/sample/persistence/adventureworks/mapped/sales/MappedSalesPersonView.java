@@ -33,10 +33,12 @@ import java.util.Objects;
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.vSalesPerson} view.
  * <p>
- * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it returns.
+ * Identifier: the view declares no key; BusinessEntityID is unique, and not null, in every row it
+ * returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
- * insertable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is updatable, nor insertable; an INSERT or an UPDATE of a whole row affects more than one of
+ * its base tables (error 4405).
  */
 @MappedSuperclass
 public abstract class MappedSalesPersonView {
@@ -59,7 +61,8 @@ public abstract class MappedSalesPersonView {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -76,7 +79,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_TITLE = 8;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_TITLE = "title";
 
@@ -93,7 +97,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_FIRST_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_FIRST_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_FIRST_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_FIRST_NAME = "firstName";
 
@@ -110,7 +115,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_MIDDLE_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MIDDLE_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MIDDLE_NAME} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MIDDLE_NAME = "middleName";
 
@@ -127,7 +133,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_LAST_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_LAST_NAME = "lastName";
 
@@ -144,7 +151,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_SUFFIX = 10;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SUFFIX} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SUFFIX} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUFFIX = "suffix";
 
@@ -161,7 +169,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_JOB_TITLE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_TITLE} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_JOB_TITLE = "jobTitle";
 
@@ -178,7 +187,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_PHONE_NUMBER = 25;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PHONE_NUMBER} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PHONE_NUMBER} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER = "phoneNumber";
 
@@ -195,7 +205,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_PHONE_NUMBER_TYPE = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PHONE_NUMBER_TYPE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PHONE_NUMBER_TYPE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PHONE_NUMBER_TYPE = "phoneNumberType";
 
@@ -212,7 +223,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_EMAIL_ADDRESS = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_ADDRESS} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_ADDRESS} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMAIL_ADDRESS = "emailAddress";
 
@@ -224,7 +236,8 @@ public abstract class MappedSalesPersonView {
     public static final String COLUMN_NAME_EMAIL_PROMOTION = "EmailPromotion";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_EMAIL_PROMOTION} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_EMAIL_PROMOTION = "emailPromotion";
 
@@ -241,7 +254,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_ADDRESS_LINE_1 = 60;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_1} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_1} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_1 = "addressLine1";
 
@@ -258,7 +272,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_ADDRESS_LINE_2 = 60;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_2} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_ADDRESS_LINE_2} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ADDRESS_LINE_2 = "addressLine2";
 
@@ -275,7 +290,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_CITY = 30;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CITY} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CITY} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_CITY = "city";
 
@@ -292,8 +308,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_STATE_PROVINCE_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_NAME} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_NAME} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STATE_PROVINCE_NAME = "stateProvinceName";
 
@@ -310,7 +326,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_POSTAL_CODE = 15;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_POSTAL_CODE} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_POSTAL_CODE = "postalCode";
 
@@ -327,8 +344,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_COUNTRY_REGION_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_NAME} column. The value is
-     * {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_REGION_NAME} column.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_REGION_NAME = "countryRegionName";
 
@@ -345,7 +362,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_TERRITORY_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_NAME} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_NAME = "territoryName";
 
@@ -362,7 +380,8 @@ public abstract class MappedSalesPersonView {
     public static final int COLUMN_LENGTH_TERRITORY_GROUP = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_GROUP} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_GROUP} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TERRITORY_GROUP = "territoryGroup";
 
@@ -374,7 +393,8 @@ public abstract class MappedSalesPersonView {
     public static final String COLUMN_NAME_SALES_QUOTA = "SalesQuota";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_QUOTA = "salesQuota";
 
@@ -386,7 +406,8 @@ public abstract class MappedSalesPersonView {
     public static final String COLUMN_NAME_SALES_YTD = "SalesYTD";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_YTD = "salesYtd";
 
@@ -398,7 +419,8 @@ public abstract class MappedSalesPersonView {
     public static final String COLUMN_NAME_SALES_LAST_YEAR = "SalesLastYear";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_LAST_YEAR = "salesLastYear";
 
@@ -482,7 +504,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute with the
+     * specified value.
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
@@ -522,7 +545,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute with the specified
+     * value.
      *
      * @param firstName new value for {@value #ATTRIBUTE_NAME_FIRST_NAME} attribute.
      */
@@ -542,7 +566,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute with the specified
+     * value.
      *
      * @param middleName new value for {@value #ATTRIBUTE_NAME_MIDDLE_NAME} attribute.
      */
@@ -562,7 +587,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_LAST_NAME} attribute with the specified
+     * value.
      *
      * @param lastName new value for {@value #ATTRIBUTE_NAME_LAST_NAME} attribute.
      */
@@ -582,7 +608,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SUFFIX} attribute with the specified
+     * value.
      *
      * @param suffix new value for {@value #ATTRIBUTE_NAME_SUFFIX} attribute.
      */
@@ -602,7 +629,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute with the specified
+     * value.
      *
      * @param jobTitle new value for {@value #ATTRIBUTE_NAME_JOB_TITLE} attribute.
      */
@@ -622,7 +650,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute with the specified
+     * value.
      *
      * @param phoneNumber new value for {@value #ATTRIBUTE_NAME_PHONE_NUMBER} attribute.
      */
@@ -642,7 +671,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE} attribute with the
+     * specified value.
      *
      * @param phoneNumberType new value for {@value #ATTRIBUTE_NAME_PHONE_NUMBER_TYPE} attribute.
      */
@@ -662,7 +692,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute with the specified
+     * value.
      *
      * @param emailAddress new value for {@value #ATTRIBUTE_NAME_EMAIL_ADDRESS} attribute.
      */
@@ -682,7 +713,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute with the
+     * specified value.
      *
      * @param emailPromotion new value for {@value #ATTRIBUTE_NAME_EMAIL_PROMOTION} attribute.
      */
@@ -702,7 +734,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute with the
+     * specified value.
      *
      * @param addressLine1 new value for {@value #ATTRIBUTE_NAME_ADDRESS_LINE_1} attribute.
      */
@@ -722,7 +755,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute with the
+     * specified value.
      *
      * @param addressLine2 new value for {@value #ATTRIBUTE_NAME_ADDRESS_LINE_2} attribute.
      */
@@ -762,9 +796,11 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute with the
+     * specified value.
      *
-     * @param stateProvinceName new value for {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME} attribute.
+     * @param stateProvinceName new value for {@value #ATTRIBUTE_NAME_STATE_PROVINCE_NAME}
+     *                          attribute.
      */
     protected void setStateProvinceName(final String stateProvinceName) {
         this.stateProvinceName = stateProvinceName;
@@ -782,7 +818,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute with the specified
+     * value.
      *
      * @param postalCode new value for {@value #ATTRIBUTE_NAME_POSTAL_CODE} attribute.
      */
@@ -802,9 +839,11 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute with the
+     * specified value.
      *
-     * @param countryRegionName new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME} attribute.
+     * @param countryRegionName new value for {@value #ATTRIBUTE_NAME_COUNTRY_REGION_NAME}
+     *                          attribute.
      */
     protected void setCountryRegionName(final String countryRegionName) {
         this.countryRegionName = countryRegionName;
@@ -822,7 +861,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute with the
+     * specified value.
      *
      * @param territoryName new value for {@value #ATTRIBUTE_NAME_TERRITORY_NAME} attribute.
      */
@@ -842,7 +882,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_GROUP} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_TERRITORY_GROUP} attribute with the
+     * specified value.
      *
      * @param territoryGroup new value for {@value #ATTRIBUTE_NAME_TERRITORY_GROUP} attribute.
      */
@@ -862,7 +903,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute with the specified
+     * value.
      *
      * @param salesQuota new value for {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute.
      */
@@ -882,7 +924,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_YTD} attribute with the specified
+     * value.
      *
      * @param salesYtd new value for {@value #ATTRIBUTE_NAME_SALES_YTD} attribute.
      */
@@ -902,7 +945,8 @@ public abstract class MappedSalesPersonView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute with the
+     * specified value.
      *
      * @param salesLastYear new value for {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute.
      */
@@ -914,14 +958,16 @@ public abstract class MappedSalesPersonView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
+            updatable = false)
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TITLE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TITLE)
+    @Column(name = COLUMN_NAME_TITLE, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_TITLE)
     private String title;
 
     // ---------------------------------------------------------------------------------------------
@@ -929,14 +975,16 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_FIRST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_FIRST_NAME)
+    @Column(name = COLUMN_NAME_FIRST_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_FIRST_NAME)
     private String firstName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_MIDDLE_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_MIDDLE_NAME)
+    @Column(name = COLUMN_NAME_MIDDLE_NAME, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_MIDDLE_NAME)
     private String middleName;
 
     // ---------------------------------------------------------------------------------------------
@@ -944,14 +992,16 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_LAST_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_LAST_NAME)
+    @Column(name = COLUMN_NAME_LAST_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_LAST_NAME)
     private String lastName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_SUFFIX)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_SUFFIX)
+    @Column(name = COLUMN_NAME_SUFFIX, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_SUFFIX)
     private String suffix;
 
     // ---------------------------------------------------------------------------------------------
@@ -959,35 +1009,40 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_JOB_TITLE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_JOB_TITLE)
+    @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_JOB_TITLE)
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER)
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = true, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_PHONE_NUMBER)
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER_TYPE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER_TYPE)
+    @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_PHONE_NUMBER_TYPE)
     private String phoneNumberType;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_EMAIL_ADDRESS)
+    @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_EMAIL_ADDRESS)
     private String emailAddress;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_EMAIL_PROMOTION, nullable = false, insertable = false,
+            updatable = false)
     private Integer emailPromotion;
 
     // ---------------------------------------------------------------------------------------------
@@ -995,14 +1050,16 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_1)
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_1)
     private String addressLine1;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_2)
+    @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_ADDRESS_LINE_2)
     private String addressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -1010,7 +1067,8 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_CITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CITY)
+    @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_CITY)
     private String city;
 
     // ---------------------------------------------------------------------------------------------
@@ -1018,7 +1076,8 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     private String stateProvinceName;
 
     // ---------------------------------------------------------------------------------------------
@@ -1026,7 +1085,8 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_POSTAL_CODE)
+    @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_POSTAL_CODE)
     private String postalCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -1034,21 +1094,24 @@ public abstract class MappedSalesPersonView {
     @Size(max = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
+    @Column(name = COLUMN_NAME_COUNTRY_REGION_NAME, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_NAME)
     private String countryRegionName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_NAME)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_NAME, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TERRITORY_NAME)
+    @Column(name = COLUMN_NAME_TERRITORY_NAME, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_TERRITORY_NAME)
     private String territoryName;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
     @Size(max = COLUMN_LENGTH_TERRITORY_GROUP)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_GROUP, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_TERRITORY_GROUP)
+    @Column(name = COLUMN_NAME_TERRITORY_GROUP, nullable = true, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_TERRITORY_GROUP)
     private String territoryGroup;
 
     // ---------------------------------------------------------------------------------------------
@@ -1068,7 +1131,8 @@ public abstract class MappedSalesPersonView {
     // read-only: SQL Server does not write this view; see the class documentation
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = false, updatable = false)
+    @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = false,
+            updatable = false)
     private BigDecimal salesLastYear;
 }
 

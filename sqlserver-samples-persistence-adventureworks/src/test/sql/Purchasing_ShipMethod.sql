@@ -93,9 +93,14 @@ FROM Purchasing.ShipMethod
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the purchase orders and the sales orders shipped by each method; every method ships purchase orders, CARGO TRANSPORT
 -- 5 the most with 1523; sales orders use only XRQ - TRUCK GROUND (27659) and CARGO TRANSPORT 5 (3806).
-SELECT m.ShipMethodID, m.Name,
-       (SELECT COUNT(*) FROM Purchasing.PurchaseOrderHeader h WHERE h.ShipMethodID = m.ShipMethodID) AS purchases,
-       (SELECT COUNT(*) FROM Sales.SalesOrderHeader h WHERE h.ShipMethodID = m.ShipMethodID) AS sales
+SELECT m.ShipMethodID,
+       m.Name,
+       (SELECT COUNT(*)
+        FROM Purchasing.PurchaseOrderHeader h
+        WHERE h.ShipMethodID = m.ShipMethodID)                                               AS purchases,
+       (SELECT COUNT(*)
+        FROM Sales.SalesOrderHeader h
+        WHERE h.ShipMethodID = m.ShipMethodID)                                               AS sales
 FROM Purchasing.ShipMethod m
 ORDER BY m.ShipMethodID ASC
 ;

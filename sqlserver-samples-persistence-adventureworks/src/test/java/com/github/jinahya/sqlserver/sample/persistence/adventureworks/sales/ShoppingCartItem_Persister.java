@@ -38,8 +38,10 @@ class ShoppingCartItem_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ShoppingCartItem apply(final EntityManager entityManager, final ShoppingCartItem entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+    public ShoppingCartItem apply(final EntityManager entityManager,
+                                  final ShoppingCartItem entityInstance) {
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the product's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setProduct(product);

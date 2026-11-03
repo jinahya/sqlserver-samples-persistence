@@ -31,7 +31,8 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "HumanResourcesJobCandidateView")
 @Table(schema = MappedJobCandidateView.TABLE_SCHEMA, name = MappedJobCandidateView.TABLE_NAME)
-public class JobCandidateView extends MappedJobCandidateView {
+public class JobCandidateView
+        extends MappedJobCandidateView {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

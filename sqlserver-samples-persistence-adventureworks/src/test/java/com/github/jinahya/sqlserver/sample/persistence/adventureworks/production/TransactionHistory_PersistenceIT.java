@@ -24,7 +24,8 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class TransactionHistory_PersistenceIT extends _Entity_PersistenceIT<TransactionHistory> {
+class TransactionHistory_PersistenceIT
+        extends _Entity_PersistenceIT<TransactionHistory> {
 
     TransactionHistory_PersistenceIT() {
         super(TransactionHistory.class);
@@ -33,8 +34,8 @@ class TransactionHistory_PersistenceIT extends _Entity_PersistenceIT<Transaction
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Does nothing; the triggers of the work-order, purchase-order and sales-order tables insert every row of
-     * {@code Production.TransactionHistory}, and nothing else inserts into it.
+     * Does nothing; the triggers of the work-order, purchase-order and sales-order tables insert
+     * every row of {@code Production.TransactionHistory}, and nothing else inserts into it.
      */
     @Disabled("written by the order and work-order triggers: nothing else inserts into it")
     @Override

@@ -42,14 +42,16 @@ class ProductListPriceHistory_Persister
     @Override
     public ProductListPriceHistory apply(final EntityManager entityManager,
                                          final ProductListPriceHistory entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the product's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         final var random = ThreadLocalRandom.current();
         // EndDate, when any, >= StartDate
         final var startDate = __Random_TestUtils.dateTime();
         final var instance = ProductListPriceHistory.of(product, startDate);
-        instance.setEndDate(random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
+        instance.setEndDate(
+                random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
         instance.setListPrice(entityInstance.getListPrice());
         return super.apply(entityManager, instance);
     }

@@ -37,7 +37,7 @@ FROM Production.WorkOrderRouting
 -- ----------------------------------------------------------------------------------------------------------- ProductID
 -- a routing whose ProductID is not its work order's; the key repeats it, and nothing keeps the two the same.
 -- no rows: every routing carries its work order's product.
-SELECT TOP (3) r.WorkOrderID, r.ProductID, w.ProductID AS workOrderProductID
+SELECT TOP(3) r.WorkOrderID, r.ProductID, w.ProductID AS workOrderProductID
 FROM Production.WorkOrderRouting r
          JOIN Production.WorkOrder w ON w.WorkOrderID = r.WorkOrderID
 WHERE r.ProductID <> w.ProductID
@@ -107,7 +107,9 @@ FROM Production.WorkOrderRouting
 
 -- --------------------------------------------------------------------------------------------------- ActualResourceHrs
 -- how many steps have no hours, and the smallest and the largest of the others; none without; 1.0000 to 4.1000 hours.
-SELECT COUNT(*) - COUNT(ActualResourceHrs) AS without, MIN(ActualResourceHrs), MAX(ActualResourceHrs)
+SELECT COUNT(*) - COUNT(ActualResourceHrs) AS without,
+       MIN(ActualResourceHrs),
+       MAX(ActualResourceHrs)
 FROM Production.WorkOrderRouting
 ;
 
@@ -124,7 +126,8 @@ ORDER BY OperationSequence ASC
 
 -- ---------------------------------------------------------------------------------------------------------- ActualCost
 -- how many steps have no actual cost, and how many cost other than planned; 0 and 0: every step costs what it planned.
-SELECT COUNT(*) - COUNT(ActualCost) AS without, SUM(CASE WHEN ActualCost <> PlannedCost THEN 1 ELSE 0 END) AS offPlan
+SELECT COUNT(*) - COUNT(ActualCost)                               AS without,
+       SUM(CASE WHEN ActualCost <> PlannedCost THEN 1 ELSE 0 END) AS offPlan
 FROM Production.WorkOrderRouting
 ;
 
@@ -142,8 +145,8 @@ WHERE ModifiedDate <> ActualEndDate
 -- a routing step outside its work order's span: started before the order, or ended after it; and the latest, in days.
 -- none early, but 4369 end after their work order does, at most 21 days after.
 SELECT SUM(CASE WHEN r.ActualStartDate < w.StartDate THEN 1 ELSE 0 END) AS early,
-       SUM(CASE WHEN r.ActualEndDate > w.EndDate THEN 1 ELSE 0 END) AS late,
-       MAX(DATEDIFF(DAY, w.EndDate, r.ActualEndDate)) AS mostDaysLate
+       SUM(CASE WHEN r.ActualEndDate > w.EndDate THEN 1 ELSE 0 END)     AS late,
+       MAX(DATEDIFF(DAY, w.EndDate, r.ActualEndDate))                   AS mostDaysLate
 FROM Production.WorkOrderRouting r
          JOIN Production.WorkOrder w ON w.WorkOrderID = r.WorkOrderID
 ;

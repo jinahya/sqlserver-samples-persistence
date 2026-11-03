@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
+package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-wideworldimporters
+ * sqlserver-samples-persistence-futonmanufacturing
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%
@@ -23,8 +23,6 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.validation.Validation;
-import jakarta.validation.ValidatorFactory;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -36,23 +34,17 @@ import java.util.function.Function;
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
 })
-public final class ___Persistence_TestUtils {
+public final class ___PersistenceIT_Utils {
 
-    static final String PERSISTENCE_UNIT_NAME = "wideworldimporters-it";
+    static final String PERSISTENCE_UNIT_NAME = "futonmanufacturing-it";
 
     private static final class Holder {
 
         private static final EntityManagerFactory ENTITY_MANAGER_FACTORY;
 
-        private static final ValidatorFactory VALIDATOR_FACTORY;
-
         static {
             ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-            VALIDATOR_FACTORY = Validation.buildDefaultValidatorFactory();
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                VALIDATOR_FACTORY.close();
-                ENTITY_MANAGER_FACTORY.close();
-            }));
+            Runtime.getRuntime().addShutdownHook(new Thread(ENTITY_MANAGER_FACTORY::close));
         }
 
         private Holder() {
@@ -62,10 +54,6 @@ public final class ___Persistence_TestUtils {
 
     public static EntityManagerFactory entityManagerFactory() {
         return Holder.ENTITY_MANAGER_FACTORY;
-    }
-
-    public static ValidatorFactory validatorFactory() {
-        return Holder.VALIDATOR_FACTORY;
     }
 
     /**
@@ -84,7 +72,7 @@ public final class ___Persistence_TestUtils {
         }
     }
 
-    private ___Persistence_TestUtils() {
+    private ___PersistenceIT_Utils() {
         throw new AssertionError("instantiation is not allowed");
     }
 }

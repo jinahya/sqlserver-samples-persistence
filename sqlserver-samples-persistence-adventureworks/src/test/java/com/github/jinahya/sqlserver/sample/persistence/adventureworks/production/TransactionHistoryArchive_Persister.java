@@ -27,7 +27,8 @@ import jakarta.persistence.EntityManager;
 import java.util.Optional;
 
 /**
- * Persists a new {@link TransactionHistoryArchive}, which references nothing, with the next identifier.
+ * Persists a new {@link TransactionHistoryArchive}, which references nothing, with the next
+ * identifier.
  */
 class TransactionHistoryArchive_Persister
         extends AbstractEntityPersister<TransactionHistoryArchive> {
@@ -37,7 +38,8 @@ class TransactionHistoryArchive_Persister
     }
 
     // ---------------------------------------------------------------------------------------------
-    // TransactionID is neither an identity nor generated: the archive takes the identifiers of the rows moved to it
+    // TransactionID is neither an identity nor generated: the archive takes the identifiers of
+    // the rows moved to it
     @Override
     public TransactionHistoryArchive apply(final EntityManager entityManager,
                                            final TransactionHistoryArchive entityInstance) {

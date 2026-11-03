@@ -51,8 +51,10 @@ import jakarta.persistence.UniqueConstraint;
                @CheckConstraint(
                        name = "CK_BillOfMaterials_BOMLevel",
                        constraint = "([ProductAssemblyID] IS NULL AND [BOMLevel]=(0) AND "
-                               + "[PerAssemblyQty]=(1.00) OR [ProductAssemblyID] IS NOT NULL AND "
-                               + "[BOMLevel]>=(1))"
+                                    +
+                                    "[PerAssemblyQty]=(1.00) OR [ProductAssemblyID] IS NOT NULL " +
+                                    "AND "
+                                    + "[BOMLevel]>=(1))"
                ),
                @CheckConstraint(
                        name = "CK_BillOfMaterials_EndDate",
@@ -68,23 +70,24 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class BillOfMaterials extends MappedBillOfMaterials {
+public class BillOfMaterials
+        extends MappedBillOfMaterials {
 
     /**
-     * The name of the attribute of the {@code FK_BillOfMaterials_Product_ProductAssemblyID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_BillOfMaterials_Product_ProductAssemblyID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ASSEMBLY = "productAssembly";
 
     /**
-     * The name of the attribute of the {@code FK_BillOfMaterials_Product_ComponentID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_BillOfMaterials_Product_ComponentID} foreign key.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMPONENT = "component";
 
     /**
-     * The name of the attribute of the {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_MEASURE = "unitMeasure";
 
@@ -100,8 +103,8 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     // ----------------------------------------------------------------------------- productAssembly
 
     /**
-     * Returns the {@code Product} which the {@code FK_BillOfMaterials_Product_ProductAssemblyID} foreign key
-     * references.
+     * Returns the {@code Product} which the {@code FK_BillOfMaterials_Product_ProductAssemblyID}
+     * foreign key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -110,8 +113,8 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_BillOfMaterials_Product_ProductAssemblyID} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_BillOfMaterials_Product_ProductAssemblyID}
+     * foreign key references, and the value of the column it consists of.
      *
      * @param productAssembly the {@code Product} to reference; {@code null} for none.
      */
@@ -123,7 +126,8 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     // ----------------------------------------------------------------------------------- component
 
     /**
-     * Returns the {@code Product} which the {@code FK_BillOfMaterials_Product_ComponentID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_BillOfMaterials_Product_ComponentID} foreign
+     * key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -132,8 +136,8 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     }
 
     /**
-     * Replaces the {@code Product} which the {@code FK_BillOfMaterials_Product_ComponentID} foreign key references, and
-     * the value of the column it consists of.
+     * Replaces the {@code Product} which the {@code FK_BillOfMaterials_Product_ComponentID} foreign
+     * key references, and the value of the column it consists of.
      *
      * @param component the {@code Product} to reference; {@code null} for none.
      */
@@ -145,8 +149,8 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     // --------------------------------------------------------------------------------- unitMeasure
 
     /**
-     * Returns the {@code UnitMeasure} which the {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode} foreign key
-     * references.
+     * Returns the {@code UnitMeasure} which the
+     * {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode} foreign key references.
      *
      * @return the {@code UnitMeasure} referenced; {@code null} when none is.
      */
@@ -155,8 +159,9 @@ public class BillOfMaterials extends MappedBillOfMaterials {
     }
 
     /**
-     * Replaces the {@code UnitMeasure} which the {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode} foreign key
-     * references, and the value of the column it consists of.
+     * Replaces the {@code UnitMeasure} which the
+     * {@code FK_BillOfMaterials_UnitMeasure_UnitMeasureCode} foreign key references, and the value
+     * of the column it consists of.
      *
      * @param unitMeasure the {@code UnitMeasure} to reference; {@code null} for none.
      */

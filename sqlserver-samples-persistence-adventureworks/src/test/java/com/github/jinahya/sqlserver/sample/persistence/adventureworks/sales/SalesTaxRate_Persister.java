@@ -38,8 +38,10 @@ class SalesTaxRate_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public SalesTaxRate apply(final EntityManager entityManager, final SalesTaxRate entityInstance) {
-        final var stateProvince = EntityPersisterUtils.newPersistedInstanceOf(entityManager, StateProvince.class);
+    public SalesTaxRate apply(final EntityManager entityManager,
+                              final SalesTaxRate entityInstance) {
+        final var stateProvince =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, StateProvince.class);
         // the state's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         entityInstance.setStateProvince(stateProvince);

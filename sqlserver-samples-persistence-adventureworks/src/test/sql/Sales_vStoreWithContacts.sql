@@ -102,7 +102,9 @@ ORDER BY contacts DESC, Suffix ASC
 
 -- --------------------------------------------------------------------------------------------------------- PhoneNumber
 -- how many rows have no PhoneNumber, and how long the others are; none; 12 to 19 characters.
-SELECT COUNT(*) - COUNT(PhoneNumber) AS without, MIN(LEN(PhoneNumber)), MAX(LEN(PhoneNumber))
+SELECT COUNT(*) - COUNT(PhoneNumber) AS without,
+       MIN(LEN(PhoneNumber)),
+       MAX(LEN(PhoneNumber))
 FROM Sales.vStoreWithContacts
 ;
 
@@ -118,7 +120,9 @@ ORDER BY PhoneNumberType ASC
 
 -- -------------------------------------------------------------------------------------------------------- EmailAddress
 -- how many rows have no EmailAddress, and how long the others are; none; 22 to 43 characters.
-SELECT COUNT(*) - COUNT(EmailAddress) AS without, MIN(LEN(EmailAddress)), MAX(LEN(EmailAddress))
+SELECT COUNT(*) - COUNT(EmailAddress) AS without,
+       MIN(LEN(EmailAddress)),
+       MAX(LEN(EmailAddress))
 FROM Sales.vStoreWithContacts
 ;
 

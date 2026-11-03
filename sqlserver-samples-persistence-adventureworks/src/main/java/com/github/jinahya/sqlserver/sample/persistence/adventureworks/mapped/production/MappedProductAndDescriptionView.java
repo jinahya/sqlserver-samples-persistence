@@ -30,13 +30,16 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 /**
- * A mapped superclass which holds the mappings of the {@code Production.vProductAndDescription} view.
+ * A mapped superclass which holds the mappings of the {@code Production.vProductAndDescription}
+ * view.
  * <p>
- * Identifier: the view declares no key; ProductID, CultureID are unique, and not null, in every row it returns.
+ * Identifier: the view declares no key; ProductID, CultureID are unique, and not null, in every row
+ * it returns.
  * <p>
- * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of it is updatable, nor
- * insertable; an INSERT or an UPDATE of a whole row affects more than one of its base tables (error 4405); one of its
- * columns is an identity column of its base table, which no UPDATE sets (error 8102).
+ * Read-only: SQL Server takes no whole row of this view in an INSERT or an UPDATE, so no column of
+ * it is updatable, nor insertable; an INSERT or an UPDATE of a whole row affects more than one of
+ * its base tables (error 4405); one of its columns is an identity column of its base table, which
+ * no UPDATE sets (error 8102).
  */
 @MappedSuperclass
 public abstract class MappedProductAndDescriptionView {
@@ -59,7 +62,8 @@ public abstract class MappedProductAndDescriptionView {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -76,7 +80,8 @@ public abstract class MappedProductAndDescriptionView {
     public static final int COLUMN_LENGTH_NAME = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_NAME} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_NAME = "name";
 
@@ -93,7 +98,8 @@ public abstract class MappedProductAndDescriptionView {
     public static final int COLUMN_LENGTH_PRODUCT_MODEL = 50;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL = "productModel";
 
@@ -110,7 +116,8 @@ public abstract class MappedProductAndDescriptionView {
     public static final int COLUMN_LENGTH_CULTURE_ID = 6;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CULTURE_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CULTURE_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CULTURE_ID = "cultureId";
 
@@ -127,7 +134,8 @@ public abstract class MappedProductAndDescriptionView {
     public static final int COLUMN_LENGTH_DESCRIPTION = 400;
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DESCRIPTION} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DESCRIPTION} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DESCRIPTION = "description";
 
@@ -195,7 +203,8 @@ public abstract class MappedProductAndDescriptionView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -235,7 +244,8 @@ public abstract class MappedProductAndDescriptionView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_MODEL} attribute with the specified
+     * value.
      *
      * @param productModel new value for {@value #ATTRIBUTE_NAME_PRODUCT_MODEL} attribute.
      */
@@ -255,7 +265,8 @@ public abstract class MappedProductAndDescriptionView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_CULTURE_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_CULTURE_ID} attribute with the specified
+     * value.
      *
      * @param cultureId new value for {@value #ATTRIBUTE_NAME_CULTURE_ID} attribute.
      */
@@ -275,7 +286,8 @@ public abstract class MappedProductAndDescriptionView {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute with the specified
+     * value.
      *
      * @param description new value for {@value #ATTRIBUTE_NAME_DESCRIPTION} attribute.
      */
@@ -295,7 +307,8 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_NAME)
+    @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_NAME)
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -303,7 +316,8 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_PRODUCT_MODEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_MODEL, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_PRODUCT_MODEL)
+    @Column(name = COLUMN_NAME_PRODUCT_MODEL, nullable = false, insertable = false,
+            updatable = false, length = COLUMN_LENGTH_PRODUCT_MODEL)
     private String productModel;
 
     // ---------------------------------------------------------------------------------------------
@@ -311,7 +325,8 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_CULTURE_ID)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_CULTURE_ID, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_CULTURE_ID)
+    @Column(name = COLUMN_NAME_CULTURE_ID, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_CULTURE_ID)
     private String cultureId;
 
     // ---------------------------------------------------------------------------------------------
@@ -319,7 +334,8 @@ public abstract class MappedProductAndDescriptionView {
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = false, updatable = false, length = COLUMN_LENGTH_DESCRIPTION)
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = false, updatable = false,
+            length = COLUMN_LENGTH_DESCRIPTION)
     private String description;
 }
 

@@ -40,15 +40,18 @@ class ProductCostHistory_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public ProductCostHistory apply(final EntityManager entityManager, final ProductCostHistory entityInstance) {
-        final var product = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
+    public ProductCostHistory apply(final EntityManager entityManager,
+                                    final ProductCostHistory entityInstance) {
+        final var product =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Product.class);
         // the product's identifier is the INSERT's; the flush is what assigns it
         entityManager.flush();
         final var random = ThreadLocalRandom.current();
         // EndDate, when any, >= StartDate
         final var startDate = __Random_TestUtils.dateTime();
         final var instance = ProductCostHistory.of(product, startDate);
-        instance.setEndDate(random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
+        instance.setEndDate(
+                random.nextBoolean() ? null : startDate.plusDays(random.nextLong(366L)));
         instance.setStandardCost(entityInstance.getStandardCost());
         return super.apply(entityManager, instance);
     }

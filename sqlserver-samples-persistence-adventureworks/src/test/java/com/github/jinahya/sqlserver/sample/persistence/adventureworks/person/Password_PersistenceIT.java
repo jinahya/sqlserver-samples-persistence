@@ -22,7 +22,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
-class Password_PersistenceIT extends _Entity_PersistenceIT<Password> {
+class Password_PersistenceIT
+        extends _Entity_PersistenceIT<Password> {
 
     Password_PersistenceIT() {
         super(Password.class);

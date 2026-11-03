@@ -39,7 +39,8 @@ class Document_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public Document apply(final EntityManager entityManager, final Document entityInstance) {
-        final var owner = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
+        final var owner =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Employee.class);
         entityInstance.setOwnerEmployee(owner);
         return super.apply(entityManager, entityInstance);
     }

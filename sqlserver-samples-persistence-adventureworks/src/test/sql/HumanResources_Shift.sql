@@ -61,7 +61,9 @@ HAVING COUNT(*) > 1
 -- ----------------------------------------------------------------------------------------------------------- StartTime
 -- the start and the end of each shift, and its length in hours; 07:00, 15:00 and 23:00, each 8 hours long; the shifts
 -- cover the whole day without overlap.
-SELECT ShiftID, StartTime, EndTime,
+SELECT ShiftID,
+       StartTime,
+       EndTime,
        DATEDIFF(MINUTE, StartTime, EndTime) / 60.0 + IIF(EndTime < StartTime, 24, 0) AS hours
 FROM HumanResources.Shift
 ORDER BY StartTime ASC
@@ -93,7 +95,9 @@ FROM HumanResources.Shift
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- the department histories in each shift; Day has 182 and 176 current, Evening 62 and Night 52, all current.
-SELECT s.ShiftID, s.Name, COUNT(h.BusinessEntityID) AS histories,
+SELECT s.ShiftID,
+       s.Name,
+       COUNT(h.BusinessEntityID)              AS histories,
        COUNT(IIF(h.EndDate IS NULL, 1, NULL)) AS current_histories
 FROM HumanResources.Shift s
          LEFT JOIN HumanResources.EmployeeDepartmentHistory h ON h.ShiftID = s.ShiftID

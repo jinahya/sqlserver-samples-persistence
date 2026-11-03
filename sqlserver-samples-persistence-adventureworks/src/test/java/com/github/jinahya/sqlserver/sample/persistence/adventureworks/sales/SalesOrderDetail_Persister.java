@@ -26,7 +26,8 @@ import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import jakarta.persistence.EntityManager;
 
 /**
- * Persists a new {@link SalesOrderDetail}, of a new sales order, for a new product on a new special offer.
+ * Persists a new {@link SalesOrderDetail}, of a new sales order, for a new product on a new special
+ * offer.
  */
 class SalesOrderDetail_Persister
         extends AbstractEntityPersister<SalesOrderDetail> {
@@ -37,10 +38,13 @@ class SalesOrderDetail_Persister
 
     // ---------------------------------------------------------------------------------------------
     @Override
-    public SalesOrderDetail apply(final EntityManager entityManager, final SalesOrderDetail entityInstance) {
-        final var salesOrder = EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesOrderHeader.class);
+    public SalesOrderDetail apply(final EntityManager entityManager,
+                                  final SalesOrderDetail entityInstance) {
+        final var salesOrder =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SalesOrderHeader.class);
         final var specialOfferProduct =
-                EntityPersisterUtils.newPersistedInstanceOf(entityManager, SpecialOfferProduct.class);
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager,
+                                                            SpecialOfferProduct.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = SalesOrderDetail.of(salesOrder);

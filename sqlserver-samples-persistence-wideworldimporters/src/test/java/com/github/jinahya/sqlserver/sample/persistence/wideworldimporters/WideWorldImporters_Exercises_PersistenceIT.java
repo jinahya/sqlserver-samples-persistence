@@ -59,13 +59,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___Persistence_TestUtils.applyInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyInTransactionAndRollback;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * The exercises of {@code EXERCISES.asciidoc} which the entities can answer, each in the Jakarta
  * Persistence query language and with the Criteria API, against the
- * {@value ___Persistence_TestUtils#PERSISTENCE_UNIT_NAME} unit.
+ * {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit.
  * <p>
  * Each nested class is an exercise, named after its identifier; each asserts the rows the
  * exercise's SQL, in {@code src/test/sql/exercises}, returns from the installed database. The

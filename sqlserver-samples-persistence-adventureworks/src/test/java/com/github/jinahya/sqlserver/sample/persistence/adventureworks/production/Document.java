@@ -64,10 +64,12 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class Document extends MappedDocument {
+public class Document
+        extends MappedDocument {
 
     /**
-     * The name of the attribute of the {@code FK_Document_Employee_Owner} foreign key. The value is {@value}.
+     * The name of the attribute of the {@code FK_Document_Employee_Owner} foreign key. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_OWNER_EMPLOYEE = "ownerEmployee";
 
@@ -83,7 +85,8 @@ public class Document extends MappedDocument {
     // ------------------------------------------------------------------------------- ownerEmployee
 
     /**
-     * Returns the {@code Employee} which the {@code FK_Document_Employee_Owner} foreign key references.
+     * Returns the {@code Employee} which the {@code FK_Document_Employee_Owner} foreign key
+     * references.
      *
      * @return the {@code Employee} referenced; {@code null} when none is.
      */
@@ -92,8 +95,8 @@ public class Document extends MappedDocument {
     }
 
     /**
-     * Replaces the {@code Employee} which the {@code FK_Document_Employee_Owner} foreign key references, and the value
-     * of the column it consists of.
+     * Replaces the {@code Employee} which the {@code FK_Document_Employee_Owner} foreign key
+     * references, and the value of the column it consists of.
      *
      * @param ownerEmployee the {@code Employee} to reference; {@code null} for none.
      */

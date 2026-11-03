@@ -20,14 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
 
 import java.util.List;
 
 /**
- * Randomizes a new {@link SalesTerritory}; the generated identifier, what SQL Server fills, and
- * the country, which the persister sets, are left out.
+ * Randomizes a new {@link SalesTerritory}; the generated identifier, what SQL Server fills, and the
+ * country, which the persister sets, are left out.
  */
 class SalesTerritory_Randomizer
         extends PodamObjectRandomizer<SalesTerritory> {
@@ -47,7 +47,8 @@ class SalesTerritory_Randomizer
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implNote The returned instance has amounts within their columns and CHECK constraints.
+     * @implNote The returned instance has amounts within their columns and CHECK
+     *         constraints.
      */
     @Override
     public SalesTerritory get() {

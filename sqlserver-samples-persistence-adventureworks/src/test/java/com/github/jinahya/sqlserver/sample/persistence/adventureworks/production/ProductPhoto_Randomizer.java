@@ -25,7 +25,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductPhoto}; the generated identifier and what SQL Server fills are left out.
+ * Randomizes a new {@link ProductPhoto}; the generated identifier and what SQL Server fills are
+ * left out.
  */
 class ProductPhoto_Randomizer
         extends PodamObjectRandomizer<ProductPhoto> {

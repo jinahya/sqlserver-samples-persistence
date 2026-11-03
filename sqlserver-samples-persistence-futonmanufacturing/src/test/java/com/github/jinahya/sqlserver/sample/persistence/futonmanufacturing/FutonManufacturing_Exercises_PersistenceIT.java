@@ -71,7 +71,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FutonManufacturing_Exercises_PersistenceIT {
 
     private static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
-        return ___Persistence_TestUtils.applyInTransactionAndRollback(function);
+        return ___PersistenceIT_Utils.applyInTransactionAndRollback(function);
     }
 
     private static BigDecimal scale4(final Object value) {

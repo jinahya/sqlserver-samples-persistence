@@ -37,7 +37,9 @@ FROM Production.Illustration
 -- ------------------------------------------------------------------------------------------------------------- Diagram
 -- Diagram is a nullable xml; how many illustrations have none, and how large the others are, in bytes; none; 26295 to
 -- 76100 bytes.
-SELECT COUNT(*) - COUNT(Diagram) AS without, MIN(DATALENGTH(Diagram)), MAX(DATALENGTH(Diagram))
+SELECT COUNT(*) - COUNT(Diagram) AS without,
+       MIN(DATALENGTH(Diagram)),
+       MAX(DATALENGTH(Diagram))
 FROM Production.Illustration
 ;
 

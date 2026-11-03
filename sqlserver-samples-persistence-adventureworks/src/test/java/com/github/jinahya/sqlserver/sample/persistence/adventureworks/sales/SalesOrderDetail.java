@@ -69,17 +69,19 @@ import java.util.Optional;
        }
 )
 @IdClass(SalesOrderDetailId.class)
-public class SalesOrderDetail extends MappedSalesOrderDetail {
+public class SalesOrderDetail
+        extends MappedSalesOrderDetail {
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID} foreign key. The value
-     * is {@value}.
+     * The name of the attribute of the {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER = "salesOrder";
 
     /**
-     * The name of the attribute of the {@code FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID} foreign
-     * key. The value is {@value}.
+     * The name of the attribute of the
+     * {@code FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID} foreign key. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SPECIAL_OFFER_PRODUCT = "specialOfferProduct";
 
@@ -111,8 +113,8 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------- salesOrder
 
     /**
-     * Returns the {@code SalesOrderHeader} which the {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID} foreign
-     * key references.
+     * Returns the {@code SalesOrderHeader} which the
+     * {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID} foreign key references.
      *
      * @return the {@code SalesOrderHeader} referenced; {@code null} when none is.
      */
@@ -121,21 +123,24 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
     }
 
     /**
-     * Replaces the {@code SalesOrderHeader} which the {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID} foreign
-     * key references, and the value of the column it consists of.
+     * Replaces the {@code SalesOrderHeader} which the
+     * {@code FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID} foreign key references, and the
+     * value of the column it consists of.
      *
      * @param salesOrder the {@code SalesOrderHeader} to reference; {@code null} for none.
      */
     private void setSalesOrder(final SalesOrderHeader salesOrder) {
         this.salesOrder = salesOrder;
-        setSalesOrderId(Optional.ofNullable(salesOrder).map(SalesOrderHeader::getSalesOrderId).orElse(null));
+        setSalesOrderId(Optional.ofNullable(salesOrder).map(SalesOrderHeader::getSalesOrderId)
+                                .orElse(null));
     }
 
     // ------------------------------------------------------------------------- specialOfferProduct
 
     /**
      * Returns the {@code SpecialOfferProduct} which the
-     * {@code FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID} foreign key references.
+     * {@code FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID} foreign key
+     * references.
      *
      * @return the {@code SpecialOfferProduct} referenced; {@code null} when none is.
      */
@@ -145,15 +150,19 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
 
     /**
      * Replaces the {@code SpecialOfferProduct} which the
-     * {@code FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID} foreign key references, and the value of
-     * the columns it consists of.
+     * {@code FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID} foreign key
+     * references, and the value of the columns it consists of.
      *
-     * @param specialOfferProduct the {@code SpecialOfferProduct} to reference; {@code null} for none.
+     * @param specialOfferProduct the {@code SpecialOfferProduct} to reference; {@code null} for
+     *                            none.
      */
     public void setSpecialOfferProduct(final SpecialOfferProduct specialOfferProduct) {
         this.specialOfferProduct = specialOfferProduct;
-        setSpecialOfferId(Optional.ofNullable(specialOfferProduct).map(SpecialOfferProduct::getSpecialOfferId).orElse(null));
-        setProductId(Optional.ofNullable(specialOfferProduct).map(SpecialOfferProduct::getProductId).orElse(null));
+        setSpecialOfferId(
+                Optional.ofNullable(specialOfferProduct).map(SpecialOfferProduct::getSpecialOfferId)
+                        .orElse(null));
+        setProductId(Optional.ofNullable(specialOfferProduct).map(SpecialOfferProduct::getProductId)
+                             .orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -174,7 +183,8 @@ public class SalesOrderDetail extends MappedSalesOrderDetail {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = COLUMN_NAME_SPECIAL_OFFER_ID,
-                        referencedColumnName = MappedSpecialOfferProduct.COLUMN_NAME_SPECIAL_OFFER_ID,
+                        referencedColumnName =
+                                MappedSpecialOfferProduct.COLUMN_NAME_SPECIAL_OFFER_ID,
                         nullable = false,
                         insertable = true,
                         updatable = true

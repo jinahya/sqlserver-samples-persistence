@@ -35,10 +35,11 @@ import java.time.LocalDateTime;
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ProductDocument} table.
  * <p>
- * Identifier: the primary key, ProductID, DocumentNode, includes a hierarchyid column, which no identifier type of
- * Jakarta Persistence holds, and no other unique key exists.
+ * Identifier: the primary key, ProductID, DocumentNode, includes a hierarchyid column, which no
+ * identifier type of Jakarta Persistence holds, and no other unique key exists.
  * <p>
- * As nothing identifies a row, no entity can extend this class; a plain class does, which a native query fills.
+ * As nothing identifies a row, no entity can extend this class; a plain class does, which a native
+ * query fills.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.ProductDocument}</caption>
@@ -65,7 +66,9 @@ import java.time.LocalDateTime;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -93,7 +96,8 @@ public abstract class MappedProductDocument {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
 
@@ -105,19 +109,22 @@ public abstract class MappedProductDocument {
     public static final String COLUMN_NAME_DOCUMENT_NODE = "DocumentNode";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_NODE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_NODE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DOCUMENT_NODE = "documentNode";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -153,7 +160,8 @@ public abstract class MappedProductDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute with the specified
+     * value.
      *
      * @param productId new value for {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute.
      */
@@ -173,7 +181,8 @@ public abstract class MappedProductDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute with the specified
+     * value.
      *
      * @param documentNode new value for {@value #ATTRIBUTE_NAME_DOCUMENT_NODE} attribute.
      */
@@ -193,7 +202,8 @@ public abstract class MappedProductDocument {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -221,10 +231,12 @@ public abstract class MappedProductDocument {
     private Heirarchyid documentNode;
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductDocument_ModifiedDate", value = "(getdate())")

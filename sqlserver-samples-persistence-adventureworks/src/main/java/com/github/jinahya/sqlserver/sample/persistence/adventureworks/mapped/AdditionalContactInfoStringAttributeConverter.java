@@ -30,10 +30,12 @@ import jakarta.xml.bind.JAXBException;
  * Converts an {@link AdditionalContactInfo} attribute to the text of an
  * {@code xml(CONTENT Person.AdditionalContactInfoSchemaCollection)} column, and back.
  * <p>
- * The collection holds three schemas: {@code ContactInfo}, whose {@code AdditionalContactInfo} is the root, and
- * {@code ContactRecord} and {@code ContactTypes}, whose elements its mixed content holds. The context knows the classes
- * of all three, so that the content is read as {@code ContactRecord}s and as elements of the {@code ContactTypes}
- * classes, {@code telephoneNumber}, {@code homePostalAddress}, {@code eMail} and the others, not as DOM elements.
+ * The collection holds three schemas: {@code ContactInfo}, whose {@code AdditionalContactInfo} is
+ * the root, and {@code ContactRecord} and {@code ContactTypes}, whose elements its mixed content
+ * holds. The context knows the classes of all three, so that the content is read as
+ * {@code ContactRecord}s and as elements of the {@code ContactTypes} classes,
+ * {@code telephoneNumber}, {@code homePostalAddress}, {@code eMail} and the others, not as DOM
+ * elements.
  */
 @Converter(autoApply = false)
 public class AdditionalContactInfoStringAttributeConverter

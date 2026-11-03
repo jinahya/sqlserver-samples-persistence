@@ -26,18 +26,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Sales.SalesPersonQuotaHistory} table, whose rows are identified by
- * {@code BusinessEntityID}, {@code QuotaDate}.
+ * The identifier class of the {@code Sales.SalesPersonQuotaHistory} table, whose rows are
+ * identified by {@code BusinessEntityID}, {@code QuotaDate}.
  * <p>
  * An entity which extends {@link MappedSalesPersonQuotaHistory} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class SalesPersonQuotaHistoryId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedSalesPersonQuotaHistory#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * {@value MappedSalesPersonQuotaHistory#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -124,6 +125,7 @@ public class SalesPersonQuotaHistoryId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code businessEntityId} attribute.
      */

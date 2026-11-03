@@ -32,10 +32,12 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
- * A mapped superclass which holds the mappings of the {@code Production.ProductModelProductDescriptionCulture} table.
+ * A mapped superclass which holds the mappings of the
+ * {@code Production.ProductModelProductDescriptionCulture} table.
  * <p>
- * The key is a {@link ProductModelProductDescriptionCultureId} embedded with {@link EmbeddedId @EmbeddedId}, whose fields map the columns of the
- * key; an entity which extends this class derives each of its attributes from an association with
+ * The key is a {@link ProductModelProductDescriptionCultureId} embedded with
+ * {@link EmbeddedId @EmbeddedId}, whose fields map the columns of the key; an entity which extends
+ * this class derives each of its attributes from an association with
  * {@link jakarta.persistence.MapsId @MapsId}.
  *
  * <table class="striped">
@@ -65,7 +67,9 @@ import java.time.LocalDateTime;
  * </tbody>
  * </table>
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(
@@ -101,8 +105,9 @@ public abstract class MappedProductModelProductDescriptionCulture {
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column -- a path into the
-     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column -- a
+     * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_PATH_ID_PRODUCT_MODEL_ID = "id.productModelId";
 
@@ -114,8 +119,9 @@ public abstract class MappedProductModelProductDescriptionCulture {
     public static final String COLUMN_NAME_PRODUCT_DESCRIPTION_ID = "ProductDescriptionID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_DESCRIPTION_ID} column -- a path into the
-     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_DESCRIPTION_ID} column
+     * -- a path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives.
+     * The value is {@value}.
      */
     public static final String ATTRIBUTE_PATH_ID_PRODUCT_DESCRIPTION_ID = "id.productDescriptionId";
 
@@ -127,8 +133,9 @@ public abstract class MappedProductModelProductDescriptionCulture {
     public static final String COLUMN_NAME_CULTURE_ID = "CultureID";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_CULTURE_ID} column -- a path into the
-     * {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_CULTURE_ID} column -- a path
+     * into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value
+     * is {@value}.
      */
     public static final String ATTRIBUTE_PATH_ID_CULTURE_ID = "id.cultureId";
 
@@ -140,12 +147,14 @@ public abstract class MappedProductModelProductDescriptionCulture {
     // -------------------------------------------------------------------------------- ModifiedDate
 
     /**
-     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is {@value}.
+     * The name of the {@code datetime, DEFAULT (getdate()), NOT NULL} column. The value is
+     * {@value}.
      */
     public static final String COLUMN_NAME_MODIFIED_DATE = "ModifiedDate";
 
     /**
-     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The value is {@value}.
+     * The name of the attribute which maps the {@value #COLUMN_NAME_MODIFIED_DATE} column. The
+     * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
@@ -173,9 +182,9 @@ public abstract class MappedProductModelProductDescriptionCulture {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an instance whose
-     *         identifier is not yet assigned, which {@link jakarta.persistence.MapsId @MapsId} does on persist,
-     *         equals only itself.
+     * @implSpec Equality is by the identifier, once each of its attributes is assigned; an
+     *         instance whose identifier is not yet assigned, which
+     *         {@link jakarta.persistence.MapsId @MapsId} does on persist, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -197,8 +206,8 @@ public abstract class MappedProductModelProductDescriptionCulture {
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is the same for every instance, so that it does not change when persist assigns the
-     *         identifier; consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
@@ -211,10 +220,11 @@ public abstract class MappedProductModelProductDescriptionCulture {
      * Returns current value of {@value #ATTRIBUTE_NAME_ID} attribute.
      *
      * @return current value of {@value #ATTRIBUTE_NAME_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through this method, not the
-     *         field, so that a Hibernate proxy, whose own fields are unset, answers with the identifier of the row it
-     *         stands for. The method is {@code protected}, not package-private, since a proxy is a subclass in the
-     *         package of the entity, and overrides only what that package sees.
+     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
+     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
+     *         answers with the identifier of the row it stands for. The method is
+     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
+     *         the entity, and overrides only what that package sees.
      */
     protected ProductModelProductDescriptionCultureId getId() {
         return id;
@@ -232,7 +242,8 @@ public abstract class MappedProductModelProductDescriptionCulture {
     }
 
     /**
-     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified value.
+     * Replaces current value of {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute with the specified
+     * value.
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
@@ -241,20 +252,25 @@ public abstract class MappedProductModelProductDescriptionCulture {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an
+    // entity
     @Valid
     @NotNull
     @EmbeddedId
-    private ProductModelProductDescriptionCultureId id = new ProductModelProductDescriptionCultureId();
+    private ProductModelProductDescriptionCultureId id =
+            new ProductModelProductDescriptionCultureId();
 
     // ---------------------------------------------------------------------------------------------
-    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was last updated,
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated,
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
+            updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
                           value = "Date and time the record was last updated.")
-    @MsDefault(name = "DF_ProductModelProductDescriptionCulture_ModifiedDate", value = "(getdate())")
+    @MsDefault(name = "DF_ProductModelProductDescriptionCulture_ModifiedDate",
+               value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
 

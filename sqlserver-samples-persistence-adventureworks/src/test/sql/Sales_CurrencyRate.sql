@@ -85,8 +85,13 @@ ORDER BY ToCurrencyCode ASC
 ;
 
 -- a rate from a currency to itself; 1097 rates from USD to USD, one a day, each of 1.0000.
-SELECT FromCurrencyCode, ToCurrencyCode, COUNT(*) AS rates, MIN(AverageRate), MAX(AverageRate),
-       MIN(EndOfDayRate), MAX(EndOfDayRate)
+SELECT FromCurrencyCode,
+       ToCurrencyCode,
+       COUNT(*) AS rates,
+       MIN(AverageRate),
+       MAX(AverageRate),
+       MIN(EndOfDayRate),
+       MAX(EndOfDayRate)
 FROM Sales.CurrencyRate
 WHERE FromCurrencyCode = ToCurrencyCode
 GROUP BY FromCurrencyCode, ToCurrencyCode
@@ -112,7 +117,10 @@ ORDER BY ToCurrencyCode ASC
 
 -- -------------------------------------------------------------------------------------------------------- EndOfDayRate
 -- how far EndOfDayRate strays from AverageRate, the largest five; under 0.7 percent, all five of CAD.
-SELECT TOP (5) CurrencyRateID, ToCurrencyCode, AverageRate, EndOfDayRate,
+SELECT TOP(5)                                           CurrencyRateID,
+       ToCurrencyCode,
+       AverageRate,
+       EndOfDayRate,
        ABS(EndOfDayRate - AverageRate) / AverageRate AS deviation
 FROM Sales.CurrencyRate
 ORDER BY deviation DESC, CurrencyRateID ASC
@@ -121,7 +129,11 @@ ORDER BY deviation DESC, CurrencyRateID ASC
 
 -- -------------------------------------------------------------------------------------------------------- ModifiedDate
 -- a ModifiedDate which is not the CurrencyRateDate; the 1097 USD to USD rates, all of 2025-01-01 17:39:45.260.
-SELECT FromCurrencyCode, ToCurrencyCode, COUNT(*) AS rates, MIN(ModifiedDate), MAX(ModifiedDate)
+SELECT FromCurrencyCode,
+       ToCurrencyCode,
+       COUNT(*) AS rates,
+       MIN(ModifiedDate),
+       MAX(ModifiedDate)
 FROM Sales.CurrencyRate
 WHERE ModifiedDate <> CurrencyRateDate
 GROUP BY FromCurrencyCode, ToCurrencyCode

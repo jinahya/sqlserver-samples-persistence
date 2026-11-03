@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class CountryRegion extends MappedCountryRegion {
+public class CountryRegion
+        extends MappedCountryRegion {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

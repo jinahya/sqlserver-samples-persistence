@@ -38,22 +38,23 @@ import java.util.Objects;
 /**
  * An entity which maps the {@code Production.ProductProductPhoto} table.
  * <p>
- * Each attribute of the embedded {@link ProductProductPhotoId} is derived, with {@link MapsId @MapsId}, from the association
- * which references the same column.
+ * Each attribute of the embedded {@link ProductProductPhotoId} is derived, with
+ * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "ProductionProductProductPhoto")
 @Table(schema = MappedProductProductPhoto.TABLE_SCHEMA, name = MappedProductProductPhoto.TABLE_NAME)
-public class ProductProductPhoto extends MappedProductProductPhoto {
+public class ProductProductPhoto
+        extends MappedProductProductPhoto {
 
     /**
-     * The name of the attribute of the {@code FK_ProductProductPhoto_Product_ProductID} foreign key. The value is
-     * {@value}.
+     * The name of the attribute of the {@code FK_ProductProductPhoto_Product_ProductID} foreign
+     * key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT = "product";
 
     /**
-     * The name of the attribute of the {@code FK_ProductProductPhoto_ProductPhoto_ProductPhotoID} foreign key. The
-     * value is {@value}.
+     * The name of the attribute of the {@code FK_ProductProductPhoto_ProductPhoto_ProductPhotoID}
+     * foreign key. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO = "productPhoto";
 
@@ -89,7 +90,8 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
     // ------------------------------------------------------------------------------------- product
 
     /**
-     * Returns the {@code Product} which the {@code FK_ProductProductPhoto_Product_ProductID} foreign key references.
+     * Returns the {@code Product} which the {@code FK_ProductProductPhoto_Product_ProductID}
+     * foreign key references.
      *
      * @return the {@code Product} referenced; {@code null} when none is.
      */
@@ -100,8 +102,8 @@ public class ProductProductPhoto extends MappedProductProductPhoto {
     // -------------------------------------------------------------------------------- productPhoto
 
     /**
-     * Returns the {@code ProductPhoto} which the {@code FK_ProductProductPhoto_ProductPhoto_ProductPhotoID} foreign key
-     * references.
+     * Returns the {@code ProductPhoto} which the
+     * {@code FK_ProductProductPhoto_ProductPhoto_ProductPhotoID} foreign key references.
      *
      * @return the {@code ProductPhoto} referenced; {@code null} when none is.
      */

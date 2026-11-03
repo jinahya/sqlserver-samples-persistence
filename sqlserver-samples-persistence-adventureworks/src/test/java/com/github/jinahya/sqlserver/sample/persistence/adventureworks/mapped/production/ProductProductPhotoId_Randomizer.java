@@ -25,8 +25,8 @@ import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
 import java.util.List;
 
 /**
- * Randomizes a new {@link ProductProductPhotoId}; nothing is left out, for the class holds only the columns of the
- * composite key.
+ * Randomizes a new {@link ProductProductPhotoId}; nothing is left out, for the class holds only the
+ * columns of the composite key.
  */
 class ProductProductPhotoId_Randomizer
         extends PodamObjectRandomizer<ProductProductPhotoId> {

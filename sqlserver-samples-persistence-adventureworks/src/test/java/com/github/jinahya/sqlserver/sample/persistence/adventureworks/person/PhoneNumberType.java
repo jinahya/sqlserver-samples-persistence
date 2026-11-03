@@ -29,7 +29,8 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "PersonPhoneNumberType")
 @Table(schema = MappedPhoneNumberType.TABLE_SCHEMA, name = MappedPhoneNumberType.TABLE_NAME)
-public class PhoneNumberType extends MappedPhoneNumberType {
+public class PhoneNumberType
+        extends MappedPhoneNumberType {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

@@ -27,14 +27,15 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * A plain class which holds a row of the {@code Production.ProductDocument} table, which no entity can map: the primary
- * key, ProductID, DocumentNode, includes a hierarchyid column, which no identifier type of Jakarta Persistence holds,
- * and no other unique key exists.
+ * A plain class which holds a row of the {@code Production.ProductDocument} table, which no entity
+ * can map: the primary key, ProductID, DocumentNode, includes a hierarchyid column, which no
+ * identifier type of Jakarta Persistence holds, and no other unique key exists.
  * <p>
  * The public constructor takes every column, in the order the table declares them, for a
  * {@link jakarta.persistence.ConstructorResult @ConstructorResult} or a row mapper.
  */
-public class ProductDocument extends MappedProductDocument {
+public class ProductDocument
+        extends MappedProductDocument {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -49,7 +50,8 @@ public class ProductDocument extends MappedProductDocument {
      * Creates a new instance of a row.
      *
      * @param productId    the value of the {@value #COLUMN_NAME_PRODUCT_ID} column.
-     * @param documentNode the value of the {@value #COLUMN_NAME_DOCUMENT_NODE} column, in its binary form.
+     * @param documentNode the value of the {@value #COLUMN_NAME_DOCUMENT_NODE} column, in its
+     *                     binary form.
      * @param modifiedDate the value of the {@value #COLUMN_NAME_MODIFIED_DATE} column.
      */
     @SuppressWarnings({"java:S107"}) // Methods should not have too many parameters

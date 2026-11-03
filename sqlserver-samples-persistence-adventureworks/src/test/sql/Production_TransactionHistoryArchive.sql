@@ -50,7 +50,10 @@ FROM Production.TransactionHistoryArchive
 -- ---------------------------------------------------------------------------------------------------- ReferenceOrderID
 -- the orders referred to, by TransactionType; P 416 purchase orders, 1 to 416; S 9791 sales orders, 43659 to 53449; W
 -- 41589 work orders, 1 to 41589.
-SELECT TransactionType, COUNT(DISTINCT ReferenceOrderID) AS orders, MIN(ReferenceOrderID), MAX(ReferenceOrderID)
+SELECT TransactionType,
+       COUNT(DISTINCT ReferenceOrderID) AS orders,
+       MIN(ReferenceOrderID),
+       MAX(ReferenceOrderID)
 FROM Production.TransactionHistoryArchive
 GROUP BY TransactionType
 ORDER BY TransactionType ASC
@@ -83,7 +86,7 @@ FROM Production.TransactionHistoryArchive
 
 -- a TransactionDate with a time of day.
 -- no rows: every TransactionDate is midnight.
-SELECT TOP (3) TransactionID, TransactionDate
+SELECT TOP(3) TransactionID, TransactionDate
 FROM Production.TransactionHistoryArchive
 WHERE TransactionDate <> CAST(CAST(TransactionDate AS date) AS datetime)
 ORDER BY TransactionID ASC
@@ -100,7 +103,7 @@ ORDER BY TransactionType ASC
 
 -- a TransactionType in lower case; the check constraint compares UPPER, so it lets one in.
 -- no rows: every type is upper case.
-SELECT TOP (3) TransactionID, TransactionType
+SELECT TOP(3) TransactionID, TransactionType
 FROM Production.TransactionHistoryArchive
 WHERE TransactionType COLLATE Latin1_General_BIN <> UPPER(TransactionType)
 ;
@@ -118,7 +121,10 @@ ORDER BY TransactionType ASC
 -- ---------------------------------------------------------------------------------------------------------- ActualCost
 -- the smallest and the largest ActualCost, and how many are zero, by TransactionType; P 0.2100 to 82.8345 and S 1.3740
 -- to 3578.2700, none zero; W 0.0000 for all 41589.
-SELECT TransactionType, MIN(ActualCost), MAX(ActualCost), SUM(CASE WHEN ActualCost = 0 THEN 1 ELSE 0 END) AS zero
+SELECT TransactionType,
+       MIN(ActualCost),
+       MAX(ActualCost),
+       SUM(CASE WHEN ActualCost = 0 THEN 1 ELSE 0 END) AS zero
 FROM Production.TransactionHistoryArchive
 GROUP BY TransactionType
 ORDER BY TransactionType ASC
@@ -153,7 +159,7 @@ WHERE NOT EXISTS (SELECT 1
 -- the latest archived transaction against the earliest current one; 2024-07-29 00:00:00.000 and 2024-07-30
 -- 00:00:00.000; the archive ends the day before the history starts.
 SELECT (SELECT MAX(TransactionDate) FROM Production.TransactionHistoryArchive) AS archivedUntil,
-       (SELECT MIN(TransactionDate) FROM Production.TransactionHistory) AS currentFrom
+       (SELECT MIN(TransactionDate) FROM Production.TransactionHistory)        AS currentFrom
 ;
 
 -- a sale (S) whose ReferenceOrderLineID names no SalesOrderDetailID of its order.

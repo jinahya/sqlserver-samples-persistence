@@ -25,23 +25,23 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 /**
  * The identifier class of the {@code Sales.PersonCreditCard} table, whose rows are identified by
  * {@code BusinessEntityID}, {@code CreditCardID}.
  * <p>
- * {@link MappedPersonCreditCard} embeds this class with {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of
- * this class map the columns of the key.
+ * {@link MappedPersonCreditCard} embeds this class with
+ * {@link jakarta.persistence.EmbeddedId @EmbeddedId}, so the fields of this class map the columns
+ * of the key.
  */
 @Embeddable
 public class PersonCreditCardId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedPersonCreditCard#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is {@value}.
+     * {@value MappedPersonCreditCard#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
 
@@ -128,12 +128,15 @@ public class PersonCreditCardId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code businessEntityId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedPersonCreditCard.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedPersonCreditCard.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedPersonCreditCard.COLUMN_NAME_BUSINESS_ENTITY_ID,
                           value = "Business entity identification number. Foreign key to "
                                   + "Person.BusinessEntityID.")
@@ -142,9 +145,11 @@ public class PersonCreditCardId {
     /**
      * The value of the {@code creditCardId} attribute.
      */
-    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
+    // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
+    // an entity
     @NotNull
-    @Column(name = MappedPersonCreditCard.COLUMN_NAME_CREDIT_CARD_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = MappedPersonCreditCard.COLUMN_NAME_CREDIT_CARD_ID, nullable = false,
+            insertable = true, updatable = false)
     @MsDescription.Column(name = MappedPersonCreditCard.COLUMN_NAME_CREDIT_CARD_ID,
                           value = "Credit card identification number. Foreign key to "
                                   + "CreditCard.CreditCardID.")

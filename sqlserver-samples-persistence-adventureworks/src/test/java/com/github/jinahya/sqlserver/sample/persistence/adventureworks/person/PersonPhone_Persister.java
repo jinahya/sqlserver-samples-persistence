@@ -40,7 +40,8 @@ class PersonPhone_Persister
     @Override
     public PersonPhone apply(final EntityManager entityManager, final PersonPhone entityInstance) {
         final var person = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
-        final var phoneNumberType = EntityPersisterUtils.newPersistedInstanceOf(entityManager, PhoneNumberType.class);
+        final var phoneNumberType =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, PhoneNumberType.class);
         // the identifiers of the parents are the INSERTs'; the flush is what assigns them
         entityManager.flush();
         final var instance = PersonPhone.of(person, __Random_TestUtils.code(12), phoneNumberType);

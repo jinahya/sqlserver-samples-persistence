@@ -40,7 +40,8 @@ import jakarta.persistence.UniqueConstraint;
                )
        }
 )
-public class ProductDescription extends MappedProductDescription {
+public class ProductDescription
+        extends MappedProductDescription {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

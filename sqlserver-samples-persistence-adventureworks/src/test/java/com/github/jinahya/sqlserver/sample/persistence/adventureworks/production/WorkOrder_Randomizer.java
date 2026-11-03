@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Randomizes a new {@link WorkOrder}; the generated identifier, what SQL Server fills or derives, and what it
- * references, which the persister sets, are left out.
+ * Randomizes a new {@link WorkOrder}; the generated identifier, what SQL Server fills or derives,
+ * and what it references, which the persister sets, are left out.
  */
 class WorkOrder_Randomizer
         extends PodamObjectRandomizer<WorkOrder> {
@@ -60,7 +60,8 @@ class WorkOrder_Randomizer
         final var random = ThreadLocalRandom.current();
         // CK_WorkOrder_EndDate: EndDate, when any, >= StartDate
         instance.setStartDate(__Random_TestUtils.dateTime());
-        instance.setEndDate(random.nextBoolean() ? null : instance.getStartDate().plusDays(random.nextLong(366L)));
+        instance.setEndDate(random.nextBoolean() ? null : instance.getStartDate()
+                .plusDays(random.nextLong(366L)));
         instance.setDueDate(instance.getStartDate().plusDays(random.nextLong(366L)));
         return instance;
     }

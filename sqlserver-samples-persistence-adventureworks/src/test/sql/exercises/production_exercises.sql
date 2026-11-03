@@ -30,7 +30,10 @@
 -- -------------------------------------------------------------------------------------------------- AW_PRODUCTION_B_01
 -- The catalog manager reviews the range. Show, for each category, how many products are on sale, and their lowest and
 -- highest list prices.
-SELECT c.Name AS Category, COUNT(*) AS Products, MIN(p.ListPrice) AS MinListPrice, MAX(p.ListPrice) AS MaxListPrice
+SELECT c.Name           AS Category,
+       COUNT(*)         AS Products,
+       MIN(p.ListPrice) AS MinListPrice,
+       MAX(p.ListPrice) AS MaxListPrice
 FROM Production.Product p
          JOIN Production.ProductSubcategory s ON s.ProductSubcategoryID = p.ProductSubcategoryID
          JOIN Production.ProductCategory c ON c.ProductCategoryID = s.ProductCategoryID

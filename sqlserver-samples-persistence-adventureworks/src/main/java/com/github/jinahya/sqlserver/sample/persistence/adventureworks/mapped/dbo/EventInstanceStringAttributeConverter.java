@@ -38,18 +38,22 @@ import javax.xml.transform.Source;
 /**
  * Converts an {@code EVENT_INSTANCE} attribute to the text of an {@code xml} column, and back.
  * <p>
- * The attribute is an instance of the class the binding of the {@code EVENTDATA()} schema generates for the event type,
- * {@code EVENTINSTANCECREATETABLE} for a {@code CREATE_TABLE}, say; {@link EventInstances#typeOf(String)} names it, and
- * every one of them is an {@link EventInstance}. The schema declares the root, {@code EVENT_INSTANCE}, of no particular
- * type, so the document is read as a DOM element, whose {@code EventType} {@link EventInstances} reads the class out
- * of, and the value is written as an {@code EVENT_INSTANCE} element of its own class, with a context of that class
- * alone; in a context which knows the declaration of the root, the element would carry an {@code xsi:type}, which
- * {@code EVENTDATA()} does not write.
+ * The attribute is an instance of the class the binding of the {@code EVENTDATA()} schema generates
+ * for the event type, {@code EVENTINSTANCECREATETABLE} for a {@code CREATE_TABLE}, say;
+ * {@link EventInstances#typeOf(String)} names it, and every one of them is an
+ * {@link EventInstance}. The schema declares the root, {@code EVENT_INSTANCE}, of no particular
+ * type, so the document is read as a DOM element, whose {@code EventType} {@link EventInstances}
+ * reads the class out of, and the value is written as an {@code EVENT_INSTANCE} element of its own
+ * class, with a context of that class alone; in a context which knows the declaration of the root,
+ * the element would carry an {@code xsi:type}, which {@code EVENTDATA()} does not write.
  *
- * @see <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
+ * @see <a
+ *         href="https://learn.microsoft
+ *         .com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
  */
 @Converter(autoApply = false)
-public class EventInstanceStringAttributeConverter extends JaxbAttributeConverter.OfString<EventInstance> {
+public class EventInstanceStringAttributeConverter
+        extends JaxbAttributeConverter.OfString<EventInstance> {
 
     // the classes of every event type, through the ObjectFactory
     private static final class ContextHolder {
@@ -82,9 +86,11 @@ public class EventInstanceStringAttributeConverter extends JaxbAttributeConverte
     }
 
     @Override
-    protected void write(final Marshaller marshaller, final EventInstance attribute, final Result result)
+    protected void write(final Marshaller marshaller, final EventInstance attribute,
+                         final Result result)
             throws JAXBException {
-        // not the marshaller of the context(), whose declaration of the root would add an xsi:type; and as the default
+        // not the marshaller of the context(), whose declaration of the root would add an
+        // xsi:type; and as the default
         // does, without the XML declaration
         final var eventMarshaller = EventInstances.context(attribute.getClass()).createMarshaller();
         eventMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
@@ -92,7 +98,9 @@ public class EventInstanceStringAttributeConverter extends JaxbAttributeConverte
     }
 
     @Override
-    protected EventInstance read(final Unmarshaller unmarshaller, final Source source) throws JAXBException {
-        return EventInstances.unmarshal((Node) JAXBIntrospector.getValue(unmarshaller.unmarshal(source)));
+    protected EventInstance read(final Unmarshaller unmarshaller, final Source source)
+            throws JAXBException {
+        return EventInstances.unmarshal(
+                (Node) JAXBIntrospector.getValue(unmarshaller.unmarshal(source)));
     }
 }

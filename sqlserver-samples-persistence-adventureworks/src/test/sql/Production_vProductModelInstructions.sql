@@ -53,7 +53,8 @@ ORDER BY ProductModelID ASC
 -- -------------------------------------------------------------------------------------------------------- Instructions
 -- Instructions is the text of the XML's root, the same for every step of a model; how many models have none, and
 -- how long the others are; none, 481 to 538 characters.
-SELECT COUNT(DISTINCT ProductModelID) - COUNT(DISTINCT CASE WHEN Instructions IS NOT NULL THEN ProductModelID END),
+SELECT COUNT(DISTINCT ProductModelID) -
+       COUNT(DISTINCT CASE WHEN Instructions IS NOT NULL THEN ProductModelID END),
        MIN(LEN(Instructions)),
        MAX(LEN(Instructions))
 FROM Production.vProductModelInstructions
@@ -120,8 +121,8 @@ FROM Production.vProductModelInstructions
 -- 86 of the 131.
 SELECT COUNT(*) AS laidOut
 FROM Production.vProductModelInstructions
-WHERE Step LIKE '%' + CHAR(10) + '%'
-   OR Step LIKE '%' + CHAR(9) + '%'
+WHERE Step LIKE '%' + CHAR (10) + '%'
+   OR Step LIKE '%' + CHAR (9) + '%'
 ;
 
 

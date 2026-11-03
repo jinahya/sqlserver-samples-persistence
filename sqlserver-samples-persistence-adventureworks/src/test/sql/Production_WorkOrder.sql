@@ -47,7 +47,7 @@ FROM Production.WorkOrder
 
 -- a work order for a product which is not made in house.
 -- no rows: every work order is for a product with MakeFlag 1.
-SELECT TOP (3) w.WorkOrderID, w.ProductID
+SELECT TOP(3) w.WorkOrderID, w.ProductID
 FROM Production.WorkOrder w
          JOIN Production.Product p ON p.ProductID = w.ProductID
 WHERE p.MakeFlag = 0
@@ -64,7 +64,7 @@ FROM Production.WorkOrder
 -- ---------------------------------------------------------------------------------------------------------- StockedQty
 -- StockedQty is computed, isnull(OrderQty - ScrappedQty, 0); a row where it is not.
 -- no rows: every StockedQty is OrderQty less ScrappedQty.
-SELECT TOP (3) WorkOrderID, OrderQty, ScrappedQty, StockedQty
+SELECT TOP(3) WorkOrderID, OrderQty, ScrappedQty, StockedQty
 FROM Production.WorkOrder
 WHERE StockedQty <> OrderQty - ScrappedQty
 ;
@@ -84,7 +84,7 @@ FROM Production.WorkOrder
 
 -- a work order which scraps more than it orders.
 -- no rows: ScrappedQty never exceeds OrderQty.
-SELECT TOP (3) WorkOrderID, OrderQty, ScrappedQty
+SELECT TOP(3) WorkOrderID, OrderQty, ScrappedQty
 FROM Production.WorkOrder
 WHERE ScrappedQty > OrderQty
 ;
@@ -131,7 +131,7 @@ WHERE EndDate > DueDate
 -- ------------------------------------------------------------------------------------------------------- ScrapReasonID
 -- a ScrapReasonID without scrap, or scrap without a ScrapReasonID.
 -- no rows: an order names a reason if and only if it scraps.
-SELECT TOP (3) WorkOrderID, ScrappedQty, ScrapReasonID
+SELECT TOP(3) WorkOrderID, ScrappedQty, ScrapReasonID
 FROM Production.WorkOrder
 WHERE (ScrappedQty = 0 AND ScrapReasonID IS NOT NULL)
    OR (ScrappedQty > 0 AND ScrapReasonID IS NULL)
@@ -164,9 +164,11 @@ SELECT COUNT(*) AS untracked
 FROM Production.WorkOrder w
 WHERE NOT EXISTS (SELECT 1
                   FROM Production.TransactionHistory h
-                  WHERE h.TransactionType = 'W' AND h.ReferenceOrderID = w.WorkOrderID)
+                  WHERE h.TransactionType = 'W'
+                    AND h.ReferenceOrderID = w.WorkOrderID)
   AND NOT EXISTS (SELECT 1
                   FROM Production.TransactionHistoryArchive a
-                  WHERE a.TransactionType = 'W' AND a.ReferenceOrderID = w.WorkOrderID)
+                  WHERE a.TransactionType = 'W'
+                    AND a.ReferenceOrderID = w.WorkOrderID)
 ;
 

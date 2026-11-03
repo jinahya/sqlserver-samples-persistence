@@ -29,7 +29,8 @@ import jakarta.persistence.Table;
  */
 @Entity(name = "DboDatabaseLog")
 @Table(schema = MappedDatabaseLog.TABLE_SCHEMA, name = MappedDatabaseLog.TABLE_NAME)
-public class DatabaseLog extends MappedDatabaseLog {
+public class DatabaseLog
+        extends MappedDatabaseLog {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 

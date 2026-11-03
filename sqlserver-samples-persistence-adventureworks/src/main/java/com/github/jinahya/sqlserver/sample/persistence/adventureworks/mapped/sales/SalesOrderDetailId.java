@@ -25,12 +25,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * The identifier class of the {@code Sales.SalesOrderDetail} table, whose rows are identified by {@code SalesOrderID},
- * {@code SalesOrderDetailID}.
+ * The identifier class of the {@code Sales.SalesOrderDetail} table, whose rows are identified by
+ * {@code SalesOrderID}, {@code SalesOrderDetailID}.
  * <p>
  * An entity which extends {@link MappedSalesOrderDetail} names this class with
- * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped superclass's
- * {@link jakarta.persistence.Id @Id} attributes, by name and by type.
+ * {@link jakarta.persistence.IdClass @IdClass}; its attributes are the same as the mapped
+ * superclass's {@link jakarta.persistence.Id @Id} attributes, by name and by type.
  */
 public class SalesOrderDetailId {
 
@@ -42,7 +42,8 @@ public class SalesOrderDetailId {
 
     /**
      * The name of the attribute which maps the
-     * {@value MappedSalesOrderDetail#COLUMN_NAME_SALES_ORDER_DETAIL_ID} column. The value is {@value}.
+     * {@value MappedSalesOrderDetail#COLUMN_NAME_SALES_ORDER_DETAIL_ID} column. The value is
+     * {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_DETAIL_ID = "salesOrderDetailId";
 
@@ -123,6 +124,7 @@ public class SalesOrderDetailId {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     /**
      * The value of the {@code salesOrderId} attribute.
      */

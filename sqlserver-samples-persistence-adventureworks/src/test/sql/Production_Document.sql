@@ -169,7 +169,9 @@ ORDER BY Status ASC
 -- ----------------------------------------------------------------------------------------------------- DocumentSummary
 -- DocumentSummary is a nullable nvarchar(max); how many documents have none, and how long the others are; 7 have none;
 -- 206 to 392 characters.
-SELECT COUNT(*) - COUNT(DocumentSummary) AS without, MIN(LEN(DocumentSummary)), MAX(LEN(DocumentSummary))
+SELECT COUNT(*) - COUNT(DocumentSummary) AS without,
+       MIN(LEN(DocumentSummary)),
+       MAX(LEN(DocumentSummary))
 FROM Production.Document
 ;
 
@@ -177,7 +179,9 @@ FROM Production.Document
 -- ------------------------------------------------------------------------------------------------------------ Document
 -- Document is a nullable varbinary(max); how many documents have none, and how large the others are; 4 have none, the
 -- folders; 22528 to 46592 bytes.
-SELECT COUNT(*) - COUNT(Document) AS without, MIN(DATALENGTH(Document)), MAX(DATALENGTH(Document))
+SELECT COUNT(*) - COUNT(Document) AS without,
+       MIN(DATALENGTH(Document)),
+       MAX(DATALENGTH(Document))
 FROM Production.Document
 ;
 
