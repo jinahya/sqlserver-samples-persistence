@@ -540,7 +540,7 @@ public abstract class MappedWorkOrder {
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
-    protected void setModifiedDate(final LocalDateTime modifiedDate) {
+    public void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 
@@ -621,11 +621,11 @@ public abstract class MappedWorkOrder {
     private Integer scrapReasonId;
 
     // ---------------------------------------------------------------------------------------------
-    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing documents
-    // it as changing
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated, which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = false)
+            updatable = true)
     @MsDefault(name = "DF_WorkOrder_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -512,7 +512,7 @@ public abstract class MappedPerson {
      *
      * @param businessEntityId new value for {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute.
      */
-    public void setBusinessEntityId(final Integer businessEntityId) {
+    protected void setBusinessEntityId(final Integer businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 

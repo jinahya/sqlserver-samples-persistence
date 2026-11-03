@@ -398,7 +398,7 @@ public abstract class MappedTransactionHistory {
      *
      * @param referenceOrderId new value for {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_ID} attribute.
      */
-    public void setReferenceOrderId(final Integer referenceOrderId) {
+    protected void setReferenceOrderId(final Integer referenceOrderId) {
         this.referenceOrderId = referenceOrderId;
     }
 
@@ -420,7 +420,7 @@ public abstract class MappedTransactionHistory {
      * @param referenceOrderLineId new value for {@value #ATTRIBUTE_NAME_REFERENCE_ORDER_LINE_ID}
      *                             attribute.
      */
-    public void setReferenceOrderLineId(final Integer referenceOrderLineId) {
+    protected void setReferenceOrderLineId(final Integer referenceOrderLineId) {
         this.referenceOrderLineId = referenceOrderLineId;
     }
 
@@ -441,7 +441,7 @@ public abstract class MappedTransactionHistory {
      *
      * @param transactionDate new value for {@value #ATTRIBUTE_NAME_TRANSACTION_DATE} attribute.
      */
-    public void setTransactionDate(final LocalDateTime transactionDate) {
+    protected void setTransactionDate(final LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 
@@ -462,7 +462,7 @@ public abstract class MappedTransactionHistory {
      *
      * @param transactionType new value for {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE} attribute.
      */
-    public void setTransactionType(final TransactionType transactionType) {
+    protected void setTransactionType(final TransactionType transactionType) {
         this.transactionType = transactionType;
     }
 
@@ -483,7 +483,7 @@ public abstract class MappedTransactionHistory {
      *
      * @param quantity new value for {@value #ATTRIBUTE_NAME_QUANTITY} attribute.
      */
-    public void setQuantity(final Integer quantity) {
+    protected void setQuantity(final Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -504,7 +504,7 @@ public abstract class MappedTransactionHistory {
      *
      * @param actualCost new value for {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute.
      */
-    public void setActualCost(final BigDecimal actualCost) {
+    protected void setActualCost(final BigDecimal actualCost) {
         this.actualCost = actualCost;
     }
 
@@ -525,7 +525,7 @@ public abstract class MappedTransactionHistory {
      *
      * @param modifiedDate new value for {@value #ATTRIBUTE_NAME_MODIFIED_DATE} attribute.
      */
-    public void setModifiedDate(final LocalDateTime modifiedDate) {
+    protected void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

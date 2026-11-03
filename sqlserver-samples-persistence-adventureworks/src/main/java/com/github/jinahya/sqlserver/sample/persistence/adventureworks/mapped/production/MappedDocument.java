@@ -711,11 +711,12 @@ public abstract class MappedDocument {
     // ---------------------------------------------------------------------------------------------
     // the primary key, which is not the identifier: a hierarchyid needs a converter, and Jakarta Persistence
     // applies no converter to an identifier attribute; Hibernate ORM does, as an extension, but the identifier
-    // stays portable, and is rowguid, which is unique
+    // stays portable, and is rowguid, which is unique; not updatable: a primary-key column, which
+    // Production.ProductDocument references
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
                           value = "Primary key for Document records.")
     private Heirarchyid documentNode;

@@ -95,6 +95,16 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
   trigger `ddlDatabaseTriggerLog` inserts, and `Production.TransactionHistory`, which the order and work-order
   triggers insert. Nothing updates a row of either. A column a trigger only partly maintains (`SubTotal`,
   `RevisionNumber`, `SalesYTD`) stays writable.
+- A column a `DEFAULT` stamps is not inserted, so that the default fills it: a `rowguid` (`newid()`) and a creation
+  date (FutonManufacturing's `CreatedDate`) are read-only, and a last-modified date (AdventureWorks' `ModifiedDate`,
+  FutonManufacturing's `ModifiedDate`, WideWorldImporters' `LastEditedWhen`) is written by an UPDATE, since nothing in
+  the database restamps it; `Purchasing.PurchaseOrderDetail.ModifiedDate`, which its `uPurchaseOrderDetail` trigger
+  restamps, is read-only. Such an attribute carries no `@NotNull`, for it is null until the INSERT.
+- A primary-key column is not updatable.
+- A read-only attribute has a `protected` setter, and a read-only `rowguid` none. A foreign-key attribute has
+  `protected` accessors, for the association is what the entity exposes; a single-column primary key which is a foreign
+  key (`Person.Person.BusinessEntityID`) has a `public` getter and a `protected` setter, which its association's setter
+  calls.
 - A column name SQL Server reserves, or which is no plain identifier (`Group`, `Database Version`, `2002`), is
   quoted, `"\"Group\""`.
 - AdventureWorks' `dbo.DatabaseLog.XmlEvent`, one [`EVENTDATA()`](https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql) document a row, is an `EventInstance`: the class

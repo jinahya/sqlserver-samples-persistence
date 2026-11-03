@@ -319,7 +319,7 @@ public abstract class MappedDatabaseLog
      *
      * @param postTime new value for {@value #ATTRIBUTE_NAME_POST_TIME} attribute.
      */
-    public void setPostTime(final LocalDateTime postTime) {
+    protected void setPostTime(final LocalDateTime postTime) {
         this.postTime = postTime;
     }
 
@@ -340,7 +340,7 @@ public abstract class MappedDatabaseLog
      *
      * @param databaseUser new value for {@value #ATTRIBUTE_NAME_DATABASE_USER} attribute.
      */
-    public void setDatabaseUser(final String databaseUser) {
+    protected void setDatabaseUser(final String databaseUser) {
         this.databaseUser = databaseUser;
     }
 
@@ -360,7 +360,7 @@ public abstract class MappedDatabaseLog
      *
      * @param event new value for {@value #ATTRIBUTE_NAME_EVENT} attribute.
      */
-    public void setEvent(final String event) {
+    protected void setEvent(final String event) {
         this.event = event;
     }
 
@@ -381,7 +381,7 @@ public abstract class MappedDatabaseLog
      *
      * @param schema new value for {@value #ATTRIBUTE_NAME_SCHEMA} attribute.
      */
-    public void setSchema(final String schema) {
+    protected void setSchema(final String schema) {
         this.schema = schema;
     }
 
@@ -402,7 +402,7 @@ public abstract class MappedDatabaseLog
      *
      * @param object new value for {@value #ATTRIBUTE_NAME_OBJECT} attribute.
      */
-    public void setObject(final String object) {
+    protected void setObject(final String object) {
         this.object = object;
     }
 
@@ -422,7 +422,7 @@ public abstract class MappedDatabaseLog
      *
      * @param tsql new value for {@value #ATTRIBUTE_NAME_TSQL} attribute.
      */
-    public void setTsql(final String tsql) {
+    protected void setTsql(final String tsql) {
         this.tsql = tsql;
     }
 
@@ -447,7 +447,7 @@ public abstract class MappedDatabaseLog
      *
      * @param xmlEvent new value for {@value #ATTRIBUTE_NAME_XML_EVENT} attribute.
      */
-    public void setXmlEvent(final EventInstance xmlEvent) {
+    protected void setXmlEvent(final EventInstance xmlEvent) {
         this.xmlEvent = xmlEvent;
     }
 

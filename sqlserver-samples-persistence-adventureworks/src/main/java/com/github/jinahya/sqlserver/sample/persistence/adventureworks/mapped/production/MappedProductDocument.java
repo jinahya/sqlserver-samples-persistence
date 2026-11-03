@@ -215,11 +215,12 @@ public abstract class MappedProductDocument {
     }
 
     // ---------------------------------------------------------------------------------------------
+    // not updatable: part of the primary key
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
                           value = "Product identification number. Foreign key to "
                                   + "Product.ProductID.")
@@ -228,11 +229,11 @@ public abstract class MappedProductDocument {
     // ---------------------------------------------------------------------------------------------
     // part of the primary key, which is not mapped as an identifier: a hierarchyid needs a converter, and Jakarta
     // Persistence applies no converter to an identifier attribute (Hibernate ORM does, as an extension), so the
-    // class is keyless
+    // class is keyless; not updatable: part of the primary key
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
                           value = "Document identification number. Foreign key to "
                                   + "Document.DocumentNode.")

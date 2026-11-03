@@ -861,7 +861,7 @@ public abstract class MappedSalesOrder {
      *
      * @param createdDate new value for {@value #ATTRIBUTE_NAME_CREATED_DATE} attribute.
      */
-    public void setCreatedDate(final LocalDateTime createdDate) {
+    protected void setCreatedDate(final LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -1095,14 +1095,18 @@ public abstract class MappedSalesOrder {
     private String createdBy;
 
     // ---------------------------------------------------------------------------------------------
+    // read-only; the database's DEFAULT (getdate()) fills it on an INSERT, and nothing in the
+    // database changes it
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_CREATED_DATE, nullable = true, insertable = false, updatable = false)
     @MsDefault("(getdate())")
     private LocalDateTime createdDate;
 
     // ---------------------------------------------------------------------------------------------
+    // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
+    // last updated, which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = true, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = true, insertable = false, updatable = true)
     @MsDefault("(getdate())")
     private LocalDateTime modifiedDate;
 

@@ -812,6 +812,7 @@ public abstract class MappedAdditionalContactInfoView {
     private String telephoneNumber;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 96 bytes (48 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TELEPHONE_SPECIAL_INSTRUCTIONS, nullable = true, insertable = false,
@@ -859,6 +860,7 @@ public abstract class MappedAdditionalContactInfoView {
     private String countryRegion;
 
     // ---------------------------------------------------------------------------------------------
+    // DATA.MAX: 122 bytes (61 characters)
     // read-only: SQL Server does not write this view; see the class documentation
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOME_ADDRESS_SPECIAL_INSTRUCTIONS, nullable = true,

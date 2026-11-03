@@ -922,9 +922,10 @@ public abstract class MappedSupplierTransaction {
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
-    @NotNull
+    // the database's DEFAULT (sysdatetime()) fills it on an INSERT; the date and time the record
+    // was last updated, which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = false, updatable = true)
     @MsDefault(name = "DF_Purchasing_SupplierTransactions_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }

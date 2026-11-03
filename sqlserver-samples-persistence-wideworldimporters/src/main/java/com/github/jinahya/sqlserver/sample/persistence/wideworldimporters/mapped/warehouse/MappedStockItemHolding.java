@@ -304,7 +304,7 @@ public abstract class MappedStockItemHolding {
      *
      * @param stockItemId new value for {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute.
      */
-    public void setStockItemId(final Integer stockItemId) {
+    protected void setStockItemId(final Integer stockItemId) {
         this.stockItemId = stockItemId;
     }
 
@@ -550,9 +550,10 @@ public abstract class MappedStockItemHolding {
     private Integer lastEditedBy;
 
     // ---------------------------------------------------------------------------------------------
-    @NotNull
+    // the database's DEFAULT (sysdatetime()) fills it on an INSERT; the date and time the record
+    // was last updated, which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = true, updatable = true)
+    @Column(name = COLUMN_NAME_LAST_EDITED_WHEN, nullable = false, insertable = false, updatable = true)
     @MsDefault(name = "DF_Warehouse_StockItemHoldings_LastEditedWhen", value = "(sysdatetime())")
     private LocalDateTime lastEditedWhen;
 }
