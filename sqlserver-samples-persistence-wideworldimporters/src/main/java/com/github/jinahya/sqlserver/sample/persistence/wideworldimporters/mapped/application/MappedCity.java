@@ -428,8 +428,6 @@ public abstract class MappedCity {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.CityID", schema = "Sequences", sequenceName = "CityID",
                        allocationSize = 1)

@@ -318,8 +318,6 @@ public abstract class MappedBuyingGroup {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.BuyingGroupID", schema = "Sequences",
                        sequenceName = "BuyingGroupID",
