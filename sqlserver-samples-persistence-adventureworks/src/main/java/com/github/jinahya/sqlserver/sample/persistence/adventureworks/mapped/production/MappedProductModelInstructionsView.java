@@ -69,18 +69,6 @@ public abstract class MappedProductModelInstructionsView {
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The
      * value is {@value}.
      */
@@ -123,18 +111,6 @@ public abstract class MappedProductModelInstructionsView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
@@ -253,18 +229,6 @@ public abstract class MappedProductModelInstructionsView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOT_SIZE = "LotSize";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LOT_SIZE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LOT_SIZE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LOT_SIZE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOT_SIZE} column. The value is
@@ -575,8 +539,9 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
+    @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false,
             updatable = false)
@@ -600,8 +565,8 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LOCATION_ID)
-    @Min(ATTRIBUTE_MIN_LOCATION_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = true, insertable = false, updatable = false)
     private Integer locationId;
@@ -636,8 +601,8 @@ public abstract class MappedProductModelInstructionsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LOT_SIZE)
-    @Min(ATTRIBUTE_MIN_LOT_SIZE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOT_SIZE, nullable = true, insertable = false, updatable = false)
     private Integer lotSize;

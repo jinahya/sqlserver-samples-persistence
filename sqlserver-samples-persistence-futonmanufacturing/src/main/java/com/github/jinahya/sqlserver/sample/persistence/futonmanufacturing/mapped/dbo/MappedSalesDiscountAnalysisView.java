@@ -65,18 +65,6 @@ public abstract class MappedSalesDiscountAnalysisView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -87,18 +75,6 @@ public abstract class MappedSalesDiscountAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MONTH = "Month";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
@@ -145,18 +121,6 @@ public abstract class MappedSalesDiscountAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
@@ -342,18 +306,6 @@ public abstract class MappedSalesDiscountAnalysisView {
     public static final String COLUMN_NAME_NO_DISCOUNT_ORDERS = "NoDiscountOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_NO_DISCOUNT_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_NO_DISCOUNT_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_NO_DISCOUNT_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_NO_DISCOUNT_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NO_DISCOUNT_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_NO_DISCOUNT_ORDERS = "noDiscountOrders";
@@ -364,18 +316,6 @@ public abstract class MappedSalesDiscountAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOW_DISCOUNT_ORDERS = "LowDiscountOrders";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LOW_DISCOUNT_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LOW_DISCOUNT_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LOW_DISCOUNT_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LOW_DISCOUNT_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOW_DISCOUNT_ORDERS} column. The value is
@@ -391,18 +331,6 @@ public abstract class MappedSalesDiscountAnalysisView {
     public static final String COLUMN_NAME_MEDIUM_DISCOUNT_ORDERS = "MediumDiscountOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_MEDIUM_DISCOUNT_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_MEDIUM_DISCOUNT_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MEDIUM_DISCOUNT_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MEDIUM_DISCOUNT_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MEDIUM_DISCOUNT_ORDERS} column. The value is
      * {@value}.
      */
@@ -414,18 +342,6 @@ public abstract class MappedSalesDiscountAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_HIGH_DISCOUNT_ORDERS = "HighDiscountOrders";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_HIGH_DISCOUNT_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_HIGH_DISCOUNT_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_HIGH_DISCOUNT_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_HIGH_DISCOUNT_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_HIGH_DISCOUNT_ORDERS} column. The value is
@@ -857,16 +773,16 @@ public abstract class MappedSalesDiscountAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_YEAR)
-    @Min(ATTRIBUTE_MIN_YEAR)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_MONTH)
-    @Min(ATTRIBUTE_MIN_MONTH)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
@@ -888,8 +804,8 @@ public abstract class MappedSalesDiscountAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
-    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
@@ -936,32 +852,32 @@ public abstract class MappedSalesDiscountAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_NO_DISCOUNT_ORDERS)
-    @Min(ATTRIBUTE_MIN_NO_DISCOUNT_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NO_DISCOUNT_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer noDiscountOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LOW_DISCOUNT_ORDERS)
-    @Min(ATTRIBUTE_MIN_LOW_DISCOUNT_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LOW_DISCOUNT_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer lowDiscountOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_MEDIUM_DISCOUNT_ORDERS)
-    @Min(ATTRIBUTE_MIN_MEDIUM_DISCOUNT_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MEDIUM_DISCOUNT_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer mediumDiscountOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_HIGH_DISCOUNT_ORDERS)
-    @Min(ATTRIBUTE_MIN_HIGH_DISCOUNT_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HIGH_DISCOUNT_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer highDiscountOrders;

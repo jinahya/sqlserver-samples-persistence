@@ -81,18 +81,6 @@ public abstract class MappedSalesPipelineView {
     public static final String COLUMN_NAME_STAGE_ORDER = "StageOrder";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STAGE_ORDER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STAGE_ORDER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STAGE_ORDER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STAGE_ORDER = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STAGE_ORDER} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STAGE_ORDER = "stageOrder";
@@ -103,18 +91,6 @@ public abstract class MappedSalesPipelineView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COUNT = "Count";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COUNT} column. The value is {@value}.
@@ -161,18 +137,6 @@ public abstract class MappedSalesPipelineView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIOR_STAGE_COUNT = "PriorStageCount";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIOR_STAGE_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRIOR_STAGE_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIOR_STAGE_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRIOR_STAGE_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIOR_STAGE_COUNT} column. The value is {@value}.
@@ -477,8 +441,8 @@ public abstract class MappedSalesPipelineView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_STAGE_ORDER)
-    @Min(ATTRIBUTE_MIN_STAGE_ORDER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STAGE_ORDER, nullable = false, insertable = false, updatable = false)
@@ -486,8 +450,8 @@ public abstract class MappedSalesPipelineView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_COUNT)
-    @Min(ATTRIBUTE_MIN_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer count;
@@ -502,8 +466,8 @@ public abstract class MappedSalesPipelineView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_PRIOR_STAGE_COUNT)
-    @Min(ATTRIBUTE_MIN_PRIOR_STAGE_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_STAGE_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer priorStageCount;

@@ -220,18 +220,6 @@ public abstract class MappedCostRollUpView {
     public static final String COLUMN_NAME_COMPONENT_COUNT = "ComponentCount";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COMPONENT_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COMPONENT_COUNT = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_COUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMPONENT_COUNT = "componentCount";
@@ -647,8 +635,8 @@ public abstract class MappedCostRollUpView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_COMPONENT_COUNT)
-    @Min(ATTRIBUTE_MIN_COMPONENT_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMPONENT_COUNT, nullable = false, insertable = false, updatable = false)

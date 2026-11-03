@@ -42,18 +42,6 @@ import java.util.Objects;
 public class BusinessEntityContactId {
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the
      * {@value MappedBusinessEntityContact#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
      * {@value}.
@@ -63,36 +51,12 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PERSON_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the
      * {@value MappedBusinessEntityContact#COLUMN_NAME_PERSON_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PERSON_ID = "personId";
 
     // ---------------------------------------------------------------------------------------------
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CONTACT_TYPE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CONTACT_TYPE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CONTACT_TYPE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CONTACT_TYPE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the
@@ -202,8 +166,8 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
-    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false,
             insertable = true, updatable = false)
@@ -214,8 +178,8 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_PERSON_ID, nullable = false,
             insertable = true, updatable = false)
@@ -226,8 +190,8 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_CONTACT_TYPE_ID)
-    @Min(ATTRIBUTE_MIN_CONTACT_TYPE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_CONTACT_TYPE_ID, nullable = false,
             insertable = true, updatable = false)

@@ -26,6 +26,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -62,18 +63,6 @@ public abstract class MappedJobCandidateEducationView {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_JOB_CANDIDATE_ID = "JobCandidateID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_JOB_CANDIDATE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_JOB_CANDIDATE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_JOB_CANDIDATE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_JOB_CANDIDATE_ID} column. The
@@ -589,8 +578,9 @@ public abstract class MappedJobCandidateEducationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_JOB_CANDIDATE_ID)
-    @Min(ATTRIBUTE_MIN_JOB_CANDIDATE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
+    @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_JOB_CANDIDATE_ID, nullable = false, insertable = false,
             updatable = false)

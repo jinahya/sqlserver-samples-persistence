@@ -144,18 +144,6 @@ public abstract class MappedPerson {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -773,8 +761,8 @@ public abstract class MappedPerson {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
-    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,

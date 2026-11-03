@@ -133,18 +133,6 @@ public abstract class MappedSalesRepPerformanceView {
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
@@ -155,18 +143,6 @@ public abstract class MappedSalesRepPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIQUE_CUSTOMERS = "UniqueCustomers";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_CUSTOMERS} column. The value is {@value}.
@@ -385,18 +361,6 @@ public abstract class MappedSalesRepPerformanceView {
     public static final String COLUMN_NAME_QUOTES_CREATED = "QuotesCreated";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTES_CREATED} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_QUOTES_CREATED = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTES_CREATED} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_QUOTES_CREATED = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTES_CREATED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_QUOTES_CREATED = "quotesCreated";
@@ -407,18 +371,6 @@ public abstract class MappedSalesRepPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUOTES_ACCEPTED = "QuotesAccepted";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_QUOTES_ACCEPTED} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_QUOTES_ACCEPTED = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_QUOTES_ACCEPTED} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_QUOTES_ACCEPTED = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUOTES_ACCEPTED} column. The value is {@value}.
@@ -465,18 +417,6 @@ public abstract class MappedSalesRepPerformanceView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_RANK = "SalesRank";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_RANK} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_SALES_RANK = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_RANK} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_SALES_RANK = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_RANK} column. The value is {@value}.
@@ -897,16 +837,16 @@ public abstract class MappedSalesRepPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
-    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_UNIQUE_CUSTOMERS)
-    @Min(ATTRIBUTE_MIN_UNIQUE_CUSTOMERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;
@@ -961,16 +901,16 @@ public abstract class MappedSalesRepPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_QUOTES_CREATED)
-    @Min(ATTRIBUTE_MIN_QUOTES_CREATED)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_CREATED, nullable = true, insertable = false, updatable = false)
     private Integer quotesCreated;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_QUOTES_ACCEPTED)
-    @Min(ATTRIBUTE_MIN_QUOTES_ACCEPTED)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUOTES_ACCEPTED, nullable = true, insertable = false, updatable = false)
     private Integer quotesAccepted;
@@ -985,8 +925,8 @@ public abstract class MappedSalesRepPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_SALES_RANK)
-    @Min(ATTRIBUTE_MIN_SALES_RANK)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_RANK, nullable = true, insertable = false, updatable = false)
     private Long salesRank;

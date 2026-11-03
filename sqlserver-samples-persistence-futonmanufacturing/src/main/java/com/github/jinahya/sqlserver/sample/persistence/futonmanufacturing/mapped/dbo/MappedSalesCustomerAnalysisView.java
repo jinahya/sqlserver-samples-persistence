@@ -66,18 +66,6 @@ public abstract class MappedSalesCustomerAnalysisView {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -209,18 +197,6 @@ public abstract class MappedSalesCustomerAnalysisView {
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
@@ -325,18 +301,6 @@ public abstract class MappedSalesCustomerAnalysisView {
     public static final String COLUMN_NAME_CUSTOMER_LIFESPAN_DAYS = "CustomerLifespanDays";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_LIFESPAN_DAYS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_LIFESPAN_DAYS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_LIFESPAN_DAYS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_LIFESPAN_DAYS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_LIFESPAN_DAYS} column. The value is
      * {@value}.
      */
@@ -416,18 +380,6 @@ public abstract class MappedSalesCustomerAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_RETURNS = "TotalReturns";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_RETURNS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_RETURNS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_RETURNS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_RETURNS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_RETURNS} column. The value is {@value}.
@@ -525,18 +477,6 @@ public abstract class MappedSalesCustomerAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_SINCE_LAST_ORDER = "DaysSinceLastOrder";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_ORDER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_SINCE_LAST_ORDER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_ORDER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_SINCE_LAST_ORDER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_LAST_ORDER} column. The value is
@@ -1126,8 +1066,8 @@ public abstract class MappedSalesCustomerAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -1186,8 +1126,8 @@ public abstract class MappedSalesCustomerAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
-    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
@@ -1222,8 +1162,8 @@ public abstract class MappedSalesCustomerAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_LIFESPAN_DAYS)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_LIFESPAN_DAYS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_LIFESPAN_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer customerLifespanDays;
@@ -1246,8 +1186,8 @@ public abstract class MappedSalesCustomerAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TOTAL_RETURNS)
-    @Min(ATTRIBUTE_MIN_TOTAL_RETURNS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_RETURNS, nullable = true, insertable = false, updatable = false)
     private Integer totalReturns;
@@ -1279,8 +1219,8 @@ public abstract class MappedSalesCustomerAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_SINCE_LAST_ORDER)
-    @Min(ATTRIBUTE_MIN_DAYS_SINCE_LAST_ORDER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_ORDER, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceLastOrder;

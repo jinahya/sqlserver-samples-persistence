@@ -126,18 +126,6 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value
      * is {@value}.
      */
@@ -149,18 +137,6 @@ public abstract class MappedCustomer {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PERSON_ID = "PersonID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PERSON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PERSON_ID} column. The value is
@@ -176,18 +152,6 @@ public abstract class MappedCustomer {
     public static final String COLUMN_NAME_STORE_ID = "StoreID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STORE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STORE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STORE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STORE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STORE_ID} column. The value is
      * {@value}.
      */
@@ -199,18 +163,6 @@ public abstract class MappedCustomer {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TERRITORY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TERRITORY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
@@ -464,8 +416,8 @@ public abstract class MappedCustomer {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = true, updatable = false)
@@ -475,8 +427,8 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERSON_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PERSON_ID,
@@ -486,8 +438,8 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_STORE_ID)
-    @Min(ATTRIBUTE_MIN_STORE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STORE_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_STORE_ID,
@@ -497,8 +449,8 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_TERRITORY_ID)
-    @Min(ATTRIBUTE_MIN_TERRITORY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,

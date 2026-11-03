@@ -65,18 +65,6 @@ public abstract class MappedStateProvinceCountryRegionView {
     public static final String COLUMN_NAME_STATE_PROVINCE_ID = "StateProvinceID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STATE_PROVINCE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STATE_PROVINCE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The
      * value is {@value}.
      */
@@ -138,18 +126,6 @@ public abstract class MappedStateProvinceCountryRegionView {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TERRITORY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TERRITORY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
@@ -401,8 +377,8 @@ public abstract class MappedStateProvinceCountryRegionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_STATE_PROVINCE_ID)
-    @Min(ATTRIBUTE_MIN_STATE_PROVINCE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false,
@@ -437,8 +413,8 @@ public abstract class MappedStateProvinceCountryRegionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TERRITORY_ID)
-    @Min(ATTRIBUTE_MIN_TERRITORY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = false,

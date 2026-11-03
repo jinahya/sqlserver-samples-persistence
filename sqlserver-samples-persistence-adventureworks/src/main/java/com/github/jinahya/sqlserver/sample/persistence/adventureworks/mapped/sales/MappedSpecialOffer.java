@@ -115,18 +115,6 @@ public abstract class MappedSpecialOffer {
     public static final String COLUMN_NAME_SPECIAL_OFFER_ID = "SpecialOfferID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SPECIAL_OFFER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SPECIAL_OFFER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SPECIAL_OFFER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SPECIAL_OFFER_ID} column. The
      * value is {@value}.
      */
@@ -164,12 +152,6 @@ public abstract class MappedSpecialOffer {
      * requires. The value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PCT = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DISCOUNT_PCT} attribute, the maximum of the
-     * {@code smallmoney} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PCT = SqlServerConstants.SMALLMONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DISCOUNT_PCT} column. The value
@@ -254,12 +236,6 @@ public abstract class MappedSpecialOffer {
     public static final int ATTRIBUTE_MIN_MIN_QTY = 0;
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MIN_QTY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MIN_QTY = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MIN_QTY} column. The value is
      * {@value}.
      */
@@ -278,12 +254,6 @@ public abstract class MappedSpecialOffer {
      * is {@value}.
      */
     public static final int ATTRIBUTE_MIN_MAX_QTY = 0;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MAX_QTY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MAX_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MAX_QTY} column. The value is
@@ -622,8 +592,8 @@ public abstract class MappedSpecialOffer {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SPECIAL_OFFER_ID)
-    @Min(ATTRIBUTE_MIN_SPECIAL_OFFER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true,
@@ -643,7 +613,7 @@ public abstract class MappedSpecialOffer {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_DiscountPct: ([DiscountPct]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PCT)
+    @DecimalMax(SqlServerConstants.SMALLMONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PCT)
     @NotNull
     @Basic(optional = false)
@@ -687,7 +657,7 @@ public abstract class MappedSpecialOffer {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_MinQty: ([MinQty]>=(0))
-    @Max(ATTRIBUTE_MAX_MIN_QTY)
+    @Max(SqlServerConstants.INT_MAX)
     @Min(ATTRIBUTE_MIN_MIN_QTY)
     @NotNull
     @Basic(optional = false)
@@ -698,7 +668,7 @@ public abstract class MappedSpecialOffer {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SpecialOffer_MaxQty: ([MaxQty]>=(0))
-    @Max(ATTRIBUTE_MAX_MAX_QTY)
+    @Max(SqlServerConstants.INT_MAX)
     @Min(ATTRIBUTE_MIN_MAX_QTY)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MAX_QTY, nullable = true, insertable = true, updatable = true)

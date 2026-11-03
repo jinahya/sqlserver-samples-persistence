@@ -23,6 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
+import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.EntityManager;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -49,7 +50,7 @@ class WorkOrderRouting_Persister
         entityManager.flush();
         final var instance = WorkOrderRouting.of(
                 workOrder, ThreadLocalRandom.current()
-                        .nextInt(1, WorkOrderRouting.ATTRIBUTE_MAX_OPERATION_SEQUENCE + 1));
+                        .nextInt(1, SqlServerConstants.SMALLINT_MAX + 1));
         instance.setLocation(location);
         instance.setScheduledStartDate(entityInstance.getScheduledStartDate());
         instance.setScheduledEndDate(entityInstance.getScheduledEndDate());

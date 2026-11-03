@@ -104,18 +104,6 @@ public abstract class MappedStockGroup {
     public static final String COLUMN_NAME_STOCK_GROUP_ID = "StockGroupID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STOCK_GROUP_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_GROUP_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STOCK_GROUP_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_GROUP_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STOCK_GROUP_ID = "stockGroupId";
@@ -143,18 +131,6 @@ public abstract class MappedStockGroup {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -342,8 +318,8 @@ public abstract class MappedStockGroup {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(ATTRIBUTE_MAX_STOCK_GROUP_ID)
-    @Min(ATTRIBUTE_MIN_STOCK_GROUP_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StockGroupID", schema = "Sequences",
                        sequenceName = "StockGroupID",
@@ -367,8 +343,8 @@ public abstract class MappedStockGroup {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
-    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

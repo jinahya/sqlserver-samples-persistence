@@ -107,18 +107,6 @@ public abstract class MappedShipMethod {
     public static final String COLUMN_NAME_SHIP_METHOD_ID = "ShipMethodID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SHIP_METHOD_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SHIP_METHOD_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_METHOD_ID} column. The
      * value is {@value}.
      */
@@ -157,12 +145,6 @@ public abstract class MappedShipMethod {
     public static final String ATTRIBUTE_DECIMAL_MIN_SHIP_BASE_EXCLUSIVE = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_BASE} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_SHIP_BASE = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_BASE} column. The value is
      * {@value}.
      */
@@ -181,12 +163,6 @@ public abstract class MappedShipMethod {
      * value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_SHIP_RATE_EXCLUSIVE = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_RATE} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_SHIP_RATE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_RATE} column. The value is
@@ -393,8 +369,8 @@ public abstract class MappedShipMethod {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SHIP_METHOD_ID)
-    @Min(ATTRIBUTE_MIN_SHIP_METHOD_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = true,
@@ -414,7 +390,7 @@ public abstract class MappedShipMethod {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ShipMethod_ShipBase: ([ShipBase]>(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHIP_BASE)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SHIP_BASE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
@@ -425,7 +401,7 @@ public abstract class MappedShipMethod {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ShipMethod_ShipRate: ([ShipRate]>(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SHIP_RATE)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SHIP_RATE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)

@@ -96,18 +96,6 @@ public abstract class MappedProductPhoto {
     public static final String COLUMN_NAME_PRODUCT_PHOTO_ID = "ProductPhotoID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_PHOTO_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_PHOTO_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_PHOTO_ID} column. The
      * value is {@value}.
      */
@@ -376,8 +364,8 @@ public abstract class MappedProductPhoto {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_PRODUCT_PHOTO_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_PHOTO_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = false, insertable = true,

@@ -116,18 +116,6 @@ public abstract class MappedPurchaseOrder {
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
@@ -138,18 +126,6 @@ public abstract class MappedPurchaseOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
@@ -176,18 +152,6 @@ public abstract class MappedPurchaseOrder {
     public static final String COLUMN_NAME_DELIVERY_METHOD_ID = "DeliveryMethodID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DELIVERY_METHOD_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DELIVERY_METHOD_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DELIVERY_METHOD_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DELIVERY_METHOD_ID = "deliveryMethodId";
@@ -198,18 +162,6 @@ public abstract class MappedPurchaseOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CONTACT_PERSON_ID = "ContactPersonID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CONTACT_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CONTACT_PERSON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CONTACT_PERSON_ID} column. The value is {@value}.
@@ -288,18 +240,6 @@ public abstract class MappedPurchaseOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -625,8 +565,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.PurchaseOrderID", schema = "Sequences",
                        sequenceName = "PurchaseOrderID",
@@ -642,8 +582,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
-    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -661,8 +601,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_DELIVERY_METHOD_ID)
-    @Min(ATTRIBUTE_MIN_DELIVERY_METHOD_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
@@ -672,8 +612,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_CONTACT_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_CONTACT_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -725,8 +665,8 @@ public abstract class MappedPurchaseOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
-    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

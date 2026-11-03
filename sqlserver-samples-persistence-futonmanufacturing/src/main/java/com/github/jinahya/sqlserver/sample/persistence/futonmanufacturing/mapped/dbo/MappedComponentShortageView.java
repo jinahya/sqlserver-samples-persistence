@@ -232,18 +232,6 @@ public abstract class MappedComponentShortageView {
     public static final String COLUMN_NAME_DAYS_UNTIL_NEEDED = "DaysUntilNeeded";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_UNTIL_NEEDED = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_UNTIL_NEEDED = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_UNTIL_NEEDED} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_UNTIL_NEEDED = "daysUntilNeeded";
@@ -254,18 +242,6 @@ public abstract class MappedComponentShortageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_AFFECTED_ORDERS = "AffectedOrders";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_AFFECTED_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_AFFECTED_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_AFFECTED_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_AFFECTED_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AFFECTED_ORDERS} column. The value is {@value}.
@@ -312,18 +288,6 @@ public abstract class MappedComponentShortageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
@@ -727,16 +691,16 @@ public abstract class MappedComponentShortageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_UNTIL_NEEDED)
-    @Min(ATTRIBUTE_MIN_DAYS_UNTIL_NEEDED)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_NEEDED, nullable = true, insertable = false, updatable = false)
     private Integer daysUntilNeeded;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_AFFECTED_ORDERS)
-    @Min(ATTRIBUTE_MIN_AFFECTED_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AFFECTED_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer affectedOrders;
@@ -758,8 +722,8 @@ public abstract class MappedComponentShortageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
-    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer leadTimeDays;

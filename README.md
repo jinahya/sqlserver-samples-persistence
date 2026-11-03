@@ -65,7 +65,7 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
 | `decimal`, `numeric`, `money`, `smallmoney` | `BigDecimal` | `precision` and `scale`, for `decimal` and `numeric`; `@DecimalMin` and `@DecimalMax`, the type's range or a check constraint's bound (`ATTRIBUTE_DECIMAL_MIN_*`, `ATTRIBUTE_DECIMAL_MAX_*`), and no `@Digits` |
 | `float`, `real`, `bit` | `Double`, `Float`, `Boolean` | |
 | `char`, `nchar`, `varchar`, `nvarchar`, `sysname` | `String` | `length`, and `@Size`; `(max)` has no length |
-| `xml` | `String` | the document's text; `dbo.DatabaseLog.XmlEvent` and `HumanResources.vEmployee.AdditionalContactInfo` are the exceptions, below |
+| `xml` | a class of a `sqlserver-xml-schema-binding-*` artifact, or `String` | the bound class, through a converter, where a binding exists (below); otherwise the document's text |
 | `date`, `time`, `datetime`, `datetime2` | `LocalDate`, `LocalTime`, `LocalDateTime` | |
 | `uniqueidentifier` | `UUID` | Hibernate ORM maps it, with no converter; an identifier is a `String` |
 | `varbinary` | `byte[]` | the driver's bytes |
@@ -103,10 +103,24 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
   `EventInstanceStringAttributeConverter`, a `JaxbAttributeConverter` of `jinahya-persistence-more`. It is read-only:
   the database DDL trigger `ddlDatabaseTriggerLog` inserts each row and nothing updates one, and the bound classes do
   not override `equals`, by which Hibernate ORM would find every loaded value changed.
-- AdventureWorks' `HumanResources.vEmployee.AdditionalContactInfo`, typed by `Person.AdditionalContactInfoSchemaCollection`,
-  is an `AdditionalContactInfo` of `sqlserver-xml-schema-binding-b7fdbe`, through
-  `AdditionalContactInfoStringAttributeConverter`, whose context knows the classes of the collection's other two
-  schemas, `b80e2e` (`ContactRecord`) and `b2e7ae` (`ContactTypes`).
+- AdventureWorks' typed `xml` columns are the classes of the `sqlserver-xml-schema-binding-*` artifacts which bind
+  their collections' schemas, each through a `JaxbAttributeConverter` whose context knows the classes of every schema
+  of the collection:
+
+  | Column | Collection | Class (artifact) | Converter |
+  |---|---|---|---|
+  | `HumanResources.JobCandidate.Resume` | `HRResumeSchemaCollection` | `ResumeType` (`b3da3e`) | `ResumeTypeStringAttributeConverter` |
+  | `Person.Person.AdditionalContactInfo`, `HumanResources.vEmployee.AdditionalContactInfo` | `AdditionalContactInfoSchemaCollection` | `AdditionalContactInfo` (`b7fdbe`; `b80e2e`, `b2e7ae`) | `AdditionalContactInfoStringAttributeConverter` |
+  | `Person.Person.Demographics`, `Sales.vIndividualCustomer.Demographics` | `IndividualSurveySchemaCollection` | `IndividualSurvey` (`b9c1be`) | `IndividualSurveyStringAttributeConverter` |
+  | `Production.ProductModel.CatalogDescription` | `ProductDescriptionSchemaCollection` | `ProductDescription` (`b0fd0e`; `b4347e`) | `ProductDescriptionStringAttributeConverter` |
+  | `Production.ProductModel.Instructions` | `ManuInstructionsSchemaCollection` | `Root` (`b73cae`) | `ManuInstructionsStringAttributeConverter` |
+  | `Sales.Store.Demographics` | `StoreSurveySchemaCollection` | `StoreSurvey` (`b95f5e`) | `StoreSurveyStringAttributeConverter` |
+
+  `Resume` and `CatalogDescription` hold DOM content, which compares by identity, so Hibernate ORM treats their values
+  as immutable (`@Mutability(Immutability.class)`): a change is written when a new value is set, not when the value is
+  changed in place. `Sales.vIndividualCustomer` is keyless and read by a native query, which returns the column's
+  text; the converter turns it into the `IndividualSurvey` the row's constructor takes. `Production.Illustration.Diagram`
+  is untyped XAML, which no artifact binds, and stays a `String`.
 
 What identifies a row:
 

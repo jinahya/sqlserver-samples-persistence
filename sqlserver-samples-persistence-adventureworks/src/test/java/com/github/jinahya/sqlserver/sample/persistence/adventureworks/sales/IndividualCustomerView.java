@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedIndividualCustomerView;
+import io.github.jinahya.sqlserver.xml.schema.binding.b9c1be.IndividualSurvey;
 
 /**
  * A plain class which holds a row of the {@code Sales.vIndividualCustomer} view, which no entity
@@ -81,7 +82,7 @@ public class IndividualCustomerView
                                   final String stateProvinceName,
                                   final String postalCode,
                                   final String countryRegionName,
-                                  final String demographics) {
+                                  final IndividualSurvey demographics) {
         super();
         setBusinessEntityId(businessEntityId);
         setTitle(title);

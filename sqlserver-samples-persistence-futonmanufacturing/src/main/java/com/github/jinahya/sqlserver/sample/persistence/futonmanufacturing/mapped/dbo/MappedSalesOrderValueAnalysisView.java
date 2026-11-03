@@ -133,18 +133,6 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
@@ -408,18 +396,6 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final String COLUMN_NAME_SMALL_ORDERS = "SmallOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SMALL_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SMALL_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SMALL_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SMALL_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SMALL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SMALL_ORDERS = "smallOrders";
@@ -430,18 +406,6 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MEDIUM_ORDERS = "MediumOrders";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_MEDIUM_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_MEDIUM_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MEDIUM_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MEDIUM_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MEDIUM_ORDERS} column. The value is {@value}.
@@ -456,18 +420,6 @@ public abstract class MappedSalesOrderValueAnalysisView {
     public static final String COLUMN_NAME_LARGE_ORDERS = "LargeOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LARGE_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LARGE_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LARGE_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LARGE_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LARGE_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LARGE_ORDERS = "largeOrders";
@@ -478,18 +430,6 @@ public abstract class MappedSalesOrderValueAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ENTERPRISE_ORDERS = "EnterpriseOrders";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ENTERPRISE_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ENTERPRISE_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ENTERPRISE_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ENTERPRISE_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ENTERPRISE_ORDERS} column. The value is {@value}.
@@ -901,8 +841,8 @@ public abstract class MappedSalesOrderValueAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
-    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
@@ -971,32 +911,32 @@ public abstract class MappedSalesOrderValueAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_SMALL_ORDERS)
-    @Min(ATTRIBUTE_MIN_SMALL_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SMALL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer smallOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_MEDIUM_ORDERS)
-    @Min(ATTRIBUTE_MIN_MEDIUM_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MEDIUM_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer mediumOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LARGE_ORDERS)
-    @Min(ATTRIBUTE_MIN_LARGE_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LARGE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer largeOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ENTERPRISE_ORDERS)
-    @Min(ATTRIBUTE_MIN_ENTERPRISE_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ENTERPRISE_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer enterpriseOrders;

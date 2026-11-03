@@ -86,18 +86,6 @@ public abstract class MappedProductionOrder {
     public static final String COLUMN_NAME_PRODUCTION_ORDER_ID = "ProductionOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCTION_ORDER_ID} column. The value is
      * {@value}.
      */
@@ -128,18 +116,6 @@ public abstract class MappedProductionOrder {
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ITEM_ID = "itemId";
@@ -152,18 +128,6 @@ public abstract class MappedProductionOrder {
     public static final String COLUMN_NAME_WAREHOUSE_ID = "WarehouseID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WAREHOUSE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WAREHOUSE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WAREHOUSE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_WAREHOUSE_ID = "warehouseId";
@@ -174,18 +138,6 @@ public abstract class MappedProductionOrder {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WORK_CENTER_ID = "WorkCenterID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WORK_CENTER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WORK_CENTER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_CENTER_ID} column. The value is {@value}.
@@ -355,18 +307,6 @@ public abstract class MappedProductionOrder {
      * The name of the {@code int, DEFAULT ((5))} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIORITY = "Priority";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRIORITY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRIORITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIORITY} column. The value is {@value}.
@@ -836,8 +776,8 @@ public abstract class MappedProductionOrder {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_PRODUCTION_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCTION_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = true, updatable = false)
@@ -852,8 +792,8 @@ public abstract class MappedProductionOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_ITEM_ID)
-    @Min(ATTRIBUTE_MIN_ITEM_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -861,8 +801,8 @@ public abstract class MappedProductionOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_WAREHOUSE_ID)
-    @Min(ATTRIBUTE_MIN_WAREHOUSE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
@@ -870,8 +810,8 @@ public abstract class MappedProductionOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_WORK_CENTER_ID)
-    @Min(ATTRIBUTE_MIN_WORK_CENTER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = true, insertable = false, updatable = false)
     private Integer workCenterId;
@@ -924,8 +864,8 @@ public abstract class MappedProductionOrder {
     private String status;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_PRIORITY)
-    @Min(ATTRIBUTE_MIN_PRIORITY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = true, updatable = true)
     @MsDefault("((5))")

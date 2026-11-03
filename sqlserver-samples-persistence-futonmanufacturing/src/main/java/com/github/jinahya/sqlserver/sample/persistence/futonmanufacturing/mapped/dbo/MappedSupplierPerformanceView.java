@@ -133,18 +133,6 @@ public abstract class MappedSupplierPerformanceView {
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
@@ -192,18 +180,6 @@ public abstract class MappedSupplierPerformanceView {
     public static final String COLUMN_NAME_AVG_DELIVERY_DAYS = "AvgDeliveryDays";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_DELIVERY_DAYS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_AVG_DELIVERY_DAYS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_DELIVERY_DAYS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_AVG_DELIVERY_DAYS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_DELIVERY_DAYS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_AVG_DELIVERY_DAYS = "avgDeliveryDays";
@@ -216,18 +192,6 @@ public abstract class MappedSupplierPerformanceView {
     public static final String COLUMN_NAME_ON_TIME_DELIVERIES = "OnTimeDeliveries";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERIES} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ON_TIME_DELIVERIES = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ON_TIME_DELIVERIES} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ON_TIME_DELIVERIES = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ON_TIME_DELIVERIES} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ON_TIME_DELIVERIES = "onTimeDeliveries";
@@ -238,18 +202,6 @@ public abstract class MappedSupplierPerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPLETED_DELIVERIES = "CompletedDeliveries";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPLETED_DELIVERIES} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COMPLETED_DELIVERIES = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPLETED_DELIVERIES} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COMPLETED_DELIVERIES = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPLETED_DELIVERIES} column. The value is
@@ -591,8 +543,8 @@ public abstract class MappedSupplierPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
-    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
@@ -607,24 +559,24 @@ public abstract class MappedSupplierPerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_AVG_DELIVERY_DAYS)
-    @Min(ATTRIBUTE_MIN_AVG_DELIVERY_DAYS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_DELIVERY_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer avgDeliveryDays;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ON_TIME_DELIVERIES)
-    @Min(ATTRIBUTE_MIN_ON_TIME_DELIVERIES)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ON_TIME_DELIVERIES, nullable = true, insertable = false, updatable = false)
     private Integer onTimeDeliveries;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_COMPLETED_DELIVERIES)
-    @Min(ATTRIBUTE_MIN_COMPLETED_DELIVERIES)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_DELIVERIES, nullable = true, insertable = false, updatable = false)
     private Integer completedDeliveries;

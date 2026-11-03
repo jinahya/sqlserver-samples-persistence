@@ -85,18 +85,6 @@ public abstract class MappedSupplierItem {
     public static final String COLUMN_NAME_SUPPLIER_ITEM_ID = "SupplierItemID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ITEM_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SUPPLIER_ITEM_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ITEM_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SUPPLIER_ITEM_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ITEM_ID = "supplierItemId";
@@ -109,18 +97,6 @@ public abstract class MappedSupplierItem {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -131,18 +107,6 @@ public abstract class MappedSupplierItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ITEM_ID = "ItemID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ITEM_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ITEM_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ITEM_ID} column. The value is {@value}.
@@ -242,18 +206,6 @@ public abstract class MappedSupplierItem {
      * The name of the {@code int, DEFAULT ((0))} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
@@ -557,8 +509,8 @@ public abstract class MappedSupplierItem {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SUPPLIER_ITEM_ID)
-    @Min(ATTRIBUTE_MIN_SUPPLIER_ITEM_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SUPPLIER_ITEM_ID, nullable = false, insertable = true, updatable = false)
@@ -566,8 +518,8 @@ public abstract class MappedSupplierItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
-    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -575,8 +527,8 @@ public abstract class MappedSupplierItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_ITEM_ID)
-    @Min(ATTRIBUTE_MIN_ITEM_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -605,8 +557,8 @@ public abstract class MappedSupplierItem {
     private BigDecimal minimumOrderQuantity;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
-    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = true, updatable = true)
     @MsDefault("((0))")

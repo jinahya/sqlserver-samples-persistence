@@ -82,18 +82,6 @@ public abstract class MappedSalesTimeBasedAnalysisView {
     public static final String COLUMN_NAME_DAY_NUMBER = "DayNumber";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAY_NUMBER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAY_NUMBER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAY_NUMBER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAY_NUMBER = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAY_NUMBER} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAY_NUMBER = "dayNumber";
@@ -104,18 +92,6 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_HOUR_OF_DAY = "HourOfDay";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_HOUR_OF_DAY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_HOUR_OF_DAY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_HOUR_OF_DAY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_HOUR_OF_DAY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_HOUR_OF_DAY} column. The value is {@value}.
@@ -162,18 +138,6 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
@@ -254,18 +218,6 @@ public abstract class MappedSalesTimeBasedAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIQUE_CUSTOMERS = "UniqueCustomers";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_CUSTOMERS} column. The value is {@value}.
@@ -487,16 +439,16 @@ public abstract class MappedSalesTimeBasedAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAY_NUMBER)
-    @Min(ATTRIBUTE_MIN_DAY_NUMBER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAY_NUMBER, nullable = true, insertable = false, updatable = false)
     private Integer dayNumber;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_HOUR_OF_DAY)
-    @Min(ATTRIBUTE_MIN_HOUR_OF_DAY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_HOUR_OF_DAY, nullable = true, insertable = false, updatable = false)
     private Integer hourOfDay;
@@ -519,8 +471,8 @@ public abstract class MappedSalesTimeBasedAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
-    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
@@ -543,8 +495,8 @@ public abstract class MappedSalesTimeBasedAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_UNIQUE_CUSTOMERS)
-    @Min(ATTRIBUTE_MIN_UNIQUE_CUSTOMERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;

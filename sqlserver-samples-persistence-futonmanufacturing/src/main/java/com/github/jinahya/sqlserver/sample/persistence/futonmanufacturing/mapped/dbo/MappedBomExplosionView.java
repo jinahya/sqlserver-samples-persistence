@@ -63,18 +63,6 @@ public abstract class MappedBomExplosionView {
     public static final String COLUMN_NAME_PARENT_ITEM_ID = "ParentItemID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PARENT_ITEM_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PARENT_ITEM_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PARENT_ITEM_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PARENT_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PARENT_ITEM_ID = "parentItemId";
@@ -119,18 +107,6 @@ public abstract class MappedBomExplosionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPONENT_ITEM_ID = "ComponentItemID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COMPONENT_ITEM_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ITEM_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COMPONENT_ITEM_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ITEM_ID} column. The value is {@value}.
@@ -196,18 +172,6 @@ public abstract class MappedBomExplosionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LEVEL = "Level";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LEVEL} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LEVEL = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LEVEL} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LEVEL = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEVEL} column. The value is {@value}.
@@ -637,8 +601,8 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_PARENT_ITEM_ID)
-    @Min(ATTRIBUTE_MIN_PARENT_ITEM_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PARENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer parentItemId;
@@ -659,8 +623,8 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_COMPONENT_ITEM_ID)
-    @Min(ATTRIBUTE_MIN_COMPONENT_ITEM_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPONENT_ITEM_ID, nullable = true, insertable = false, updatable = false)
     private Integer componentItemId;
@@ -688,8 +652,8 @@ public abstract class MappedBomExplosionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LEVEL)
-    @Min(ATTRIBUTE_MIN_LEVEL)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEVEL, nullable = true, insertable = false, updatable = false)
     private Integer level;

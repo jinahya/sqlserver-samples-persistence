@@ -159,18 +159,6 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The
      * value is {@value}.
      */
@@ -182,20 +170,6 @@ public abstract class MappedPurchaseOrderHeader {
      * The name of the {@code tinyint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_REVISION_NUMBER = "RevisionNumber";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute, the minimum of the
-     * {@code tinyint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_REVISION_NUMBER = SqlServerConstants.TINYINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_REVISION_NUMBER} attribute, the maximum of the
-     * {@code tinyint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_REVISION_NUMBER = SqlServerConstants.TINYINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REVISION_NUMBER} column. The
@@ -238,18 +212,6 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_EMPLOYEE_ID = "EmployeeID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_EMPLOYEE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_EMPLOYEE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_EMPLOYEE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_EMPLOYEE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_EMPLOYEE_ID} column. The value
      * is {@value}.
      */
@@ -263,18 +225,6 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String COLUMN_NAME_VENDOR_ID = "VendorID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_VENDOR_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_VENDOR_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_VENDOR_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_VENDOR_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VENDOR_ID} column. The value is
      * {@value}.
      */
@@ -286,18 +236,6 @@ public abstract class MappedPurchaseOrderHeader {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SHIP_METHOD_ID = "ShipMethodID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SHIP_METHOD_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SHIP_METHOD_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SHIP_METHOD_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SHIP_METHOD_ID} column. The
@@ -347,12 +285,6 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String ATTRIBUTE_DECIMAL_MIN_SUB_TOTAL = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUB_TOTAL} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_SUB_TOTAL = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUB_TOTAL} column. The value is
      * {@value}.
      */
@@ -371,12 +303,6 @@ public abstract class MappedPurchaseOrderHeader {
      * The value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_TAX_AMT = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_AMT} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_AMT = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_AMT} column. The value is
@@ -399,12 +325,6 @@ public abstract class MappedPurchaseOrderHeader {
     public static final String ATTRIBUTE_DECIMAL_MIN_FREIGHT = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_FREIGHT} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_FREIGHT = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_FREIGHT} column. The value is
      * {@value}.
      */
@@ -418,18 +338,6 @@ public abstract class MappedPurchaseOrderHeader {
      * The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_DUE = "TotalDue";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_DUE} attribute, the minimum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_TOTAL_DUE = SqlServerConstants.MONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_DUE} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_TOTAL_DUE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_DUE} column. The value is
@@ -814,8 +722,8 @@ public abstract class MappedPurchaseOrderHeader {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true,
@@ -824,8 +732,8 @@ public abstract class MappedPurchaseOrderHeader {
     private Integer purchaseOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_REVISION_NUMBER)
-    @Min(ATTRIBUTE_MIN_REVISION_NUMBER)
+    @Max(SqlServerConstants.TINYINT_MAX)
+    @Min(SqlServerConstants.TINYINT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REVISION_NUMBER, nullable = false, insertable = true,
@@ -852,8 +760,8 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_EMPLOYEE_ID)
-    @Min(ATTRIBUTE_MIN_EMPLOYEE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMPLOYEE_ID, nullable = false, insertable = false, updatable = false)
@@ -865,8 +773,8 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_VENDOR_ID)
-    @Min(ATTRIBUTE_MIN_VENDOR_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VENDOR_ID, nullable = false, insertable = false, updatable = false)
@@ -878,8 +786,8 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_SHIP_METHOD_ID)
-    @Min(ATTRIBUTE_MIN_SHIP_METHOD_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false,
@@ -905,7 +813,7 @@ public abstract class MappedPurchaseOrderHeader {
 
     // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderHeader_SubTotal: ([SubTotal]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SUB_TOTAL)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SUB_TOTAL)
     @NotNull
     @Basic(optional = false)
@@ -919,7 +827,7 @@ public abstract class MappedPurchaseOrderHeader {
 
     // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderHeader_TaxAmt: ([TaxAmt]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_AMT)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMT)
     @NotNull
     @Basic(optional = false)
@@ -930,7 +838,7 @@ public abstract class MappedPurchaseOrderHeader {
 
     // ---------------------------------------------------------------------------------------------
     // CK_PurchaseOrderHeader_Freight: ([Freight]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_FREIGHT)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_FREIGHT)
     @NotNull
     @Basic(optional = false)
@@ -941,8 +849,8 @@ public abstract class MappedPurchaseOrderHeader {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TOTAL_DUE)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TOTAL_DUE)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
+    @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_DUE, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_TOTAL_DUE,

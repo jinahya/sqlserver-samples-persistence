@@ -65,18 +65,6 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -87,18 +75,6 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_MONTH = "Month";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
@@ -130,18 +106,6 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final String COLUMN_NAME_ORDERS = "Orders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDERS = "orders";
@@ -152,18 +116,6 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMERS = "Customers";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMERS} column. The value is {@value}.
@@ -315,18 +267,6 @@ public abstract class MappedSalesGrowthAnalysisView {
     public static final String COLUMN_NAME_PRIOR_MONTH_CUSTOMERS = "PriorMonthCustomers";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIOR_MONTH_CUSTOMERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRIOR_MONTH_CUSTOMERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIOR_MONTH_CUSTOMERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRIOR_MONTH_CUSTOMERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIOR_MONTH_CUSTOMERS} column. The value is
      * {@value}.
      */
@@ -338,18 +278,6 @@ public abstract class MappedSalesGrowthAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CUSTOMER_GROWTH = "CustomerGrowth";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_GROWTH} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_GROWTH = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_GROWTH} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_GROWTH = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_GROWTH} column. The value is {@value}.
@@ -716,16 +644,16 @@ public abstract class MappedSalesGrowthAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_YEAR)
-    @Min(ATTRIBUTE_MIN_YEAR)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_MONTH)
-    @Min(ATTRIBUTE_MIN_MONTH)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
@@ -740,16 +668,16 @@ public abstract class MappedSalesGrowthAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDERS)
-    @Min(ATTRIBUTE_MIN_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer orders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMERS)
-    @Min(ATTRIBUTE_MIN_CUSTOMERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer customers;
@@ -788,16 +716,16 @@ public abstract class MappedSalesGrowthAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_PRIOR_MONTH_CUSTOMERS)
-    @Min(ATTRIBUTE_MIN_PRIOR_MONTH_CUSTOMERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIOR_MONTH_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer priorMonthCustomers;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_GROWTH)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_GROWTH)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_GROWTH, nullable = true, insertable = false, updatable = false)
     private Integer customerGrowth;

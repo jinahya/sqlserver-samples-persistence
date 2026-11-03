@@ -159,18 +159,6 @@ public abstract class MappedStockItem {
     public static final String COLUMN_NAME_STOCK_ITEM_ID = "StockItemID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STOCK_ITEM_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCK_ITEM_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STOCK_ITEM_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCK_ITEM_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STOCK_ITEM_ID = "stockItemId";
@@ -200,18 +188,6 @@ public abstract class MappedStockItem {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -222,18 +198,6 @@ public abstract class MappedStockItem {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COLOR_ID = "ColorID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COLOR_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COLOR_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COLOR_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COLOR_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COLOR_ID} column. The value is {@value}.
@@ -248,18 +212,6 @@ public abstract class MappedStockItem {
     public static final String COLUMN_NAME_UNIT_PACKAGE_ID = "UnitPackageID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_UNIT_PACKAGE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIT_PACKAGE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_UNIT_PACKAGE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIT_PACKAGE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIT_PACKAGE_ID = "unitPackageId";
@@ -270,18 +222,6 @@ public abstract class MappedStockItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_OUTER_PACKAGE_ID = "OuterPackageID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_OUTER_PACKAGE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_OUTER_PACKAGE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_OUTER_PACKAGE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OUTER_PACKAGE_ID} column. The value is {@value}.
@@ -330,18 +270,6 @@ public abstract class MappedStockItem {
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
@@ -352,18 +280,6 @@ public abstract class MappedStockItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUANTITY_PER_OUTER = "QuantityPerOuter";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY_PER_OUTER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_QUANTITY_PER_OUTER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY_PER_OUTER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_QUANTITY_PER_OUTER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY_PER_OUTER} column. The value is {@value}.
@@ -617,18 +533,6 @@ public abstract class MappedStockItem {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -1244,8 +1148,8 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(ATTRIBUTE_MAX_STOCK_ITEM_ID)
-    @Min(ATTRIBUTE_MIN_STOCK_ITEM_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.StockItemID", schema = "Sequences",
                        sequenceName = "StockItemID",
@@ -1269,8 +1173,8 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
-    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -1280,8 +1184,8 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_COLOR_ID)
-    @Min(ATTRIBUTE_MIN_COLOR_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COLOR_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_COLOR_ID,
@@ -1290,8 +1194,8 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_UNIT_PACKAGE_ID)
-    @Min(ATTRIBUTE_MIN_UNIT_PACKAGE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PACKAGE_ID, nullable = false, insertable = false, updatable = false)
@@ -1301,8 +1205,8 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_OUTER_PACKAGE_ID)
-    @Min(ATTRIBUTE_MIN_OUTER_PACKAGE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OUTER_PACKAGE_ID, nullable = false, insertable = false, updatable = false)
@@ -1327,8 +1231,8 @@ public abstract class MappedStockItem {
     private String size;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
-    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = false, insertable = true, updatable = true)
@@ -1338,8 +1242,8 @@ public abstract class MappedStockItem {
     private Integer leadTimeDays;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_QUANTITY_PER_OUTER)
-    @Min(ATTRIBUTE_MIN_QUANTITY_PER_OUTER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY_PER_OUTER, nullable = false, insertable = true, updatable = true)
@@ -1455,8 +1359,8 @@ public abstract class MappedStockItem {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
-    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

@@ -115,18 +115,6 @@ public abstract class MappedSalesTaxRate {
     public static final String COLUMN_NAME_SALES_TAX_RATE_ID = "SalesTaxRateID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_TAX_RATE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALES_TAX_RATE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_TAX_RATE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALES_TAX_RATE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_TAX_RATE_ID} column. The
      * value is {@value}.
      */
@@ -138,18 +126,6 @@ public abstract class MappedSalesTaxRate {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STATE_PROVINCE_ID = "StateProvinceID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STATE_PROVINCE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STATE_PROVINCE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STATE_PROVINCE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STATE_PROVINCE_ID} column. The
@@ -191,18 +167,6 @@ public abstract class MappedSalesTaxRate {
      * {@value}.
      */
     public static final String COLUMN_NAME_TAX_RATE = "TaxRate";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TAX_RATE} attribute, the minimum of the
-     * {@code smallmoney} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_TAX_RATE = SqlServerConstants.SMALLMONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TAX_RATE} attribute, the maximum of the
-     * {@code smallmoney} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_TAX_RATE = SqlServerConstants.SMALLMONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TAX_RATE} column. The value is
@@ -450,8 +414,8 @@ public abstract class MappedSalesTaxRate {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SALES_TAX_RATE_ID)
-    @Min(ATTRIBUTE_MIN_SALES_TAX_RATE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_TAX_RATE_ID, nullable = false, insertable = true,
@@ -463,8 +427,8 @@ public abstract class MappedSalesTaxRate {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_STATE_PROVINCE_ID)
-    @Min(ATTRIBUTE_MIN_STATE_PROVINCE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false,
@@ -487,8 +451,8 @@ public abstract class MappedSalesTaxRate {
     private Integer taxType;
 
     // ---------------------------------------------------------------------------------------------
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_TAX_RATE)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_RATE)
+    @DecimalMax(SqlServerConstants.SMALLMONEY_MAX)
+    @DecimalMin(SqlServerConstants.SMALLMONEY_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE)

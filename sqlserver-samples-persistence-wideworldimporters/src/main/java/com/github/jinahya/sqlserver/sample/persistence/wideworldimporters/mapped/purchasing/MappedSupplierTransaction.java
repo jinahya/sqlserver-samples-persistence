@@ -138,18 +138,6 @@ public abstract class MappedSupplierTransaction {
     public static final String COLUMN_NAME_SUPPLIER_TRANSACTION_ID = "SupplierTransactionID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_TRANSACTION_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SUPPLIER_TRANSACTION_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_TRANSACTION_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SUPPLIER_TRANSACTION_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_TRANSACTION_ID} column. The value is
      * {@value}.
      */
@@ -163,18 +151,6 @@ public abstract class MappedSupplierTransaction {
     public static final String COLUMN_NAME_SUPPLIER_ID = "SupplierID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SUPPLIER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SUPPLIER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SUPPLIER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SUPPLIER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SUPPLIER_ID = "supplierId";
@@ -185,18 +161,6 @@ public abstract class MappedSupplierTransaction {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TRANSACTION_TYPE_ID = "TransactionTypeID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TRANSACTION_TYPE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TRANSACTION_TYPE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TRANSACTION_TYPE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TRANSACTION_TYPE_ID} column. The value is
@@ -212,18 +176,6 @@ public abstract class MappedSupplierTransaction {
     public static final String COLUMN_NAME_PURCHASE_ORDER_ID = "PurchaseOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PURCHASE_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PURCHASE_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PURCHASE_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PURCHASE_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PURCHASE_ORDER_ID = "purchaseOrderId";
@@ -234,18 +186,6 @@ public abstract class MappedSupplierTransaction {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PAYMENT_METHOD_ID = "PaymentMethodID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PAYMENT_METHOD_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PAYMENT_METHOD_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PAYMENT_METHOD_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PAYMENT_METHOD_ID} column. The value is {@value}.
@@ -452,18 +392,6 @@ public abstract class MappedSupplierTransaction {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -855,8 +783,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(ATTRIBUTE_MAX_SUPPLIER_TRANSACTION_ID)
-    @Min(ATTRIBUTE_MIN_SUPPLIER_TRANSACTION_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.TransactionID", schema = "Sequences",
                        sequenceName = "TransactionID",
@@ -872,8 +800,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SUPPLIER_ID)
-    @Min(ATTRIBUTE_MIN_SUPPLIER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
@@ -882,8 +810,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_TRANSACTION_TYPE_ID)
-    @Min(ATTRIBUTE_MIN_TRANSACTION_TYPE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false)
@@ -892,8 +820,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_PURCHASE_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_PURCHASE_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
@@ -903,8 +831,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_PAYMENT_METHOD_ID)
-    @Min(ATTRIBUTE_MIN_PAYMENT_METHOD_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
@@ -986,8 +914,8 @@ public abstract class MappedSupplierTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
-    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

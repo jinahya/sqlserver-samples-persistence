@@ -103,18 +103,6 @@ public abstract class MappedSalesOrder {
     public static final String COLUMN_NAME_SALES_ORDER_ID = "SalesOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALES_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALES_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_ORDER_ID = "salesOrderId";
@@ -144,18 +132,6 @@ public abstract class MappedSalesOrder {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -166,18 +142,6 @@ public abstract class MappedSalesOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WAREHOUSE_ID = "WarehouseID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WAREHOUSE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WAREHOUSE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WAREHOUSE_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WAREHOUSE_ID} column. The value is {@value}.
@@ -435,18 +399,6 @@ public abstract class MappedSalesOrder {
     public static final String COLUMN_NAME_SALES_CHANNEL_ID = "SalesChannelID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALES_CHANNEL_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_CHANNEL_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALES_CHANNEL_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_CHANNEL_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_CHANNEL_ID = "salesChannelId";
@@ -459,18 +411,6 @@ public abstract class MappedSalesOrder {
     public static final String COLUMN_NAME_STORE_ID = "StoreID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STORE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STORE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STORE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STORE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STORE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_STORE_ID = "storeId";
@@ -481,18 +421,6 @@ public abstract class MappedSalesOrder {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SALES_REP_ID = "SalesRepID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALES_REP_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALES_REP_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REP_ID} column. The value is {@value}.
@@ -1065,8 +993,8 @@ public abstract class MappedSalesOrder {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SALES_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_SALES_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true, updatable = false)
@@ -1081,8 +1009,8 @@ public abstract class MappedSalesOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -1090,8 +1018,8 @@ public abstract class MappedSalesOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_WAREHOUSE_ID)
-    @Min(ATTRIBUTE_MIN_WAREHOUSE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
@@ -1180,24 +1108,24 @@ public abstract class MappedSalesOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SALES_CHANNEL_ID)
-    @Min(ATTRIBUTE_MIN_SALES_CHANNEL_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_CHANNEL_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesChannelId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_STORE_ID)
-    @Min(ATTRIBUTE_MIN_STORE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STORE_ID, nullable = true, insertable = false, updatable = false)
     private Integer storeId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SALES_REP_ID)
-    @Min(ATTRIBUTE_MIN_SALES_REP_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_REP_ID, nullable = true, insertable = false, updatable = false)
     private Integer salesRepId;

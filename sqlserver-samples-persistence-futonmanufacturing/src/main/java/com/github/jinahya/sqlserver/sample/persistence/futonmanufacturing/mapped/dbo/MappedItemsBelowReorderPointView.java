@@ -304,18 +304,6 @@ public abstract class MappedItemsBelowReorderPointView {
     public static final String COLUMN_NAME_LEAD_TIME_DAYS = "LeadTimeDays";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LEAD_TIME_DAYS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LEAD_TIME_DAYS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LEAD_TIME_DAYS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LEAD_TIME_DAYS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_LEAD_TIME_DAYS = "leadTimeDays";
@@ -776,8 +764,8 @@ public abstract class MappedItemsBelowReorderPointView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LEAD_TIME_DAYS)
-    @Min(ATTRIBUTE_MIN_LEAD_TIME_DAYS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LEAD_TIME_DAYS, nullable = true, insertable = false, updatable = false)
     private Integer leadTimeDays;

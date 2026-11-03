@@ -93,18 +93,6 @@ public abstract class MappedScrapReason {
     public static final String COLUMN_NAME_SCRAP_REASON_ID = "ScrapReasonID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute, the minimum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SCRAP_REASON_ID = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SCRAP_REASON_ID = SqlServerConstants.SMALLINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The
      * value is {@value}.
      */
@@ -257,8 +245,8 @@ public abstract class MappedScrapReason {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SCRAP_REASON_ID)
-    @Min(ATTRIBUTE_MIN_SCRAP_REASON_ID)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = false, insertable = true,

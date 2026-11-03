@@ -116,18 +116,6 @@ public abstract class MappedSalesProductMixAnalysisView {
     public static final String COLUMN_NAME_UNIQUE_PRODUCTS = "UniqueProducts";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_PRODUCTS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_UNIQUE_PRODUCTS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_PRODUCTS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_UNIQUE_PRODUCTS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_PRODUCTS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_UNIQUE_PRODUCTS = "uniqueProducts";
@@ -138,18 +126,6 @@ public abstract class MappedSalesProductMixAnalysisView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
@@ -264,18 +240,6 @@ public abstract class MappedSalesProductMixAnalysisView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_POPULARITY_RANK = "PopularityRank";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_POPULARITY_RANK} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_POPULARITY_RANK = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_POPULARITY_RANK} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_POPULARITY_RANK = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_POPULARITY_RANK} column. The value is {@value}.
@@ -512,16 +476,16 @@ public abstract class MappedSalesProductMixAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_UNIQUE_PRODUCTS)
-    @Min(ATTRIBUTE_MIN_UNIQUE_PRODUCTS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_PRODUCTS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueProducts;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
-    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
@@ -552,8 +516,8 @@ public abstract class MappedSalesProductMixAnalysisView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_POPULARITY_RANK)
-    @Min(ATTRIBUTE_MIN_POPULARITY_RANK)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_POPULARITY_RANK, nullable = true, insertable = false, updatable = false)
     private Long popularityRank;

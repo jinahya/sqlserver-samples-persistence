@@ -89,18 +89,6 @@ public abstract class MappedVehicleTemperature {
     public static final String COLUMN_NAME_VEHICLE_TEMPERATURE_ID = "VehicleTemperatureID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_VEHICLE_TEMPERATURE_ID} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_VEHICLE_TEMPERATURE_ID = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_VEHICLE_TEMPERATURE_ID} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_VEHICLE_TEMPERATURE_ID = SqlServerConstants.BIGINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VEHICLE_TEMPERATURE_ID} column. The value is
      * {@value}.
      */
@@ -130,18 +118,6 @@ public abstract class MappedVehicleTemperature {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CHILLER_SENSOR_NUMBER = "ChillerSensorNumber";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CHILLER_SENSOR_NUMBER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CHILLER_SENSOR_NUMBER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CHILLER_SENSOR_NUMBER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CHILLER_SENSOR_NUMBER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CHILLER_SENSOR_NUMBER} column. The value is
@@ -456,8 +432,8 @@ public abstract class MappedVehicleTemperature {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_VEHICLE_TEMPERATURE_ID)
-    @Min(ATTRIBUTE_MIN_VEHICLE_TEMPERATURE_ID)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_VEHICLE_TEMPERATURE_ID, nullable = false, insertable = true, updatable = false)
@@ -476,8 +452,8 @@ public abstract class MappedVehicleTemperature {
     private String vehicleRegistration;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_CHILLER_SENSOR_NUMBER)
-    @Min(ATTRIBUTE_MIN_CHILLER_SENSOR_NUMBER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHILLER_SENSOR_NUMBER, nullable = false, insertable = true, updatable = true)

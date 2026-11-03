@@ -172,18 +172,6 @@ public abstract class MappedPurchaseOrderStatusView {
     public static final String COLUMN_NAME_DAYS_SINCE_ORDER = "DaysSinceOrder";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_ORDER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_SINCE_ORDER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_ORDER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_SINCE_ORDER = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_ORDER} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_ORDER = "daysSinceOrder";
@@ -196,18 +184,6 @@ public abstract class MappedPurchaseOrderStatusView {
     public static final String COLUMN_NAME_DAYS_VARIANCE = "DaysVariance";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_VARIANCE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_VARIANCE = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_VARIANCE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_VARIANCE = "daysVariance";
@@ -218,18 +194,6 @@ public abstract class MappedPurchaseOrderStatusView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LINE_ITEMS = "LineItems";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LINE_ITEMS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LINE_ITEMS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_ITEMS} column. The value is {@value}.
@@ -803,24 +767,24 @@ public abstract class MappedPurchaseOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_SINCE_ORDER)
-    @Min(ATTRIBUTE_MIN_DAYS_SINCE_ORDER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_ORDER, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceOrder;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_VARIANCE)
-    @Min(ATTRIBUTE_MIN_DAYS_VARIANCE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_VARIANCE, nullable = true, insertable = false, updatable = false)
     private Integer daysVariance;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LINE_ITEMS)
-    @Min(ATTRIBUTE_MIN_LINE_ITEMS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer lineItems;

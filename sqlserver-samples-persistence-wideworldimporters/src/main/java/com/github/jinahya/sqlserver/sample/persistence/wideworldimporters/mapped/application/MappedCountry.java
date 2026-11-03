@@ -122,18 +122,6 @@ public abstract class MappedCountry {
     public static final String COLUMN_NAME_COUNTRY_ID = "CountryID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COUNTRY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COUNTRY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COUNTRY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COUNTRY_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COUNTRY_ID = "countryId";
@@ -197,18 +185,6 @@ public abstract class MappedCountry {
     public static final String COLUMN_NAME_ISO_NUMERIC_CODE = "IsoNumericCode";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ISO_NUMERIC_CODE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ISO_NUMERIC_CODE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ISO_NUMERIC_CODE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ISO_NUMERIC_CODE = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ISO_NUMERIC_CODE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ISO_NUMERIC_CODE = "isoNumericCode";
@@ -236,18 +212,6 @@ public abstract class MappedCountry {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LATEST_RECORDED_POPULATION = "LatestRecordedPopulation";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_LATEST_RECORDED_POPULATION = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LATEST_RECORDED_POPULATION} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_LATEST_RECORDED_POPULATION = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LATEST_RECORDED_POPULATION} column. The value is
@@ -324,18 +288,6 @@ public abstract class MappedCountry {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -713,8 +665,8 @@ public abstract class MappedCountry {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(ATTRIBUTE_MAX_COUNTRY_ID)
-    @Min(ATTRIBUTE_MIN_COUNTRY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.CountryID", schema = "Sequences",
                        sequenceName = "CountryID",
@@ -752,8 +704,8 @@ public abstract class MappedCountry {
     private String isoAlpha3Code;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_ISO_NUMERIC_CODE)
-    @Min(ATTRIBUTE_MIN_ISO_NUMERIC_CODE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ISO_NUMERIC_CODE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ISO_NUMERIC_CODE,
@@ -769,8 +721,8 @@ public abstract class MappedCountry {
     private String countryType;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_LATEST_RECORDED_POPULATION)
-    @Min(ATTRIBUTE_MIN_LATEST_RECORDED_POPULATION)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
@@ -812,8 +764,8 @@ public abstract class MappedCountry {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
-    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

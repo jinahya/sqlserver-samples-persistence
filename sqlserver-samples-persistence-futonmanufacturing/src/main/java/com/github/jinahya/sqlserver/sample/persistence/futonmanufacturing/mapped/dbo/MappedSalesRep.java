@@ -74,18 +74,6 @@ public abstract class MappedSalesRep {
     public static final String COLUMN_NAME_SALES_REP_ID = "SalesRepID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALES_REP_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_REP_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALES_REP_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_REP_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_SALES_REP_ID = "salesRepId";
@@ -181,18 +169,6 @@ public abstract class MappedSalesRep {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TERRITORY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TERRITORY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value is {@value}.
@@ -462,8 +438,8 @@ public abstract class MappedSalesRep {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_SALES_REP_ID)
-    @Min(ATTRIBUTE_MIN_SALES_REP_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_REP_ID, nullable = false, insertable = true, updatable = false)
@@ -504,8 +480,8 @@ public abstract class MappedSalesRep {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_TERRITORY_ID)
-    @Min(ATTRIBUTE_MIN_TERRITORY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     private Integer territoryId;

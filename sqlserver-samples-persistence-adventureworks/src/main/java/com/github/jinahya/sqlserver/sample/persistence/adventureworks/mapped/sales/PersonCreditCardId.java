@@ -42,35 +42,11 @@ import java.util.Objects;
 public class PersonCreditCardId {
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the
      * {@value MappedPersonCreditCard#COLUMN_NAME_BUSINESS_ENTITY_ID} column. The value is
      * {@value}.
      */
     public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CREDIT_CARD_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CREDIT_CARD_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CREDIT_CARD_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the
@@ -161,10 +137,10 @@ public class PersonCreditCardId {
      */
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_CREDIT_CARD_ID)
-    @Min(ATTRIBUTE_MIN_CREDIT_CARD_ID)
-    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
-    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedPersonCreditCard.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false,
             insertable = true, updatable = false)

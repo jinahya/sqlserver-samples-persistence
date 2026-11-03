@@ -394,18 +394,6 @@ public abstract class MappedProductionOrderStatusView {
     public static final String COLUMN_NAME_DAYS_VARIANCE = "DaysVariance";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_VARIANCE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_VARIANCE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_VARIANCE = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_VARIANCE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_VARIANCE = "daysVariance";
@@ -433,18 +421,6 @@ public abstract class MappedProductionOrderStatusView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRIORITY = "Priority";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRIORITY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRIORITY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRIORITY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRIORITY} column. The value is {@value}.
@@ -1033,8 +1009,8 @@ public abstract class MappedProductionOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_VARIANCE)
-    @Min(ATTRIBUTE_MIN_DAYS_VARIANCE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_VARIANCE, nullable = true, insertable = false, updatable = false)
     private Integer daysVariance;
@@ -1049,8 +1025,8 @@ public abstract class MappedProductionOrderStatusView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_PRIORITY)
-    @Min(ATTRIBUTE_MIN_PRIORITY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRIORITY, nullable = true, insertable = false, updatable = false)
     private Integer priority;

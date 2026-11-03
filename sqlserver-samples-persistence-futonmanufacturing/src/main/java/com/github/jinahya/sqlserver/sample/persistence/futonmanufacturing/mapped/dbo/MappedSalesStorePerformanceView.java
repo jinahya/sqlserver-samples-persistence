@@ -168,18 +168,6 @@ public abstract class MappedSalesStorePerformanceView {
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_ORDERS = "totalOrders";
@@ -190,18 +178,6 @@ public abstract class MappedSalesStorePerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_UNIQUE_CUSTOMERS = "UniqueCustomers";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_UNIQUE_CUSTOMERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_UNIQUE_CUSTOMERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_UNIQUE_CUSTOMERS} column. The value is {@value}.
@@ -352,18 +328,6 @@ public abstract class MappedSalesStorePerformanceView {
     public static final String COLUMN_NAME_COMPLETED_ORDERS = "CompletedOrders";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPLETED_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COMPLETED_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPLETED_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COMPLETED_ORDERS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPLETED_ORDERS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMPLETED_ORDERS = "completedOrders";
@@ -432,18 +396,6 @@ public abstract class MappedSalesStorePerformanceView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_ACTIVE = "DaysActive";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_ACTIVE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_ACTIVE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_ACTIVE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_ACTIVE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_ACTIVE} column. The value is {@value}.
@@ -954,16 +906,16 @@ public abstract class MappedSalesStorePerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
-    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_UNIQUE_CUSTOMERS)
-    @Min(ATTRIBUTE_MIN_UNIQUE_CUSTOMERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_UNIQUE_CUSTOMERS, nullable = true, insertable = false, updatable = false)
     private Integer uniqueCustomers;
@@ -1002,8 +954,8 @@ public abstract class MappedSalesStorePerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_COMPLETED_ORDERS)
-    @Min(ATTRIBUTE_MIN_COMPLETED_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_COMPLETED_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer completedOrders;
@@ -1030,8 +982,8 @@ public abstract class MappedSalesStorePerformanceView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_ACTIVE)
-    @Min(ATTRIBUTE_MIN_DAYS_ACTIVE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_ACTIVE, nullable = true, insertable = false, updatable = false)
     private Integer daysActive;

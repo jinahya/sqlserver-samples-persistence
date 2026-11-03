@@ -102,18 +102,6 @@ public abstract class MappedLocation {
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.SMALLINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
      * is {@value}.
      */
@@ -151,12 +139,6 @@ public abstract class MappedLocation {
      * value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_COST_RATE = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COST_RATE} attribute, the maximum of the
-     * {@code smallmoney} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_COST_RATE = SqlServerConstants.SMALLMONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COST_RATE} column. The value is
@@ -374,8 +356,8 @@ public abstract class MappedLocation {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_LOCATION_ID)
-    @Min(ATTRIBUTE_MIN_LOCATION_ID)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false)
@@ -394,7 +376,7 @@ public abstract class MappedLocation {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Location_CostRate: ([CostRate]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_COST_RATE)
+    @DecimalMax(SqlServerConstants.SMALLMONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COST_RATE)
     @NotNull
     @Basic(optional = false)

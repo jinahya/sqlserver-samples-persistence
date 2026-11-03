@@ -84,6 +84,12 @@
       <artifactId>sqlserver-xml-schema-binding-b95f5e</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- Production.ProductModel.Instructions: Root -->
+    <dependency>
+      <groupId>io.github.jinahya</groupId>
+      <artifactId>sqlserver-xml-schema-binding-b73cae</artifactId>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>

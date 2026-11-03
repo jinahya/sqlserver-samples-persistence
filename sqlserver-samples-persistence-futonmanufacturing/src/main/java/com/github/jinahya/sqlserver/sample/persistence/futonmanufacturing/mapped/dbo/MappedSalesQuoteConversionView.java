@@ -209,18 +209,6 @@ public abstract class MappedSalesQuoteConversionView {
     public static final String COLUMN_NAME_DAYS_TO_EXPIRE = "DaysToExpire";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_EXPIRE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_TO_EXPIRE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_EXPIRE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_TO_EXPIRE = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_TO_EXPIRE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_TO_EXPIRE = "daysToExpire";
@@ -368,18 +356,6 @@ public abstract class MappedSalesQuoteConversionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DAYS_TO_CONVERT = "DaysToConvert";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_CONVERT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_TO_CONVERT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_CONVERT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_TO_CONVERT = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_TO_CONVERT} column. The value is {@value}.
@@ -835,8 +811,8 @@ public abstract class MappedSalesQuoteConversionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_TO_EXPIRE)
-    @Min(ATTRIBUTE_MIN_DAYS_TO_EXPIRE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_EXPIRE, nullable = true, insertable = false, updatable = false)
     private Integer daysToExpire;
@@ -882,8 +858,8 @@ public abstract class MappedSalesQuoteConversionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_TO_CONVERT)
-    @Min(ATTRIBUTE_MIN_DAYS_TO_CONVERT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_TO_CONVERT, nullable = true, insertable = false, updatable = false)
     private Integer daysToConvert;

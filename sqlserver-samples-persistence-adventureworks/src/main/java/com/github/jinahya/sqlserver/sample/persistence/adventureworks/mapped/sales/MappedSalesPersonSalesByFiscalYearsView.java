@@ -67,18 +67,6 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_SALES_PERSON_ID = "SalesPersonID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALES_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALES_PERSON_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_PERSON_ID} column. The
      * value is {@value}.
      */
@@ -146,18 +134,6 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_YEAR_2002 = "\"2002\"";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR_2002} attribute, the minimum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_YEAR_2002 = SqlServerConstants.MONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR_2002} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_YEAR_2002 = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2002} column. The value is
      * {@value}.
      */
@@ -171,18 +147,6 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
     public static final String COLUMN_NAME_YEAR_2003 = "\"2003\"";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR_2003} attribute, the minimum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_YEAR_2003 = SqlServerConstants.MONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR_2003} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_YEAR_2003 = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2003} column. The value is
      * {@value}.
      */
@@ -194,18 +158,6 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      * The name of the {@code money} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_YEAR_2004 = "\"2004\"";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR_2004} attribute, the minimum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_YEAR_2004 = SqlServerConstants.MONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR_2004} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_YEAR_2004 = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_2004} column. The value is
@@ -415,8 +367,8 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_SALES_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_SALES_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false,
             updatable = false)
@@ -450,24 +402,24 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_YEAR_2002)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_YEAR_2002)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
+    @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_2002, nullable = true, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     private BigDecimal year2002;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_YEAR_2003)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_YEAR_2003)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
+    @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_2003, nullable = true, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     private BigDecimal year2003;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_YEAR_2004)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_YEAR_2004)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
+    @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_2004, nullable = true, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     private BigDecimal year2004;

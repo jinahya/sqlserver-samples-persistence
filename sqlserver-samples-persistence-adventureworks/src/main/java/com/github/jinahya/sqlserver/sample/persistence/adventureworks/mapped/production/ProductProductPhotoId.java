@@ -42,34 +42,10 @@ import java.util.Objects;
 public class ProductProductPhotoId {
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the
      * {@value MappedProductProductPhoto#COLUMN_NAME_PRODUCT_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_PHOTO_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_PHOTO_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_PHOTO_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the
@@ -161,10 +137,10 @@ public class ProductProductPhotoId {
      */
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_PRODUCT_PHOTO_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_PHOTO_ID)
-    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID, nullable = false,
             insertable = true, updatable = false)

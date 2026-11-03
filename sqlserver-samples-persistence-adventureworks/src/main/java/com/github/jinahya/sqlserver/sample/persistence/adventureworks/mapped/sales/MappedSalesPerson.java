@@ -116,18 +116,6 @@ public abstract class MappedSalesPerson {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -139,18 +127,6 @@ public abstract class MappedSalesPerson {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TERRITORY_ID = "TerritoryID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TERRITORY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TERRITORY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TERRITORY_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TERRITORY_ID} column. The value
@@ -173,12 +149,6 @@ public abstract class MappedSalesPerson {
     public static final String ATTRIBUTE_DECIMAL_MIN_SALES_QUOTA_EXCLUSIVE = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_QUOTA} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_QUOTA = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_QUOTA} column. The value
      * is {@value}.
      */
@@ -197,12 +167,6 @@ public abstract class MappedSalesPerson {
      * is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_BONUS = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BONUS} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_BONUS = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BONUS} column. The value is
@@ -226,12 +190,6 @@ public abstract class MappedSalesPerson {
     public static final String ATTRIBUTE_DECIMAL_MIN_COMMISSION_PCT = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMMISSION_PCT} attribute, the maximum of the
-     * {@code smallmoney} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_COMMISSION_PCT = SqlServerConstants.SMALLMONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMMISSION_PCT} column. The
      * value is {@value}.
      */
@@ -252,12 +210,6 @@ public abstract class MappedSalesPerson {
     public static final String ATTRIBUTE_DECIMAL_MIN_SALES_YTD = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_YTD} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_YTD = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_YTD} column. The value is
      * {@value}.
      */
@@ -276,12 +228,6 @@ public abstract class MappedSalesPerson {
      * requires. The value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_SALES_LAST_YEAR = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALES_LAST_YEAR} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_SALES_LAST_YEAR = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALES_LAST_YEAR} column. The
@@ -554,8 +500,8 @@ public abstract class MappedSalesPerson {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
-    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -568,8 +514,8 @@ public abstract class MappedSalesPerson {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_TERRITORY_ID)
-    @Min(ATTRIBUTE_MIN_TERRITORY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
@@ -579,7 +525,7 @@ public abstract class MappedSalesPerson {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_SalesQuota: ([SalesQuota]>(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_QUOTA)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = true, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
@@ -588,7 +534,7 @@ public abstract class MappedSalesPerson {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_Bonus: ([Bonus]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_BONUS)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_BONUS)
     @NotNull
     @Basic(optional = false)
@@ -599,7 +545,7 @@ public abstract class MappedSalesPerson {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_CommissionPct: ([CommissionPct]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_COMMISSION_PCT)
+    @DecimalMax(SqlServerConstants.SMALLMONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COMMISSION_PCT)
     @NotNull
     @Basic(optional = false)
@@ -612,7 +558,7 @@ public abstract class MappedSalesPerson {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_SalesYTD: ([SalesYTD]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_YTD)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
@@ -623,7 +569,7 @@ public abstract class MappedSalesPerson {
 
     // ---------------------------------------------------------------------------------------------
     // CK_SalesPerson_SalesLastYear: ([SalesLastYear]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_SALES_LAST_YEAR)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_LAST_YEAR)
     @NotNull
     @Basic(optional = false)

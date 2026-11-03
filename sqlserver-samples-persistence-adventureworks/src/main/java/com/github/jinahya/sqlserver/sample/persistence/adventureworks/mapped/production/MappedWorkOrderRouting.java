@@ -80,18 +80,6 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_WORK_ORDER_ID = "WorkOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WORK_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WORK_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_ORDER_ID} column. The
      * value is {@value}.
      */
@@ -103,18 +91,6 @@ public abstract class MappedWorkOrderRouting {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -130,20 +106,6 @@ public abstract class MappedWorkOrderRouting {
     public static final String COLUMN_NAME_OPERATION_SEQUENCE = "OperationSequence";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute, the minimum of the
-     * {@code smallint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_OPERATION_SEQUENCE = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_OPERATION_SEQUENCE} attribute, the maximum of the
-     * {@code smallint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_OPERATION_SEQUENCE = SqlServerConstants.SMALLINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OPERATION_SEQUENCE} column. The
      * value is {@value}.
      */
@@ -155,18 +117,6 @@ public abstract class MappedWorkOrderRouting {
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
@@ -278,12 +228,6 @@ public abstract class MappedWorkOrderRouting {
     public static final String ATTRIBUTE_DECIMAL_MIN_PLANNED_COST_EXCLUSIVE = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PLANNED_COST} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_PLANNED_COST = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PLANNED_COST} column. The value
      * is {@value}.
      */
@@ -302,12 +246,6 @@ public abstract class MappedWorkOrderRouting {
      * requires. The value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_ACTUAL_COST_EXCLUSIVE = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ACTUAL_COST} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_ACTUAL_COST = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACTUAL_COST} column. The value
@@ -698,8 +636,8 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_WORK_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_WORK_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true,
@@ -709,8 +647,8 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -719,8 +657,8 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_OPERATION_SEQUENCE)
-    @Min(ATTRIBUTE_MIN_OPERATION_SEQUENCE)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_OPERATION_SEQUENCE, nullable = false, insertable = true,
@@ -730,8 +668,8 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_LOCATION_ID)
-    @Min(ATTRIBUTE_MIN_LOCATION_ID)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = false, updatable = false)
@@ -775,7 +713,7 @@ public abstract class MappedWorkOrderRouting {
 
     // ---------------------------------------------------------------------------------------------
     // CK_WorkOrderRouting_PlannedCost: ([PlannedCost]>(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_PLANNED_COST)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_PLANNED_COST_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
@@ -784,7 +722,7 @@ public abstract class MappedWorkOrderRouting {
 
     // ---------------------------------------------------------------------------------------------
     // CK_WorkOrderRouting_ActualCost: ([ActualCost]>(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ACTUAL_COST)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_ACTUAL_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = true, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)

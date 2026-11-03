@@ -114,18 +114,6 @@ public abstract class MappedWorkOrder {
     public static final String COLUMN_NAME_WORK_ORDER_ID = "WorkOrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WORK_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WORK_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WORK_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_ORDER_ID} column. The
      * value is {@value}.
      */
@@ -137,18 +125,6 @@ public abstract class MappedWorkOrder {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -171,12 +147,6 @@ public abstract class MappedWorkOrder {
     public static final int ATTRIBUTE_MIN_ORDER_QTY = +1;
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_QTY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_QTY = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_QTY} column. The value is
      * {@value}.
      */
@@ -189,18 +159,6 @@ public abstract class MappedWorkOrder {
      * column. The value is {@value}.
      */
     public static final String COLUMN_NAME_STOCKED_QTY = "StockedQty";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_STOCKED_QTY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_STOCKED_QTY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STOCKED_QTY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_STOCKED_QTY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STOCKED_QTY} column. The value
@@ -221,12 +179,6 @@ public abstract class MappedWorkOrder {
      * value is {@value}.
      */
     public static final int ATTRIBUTE_MIN_SCRAPPED_QTY = 0;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SCRAPPED_QTY} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SCRAPPED_QTY = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAPPED_QTY} column. The value
@@ -279,20 +231,6 @@ public abstract class MappedWorkOrder {
      * The name of the {@code smallint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SCRAP_REASON_ID = "ScrapReasonID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute, the minimum of the
-     * {@code smallint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SCRAP_REASON_ID = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute, the maximum of the
-     * {@code smallint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SCRAP_REASON_ID = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SCRAP_REASON_ID} column. The
@@ -610,8 +548,8 @@ public abstract class MappedWorkOrder {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_WORK_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_WORK_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true,
@@ -621,8 +559,8 @@ public abstract class MappedWorkOrder {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
@@ -630,7 +568,7 @@ public abstract class MappedWorkOrder {
 
     // ---------------------------------------------------------------------------------------------
     // CK_WorkOrder_OrderQty: ([OrderQty]>(0)); int's upper bound
-    @Max(ATTRIBUTE_MAX_ORDER_QTY)
+    @Max(SqlServerConstants.INT_MAX)
     @Min(ATTRIBUTE_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
@@ -639,8 +577,8 @@ public abstract class MappedWorkOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Max(ATTRIBUTE_MAX_STOCKED_QTY)
-    @Min(ATTRIBUTE_MIN_STOCKED_QTY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCKED_QTY, nullable = false, insertable = false, updatable = false)
     @MsComputedColumn("(isnull([OrderQty]-[ScrappedQty],(0)))")
@@ -648,7 +586,7 @@ public abstract class MappedWorkOrder {
 
     // ---------------------------------------------------------------------------------------------
     // CK_WorkOrder_ScrappedQty: ([ScrappedQty]>=(0)); smallint's upper bound
-    @Max(ATTRIBUTE_MAX_SCRAPPED_QTY)
+    @Max(SqlServerConstants.SMALLINT_MAX)
     @Min(ATTRIBUTE_MIN_SCRAPPED_QTY)
     @NotNull
     @Basic(optional = false)
@@ -675,8 +613,8 @@ public abstract class MappedWorkOrder {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_SCRAP_REASON_ID)
-    @Min(ATTRIBUTE_MIN_SCRAP_REASON_ID)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = true, insertable = false,
             updatable = false)

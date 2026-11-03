@@ -21,11 +21,47 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.IndividualSurveyStringAttributeConverter;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class IndividualCustomerView_PersistenceIT
         extends _Keyless_PersistenceIT<IndividualCustomerView> {
 
     IndividualCustomerView_PersistenceIT() {
         super(IndividualCustomerView.class);
+    }
+
+    // -------------------------------------------------------------------------------- demographics
+    // the view is keyless, and read by a native query, which returns the column's text; the
+    // converter is what turns it into the IndividualSurvey the constructor takes
+    @DisplayName("the converter binds every Demographics of the view, and back")
+    @Test
+    void demographics_converter() {
+        final var converter = new IndividualSurveyStringAttributeConverter();
+        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+            @SuppressWarnings("unchecked")
+            final var texts = (List<String>) em.createNativeQuery("""
+                                                                          SELECT CONVERT(nvarchar(max), Demographics)
+                                                                          FROM Sales.vIndividualCustomer
+                                                                          WHERE Demographics IS NOT NULL""")
+                    .getResultList();
+            assertThat(texts).isNotEmpty();
+            for (final var text : texts) {
+                final var value = converter.convertToEntityAttribute(text);
+                assertThat(value).as("the value of %s", text).isNotNull();
+                final var written = converter.convertToDatabaseColumn(value);
+                assertThat(converter.convertToDatabaseColumn(
+                        converter.convertToEntityAttribute(written)))
+                        .as("the text written back of %s", text)
+                        .isEqualTo(written);
+            }
+            return null;
+        });
     }
 }

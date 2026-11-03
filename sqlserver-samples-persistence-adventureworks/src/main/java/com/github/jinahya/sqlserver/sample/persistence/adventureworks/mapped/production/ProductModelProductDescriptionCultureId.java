@@ -43,35 +43,11 @@ import java.util.Objects;
 public class ProductModelProductDescriptionCultureId {
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the
      * {@value MappedProductModelProductDescriptionCulture#COLUMN_NAME_PRODUCT_MODEL_ID} column. The
      * value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_PRODUCT_MODEL_ID = "productModelId";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_DESCRIPTION_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_DESCRIPTION_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_DESCRIPTION_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the
@@ -193,10 +169,10 @@ public class ProductModelProductDescriptionCultureId {
      */
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_PRODUCT_DESCRIPTION_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_DESCRIPTION_ID)
-    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID,
             nullable = false, insertable = true, updatable = false)

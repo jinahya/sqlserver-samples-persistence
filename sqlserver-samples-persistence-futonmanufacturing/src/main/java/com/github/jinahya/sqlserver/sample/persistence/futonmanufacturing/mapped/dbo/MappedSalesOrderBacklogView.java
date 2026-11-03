@@ -188,18 +188,6 @@ public abstract class MappedSalesOrderBacklogView {
     public static final String COLUMN_NAME_DAYS_OPEN = "DaysOpen";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_OPEN} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_OPEN = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_OPEN} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_OPEN = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_OPEN} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_OPEN = "daysOpen";
@@ -212,18 +200,6 @@ public abstract class MappedSalesOrderBacklogView {
     public static final String COLUMN_NAME_DAYS_UNTIL_DUE = "DaysUntilDue";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_DUE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_UNTIL_DUE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_UNTIL_DUE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_UNTIL_DUE = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_UNTIL_DUE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_UNTIL_DUE = "daysUntilDue";
@@ -234,18 +210,6 @@ public abstract class MappedSalesOrderBacklogView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LINE_ITEMS = "LineItems";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LINE_ITEMS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LINE_ITEMS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LINE_ITEMS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LINE_ITEMS} column. The value is {@value}.
@@ -1015,24 +979,24 @@ public abstract class MappedSalesOrderBacklogView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_OPEN)
-    @Min(ATTRIBUTE_MIN_DAYS_OPEN)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_OPEN, nullable = true, insertable = false, updatable = false)
     private Integer daysOpen;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_UNTIL_DUE)
-    @Min(ATTRIBUTE_MIN_DAYS_UNTIL_DUE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_UNTIL_DUE, nullable = true, insertable = false, updatable = false)
     private Integer daysUntilDue;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_LINE_ITEMS)
-    @Min(ATTRIBUTE_MIN_LINE_ITEMS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer lineItems;

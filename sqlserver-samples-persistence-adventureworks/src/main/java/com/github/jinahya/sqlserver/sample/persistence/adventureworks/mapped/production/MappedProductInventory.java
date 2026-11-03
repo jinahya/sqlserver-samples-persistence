@@ -108,18 +108,6 @@ public abstract class MappedProductInventory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
      * is {@value}.
      */
@@ -131,18 +119,6 @@ public abstract class MappedProductInventory {
      * The name of the {@code smallint, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LOCATION_ID = "LocationID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the minimum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LOCATION_ID = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LOCATION_ID = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LOCATION_ID} column. The value
@@ -201,18 +177,6 @@ public abstract class MappedProductInventory {
      * The name of the {@code smallint, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUANTITY = "Quantity";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the minimum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_QUANTITY = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_QUANTITY} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_QUANTITY = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUANTITY} column. The value is
@@ -473,8 +437,8 @@ public abstract class MappedProductInventory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -486,8 +450,8 @@ public abstract class MappedProductInventory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_LOCATION_ID)
-    @Min(ATTRIBUTE_MIN_LOCATION_ID)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false)
@@ -518,8 +482,8 @@ public abstract class MappedProductInventory {
     private Integer bin;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_QUANTITY)
-    @Min(ATTRIBUTE_MIN_QUANTITY)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)

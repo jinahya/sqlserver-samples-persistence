@@ -97,18 +97,6 @@ public abstract class MappedProductCostHistory {
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
      * is {@value}.
      */
@@ -153,12 +141,6 @@ public abstract class MappedProductCostHistory {
      * requires. The value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_STANDARD_COST = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_STANDARD_COST = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The
@@ -368,8 +350,8 @@ public abstract class MappedProductCostHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -394,7 +376,7 @@ public abstract class MappedProductCostHistory {
 
     // ---------------------------------------------------------------------------------------------
     // CK_ProductCostHistory_StandardCost: ([StandardCost]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_STANDARD_COST)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)

@@ -78,18 +78,6 @@ public abstract class MappedProductionCompletionSummaryView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -102,18 +90,6 @@ public abstract class MappedProductionCompletionSummaryView {
     public static final String COLUMN_NAME_MONTH = "Month";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
@@ -124,18 +100,6 @@ public abstract class MappedProductionCompletionSummaryView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WEEK = "Week";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WEEK} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WEEK = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WEEK} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WEEK = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WEEK} column. The value is {@value}.
@@ -216,18 +180,6 @@ public abstract class MappedProductionCompletionSummaryView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_NUMBER_OF_COMPLETIONS = "NumberOfCompletions";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_COMPLETIONS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_NUMBER_OF_COMPLETIONS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_COMPLETIONS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_NUMBER_OF_COMPLETIONS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_OF_COMPLETIONS} column. The value is
@@ -669,24 +621,24 @@ public abstract class MappedProductionCompletionSummaryView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_YEAR)
-    @Min(ATTRIBUTE_MIN_YEAR)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_MONTH)
-    @Min(ATTRIBUTE_MIN_MONTH)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_WEEK)
-    @Min(ATTRIBUTE_MIN_WEEK)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WEEK, nullable = true, insertable = false, updatable = false)
     private Integer week;
@@ -724,8 +676,8 @@ public abstract class MappedProductionCompletionSummaryView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_NUMBER_OF_COMPLETIONS)
-    @Min(ATTRIBUTE_MIN_NUMBER_OF_COMPLETIONS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_COMPLETIONS, nullable = true, insertable = false, updatable = false)
     private Integer numberOfCompletions;

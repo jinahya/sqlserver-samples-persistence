@@ -153,18 +153,6 @@ public abstract class MappedErrorLog
     public static final String COLUMN_NAME_ERROR_NUMBER = "ErrorNumber";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ERROR_NUMBER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ERROR_NUMBER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ERROR_NUMBER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ERROR_NUMBER = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_NUMBER} column. The value
      * is {@value}.
      */
@@ -178,18 +166,6 @@ public abstract class MappedErrorLog
     public static final String COLUMN_NAME_ERROR_SEVERITY = "ErrorSeverity";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ERROR_SEVERITY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ERROR_SEVERITY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ERROR_SEVERITY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ERROR_SEVERITY = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_SEVERITY} column. The
      * value is {@value}.
      */
@@ -201,18 +177,6 @@ public abstract class MappedErrorLog
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ERROR_STATE = "ErrorState";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ERROR_STATE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ERROR_STATE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ERROR_STATE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ERROR_STATE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_STATE} column. The value
@@ -244,18 +208,6 @@ public abstract class MappedErrorLog
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ERROR_LINE = "ErrorLine";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ERROR_LINE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ERROR_LINE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ERROR_LINE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ERROR_LINE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ERROR_LINE} column. The value
@@ -536,8 +488,8 @@ public abstract class MappedErrorLog
     private String userName;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_ERROR_NUMBER)
-    @Min(ATTRIBUTE_MIN_ERROR_NUMBER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ERROR_NUMBER, nullable = false, insertable = true, updatable = true)
@@ -546,8 +498,8 @@ public abstract class MappedErrorLog
     private Integer errorNumber;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_ERROR_SEVERITY)
-    @Min(ATTRIBUTE_MIN_ERROR_SEVERITY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_SEVERITY, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ERROR_SEVERITY,
@@ -555,8 +507,8 @@ public abstract class MappedErrorLog
     private Integer errorSeverity;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_ERROR_STATE)
-    @Min(ATTRIBUTE_MIN_ERROR_STATE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_STATE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ERROR_STATE,
@@ -574,8 +526,8 @@ public abstract class MappedErrorLog
     private String errorProcedure;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_ERROR_LINE)
-    @Min(ATTRIBUTE_MIN_ERROR_LINE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_LINE, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_ERROR_LINE,

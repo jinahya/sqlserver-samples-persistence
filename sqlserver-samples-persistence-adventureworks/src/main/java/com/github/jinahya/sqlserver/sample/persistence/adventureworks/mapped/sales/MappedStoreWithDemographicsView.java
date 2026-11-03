@@ -65,18 +65,6 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_BUSINESS_ENTITY_ID = "BusinessEntityID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BUSINESS_ENTITY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BUSINESS_ENTITY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BUSINESS_ENTITY_ID} column. The
      * value is {@value}.
      */
@@ -108,18 +96,6 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_ANNUAL_SALES = "AnnualSales";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ANNUAL_SALES} attribute, the minimum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_ANNUAL_SALES = SqlServerConstants.MONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ANNUAL_SALES} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_ANNUAL_SALES = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_SALES} column. The value
      * is {@value}.
      */
@@ -131,18 +107,6 @@ public abstract class MappedStoreWithDemographicsView {
      * The name of the {@code money} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ANNUAL_REVENUE = "AnnualRevenue";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ANNUAL_REVENUE} attribute, the minimum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MIN_ANNUAL_REVENUE = SqlServerConstants.MONEY_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ANNUAL_REVENUE} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_ANNUAL_REVENUE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ANNUAL_REVENUE} column. The
@@ -194,18 +158,6 @@ public abstract class MappedStoreWithDemographicsView {
     public static final String COLUMN_NAME_YEAR_OPENED = "YearOpened";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR_OPENED} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_YEAR_OPENED = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR_OPENED} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_YEAR_OPENED = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR_OPENED} column. The value
      * is {@value}.
      */
@@ -235,18 +187,6 @@ public abstract class MappedStoreWithDemographicsView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_SQUARE_FEET = "SquareFeet";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SQUARE_FEET} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SQUARE_FEET = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SQUARE_FEET} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SQUARE_FEET = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SQUARE_FEET} column. The value
@@ -296,18 +236,6 @@ public abstract class MappedStoreWithDemographicsView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_NUMBER_EMPLOYEES = "NumberEmployees";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_NUMBER_EMPLOYEES} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_NUMBER_EMPLOYEES = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_NUMBER_EMPLOYEES} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_NUMBER_EMPLOYEES = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_EMPLOYEES} column. The
@@ -626,8 +554,8 @@ public abstract class MappedStoreWithDemographicsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_BUSINESS_ENTITY_ID)
-    @Min(ATTRIBUTE_MIN_BUSINESS_ENTITY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
@@ -645,16 +573,16 @@ public abstract class MappedStoreWithDemographicsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ANNUAL_SALES)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ANNUAL_SALES)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
+    @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_SALES, nullable = true, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     private BigDecimal annualSales;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_ANNUAL_REVENUE)
-    @DecimalMin(ATTRIBUTE_DECIMAL_MIN_ANNUAL_REVENUE)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
+    @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ANNUAL_REVENUE, nullable = true, insertable = false,
             updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
@@ -678,8 +606,8 @@ public abstract class MappedStoreWithDemographicsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_YEAR_OPENED)
-    @Min(ATTRIBUTE_MIN_YEAR_OPENED)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR_OPENED, nullable = true, insertable = false, updatable = false)
     private Integer yearOpened;
@@ -694,8 +622,8 @@ public abstract class MappedStoreWithDemographicsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_SQUARE_FEET)
-    @Min(ATTRIBUTE_MIN_SQUARE_FEET)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SQUARE_FEET, nullable = true, insertable = false, updatable = false)
     private Integer squareFeet;
@@ -718,8 +646,8 @@ public abstract class MappedStoreWithDemographicsView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_NUMBER_EMPLOYEES)
-    @Min(ATTRIBUTE_MIN_NUMBER_EMPLOYEES)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_EMPLOYEES, nullable = true, insertable = false,
             updatable = false)

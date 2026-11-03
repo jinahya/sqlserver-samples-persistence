@@ -119,18 +119,6 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_BILL_OF_MATERIALS_ID = "BillOfMaterialsID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BILL_OF_MATERIALS_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BILL_OF_MATERIALS_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BILL_OF_MATERIALS_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BILL_OF_MATERIALS_ID} column.
      * The value is {@value}.
      */
@@ -144,18 +132,6 @@ public abstract class MappedBillOfMaterials {
     public static final String COLUMN_NAME_PRODUCT_ASSEMBLY_ID = "ProductAssemblyID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ASSEMBLY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ASSEMBLY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ASSEMBLY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ASSEMBLY_ID} column.
      * The value is {@value}.
      */
@@ -167,18 +143,6 @@ public abstract class MappedBillOfMaterials {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_COMPONENT_ID = "ComponentID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COMPONENT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPONENT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COMPONENT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPONENT_ID} column. The value
@@ -245,12 +209,6 @@ public abstract class MappedBillOfMaterials {
      * requires. The value is {@value}.
      */
     public static final int ATTRIBUTE_MIN_BOM_LEVEL = 0;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BOM_LEVEL} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BOM_LEVEL = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BOM_LEVEL} column. The value is
@@ -637,8 +595,8 @@ public abstract class MappedBillOfMaterials {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_BILL_OF_MATERIALS_ID)
-    @Min(ATTRIBUTE_MIN_BILL_OF_MATERIALS_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID, nullable = false, insertable = true,
@@ -650,8 +608,8 @@ public abstract class MappedBillOfMaterials {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_PRODUCT_ASSEMBLY_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ASSEMBLY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID, nullable = true, insertable = false,
             updatable = false)
@@ -663,8 +621,8 @@ public abstract class MappedBillOfMaterials {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_COMPONENT_ID)
-    @Min(ATTRIBUTE_MIN_COMPONENT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMPONENT_ID, nullable = false, insertable = false,
@@ -706,7 +664,7 @@ public abstract class MappedBillOfMaterials {
     // CK_BillOfMaterials_BOMLevel, of the table: 0 for an assembly with no ProductAssemblyID, 1
     // or more for any other;
     // smallint's upper bound
-    @Max(ATTRIBUTE_MAX_BOM_LEVEL)
+    @Max(SqlServerConstants.SMALLINT_MAX)
     @Min(ATTRIBUTE_MIN_BOM_LEVEL)
     @NotNull
     @Basic(optional = false)

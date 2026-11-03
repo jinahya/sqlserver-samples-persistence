@@ -151,18 +151,6 @@ public abstract class MappedDocument {
     public static final String COLUMN_NAME_DOCUMENT_LEVEL = "DocumentLevel";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute, the minimum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DOCUMENT_LEVEL = SqlServerConstants.SMALLINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DOCUMENT_LEVEL} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DOCUMENT_LEVEL = SqlServerConstants.SMALLINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DOCUMENT_LEVEL} column. The
      * value is {@value}.
      */
@@ -192,18 +180,6 @@ public abstract class MappedDocument {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_OWNER = "Owner";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_OWNER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_OWNER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_OWNER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_OWNER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_OWNER} column. The value is
@@ -284,18 +260,6 @@ public abstract class MappedDocument {
      * The name of the {@code int, DEFAULT ((0)), NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_CHANGE_NUMBER = "ChangeNumber";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CHANGE_NUMBER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CHANGE_NUMBER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CHANGE_NUMBER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CHANGE_NUMBER} column. The
@@ -758,8 +722,8 @@ public abstract class MappedDocument {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
-    @Max(ATTRIBUTE_MAX_DOCUMENT_LEVEL)
-    @Min(ATTRIBUTE_MIN_DOCUMENT_LEVEL)
+    @Max(SqlServerConstants.SMALLINT_MAX)
+    @Min(SqlServerConstants.SMALLINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_LEVEL, nullable = true, insertable = false,
             updatable = false)
@@ -780,8 +744,8 @@ public abstract class MappedDocument {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_OWNER)
-    @Min(ATTRIBUTE_MIN_OWNER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_OWNER, nullable = false, insertable = false, updatable = false)
@@ -829,8 +793,8 @@ public abstract class MappedDocument {
     private String revision;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_CHANGE_NUMBER)
-    @Min(ATTRIBUTE_MIN_CHANGE_NUMBER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CHANGE_NUMBER, nullable = false, insertable = true, updatable = true)

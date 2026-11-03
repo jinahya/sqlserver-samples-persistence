@@ -56,6 +56,8 @@ module com.github.jinahya.sqlserver.sample.persistence.adventureworks {
     requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b3da3e;
     // Sales.StoreSurveySchemaCollection; MappedStore returns a StoreSurvey
     requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b95f5e;
+    // Production.ManuInstructionsSchemaCollection; MappedProductModel returns its instructions as a Root
+    requires transitive io.github.jinahya.sqlserver.xml.schema.binding.b73cae;
     // Person.Person.Demographics, which the iuPerson trigger writes; MappedPerson reads it back with @Generated
     requires static org.hibernate.orm.core;
 

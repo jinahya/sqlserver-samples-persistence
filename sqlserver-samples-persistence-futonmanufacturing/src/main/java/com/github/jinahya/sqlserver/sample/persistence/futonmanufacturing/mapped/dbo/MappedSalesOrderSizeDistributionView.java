@@ -133,18 +133,6 @@ public abstract class MappedSalesOrderSizeDistributionView {
     public static final String COLUMN_NAME_ORDER_COUNT = "OrderCount";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDER_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_COUNT = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_COUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_COUNT = "orderCount";
@@ -258,18 +246,6 @@ public abstract class MappedSalesOrderSizeDistributionView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_AVG_LINE_ITEMS = "AvgLineItems";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_AVG_LINE_ITEMS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_AVG_LINE_ITEMS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_AVG_LINE_ITEMS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_AVG_LINE_ITEMS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_AVG_LINE_ITEMS} column. The value is {@value}.
@@ -571,8 +547,8 @@ public abstract class MappedSalesOrderSizeDistributionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDER_COUNT)
-    @Min(ATTRIBUTE_MIN_ORDER_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer orderCount;
@@ -603,8 +579,8 @@ public abstract class MappedSalesOrderSizeDistributionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_AVG_LINE_ITEMS)
-    @Min(ATTRIBUTE_MIN_AVG_LINE_ITEMS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_AVG_LINE_ITEMS, nullable = true, insertable = false, updatable = false)
     private Integer avgLineItems;

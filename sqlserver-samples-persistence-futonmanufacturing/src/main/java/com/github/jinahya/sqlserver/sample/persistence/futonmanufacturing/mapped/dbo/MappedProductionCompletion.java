@@ -81,18 +81,6 @@ public abstract class MappedProductionCompletion {
     public static final String COLUMN_NAME_COMPLETION_ID = "CompletionID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_COMPLETION_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_COMPLETION_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_COMPLETION_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_COMPLETION_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_COMPLETION_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_COMPLETION_ID = "completionId";
@@ -103,18 +91,6 @@ public abstract class MappedProductionCompletion {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCTION_ORDER_ID = "ProductionOrderID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCTION_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCTION_ORDER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCTION_ORDER_ID} column. The value is
@@ -208,18 +184,6 @@ public abstract class MappedProductionCompletion {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_WORK_CENTER_ID = "WorkCenterID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_WORK_CENTER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_WORK_CENTER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_WORK_CENTER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_WORK_CENTER_ID} column. The value is {@value}.
@@ -476,8 +440,8 @@ public abstract class MappedProductionCompletion {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_COMPLETION_ID)
-    @Min(ATTRIBUTE_MIN_COMPLETION_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_COMPLETION_ID, nullable = false, insertable = true, updatable = false)
@@ -485,8 +449,8 @@ public abstract class MappedProductionCompletion {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_PRODUCTION_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCTION_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCTION_ORDER_ID, nullable = false, insertable = false, updatable = false)
@@ -516,8 +480,8 @@ public abstract class MappedProductionCompletion {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_WORK_CENTER_ID)
-    @Min(ATTRIBUTE_MIN_WORK_CENTER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = true, insertable = false, updatable = false)
     private Integer workCenterId;

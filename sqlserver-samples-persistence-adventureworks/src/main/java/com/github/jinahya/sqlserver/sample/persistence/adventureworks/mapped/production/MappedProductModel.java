@@ -20,11 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.ManuInstructionsStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.ProductDescriptionStringAttributeConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import io.github.jinahya.sqlserver.xml.schema.binding.b0fd0e.ProductDescription;
+import io.github.jinahya.sqlserver.xml.schema.binding.b73cae.Root;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -79,8 +81,7 @@ import java.util.UUID;
  *
  * @see <a
  *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a
- *         href="https://learn.microsoft
+ * @see <a href="https://learn.microsoft
  *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
@@ -107,18 +108,6 @@ public abstract class MappedProductModel {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The
@@ -320,7 +309,7 @@ public abstract class MappedProductModel {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
      */
-    public String getInstructions() {
+    public Root getInstructions() {
         return instructions;
     }
 
@@ -330,7 +319,7 @@ public abstract class MappedProductModel {
      *
      * @param instructions new value for {@value #ATTRIBUTE_NAME_INSTRUCTIONS} attribute.
      */
-    public void setInstructions(final String instructions) {
+    public void setInstructions(final Root instructions) {
         this.instructions = instructions;
     }
 
@@ -370,8 +359,8 @@ public abstract class MappedProductModel {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = true,
@@ -390,9 +379,9 @@ public abstract class MappedProductModel {
     private String name;
 
     // ---------------------------------------------------------------------------------------------
-    // immutable to Hibernate ORM: the description's xsd:any content is DOM elements, which equal no copy of
-    // themselves, so a value would never equal the snapshot of it, and every flush would update the row; the value
-    // is replaced, not changed in place
+    // immutable to Hibernate ORM: the description's xsd:any content is DOM elements, which equal
+    // no copy of themselves, so a value would never equal the snapshot of it, and every flush
+    // would update the row; the value is replaced, not changed in place
     @Valid
     @Convert(converter = ProductDescriptionStringAttributeConverter.class)
     @org.hibernate.annotations.Mutability(org.hibernate.type.descriptor.java.Immutability.class)
@@ -404,11 +393,13 @@ public abstract class MappedProductModel {
     private ProductDescription catalogDescription;
 
     // ---------------------------------------------------------------------------------------------
+    @Valid
+    @Convert(converter = ManuInstructionsStringAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INSTRUCTIONS, nullable = true, insertable = true, updatable = true)
     @MsDescription.Column(name = COLUMN_NAME_INSTRUCTIONS,
                           value = "Manufacturing instructions in xml format.")
-    private String instructions;
+    private Root instructions;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the

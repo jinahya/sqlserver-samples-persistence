@@ -118,8 +118,7 @@ import java.util.UUID;
  *
  * @see <a
  *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
- * @see <a
- *         href="https://learn.microsoft
+ * @see <a href="https://learn.microsoft
  *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
@@ -146,18 +145,6 @@ public abstract class MappedProduct {
      * The name of the {@code int, IDENTITY, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_ID} column. The value
@@ -260,13 +247,6 @@ public abstract class MappedProduct {
     public static final int ATTRIBUTE_MIN_SAFETY_STOCK_LEVEL = +1;
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SAFETY_STOCK_LEVEL} attribute, the maximum of the
-     * {@code smallint} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SAFETY_STOCK_LEVEL = SqlServerConstants.SMALLINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SAFETY_STOCK_LEVEL} column. The
      * value is {@value}.
      */
@@ -285,12 +265,6 @@ public abstract class MappedProduct {
      * value is {@value}.
      */
     public static final int ATTRIBUTE_MIN_REORDER_POINT = +1;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_REORDER_POINT} attribute, the maximum of the
-     * {@code smallint} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_REORDER_POINT = SqlServerConstants.SMALLINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_REORDER_POINT} column. The
@@ -313,12 +287,6 @@ public abstract class MappedProduct {
     public static final String ATTRIBUTE_DECIMAL_MIN_STANDARD_COST = "0.00";
 
     /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_STANDARD_COST} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_STANDARD_COST = SqlServerConstants.MONEY_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_STANDARD_COST} column. The
      * value is {@value}.
      */
@@ -337,12 +305,6 @@ public abstract class MappedProduct {
      * value is {@value}.
      */
     public static final String ATTRIBUTE_DECIMAL_MIN_LIST_PRICE = "0.00";
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LIST_PRICE} attribute, the maximum of the
-     * {@code money} type. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_DECIMAL_MAX_LIST_PRICE = SqlServerConstants.MONEY_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LIST_PRICE} column. The value
@@ -455,13 +417,6 @@ public abstract class MappedProduct {
      * requires. The value is {@value}.
      */
     public static final int ATTRIBUTE_MIN_DAYS_TO_MANUFACTURE = 0;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_TO_MANUFACTURE} attribute, the maximum of the
-     * {@code int} type. The value is
-     * {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_TO_MANUFACTURE = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_TO_MANUFACTURE} column.
@@ -814,18 +769,6 @@ public abstract class MappedProduct {
     public static final String COLUMN_NAME_PRODUCT_SUBCATEGORY_ID = "ProductSubcategoryID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_SUBCATEGORY_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_SUBCATEGORY_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_SUBCATEGORY_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_SUBCATEGORY_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_SUBCATEGORY_ID} column.
      * The value is {@value}.
      */
@@ -837,18 +780,6 @@ public abstract class MappedProduct {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PRODUCT_MODEL_ID = "ProductModelID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PRODUCT_MODEL_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PRODUCT_MODEL_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PRODUCT_MODEL_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PRODUCT_MODEL_ID} column. The
@@ -1541,8 +1472,8 @@ public abstract class MappedProduct {
     // not updatable: an identity column, which SQL Server does not update (error 8102); and the
     // identifier, which
     // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(ATTRIBUTE_MAX_PRODUCT_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
@@ -1597,7 +1528,7 @@ public abstract class MappedProduct {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Product_SafetyStockLevel: ([SafetyStockLevel]>(0)); smallint's upper bound
-    @Max(ATTRIBUTE_MAX_SAFETY_STOCK_LEVEL)
+    @Max(SqlServerConstants.SMALLINT_MAX)
     @Min(ATTRIBUTE_MIN_SAFETY_STOCK_LEVEL)
     @NotNull
     @Basic(optional = false)
@@ -1609,7 +1540,7 @@ public abstract class MappedProduct {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Product_ReorderPoint: ([ReorderPoint]>(0)); smallint's upper bound
-    @Max(ATTRIBUTE_MAX_REORDER_POINT)
+    @Max(SqlServerConstants.SMALLINT_MAX)
     @Min(ATTRIBUTE_MIN_REORDER_POINT)
     @NotNull
     @Basic(optional = false)
@@ -1620,21 +1551,23 @@ public abstract class MappedProduct {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Product_StandardCost: ([StandardCost]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_STANDARD_COST)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
+    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true,
+            precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_STANDARD_COST, value = "Standard cost of the product.")
     private BigDecimal standardCost;
 
     // ---------------------------------------------------------------------------------------------
     // CK_Product_ListPrice: ([ListPrice]>=(0.00))
-    @DecimalMax(ATTRIBUTE_DECIMAL_MAX_LIST_PRICE)
+    @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LIST_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
+    @Column(name = COLUMN_NAME_LIST_PRICE, nullable = false, insertable = true, updatable = true,
+            precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
     @MsDescription.Column(name = COLUMN_NAME_LIST_PRICE, value = "Selling price.")
     private BigDecimal listPrice;
 
@@ -1680,7 +1613,7 @@ public abstract class MappedProduct {
 
     // ---------------------------------------------------------------------------------------------
     // CK_Product_DaysToManufacture: ([DaysToManufacture]>=(0)); int's upper bound
-    @Max(ATTRIBUTE_MAX_DAYS_TO_MANUFACTURE)
+    @Max(SqlServerConstants.INT_MAX)
     @Min(ATTRIBUTE_MIN_DAYS_TO_MANUFACTURE)
     @NotNull
     @Basic(optional = false)
@@ -1718,8 +1651,8 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_PRODUCT_SUBCATEGORY_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_SUBCATEGORY_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID, nullable = true, insertable = false,
             updatable = false)
@@ -1731,8 +1664,8 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(ATTRIBUTE_MAX_PRODUCT_MODEL_ID)
-    @Min(ATTRIBUTE_MIN_PRODUCT_MODEL_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = true, insertable = false,
             updatable = false)

@@ -156,18 +156,6 @@ public abstract class MappedInvoice {
     public static final String COLUMN_NAME_INVOICE_ID = "InvoiceID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_INVOICE_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_INVOICE_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_INVOICE_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_INVOICE_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_INVOICE_ID = "invoiceId";
@@ -180,18 +168,6 @@ public abstract class MappedInvoice {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -202,18 +178,6 @@ public abstract class MappedInvoice {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_BILL_TO_CUSTOMER_ID = "BillToCustomerID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_BILL_TO_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_BILL_TO_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_BILL_TO_CUSTOMER_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_BILL_TO_CUSTOMER_ID} column. The value is
@@ -229,18 +193,6 @@ public abstract class MappedInvoice {
     public static final String COLUMN_NAME_ORDER_ID = "OrderID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ORDER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ORDER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ORDER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ORDER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ORDER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_ORDER_ID = "orderId";
@@ -251,18 +203,6 @@ public abstract class MappedInvoice {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_DELIVERY_METHOD_ID = "DeliveryMethodID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DELIVERY_METHOD_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DELIVERY_METHOD_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DELIVERY_METHOD_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DELIVERY_METHOD_ID} column. The value is {@value}.
@@ -277,18 +217,6 @@ public abstract class MappedInvoice {
     public static final String COLUMN_NAME_CONTACT_PERSON_ID = "ContactPersonID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CONTACT_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CONTACT_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CONTACT_PERSON_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CONTACT_PERSON_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CONTACT_PERSON_ID = "contactPersonId";
@@ -299,18 +227,6 @@ public abstract class MappedInvoice {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_ACCOUNTS_PERSON_ID = "AccountsPersonID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_ACCOUNTS_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_ACCOUNTS_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_ACCOUNTS_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_ACCOUNTS_PERSON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_ACCOUNTS_PERSON_ID} column. The value is {@value}.
@@ -325,18 +241,6 @@ public abstract class MappedInvoice {
     public static final String COLUMN_NAME_SALESPERSON_PERSON_ID = "SalespersonPersonID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_SALESPERSON_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_SALESPERSON_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_SALESPERSON_PERSON_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_SALESPERSON_PERSON_ID} column. The value is
      * {@value}.
      */
@@ -348,18 +252,6 @@ public abstract class MappedInvoice {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_PACKED_BY_PERSON_ID = "PackedByPersonID";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_PACKED_BY_PERSON_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_PACKED_BY_PERSON_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_PACKED_BY_PERSON_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_PACKED_BY_PERSON_ID = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_PACKED_BY_PERSON_ID} column. The value is
@@ -466,18 +358,6 @@ public abstract class MappedInvoice {
     public static final String COLUMN_NAME_TOTAL_DRY_ITEMS = "TotalDryItems";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_DRY_ITEMS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_DRY_ITEMS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_DRY_ITEMS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_DRY_ITEMS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_DRY_ITEMS} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_TOTAL_DRY_ITEMS = "totalDryItems";
@@ -488,18 +368,6 @@ public abstract class MappedInvoice {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_CHILLER_ITEMS = "TotalChillerItems";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_CHILLER_ITEMS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_CHILLER_ITEMS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_CHILLER_ITEMS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_CHILLER_ITEMS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_CHILLER_ITEMS} column. The value is
@@ -595,18 +463,6 @@ public abstract class MappedInvoice {
      * The name of the {@code int, NOT NULL} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_LAST_EDITED_BY = "LastEditedBy";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_LAST_EDITED_BY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_LAST_EDITED_BY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_LAST_EDITED_BY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_LAST_EDITED_BY} column. The value is {@value}.
@@ -1218,8 +1074,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(ATTRIBUTE_MAX_INVOICE_ID)
-    @Min(ATTRIBUTE_MIN_INVOICE_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Id
     @SequenceGenerator(name = "WideWorldImporters.Sequences.InvoiceID", schema = "Sequences",
                        sequenceName = "InvoiceID",
@@ -1233,8 +1089,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -1243,8 +1099,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_BILL_TO_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_BILL_TO_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -1255,8 +1111,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_ORDER_ID)
-    @Min(ATTRIBUTE_MIN_ORDER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORDER_ID, nullable = true, insertable = false, updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
@@ -1265,8 +1121,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_DELIVERY_METHOD_ID)
-    @Min(ATTRIBUTE_MIN_DELIVERY_METHOD_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
@@ -1276,8 +1132,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_CONTACT_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_CONTACT_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -1287,8 +1143,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_ACCOUNTS_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_ACCOUNTS_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -1298,8 +1154,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_SALESPERSON_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_SALESPERSON_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -1309,8 +1165,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_PACKED_BY_PERSON_ID)
-    @Min(ATTRIBUTE_MIN_PACKED_BY_PERSON_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID, nullable = false, insertable = false, updatable = false)
@@ -1377,8 +1233,8 @@ public abstract class MappedInvoice {
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_TOTAL_DRY_ITEMS)
-    @Min(ATTRIBUTE_MIN_TOTAL_DRY_ITEMS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS, nullable = false, insertable = true, updatable = true)
@@ -1388,8 +1244,8 @@ public abstract class MappedInvoice {
     private Integer totalDryItems;
 
     // ---------------------------------------------------------------------------------------------
-    @Max(ATTRIBUTE_MAX_TOTAL_CHILLER_ITEMS)
-    @Min(ATTRIBUTE_MIN_TOTAL_CHILLER_ITEMS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS, nullable = false, insertable = true, updatable = true)
@@ -1444,8 +1300,8 @@ public abstract class MappedInvoice {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(ATTRIBUTE_MAX_LAST_EDITED_BY)
-    @Min(ATTRIBUTE_MIN_LAST_EDITED_BY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

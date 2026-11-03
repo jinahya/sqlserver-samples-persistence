@@ -65,18 +65,6 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -140,18 +128,6 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final String COLUMN_NAME_RECENCY = "Recency";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_RECENCY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_RECENCY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_RECENCY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_RECENCY = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_RECENCY} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_RECENCY = "recency";
@@ -162,18 +138,6 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_FREQUENCY = "Frequency";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_FREQUENCY} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_FREQUENCY = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_FREQUENCY} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_FREQUENCY = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_FREQUENCY} column. The value is {@value}.
@@ -222,18 +186,6 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final String COLUMN_NAME_R_SCORE = "R_Score";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_R_SCORE} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_R_SCORE = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_R_SCORE} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_R_SCORE = SqlServerConstants.BIGINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_R_SCORE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_R_SCORE = "rScore";
@@ -246,18 +198,6 @@ public abstract class MappedSalesCustomerSegmentationView {
     public static final String COLUMN_NAME_F_SCORE = "F_Score";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_F_SCORE} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_F_SCORE = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_F_SCORE} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_F_SCORE = SqlServerConstants.BIGINT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_F_SCORE} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_F_SCORE = "fScore";
@@ -268,18 +208,6 @@ public abstract class MappedSalesCustomerSegmentationView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_M_SCORE = "M_Score";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_M_SCORE} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_M_SCORE = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_M_SCORE} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_M_SCORE = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_M_SCORE} column. The value is {@value}.
@@ -675,8 +603,8 @@ public abstract class MappedSalesCustomerSegmentationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -707,16 +635,16 @@ public abstract class MappedSalesCustomerSegmentationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_RECENCY)
-    @Min(ATTRIBUTE_MIN_RECENCY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_RECENCY, nullable = true, insertable = false, updatable = false)
     private Integer recency;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_FREQUENCY)
-    @Min(ATTRIBUTE_MIN_FREQUENCY)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_FREQUENCY, nullable = true, insertable = false, updatable = false)
     private Integer frequency;
@@ -731,24 +659,24 @@ public abstract class MappedSalesCustomerSegmentationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_R_SCORE)
-    @Min(ATTRIBUTE_MIN_R_SCORE)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_R_SCORE, nullable = true, insertable = false, updatable = false)
     private Long rScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_F_SCORE)
-    @Min(ATTRIBUTE_MIN_F_SCORE)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_F_SCORE, nullable = true, insertable = false, updatable = false)
     private Long fScore;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_M_SCORE)
-    @Min(ATTRIBUTE_MIN_M_SCORE)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_M_SCORE, nullable = true, insertable = false, updatable = false)
     private Long mScore;

@@ -66,18 +66,6 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final String COLUMN_NAME_CUSTOMER_ID = "CustomerID";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_ID = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_ID} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_ID = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_ID} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_CUSTOMER_ID = "customerId";
@@ -183,18 +171,6 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final String COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS = "CustomerLifetimeMonths";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_LIFETIME_MONTHS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_CUSTOMER_LIFETIME_MONTHS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_CUSTOMER_LIFETIME_MONTHS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_CUSTOMER_LIFETIME_MONTHS = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS} column. The value is
      * {@value}.
      */
@@ -206,18 +182,6 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_TOTAL_ORDERS = "TotalOrders";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_TOTAL_ORDERS = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_TOTAL_ORDERS} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_TOTAL_ORDERS = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_TOTAL_ORDERS} column. The value is {@value}.
@@ -386,18 +350,6 @@ public abstract class MappedSalesCustomerLifetimeValueView {
     public static final String COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE = "DaysSinceLastPurchase";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_PURCHASE} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_SINCE_LAST_PURCHASE = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_LAST_PURCHASE} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_SINCE_LAST_PURCHASE = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE} column. The value is
      * {@value}.
      */
@@ -461,18 +413,6 @@ public abstract class MappedSalesCustomerLifetimeValueView {
      * The name of the {@code bigint} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_VALUE_RANK = "ValueRank";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_VALUE_RANK} attribute, the minimum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MIN_VALUE_RANK = SqlServerConstants.BIGINT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_VALUE_RANK} attribute, the maximum of the
-     * {@code bigint} type. The value is {@value}.
-     */
-    public static final long ATTRIBUTE_MAX_VALUE_RANK = SqlServerConstants.BIGINT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_VALUE_RANK} column. The value is {@value}.
@@ -905,8 +845,8 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_ID)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_ID)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
@@ -956,16 +896,16 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_CUSTOMER_LIFETIME_MONTHS)
-    @Min(ATTRIBUTE_MIN_CUSTOMER_LIFETIME_MONTHS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_LIFETIME_MONTHS, nullable = true, insertable = false, updatable = false)
     private Integer customerLifetimeMonths;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_TOTAL_ORDERS)
-    @Min(ATTRIBUTE_MIN_TOTAL_ORDERS)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TOTAL_ORDERS, nullable = true, insertable = false, updatable = false)
     private Integer totalOrders;
@@ -1012,8 +952,8 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_SINCE_LAST_PURCHASE)
-    @Min(ATTRIBUTE_MIN_DAYS_SINCE_LAST_PURCHASE)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_LAST_PURCHASE, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceLastPurchase;
@@ -1036,8 +976,8 @@ public abstract class MappedSalesCustomerLifetimeValueView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_VALUE_RANK)
-    @Min(ATTRIBUTE_MIN_VALUE_RANK)
+    @Max(SqlServerConstants.BIGINT_MAX)
+    @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_VALUE_RANK, nullable = true, insertable = false, updatable = false)
     private Long valueRank;

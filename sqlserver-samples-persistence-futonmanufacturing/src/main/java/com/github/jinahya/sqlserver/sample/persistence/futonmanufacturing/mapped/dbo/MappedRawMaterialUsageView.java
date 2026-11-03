@@ -65,18 +65,6 @@ public abstract class MappedRawMaterialUsageView {
     public static final String COLUMN_NAME_YEAR = "Year";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_YEAR = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_YEAR} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_YEAR = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_YEAR} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_YEAR = "year";
@@ -89,18 +77,6 @@ public abstract class MappedRawMaterialUsageView {
     public static final String COLUMN_NAME_MONTH = "Month";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_MONTH = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_MONTH} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_MONTH = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_MONTH} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_MONTH = "month";
@@ -111,18 +87,6 @@ public abstract class MappedRawMaterialUsageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_QUARTER = "Quarter";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_QUARTER} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_QUARTER = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_QUARTER} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_QUARTER = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_QUARTER} column. The value is {@value}.
@@ -271,18 +235,6 @@ public abstract class MappedRawMaterialUsageView {
      * The name of the {@code int} column. The value is {@value}.
      */
     public static final String COLUMN_NAME_NUMBER_OF_ISSUES = "NumberOfIssues";
-
-    /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_ISSUES} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_NUMBER_OF_ISSUES = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_NUMBER_OF_ISSUES} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_NUMBER_OF_ISSUES = SqlServerConstants.INT_MAX;
 
     /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_NUMBER_OF_ISSUES} column. The value is {@value}.
@@ -683,24 +635,24 @@ public abstract class MappedRawMaterialUsageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_YEAR)
-    @Min(ATTRIBUTE_MIN_YEAR)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_YEAR, nullable = true, insertable = false, updatable = false)
     private Integer year;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_MONTH)
-    @Min(ATTRIBUTE_MIN_MONTH)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_MONTH, nullable = true, insertable = false, updatable = false)
     private Integer month;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_QUARTER)
-    @Min(ATTRIBUTE_MIN_QUARTER)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_QUARTER, nullable = true, insertable = false, updatable = false)
     private Integer quarter;
@@ -755,8 +707,8 @@ public abstract class MappedRawMaterialUsageView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_NUMBER_OF_ISSUES)
-    @Min(ATTRIBUTE_MIN_NUMBER_OF_ISSUES)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_NUMBER_OF_ISSUES, nullable = true, insertable = false, updatable = false)
     private Integer numberOfIssues;

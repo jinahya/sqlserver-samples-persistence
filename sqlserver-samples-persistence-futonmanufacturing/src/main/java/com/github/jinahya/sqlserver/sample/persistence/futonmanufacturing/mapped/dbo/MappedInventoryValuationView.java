@@ -384,18 +384,6 @@ public abstract class MappedInventoryValuationView {
     public static final String COLUMN_NAME_DAYS_SINCE_COUNT = "DaysSinceCount";
 
     /**
-     * The minimum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_COUNT} attribute, the minimum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MIN_DAYS_SINCE_COUNT = SqlServerConstants.INT_MIN;
-
-    /**
-     * The maximum value of the {@value #ATTRIBUTE_NAME_DAYS_SINCE_COUNT} attribute, the maximum of the
-     * {@code int} type. The value is {@value}.
-     */
-    public static final int ATTRIBUTE_MAX_DAYS_SINCE_COUNT = SqlServerConstants.INT_MAX;
-
-    /**
      * The name of the attribute which maps the {@value #COLUMN_NAME_DAYS_SINCE_COUNT} column. The value is {@value}.
      */
     public static final String ATTRIBUTE_NAME_DAYS_SINCE_COUNT = "daysSinceCount";
@@ -847,8 +835,8 @@ public abstract class MappedInventoryValuationView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(ATTRIBUTE_MAX_DAYS_SINCE_COUNT)
-    @Min(ATTRIBUTE_MIN_DAYS_SINCE_COUNT)
+    @Max(SqlServerConstants.INT_MAX)
+    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DAYS_SINCE_COUNT, nullable = true, insertable = false, updatable = false)
     private Integer daysSinceCount;
