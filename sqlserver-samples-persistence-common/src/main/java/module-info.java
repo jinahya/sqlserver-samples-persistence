@@ -29,12 +29,14 @@ module com.github.jinahya.sqlserver.sample.persistence.common {
     requires io.github.jinahya.bit.io;
 
     requires transitive jakarta.persistence;
+    requires transitive jakarta.validation;
 
     exports com.github.jinahya.sqlserver.sample.persistence.common;
-
     opens com.github.jinahya.sqlserver.sample.persistence.common;
-    opens com.github.jinahya.sqlserver.sample.persistence.common.mapped;
-    exports com.github.jinahya.sqlserver.sample.persistence.common.mapped;
+
     exports com.github.jinahya.sqlserver.sample.persistence.common.annotation;
     opens com.github.jinahya.sqlserver.sample.persistence.common.annotation;
+
+    exports com.github.jinahya.sqlserver.sample.persistence.common.mapped;
+    opens com.github.jinahya.sqlserver.sample.persistence.common.mapped;
 }

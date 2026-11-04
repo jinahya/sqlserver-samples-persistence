@@ -78,9 +78,10 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   persisted overrides `persistRandomizedEntityInstance__` with a `@Disabled` one. `___Validation_TestUtils` holds the
   validator factory, and `selectRandomEntityInstance__` validates the row it loads with it, since Jakarta Persistence
   validates only on persist, update and remove. `_Entity_PersistenceIT.attributePaths` resolves every `ATTRIBUTE_PATH_*`
-  constant of an entity through the metamodel. The unit-test bases of the id classes, `__Test`, `__Object_Test` and
-  `_NonEntity_Test` (from `oracle-sample-schemas-persistence`), are in AdventureWorks only, the one module with
-  composite keys, and run by surefire.
+  constant of an entity through the metamodel. The unit-test bases, `__Test`, `__Object_Test`, `_NonEntity_Test` for
+  the id classes and `_Entity_Test` for the entities (from `oracle-sample-schemas-persistence`), are in AdventureWorks
+  only, the one module with composite keys, and run by surefire. An `<Entity>_Test` whose `equals` is by its key
+  suppresses EqualsVerifier's `SURROGATE_KEY`, and `STRICT_HASHCODE` where its `hashCode` is a constant.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested
   types, constructors, `java.lang.Object`, accessors, then the private fields; markers padded with dashes to column
   100.
