@@ -174,7 +174,7 @@ public abstract class MappedSalesChannel {
         if (!(obj instanceof MappedSalesChannel that)) {
             return false;
         }
-        return Objects.equals(salesChannelId, that.salesChannelId);
+        return Objects.equals(getSalesChannelId(), that.getSalesChannelId());
     }
 
     /**
@@ -185,7 +185,7 @@ public abstract class MappedSalesChannel {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(salesChannelId);
+        return Objects.hash(getSalesChannelId());
     }
 
     // ------------------------------------------------------------------------------ salesChannelId

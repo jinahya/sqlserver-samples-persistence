@@ -402,7 +402,7 @@ public abstract class MappedSpecialDeal {
         if (!(obj instanceof MappedSpecialDeal that)) {
             return false;
         }
-        return Objects.equals(specialDealId, that.specialDealId);
+        return Objects.equals(getSpecialDealId(), that.getSpecialDealId());
     }
 
     /**
@@ -413,7 +413,7 @@ public abstract class MappedSpecialDeal {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(specialDealId);
+        return Objects.hash(getSpecialDealId());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION

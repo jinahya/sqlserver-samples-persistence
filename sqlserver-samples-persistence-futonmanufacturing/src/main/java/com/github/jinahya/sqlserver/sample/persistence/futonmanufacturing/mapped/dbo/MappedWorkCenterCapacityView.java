@@ -320,7 +320,7 @@ public abstract class MappedWorkCenterCapacityView {
         if (!(obj instanceof MappedWorkCenterCapacityView that)) {
             return false;
         }
-        return Objects.equals(workCenterCode, that.workCenterCode);
+        return Objects.equals(getWorkCenterCode(), that.getWorkCenterCode());
     }
 
     /**
@@ -331,7 +331,7 @@ public abstract class MappedWorkCenterCapacityView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(workCenterCode);
+        return Objects.hash(getWorkCenterCode());
     }
 
     // ------------------------------------------------------------------------------ workCenterCode

@@ -228,7 +228,7 @@ public abstract class MappedWarehouse {
         if (!(obj instanceof MappedWarehouse that)) {
             return false;
         }
-        return Objects.equals(warehouseId, that.warehouseId);
+        return Objects.equals(getWarehouseId(), that.getWarehouseId());
     }
 
     /**
@@ -239,7 +239,7 @@ public abstract class MappedWarehouse {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(warehouseId);
+        return Objects.hash(getWarehouseId());
     }
 
     // --------------------------------------------------------------------------------- warehouseId

@@ -303,7 +303,7 @@ public abstract class MappedSupplierPerformanceView {
         if (!(obj instanceof MappedSupplierPerformanceView that)) {
             return false;
         }
-        return Objects.equals(supplierCode, that.supplierCode);
+        return Objects.equals(getSupplierCode(), that.getSupplierCode());
     }
 
     /**
@@ -314,7 +314,7 @@ public abstract class MappedSupplierPerformanceView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(supplierCode);
+        return Objects.hash(getSupplierCode());
     }
 
     // -------------------------------------------------------------------------------- supplierCode

@@ -449,7 +449,7 @@ public abstract class MappedSalesReturnsAnalysisView {
         if (!(obj instanceof MappedSalesReturnsAnalysisView that)) {
             return false;
         }
-        return Objects.equals(returnId, that.returnId);
+        return Objects.equals(getReturnId(), that.getReturnId());
     }
 
     /**
@@ -460,7 +460,7 @@ public abstract class MappedSalesReturnsAnalysisView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(returnId);
+        return Objects.hash(getReturnId());
     }
 
     // ------------------------------------------------------------------------------------ returnId

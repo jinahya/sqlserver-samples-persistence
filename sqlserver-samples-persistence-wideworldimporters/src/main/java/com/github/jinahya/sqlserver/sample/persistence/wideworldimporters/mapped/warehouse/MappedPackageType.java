@@ -198,7 +198,7 @@ public abstract class MappedPackageType {
         if (!(obj instanceof MappedPackageType that)) {
             return false;
         }
-        return Objects.equals(packageTypeId, that.packageTypeId);
+        return Objects.equals(getPackageTypeId(), that.getPackageTypeId());
     }
 
     /**
@@ -209,7 +209,7 @@ public abstract class MappedPackageType {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(packageTypeId);
+        return Objects.hash(getPackageTypeId());
     }
 
     // ------------------------------------------------------------------------------- packageTypeId

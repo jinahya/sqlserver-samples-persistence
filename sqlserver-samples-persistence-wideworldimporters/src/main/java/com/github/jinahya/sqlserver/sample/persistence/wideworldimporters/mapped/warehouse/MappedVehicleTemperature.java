@@ -255,7 +255,7 @@ public abstract class MappedVehicleTemperature {
         if (!(obj instanceof MappedVehicleTemperature that)) {
             return false;
         }
-        return Objects.equals(vehicleTemperatureId, that.vehicleTemperatureId);
+        return Objects.equals(getVehicleTemperatureId(), that.getVehicleTemperatureId());
     }
 
     /**
@@ -266,7 +266,7 @@ public abstract class MappedVehicleTemperature {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(vehicleTemperatureId);
+        return Objects.hash(getVehicleTemperatureId());
     }
 
     // ------------------------------------------------------------------------ vehicleTemperatureId

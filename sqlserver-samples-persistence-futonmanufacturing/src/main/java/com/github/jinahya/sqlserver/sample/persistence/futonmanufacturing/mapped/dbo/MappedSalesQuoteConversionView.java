@@ -410,7 +410,7 @@ public abstract class MappedSalesQuoteConversionView {
         if (!(obj instanceof MappedSalesQuoteConversionView that)) {
             return false;
         }
-        return Objects.equals(quoteNumber, that.quoteNumber);
+        return Objects.equals(getQuoteNumber(), that.getQuoteNumber());
     }
 
     /**
@@ -421,7 +421,7 @@ public abstract class MappedSalesQuoteConversionView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(quoteNumber);
+        return Objects.hash(getQuoteNumber());
     }
 
     // --------------------------------------------------------------------------------- quoteNumber

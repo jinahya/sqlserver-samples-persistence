@@ -198,7 +198,7 @@ public abstract class MappedColor {
         if (!(obj instanceof MappedColor that)) {
             return false;
         }
-        return Objects.equals(colorId, that.colorId);
+        return Objects.equals(getColorId(), that.getColorId());
     }
 
     /**
@@ -209,7 +209,7 @@ public abstract class MappedColor {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(colorId);
+        return Objects.hash(getColorId());
     }
 
     // ------------------------------------------------------------------------------------- colorId

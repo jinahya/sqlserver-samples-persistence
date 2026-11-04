@@ -38,6 +38,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>nl.jqno.equalsverifier</groupId>
+      <artifactId>equalsverifier-nodep</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk-platform-logging</artifactId>
       <scope>test</scope>
@@ -53,6 +58,27 @@
 
   <build>
     <plugins>
+      <!--
+        The tests are compiled patched into the module, which does not read java.desktop; __Object_Test introspects
+        the accessors with java.beans.
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-testCompile</id>
+            <configuration>
+              <compilerArgs combine.children="append">
+                <arg>--add-modules</arg>
+                <arg>java.desktop</arg>
+                <arg>--add-reads</arg>
+                <arg>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters=java.desktop</arg>
+              </compilerArgs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <!--
         With src/main/java/module-info.java the tests are compiled patched into the module. Run on the module path, the
         patched tests would have to be granted a read of every named test library one by one; they run on the class path

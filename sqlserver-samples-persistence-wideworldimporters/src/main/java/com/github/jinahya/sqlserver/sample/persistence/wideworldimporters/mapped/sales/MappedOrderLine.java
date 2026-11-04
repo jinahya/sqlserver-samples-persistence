@@ -342,7 +342,7 @@ public abstract class MappedOrderLine {
         if (!(obj instanceof MappedOrderLine that)) {
             return false;
         }
-        return Objects.equals(orderLineId, that.orderLineId);
+        return Objects.equals(getOrderLineId(), that.getOrderLineId());
     }
 
     /**
@@ -353,7 +353,7 @@ public abstract class MappedOrderLine {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(orderLineId);
+        return Objects.hash(getOrderLineId());
     }
 
     // --------------------------------------------------------------------------------- orderLineId

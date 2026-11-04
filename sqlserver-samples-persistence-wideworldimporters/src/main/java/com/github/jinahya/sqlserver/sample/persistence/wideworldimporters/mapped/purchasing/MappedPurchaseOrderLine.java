@@ -331,7 +331,7 @@ public abstract class MappedPurchaseOrderLine {
         if (!(obj instanceof MappedPurchaseOrderLine that)) {
             return false;
         }
-        return Objects.equals(purchaseOrderLineId, that.purchaseOrderLineId);
+        return Objects.equals(getPurchaseOrderLineId(), that.getPurchaseOrderLineId());
     }
 
     /**
@@ -342,7 +342,7 @@ public abstract class MappedPurchaseOrderLine {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(purchaseOrderLineId);
+        return Objects.hash(getPurchaseOrderLineId());
     }
 
     // ------------------------------------------------------------------------- purchaseOrderLineId

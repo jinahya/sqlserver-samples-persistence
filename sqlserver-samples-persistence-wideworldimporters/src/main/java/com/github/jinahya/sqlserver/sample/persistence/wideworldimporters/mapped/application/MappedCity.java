@@ -245,7 +245,7 @@ public abstract class MappedCity {
         if (!(obj instanceof MappedCity that)) {
             return false;
         }
-        return Objects.equals(cityId, that.cityId);
+        return Objects.equals(getCityId(), that.getCityId());
     }
 
     /**
@@ -256,7 +256,7 @@ public abstract class MappedCity {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(cityId);
+        return Objects.hash(getCityId());
     }
 
     // -------------------------------------------------------------------------------------- cityId

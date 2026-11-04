@@ -391,7 +391,7 @@ public abstract class MappedItem {
         if (!(obj instanceof MappedItem that)) {
             return false;
         }
-        return Objects.equals(itemId, that.itemId);
+        return Objects.equals(getItemId(), that.getItemId());
     }
 
     /**
@@ -402,7 +402,7 @@ public abstract class MappedItem {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(itemId);
+        return Objects.hash(getItemId());
     }
 
     // -------------------------------------------------------------------------------------- itemId

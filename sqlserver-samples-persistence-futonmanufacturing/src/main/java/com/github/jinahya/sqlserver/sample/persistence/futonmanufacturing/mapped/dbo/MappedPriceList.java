@@ -199,7 +199,7 @@ public abstract class MappedPriceList {
         if (!(obj instanceof MappedPriceList that)) {
             return false;
         }
-        return Objects.equals(priceListId, that.priceListId);
+        return Objects.equals(getPriceListId(), that.getPriceListId());
     }
 
     /**
@@ -210,7 +210,7 @@ public abstract class MappedPriceList {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(priceListId);
+        return Objects.hash(getPriceListId());
     }
 
     // --------------------------------------------------------------------------------- priceListId

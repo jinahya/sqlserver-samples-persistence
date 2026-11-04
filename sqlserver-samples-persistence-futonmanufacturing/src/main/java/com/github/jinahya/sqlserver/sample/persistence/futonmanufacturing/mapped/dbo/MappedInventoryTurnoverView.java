@@ -460,7 +460,7 @@ public abstract class MappedInventoryTurnoverView {
         if (!(obj instanceof MappedInventoryTurnoverView that)) {
             return false;
         }
-        return Objects.equals(itemCode, that.itemCode);
+        return Objects.equals(getItemCode(), that.getItemCode());
     }
 
     /**
@@ -471,7 +471,7 @@ public abstract class MappedInventoryTurnoverView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(itemCode);
+        return Objects.hash(getItemCode());
     }
 
     // ------------------------------------------------------------------------------------ itemCode

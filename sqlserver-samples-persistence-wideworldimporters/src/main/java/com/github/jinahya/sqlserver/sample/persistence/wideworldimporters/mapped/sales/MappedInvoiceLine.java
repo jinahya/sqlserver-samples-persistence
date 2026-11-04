@@ -420,7 +420,7 @@ public abstract class MappedInvoiceLine {
         if (!(obj instanceof MappedInvoiceLine that)) {
             return false;
         }
-        return Objects.equals(invoiceLineId, that.invoiceLineId);
+        return Objects.equals(getInvoiceLineId(), that.getInvoiceLineId());
     }
 
     /**
@@ -431,7 +431,7 @@ public abstract class MappedInvoiceLine {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(invoiceLineId);
+        return Objects.hash(getInvoiceLineId());
     }
 
     // ------------------------------------------------------------------------------- invoiceLineId

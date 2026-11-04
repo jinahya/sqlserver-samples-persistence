@@ -471,7 +471,7 @@ public abstract class MappedSalesRepPerformanceView {
         if (!(obj instanceof MappedSalesRepPerformanceView that)) {
             return false;
         }
-        return Objects.equals(employeeCode, that.employeeCode);
+        return Objects.equals(getEmployeeCode(), that.getEmployeeCode());
     }
 
     /**
@@ -482,7 +482,7 @@ public abstract class MappedSalesRepPerformanceView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(employeeCode);
+        return Objects.hash(getEmployeeCode());
     }
 
     // -------------------------------------------------------------------------------- employeeCode

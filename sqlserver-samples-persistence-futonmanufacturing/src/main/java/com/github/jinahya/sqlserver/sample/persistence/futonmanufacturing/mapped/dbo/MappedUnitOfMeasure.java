@@ -149,7 +149,7 @@ public abstract class MappedUnitOfMeasure {
         if (!(obj instanceof MappedUnitOfMeasure that)) {
             return false;
         }
-        return Objects.equals(unitId, that.unitId);
+        return Objects.equals(getUnitId(), that.getUnitId());
     }
 
     /**
@@ -160,7 +160,7 @@ public abstract class MappedUnitOfMeasure {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(unitId);
+        return Objects.hash(getUnitId());
     }
 
     // -------------------------------------------------------------------------------------- unitId

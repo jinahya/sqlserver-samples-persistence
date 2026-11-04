@@ -211,7 +211,7 @@ public abstract class MappedProductionOrderMaterial {
         if (!(obj instanceof MappedProductionOrderMaterial that)) {
             return false;
         }
-        return Objects.equals(prodOrderMaterialId, that.prodOrderMaterialId);
+        return Objects.equals(getProdOrderMaterialId(), that.getProdOrderMaterialId());
     }
 
     /**
@@ -222,7 +222,7 @@ public abstract class MappedProductionOrderMaterial {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(prodOrderMaterialId);
+        return Objects.hash(getProdOrderMaterialId());
     }
 
     // ------------------------------------------------------------------------- prodOrderMaterialId

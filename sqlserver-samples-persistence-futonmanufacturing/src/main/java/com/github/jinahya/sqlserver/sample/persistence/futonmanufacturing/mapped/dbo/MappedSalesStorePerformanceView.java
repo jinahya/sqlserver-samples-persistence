@@ -486,7 +486,7 @@ public abstract class MappedSalesStorePerformanceView {
         if (!(obj instanceof MappedSalesStorePerformanceView that)) {
             return false;
         }
-        return Objects.equals(storeCode, that.storeCode);
+        return Objects.equals(getStoreCode(), that.getStoreCode());
     }
 
     /**
@@ -497,7 +497,7 @@ public abstract class MappedSalesStorePerformanceView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(storeCode);
+        return Objects.hash(getStoreCode());
     }
 
     // ----------------------------------------------------------------------------------- storeCode

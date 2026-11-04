@@ -324,7 +324,7 @@ public abstract class MappedPromotion {
         if (!(obj instanceof MappedPromotion that)) {
             return false;
         }
-        return Objects.equals(promotionId, that.promotionId);
+        return Objects.equals(getPromotionId(), that.getPromotionId());
     }
 
     /**
@@ -335,7 +335,7 @@ public abstract class MappedPromotion {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(promotionId);
+        return Objects.hash(getPromotionId());
     }
 
     // --------------------------------------------------------------------------------- promotionId

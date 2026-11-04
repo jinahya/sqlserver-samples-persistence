@@ -400,7 +400,7 @@ public abstract class MappedPurchaseOrderStatusView {
         if (!(obj instanceof MappedPurchaseOrderStatusView that)) {
             return false;
         }
-        return Objects.equals(poNumber, that.poNumber);
+        return Objects.equals(getPoNumber(), that.getPoNumber());
     }
 
     /**
@@ -411,7 +411,7 @@ public abstract class MappedPurchaseOrderStatusView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(poNumber);
+        return Objects.hash(getPoNumber());
     }
 
     // ------------------------------------------------------------------------------------ poNumber

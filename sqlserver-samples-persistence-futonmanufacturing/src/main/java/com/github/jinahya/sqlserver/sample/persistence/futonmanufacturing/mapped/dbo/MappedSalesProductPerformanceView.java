@@ -565,7 +565,7 @@ public abstract class MappedSalesProductPerformanceView {
         if (!(obj instanceof MappedSalesProductPerformanceView that)) {
             return false;
         }
-        return Objects.equals(itemCode, that.itemCode);
+        return Objects.equals(getItemCode(), that.getItemCode());
     }
 
     /**
@@ -576,7 +576,7 @@ public abstract class MappedSalesProductPerformanceView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(itemCode);
+        return Objects.hash(getItemCode());
     }
 
     // ------------------------------------------------------------------------------------ itemCode

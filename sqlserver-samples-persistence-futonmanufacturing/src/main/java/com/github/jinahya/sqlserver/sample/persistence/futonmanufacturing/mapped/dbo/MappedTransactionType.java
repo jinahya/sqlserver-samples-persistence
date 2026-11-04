@@ -150,7 +150,7 @@ public abstract class MappedTransactionType {
         if (!(obj instanceof MappedTransactionType that)) {
             return false;
         }
-        return Objects.equals(transactionTypeId, that.transactionTypeId);
+        return Objects.equals(getTransactionTypeId(), that.getTransactionTypeId());
     }
 
     /**
@@ -161,7 +161,7 @@ public abstract class MappedTransactionType {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(transactionTypeId);
+        return Objects.hash(getTransactionTypeId());
     }
 
     // --------------------------------------------------------------------------- transactionTypeId

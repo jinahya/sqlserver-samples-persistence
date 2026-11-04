@@ -410,7 +410,7 @@ public abstract class MappedSalesByTerritoryView {
         if (!(obj instanceof MappedSalesByTerritoryView that)) {
             return false;
         }
-        return Objects.equals(territoryCode, that.territoryCode);
+        return Objects.equals(getTerritoryCode(), that.getTerritoryCode());
     }
 
     /**
@@ -421,7 +421,7 @@ public abstract class MappedSalesByTerritoryView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(territoryCode);
+        return Objects.hash(getTerritoryCode());
     }
 
     // ------------------------------------------------------------------------------- territoryCode

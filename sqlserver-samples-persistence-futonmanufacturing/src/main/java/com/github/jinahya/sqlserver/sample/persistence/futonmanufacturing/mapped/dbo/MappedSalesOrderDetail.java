@@ -417,7 +417,7 @@ public abstract class MappedSalesOrderDetail {
         if (!(obj instanceof MappedSalesOrderDetail that)) {
             return false;
         }
-        return Objects.equals(soDetailId, that.soDetailId);
+        return Objects.equals(getSoDetailId(), that.getSoDetailId());
     }
 
     /**
@@ -428,7 +428,7 @@ public abstract class MappedSalesOrderDetail {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(soDetailId);
+        return Objects.hash(getSoDetailId());
     }
 
     // ---------------------------------------------------------------------------------- soDetailId

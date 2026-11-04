@@ -200,7 +200,7 @@ public abstract class MappedPaymentMethod {
         if (!(obj instanceof MappedPaymentMethod that)) {
             return false;
         }
-        return Objects.equals(paymentMethodId, that.paymentMethodId);
+        return Objects.equals(getPaymentMethodId(), that.getPaymentMethodId());
     }
 
     /**
@@ -211,7 +211,7 @@ public abstract class MappedPaymentMethod {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(paymentMethodId);
+        return Objects.hash(getPaymentMethodId());
     }
 
     // ----------------------------------------------------------------------------- paymentMethodId

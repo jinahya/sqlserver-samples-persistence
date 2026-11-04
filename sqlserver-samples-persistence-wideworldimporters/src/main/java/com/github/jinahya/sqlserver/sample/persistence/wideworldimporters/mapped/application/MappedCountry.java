@@ -364,7 +364,7 @@ public abstract class MappedCountry {
         if (!(obj instanceof MappedCountry that)) {
             return false;
         }
-        return Objects.equals(countryId, that.countryId);
+        return Objects.equals(getCountryId(), that.getCountryId());
     }
 
     /**
@@ -375,7 +375,7 @@ public abstract class MappedCountry {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(countryId);
+        return Objects.hash(getCountryId());
     }
 
     // ----------------------------------------------------------------------------------- countryId

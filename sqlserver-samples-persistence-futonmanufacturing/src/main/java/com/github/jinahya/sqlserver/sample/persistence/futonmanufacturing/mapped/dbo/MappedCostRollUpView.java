@@ -369,7 +369,7 @@ public abstract class MappedCostRollUpView {
         if (!(obj instanceof MappedCostRollUpView that)) {
             return false;
         }
-        return Objects.equals(itemCode, that.itemCode);
+        return Objects.equals(getItemCode(), that.getItemCode());
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class MappedCostRollUpView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(itemCode);
+        return Objects.hash(getItemCode());
     }
 
     // ------------------------------------------------------------------------------------ itemCode

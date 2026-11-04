@@ -312,7 +312,7 @@ public abstract class MappedStore {
         if (!(obj instanceof MappedStore that)) {
             return false;
         }
-        return Objects.equals(storeId, that.storeId);
+        return Objects.equals(getStoreId(), that.getStoreId());
     }
 
     /**
@@ -323,7 +323,7 @@ public abstract class MappedStore {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(storeId);
+        return Objects.hash(getStoreId());
     }
 
     // ------------------------------------------------------------------------------------- storeId

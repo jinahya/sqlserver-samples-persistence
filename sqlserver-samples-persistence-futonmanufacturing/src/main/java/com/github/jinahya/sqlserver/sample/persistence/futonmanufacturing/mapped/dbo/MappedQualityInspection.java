@@ -332,7 +332,7 @@ public abstract class MappedQualityInspection {
         if (!(obj instanceof MappedQualityInspection that)) {
             return false;
         }
-        return Objects.equals(inspectionId, that.inspectionId);
+        return Objects.equals(getInspectionId(), that.getInspectionId());
     }
 
     /**
@@ -343,7 +343,7 @@ public abstract class MappedQualityInspection {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(inspectionId);
+        return Objects.hash(getInspectionId());
     }
 
     // -------------------------------------------------------------------------------- inspectionId

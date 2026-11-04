@@ -217,7 +217,7 @@ public abstract class MappedColdRoomTemperature {
         if (!(obj instanceof MappedColdRoomTemperature that)) {
             return false;
         }
-        return Objects.equals(coldRoomTemperatureId, that.coldRoomTemperatureId);
+        return Objects.equals(getColdRoomTemperatureId(), that.getColdRoomTemperatureId());
     }
 
     /**
@@ -228,7 +228,7 @@ public abstract class MappedColdRoomTemperature {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(coldRoomTemperatureId);
+        return Objects.hash(getColdRoomTemperatureId());
     }
 
     // ----------------------------------------------------------------------- coldRoomTemperatureId

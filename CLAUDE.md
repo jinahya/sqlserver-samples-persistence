@@ -61,8 +61,8 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
 - **No H2, ITs only.** Each module has one persistence unit, `<database>-it`, on the database `compose.yaml` brings
   up. A test that needs the database is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`). `-common` has no
   persistence unit; its `*Test`s, run by surefire, test what needs no database (the `hierarchyid` and `geography`
-  codecs), and a database module's ITs test them against SQL Server. The other surefire tests are AdventureWorks'
-  `<Entity>Id_Test`s, of the id classes, which need no database either.
+  codecs), and a database module's ITs test them against SQL Server. The other surefire tests, which need no database
+  either, are each module's `<Entity>_Test`s and AdventureWorks' `<Entity>Id_Test`s, of the id classes.
 - **Exercises are registered.** Each module's `EXERCISES.asciidoc` states every problem, and the `EXERCISES.yaml`
   beside it registers every id, `<DB>_<SCHEMA>_<TIER>_<NN>` (`AW`, `FUTON`, `WWI`), with its `sql` file and its
   `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused
@@ -81,10 +81,16 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   persisted overrides `persistRandomizedEntityInstance__` with a `@Disabled` one. `___Validation_TestUtils` holds the
   validator factory, and `selectRandomEntityInstance__` validates the row it loads with it, since Jakarta Persistence
   validates only on persist, update and remove. `_Entity_PersistenceIT.attributePaths` resolves every `ATTRIBUTE_PATH_*`
-  constant of an entity through the metamodel. The unit-test bases, `__Test`, `__Object_Test`, `_NonEntity_Test` for
-  the id classes and `_Entity_Test` for the entities (from `oracle-sample-schemas-persistence`), are in AdventureWorks
-  only, the one module with composite keys, and run by surefire. An `<Entity>_Test` whose `equals` is by its key
-  suppresses EqualsVerifier's `SURROGATE_KEY`, and `STRICT_HASHCODE` where its `hashCode` is a constant.
+  constant of an entity through the metamodel. The unit-test bases (from `oracle-sample-schemas-persistence`), run by
+  surefire, are `__Test`, `__Object_Test` and `_Entity_Test` in every module, and `_NonEntity_Test`, for the id
+  classes, in AdventureWorks only, the one module with composite keys. Every entity has an `<Entity>_Test`, which
+  suppresses EqualsVerifier's `SURROGATE_KEY`, since its `equals` is by its key, and `STRICT_HASHCODE` where its
+  `hashCode` is a constant; a view with no randomizer disables `toString_NotBlank_NewRandomizedInstance`, as its IT
+  disables persisting. WideWorldImporters' `_Entity_Test` gives EqualsVerifier two of `Person`, `Customer` and
+  `Order`, whose associations are cyclic. The tests are compiled patched into the module, which, in FutonManufacturing
+  and WideWorldImporters, is given `java.desktop` for `__Object_Test`'s `java.beans`.
+- **`equals` and `hashCode` read the key through its getters, never the fields**, in every mapped superclass, so that a
+  Hibernate proxy, whose own fields are unset, answers; EqualsVerifier's JPA check fails a field read.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested
   types, constructors, `java.lang.Object`, accessors, then the private fields; markers padded with dashes to column
   100.

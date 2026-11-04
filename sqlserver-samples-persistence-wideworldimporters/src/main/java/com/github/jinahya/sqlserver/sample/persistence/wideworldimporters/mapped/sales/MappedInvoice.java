@@ -538,7 +538,7 @@ public abstract class MappedInvoice {
         if (!(obj instanceof MappedInvoice that)) {
             return false;
         }
-        return Objects.equals(invoiceId, that.invoiceId);
+        return Objects.equals(getInvoiceId(), that.getInvoiceId());
     }
 
     /**
@@ -549,7 +549,7 @@ public abstract class MappedInvoice {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(invoiceId);
+        return Objects.hash(getInvoiceId());
     }
 
     // ----------------------------------------------------------------------------------- invoiceId

@@ -174,7 +174,7 @@ public abstract class MappedSalesTerritory {
         if (!(obj instanceof MappedSalesTerritory that)) {
             return false;
         }
-        return Objects.equals(territoryId, that.territoryId);
+        return Objects.equals(getTerritoryId(), that.getTerritoryId());
     }
 
     /**
@@ -185,7 +185,7 @@ public abstract class MappedSalesTerritory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(territoryId);
+        return Objects.hash(getTerritoryId());
     }
 
     // --------------------------------------------------------------------------------- territoryId

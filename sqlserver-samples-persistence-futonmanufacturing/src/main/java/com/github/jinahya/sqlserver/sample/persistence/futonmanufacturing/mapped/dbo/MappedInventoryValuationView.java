@@ -434,7 +434,7 @@ public abstract class MappedInventoryValuationView {
         if (!(obj instanceof MappedInventoryValuationView that)) {
             return false;
         }
-        return Objects.equals(itemCode, that.itemCode);
+        return Objects.equals(getItemCode(), that.getItemCode());
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class MappedInventoryValuationView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(itemCode);
+        return Objects.hash(getItemCode());
     }
 
     // ------------------------------------------------------------------------------- warehouseCode

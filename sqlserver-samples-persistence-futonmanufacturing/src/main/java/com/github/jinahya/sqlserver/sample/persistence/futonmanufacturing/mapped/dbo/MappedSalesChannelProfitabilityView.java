@@ -572,7 +572,7 @@ public abstract class MappedSalesChannelProfitabilityView {
         if (!(obj instanceof MappedSalesChannelProfitabilityView that)) {
             return false;
         }
-        return Objects.equals(channelCode, that.channelCode);
+        return Objects.equals(getChannelCode(), that.getChannelCode());
     }
 
     /**
@@ -583,7 +583,7 @@ public abstract class MappedSalesChannelProfitabilityView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(channelCode);
+        return Objects.hash(getChannelCode());
     }
 
     // --------------------------------------------------------------------------------- channelCode

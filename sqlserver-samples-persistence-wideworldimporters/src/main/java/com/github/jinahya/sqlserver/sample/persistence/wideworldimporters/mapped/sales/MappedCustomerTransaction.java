@@ -435,7 +435,7 @@ public abstract class MappedCustomerTransaction {
         if (!(obj instanceof MappedCustomerTransaction that)) {
             return false;
         }
-        return Objects.equals(customerTransactionId, that.customerTransactionId);
+        return Objects.equals(getCustomerTransactionId(), that.getCustomerTransactionId());
     }
 
     /**
@@ -446,7 +446,7 @@ public abstract class MappedCustomerTransaction {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(customerTransactionId);
+        return Objects.hash(getCustomerTransactionId());
     }
 
     // ----------------------------------------------------------------------- customerTransactionId

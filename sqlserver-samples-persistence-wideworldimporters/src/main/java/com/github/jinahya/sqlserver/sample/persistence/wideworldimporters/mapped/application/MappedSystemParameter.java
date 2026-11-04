@@ -347,7 +347,7 @@ public abstract class MappedSystemParameter {
         if (!(obj instanceof MappedSystemParameter that)) {
             return false;
         }
-        return Objects.equals(systemParameterId, that.systemParameterId);
+        return Objects.equals(getSystemParameterId(), that.getSystemParameterId());
     }
 
     /**
@@ -358,7 +358,7 @@ public abstract class MappedSystemParameter {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(systemParameterId);
+        return Objects.hash(getSystemParameterId());
     }
 
     // --------------------------------------------------------------------------- systemParameterId

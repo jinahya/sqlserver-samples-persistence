@@ -590,7 +590,7 @@ public abstract class MappedSalesCustomerAnalysisView {
         if (!(obj instanceof MappedSalesCustomerAnalysisView that)) {
             return false;
         }
-        return Objects.equals(customerId, that.customerId);
+        return Objects.equals(getCustomerId(), that.getCustomerId());
     }
 
     /**
@@ -601,7 +601,7 @@ public abstract class MappedSalesCustomerAnalysisView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(customerId);
+        return Objects.hash(getCustomerId());
     }
 
     // ---------------------------------------------------------------------------------- customerId

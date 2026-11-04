@@ -200,7 +200,7 @@ public abstract class MappedDeliveryMethod {
         if (!(obj instanceof MappedDeliveryMethod that)) {
             return false;
         }
-        return Objects.equals(deliveryMethodId, that.deliveryMethodId);
+        return Objects.equals(getDeliveryMethodId(), that.getDeliveryMethodId());
     }
 
     /**
@@ -211,7 +211,7 @@ public abstract class MappedDeliveryMethod {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(deliveryMethodId);
+        return Objects.hash(getDeliveryMethodId());
     }
 
     // ---------------------------------------------------------------------------- deliveryMethodId

@@ -398,7 +398,7 @@ public abstract class MappedCustomerFulfillmentRateView {
         if (!(obj instanceof MappedCustomerFulfillmentRateView that)) {
             return false;
         }
-        return Objects.equals(customerCode, that.customerCode);
+        return Objects.equals(getCustomerCode(), that.getCustomerCode());
     }
 
     /**
@@ -409,7 +409,7 @@ public abstract class MappedCustomerFulfillmentRateView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(customerCode);
+        return Objects.hash(getCustomerCode());
     }
 
     // -------------------------------------------------------------------------------- customerCode

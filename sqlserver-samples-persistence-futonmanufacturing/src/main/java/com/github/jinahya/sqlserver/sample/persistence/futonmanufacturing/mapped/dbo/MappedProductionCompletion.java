@@ -259,7 +259,7 @@ public abstract class MappedProductionCompletion {
         if (!(obj instanceof MappedProductionCompletion that)) {
             return false;
         }
-        return Objects.equals(completionId, that.completionId);
+        return Objects.equals(getCompletionId(), that.getCompletionId());
     }
 
     /**
@@ -270,7 +270,7 @@ public abstract class MappedProductionCompletion {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(completionId);
+        return Objects.hash(getCompletionId());
     }
 
     // -------------------------------------------------------------------------------- completionId

@@ -325,7 +325,7 @@ public abstract class MappedBillOfMaterials {
         if (!(obj instanceof MappedBillOfMaterials that)) {
             return false;
         }
-        return Objects.equals(bomId, that.bomId);
+        return Objects.equals(getBomId(), that.getBomId());
     }
 
     /**
@@ -336,7 +336,7 @@ public abstract class MappedBillOfMaterials {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(bomId);
+        return Objects.hash(getBomId());
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION

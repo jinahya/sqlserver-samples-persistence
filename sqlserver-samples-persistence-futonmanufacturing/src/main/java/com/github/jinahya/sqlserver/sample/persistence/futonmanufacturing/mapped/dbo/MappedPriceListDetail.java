@@ -210,7 +210,7 @@ public abstract class MappedPriceListDetail {
         if (!(obj instanceof MappedPriceListDetail that)) {
             return false;
         }
-        return Objects.equals(priceListDetailId, that.priceListDetailId);
+        return Objects.equals(getPriceListDetailId(), that.getPriceListDetailId());
     }
 
     /**
@@ -221,7 +221,7 @@ public abstract class MappedPriceListDetail {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(priceListDetailId);
+        return Objects.hash(getPriceListDetailId());
     }
 
     // --------------------------------------------------------------------------- priceListDetailId

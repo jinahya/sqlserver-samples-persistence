@@ -524,7 +524,7 @@ public abstract class MappedSalesOrderBacklogView {
         if (!(obj instanceof MappedSalesOrderBacklogView that)) {
             return false;
         }
-        return Objects.equals(orderNumber, that.orderNumber);
+        return Objects.equals(getOrderNumber(), that.getOrderNumber());
     }
 
     /**
@@ -535,7 +535,7 @@ public abstract class MappedSalesOrderBacklogView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(orderNumber);
+        return Objects.hash(getOrderNumber());
     }
 
     // --------------------------------------------------------------------------------- orderNumber

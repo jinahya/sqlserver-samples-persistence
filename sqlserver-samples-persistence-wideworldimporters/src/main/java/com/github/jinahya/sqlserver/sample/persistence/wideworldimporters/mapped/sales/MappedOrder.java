@@ -363,7 +363,7 @@ public abstract class MappedOrder {
         if (!(obj instanceof MappedOrder that)) {
             return false;
         }
-        return Objects.equals(orderId, that.orderId);
+        return Objects.equals(getOrderId(), that.getOrderId());
     }
 
     /**
@@ -374,7 +374,7 @@ public abstract class MappedOrder {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(orderId);
+        return Objects.hash(getOrderId());
     }
 
     // ------------------------------------------------------------------------------------- orderId

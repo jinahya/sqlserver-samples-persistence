@@ -202,7 +202,7 @@ public abstract class MappedCustomerCategory {
         if (!(obj instanceof MappedCustomerCategory that)) {
             return false;
         }
-        return Objects.equals(customerCategoryId, that.customerCategoryId);
+        return Objects.equals(getCustomerCategoryId(), that.getCustomerCategoryId());
     }
 
     /**
@@ -213,7 +213,7 @@ public abstract class MappedCustomerCategory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(customerCategoryId);
+        return Objects.hash(getCustomerCategoryId());
     }
 
     // -------------------------------------------------------------------------- customerCategoryId

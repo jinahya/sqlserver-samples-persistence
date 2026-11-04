@@ -373,7 +373,7 @@ public abstract class MappedSupplier {
         if (!(obj instanceof MappedSupplier that)) {
             return false;
         }
-        return Objects.equals(supplierId, that.supplierId);
+        return Objects.equals(getSupplierId(), that.getSupplierId());
     }
 
     /**
@@ -384,7 +384,7 @@ public abstract class MappedSupplier {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(supplierId);
+        return Objects.hash(getSupplierId());
     }
 
     // ---------------------------------------------------------------------------------- supplierId

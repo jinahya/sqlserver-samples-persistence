@@ -156,7 +156,7 @@ public abstract class MappedReturnReason {
         if (!(obj instanceof MappedReturnReason that)) {
             return false;
         }
-        return Objects.equals(returnReasonId, that.returnReasonId);
+        return Objects.equals(getReturnReasonId(), that.getReturnReasonId());
     }
 
     /**
@@ -167,7 +167,7 @@ public abstract class MappedReturnReason {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(returnReasonId);
+        return Objects.hash(getReturnReasonId());
     }
 
     // ------------------------------------------------------------------------------ returnReasonId

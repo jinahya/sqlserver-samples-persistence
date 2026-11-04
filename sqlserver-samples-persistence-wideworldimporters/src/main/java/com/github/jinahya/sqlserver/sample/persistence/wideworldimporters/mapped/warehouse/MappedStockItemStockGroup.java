@@ -191,7 +191,7 @@ public abstract class MappedStockItemStockGroup {
         if (!(obj instanceof MappedStockItemStockGroup that)) {
             return false;
         }
-        return Objects.equals(stockItemStockGroupId, that.stockItemStockGroupId);
+        return Objects.equals(getStockItemStockGroupId(), that.getStockItemStockGroupId());
     }
 
     /**
@@ -202,7 +202,7 @@ public abstract class MappedStockItemStockGroup {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(stockItemStockGroupId);
+        return Objects.hash(getStockItemStockGroupId());
     }
 
     // ----------------------------------------------------------------------- stockItemStockGroupId

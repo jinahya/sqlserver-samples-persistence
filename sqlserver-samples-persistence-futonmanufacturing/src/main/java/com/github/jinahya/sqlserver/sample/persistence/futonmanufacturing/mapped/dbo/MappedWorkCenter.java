@@ -212,7 +212,7 @@ public abstract class MappedWorkCenter {
         if (!(obj instanceof MappedWorkCenter that)) {
             return false;
         }
-        return Objects.equals(workCenterId, that.workCenterId);
+        return Objects.equals(getWorkCenterId(), that.getWorkCenterId());
     }
 
     /**
@@ -223,7 +223,7 @@ public abstract class MappedWorkCenter {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(workCenterId);
+        return Objects.hash(getWorkCenterId());
     }
 
     // -------------------------------------------------------------------------------- workCenterId

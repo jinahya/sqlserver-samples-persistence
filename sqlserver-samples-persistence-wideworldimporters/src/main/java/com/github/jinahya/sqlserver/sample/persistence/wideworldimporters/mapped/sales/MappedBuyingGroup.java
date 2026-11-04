@@ -198,7 +198,7 @@ public abstract class MappedBuyingGroup {
         if (!(obj instanceof MappedBuyingGroup that)) {
             return false;
         }
-        return Objects.equals(buyingGroupId, that.buyingGroupId);
+        return Objects.equals(getBuyingGroupId(), that.getBuyingGroupId());
     }
 
     /**
@@ -209,7 +209,7 @@ public abstract class MappedBuyingGroup {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(buyingGroupId);
+        return Objects.hash(getBuyingGroupId());
     }
 
     // ------------------------------------------------------------------------------- buyingGroupId

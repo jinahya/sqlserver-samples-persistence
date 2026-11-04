@@ -288,7 +288,7 @@ public abstract class MappedInventory {
         if (!(obj instanceof MappedInventory that)) {
             return false;
         }
-        return Objects.equals(inventoryId, that.inventoryId);
+        return Objects.equals(getInventoryId(), that.getInventoryId());
     }
 
     /**
@@ -299,7 +299,7 @@ public abstract class MappedInventory {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(inventoryId);
+        return Objects.hash(getInventoryId());
     }
 
     // --------------------------------------------------------------------------------- inventoryId

@@ -240,7 +240,7 @@ public abstract class MappedSalesRep {
         if (!(obj instanceof MappedSalesRep that)) {
             return false;
         }
-        return Objects.equals(salesRepId, that.salesRepId);
+        return Objects.equals(getSalesRepId(), that.getSalesRepId());
     }
 
     /**
@@ -251,7 +251,7 @@ public abstract class MappedSalesRep {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(salesRepId);
+        return Objects.hash(getSalesRepId());
     }
 
     // ---------------------------------------------------------------------------------- salesRepId

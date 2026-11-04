@@ -289,7 +289,7 @@ public abstract class MappedStateProvince {
         if (!(obj instanceof MappedStateProvince that)) {
             return false;
         }
-        return Objects.equals(stateProvinceId, that.stateProvinceId);
+        return Objects.equals(getStateProvinceId(), that.getStateProvinceId());
     }
 
     /**
@@ -300,7 +300,7 @@ public abstract class MappedStateProvince {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(stateProvinceId);
+        return Objects.hash(getStateProvinceId());
     }
 
     // ----------------------------------------------------------------------------- stateProvinceId

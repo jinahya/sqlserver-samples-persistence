@@ -307,7 +307,7 @@ public abstract class MappedStockItemTransaction {
         if (!(obj instanceof MappedStockItemTransaction that)) {
             return false;
         }
-        return Objects.equals(stockItemTransactionId, that.stockItemTransactionId);
+        return Objects.equals(getStockItemTransactionId(), that.getStockItemTransactionId());
     }
 
     /**
@@ -318,7 +318,7 @@ public abstract class MappedStockItemTransaction {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(stockItemTransactionId);
+        return Objects.hash(getStockItemTransactionId());
     }
 
     // ---------------------------------------------------------------------- stockItemTransactionId
