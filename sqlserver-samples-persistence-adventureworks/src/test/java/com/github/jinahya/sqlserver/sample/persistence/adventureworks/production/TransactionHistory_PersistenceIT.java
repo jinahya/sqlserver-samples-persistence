@@ -40,7 +40,7 @@ class TransactionHistory_PersistenceIT
     @Disabled("written by the order and work-order triggers: nothing else inserts into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

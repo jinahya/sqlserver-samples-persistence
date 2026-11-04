@@ -40,7 +40,7 @@ class AwBuildVersion_PersistenceIT
     @Disabled("written by the installer: nothing else inserts into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

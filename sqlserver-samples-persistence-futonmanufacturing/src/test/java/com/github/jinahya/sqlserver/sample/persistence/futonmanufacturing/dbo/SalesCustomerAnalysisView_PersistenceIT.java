@@ -38,7 +38,7 @@ class SalesCustomerAnalysisView_PersistenceIT extends _Entity_PersistenceIT<Sale
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

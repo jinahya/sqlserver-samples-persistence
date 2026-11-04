@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.common.Geography;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,6 +33,8 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 import static org.assertj.core.api.Assumptions.assumeThat;
@@ -75,7 +76,7 @@ class AddressSpatialLocation_PersistenceIT {
             "every installed SpatialLocation maps to what STAsText, STSrid, Lat and Long return")
     @Test
     void spatialLocation() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT a.AddressID,
@@ -100,17 +101,20 @@ class AddressSpatialLocation_PersistenceIT {
                 assertThat(location.getLongitude(0)).isEqualTo(((Number) row[4]).doubleValue());
             }
             return null;
-        });
+        }));
     }
 
     @DisplayName("a point is serialized as geography::Point serializes it")
     @Test
     void point() {
-        final var expected = ___PersistenceIT_Utils.applyInTransactionAndRollback(
-                em -> (byte[]) em.createNativeQuery(
-                                "SELECT CAST(geography::Point(47.651, -122.349, 4326) AS " +
-                                "varbinary(max))")
-                        .getSingleResult()
+        final var expected = applyEntityManagerFactory(
+                emf -> applyEntityManagerInTransactionAndRollback(
+                        emf,
+                        em -> (byte[]) em.createNativeQuery(
+                                        "SELECT CAST(geography::Point(47.651, -122.349, 4326) AS " +
+                                        "varbinary(max))")
+                                .getSingleResult()
+                )
         );
         assertThat(Geography.point(Geography.SRID_WGS84, 47.651, -122.349).getBytes()).isEqualTo(
                 expected);
@@ -156,12 +160,15 @@ class AddressSpatialLocation_PersistenceIT {
             "FULLGLOBE"
     })
     void wkt(final String wkt) {
-        final var row = ___PersistenceIT_Utils.applyInTransactionAndRollback(
-                em -> (Object[]) em.createNativeQuery("""
-                                                              SELECT CAST(g.v AS varbinary(max)), g.v.STAsText(), g.v.AsTextZM()
-                                                              FROM (SELECT geography::STGeomFromText(?1, 4326) AS v) AS g""")
-                        .setParameter(1, wkt)
-                        .getSingleResult()
+        final var row = applyEntityManagerFactory(
+                emf -> applyEntityManagerInTransactionAndRollback(
+                        emf,
+                        em -> (Object[]) em.createNativeQuery("""
+                                                                      SELECT CAST(g.v AS varbinary(max)), g.v.STAsText(), g.v.AsTextZM()
+                                                                      FROM (SELECT geography::STGeomFromText(?1, 4326) AS v) AS g""")
+                                .setParameter(1, wkt)
+                                .getSingleResult()
+                )
         );
         final var bytes = (byte[]) row[0];
         final var geography = Geography.decode(bytes);
@@ -175,7 +182,7 @@ class AddressSpatialLocation_PersistenceIT {
             "is a null")
     @Test
     void write() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var ids = em.createNativeQuery("""
                                                          SELECT TOP (3) a.AddressID
                                                          FROM Person.Address AS a
@@ -208,6 +215,6 @@ class AddressSpatialLocation_PersistenceIT {
             assertThat(em.find(Address.class, ids.get(0)).getSpatialLocation()).isEqualTo(point);
             assertThat(em.find(Address.class, ids.get(1)).getSpatialLocation()).isEqualTo(polygon);
             return null;
-        });
+        }));
     }
 }

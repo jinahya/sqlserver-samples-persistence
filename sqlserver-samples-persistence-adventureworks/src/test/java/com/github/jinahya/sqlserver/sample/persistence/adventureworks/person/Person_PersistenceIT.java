@@ -23,11 +23,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import io.github.jinahya.sqlserver.xml.schema.binding.b9c1be.IndividualSurvey;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Person_PersistenceIT
@@ -46,7 +47,7 @@ class Person_PersistenceIT
     @DisplayName("every installed AdditionalContactInfo is read as an AdditionalContactInfo")
     @Test
     void additionalContactInfo_Read_Installed() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var persons = em.createQuery(
                             """
                                     SELECT p
@@ -59,7 +60,7 @@ class Person_PersistenceIT
                         .isNotNull();
             });
             return null;
-        });
+        }));
     }
 
     /**
@@ -70,7 +71,7 @@ class Person_PersistenceIT
     @DisplayName("a new person with an AdditionalContactInfo is persisted")
     @Test
     void additionalContactInfo_Persisted() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var installed = em.createQuery("""
                                                          SELECT p
                                                          FROM PersonPerson p
@@ -89,7 +90,7 @@ class Person_PersistenceIT
             final var found = em.find(Person.class, instance.getBusinessEntityId());
             assertThat(found.getAdditionalContactInfo()).isNotNull();
             return null;
-        });
+        }));
     }
 
     /**
@@ -99,7 +100,7 @@ class Person_PersistenceIT
     @DisplayName("every installed Demographics is read as an IndividualSurvey")
     @Test
     void demographics_Read_Installed() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var count = em.createQuery("""
                                                      SELECT COUNT(p)
                                                      FROM PersonPerson p
@@ -114,7 +115,7 @@ class Person_PersistenceIT
                     .getResultList();
             assertThat(demographics).hasSize(count.intValue()).doesNotContainNull();
             return null;
-        });
+        }));
     }
 
     /**
@@ -125,7 +126,7 @@ class Person_PersistenceIT
     @DisplayName("a new person with a Demographics is persisted")
     @Test
     void demographics_Persisted() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var installed = em.createQuery("""
                                                          SELECT p.demographics
                                                          FROM PersonPerson p
@@ -143,7 +144,7 @@ class Person_PersistenceIT
             final var found = em.find(Person.class, instance.getBusinessEntityId());
             assertThat(found.getDemographics()).isNotNull();
             return null;
-        });
+        }));
     }
 
     /**
@@ -153,7 +154,7 @@ class Person_PersistenceIT
     @DisplayName("the survey the iuPerson trigger writes is read back on persist")
     @Test
     void demographics_Generated_Persisted() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var instance =
                     ObjectRandomizerUtils.newRandomizedInstanceOf(Person.class).orElseThrow();
             instance.setDemographics(null);
@@ -162,7 +163,7 @@ class Person_PersistenceIT
             em.flush();
             assertThat(instance.getDemographics()).isNotNull();
             return null;
-        });
+        }));
     }
 }
 

@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +30,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
@@ -48,7 +49,7 @@ class EmployeeOrganizationNode_PersistenceIT {
             "return")
     @Test
     void decode() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT e.BusinessEntityID,
@@ -68,13 +69,13 @@ class EmployeeOrganizationNode_PersistenceIT {
                 assertThat(Heirarchyid.parse((String) row[1])).isEqualTo(node);
             }
             return null;
-        });
+        }));
     }
 
     @DisplayName("the installed OrganizationNodes sort as ORDER BY OrganizationNode does")
     @Test
     void order() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final List<byte[]> nodes = em.createNativeQuery("""
                                                                     SELECT CAST(e.OrganizationNode AS varbinary(892))
@@ -88,7 +89,7 @@ class EmployeeOrganizationNode_PersistenceIT {
             assertThat(decoded).isSortedAccordingTo(
                     Comparator.nullsFirst(Comparator.naturalOrder()));
             return null;
-        });
+        }));
     }
 
     // the bounds of every range, as a label, after a label, and in a dotted label
@@ -104,11 +105,14 @@ class EmployeeOrganizationNode_PersistenceIT {
             "/1/-281479271682121.0/", "/1/4294972495.7/2/", "/-73.-9.-1.3.7.15.79.1103.5199/"
     })
     void encode(final String string) {
-        final var expected = ___PersistenceIT_Utils.applyInTransactionAndRollback(
-                em -> (byte[]) em.createNativeQuery(
-                                "SELECT CAST(hierarchyid::Parse(?1) AS varbinary(892))")
-                        .setParameter(1, string)
-                        .getSingleResult()
+        final var expected = applyEntityManagerFactory(
+                emf -> applyEntityManagerInTransactionAndRollback(
+                        emf,
+                        em -> (byte[]) em.createNativeQuery(
+                                        "SELECT CAST(hierarchyid::Parse(?1) AS varbinary(892))")
+                                .setParameter(1, string)
+                                .getSingleResult()
+                )
         );
         final var node = Heirarchyid.parse(string);
         assertThat(node.getBytes()).as("the bytes of %s", string).isEqualTo(expected);
@@ -120,7 +124,7 @@ class EmployeeOrganizationNode_PersistenceIT {
             " is a null")
     @Test
     void write() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var ids = em.createNativeQuery("""
                                                          SELECT TOP (2) e.BusinessEntityID
                                                          FROM HumanResources.Employee AS e
@@ -145,6 +149,6 @@ class EmployeeOrganizationNode_PersistenceIT {
             em.clear();
             assertThat(em.find(Employee.class, ids.get(0)).getOrganizationNode()).isEqualTo(node);
             return null;
-        });
+        }));
     }
 }

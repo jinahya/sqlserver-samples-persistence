@@ -41,6 +41,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 import static org.assertj.core.api.Assumptions.assumeThat;
@@ -106,7 +108,7 @@ class Geography_PersistenceIT {
     @SuppressWarnings({"unchecked", "rawtypes"})
     void entity(final String name, final String table, final String idColumn, final String column,
                 final Class entityClass, final Function id, final Function geography) {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final List<Object[]> rows = em.createNativeQuery(
                             "SELECT t." + idColumn + ", t." + column + ".STAsText(), t." + column + ".STSrid"
                             + " FROM " + table + " AS t WHERE t." + column + " IS NOT NULL")
@@ -122,7 +124,7 @@ class Geography_PersistenceIT {
                 assertThat(value.getSrid()).isEqualTo(((Number) row[2]).intValue());
             }
             return null;
-        });
+        }));
     }
 
     // the archive tables and the views, which no entity maps; their classes decode what a native query reads
@@ -140,7 +142,7 @@ class Geography_PersistenceIT {
     void keyless(final String qualified) {
         final var table = qualified.substring(0, qualified.lastIndexOf('.'));
         final var column = qualified.substring(qualified.lastIndexOf('.') + 1);
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery(
                             "SELECT CAST(t." + column + " AS varbinary(max)), t." + column + ".STAsText()"
@@ -154,13 +156,13 @@ class Geography_PersistenceIT {
                 assertThat(value.getBytes()).isEqualTo(bytes);
             }
             return null;
-        });
+        }));
     }
 
     @DisplayName("a Border set through the entity is written as SQL Server reads it, and so is a null")
     @Test
     void write() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var ids = em.createNativeQuery("""
                                                          SELECT TOP (2) t.StateProvinceID
                                                          FROM Application.StateProvinces AS t
@@ -182,6 +184,6 @@ class Geography_PersistenceIT {
             assertThat((byte[]) read.setParameter(1, ids.get(0)).getSingleResult()).isEqualTo(border.getBytes());
             assertThat(read.setParameter(1, ids.get(1)).getSingleResult()).isNull();
             return null;
-        });
+        }));
     }
 }

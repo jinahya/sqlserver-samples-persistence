@@ -57,6 +57,8 @@ import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -71,7 +73,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FutonManufacturing_Exercises_PersistenceIT {
 
     private static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
-        return ___PersistenceIT_Utils.applyInTransactionAndRollback(function);
+        return applyEntityManagerFactory(
+                emf -> applyEntityManagerInTransactionAndRollback(emf, function)
+        );
     }
 
     private static BigDecimal scale4(final Object value) {

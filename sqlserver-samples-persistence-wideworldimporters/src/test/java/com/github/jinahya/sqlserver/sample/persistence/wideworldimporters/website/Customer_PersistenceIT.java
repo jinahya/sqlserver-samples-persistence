@@ -38,7 +38,7 @@ class Customer_PersistenceIT extends _Entity_PersistenceIT<Customer> {
     @Disabled("read-only: Website.Customers is a view")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

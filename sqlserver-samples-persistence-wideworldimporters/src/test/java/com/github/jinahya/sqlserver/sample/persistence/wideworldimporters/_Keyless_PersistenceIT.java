@@ -27,6 +27,8 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManager;
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -74,13 +76,13 @@ public abstract class _Keyless_PersistenceIT<T> {
         assertThat(columns).isNotEmpty();
         final var sql = "SELECT TOP (1) " + String.join(", ", columns)
                         + " FROM " + constant("TABLE_SCHEMA") + "." + constant("TABLE_NAME");
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManager(emf, em -> {
             final var rows = em.createNativeQuery(sql).getResultList();
             for (final var row : rows) {
                 assertThat(columns.length == 1 ? new Object[]{row} : (Object[]) row).hasSize(columns.length);
             }
             return null;
-        });
+        }));
     }
 
     @DisplayName("the public constructor takes every column")

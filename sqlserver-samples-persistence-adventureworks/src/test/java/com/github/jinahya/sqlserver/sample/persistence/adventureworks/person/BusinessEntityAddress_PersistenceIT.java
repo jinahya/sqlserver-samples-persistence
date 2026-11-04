@@ -22,10 +22,11 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BusinessEntityAddress_PersistenceIT
@@ -46,7 +47,7 @@ class BusinessEntityAddress_PersistenceIT
             "persist")
     @Test
     void equals_hashCode_AcrossPersist() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var businessEntity =
                     EntityPersisterUtils.newPersistedInstanceOf(em, BusinessEntity.class);
             final var address = EntityPersisterUtils.newPersistedInstanceOf(em, Address.class);
@@ -62,7 +63,7 @@ class BusinessEntityAddress_PersistenceIT
             assertThat(instance.hashCode()).isEqualTo(hash);
             assertThat(instance).isEqualTo(other);
             return null;
-        });
+        }));
     }
 }
 

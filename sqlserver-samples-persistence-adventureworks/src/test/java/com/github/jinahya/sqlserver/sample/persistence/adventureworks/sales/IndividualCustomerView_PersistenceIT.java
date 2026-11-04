@@ -21,13 +21,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.IndividualSurveyStringAttributeConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class IndividualCustomerView_PersistenceIT
@@ -44,7 +45,7 @@ class IndividualCustomerView_PersistenceIT
     @Test
     void demographics_converter() {
         final var converter = new IndividualSurveyStringAttributeConverter();
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final var texts = (List<String>) em.createNativeQuery("""
                                                                           SELECT CONVERT(nvarchar(max), Demographics)
@@ -62,6 +63,6 @@ class IndividualCustomerView_PersistenceIT
                         .isEqualTo(written);
             }
             return null;
-        });
+        }));
     }
 }

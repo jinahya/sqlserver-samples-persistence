@@ -23,11 +23,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import io.github.jinahya.sqlserver.xml.schema.binding.b95f5e.StoreSurvey;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Store_PersistenceIT
@@ -43,14 +44,14 @@ class Store_PersistenceIT
     @DisplayName("every installed Demographics is read as a StoreSurvey")
     @Test
     void demographics_Read_Installed() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var count = em.createQuery("SELECT COUNT(e) FROM SalesStore e WHERE e.demographics IS NOT NULL", Long.class)
                     .getSingleResult();
             final var values = em.createQuery("SELECT e.demographics FROM SalesStore e WHERE e.demographics IS NOT NULL", StoreSurvey.class)
                     .getResultList();
             assertThat(values).hasSize(count.intValue()).doesNotContainNull();
             return null;
-        });
+        }));
     }
 
     /**
@@ -60,7 +61,7 @@ class Store_PersistenceIT
     @DisplayName("a new Store with an installed Demographics is persisted")
     @Test
     void demographics_Persisted() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var installed = em.createQuery("SELECT e.demographics FROM SalesStore e WHERE e.demographics IS NOT NULL", StoreSurvey.class)
                     .setMaxResults(1)
                     .getSingleResult();
@@ -72,7 +73,7 @@ class Store_PersistenceIT
             final var found = em.find(Store.class, instance.getBusinessEntityId());
             assertThat(found.getDemographics()).isNotNull();
             return null;
-        });
+        }));
     }
 }
 

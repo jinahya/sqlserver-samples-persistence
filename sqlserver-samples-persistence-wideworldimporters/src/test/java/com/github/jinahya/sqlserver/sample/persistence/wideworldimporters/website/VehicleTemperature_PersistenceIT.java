@@ -38,7 +38,7 @@ class VehicleTemperature_PersistenceIT extends _Entity_PersistenceIT<VehicleTemp
     @Disabled("read-only: Website.VehicleTemperatures is a view")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

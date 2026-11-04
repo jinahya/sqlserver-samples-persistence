@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___Validation_TestUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EmailAddress_PersistenceIT
@@ -47,7 +48,7 @@ class EmailAddress_PersistenceIT
         final var validator = ___Validation_TestUtils.applyValidator(v -> v);
         assertThat(validator.validateValue(EmailAddress.class, EmailAddress.ATTRIBUTE_NAME_EMAIL_ADDRESS, "not an address"))
                 .isNotEmpty();
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var addresses = em.createQuery("""
                                                          SELECT e.emailAddress
                                                          FROM PersonEmailAddress e""", String.class)
@@ -58,6 +59,6 @@ class EmailAddress_PersistenceIT
                             EmailAddress.class, EmailAddress.ATTRIBUTE_NAME_EMAIL_ADDRESS, a).isEmpty())
                     .isEmpty();
             return null;
-        });
+        }));
     }
 }

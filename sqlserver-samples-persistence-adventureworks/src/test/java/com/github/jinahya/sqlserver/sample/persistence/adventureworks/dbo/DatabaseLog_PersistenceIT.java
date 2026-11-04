@@ -21,12 +21,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import io.github.jinahya.sqlserver.xml.schema.binding.b872ce.EventInstances;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DatabaseLog_PersistenceIT
@@ -45,7 +46,7 @@ class DatabaseLog_PersistenceIT
     @Disabled("written by the ddlDatabaseTriggerLog trigger: nothing else inserts into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 
@@ -55,7 +56,7 @@ class DatabaseLog_PersistenceIT
             "changed writes nothing")
     @Test
     void xmlEvent() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var builder = em.getCriteriaBuilder();
             final var query = builder.createQuery(DatabaseLog.class);
             final var logs =
@@ -81,7 +82,7 @@ class DatabaseLog_PersistenceIT
                     .as("the log records written by a flush of %d unchanged entities", logs.size())
                     .isZero();
             return null;
-        });
+        }));
     }
 }
 

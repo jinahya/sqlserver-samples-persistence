@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,6 +28,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
@@ -44,7 +45,7 @@ class DocumentNode_PersistenceIT {
     @DisplayName("every installed Document.DocumentNode maps to what ToString and GetLevel return")
     @Test
     void document() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT CAST(d.rowguid AS char(36)), d.DocumentNode.ToString(), d.DocumentLevel
@@ -59,13 +60,13 @@ class DocumentNode_PersistenceIT {
                 assertThat(node.getLevel()).isEqualTo(((Number) row[2]).intValue());
             }
             return null;
-        });
+        }));
     }
 
     @DisplayName("every installed ProductDocument.DocumentNode decodes to what ToString returns")
     @Test
     void productDocument() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final List<Object[]> rows = em.createNativeQuery("""
                                                                      SELECT pd.ProductID,
@@ -85,6 +86,6 @@ class DocumentNode_PersistenceIT {
                         Heirarchyid.parse((String) row[3]));
             }
             return null;
-        });
+        }));
     }
 }

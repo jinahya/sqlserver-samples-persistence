@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeePayHistoryId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +30,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
@@ -50,7 +51,7 @@ class EmployeePayHistory_PersistenceIT
     @Disabled("read-only: HumanResources.uspUpdateEmployeeHireInfo inserts into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 
@@ -59,7 +60,7 @@ class EmployeePayHistory_PersistenceIT
     @DisplayName("a row HumanResources.uspUpdateEmployeeHireInfo inserts is found as an entity")
     @Test
     void uspUpdateEmployeeHireInfo() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var employee = em.createQuery("""
                                                         SELECT e
                                                         FROM HumanResourcesEmployee e
@@ -98,6 +99,6 @@ class EmployeePayHistory_PersistenceIT
             assertThat(found.getPayFrequency()).isEqualTo(payFrequency);
             assertThat(found.getModifiedDate()).isNotNull();
             return null;
-        });
+        }));
     }
 }

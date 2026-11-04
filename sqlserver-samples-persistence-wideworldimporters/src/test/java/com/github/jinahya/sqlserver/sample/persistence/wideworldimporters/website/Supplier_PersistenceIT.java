@@ -38,7 +38,7 @@ class Supplier_PersistenceIT extends _Entity_PersistenceIT<Supplier> {
     @Disabled("read-only: Website.Suppliers is a view")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

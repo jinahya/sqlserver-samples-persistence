@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.MappedEmployee;
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import jakarta.persistence.EntityManager;
@@ -30,6 +29,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
@@ -61,7 +62,7 @@ class Employee_PersistenceIT
     @DisplayName("HumanResources.uspUpdateEmployeeLogin updates an employee")
     @Test
     void uspUpdateEmployeeLogin() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var employee = first(em);
             assumeThat(employee).as("an installed employee").isNotNull();
             final var loginId = employee.getLoginId() + "-updated";
@@ -84,7 +85,7 @@ class Employee_PersistenceIT
             assertThat(found.getLoginId()).isEqualTo(loginId);
             assertThat(found.getOrganizationNode()).isEqualTo(organizationNode);
             return null;
-        });
+        }));
     }
 
     // the employee's own values go back in, but for MaritalStatus, which
@@ -92,7 +93,7 @@ class Employee_PersistenceIT
     @DisplayName("HumanResources.uspUpdateEmployeePersonalInfo updates an employee")
     @Test
     void uspUpdateEmployeePersonalInfo() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var employee = first(em);
             assumeThat(employee).as("an installed employee").isNotNull();
             final var maritalStatus = employee.getMaritalStatus() == MappedEmployee.MaritalStatus.M
@@ -112,6 +113,6 @@ class Employee_PersistenceIT
             final var found = em.find(Employee.class, employee.getBusinessEntityId());
             assertThat(found.getMaritalStatus()).isEqualTo(maritalStatus);
             return null;
-        });
+        }));
     }
 }

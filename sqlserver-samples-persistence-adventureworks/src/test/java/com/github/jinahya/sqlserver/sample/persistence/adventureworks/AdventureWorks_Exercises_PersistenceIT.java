@@ -75,6 +75,8 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -94,7 +96,9 @@ class AdventureWorks_Exercises_PersistenceIT {
 
     // ---------------------------------------------------------------------------------------------
     private static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
-        return ___PersistenceIT_Utils.applyInTransactionAndRollback(function);
+        return applyEntityManagerFactory(
+                emf -> applyEntityManagerInTransactionAndRollback(emf, function)
+        );
     }
 
     /**

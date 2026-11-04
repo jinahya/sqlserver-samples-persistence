@@ -38,7 +38,7 @@ class InventoryValuationView_PersistenceIT extends _Entity_PersistenceIT<Invento
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

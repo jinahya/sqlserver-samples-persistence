@@ -23,11 +23,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import io.github.jinahya.sqlserver.xml.schema.binding.b3da3e.ResumeType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class JobCandidate_PersistenceIT
@@ -43,14 +44,14 @@ class JobCandidate_PersistenceIT
     @DisplayName("every installed Resume is read as a ResumeType")
     @Test
     void resume_Read_Installed() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var count = em.createQuery("SELECT COUNT(e) FROM HumanResourcesJobCandidate e WHERE e.resume IS NOT NULL", Long.class)
                     .getSingleResult();
             final var values = em.createQuery("SELECT e.resume FROM HumanResourcesJobCandidate e WHERE e.resume IS NOT NULL", ResumeType.class)
                     .getResultList();
             assertThat(values).hasSize(count.intValue()).doesNotContainNull();
             return null;
-        });
+        }));
     }
 
     /**
@@ -60,7 +61,7 @@ class JobCandidate_PersistenceIT
     @DisplayName("a new JobCandidate with an installed Resume is persisted")
     @Test
     void resume_Persisted() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var installed = em.createQuery("SELECT e.resume FROM HumanResourcesJobCandidate e WHERE e.resume IS NOT NULL", ResumeType.class)
                     .setMaxResults(1)
                     .getSingleResult();
@@ -72,7 +73,7 @@ class JobCandidate_PersistenceIT
             final var found = em.find(JobCandidate.class, instance.getJobCandidateId());
             assertThat(found.getResume()).isNotNull();
             return null;
-        });
+        }));
     }
 }
 

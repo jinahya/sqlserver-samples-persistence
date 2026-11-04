@@ -21,9 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
  */
 
 import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
-import com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils;
-import com.github.jinahya.persistence.util.JinahyaEntityManagerUtils;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,21 +37,32 @@ import java.util.function.Function;
 })
 public final class ___PersistenceIT_Utils {
 
+    /**
+     * The name of the persistence unit, which this module's {@code META-INF/persistence.xml}
+     * declares. The value is {@value}.
+     */
     static final String PERSISTENCE_UNIT_NAME = "futonmanufacturing-it";
 
+    // ---------------------------------------------------------------------------------------------
+
     /**
-     * Applies the specified function to a new entity manager, inside a transaction which is rolled back afterwards.
+     * Applies the specified function to the factory of the {@value #PERSISTENCE_UNIT_NAME} unit,
+     * opening it on the first call.
+     *
+     * @param function the function to apply; it must not close the factory.
+     * @param <R>      the type of the result.
+     * @return the result of the {@code function}.
      */
-    public static <R> R applyInTransactionAndRollback(final Function<? super EntityManager, ? extends R> function) {
+    public static <R> R applyEntityManagerFactory(
+            final Function<? super EntityManagerFactory, ? extends R> function) {
         Objects.requireNonNull(function, "function is null");
         return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(
                 PERSISTENCE_UNIT_NAME,
-                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManager(
-                        emf,
-                        em -> JinahyaEntityManagerUtils.applyInTransaction(em, function, true)
-                )
+                function
         );
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     private ___PersistenceIT_Utils() {
         throw new AssertionError("instantiation is not allowed");

@@ -48,6 +48,7 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItem;
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemHolding;
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemStockGroup;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.LocalDateField;
 import org.junit.jupiter.api.DisplayName;
@@ -58,8 +59,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Function;
 
-import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyInTransactionAndRollback;
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -89,6 +92,13 @@ class WideWorldImporters_Exercises_PersistenceIT {
 
     private static BigDecimal decimalOf(final Object value) {
         return new BigDecimal(value.toString());
+    }
+
+    private static <R> R applyInTransactionAndRollback(
+            final Function<? super EntityManager, ? extends R> function) {
+        return applyEntityManagerFactory(
+                emf -> applyEntityManagerInTransactionAndRollback(emf, function)
+        );
     }
 
     // ------------------------------------------------------------------------ WWI_APPLICATION_B_01

@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter;
 import io.github.jinahya.sqlserver.xml.schema.binding.b80e2e.ContactRecord;
 import jakarta.xml.bind.JAXBElement;
@@ -31,6 +30,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EmployeeView_PersistenceIT
@@ -48,7 +49,7 @@ class EmployeeView_PersistenceIT
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 
@@ -58,7 +59,7 @@ class EmployeeView_PersistenceIT
             "nothing")
     @Test
     void additionalContactInfo() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var builder = em.getCriteriaBuilder();
             final var query = builder.createQuery(EmployeeView.class);
             final var views =
@@ -76,7 +77,7 @@ class EmployeeView_PersistenceIT
                     .as("the log records written by a flush of %d unchanged entities", views.size())
                     .isZero();
             return null;
-        });
+        }));
     }
 
     // no employee has an AdditionalContactInfo, so the view's own column holds no value to
@@ -88,7 +89,7 @@ class EmployeeView_PersistenceIT
     @Test
     void additionalContactInfo_converter() {
         final var converter = new AdditionalContactInfoStringAttributeConverter();
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             @SuppressWarnings("unchecked")
             final var texts = (List<String>) em.createNativeQuery("""
                                                                           SELECT CONVERT(nvarchar(max), AdditionalContactInfo)
@@ -109,6 +110,6 @@ class EmployeeView_PersistenceIT
                         .isEqualTo(written);
             }
             return null;
-        });
+        }));
     }
 }

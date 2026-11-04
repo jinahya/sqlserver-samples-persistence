@@ -22,10 +22,11 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BusinessEntityContact_PersistenceIT
@@ -45,7 +46,7 @@ class BusinessEntityContact_PersistenceIT
     @DisplayName("an unpersisted instance equals only itself, and keeps its hash through persist")
     @Test
     void equals_hashCode_AcrossPersist() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var businessEntity =
                     EntityPersisterUtils.newPersistedInstanceOf(em, BusinessEntity.class);
             final var person = EntityPersisterUtils.newPersistedInstanceOf(em, Person.class);
@@ -61,7 +62,7 @@ class BusinessEntityContact_PersistenceIT
             assertThat(instance.hashCode()).isEqualTo(hash);
             assertThat(instance).isNotEqualTo(other);
             return null;
-        });
+        }));
     }
 }
 

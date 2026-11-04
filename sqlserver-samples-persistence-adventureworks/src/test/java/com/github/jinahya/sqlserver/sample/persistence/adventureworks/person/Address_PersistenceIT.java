@@ -23,11 +23,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback;
+import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Address_PersistenceIT
@@ -55,8 +56,8 @@ class Address_PersistenceIT
      *         byte.
      */
     @Override
-    protected void randomEntityInstancePersisted(final EntityManager entityManager,
-                                                 final Address entityInstance) {
+    protected void randomizedEntityInstancePersisted__(final EntityManager entityManager,
+                                                       final Address entityInstance) {
         assertThat(entityInstance.getSpatialLocation()).isNotNull();
         assertThat((byte[]) storedSpatialLocation(entityManager, entityInstance))
                 .as("the SpatialLocation stored for %s", entityInstance.getSpatialLocation())
@@ -67,7 +68,7 @@ class Address_PersistenceIT
             "a new instance with no spatial location is persisted, and SQL Server stores a NULL")
     @Test
     void persistRandomEntityInstance_SpatialLocationNull() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> {
             final var instance =
                     ObjectRandomizerUtils.newRandomizedInstanceOf(Address.class)
                             .orElseThrow();
@@ -77,6 +78,6 @@ class Address_PersistenceIT
             em.flush();
             assertThat(storedSpatialLocation(em, instance)).isNull();
             return null;
-        });
+        }));
     }
 }

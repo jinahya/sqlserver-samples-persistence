@@ -38,7 +38,7 @@ class CustomerFulfillmentRateView_PersistenceIT extends _Entity_PersistenceIT<Cu
     @Disabled("a view: nothing is inserted into it")
     @Override
     @Test
-    protected void persistRandomEntityInstance() {
+    protected void persistRandomizedEntityInstance__() {
         // empty
     }
 }

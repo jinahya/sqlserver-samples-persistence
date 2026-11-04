@@ -65,10 +65,18 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused
   number of its schema and tier, and a removed one is marked `retired: true`, never reused. The id is the asciidoc
   anchor and heading prefix, and the marker above the statement in the `.sql` file.
-- **Test bases, one copy per module**: `___PersistenceIT_Utils`, `___Validation_TestUtils`, `_Entity_PersistenceIT`,
-  `_Keyless_PersistenceIT`. A fix to one is carried to the other two. `___PersistenceIT_Utils` holds the entity manager
-  factory and nothing of validation; `___Validation_TestUtils` holds the validator factory, and
-  `_Entity_PersistenceIT.selectRandomEntityInstance` validates the row it loads with it, since Jakarta Persistence
+- **Test bases, one copy per module**: `___PersistenceIT_Utils`, `___Persistence_TestUtils`,
+  `___Validation_TestUtils`, `_Entity_PersistenceIT`, `_Keyless_PersistenceIT`. A fix to one is carried to the other
+  two. `___PersistenceIT_Utils` holds the entity manager factory, as `applyEntityManagerFactory(Function)`, and nothing
+  of validation or of entity managers; as in `oracle-sample-schemas-persistence`, the bases hold no entity manager and
+  no wrapper of their own, and a test goes through the jinahya library directly, one entity manager per call:
+  `applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> ...))`, or
+  `applyEntityManager` alone for a test which only reads. `___Persistence_TestUtils` holds only what the library has no
+  single call for, `selectRandomEntityInstance(EntityManagerFactory, Class, BiFunction)`. `_Entity_PersistenceIT` runs
+  `persistRandomizedEntityInstance__` and `selectRandomEntityInstance__`, and hands the instance to the hooks
+  `randomizedEntityInstancePersisted__` and `randomEntityInstanceSelected__(EntityManager, T)`; an entity which is not
+  persisted overrides `persistRandomizedEntityInstance__` with a `@Disabled` one. `___Validation_TestUtils` holds the
+  validator factory, and `selectRandomEntityInstance__` validates the row it loads with it, since Jakarta Persistence
   validates only on persist, update and remove. `_Entity_PersistenceIT.attributePaths` resolves every `ATTRIBUTE_PATH_*`
   constant of an entity through the metamodel. The unit-test bases of the id classes, `__Test`, `__Object_Test` and
   `_NonEntity_Test` (from `oracle-sample-schemas-persistence`), are in AdventureWorks only, the one module with

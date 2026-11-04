@@ -20,8 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
  * #L%
  */
 
-import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
-import com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Path;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +29,13 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManagerFactory;
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___Persistence_TestUtils.selectRandomEntityInstance;
+import static com.github.jinahya.persistence.test.util.EntityPersisterUtils.newPersistedInstanceOf;
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManager;
+import static com.github.jinahya.persistence.util.JinahyaEntityManagerUtils.applyInTransactionAndRollback;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -39,6 +43,9 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  * The integration tests of an entity, against the
  * {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit on the database {@code compose.yaml}
  * brings up. Each reads installed rows, or persists a new randomized instance, and rolls back.
+ * <p>
+ * The base holds no entity manager. Each test takes the factory from {@link ___PersistenceIT_Utils}
+ * and goes through the jinahya library directly, one entity manager per call.
  *
  * @param <T> the type of the entity.
  */
@@ -54,46 +61,6 @@ public abstract class _Entity_PersistenceIT<T> {
     }
 
     // ---------------------------------------------------------------------------------------------
-    /**
-     * Persists a new, randomized instance of the entity, through its persister, and flushes it.
-     * <p>
-     * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister},
-     * are found by name, beside the entity. An entity which is not persisted -- a view, or a table
-     * which only SQL Server, the installer, or a procedure writes -- overrides this method with an
-     * empty one, {@link org.junit.jupiter.api.Disabled @Disabled} with the reason.
-     *
-     * @implNote The flush is what makes the {@code INSERT} reach the database, with its
-     *         constraints and triggers; the transaction is rolled back, so without it nothing would
-     *         be written, and nothing tested.
-     */
-    @DisplayName("a new randomized instance is persisted")
-    @Test
-    protected void persistRandomEntityInstance() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
-            final var persisted = EntityPersisterUtils.newPersistedInstanceOf(em, entityClass);
-            em.flush();
-            assertThat(
-                    em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(persisted))
-                    .as("the identifier of the persisted %s", persisted)
-                    .isNotNull();
-            randomEntityInstancePersisted(em, persisted);
-            return null;
-        });
-    }
-
-    /**
-     * Called with the instance {@link #persistRandomEntityInstance()} persisted and flushed, while
-     * it is still managed.
-     *
-     * @param entityManager  the entity manager which persisted the instance.
-     * @param entityInstance the persisted instance.
-     * @implSpec This class does nothing; a subclass overrides it to assert what its table
-     *         does with a new row.
-     */
-    protected void randomEntityInstancePersisted(final EntityManager entityManager,
-                                                 final T entityInstance) {
-        // empty
-    }
 
     /**
      * Verifies that each {@code ATTRIBUTE_PATH_*} constant of the entity, a dotted path such as
@@ -109,7 +76,7 @@ public abstract class _Entity_PersistenceIT<T> {
                 paths.add((String) field.get(null));
             }
         }
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
+        applyEntityManagerFactory(emf -> applyEntityManager(emf, em -> {
             for (final var attributePath : paths) {
                 Path<?> path = em.getCriteriaBuilder().createQuery().from(entityClass);
                 for (final var name : attributePath.split("\\.")) {
@@ -118,12 +85,61 @@ public abstract class _Entity_PersistenceIT<T> {
                 assertThat(path.getJavaType()).as(attributePath).isNotNull();
             }
             return null;
-        });
+        }));
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Persists a new, randomized instance of the entity, through its persister, flushes it, and
+     * hands it to {@link #randomizedEntityInstancePersisted__(EntityManager, Object)}.
+     * <p>
+     * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister},
+     * are found by name, beside the entity. An entity which is not persisted -- a view, or a table
+     * which only SQL Server, the installer, or a procedure writes -- overrides this method with an
+     * empty one, {@link org.junit.jupiter.api.Disabled @Disabled} with the reason.
+     *
+     * @implNote The flush is what makes the {@code INSERT} reach the database, with its
+     *         constraints and triggers; the transaction is rolled back, so without it nothing would
+     *         be written, and nothing tested.
+     */
+    @DisplayName("a new randomized instance is persisted")
+    @Test
+    protected void persistRandomizedEntityInstance__() {
+        applyEntityManagerFactory(emf -> applyEntityManager(
+                emf,
+                m -> applyInTransactionAndRollback(m, em -> {
+                    final var persisted = newPersistedInstanceOf(em, entityClass);
+                    em.flush();
+                    assertThat(emf.getPersistenceUnitUtil().getIdentifier(persisted))
+                            .as("the identifier of the persisted %s", persisted)
+                            .isNotNull();
+                    randomizedEntityInstancePersisted__(em, persisted);
+                    return null;
+                })
+        ));
     }
 
     /**
+     * Called with the instance {@link #persistRandomizedEntityInstance__()} persisted and flushed,
+     * while it is still managed.
+     *
+     * @param entityManager  the entity manager which persisted the instance.
+     * @param entityInstance the persisted instance.
+     * @implSpec This class does nothing; a subclass overrides it to assert what its table
+     *         does with a new row.
+     */
+    protected void randomizedEntityInstancePersisted__(final EntityManager entityManager,
+                                                       final T entityInstance) {
+        // empty
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
      * Selects a random instance of the entity, from the installed rows, validates it against the
-     * constraints of the mapping, and hands it to {@link #randomEntityInstanceSelected(Object)}.
+     * constraints of the mapping, and hands it to
+     * {@link #randomEntityInstanceSelected__(EntityManager, Object)}.
      * <p>
      * The validation is here, since Jakarta Persistence validates an entity only when it persists,
      * updates, or removes it, never when it loads it.
@@ -134,28 +150,37 @@ public abstract class _Entity_PersistenceIT<T> {
      * @implSpec An empty table is not a failure; the test aborts, since the table's content
      *         is the installer's.
      */
-    @DisplayName("a randomly selected installed row is valid, and is handed to randomEntityInstanceSelected")
+    @DisplayName(
+            "a randomly selected installed row is valid, and is handed to " +
+            "randomEntityInstanceSelected__")
     @Test
-    void selectRandomEntityInstance() {
-        ___PersistenceIT_Utils.applyInTransactionAndRollback(em -> {
-            final var selected = JinahyaEntityManagerTestUtils.selectRandomEntity(em, entityClass);
-            assumeTrue(selected.isPresent(),
-                       () -> "no row of " + entityClass.getSimpleName() + " is installed");
-            ___Validation_TestUtils.assertValid(selected.get());
-            randomEntityInstanceSelected(selected.get());
-            return null;
-        });
+    protected void selectRandomEntityInstance__() {
+        final var selected = Optional.ofNullable(applyEntityManagerFactory(
+                emf -> selectRandomEntityInstance(
+                        emf,
+                        entityClass,
+                        (em, v) -> {
+                            ___Validation_TestUtils.assertValid(v);
+                            randomEntityInstanceSelected__(em, v);
+                            return v;
+                        }
+                )
+        ));
+        assumeTrue(selected.isPresent(),
+                   () -> "no row of " + entityClass.getSimpleName() + " is installed");
     }
 
     /**
-     * Called with the instance {@link #selectRandomEntityInstance()} selected, while it is still
+     * Called with the instance {@link #selectRandomEntityInstance__()} selected, while it is still
      * managed.
      *
+     * @param entityManager  the entity manager which selected the instance.
      * @param entityInstance the randomly selected instance.
      * @implSpec This class does nothing; a subclass overrides it to assert what its entity
      *         promises of an installed row.
      */
-    protected void randomEntityInstanceSelected(final T entityInstance) {
+    protected void randomEntityInstanceSelected__(final EntityManager entityManager,
+                                                  final T entityInstance) {
         // empty
     }
 
