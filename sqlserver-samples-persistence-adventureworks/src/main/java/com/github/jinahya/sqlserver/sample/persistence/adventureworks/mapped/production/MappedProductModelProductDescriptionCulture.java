@@ -22,12 +22,11 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
 
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithEmbeddedId;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -78,7 +77,8 @@ import java.time.LocalDateTime;
         value = "Cross-reference table mapping product descriptions and the language the "
                 + "description is written in."
 )
-public abstract class MappedProductModelProductDescriptionCulture {
+public abstract class MappedProductModelProductDescriptionCulture
+        extends MappedWithEmbeddedId<ProductModelProductDescriptionCultureId> {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
@@ -89,13 +89,6 @@ public abstract class MappedProductModelProductDescriptionCulture {
      * The name of the table to which this class maps. The value is {@value}.
      */
     public static final String TABLE_NAME = "ProductModelProductDescriptionCulture";
-
-    // ------------------------------------------------------------------------------------------ id
-
-    /**
-     * The name of the attribute which embeds the key. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_ID = "id";
 
     // ------------------------------------------------------------------------------ ProductModelID
 
@@ -172,8 +165,7 @@ public abstract class MappedProductModelProductDescriptionCulture {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "id=" + id
-               + ",modifiedDate=" + modifiedDate
+               + "modifiedDate=" + modifiedDate
                + "}";
     }
 
@@ -214,22 +206,6 @@ public abstract class MappedProductModelProductDescriptionCulture {
         return MappedProductModelProductDescriptionCulture.class.hashCode();
     }
 
-    // ------------------------------------------------------------------------------------------ id
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_ID} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
-     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
-     *         answers with the identifier of the row it stands for. The method is
-     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
-     *         the entity, and overrides only what that package sees.
-     */
-    protected ProductModelProductDescriptionCultureId getId() {
-        return id;
-    }
-
     // -------------------------------------------------------------------------------- modifiedDate
 
     /**
@@ -250,15 +226,6 @@ public abstract class MappedProductModelProductDescriptionCulture {
     public void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-
-    // ---------------------------------------------------------------------------------------------
-    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an
-    // entity
-    @Valid
-    @NotNull
-    @EmbeddedId
-    private ProductModelProductDescriptionCultureId id =
-            new ProductModelProductDescriptionCultureId();
 
     // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was

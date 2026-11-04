@@ -22,12 +22,11 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
 
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
+import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithEmbeddedId;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -82,7 +81,8 @@ import java.util.UUID;
         table = MappedBusinessEntityContact.TABLE_NAME,
         value = "Cross-reference table mapping stores, vendors, and employees to people"
 )
-public abstract class MappedBusinessEntityContact {
+public abstract class MappedBusinessEntityContact
+        extends MappedWithEmbeddedId<BusinessEntityContactId> {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
@@ -93,13 +93,6 @@ public abstract class MappedBusinessEntityContact {
      * The name of the table to which this class maps. The value is {@value}.
      */
     public static final String TABLE_NAME = "BusinessEntityContact";
-
-    // ------------------------------------------------------------------------------------------ id
-
-    /**
-     * The name of the attribute which embeds the key. The value is {@value}.
-     */
-    public static final String ATTRIBUTE_NAME_ID = "id";
 
     // ---------------------------------------------------------------------------- BusinessEntityID
 
@@ -185,8 +178,7 @@ public abstract class MappedBusinessEntityContact {
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "id=" + id
-               + ",rowguid=" + rowguid
+               + "rowguid=" + rowguid
                + ",modifiedDate=" + modifiedDate
                + "}";
     }
@@ -228,22 +220,6 @@ public abstract class MappedBusinessEntityContact {
         return MappedBusinessEntityContact.class.hashCode();
     }
 
-    // ------------------------------------------------------------------------------------------ id
-
-    /**
-     * Returns current value of {@value #ATTRIBUTE_NAME_ID} attribute.
-     *
-     * @return current value of {@value #ATTRIBUTE_NAME_ID} attribute.
-     * @implNote {@link #equals(Object)} and {@link #hashCode()} read the identifier through
-     *         this method, not the field, so that a Hibernate proxy, whose own fields are unset,
-     *         answers with the identifier of the row it stands for. The method is
-     *         {@code protected}, not package-private, since a proxy is a subclass in the package of
-     *         the entity, and overrides only what that package sees.
-     */
-    protected BusinessEntityContactId getId() {
-        return id;
-    }
-
     // ------------------------------------------------------------------------------------- rowguid
 
     /**
@@ -275,14 +251,6 @@ public abstract class MappedBusinessEntityContact {
     public void setModifiedDate(final LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-
-    // ---------------------------------------------------------------------------------------------
-    // not updatable: the identifier; Jakarta Persistence does not change the identifier of an
-    // entity
-    @Valid
-    @NotNull
-    @EmbeddedId
-    private BusinessEntityContactId id = new BusinessEntityContactId();
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
