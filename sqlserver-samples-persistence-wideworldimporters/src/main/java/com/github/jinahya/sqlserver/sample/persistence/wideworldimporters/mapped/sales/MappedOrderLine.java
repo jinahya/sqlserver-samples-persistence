@@ -39,7 +39,6 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Sales.OrderLines} table.
@@ -332,7 +331,8 @@ public abstract class MappedOrderLine {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -342,18 +342,20 @@ public abstract class MappedOrderLine {
         if (!(obj instanceof MappedOrderLine that)) {
             return false;
         }
-        return Objects.equals(getOrderLineId(), that.getOrderLineId());
+        return getOrderLineId() != null
+               && getOrderLineId().equals(that.getOrderLineId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getOrderLineId());
+        return MappedOrderLine.class.hashCode();
     }
 
     // --------------------------------------------------------------------------------- orderLineId

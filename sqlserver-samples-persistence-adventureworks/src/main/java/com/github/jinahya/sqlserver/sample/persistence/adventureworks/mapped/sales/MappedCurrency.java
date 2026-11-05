@@ -165,7 +165,7 @@ public abstract class MappedCurrency {
         if (!(obj instanceof MappedCurrency that)) {
             return false;
         }
-        return Objects.equals(currencyCode, that.currencyCode);
+        return Objects.equals(getCurrencyCode(), that.getCurrencyCode());
     }
 
     /**
@@ -176,7 +176,7 @@ public abstract class MappedCurrency {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(currencyCode);
+        return Objects.hash(getCurrencyCode());
     }
 
     // -------------------------------------------------------------------------------- currencyCode

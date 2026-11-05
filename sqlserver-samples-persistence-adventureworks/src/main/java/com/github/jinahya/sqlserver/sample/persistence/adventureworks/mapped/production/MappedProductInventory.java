@@ -327,7 +327,7 @@ public abstract class MappedProductInventory {
      *         {@code protected}, not package-private, since a proxy is a subclass in the package of
      *         the entity, and overrides only what that package sees.
      */
-    protected Integer getLocationId() {
+    protected Long getLocationId() {
         return locationId;
     }
 
@@ -337,7 +337,7 @@ public abstract class MappedProductInventory {
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    protected void setLocationId(final Integer locationId) {
+    protected void setLocationId(final Long locationId) {
         this.locationId = locationId;
     }
 
@@ -458,7 +458,7 @@ public abstract class MappedProductInventory {
     @MsDescription.Column(name = COLUMN_NAME_LOCATION_ID,
                           value = "Inventory location identification number. Foreign key to "
                                   + "Location.LocationID.")
-    private Integer locationId;
+    private Long locationId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SHELF)

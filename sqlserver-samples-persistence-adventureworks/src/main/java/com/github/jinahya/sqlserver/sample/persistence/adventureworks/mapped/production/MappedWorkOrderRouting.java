@@ -448,7 +448,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    protected Integer getLocationId() {
+    protected Long getLocationId() {
         return locationId;
     }
 
@@ -459,7 +459,7 @@ public abstract class MappedWorkOrderRouting {
      *
      * @param locationId new value for {@value #ATTRIBUTE_NAME_LOCATION_ID} attribute.
      */
-    protected void setLocationId(final Integer locationId) {
+    protected void setLocationId(final Long locationId) {
         this.locationId = locationId;
     }
 
@@ -673,7 +673,7 @@ public abstract class MappedWorkOrderRouting {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = false, updatable = false)
-    private Integer locationId;
+    private Long locationId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull

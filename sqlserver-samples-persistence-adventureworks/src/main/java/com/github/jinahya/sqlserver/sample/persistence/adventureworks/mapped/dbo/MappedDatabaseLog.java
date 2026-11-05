@@ -33,15 +33,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.DatabaseLog} table.
  * <p>
  * Read-only: the database DDL trigger ddlDatabaseTriggerLog, ON DATABASE FOR
  * DDL_DATABASE_LEVEL_EVENTS, inserts every row of this table, out of EVENTDATA(), and nothing in
- * the database updates one; so no column of it is insertable or updatable, but for the identifier,
- * which is generated.
+ * the database updates one; so no column of it is insertable or updatable.
  *
  * <table class="striped">
  * <caption>Columns of {@code dbo.DatabaseLog}</caption>
@@ -71,7 +69,7 @@ import java.util.Objects;
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDatabaseLog.COLUMN_NAME_DATABASE_LOG_ID,
-                                    nullable = false, insertable = true, updatable = false)
+                                    nullable = false, insertable = false, updatable = false)
 )
 @MappedSuperclass
 @MsDescription(
@@ -266,7 +264,8 @@ public abstract class MappedDatabaseLog
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -276,18 +275,20 @@ public abstract class MappedDatabaseLog
         if (!(obj instanceof MappedDatabaseLog that)) {
             return false;
         }
-        return Objects.equals(getId_(), that.getId_());
+        return getId_() != null
+               && getId_().equals(that.getId_());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getId_());
+        return MappedDatabaseLog.class.hashCode();
     }
 
     // ------------------------------------------------------------------------------- databaseLogId

@@ -290,7 +290,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *         {@code protected}, not package-private, since a proxy is a subclass in the package of
      *         the entity, and overrides only what that package sees.
      */
-    protected Integer getDepartmentId() {
+    protected Long getDepartmentId() {
         return departmentId;
     }
 
@@ -300,7 +300,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param departmentId new value for {@value #ATTRIBUTE_NAME_DEPARTMENT_ID} attribute.
      */
-    protected void setDepartmentId(final Integer departmentId) {
+    protected void setDepartmentId(final Long departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -419,7 +419,7 @@ public abstract class MappedEmployeeDepartmentHistory {
     @MsDescription.Column(name = COLUMN_NAME_DEPARTMENT_ID,
                           value = "Department in which the employee worked including currently. "
                                   + "Foreign key to Department.DepartmentID.")
-    private Integer departmentId;
+    private Long departmentId;
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of

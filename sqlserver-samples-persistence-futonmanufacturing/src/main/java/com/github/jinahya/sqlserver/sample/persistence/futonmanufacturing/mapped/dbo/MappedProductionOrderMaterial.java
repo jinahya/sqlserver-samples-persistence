@@ -36,7 +36,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code dbo.ProductionOrderMaterial} table.
@@ -201,7 +200,8 @@ public abstract class MappedProductionOrderMaterial {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -211,18 +211,20 @@ public abstract class MappedProductionOrderMaterial {
         if (!(obj instanceof MappedProductionOrderMaterial that)) {
             return false;
         }
-        return Objects.equals(getProdOrderMaterialId(), that.getProdOrderMaterialId());
+        return getProdOrderMaterialId() != null
+               && getProdOrderMaterialId().equals(that.getProdOrderMaterialId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getProdOrderMaterialId());
+        return MappedProductionOrderMaterial.class.hashCode();
     }
 
     // ------------------------------------------------------------------------- prodOrderMaterialId
@@ -329,13 +331,11 @@ public abstract class MappedProductionOrderMaterial {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
+    // read-only: an identity column, which SQL Server assigns on an INSERT and does not update
+    // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_PROD_ORDER_MATERIAL_ID, nullable = false, insertable = true, updatable = false)
+    @Column(name = COLUMN_NAME_PROD_ORDER_MATERIAL_ID, nullable = false, insertable = false, updatable = false)
     private Integer prodOrderMaterialId;
 
     // ---------------------------------------------------------------------------------------------

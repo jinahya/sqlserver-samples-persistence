@@ -135,8 +135,8 @@ public class EmployeeDepartmentHistory
      */
     private void setDepartment(final Department department) {
         this.department = department;
-        setDepartmentId(Optional.ofNullable(department).map(MappedDepartment::getDepartmentId)
-                                .map(Long::intValue)
+        setDepartmentId(Optional.ofNullable(department)
+                                .map(MappedDepartment::getDepartmentId)
                                 .orElse(null));
     }
 

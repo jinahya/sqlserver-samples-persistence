@@ -40,7 +40,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -279,7 +278,8 @@ public abstract class MappedStateProvince {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -289,18 +289,20 @@ public abstract class MappedStateProvince {
         if (!(obj instanceof MappedStateProvince that)) {
             return false;
         }
-        return Objects.equals(getStateProvinceId(), that.getStateProvinceId());
+        return getStateProvinceId() != null
+               && getStateProvinceId().equals(that.getStateProvinceId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getStateProvinceId());
+        return MappedStateProvince.class.hashCode();
     }
 
     // ----------------------------------------------------------------------------- stateProvinceId

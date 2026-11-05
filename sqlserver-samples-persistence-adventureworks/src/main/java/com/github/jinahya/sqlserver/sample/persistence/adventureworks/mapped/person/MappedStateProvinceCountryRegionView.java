@@ -208,7 +208,7 @@ public abstract class MappedStateProvinceCountryRegionView {
         if (!(obj instanceof MappedStateProvinceCountryRegionView that)) {
             return false;
         }
-        return Objects.equals(stateProvinceId, that.stateProvinceId);
+        return Objects.equals(getStateProvinceId(), that.getStateProvinceId());
     }
 
     /**
@@ -219,7 +219,7 @@ public abstract class MappedStateProvinceCountryRegionView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(stateProvinceId);
+        return Objects.hash(getStateProvinceId());
     }
 
     // ----------------------------------------------------------------------------- stateProvinceId

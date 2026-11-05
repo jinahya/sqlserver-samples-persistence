@@ -75,10 +75,12 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
 
 - An `IDENTITY` column is `@GeneratedValue(strategy = IDENTITY)`, and WideWorldImporters' keys, whose defaults are
   [`NEXT VALUE FOR`](https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql) `[Sequences].[...]`, `@GeneratedValue(strategy = SEQUENCE)` with a `@SequenceGenerator` per
-  sequence.
+  sequence. An `IDENTITY` column has no `@Min` or `@Max`: the database assigns it, and the attribute is never set.
 - An AdventureWorks `dbo` or `HumanResources` table keyed by a single `IDENTITY` column extends `-common`'s
-  `MappedWithIdentityId`, whose `Long id_` maps the column through an `@AttributeOverride`, whatever its width;
-  `Production.Location` and `Production.ScrapReason` keep their `smallint` keys as `Short`.
+  `MappedWithIdentityId`, whose `Long id_` maps the column through an `@AttributeOverride`, whatever its width.
+  `Production.Location` and `Production.ScrapReason`, keyed by `smallint` `IDENTITY` columns too, map them as `Long`s
+  of their own, and a foreign key to any of these keys is a `Long` as the key is, whatever it declares, so that the
+  two compare.
 - A keyless class, which no converter reaches, takes a `hierarchyid` or a `geography` column's bytes in its
   constructor and decodes them.
 - No attribute is `@Column(unique = true)`. A unique key or index is a `@UniqueConstraint` of the entity's `@Table`,
@@ -100,7 +102,7 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
   FutonManufacturing's `ModifiedDate`, WideWorldImporters' `LastEditedWhen`) is written by an UPDATE, since nothing in
   the database restamps it; `Purchasing.PurchaseOrderDetail.ModifiedDate`, which its `uPurchaseOrderDetail` trigger
   restamps, is read-only. Such an attribute carries no `@NotNull`, for it is null until the INSERT.
-- A primary-key column is not updatable.
+- A primary-key column is not updatable, and an `IDENTITY` column, which SQL Server assigns, is not insertable either.
 - A read-only attribute has a `protected` setter, and a read-only `rowguid` none. A foreign-key attribute has
   `protected` accessors, for the association is what the entity exposes; a single-column primary key which is a foreign
   key (`Person.Person.BusinessEntityID`) has a `public` getter and a `protected` setter, which its association's setter
@@ -149,8 +151,8 @@ A composite key is mapped by what it is made of, and the mapped superclass fixes
 | foreign keys and a value of the row's own, an `IDENTITY` column, a view, or one the book shows as an `@IdClass` | `@IdClass`; the `@Id` attributes write the columns, and the associations are read-only | the other 15 tables, and `Production.vProductAndDescription` |
 
 `BusinessEntityAddress`, whose key is three foreign keys like `BusinessEntityContact`'s, stays an `@IdClass`, so that
-the two show the two mappings side by side; `ProductInventory` does too, since its `Integer` `LocationID` does not
-match `Location`'s `Short` identifier, which `@MapsId` requires.
+the two show the two mappings side by side; `ProductInventory`, whose key is two foreign keys as well, stays one
+too.
 
 Either way, an entity of a composite key is created by its `of(...)`, which takes what makes up the key and is the
 only thing which sets it. `equals` and `hashCode` read the key through its getters, so that a Hibernate proxy answers

@@ -165,7 +165,7 @@ public abstract class MappedUnitMeasure {
         if (!(obj instanceof MappedUnitMeasure that)) {
             return false;
         }
-        return Objects.equals(unitMeasureCode, that.unitMeasureCode);
+        return Objects.equals(getUnitMeasureCode(), that.getUnitMeasureCode());
     }
 
     /**
@@ -176,7 +176,7 @@ public abstract class MappedUnitMeasure {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(unitMeasureCode);
+        return Objects.hash(getUnitMeasureCode());
     }
 
     // ----------------------------------------------------------------------------- unitMeasureCode

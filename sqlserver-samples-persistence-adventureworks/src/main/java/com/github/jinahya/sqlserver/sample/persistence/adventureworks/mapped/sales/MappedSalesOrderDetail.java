@@ -651,14 +651,11 @@ public abstract class MappedSalesOrderDetail {
     private Integer salesOrderId;
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
-    // identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
+    // read-only: an identity column, which SQL Server assigns on an INSERT and does not update
+    // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = true,
+    @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = false,
             updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
                           value = "Primary key. One incremental unique number per product sold.")

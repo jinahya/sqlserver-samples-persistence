@@ -481,7 +481,7 @@ public abstract class MappedPerson {
         if (!(obj instanceof MappedPerson that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId());
     }
 
     /**
@@ -492,7 +492,7 @@ public abstract class MappedPerson {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId);
+        return Objects.hash(getBusinessEntityId());
     }
 
     // ---------------------------------------------------------------------------- businessEntityId

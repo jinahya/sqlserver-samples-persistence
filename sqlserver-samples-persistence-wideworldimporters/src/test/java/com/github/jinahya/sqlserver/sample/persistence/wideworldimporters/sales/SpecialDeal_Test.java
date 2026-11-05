@@ -40,11 +40,14 @@ class SpecialDeal_Test
      * {@inheritDoc}
      *
      * @implNote {@link SpecialDeal#equals(Object) equals} compares only the {@code @Id}, because
-     *         every other attribute is mutable state.
+     *         every other attribute is mutable state, and only once it is assigned, which persist
+     *         does; until then an instance equals only itself, and {@link SpecialDeal#hashCode()
+     *         hashCode} is the same for every instance.
      */
     @Override
     public SingleTypeEqualsVerifierApi<SpecialDeal> equals_verifier_() {
         return super.equals_verifier_()
-                .suppress(Warning.SURROGATE_KEY);
+                .suppress(Warning.SURROGATE_KEY, Warning.STRICT_HASHCODE,
+                          Warning.IDENTICAL_COPY_FOR_VERSIONED_ENTITY);
     }
 }

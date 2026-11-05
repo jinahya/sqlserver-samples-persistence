@@ -37,7 +37,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Application.PaymentMethods} table.
@@ -190,7 +189,8 @@ public abstract class MappedPaymentMethod {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -200,18 +200,20 @@ public abstract class MappedPaymentMethod {
         if (!(obj instanceof MappedPaymentMethod that)) {
             return false;
         }
-        return Objects.equals(getPaymentMethodId(), that.getPaymentMethodId());
+        return getPaymentMethodId() != null
+               && getPaymentMethodId().equals(that.getPaymentMethodId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getPaymentMethodId());
+        return MappedPaymentMethod.class.hashCode();
     }
 
     // ----------------------------------------------------------------------------- paymentMethodId

@@ -32,11 +32,11 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
     writes its column, and has no setter for them. Its `<Entity>_Test` gives EqualsVerifier two ids for the `id_`
     field, whose type is a type variable.
   - `@IdClass` otherwise: a key with a value of the row's own (a date, a number, an `IDENTITY` column), a view, and
-    `BusinessEntityAddress`, `ProductInventory` (an `Integer` key column over `Location`'s `Short` id), `ProductVendor`
-    and `SpecialOfferProduct` (the book quotes both as `@IdClass`). The `@Id` attributes stay in the mapped
-    superclass: a key column which is a foreign key has a `protected` getter and setter; a value of the row's own a
-    `public` getter and a `protected` setter. `SpecialOfferProduct`'s key getters are `public`, since
-    `SalesOrderDetail` references the key with a composite foreign key.
+    `BusinessEntityAddress`, `ProductInventory`, `ProductVendor` and `SpecialOfferProduct` (the book quotes both as
+    `@IdClass`). The `@Id` attributes stay in the mapped superclass: a key column which is a foreign key has a
+    `protected` getter and setter; a value of the row's own a `public` getter and a `protected` setter.
+    `SpecialOfferProduct`'s key getters are `public`, since `SalesOrderDetail` references the key with a composite
+    foreign key.
   - Either way, `equals` and `hashCode` are `final` and read the key through its getters, never the fields, so that a
     Hibernate proxy, whose own fields are unset, answers; the getters are `protected` or `public`, never
     package-private, since a proxy is a subclass in the entity's package. Where the key is assigned only on persist
@@ -85,10 +85,15 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   surefire, are `__Test`, `__Object_Test` and `_Entity_Test` in every module, and `_NonEntity_Test`, for the id
   classes, in AdventureWorks only, the one module with composite keys. Every entity has an `<Entity>_Test`, which
   suppresses EqualsVerifier's `SURROGATE_KEY`, since its `equals` is by its key, and `STRICT_HASHCODE` where its
-  `hashCode` is a constant; a view with no randomizer disables `toString_NotBlank_NewRandomizedInstance`, as its IT
-  disables persisting. WideWorldImporters' `_Entity_Test` gives EqualsVerifier two of `Person`, `Customer` and
-  `Order`, whose associations are cyclic. The tests are compiled patched into the module, which, in FutonManufacturing
-  and WideWorldImporters, is given `java.desktop` for `__Object_Test`'s `java.beans`.
+  `hashCode` is a constant, and, where the key is generated (`IDENTITY`, `SEQUENCE`, `MappedWithIdentityId`), also
+  `IDENTICAL_COPY_FOR_VERSIONED_ENTITY`, since an instance whose key is not yet assigned equals only itself; as
+  [EqualsVerifier's JPA guide](https://jqno.nl/equalsverifier/manual/jpa-entities/) has it, which the tests follow. An
+  entity with no randomizer, a view or a table only the database writes, disables
+  `toString_NotBlank_NewRandomizedInstance`, as its IT disables persisting. AdventureWorks' `_Entity_Test` gives
+  EqualsVerifier two `XMLGregorianCalendar`s, which the classes binding the typed `xml` columns hold, and
+  WideWorldImporters' two of `Person`, `Customer` and `Order`, whose associations are cyclic. The tests are compiled
+  patched into the module, which, in FutonManufacturing and WideWorldImporters, is given `java.desktop` for
+  `__Object_Test`'s `java.beans`.
 - **`equals` and `hashCode` read the key through its getters, never the fields**, in every mapped superclass, so that a
   Hibernate proxy, whose own fields are unset, answers; EqualsVerifier's JPA check fails a field read.
 - Member order and section markers follow `oracle-sample-schemas-persistence`'s `CLAUDE.md`: constants, nested

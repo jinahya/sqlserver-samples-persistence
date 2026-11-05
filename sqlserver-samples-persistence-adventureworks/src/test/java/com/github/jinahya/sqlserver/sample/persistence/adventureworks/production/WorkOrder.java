@@ -30,6 +30,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.util.Optional;
+
 /**
  * An entity which maps the {@code Production.WorkOrder} table.
  */
@@ -118,8 +120,8 @@ public class WorkOrder
      */
     public void setScrapReason(final ScrapReason scrapReason) {
         this.scrapReason = scrapReason;
-        setScrapReasonId(scrapReason == null || scrapReason.getScrapReasonId() == null
-                                 ? null : scrapReason.getScrapReasonId().intValue());
+        setScrapReasonId(
+                Optional.ofNullable(scrapReason).map(ScrapReason::getScrapReasonId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

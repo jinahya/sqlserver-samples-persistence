@@ -132,8 +132,8 @@ public class WorkOrderRouting
      */
     public void setLocation(final Location location) {
         this.location = location;
-        setLocationId(Optional.ofNullable(location).map(MappedLocation::getLocationId)
-                              .map(Short::intValue).orElse(null));
+        setLocationId(
+                Optional.ofNullable(location).map(MappedLocation::getLocationId).orElse(null));
     }
 
     // ----------------------------------------------------------------------------------- workOrder

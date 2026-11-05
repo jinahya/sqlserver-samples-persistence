@@ -109,7 +109,7 @@ public class ProductInventoryId {
      *
      * @return current value of the {@code locationId} attribute.
      */
-    public Integer getLocationId() {
+    public Long getLocationId() {
         return locationId;
     }
 
@@ -118,7 +118,7 @@ public class ProductInventoryId {
      *
      * @param locationId new value for the {@code locationId} attribute.
      */
-    public void setLocationId(final Integer locationId) {
+    public void setLocationId(final Long locationId) {
         this.locationId = locationId;
     }
 
@@ -134,6 +134,6 @@ public class ProductInventoryId {
      * The value of the {@code locationId} attribute.
      */
     @NotNull
-    private Integer locationId;
+    private Long locationId;
 }
 

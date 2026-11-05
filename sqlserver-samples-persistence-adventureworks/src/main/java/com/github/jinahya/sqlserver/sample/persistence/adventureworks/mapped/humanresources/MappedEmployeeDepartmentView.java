@@ -269,7 +269,7 @@ public abstract class MappedEmployeeDepartmentView {
         if (!(obj instanceof MappedEmployeeDepartmentView that)) {
             return false;
         }
-        return Objects.equals(businessEntityId, that.businessEntityId);
+        return Objects.equals(getBusinessEntityId(), that.getBusinessEntityId());
     }
 
     /**
@@ -280,7 +280,7 @@ public abstract class MappedEmployeeDepartmentView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(businessEntityId);
+        return Objects.hash(getBusinessEntityId());
     }
 
     // ---------------------------------------------------------------------------- businessEntityId

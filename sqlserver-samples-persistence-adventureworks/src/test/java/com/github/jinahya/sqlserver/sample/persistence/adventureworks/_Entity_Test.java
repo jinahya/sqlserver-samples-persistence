@@ -20,6 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
  * #L%
  */
 
+import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 /**
  * An abstract base class for testing, without a persistence context, an entity class.
  * <p>
@@ -43,5 +49,30 @@ public abstract class _Entity_Test<T>
      */
     protected _Entity_Test(final Class<T> targetClass) {
         super(targetClass);
+    }
+
+    // ----------------------------------------------------------------------------- equals/hashCode
+
+    private static XMLGregorianCalendar calendar(final String lexicalRepresentation) {
+        try {
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(lexicalRepresentation);
+        } catch (final DatatypeConfigurationException dce) {
+            throw new AssertionError("failed to create a datatype factory", dce);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @implNote The classes which bind the typed {@code xml} columns hold
+     *         {@link XMLGregorianCalendar}s, an abstract class which EqualsVerifier cannot create,
+     *         so it is given two.
+     */
+    @Override
+    public SingleTypeEqualsVerifierApi<T> equals_verifier_() {
+        return __Object_Test.super.equals_verifier_()
+                .withPrefabValues(XMLGregorianCalendar.class,
+                                  calendar("2001-01-01T00:00:00Z"),
+                                  calendar("2002-02-02T00:00:00Z"));
     }
 }

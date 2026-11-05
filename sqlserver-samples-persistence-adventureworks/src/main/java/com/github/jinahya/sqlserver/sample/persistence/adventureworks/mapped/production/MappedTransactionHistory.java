@@ -39,7 +39,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.TransactionHistory} table.
@@ -47,8 +46,8 @@ import java.util.Objects;
  * Read-only: the triggers iPurchaseOrderDetail, uPurchaseOrderDetail, Sales.iduSalesOrderDetail,
  * iWorkOrder and uWorkOrder insert every row of this table, a record of each purchase, sales and
  * work order transaction, and nothing in the database updates one; so no column of it is insertable
- * or updatable, but for the identifier, which is generated. The {@value #COLUMN_NAME_PRODUCT_ID}
- * column, a foreign key, is read-only here and in the association of the extending entity alike.
+ * or updatable. The {@value #COLUMN_NAME_PRODUCT_ID} column, a foreign key, is read-only here and
+ * in the association of the extending entity alike.
  *
  * <table class="striped">
  * <caption>Columns of {@code Production.TransactionHistory}</caption>
@@ -314,7 +313,8 @@ public abstract class MappedTransactionHistory {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -324,18 +324,20 @@ public abstract class MappedTransactionHistory {
         if (!(obj instanceof MappedTransactionHistory that)) {
             return false;
         }
-        return Objects.equals(transactionId, that.transactionId);
+        return getTransactionId() != null
+               && getTransactionId().equals(that.getTransactionId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(transactionId);
+        return MappedTransactionHistory.class.hashCode();
     }
 
     // ------------------------------------------------------------------------------- transactionId
@@ -530,14 +532,11 @@ public abstract class MappedTransactionHistory {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
-    // identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
+    // read-only: an identity column, which SQL Server assigns on an INSERT and does not update
+    // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = true,
+    @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = false,
             updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_ID,
                           value = "Primary key for TransactionHistory records.")

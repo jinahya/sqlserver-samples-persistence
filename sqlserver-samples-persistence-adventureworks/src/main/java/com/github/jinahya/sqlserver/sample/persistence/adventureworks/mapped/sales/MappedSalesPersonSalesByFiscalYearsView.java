@@ -204,7 +204,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
         if (!(obj instanceof MappedSalesPersonSalesByFiscalYearsView that)) {
             return false;
         }
-        return Objects.equals(salesPersonId, that.salesPersonId);
+        return Objects.equals(getSalesPersonId(), that.getSalesPersonId());
     }
 
     /**
@@ -215,7 +215,7 @@ public abstract class MappedSalesPersonSalesByFiscalYearsView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(salesPersonId);
+        return Objects.hash(getSalesPersonId());
     }
 
     // ------------------------------------------------------------------------------- salesPersonId

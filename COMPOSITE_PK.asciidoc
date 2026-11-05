@@ -1,0 +1,413 @@
+= Composite Primary Keys
+
+The strategies the modules use for a primary key of more than one column. Only AdventureWorks has such keys;
+every table of FutonManufacturing and WideWorldImporters has a single `@Id`.
+
+A composite key is an `@IdClass` or an `@EmbeddedId`, by what it is made of. The mapped superclass, in main, fixes
+which; the entity, in the tests, does not choose.
+
+== `@EmbeddedId` with `@MapsId`
+
+When every key column is a foreign key to another entity's `@Id` of the same Java type: a link table.
+
+[cols="2,3,4",options="header"]
+|===
+| Schema | Table | Key (`<Entity>Id`)
+
+| `Person`
+| `BusinessEntityContact`
+| `businessEntityId`, `personId`, `contactTypeId`
+
+| `Production`
+| `ProductModelIllustration`
+| `productModelId`, `illustrationId`
+
+| `Production`
+| `ProductModelProductDescriptionCulture`
+| `productModelId`, `productDescriptionId`, `cultureId`
+
+| `Production`
+| `ProductProductPhoto`
+| `productId`, `productPhotoId`
+
+| `Sales`
+| `CountryRegionCurrency`
+| `countryRegionCode`, `currencyCode`
+
+| `Sales`
+| `PersonCreditCard`
+| `businessEntityId`, `creditCardId`
+
+| `Sales`
+| `SalesOrderHeaderSalesReason`
+| `salesOrderId`, `salesReasonId`
+|===
+
+=== The base, `-common`'s `MappedWithEmbeddedId`
+
+It holds the key, `null` until persist creates it and fills it from the associations.
+
+[source,java]
+----
+@MappedSuperclass
+public abstract class MappedWithEmbeddedId<T> {
+
+    public static final String ATTRIBUTE_NAME_ID_ = "id_";
+
+    @Override
+    public String toString() { ... } // the key
+
+    protected T getId_() { ... } // no setter
+
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private T id_;
+}
+----
+
+=== The id class, in main
+
+An `@Embeddable`, which maps the key columns.
+
+[source,java]
+----
+@Embeddable
+public class ProductProductPhotoId {
+
+    public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
+    public static final String ATTRIBUTE_NAME_PRODUCT_PHOTO_ID = "productPhotoId";
+
+    @Override public final boolean equals(final Object obj) { ... }
+    @Override public final int hashCode() { ... }
+
+    public Integer getProductId() { ... }
+    public void setProductId(final Integer productId) { ... }
+    public Integer getProductPhotoId() { ... }
+    public void setProductPhotoId(final Integer productPhotoId) { ... }
+
+    @NotNull
+    @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID,
+            nullable = false, insertable = true, updatable = false)
+    private Integer productId;
+
+    @NotNull
+    @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID,
+            nullable = false, insertable = true, updatable = false)
+    private Integer productPhotoId;
+}
+----
+
+=== The mapped superclass, in main
+
+It fixes the base's type to the id class, and holds a path into the key per key column, its own `equals` and
+`hashCode`, and a `toString` of its other attributes.
+
+[source,java]
+----
+@MappedSuperclass
+public abstract class MappedProductProductPhoto
+        extends MappedWithEmbeddedId<ProductProductPhotoId> {
+
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_ID = "id_.productId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_PHOTO_ID = "id_.productPhotoId";
+
+    @Override
+    public final boolean equals(final Object obj) {
+        ...
+        final var id = getId_();
+        return id != null
+               && id.getProductId() != null
+               && id.getProductPhotoId() != null
+               && id.equals(that.getId_());
+    }
+
+    @Override
+    public final int hashCode() {
+        return MappedProductProductPhoto.class.hashCode();
+    }
+}
+----
+
+=== The entity, in the tests
+
+Each association of the key names an attribute of the id class with `@MapsId`, and writes its column. There is no
+setter for them; `of(...)` sets them.
+
+[source,java]
+----
+@Entity(name = "ProductionProductProductPhoto")
+public class ProductProductPhoto
+        extends MappedProductProductPhoto {
+
+    public static ProductProductPhoto of(final Product product,
+                                         final ProductPhoto productPhoto) { ... }
+
+    @Valid
+    @NotNull
+    @MapsId(ProductProductPhotoId.ATTRIBUTE_NAME_PRODUCT_ID)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = COLUMN_NAME_PRODUCT_ID, ..., insertable = true, updatable = false)
+    private Product product;
+
+    @Valid
+    @NotNull
+    @MapsId(ProductProductPhotoId.ATTRIBUTE_NAME_PRODUCT_PHOTO_ID)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = COLUMN_NAME_PRODUCT_PHOTO_ID, ..., insertable = true, updatable = false)
+    private ProductPhoto productPhoto;
+}
+----
+
+== `@IdClass`
+
+Otherwise: a key with a value of the row's own (a date, a number, an `IDENTITY` column), a view, and the tables
+listed as exceptions.
+
+[cols="2,3,4,4",options="header"]
+|===
+| Schema | Table | Key (`<Entity>Id`) | Why not `@EmbeddedId`
+
+| `HumanResources`
+| `EmployeeDepartmentHistory`
+| `businessEntityId`, `startDate`, `departmentId`, `shiftId`
+| `startDate`, a value of the row's own
+
+| `HumanResources`
+| `EmployeePayHistory`
+| `businessEntityId`, `rateChangeDate`
+| `rateChangeDate`, a value of the row's own
+
+| `Person`
+| `BusinessEntityAddress`
+| `businessEntityId`, `addressId`, `addressTypeId`
+| an exception; its key is three foreign keys, as `BusinessEntityContact`'s, and the two show the two mappings side
+  by side
+
+| `Person`
+| `EmailAddress`
+| `businessEntityId`, `emailAddressId`
+| `emailAddressId`, an `IDENTITY` column
+
+| `Person`
+| `PersonPhone`
+| `businessEntityId`, `phoneNumber`, `phoneNumberTypeId`
+| `phoneNumber`, a value of the row's own
+
+| `Production`
+| `vProductAndDescription` (view)
+| `productId`, `cultureId`
+| a view
+
+| `Production`
+| `ProductCostHistory`
+| `productId`, `startDate`
+| `startDate`, a value of the row's own
+
+| `Production`
+| `ProductInventory`
+| `productId`, `locationId`
+| an exception; its key is two foreign keys, kept as `@IdClass`
+
+| `Production`
+| `ProductListPriceHistory`
+| `productId`, `startDate`
+| `startDate`, a value of the row's own
+
+| `Production`
+| `WorkOrderRouting`
+| `workOrderId`, `productId`, `operationSequence`
+| `operationSequence`, a value of the row's own
+
+| `Purchasing`
+| `ProductVendor`
+| `productId`, `businessEntityId`
+| an exception; the book quotes it as `@IdClass`
+
+| `Purchasing`
+| `PurchaseOrderDetail`
+| `purchaseOrderId`, `purchaseOrderDetailId`
+| `purchaseOrderDetailId`, an `IDENTITY` column
+
+| `Sales`
+| `SalesOrderDetail`
+| `salesOrderId`, `salesOrderDetailId`
+| `salesOrderDetailId`, an `IDENTITY` column
+
+| `Sales`
+| `SalesPersonQuotaHistory`
+| `businessEntityId`, `quotaDate`
+| `quotaDate`, a value of the row's own
+
+| `Sales`
+| `SalesTerritoryHistory`
+| `businessEntityId`, `startDate`, `territoryId`
+| `startDate`, a value of the row's own
+
+| `Sales`
+| `SpecialOfferProduct`
+| `specialOfferId`, `productId`
+| an exception; the book quotes it as `@IdClass`, and `SalesOrderDetail` references the key with a composite
+  foreign key
+|===
+
+There is no base class: the `@Id` attributes differ in number, name and type per table, so a generic class cannot
+declare them, and `@IdClass` takes a class literal, not a type variable.
+
+=== The id class, in main
+
+A plain class, with no columns. Its attributes are the mapped superclass's `@Id` attributes, by name and by type.
+
+[source,java]
+----
+public class ProductVendorId {
+
+    public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
+    public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
+
+    @Override public final boolean equals(final Object obj) { ... }
+    @Override public final int hashCode() { ... }
+
+    public Integer getProductId() { ... }
+    public void setProductId(final Integer productId) { ... }
+    public Integer getBusinessEntityId() { ... }
+    public void setBusinessEntityId(final Integer businessEntityId) { ... }
+
+    @NotNull
+    private Integer productId;
+
+    @NotNull
+    private Integer businessEntityId;
+}
+----
+
+=== The mapped superclass, in main
+
+It holds the `@Id` attributes, which write the key columns. A key column which is a foreign key has a `protected`
+getter and setter; a value of the row's own a `public` getter and a `protected` setter. `SpecialOfferProduct`'s key
+getters are `public`.
+
+[source,java]
+----
+@MappedSuperclass
+public abstract class MappedProductVendor {
+
+    public static final String ATTRIBUTE_NAME_PRODUCT_ID = "productId";
+    public static final String ATTRIBUTE_NAME_BUSINESS_ENTITY_ID = "businessEntityId";
+
+    @Override
+    public final boolean equals(final Object obj) {
+        ...
+        return Objects.equals(getProductId(), that.getProductId()) &&
+               Objects.equals(getBusinessEntityId(), that.getBusinessEntityId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(getProductId(), getBusinessEntityId());
+    }
+
+    protected Integer getProductId() { ... }
+    protected void setProductId(final Integer productId) { ... }
+    protected Integer getBusinessEntityId() { ... }
+    protected void setBusinessEntityId(final Integer businessEntityId) { ... }
+
+    @NotNull
+    @Id
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
+    private Integer productId;
+
+    @NotNull
+    @Id
+    @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
+            updatable = false)
+    private Integer businessEntityId;
+}
+----
+
+=== The entity, in the tests
+
+It names the id class with `@IdClass`. Its associations of the key are read-only; each private setter copies the
+associated entity's id into the `@Id` attribute.
+
+[source,java]
+----
+@Entity(name = "PurchasingProductVendor")
+@IdClass(ProductVendorId.class)
+public class ProductVendor
+        extends MappedProductVendor {
+
+    public static ProductVendor of(final Product product,
+                                   final Vendor businessEntity) { ... }
+
+    private void setProduct(final Product product) {
+        this.product = product;
+        setProductId(Optional.ofNullable(product).map(Product::getProductId).orElse(null));
+    }
+
+    private void setBusinessEntity(final Vendor businessEntity) {
+        this.businessEntity = businessEntity;
+        setBusinessEntityId(
+                Optional.ofNullable(businessEntity).map(Vendor::getBusinessEntityId).orElse(null));
+    }
+
+    @Valid
+    @NotNull
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = COLUMN_NAME_PRODUCT_ID, ..., insertable = false, updatable = false)
+    private Product product;
+
+    @Valid
+    @NotNull
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = COLUMN_NAME_BUSINESS_ENTITY_ID, ..., insertable = false, updatable = false)
+    private Vendor businessEntity;
+}
+----
+
+== Side by side
+
+[cols="2,4,4",options="header"]
+|===
+| | `@EmbeddedId` | `@IdClass`
+
+| Id class
+| `@Embeddable`, maps the key columns
+| plain class, no columns
+
+| Who holds the key
+| `MappedWithEmbeddedId<T>.id_`, `null` until persist
+| the mapped superclass's `@Id` attributes
+
+| Which mapping writes a key column
+| the association, through `@MapsId`
+| the basic `@Id` attribute; the association is read-only
+
+| When the key is set
+| on persist
+| in `of(...)`, through the setters
+
+| `hashCode`
+| a constant
+| `Objects.hash` of the key, unless a key column is `IDENTITY`
+
+| Attribute path of a key column
+| `ATTRIBUTE_PATH_ID_<COLUMN>`, `"id_.<attribute>"`
+| `ATTRIBUTE_NAME_<COLUMN>`, the `@Id` attribute
+|===
+
+== Common to both
+
+* The entity's `public static of(...)` takes the associations and values of the key, in key order, and sets them;
+  nothing else changes them. Its persister persists `of(...)`, and copies into it what the randomizer fills.
+* `equals` and `hashCode`, of the mapped superclass and of the id class, are `final` and read the key through its
+  getters, never the fields, so that a Hibernate proxy, whose own fields are unset, answers. The getters are
+  `protected` or `public`, never package-private, since a proxy is a subclass in the entity's package.
+* Where the key is assigned only on persist (`@MapsId`, an `IDENTITY` column), `equals` holds only once every key
+  attribute is assigned, and `hashCode` is the same for every instance.
+* The id class has `ATTRIBUTE_NAME_*` constants and `@NotNull` attributes, and a `<Entity>Id_Test` (a
+  `_NonEntity_Test`) with its `<Entity>Id_Randomizer`, in `<database>.mapped.<schema>` of the tests.
+* The entity's `<Entity>_Test` suppresses EqualsVerifier's `SURROGATE_KEY`, and `STRICT_HASHCODE` where `hashCode` is
+  a constant. Under `@EmbeddedId` it also gives EqualsVerifier two ids for the `id_` field, whose type is a type
+  variable.
+

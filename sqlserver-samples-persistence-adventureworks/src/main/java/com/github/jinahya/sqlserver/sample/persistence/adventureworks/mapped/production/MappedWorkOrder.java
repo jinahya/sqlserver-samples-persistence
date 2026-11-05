@@ -37,7 +37,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.WorkOrder} table.
@@ -284,7 +283,8 @@ public abstract class MappedWorkOrder {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -294,18 +294,20 @@ public abstract class MappedWorkOrder {
         if (!(obj instanceof MappedWorkOrder that)) {
             return false;
         }
-        return Objects.equals(workOrderId, that.workOrderId);
+        return getWorkOrderId() != null
+               && getWorkOrderId().equals(that.getWorkOrderId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(workOrderId);
+        return MappedWorkOrder.class.hashCode();
     }
 
     // ---------------------------------------------------------------------------------- VALIDATION
@@ -508,7 +510,7 @@ public abstract class MappedWorkOrder {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    protected Integer getScrapReasonId() {
+    protected Long getScrapReasonId() {
         return scrapReasonId;
     }
 
@@ -519,7 +521,7 @@ public abstract class MappedWorkOrder {
      *
      * @param scrapReasonId new value for {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    protected void setScrapReasonId(final Integer scrapReasonId) {
+    protected void setScrapReasonId(final Long scrapReasonId) {
         this.scrapReasonId = scrapReasonId;
     }
 
@@ -545,14 +547,11 @@ public abstract class MappedWorkOrder {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
-    // identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
+    // read-only: an identity column, which SQL Server assigns on an INSERT and does not update
+    // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true,
+    @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = false,
             updatable = false)
     private Integer workOrderId;
 
@@ -618,7 +617,7 @@ public abstract class MappedWorkOrder {
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = true, insertable = false,
             updatable = false)
-    private Integer scrapReasonId;
+    private Long scrapReasonId;
 
     // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was

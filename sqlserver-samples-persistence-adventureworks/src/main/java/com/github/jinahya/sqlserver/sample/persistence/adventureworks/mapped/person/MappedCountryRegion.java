@@ -166,7 +166,7 @@ public abstract class MappedCountryRegion {
         if (!(obj instanceof MappedCountryRegion that)) {
             return false;
         }
-        return Objects.equals(countryRegionCode, that.countryRegionCode);
+        return Objects.equals(getCountryRegionCode(), that.getCountryRegionCode());
     }
 
     /**
@@ -177,7 +177,7 @@ public abstract class MappedCountryRegion {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(countryRegionCode);
+        return Objects.hash(getCountryRegionCode());
     }
 
     // --------------------------------------------------------------------------- countryRegionCode

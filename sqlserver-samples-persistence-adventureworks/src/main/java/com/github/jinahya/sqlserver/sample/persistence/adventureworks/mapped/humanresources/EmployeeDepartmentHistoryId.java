@@ -150,7 +150,7 @@ public class EmployeeDepartmentHistoryId {
      *
      * @return current value of the {@code departmentId} attribute.
      */
-    public Integer getDepartmentId() {
+    public Long getDepartmentId() {
         return departmentId;
     }
 
@@ -159,7 +159,7 @@ public class EmployeeDepartmentHistoryId {
      *
      * @param departmentId new value for the {@code departmentId} attribute.
      */
-    public void setDepartmentId(final Integer departmentId) {
+    public void setDepartmentId(final Long departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -201,7 +201,7 @@ public class EmployeeDepartmentHistoryId {
      * The value of the {@code departmentId} attribute.
      */
     @NotNull
-    private Integer departmentId;
+    private Long departmentId;
 
     /**
      * The value of the {@code shiftId} attribute.

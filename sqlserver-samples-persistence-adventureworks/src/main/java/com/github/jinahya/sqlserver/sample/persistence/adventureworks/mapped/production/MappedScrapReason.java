@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -29,13 +28,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Production.ScrapReason} table.
@@ -155,7 +151,8 @@ public abstract class MappedScrapReason {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -165,18 +162,20 @@ public abstract class MappedScrapReason {
         if (!(obj instanceof MappedScrapReason that)) {
             return false;
         }
-        return Objects.equals(scrapReasonId, that.scrapReasonId);
+        return getScrapReasonId() != null
+               && getScrapReasonId().equals(that.getScrapReasonId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(scrapReasonId);
+        return MappedScrapReason.class.hashCode();
     }
 
     // ------------------------------------------------------------------------------- scrapReasonId
@@ -186,7 +185,7 @@ public abstract class MappedScrapReason {
      *
      * @return current value of {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    public Short getScrapReasonId() {
+    public Long getScrapReasonId() {
         return scrapReasonId;
     }
 
@@ -196,7 +195,7 @@ public abstract class MappedScrapReason {
      *
      * @param scrapReasonId new value for {@value #ATTRIBUTE_NAME_SCRAP_REASON_ID} attribute.
      */
-    protected void setScrapReasonId(final Short scrapReasonId) {
+    protected void setScrapReasonId(final Long scrapReasonId) {
         this.scrapReasonId = scrapReasonId;
     }
 
@@ -242,18 +241,15 @@ public abstract class MappedScrapReason {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // not updatable: an identity column, which SQL Server does not update (error 8102); and the
-    // identifier, which
-    // the provider leaves out of an INSERT, as it is @GeneratedValue(strategy = IDENTITY)
-    @Max(SqlServerConstants.SMALLINT_MAX)
-    @Min(SqlServerConstants.SMALLINT_MIN)
+    // read-only: an identity column, which SQL Server assigns on an INSERT and does not update
+    // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = false, insertable = true,
+    @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = false, insertable = false,
             updatable = false)
     @MsDescription.Column(name = COLUMN_NAME_SCRAP_REASON_ID,
                           value = "Primary key for ScrapReason records.")
-    private Short scrapReasonId;
+    private Long scrapReasonId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_NAME)

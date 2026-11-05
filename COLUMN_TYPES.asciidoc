@@ -1,0 +1,942 @@
+= Column Types
+:data-types: https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql
+
+Every column type the tables of AdventureWorks, WideWorldImporters and FutonManufacturing declare, grouped by the
+categories of link:{data-types}[Data types (Transact-SQL)]. Each type is listed as the database's catalog
+(`sys.columns`, `sys.types`) reports it, an alias type with the system type it is based on, and each column as
+`Schema.Table.Column`; 1358 columns of 151 tables in all (486 of 71 in AdventureWorks, 557 of 48 in
+WideWorldImporters, 315 of 32 in FutonManufacturing). WideWorldImporters' 17 `*_Archive` history tables repeat
+the columns of the tables whose history they keep. The views are left out; see <<views>>.
+
+The Java type is the type of the attribute which maps the column in the `Mapped*` classes, the wrapper types,
+never a primitive, and `java.time` for the date and time types. A column whose type is not the usual one for its
+declared type is named in the section's notes.
+
+No column is `float`, `real`, `char`, `text`, `ntext`, `binary`, `image`, `smalldatetime`, `datetimeoffset`,
+`rowversion`, `sql_variant`, `geometry`, `json` or `vector`.
+
+== Exact numerics
+
+`int`, `smallint` and `tinyint` are `Integer`s, and `bigint` a `Long`. An AdventureWorks `dbo` or
+`HumanResources` table keyed by a single `IDENTITY` column extends `-common`'s `MappedWithIdentityId`, whose
+`Long id_` maps the column whatever its width: `dbo.AWBuildVersion.SystemInformationID` and
+`HumanResources.Shift.ShiftID` (`tinyint`), `HumanResources.Department.DepartmentID` (`smallint`), and
+`dbo.DatabaseLog.DatabaseLogID`, `dbo.ErrorLog.ErrorLogID` and `HumanResources.JobCandidate.JobCandidateID`
+(`int`). `Production.Location.LocationID` and `Production.ScrapReason.ScrapReasonID`, `smallint` `IDENTITY`
+keys too, are `Long`s of their own. A foreign key to any of these keys is a `Long` as the key is, whatever it
+declares, so that the two compare.
+
+`decimal`, `numeric`, `money` and `smallmoney` are `BigDecimal`s. `Sales.SalesOrderDetail.LineTotal`, the one
+`numeric`, is a computed column.
+
+=== `bigint`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/int-bigint-smallint-and-tinyint-transact-sql[`bigint`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `bigint`
+| `Long`
+| WideWorldImporters
+| 7
+| `Application.Cities.LatestRecordedPopulation`, `Application.Cities_Archive.LatestRecordedPopulation`, `Application.Countries.LatestRecordedPopulation`, `Application.Countries_Archive.LatestRecordedPopulation`, `Application.StateProvinces.LatestRecordedPopulation`, `Application.StateProvinces_Archive.LatestRecordedPopulation`, `Warehouse.ColdRoomTemperatures_Archive.ColdRoomTemperatureID`
+
+| `bigint IDENTITY`
+| `Long`
+| WideWorldImporters
+| 2
+| `Warehouse.ColdRoomTemperatures.ColdRoomTemperatureID`, `Warehouse.VehicleTemperatures.VehicleTemperatureID`
+
+|===
+
+=== `int`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/int-bigint-smallint-and-tinyint-transact-sql[`int`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `int`
+| `Integer`
+| AdventureWorks
+| 100
+| `dbo.ErrorLog.ErrorNumber`, `dbo.ErrorLog.ErrorSeverity`, `dbo.ErrorLog.ErrorState`, `dbo.ErrorLog.ErrorLine`, `HumanResources.Employee.BusinessEntityID`, `HumanResources.EmployeeDepartmentHistory.BusinessEntityID`, `HumanResources.EmployeePayHistory.BusinessEntityID`, `HumanResources.JobCandidate.BusinessEntityID`, `Person.Address.StateProvinceID`, `Person.BusinessEntityAddress.BusinessEntityID`, `Person.BusinessEntityAddress.AddressID`, `Person.BusinessEntityAddress.AddressTypeID`, `Person.BusinessEntityContact.BusinessEntityID`, `Person.BusinessEntityContact.PersonID`, `Person.BusinessEntityContact.ContactTypeID`, `Person.EmailAddress.BusinessEntityID`, `Person.Password.BusinessEntityID`, `Person.Person.BusinessEntityID`, `Person.Person.EmailPromotion`, `Person.PersonPhone.BusinessEntityID`, `Person.PersonPhone.PhoneNumberTypeID`, `Person.StateProvince.TerritoryID`, `Production.BillOfMaterials.ProductAssemblyID`, `Production.BillOfMaterials.ComponentID`, `Production.Document.Owner`, `Production.Document.ChangeNumber`, `Production.Product.DaysToManufacture`, `Production.Product.ProductSubcategoryID`, `Production.Product.ProductModelID`, `Production.ProductCostHistory.ProductID`, `Production.ProductDocument.ProductID`, `Production.ProductInventory.ProductID`, `Production.ProductListPriceHistory.ProductID`, `Production.ProductModelIllustration.ProductModelID`, `Production.ProductModelIllustration.IllustrationID`, `Production.ProductModelProductDescriptionCulture.ProductModelID`, `Production.ProductModelProductDescriptionCulture.ProductDescriptionID`, `Production.ProductProductPhoto.ProductID`, `Production.ProductProductPhoto.ProductPhotoID`, `Production.ProductReview.ProductID`, `Production.ProductReview.Rating`, `Production.ProductSubcategory.ProductCategoryID`, `Production.TransactionHistory.ProductID`, `Production.TransactionHistory.ReferenceOrderID`, `Production.TransactionHistory.ReferenceOrderLineID`, `Production.TransactionHistory.Quantity`, `Production.TransactionHistoryArchive.TransactionID`, `Production.TransactionHistoryArchive.ProductID`, `Production.TransactionHistoryArchive.ReferenceOrderID`, `Production.TransactionHistoryArchive.ReferenceOrderLineID`, `Production.TransactionHistoryArchive.Quantity`, `Production.WorkOrder.ProductID`, `Production.WorkOrder.OrderQty`, `Production.WorkOrder.StockedQty`, `Production.WorkOrderRouting.WorkOrderID`, `Production.WorkOrderRouting.ProductID`, `Purchasing.ProductVendor.ProductID`, `Purchasing.ProductVendor.BusinessEntityID`, `Purchasing.ProductVendor.AverageLeadTime`, `Purchasing.ProductVendor.MinOrderQty`, `Purchasing.ProductVendor.MaxOrderQty`, `Purchasing.ProductVendor.OnOrderQty`, `Purchasing.PurchaseOrderDetail.PurchaseOrderID`, `Purchasing.PurchaseOrderDetail.ProductID`, `Purchasing.PurchaseOrderHeader.EmployeeID`, `Purchasing.PurchaseOrderHeader.VendorID`, `Purchasing.PurchaseOrderHeader.ShipMethodID`, `Purchasing.Vendor.BusinessEntityID`, `Sales.Customer.PersonID`, `Sales.Customer.StoreID`, `Sales.Customer.TerritoryID`, `Sales.PersonCreditCard.BusinessEntityID`, `Sales.PersonCreditCard.CreditCardID`, `Sales.SalesOrderDetail.SalesOrderID`, `Sales.SalesOrderDetail.ProductID`, `Sales.SalesOrderDetail.SpecialOfferID`, `Sales.SalesOrderHeader.CustomerID`, `Sales.SalesOrderHeader.SalesPersonID`, `Sales.SalesOrderHeader.TerritoryID`, `Sales.SalesOrderHeader.BillToAddressID`, `Sales.SalesOrderHeader.ShipToAddressID`, `Sales.SalesOrderHeader.ShipMethodID`, `Sales.SalesOrderHeader.CreditCardID`, `Sales.SalesOrderHeader.CurrencyRateID`, `Sales.SalesOrderHeaderSalesReason.SalesOrderID`, `Sales.SalesOrderHeaderSalesReason.SalesReasonID`, `Sales.SalesPerson.BusinessEntityID`, `Sales.SalesPerson.TerritoryID`, `Sales.SalesPersonQuotaHistory.BusinessEntityID`, `Sales.SalesTaxRate.StateProvinceID`, `Sales.SalesTerritoryHistory.BusinessEntityID`, `Sales.SalesTerritoryHistory.TerritoryID`, `Sales.ShoppingCartItem.Quantity`, `Sales.ShoppingCartItem.ProductID`, `Sales.SpecialOffer.MinQty`, `Sales.SpecialOffer.MaxQty`, `Sales.SpecialOfferProduct.SpecialOfferID`, `Sales.SpecialOfferProduct.ProductID`, `Sales.Store.BusinessEntityID`, `Sales.Store.SalesPersonID`
+
+| `int`
+| `Integer`
+| WideWorldImporters
+| 202
+| `Application.Cities.CityID`, `Application.Cities.StateProvinceID`, `Application.Cities.LastEditedBy`, `Application.Cities_Archive.CityID`, `Application.Cities_Archive.StateProvinceID`, `Application.Cities_Archive.LastEditedBy`, `Application.Countries.CountryID`, `Application.Countries.IsoNumericCode`, `Application.Countries.LastEditedBy`, `Application.Countries_Archive.CountryID`, `Application.Countries_Archive.IsoNumericCode`, `Application.Countries_Archive.LastEditedBy`, `Application.DeliveryMethods.DeliveryMethodID`, `Application.DeliveryMethods.LastEditedBy`, `Application.DeliveryMethods_Archive.DeliveryMethodID`, `Application.DeliveryMethods_Archive.LastEditedBy`, `Application.PaymentMethods.PaymentMethodID`, `Application.PaymentMethods.LastEditedBy`, `Application.PaymentMethods_Archive.PaymentMethodID`, `Application.PaymentMethods_Archive.LastEditedBy`, `Application.People.PersonID`, `Application.People.LastEditedBy`, `Application.People_Archive.PersonID`, `Application.People_Archive.LastEditedBy`, `Application.StateProvinces.StateProvinceID`, `Application.StateProvinces.CountryID`, `Application.StateProvinces.LastEditedBy`, `Application.StateProvinces_Archive.StateProvinceID`, `Application.StateProvinces_Archive.CountryID`, `Application.StateProvinces_Archive.LastEditedBy`, `Application.SystemParameters.SystemParameterID`, `Application.SystemParameters.DeliveryCityID`, `Application.SystemParameters.PostalCityID`, `Application.SystemParameters.LastEditedBy`, `Application.TransactionTypes.TransactionTypeID`, `Application.TransactionTypes.LastEditedBy`, `Application.TransactionTypes_Archive.TransactionTypeID`, `Application.TransactionTypes_Archive.LastEditedBy`, `Purchasing.PurchaseOrderLines.PurchaseOrderLineID`, `Purchasing.PurchaseOrderLines.PurchaseOrderID`, `Purchasing.PurchaseOrderLines.StockItemID`, `Purchasing.PurchaseOrderLines.OrderedOuters`, `Purchasing.PurchaseOrderLines.ReceivedOuters`, `Purchasing.PurchaseOrderLines.PackageTypeID`, `Purchasing.PurchaseOrderLines.LastEditedBy`, `Purchasing.PurchaseOrders.PurchaseOrderID`, `Purchasing.PurchaseOrders.SupplierID`, `Purchasing.PurchaseOrders.DeliveryMethodID`, `Purchasing.PurchaseOrders.ContactPersonID`, `Purchasing.PurchaseOrders.LastEditedBy`, `Purchasing.SupplierCategories.SupplierCategoryID`, `Purchasing.SupplierCategories.LastEditedBy`, `Purchasing.SupplierCategories_Archive.SupplierCategoryID`, `Purchasing.SupplierCategories_Archive.LastEditedBy`, `Purchasing.Suppliers.SupplierID`, `Purchasing.Suppliers.SupplierCategoryID`, `Purchasing.Suppliers.PrimaryContactPersonID`, `Purchasing.Suppliers.AlternateContactPersonID`, `Purchasing.Suppliers.DeliveryMethodID`, `Purchasing.Suppliers.DeliveryCityID`, `Purchasing.Suppliers.PostalCityID`, `Purchasing.Suppliers.PaymentDays`, `Purchasing.Suppliers.LastEditedBy`, `Purchasing.Suppliers_Archive.SupplierID`, `Purchasing.Suppliers_Archive.SupplierCategoryID`, `Purchasing.Suppliers_Archive.PrimaryContactPersonID`, `Purchasing.Suppliers_Archive.AlternateContactPersonID`, `Purchasing.Suppliers_Archive.DeliveryMethodID`, `Purchasing.Suppliers_Archive.DeliveryCityID`, `Purchasing.Suppliers_Archive.PostalCityID`, `Purchasing.Suppliers_Archive.PaymentDays`, `Purchasing.Suppliers_Archive.LastEditedBy`, `Purchasing.SupplierTransactions.SupplierTransactionID`, `Purchasing.SupplierTransactions.SupplierID`, `Purchasing.SupplierTransactions.TransactionTypeID`, `Purchasing.SupplierTransactions.PurchaseOrderID`, `Purchasing.SupplierTransactions.PaymentMethodID`, `Purchasing.SupplierTransactions.LastEditedBy`, `Sales.BuyingGroups.BuyingGroupID`, `Sales.BuyingGroups.LastEditedBy`, `Sales.BuyingGroups_Archive.BuyingGroupID`, `Sales.BuyingGroups_Archive.LastEditedBy`, `Sales.CustomerCategories.CustomerCategoryID`, `Sales.CustomerCategories.LastEditedBy`, `Sales.CustomerCategories_Archive.CustomerCategoryID`, `Sales.CustomerCategories_Archive.LastEditedBy`, `Sales.Customers.CustomerID`, `Sales.Customers.BillToCustomerID`, `Sales.Customers.CustomerCategoryID`, `Sales.Customers.BuyingGroupID`, `Sales.Customers.PrimaryContactPersonID`, `Sales.Customers.AlternateContactPersonID`, `Sales.Customers.DeliveryMethodID`, `Sales.Customers.DeliveryCityID`, `Sales.Customers.PostalCityID`, `Sales.Customers.PaymentDays`, `Sales.Customers.LastEditedBy`, `Sales.Customers_Archive.CustomerID`, `Sales.Customers_Archive.BillToCustomerID`, `Sales.Customers_Archive.CustomerCategoryID`, `Sales.Customers_Archive.BuyingGroupID`, `Sales.Customers_Archive.PrimaryContactPersonID`, `Sales.Customers_Archive.AlternateContactPersonID`, `Sales.Customers_Archive.DeliveryMethodID`, `Sales.Customers_Archive.DeliveryCityID`, `Sales.Customers_Archive.PostalCityID`, `Sales.Customers_Archive.PaymentDays`, `Sales.Customers_Archive.LastEditedBy`, `Sales.CustomerTransactions.CustomerTransactionID`, `Sales.CustomerTransactions.CustomerID`, `Sales.CustomerTransactions.TransactionTypeID`, `Sales.CustomerTransactions.InvoiceID`, `Sales.CustomerTransactions.PaymentMethodID`, `Sales.CustomerTransactions.LastEditedBy`, `Sales.InvoiceLines.InvoiceLineID`, `Sales.InvoiceLines.InvoiceID`, `Sales.InvoiceLines.StockItemID`, `Sales.InvoiceLines.PackageTypeID`, `Sales.InvoiceLines.Quantity`, `Sales.InvoiceLines.LastEditedBy`, `Sales.Invoices.InvoiceID`, `Sales.Invoices.CustomerID`, `Sales.Invoices.BillToCustomerID`, `Sales.Invoices.OrderID`, `Sales.Invoices.DeliveryMethodID`, `Sales.Invoices.ContactPersonID`, `Sales.Invoices.AccountsPersonID`, `Sales.Invoices.SalespersonPersonID`, `Sales.Invoices.PackedByPersonID`, `Sales.Invoices.TotalDryItems`, `Sales.Invoices.TotalChillerItems`, `Sales.Invoices.LastEditedBy`, `Sales.OrderLines.OrderLineID`, `Sales.OrderLines.OrderID`, `Sales.OrderLines.StockItemID`, `Sales.OrderLines.PackageTypeID`, `Sales.OrderLines.Quantity`, `Sales.OrderLines.PickedQuantity`, `Sales.OrderLines.LastEditedBy`, `Sales.Orders.OrderID`, `Sales.Orders.CustomerID`, `Sales.Orders.SalespersonPersonID`, `Sales.Orders.PickedByPersonID`, `Sales.Orders.ContactPersonID`, `Sales.Orders.BackorderOrderID`, `Sales.Orders.LastEditedBy`, `Sales.SpecialDeals.SpecialDealID`, `Sales.SpecialDeals.StockItemID`, `Sales.SpecialDeals.CustomerID`, `Sales.SpecialDeals.BuyingGroupID`, `Sales.SpecialDeals.CustomerCategoryID`, `Sales.SpecialDeals.StockGroupID`, `Sales.SpecialDeals.LastEditedBy`, `Warehouse.ColdRoomTemperatures.ColdRoomSensorNumber`, `Warehouse.ColdRoomTemperatures_Archive.ColdRoomSensorNumber`, `Warehouse.Colors.ColorID`, `Warehouse.Colors.LastEditedBy`, `Warehouse.Colors_Archive.ColorID`, `Warehouse.Colors_Archive.LastEditedBy`, `Warehouse.PackageTypes.PackageTypeID`, `Warehouse.PackageTypes.LastEditedBy`, `Warehouse.PackageTypes_Archive.PackageTypeID`, `Warehouse.PackageTypes_Archive.LastEditedBy`, `Warehouse.StockGroups.StockGroupID`, `Warehouse.StockGroups.LastEditedBy`, `Warehouse.StockGroups_Archive.StockGroupID`, `Warehouse.StockGroups_Archive.LastEditedBy`, `Warehouse.StockItemHoldings.StockItemID`, `Warehouse.StockItemHoldings.QuantityOnHand`, `Warehouse.StockItemHoldings.LastStocktakeQuantity`, `Warehouse.StockItemHoldings.ReorderLevel`, `Warehouse.StockItemHoldings.TargetStockLevel`, `Warehouse.StockItemHoldings.LastEditedBy`, `Warehouse.StockItems.StockItemID`, `Warehouse.StockItems.SupplierID`, `Warehouse.StockItems.ColorID`, `Warehouse.StockItems.UnitPackageID`, `Warehouse.StockItems.OuterPackageID`, `Warehouse.StockItems.LeadTimeDays`, `Warehouse.StockItems.QuantityPerOuter`, `Warehouse.StockItems.LastEditedBy`, `Warehouse.StockItems_Archive.StockItemID`, `Warehouse.StockItems_Archive.SupplierID`, `Warehouse.StockItems_Archive.ColorID`, `Warehouse.StockItems_Archive.UnitPackageID`, `Warehouse.StockItems_Archive.OuterPackageID`, `Warehouse.StockItems_Archive.LeadTimeDays`, `Warehouse.StockItems_Archive.QuantityPerOuter`, `Warehouse.StockItems_Archive.LastEditedBy`, `Warehouse.StockItemStockGroups.StockItemStockGroupID`, `Warehouse.StockItemStockGroups.StockItemID`, `Warehouse.StockItemStockGroups.StockGroupID`, `Warehouse.StockItemStockGroups.LastEditedBy`, `Warehouse.StockItemTransactions.StockItemTransactionID`, `Warehouse.StockItemTransactions.StockItemID`, `Warehouse.StockItemTransactions.TransactionTypeID`, `Warehouse.StockItemTransactions.CustomerID`, `Warehouse.StockItemTransactions.InvoiceID`, `Warehouse.StockItemTransactions.SupplierID`, `Warehouse.StockItemTransactions.PurchaseOrderID`, `Warehouse.StockItemTransactions.LastEditedBy`, `Warehouse.VehicleTemperatures.ChillerSensorNumber`
+
+| `int`
+| `Integer`
+| FutonManufacturing
+| 57
+| `dbo.BillOfMaterials.ParentItemID`, `dbo.BillOfMaterials.ComponentItemID`, `dbo.BillOfMaterials.UnitID`, `dbo.BillOfMaterials.BOMLevel`, `dbo.Customer.SalesRepID`, `dbo.Customer.TerritoryID`, `dbo.Inventory.ItemID`, `dbo.Inventory.WarehouseID`, `dbo.InventoryTransaction.ItemID`, `dbo.InventoryTransaction.WarehouseID`, `dbo.InventoryTransaction.TransactionTypeID`, `dbo.Items.ItemTypeID`, `dbo.Items.UnitID`, `dbo.Items.LeadTimeDays`, `dbo.PriceList.SalesChannelID`, `dbo.PriceListDetail.PriceListID`, `dbo.PriceListDetail.ItemID`, `dbo.ProductionCompletion.ProductionOrderID`, `dbo.ProductionCompletion.WorkCenterID`, `dbo.ProductionOrder.ItemID`, `dbo.ProductionOrder.WarehouseID`, `dbo.ProductionOrder.WorkCenterID`, `dbo.ProductionOrder.Priority`, `dbo.ProductionOrderMaterial.ProductionOrderID`, `dbo.ProductionOrderMaterial.ItemID`, `dbo.PurchaseOrder.SupplierID`, `dbo.PurchaseOrder.WarehouseID`, `dbo.PurchaseOrderDetail.PurchaseOrderID`, `dbo.PurchaseOrderDetail.LineNumber`, `dbo.PurchaseOrderDetail.ItemID`, `dbo.QualityInspection.ItemID`, `dbo.SalesOrder.CustomerID`, `dbo.SalesOrder.WarehouseID`, `dbo.SalesOrder.SalesChannelID`, `dbo.SalesOrder.StoreID`, `dbo.SalesOrder.SalesRepID`, `dbo.SalesOrderDetail.SalesOrderID`, `dbo.SalesOrderDetail.LineNumber`, `dbo.SalesOrderDetail.ItemID`, `dbo.SalesQuote.CustomerID`, `dbo.SalesQuote.SalesChannelID`, `dbo.SalesQuote.SalesRepID`, `dbo.SalesQuote.ConvertedToOrderID`, `dbo.SalesQuoteDetail.QuoteID`, `dbo.SalesQuoteDetail.LineNumber`, `dbo.SalesQuoteDetail.ItemID`, `dbo.SalesRep.TerritoryID`, `dbo.SalesReturn.SalesOrderID`, `dbo.SalesReturn.CustomerID`, `dbo.SalesReturn.ReturnReasonID`, `dbo.SalesReturnDetail.ReturnID`, `dbo.SalesReturnDetail.SODetailID`, `dbo.SalesReturnDetail.ItemID`, `dbo.Store.SalesChannelID`, `dbo.SupplierItem.SupplierID`, `dbo.SupplierItem.ItemID`, `dbo.SupplierItem.LeadTimeDays`
+
+| `int IDENTITY`
+| `Long`
+| AdventureWorks
+| 3
+| `dbo.DatabaseLog.DatabaseLogID`, `dbo.ErrorLog.ErrorLogID`, `HumanResources.JobCandidate.JobCandidateID`
+
+| `int IDENTITY`
+| `Integer`
+| AdventureWorks
+| 31
+| `Person.Address.AddressID`, `Person.AddressType.AddressTypeID`, `Person.BusinessEntity.BusinessEntityID`, `Person.ContactType.ContactTypeID`, `Person.EmailAddress.EmailAddressID`, `Person.PhoneNumberType.PhoneNumberTypeID`, `Person.StateProvince.StateProvinceID`, `Production.BillOfMaterials.BillOfMaterialsID`, `Production.Illustration.IllustrationID`, `Production.Product.ProductID`, `Production.ProductCategory.ProductCategoryID`, `Production.ProductDescription.ProductDescriptionID`, `Production.ProductModel.ProductModelID`, `Production.ProductPhoto.ProductPhotoID`, `Production.ProductReview.ProductReviewID`, `Production.ProductSubcategory.ProductSubcategoryID`, `Production.TransactionHistory.TransactionID`, `Production.WorkOrder.WorkOrderID`, `Purchasing.PurchaseOrderDetail.PurchaseOrderDetailID`, `Purchasing.PurchaseOrderHeader.PurchaseOrderID`, `Purchasing.ShipMethod.ShipMethodID`, `Sales.CreditCard.CreditCardID`, `Sales.CurrencyRate.CurrencyRateID`, `Sales.Customer.CustomerID`, `Sales.SalesOrderDetail.SalesOrderDetailID`, `Sales.SalesOrderHeader.SalesOrderID`, `Sales.SalesReason.SalesReasonID`, `Sales.SalesTaxRate.SalesTaxRateID`, `Sales.SalesTerritory.TerritoryID`, `Sales.ShoppingCartItem.ShoppingCartItemID`, `Sales.SpecialOffer.SpecialOfferID`
+
+| `int IDENTITY`
+| `Integer`
+| FutonManufacturing
+| 32
+| `dbo.BillOfMaterials.BOMID`, `dbo.Customer.CustomerID`, `dbo.Inventory.InventoryID`, `dbo.InventoryTransaction.TransactionID`, `dbo.Items.ItemID`, `dbo.ItemType.ItemTypeID`, `dbo.PriceList.PriceListID`, `dbo.PriceListDetail.PriceListDetailID`, `dbo.ProductionCompletion.CompletionID`, `dbo.ProductionOrder.ProductionOrderID`, `dbo.ProductionOrderMaterial.ProdOrderMaterialID`, `dbo.Promotion.PromotionID`, `dbo.PurchaseOrder.PurchaseOrderID`, `dbo.PurchaseOrderDetail.PODetailID`, `dbo.QualityInspection.InspectionID`, `dbo.ReturnReason.ReturnReasonID`, `dbo.SalesChannel.SalesChannelID`, `dbo.SalesOrder.SalesOrderID`, `dbo.SalesOrderDetail.SODetailID`, `dbo.SalesQuote.QuoteID`, `dbo.SalesQuoteDetail.QuoteDetailID`, `dbo.SalesRep.SalesRepID`, `dbo.SalesReturn.ReturnID`, `dbo.SalesReturnDetail.ReturnDetailID`, `dbo.SalesTerritory.TerritoryID`, `dbo.Store.StoreID`, `dbo.Supplier.SupplierID`, `dbo.SupplierItem.SupplierItemID`, `dbo.TransactionType.TransactionTypeID`, `dbo.UnitOfMeasure.UnitID`, `dbo.Warehouse.WarehouseID`, `dbo.WorkCenter.WorkCenterID`
+
+|===
+
+=== `smallint`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/int-bigint-smallint-and-tinyint-transact-sql[`smallint`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `smallint`
+| `Integer`
+| AdventureWorks
+| 13
+| `HumanResources.Employee.OrganizationLevel`, `HumanResources.Employee.VacationHours`, `HumanResources.Employee.SickLeaveHours`, `Production.BillOfMaterials.BOMLevel`, `Production.Document.DocumentLevel`, `Production.Product.SafetyStockLevel`, `Production.Product.ReorderPoint`, `Production.ProductInventory.Quantity`, `Production.WorkOrder.ScrappedQty`, `Production.WorkOrderRouting.OperationSequence`, `Purchasing.PurchaseOrderDetail.OrderQty`, `Sales.CreditCard.ExpYear`, `Sales.SalesOrderDetail.OrderQty`
+
+| `smallint`
+| `Long`
+| AdventureWorks
+| 4
+| `HumanResources.EmployeeDepartmentHistory.DepartmentID`, `Production.ProductInventory.LocationID`, `Production.WorkOrder.ScrapReasonID`, `Production.WorkOrderRouting.LocationID`
+
+| `smallint IDENTITY`
+| `Long`
+| AdventureWorks
+| 3
+| `HumanResources.Department.DepartmentID`, `Production.Location.LocationID`, `Production.ScrapReason.ScrapReasonID`
+
+|===
+
+=== `tinyint`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/int-bigint-smallint-and-tinyint-transact-sql[`tinyint`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `tinyint`
+| `Integer`
+| AdventureWorks
+| 11
+| `HumanResources.EmployeeDepartmentHistory.ShiftID`, `HumanResources.EmployeePayHistory.PayFrequency`, `Production.Document.Status`, `Production.ProductInventory.Bin`, `Purchasing.PurchaseOrderHeader.RevisionNumber`, `Purchasing.PurchaseOrderHeader.Status`, `Purchasing.Vendor.CreditRating`, `Sales.CreditCard.ExpMonth`, `Sales.SalesOrderHeader.RevisionNumber`, `Sales.SalesOrderHeader.Status`, `Sales.SalesTaxRate.TaxType`
+
+| `tinyint IDENTITY`
+| `Long`
+| AdventureWorks
+| 2
+| `dbo.AWBuildVersion.SystemInformationID`, `HumanResources.Shift.ShiftID`
+
+|===
+
+=== `bit`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/bit-transact-sql[`bit`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `bit`
+| `Boolean`
+| AdventureWorks
+| 1
+| `Production.Document.FolderFlag`
+
+| `bit`
+| `Boolean`
+| WideWorldImporters
+| 23
+| `Application.People.IsPermittedToLogon`, `Application.People.IsExternalLogonProvider`, `Application.People.IsSystemUser`, `Application.People.IsEmployee`, `Application.People.IsSalesperson`, `Application.People_Archive.IsPermittedToLogon`, `Application.People_Archive.IsExternalLogonProvider`, `Application.People_Archive.IsSystemUser`, `Application.People_Archive.IsEmployee`, `Application.People_Archive.IsSalesperson`, `Purchasing.PurchaseOrderLines.IsOrderLineFinalized`, `Purchasing.PurchaseOrders.IsOrderFinalized`, `Purchasing.SupplierTransactions.IsFinalized`, `Sales.Customers.IsStatementSent`, `Sales.Customers.IsOnCreditHold`, `Sales.Customers_Archive.IsStatementSent`, `Sales.Customers_Archive.IsOnCreditHold`, `Sales.CustomerTransactions.IsFinalized`, `Sales.Invoices.IsCreditNote`, `Sales.Orders.IsUndersupplyBackordered`, `Warehouse.StockItems.IsChillerStock`, `Warehouse.StockItems_Archive.IsChillerStock`, `Warehouse.VehicleTemperatures.IsCompressed`
+
+| `bit`
+| `Boolean`
+| FutonManufacturing
+| 14
+| `dbo.BillOfMaterials.IsActive`, `dbo.Customer.IsActive`, `dbo.Items.IsActive`, `dbo.PriceList.IsActive`, `dbo.Promotion.IsActive`, `dbo.ReturnReason.IsActive`, `dbo.SalesChannel.IsActive`, `dbo.SalesRep.IsActive`, `dbo.SalesTerritory.IsActive`, `dbo.Store.IsActive`, `dbo.Supplier.IsActive`, `dbo.SupplierItem.IsPreferred`, `dbo.Warehouse.IsActive`, `dbo.WorkCenter.IsActive`
+
+| `Flag` (`bit`)
+| `Boolean`
+| AdventureWorks
+| 9
+| `HumanResources.Employee.SalariedFlag`, `HumanResources.Employee.CurrentFlag`, `Person.StateProvince.IsOnlyStateProvinceFlag`, `Production.Product.MakeFlag`, `Production.Product.FinishedGoodsFlag`, `Production.ProductProductPhoto.Primary`, `Purchasing.Vendor.PreferredVendorStatus`, `Purchasing.Vendor.ActiveFlag`, `Sales.SalesOrderHeader.OnlineOrderFlag`
+
+| `NameStyle` (`bit`)
+| `Boolean`
+| AdventureWorks
+| 1
+| `Person.Person.NameStyle`
+
+|===
+
+=== `decimal`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql[`decimal`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `decimal(3,2)`
+| `BigDecimal`
+| FutonManufacturing
+| 1
+| `dbo.Supplier.Rating`
+
+| `decimal(5,2)`
+| `BigDecimal`
+| FutonManufacturing
+| 4
+| `dbo.BillOfMaterials.ScrapRate`, `dbo.Promotion.DiscountPercent`, `dbo.SalesOrderDetail.DiscountPercent`, `dbo.SalesQuoteDetail.DiscountPercent`
+
+| `decimal(8,2)`
+| `BigDecimal`
+| AdventureWorks
+| 5
+| `Production.BillOfMaterials.PerAssemblyQty`, `Production.Location.Availability`, `Production.Product.Weight`, `Purchasing.PurchaseOrderDetail.ReceivedQty`, `Purchasing.PurchaseOrderDetail.RejectedQty`
+
+| `decimal(9,2)`
+| `BigDecimal`
+| AdventureWorks
+| 1
+| `Purchasing.PurchaseOrderDetail.StockedQty`
+
+| `decimal(9,4)`
+| `BigDecimal`
+| AdventureWorks
+| 1
+| `Production.WorkOrderRouting.ActualResourceHrs`
+
+| `decimal(10,2)`
+| `BigDecimal`
+| WideWorldImporters
+| 3
+| `Warehouse.ColdRoomTemperatures.Temperature`, `Warehouse.ColdRoomTemperatures_Archive.Temperature`, `Warehouse.VehicleTemperatures.Temperature`
+
+| `decimal(18,2)`
+| `BigDecimal`
+| WideWorldImporters
+| 23
+| `Purchasing.PurchaseOrderLines.ExpectedUnitPricePerOuter`, `Purchasing.SupplierTransactions.AmountExcludingTax`, `Purchasing.SupplierTransactions.TaxAmount`, `Purchasing.SupplierTransactions.TransactionAmount`, `Purchasing.SupplierTransactions.OutstandingBalance`, `Sales.Customers.CreditLimit`, `Sales.Customers_Archive.CreditLimit`, `Sales.CustomerTransactions.AmountExcludingTax`, `Sales.CustomerTransactions.TaxAmount`, `Sales.CustomerTransactions.TransactionAmount`, `Sales.CustomerTransactions.OutstandingBalance`, `Sales.InvoiceLines.UnitPrice`, `Sales.InvoiceLines.TaxAmount`, `Sales.InvoiceLines.LineProfit`, `Sales.InvoiceLines.ExtendedPrice`, `Sales.OrderLines.UnitPrice`, `Sales.SpecialDeals.DiscountAmount`, `Sales.SpecialDeals.UnitPrice`, `Warehouse.StockItemHoldings.LastCostPrice`, `Warehouse.StockItems.UnitPrice`, `Warehouse.StockItems.RecommendedRetailPrice`, `Warehouse.StockItems_Archive.UnitPrice`, `Warehouse.StockItems_Archive.RecommendedRetailPrice`
+
+| `decimal(18,2)`
+| `BigDecimal`
+| FutonManufacturing
+| 43
+| `dbo.Customer.CreditLimit`, `dbo.Inventory.QuantityOnHand`, `dbo.Inventory.QuantityAllocated`, `dbo.InventoryTransaction.Quantity`, `dbo.Items.ReorderPoint`, `dbo.Items.SafetyStock`, `dbo.PriceListDetail.MinimumQuantity`, `dbo.ProductionCompletion.QuantityCompleted`, `dbo.ProductionCompletion.QuantityScrapped`, `dbo.ProductionOrder.OrderQuantity`, `dbo.ProductionOrder.QuantityCompleted`, `dbo.ProductionOrder.QuantityScrapped`, `dbo.ProductionOrderMaterial.RequiredQuantity`, `dbo.ProductionOrderMaterial.IssuedQuantity`, `dbo.Promotion.DiscountAmount`, `dbo.Promotion.MinimumPurchase`, `dbo.PurchaseOrder.Subtotal`, `dbo.PurchaseOrder.TaxAmount`, `dbo.PurchaseOrder.ShippingAmount`, `dbo.PurchaseOrder.TotalAmount`, `dbo.PurchaseOrderDetail.Quantity`, `dbo.PurchaseOrderDetail.QuantityReceived`, `dbo.QualityInspection.QuantityInspected`, `dbo.QualityInspection.QuantityAccepted`, `dbo.QualityInspection.QuantityRejected`, `dbo.SalesOrder.Subtotal`, `dbo.SalesOrder.TaxAmount`, `dbo.SalesOrder.ShippingAmount`, `dbo.SalesOrder.TotalAmount`, `dbo.SalesOrder.DiscountAmount`, `dbo.SalesOrderDetail.Quantity`, `dbo.SalesOrderDetail.QuantityShipped`, `dbo.SalesQuote.Subtotal`, `dbo.SalesQuote.DiscountAmount`, `dbo.SalesQuote.TaxAmount`, `dbo.SalesQuote.TotalAmount`, `dbo.SalesQuoteDetail.Quantity`, `dbo.SalesReturn.RefundAmount`, `dbo.SalesReturn.RestockingFee`, `dbo.SalesReturnDetail.QuantityReturned`, `dbo.SalesReturnDetail.RefundAmount`, `dbo.SupplierItem.MinimumOrderQuantity`, `dbo.WorkCenter.Capacity`
+
+| `decimal(18,3)`
+| `BigDecimal`
+| WideWorldImporters
+| 10
+| `Sales.Customers.StandardDiscountPercentage`, `Sales.Customers_Archive.StandardDiscountPercentage`, `Sales.InvoiceLines.TaxRate`, `Sales.OrderLines.TaxRate`, `Sales.SpecialDeals.DiscountPercentage`, `Warehouse.StockItems.TaxRate`, `Warehouse.StockItems.TypicalWeightPerUnit`, `Warehouse.StockItems_Archive.TaxRate`, `Warehouse.StockItems_Archive.TypicalWeightPerUnit`, `Warehouse.StockItemTransactions.Quantity`
+
+| `decimal(18,4)`
+| `BigDecimal`
+| FutonManufacturing
+| 10
+| `dbo.BillOfMaterials.Quantity`, `dbo.InventoryTransaction.UnitCost`, `dbo.Items.StandardCost`, `dbo.Items.ListPrice`, `dbo.PriceListDetail.UnitPrice`, `dbo.PurchaseOrderDetail.UnitPrice`, `dbo.SalesOrderDetail.UnitPrice`, `dbo.SalesQuoteDetail.UnitPrice`, `dbo.SalesReturnDetail.UnitPrice`, `dbo.SupplierItem.UnitPrice`
+
+| `decimal(19,2)`
+| `BigDecimal`
+| FutonManufacturing
+| 2
+| `dbo.Inventory.QuantityAvailable`, `dbo.SalesOrder.NetAmount`
+
+| `decimal(37,6)`
+| `BigDecimal`
+| FutonManufacturing
+| 2
+| `dbo.PurchaseOrderDetail.LineTotal`, `dbo.SalesOrderDetail.LineTotal`
+
+| `decimal(38,6)`
+| `BigDecimal`
+| FutonManufacturing
+| 3
+| `dbo.SalesOrderDetail.DiscountAmount`, `dbo.SalesOrderDetail.NetAmount`, `dbo.SalesQuoteDetail.LineTotal`
+
+|===
+
+=== `numeric`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql[`numeric`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `numeric(38,6)`
+| `BigDecimal`
+| AdventureWorks
+| 1
+| `Sales.SalesOrderDetail.LineTotal`
+
+|===
+
+=== `money`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/money-and-smallmoney-transact-sql[`money`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `money`
+| `BigDecimal`
+| AdventureWorks
+| 36
+| `HumanResources.EmployeePayHistory.Rate`, `Production.Product.StandardCost`, `Production.Product.ListPrice`, `Production.ProductCostHistory.StandardCost`, `Production.ProductListPriceHistory.ListPrice`, `Production.TransactionHistory.ActualCost`, `Production.TransactionHistoryArchive.ActualCost`, `Production.WorkOrderRouting.PlannedCost`, `Production.WorkOrderRouting.ActualCost`, `Purchasing.ProductVendor.StandardPrice`, `Purchasing.ProductVendor.LastReceiptCost`, `Purchasing.PurchaseOrderDetail.UnitPrice`, `Purchasing.PurchaseOrderDetail.LineTotal`, `Purchasing.PurchaseOrderHeader.SubTotal`, `Purchasing.PurchaseOrderHeader.TaxAmt`, `Purchasing.PurchaseOrderHeader.Freight`, `Purchasing.PurchaseOrderHeader.TotalDue`, `Purchasing.ShipMethod.ShipBase`, `Purchasing.ShipMethod.ShipRate`, `Sales.CurrencyRate.AverageRate`, `Sales.CurrencyRate.EndOfDayRate`, `Sales.SalesOrderDetail.UnitPrice`, `Sales.SalesOrderDetail.UnitPriceDiscount`, `Sales.SalesOrderHeader.SubTotal`, `Sales.SalesOrderHeader.TaxAmt`, `Sales.SalesOrderHeader.Freight`, `Sales.SalesOrderHeader.TotalDue`, `Sales.SalesPerson.SalesQuota`, `Sales.SalesPerson.Bonus`, `Sales.SalesPerson.SalesYTD`, `Sales.SalesPerson.SalesLastYear`, `Sales.SalesPersonQuotaHistory.SalesQuota`, `Sales.SalesTerritory.SalesYTD`, `Sales.SalesTerritory.SalesLastYear`, `Sales.SalesTerritory.CostYTD`, `Sales.SalesTerritory.CostLastYear`
+
+|===
+
+=== `smallmoney`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/money-and-smallmoney-transact-sql[`smallmoney`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `smallmoney`
+| `BigDecimal`
+| AdventureWorks
+| 4
+| `Production.Location.CostRate`, `Sales.SalesPerson.CommissionPct`, `Sales.SalesTaxRate.TaxRate`, `Sales.SpecialOffer.DiscountPct`
+
+|===
+
+== Date and time
+
+=== `date`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/date-transact-sql[`date`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `date`
+| `LocalDate`
+| AdventureWorks
+| 4
+| `HumanResources.Employee.BirthDate`, `HumanResources.Employee.HireDate`, `HumanResources.EmployeeDepartmentHistory.StartDate`, `HumanResources.EmployeeDepartmentHistory.EndDate`
+
+| `date`
+| `LocalDate`
+| WideWorldImporters
+| 14
+| `Purchasing.PurchaseOrderLines.LastReceiptDate`, `Purchasing.PurchaseOrders.OrderDate`, `Purchasing.PurchaseOrders.ExpectedDeliveryDate`, `Purchasing.SupplierTransactions.TransactionDate`, `Purchasing.SupplierTransactions.FinalizationDate`, `Sales.Customers.AccountOpenedDate`, `Sales.Customers_Archive.AccountOpenedDate`, `Sales.CustomerTransactions.TransactionDate`, `Sales.CustomerTransactions.FinalizationDate`, `Sales.Invoices.InvoiceDate`, `Sales.Orders.OrderDate`, `Sales.Orders.ExpectedDeliveryDate`, `Sales.SpecialDeals.StartDate`, `Sales.SpecialDeals.EndDate`
+
+| `date`
+| `LocalDate`
+| FutonManufacturing
+| 22
+| `dbo.BillOfMaterials.EffectiveDate`, `dbo.BillOfMaterials.EndDate`, `dbo.PriceList.EffectiveDate`, `dbo.PriceList.EndDate`, `dbo.ProductionOrder.StartDate`, `dbo.ProductionOrder.PlannedCompletionDate`, `dbo.ProductionOrder.ActualCompletionDate`, `dbo.Promotion.StartDate`, `dbo.Promotion.EndDate`, `dbo.PurchaseOrder.OrderDate`, `dbo.PurchaseOrder.ExpectedDeliveryDate`, `dbo.PurchaseOrder.ActualDeliveryDate`, `dbo.SalesOrder.OrderDate`, `dbo.SalesOrder.RequestedDeliveryDate`, `dbo.SalesOrder.ShipDate`, `dbo.SalesQuote.QuoteDate`, `dbo.SalesQuote.ExpirationDate`, `dbo.SalesRep.HireDate`, `dbo.SalesReturn.ReturnDate`, `dbo.Store.OpenDate`, `dbo.SupplierItem.EffectiveDate`, `dbo.SupplierItem.EndDate`
+
+|===
+
+=== `datetime`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetime-transact-sql[`datetime`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `datetime`
+| `LocalDateTime`
+| AdventureWorks
+| 106
+| `dbo.AWBuildVersion.VersionDate`, `dbo.AWBuildVersion.ModifiedDate`, `dbo.DatabaseLog.PostTime`, `dbo.ErrorLog.ErrorTime`, `HumanResources.Department.ModifiedDate`, `HumanResources.Employee.ModifiedDate`, `HumanResources.EmployeeDepartmentHistory.ModifiedDate`, `HumanResources.EmployeePayHistory.RateChangeDate`, `HumanResources.EmployeePayHistory.ModifiedDate`, `HumanResources.JobCandidate.ModifiedDate`, `HumanResources.Shift.ModifiedDate`, `Person.Address.ModifiedDate`, `Person.AddressType.ModifiedDate`, `Person.BusinessEntity.ModifiedDate`, `Person.BusinessEntityAddress.ModifiedDate`, `Person.BusinessEntityContact.ModifiedDate`, `Person.ContactType.ModifiedDate`, `Person.CountryRegion.ModifiedDate`, `Person.EmailAddress.ModifiedDate`, `Person.Password.ModifiedDate`, `Person.Person.ModifiedDate`, `Person.PersonPhone.ModifiedDate`, `Person.PhoneNumberType.ModifiedDate`, `Person.StateProvince.ModifiedDate`, `Production.BillOfMaterials.StartDate`, `Production.BillOfMaterials.EndDate`, `Production.BillOfMaterials.ModifiedDate`, `Production.Culture.ModifiedDate`, `Production.Document.ModifiedDate`, `Production.Illustration.ModifiedDate`, `Production.Location.ModifiedDate`, `Production.Product.SellStartDate`, `Production.Product.SellEndDate`, `Production.Product.DiscontinuedDate`, `Production.Product.ModifiedDate`, `Production.ProductCategory.ModifiedDate`, `Production.ProductCostHistory.StartDate`, `Production.ProductCostHistory.EndDate`, `Production.ProductCostHistory.ModifiedDate`, `Production.ProductDescription.ModifiedDate`, `Production.ProductDocument.ModifiedDate`, `Production.ProductInventory.ModifiedDate`, `Production.ProductListPriceHistory.StartDate`, `Production.ProductListPriceHistory.EndDate`, `Production.ProductListPriceHistory.ModifiedDate`, `Production.ProductModel.ModifiedDate`, `Production.ProductModelIllustration.ModifiedDate`, `Production.ProductModelProductDescriptionCulture.ModifiedDate`, `Production.ProductPhoto.ModifiedDate`, `Production.ProductProductPhoto.ModifiedDate`, `Production.ProductReview.ReviewDate`, `Production.ProductReview.ModifiedDate`, `Production.ProductSubcategory.ModifiedDate`, `Production.ScrapReason.ModifiedDate`, `Production.TransactionHistory.TransactionDate`, `Production.TransactionHistory.ModifiedDate`, `Production.TransactionHistoryArchive.TransactionDate`, `Production.TransactionHistoryArchive.ModifiedDate`, `Production.UnitMeasure.ModifiedDate`, `Production.WorkOrder.StartDate`, `Production.WorkOrder.EndDate`, `Production.WorkOrder.DueDate`, `Production.WorkOrder.ModifiedDate`, `Production.WorkOrderRouting.ScheduledStartDate`, `Production.WorkOrderRouting.ScheduledEndDate`, `Production.WorkOrderRouting.ActualStartDate`, `Production.WorkOrderRouting.ActualEndDate`, `Production.WorkOrderRouting.ModifiedDate`, `Purchasing.ProductVendor.LastReceiptDate`, `Purchasing.ProductVendor.ModifiedDate`, `Purchasing.PurchaseOrderDetail.DueDate`, `Purchasing.PurchaseOrderDetail.ModifiedDate`, `Purchasing.PurchaseOrderHeader.OrderDate`, `Purchasing.PurchaseOrderHeader.ShipDate`, `Purchasing.PurchaseOrderHeader.ModifiedDate`, `Purchasing.ShipMethod.ModifiedDate`, `Purchasing.Vendor.ModifiedDate`, `Sales.CountryRegionCurrency.ModifiedDate`, `Sales.CreditCard.ModifiedDate`, `Sales.Currency.ModifiedDate`, `Sales.CurrencyRate.CurrencyRateDate`, `Sales.CurrencyRate.ModifiedDate`, `Sales.Customer.ModifiedDate`, `Sales.PersonCreditCard.ModifiedDate`, `Sales.SalesOrderDetail.ModifiedDate`, `Sales.SalesOrderHeader.OrderDate`, `Sales.SalesOrderHeader.DueDate`, `Sales.SalesOrderHeader.ShipDate`, `Sales.SalesOrderHeader.ModifiedDate`, `Sales.SalesOrderHeaderSalesReason.ModifiedDate`, `Sales.SalesPerson.ModifiedDate`, `Sales.SalesPersonQuotaHistory.QuotaDate`, `Sales.SalesPersonQuotaHistory.ModifiedDate`, `Sales.SalesReason.ModifiedDate`, `Sales.SalesTaxRate.ModifiedDate`, `Sales.SalesTerritory.ModifiedDate`, `Sales.SalesTerritoryHistory.StartDate`, `Sales.SalesTerritoryHistory.EndDate`, `Sales.SalesTerritoryHistory.ModifiedDate`, `Sales.ShoppingCartItem.DateCreated`, `Sales.ShoppingCartItem.ModifiedDate`, `Sales.SpecialOffer.StartDate`, `Sales.SpecialOffer.EndDate`, `Sales.SpecialOffer.ModifiedDate`, `Sales.SpecialOfferProduct.ModifiedDate`, `Sales.Store.ModifiedDate`
+
+|===
+
+=== `datetime2`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetime2-transact-sql[`datetime2`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `datetime2(7)`
+| `LocalDateTime`
+| WideWorldImporters
+| 88
+| `Application.Cities.ValidFrom`, `Application.Cities.ValidTo`, `Application.Cities_Archive.ValidFrom`, `Application.Cities_Archive.ValidTo`, `Application.Countries.ValidFrom`, `Application.Countries.ValidTo`, `Application.Countries_Archive.ValidFrom`, `Application.Countries_Archive.ValidTo`, `Application.DeliveryMethods.ValidFrom`, `Application.DeliveryMethods.ValidTo`, `Application.DeliveryMethods_Archive.ValidFrom`, `Application.DeliveryMethods_Archive.ValidTo`, `Application.PaymentMethods.ValidFrom`, `Application.PaymentMethods.ValidTo`, `Application.PaymentMethods_Archive.ValidFrom`, `Application.PaymentMethods_Archive.ValidTo`, `Application.People.ValidFrom`, `Application.People.ValidTo`, `Application.People_Archive.ValidFrom`, `Application.People_Archive.ValidTo`, `Application.StateProvinces.ValidFrom`, `Application.StateProvinces.ValidTo`, `Application.StateProvinces_Archive.ValidFrom`, `Application.StateProvinces_Archive.ValidTo`, `Application.SystemParameters.LastEditedWhen`, `Application.TransactionTypes.ValidFrom`, `Application.TransactionTypes.ValidTo`, `Application.TransactionTypes_Archive.ValidFrom`, `Application.TransactionTypes_Archive.ValidTo`, `Purchasing.PurchaseOrderLines.LastEditedWhen`, `Purchasing.PurchaseOrders.LastEditedWhen`, `Purchasing.SupplierCategories.ValidFrom`, `Purchasing.SupplierCategories.ValidTo`, `Purchasing.SupplierCategories_Archive.ValidFrom`, `Purchasing.SupplierCategories_Archive.ValidTo`, `Purchasing.Suppliers.ValidFrom`, `Purchasing.Suppliers.ValidTo`, `Purchasing.Suppliers_Archive.ValidFrom`, `Purchasing.Suppliers_Archive.ValidTo`, `Purchasing.SupplierTransactions.LastEditedWhen`, `Sales.BuyingGroups.ValidFrom`, `Sales.BuyingGroups.ValidTo`, `Sales.BuyingGroups_Archive.ValidFrom`, `Sales.BuyingGroups_Archive.ValidTo`, `Sales.CustomerCategories.ValidFrom`, `Sales.CustomerCategories.ValidTo`, `Sales.CustomerCategories_Archive.ValidFrom`, `Sales.CustomerCategories_Archive.ValidTo`, `Sales.Customers.ValidFrom`, `Sales.Customers.ValidTo`, `Sales.Customers_Archive.ValidFrom`, `Sales.Customers_Archive.ValidTo`, `Sales.CustomerTransactions.LastEditedWhen`, `Sales.InvoiceLines.LastEditedWhen`, `Sales.Invoices.ConfirmedDeliveryTime`, `Sales.Invoices.LastEditedWhen`, `Sales.OrderLines.PickingCompletedWhen`, `Sales.OrderLines.LastEditedWhen`, `Sales.Orders.PickingCompletedWhen`, `Sales.Orders.LastEditedWhen`, `Sales.SpecialDeals.LastEditedWhen`, `Warehouse.ColdRoomTemperatures.RecordedWhen`, `Warehouse.ColdRoomTemperatures.ValidFrom`, `Warehouse.ColdRoomTemperatures.ValidTo`, `Warehouse.ColdRoomTemperatures_Archive.RecordedWhen`, `Warehouse.ColdRoomTemperatures_Archive.ValidFrom`, `Warehouse.ColdRoomTemperatures_Archive.ValidTo`, `Warehouse.Colors.ValidFrom`, `Warehouse.Colors.ValidTo`, `Warehouse.Colors_Archive.ValidFrom`, `Warehouse.Colors_Archive.ValidTo`, `Warehouse.PackageTypes.ValidFrom`, `Warehouse.PackageTypes.ValidTo`, `Warehouse.PackageTypes_Archive.ValidFrom`, `Warehouse.PackageTypes_Archive.ValidTo`, `Warehouse.StockGroups.ValidFrom`, `Warehouse.StockGroups.ValidTo`, `Warehouse.StockGroups_Archive.ValidFrom`, `Warehouse.StockGroups_Archive.ValidTo`, `Warehouse.StockItemHoldings.LastEditedWhen`, `Warehouse.StockItems.ValidFrom`, `Warehouse.StockItems.ValidTo`, `Warehouse.StockItems_Archive.ValidFrom`, `Warehouse.StockItems_Archive.ValidTo`, `Warehouse.StockItemStockGroups.LastEditedWhen`, `Warehouse.StockItemTransactions.TransactionOccurredWhen`, `Warehouse.StockItemTransactions.LastEditedWhen`, `Warehouse.VehicleTemperatures.RecordedWhen`
+
+| `datetime2(7)`
+| `LocalDateTime`
+| FutonManufacturing
+| 20
+| `dbo.BillOfMaterials.CreatedDate`, `dbo.BillOfMaterials.ModifiedDate`, `dbo.Customer.CreatedDate`, `dbo.Inventory.LastCountDate`, `dbo.Inventory.LastUpdated`, `dbo.InventoryTransaction.TransactionDate`, `dbo.Items.CreatedDate`, `dbo.Items.ModifiedDate`, `dbo.ProductionCompletion.CompletionDate`, `dbo.ProductionOrder.CreatedDate`, `dbo.ProductionOrder.ModifiedDate`, `dbo.PurchaseOrder.CreatedDate`, `dbo.PurchaseOrder.ModifiedDate`, `dbo.QualityInspection.InspectionDate`, `dbo.SalesOrder.CreatedDate`, `dbo.SalesOrder.ModifiedDate`, `dbo.SalesQuote.CreatedDate`, `dbo.SalesReturn.ApprovedDate`, `dbo.SalesReturn.CreatedDate`, `dbo.Supplier.CreatedDate`
+
+|===
+
+=== `time`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/time-transact-sql[`time`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `time(7)`
+| `LocalTime`
+| AdventureWorks
+| 2
+| `HumanResources.Shift.StartTime`, `HumanResources.Shift.EndTime`
+
+|===
+
+== Character strings
+
+`Person.Password.PasswordHash` and `PasswordSalt` hold Base64 text, which `Base64StringAttributeConverter`
+decodes into the bytes.
+
+=== `varchar`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql[`varchar`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `varchar(10)`
+| `byte[]`
+| AdventureWorks
+| 1
+| `Person.Password.PasswordSalt`
+
+| `varchar(10)`
+| `String`
+| AdventureWorks
+| 1
+| `Sales.Customer.AccountNumber`
+
+| `varchar(15)`
+| `String`
+| AdventureWorks
+| 1
+| `Sales.SalesOrderHeader.CreditCardApprovalCode`
+
+| `varchar(128)`
+| `byte[]`
+| AdventureWorks
+| 1
+| `Person.Password.PasswordHash`
+
+|===
+
+== Unicode character strings
+
+`sysname` is `nvarchar(128)`. The `nchar` code columns of AdventureWorks which hold one of a few values are
+enums, each through a converter or `@Enumerated(EnumType.STRING)`.
+
+=== `nchar`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `nchar(1)`
+| `MaritalStatus`
+| AdventureWorks
+| 1
+| `HumanResources.Employee.MaritalStatus`
+
+| `nchar(1)`
+| `Gender`
+| AdventureWorks
+| 1
+| `HumanResources.Employee.Gender`
+
+| `nchar(1)`
+| `TransactionType`
+| AdventureWorks
+| 2
+| `Production.TransactionHistory.TransactionType`, `Production.TransactionHistoryArchive.TransactionType`
+
+| `nchar(2)`
+| `PersonType`
+| AdventureWorks
+| 1
+| `Person.Person.PersonType`
+
+| `nchar(2)`
+| `ProductLine`
+| AdventureWorks
+| 1
+| `Production.Product.ProductLine`
+
+| `nchar(2)`
+| `ProductClass`
+| AdventureWorks
+| 1
+| `Production.Product.Class`
+
+| `nchar(2)`
+| `ProductStyle`
+| AdventureWorks
+| 1
+| `Production.Product.Style`
+
+| `nchar(3)`
+| `String`
+| AdventureWorks
+| 10
+| `Person.StateProvince.StateProvinceCode`, `Production.BillOfMaterials.UnitMeasureCode`, `Production.Product.SizeUnitMeasureCode`, `Production.Product.WeightUnitMeasureCode`, `Production.UnitMeasure.UnitMeasureCode`, `Purchasing.ProductVendor.UnitMeasureCode`, `Sales.CountryRegionCurrency.CurrencyCode`, `Sales.Currency.CurrencyCode`, `Sales.CurrencyRate.FromCurrencyCode`, `Sales.CurrencyRate.ToCurrencyCode`
+
+| `nchar(5)`
+| `String`
+| AdventureWorks
+| 1
+| `Production.Document.Revision`
+
+| `nchar(6)`
+| `String`
+| AdventureWorks
+| 2
+| `Production.Culture.CultureID`, `Production.ProductModelProductDescriptionCulture.CultureID`
+
+|===
+
+=== `nvarchar`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nvarchar`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `nvarchar(3)`
+| `String`
+| AdventureWorks
+| 4
+| `Person.CountryRegion.CountryRegionCode`, `Person.StateProvince.CountryRegionCode`, `Sales.CountryRegionCurrency.CountryRegionCode`, `Sales.SalesTerritory.CountryRegionCode`
+
+| `nvarchar(3)`
+| `String`
+| WideWorldImporters
+| 2
+| `Application.Countries.IsoAlpha3Code`, `Application.Countries_Archive.IsoAlpha3Code`
+
+| `nvarchar(5)`
+| `String`
+| AdventureWorks
+| 1
+| `Production.Product.Size`
+
+| `nvarchar(5)`
+| `String`
+| WideWorldImporters
+| 8
+| `Application.StateProvinces.StateProvinceCode`, `Application.StateProvinces_Archive.StateProvinceCode`, `Sales.Customers.DeliveryRun`, `Sales.Customers.RunPosition`, `Sales.Customers_Archive.DeliveryRun`, `Sales.Customers_Archive.RunPosition`, `Sales.Invoices.DeliveryRun`, `Sales.Invoices.RunPosition`
+
+| `nvarchar(8)`
+| `String`
+| AdventureWorks
+| 2
+| `Person.Person.Title`, `Production.Document.FileExtension`
+
+| `nvarchar(10)`
+| `String`
+| AdventureWorks
+| 2
+| `Person.Person.Suffix`, `Production.ProductInventory.Shelf`
+
+| `nvarchar(10)`
+| `String`
+| WideWorldImporters
+| 10
+| `Application.SystemParameters.DeliveryPostalCode`, `Application.SystemParameters.PostalPostalCode`, `Purchasing.Suppliers.DeliveryPostalCode`, `Purchasing.Suppliers.PostalPostalCode`, `Purchasing.Suppliers_Archive.DeliveryPostalCode`, `Purchasing.Suppliers_Archive.PostalPostalCode`, `Sales.Customers.DeliveryPostalCode`, `Sales.Customers.PostalPostalCode`, `Sales.Customers_Archive.DeliveryPostalCode`, `Sales.Customers_Archive.PostalPostalCode`
+
+| `nvarchar(10)`
+| `String`
+| FutonManufacturing
+| 1
+| `dbo.UnitOfMeasure.UnitCode`
+
+| `nvarchar(15)`
+| `String`
+| AdventureWorks
+| 3
+| `HumanResources.Employee.NationalIDNumber`, `Person.Address.PostalCode`, `Production.Product.Color`
+
+| `AccountNumber` (`nvarchar(15)`)
+| `String`
+| AdventureWorks
+| 2
+| `Purchasing.Vendor.AccountNumber`, `Sales.SalesOrderHeader.AccountNumber`
+
+| `nvarchar(20)`
+| `String`
+| WideWorldImporters
+| 32
+| `Application.Countries.CountryType`, `Application.Countries_Archive.CountryType`, `Application.People.PhoneNumber`, `Application.People.FaxNumber`, `Application.People_Archive.PhoneNumber`, `Application.People_Archive.FaxNumber`, `Purchasing.PurchaseOrders.SupplierReference`, `Purchasing.Suppliers.SupplierReference`, `Purchasing.Suppliers.BankAccountCode`, `Purchasing.Suppliers.BankAccountNumber`, `Purchasing.Suppliers.BankInternationalCode`, `Purchasing.Suppliers.PhoneNumber`, `Purchasing.Suppliers.FaxNumber`, `Purchasing.Suppliers_Archive.SupplierReference`, `Purchasing.Suppliers_Archive.BankAccountCode`, `Purchasing.Suppliers_Archive.BankAccountNumber`, `Purchasing.Suppliers_Archive.BankInternationalCode`, `Purchasing.Suppliers_Archive.PhoneNumber`, `Purchasing.Suppliers_Archive.FaxNumber`, `Purchasing.SupplierTransactions.SupplierInvoiceNumber`, `Sales.Customers.PhoneNumber`, `Sales.Customers.FaxNumber`, `Sales.Customers_Archive.PhoneNumber`, `Sales.Customers_Archive.FaxNumber`, `Sales.Invoices.CustomerPurchaseOrderNumber`, `Sales.Orders.CustomerPurchaseOrderNumber`, `Warehouse.Colors.ColorName`, `Warehouse.Colors_Archive.ColorName`, `Warehouse.StockItemHoldings.BinLocation`, `Warehouse.StockItems.Size`, `Warehouse.StockItems_Archive.Size`, `Warehouse.VehicleTemperatures.VehicleRegistration`
+
+| `nvarchar(20)`
+| `String`
+| FutonManufacturing
+| 26
+| `dbo.Customer.CustomerCode`, `dbo.Customer.Phone`, `dbo.Customer.ZipCode`, `dbo.Customer.CustomerType`, `dbo.ItemType.TypeCode`, `dbo.PriceList.PriceListCode`, `dbo.ProductionOrder.Status`, `dbo.PurchaseOrder.Status`, `dbo.ReturnReason.ReasonCode`, `dbo.SalesChannel.ChannelCode`, `dbo.SalesOrder.Status`, `dbo.SalesQuote.Status`, `dbo.SalesRep.EmployeeCode`, `dbo.SalesRep.Phone`, `dbo.SalesReturn.Status`, `dbo.SalesTerritory.TerritoryCode`, `dbo.Store.StoreCode`, `dbo.Store.Phone`, `dbo.Store.ZipCode`, `dbo.Supplier.SupplierCode`, `dbo.Supplier.Phone`, `dbo.Supplier.ZipCode`, `dbo.TransactionType.TypeCode`, `dbo.Warehouse.WarehouseCode`, `dbo.Warehouse.ZipCode`, `dbo.WorkCenter.WorkCenterCode`
+
+| `nvarchar(25)`
+| `String`
+| AdventureWorks
+| 5
+| `dbo.AWBuildVersion.Database Version`, `Production.Product.ProductNumber`, `Sales.CreditCard.CardNumber`, `Sales.SalesOrderDetail.CarrierTrackingNumber`, `Sales.SalesOrderHeader.SalesOrderNumber`
+
+| `OrderNumber` (`nvarchar(25)`)
+| `String`
+| AdventureWorks
+| 1
+| `Sales.SalesOrderHeader.PurchaseOrderNumber`
+
+| `Phone` (`nvarchar(25)`)
+| `String`
+| AdventureWorks
+| 1
+| `Person.PersonPhone.PhoneNumber`
+
+| `nvarchar(30)`
+| `String`
+| AdventureWorks
+| 1
+| `Person.Address.City`
+
+| `nvarchar(30)`
+| `String`
+| WideWorldImporters
+| 7
+| `Application.Countries.Continent`, `Application.Countries.Region`, `Application.Countries.Subregion`, `Application.Countries_Archive.Continent`, `Application.Countries_Archive.Region`, `Application.Countries_Archive.Subregion`, `Sales.SpecialDeals.DealDescription`
+
+| `nvarchar(50)`
+| `String`
+| AdventureWorks
+| 11
+| `HumanResources.Employee.JobTitle`, `Person.EmailAddress.EmailAddress`, `Production.Document.Title`, `Production.ProductPhoto.ThumbnailPhotoFileName`, `Production.ProductPhoto.LargePhotoFileName`, `Production.ProductReview.EmailAddress`, `Sales.CreditCard.CardType`, `Sales.SalesTerritory.Group`, `Sales.ShoppingCartItem.ShoppingCartID`, `Sales.SpecialOffer.Type`, `Sales.SpecialOffer.Category`
+
+| `nvarchar(50)`
+| `String`
+| WideWorldImporters
+| 36
+| `Application.Cities.CityName`, `Application.Cities_Archive.CityName`, `Application.DeliveryMethods.DeliveryMethodName`, `Application.DeliveryMethods_Archive.DeliveryMethodName`, `Application.PaymentMethods.PaymentMethodName`, `Application.PaymentMethods_Archive.PaymentMethodName`, `Application.People.FullName`, `Application.People.PreferredName`, `Application.People.LogonName`, `Application.People_Archive.FullName`, `Application.People_Archive.PreferredName`, `Application.People_Archive.LogonName`, `Application.StateProvinces.StateProvinceName`, `Application.StateProvinces.SalesTerritory`, `Application.StateProvinces_Archive.StateProvinceName`, `Application.StateProvinces_Archive.SalesTerritory`, `Application.TransactionTypes.TransactionTypeName`, `Application.TransactionTypes_Archive.TransactionTypeName`, `Purchasing.SupplierCategories.SupplierCategoryName`, `Purchasing.SupplierCategories_Archive.SupplierCategoryName`, `Purchasing.Suppliers.BankAccountName`, `Purchasing.Suppliers.BankAccountBranch`, `Purchasing.Suppliers_Archive.BankAccountName`, `Purchasing.Suppliers_Archive.BankAccountBranch`, `Sales.BuyingGroups.BuyingGroupName`, `Sales.BuyingGroups_Archive.BuyingGroupName`, `Sales.CustomerCategories.CustomerCategoryName`, `Sales.CustomerCategories_Archive.CustomerCategoryName`, `Warehouse.PackageTypes.PackageTypeName`, `Warehouse.PackageTypes_Archive.PackageTypeName`, `Warehouse.StockGroups.StockGroupName`, `Warehouse.StockGroups_Archive.StockGroupName`, `Warehouse.StockItems.Brand`, `Warehouse.StockItems.Barcode`, `Warehouse.StockItems_Archive.Brand`, `Warehouse.StockItems_Archive.Barcode`
+
+| `nvarchar(50)`
+| `String`
+| FutonManufacturing
+| 25
+| `dbo.Customer.State`, `dbo.Customer.Country`, `dbo.InventoryTransaction.ReferenceNumber`, `dbo.InventoryTransaction.ReferenceType`, `dbo.Items.ItemCode`, `dbo.ProductionOrder.WorkOrderNumber`, `dbo.Promotion.PromotionCode`, `dbo.PurchaseOrder.PONumber`, `dbo.QualityInspection.InspectionType`, `dbo.QualityInspection.ReferenceType`, `dbo.QualityInspection.ReferenceNumber`, `dbo.SalesOrder.OrderNumber`, `dbo.SalesQuote.QuoteNumber`, `dbo.SalesRep.FirstName`, `dbo.SalesRep.LastName`, `dbo.SalesReturn.ReturnNumber`, `dbo.SalesReturnDetail.Disposition`, `dbo.SalesTerritory.Region`, `dbo.Store.State`, `dbo.Supplier.State`, `dbo.Supplier.Country`, `dbo.Supplier.PaymentTerms`, `dbo.SupplierItem.SupplierPartNumber`, `dbo.UnitOfMeasure.UnitName`, `dbo.Warehouse.State`
+
+| `Name` (`nvarchar(50)`)
+| `String`
+| AdventureWorks
+| 28
+| `HumanResources.Department.Name`, `HumanResources.Department.GroupName`, `HumanResources.Shift.Name`, `Person.AddressType.Name`, `Person.ContactType.Name`, `Person.CountryRegion.Name`, `Person.Person.FirstName`, `Person.Person.MiddleName`, `Person.Person.LastName`, `Person.PhoneNumberType.Name`, `Person.StateProvince.Name`, `Production.Culture.Name`, `Production.Location.Name`, `Production.Product.Name`, `Production.ProductCategory.Name`, `Production.ProductModel.Name`, `Production.ProductReview.ReviewerName`, `Production.ProductSubcategory.Name`, `Production.ScrapReason.Name`, `Production.UnitMeasure.Name`, `Purchasing.ShipMethod.Name`, `Purchasing.Vendor.Name`, `Sales.Currency.Name`, `Sales.SalesReason.Name`, `Sales.SalesReason.ReasonType`, `Sales.SalesTaxRate.Name`, `Sales.SalesTerritory.Name`, `Sales.Store.Name`
+
+| `nvarchar(60)`
+| `String`
+| AdventureWorks
+| 2
+| `Person.Address.AddressLine1`, `Person.Address.AddressLine2`
+
+| `nvarchar(60)`
+| `String`
+| WideWorldImporters
+| 24
+| `Application.Countries.CountryName`, `Application.Countries.FormalName`, `Application.Countries_Archive.CountryName`, `Application.Countries_Archive.FormalName`, `Application.SystemParameters.DeliveryAddressLine1`, `Application.SystemParameters.DeliveryAddressLine2`, `Application.SystemParameters.PostalAddressLine1`, `Application.SystemParameters.PostalAddressLine2`, `Purchasing.Suppliers.DeliveryAddressLine1`, `Purchasing.Suppliers.DeliveryAddressLine2`, `Purchasing.Suppliers.PostalAddressLine1`, `Purchasing.Suppliers.PostalAddressLine2`, `Purchasing.Suppliers_Archive.DeliveryAddressLine1`, `Purchasing.Suppliers_Archive.DeliveryAddressLine2`, `Purchasing.Suppliers_Archive.PostalAddressLine1`, `Purchasing.Suppliers_Archive.PostalAddressLine2`, `Sales.Customers.DeliveryAddressLine1`, `Sales.Customers.DeliveryAddressLine2`, `Sales.Customers.PostalAddressLine1`, `Sales.Customers.PostalAddressLine2`, `Sales.Customers_Archive.DeliveryAddressLine1`, `Sales.Customers_Archive.DeliveryAddressLine2`, `Sales.Customers_Archive.PostalAddressLine1`, `Sales.Customers_Archive.PostalAddressLine2`
+
+| `nvarchar(100)`
+| `String`
+| WideWorldImporters
+| 9
+| `Purchasing.PurchaseOrderLines.Description`, `Purchasing.Suppliers.SupplierName`, `Purchasing.Suppliers_Archive.SupplierName`, `Sales.Customers.CustomerName`, `Sales.Customers_Archive.CustomerName`, `Sales.InvoiceLines.Description`, `Sales.OrderLines.Description`, `Warehouse.StockItems.StockItemName`, `Warehouse.StockItems_Archive.StockItemName`
+
+| `nvarchar(100)`
+| `String`
+| FutonManufacturing
+| 27
+| `dbo.Customer.ContactName`, `dbo.Customer.Email`, `dbo.Customer.City`, `dbo.InventoryTransaction.CreatedBy`, `dbo.ItemType.TypeName`, `dbo.PriceList.PriceListName`, `dbo.ProductionCompletion.CompletedBy`, `dbo.ProductionOrder.CreatedBy`, `dbo.PurchaseOrder.CreatedBy`, `dbo.QualityInspection.InspectedBy`, `dbo.SalesChannel.ChannelName`, `dbo.SalesOrder.CreatedBy`, `dbo.SalesQuote.CreatedBy`, `dbo.SalesRep.Email`, `dbo.SalesReturn.ApprovedBy`, `dbo.SalesTerritory.TerritoryName`, `dbo.Store.StoreName`, `dbo.Store.Manager`, `dbo.Store.Email`, `dbo.Store.City`, `dbo.Supplier.ContactName`, `dbo.Supplier.Email`, `dbo.Supplier.City`, `dbo.TransactionType.TypeName`, `dbo.Warehouse.WarehouseName`, `dbo.Warehouse.City`, `dbo.WorkCenter.WorkCenterName`
+
+| `nvarchar(101)`
+| `String`
+| WideWorldImporters
+| 2
+| `Application.People.SearchName`, `Application.People_Archive.SearchName`
+
+| `nvarchar(126)`
+| `String`
+| AdventureWorks
+| 1
+| `dbo.ErrorLog.ErrorProcedure`
+
+| `sysname` (`nvarchar(128)`)
+| `String`
+| AdventureWorks
+| 5
+| `dbo.DatabaseLog.DatabaseUser`, `dbo.DatabaseLog.Event`, `dbo.DatabaseLog.Schema`, `dbo.DatabaseLog.Object`, `dbo.ErrorLog.UserName`
+
+| `nvarchar(128)`
+| `String`
+| AdventureWorks
+| 1
+| `Sales.SalesOrderHeader.Comment`
+
+| `nvarchar(255)`
+| `String`
+| AdventureWorks
+| 1
+| `Sales.SpecialOffer.Description`
+
+| `nvarchar(255)`
+| `String`
+| FutonManufacturing
+| 15
+| `dbo.Customer.CustomerName`, `dbo.Customer.Address`, `dbo.Items.ItemName`, `dbo.ItemType.Description`, `dbo.Promotion.PromotionName`, `dbo.Promotion.ApplicableChannels`, `dbo.ReturnReason.ReasonDescription`, `dbo.SalesChannel.Description`, `dbo.Store.Address`, `dbo.Supplier.SupplierName`, `dbo.Supplier.Address`, `dbo.TransactionType.Description`, `dbo.UnitOfMeasure.Description`, `dbo.Warehouse.Address`, `dbo.WorkCenter.Description`
+
+| `nvarchar(256)`
+| `String`
+| AdventureWorks
+| 1
+| `HumanResources.Employee.LoginID`
+
+| `nvarchar(256)`
+| `String`
+| WideWorldImporters
+| 6
+| `Application.People.EmailAddress`, `Application.People_Archive.EmailAddress`, `Purchasing.Suppliers.WebsiteURL`, `Purchasing.Suppliers_Archive.WebsiteURL`, `Sales.Customers.WebsiteURL`, `Sales.Customers_Archive.WebsiteURL`
+
+| `nvarchar(400)`
+| `String`
+| AdventureWorks
+| 2
+| `Production.Document.FileName`, `Production.ProductDescription.Description`
+
+| `nvarchar(1000)`
+| `String`
+| WideWorldImporters
+| 1
+| `Warehouse.VehicleTemperatures.FullSensorData`
+
+| `nvarchar(1024)`
+| `String`
+| AdventureWorks
+| 1
+| `Purchasing.Vendor.PurchasingWebServiceURL`
+
+| `nvarchar(3850)`
+| `String`
+| AdventureWorks
+| 1
+| `Production.ProductReview.Comments`
+
+| `nvarchar(4000)`
+| `String`
+| AdventureWorks
+| 1
+| `dbo.ErrorLog.ErrorMessage`
+
+| `nvarchar(4000)`
+| `String`
+| WideWorldImporters
+| 1
+| `Sales.Invoices.ConfirmedReceivedBy`
+
+| `nvarchar(max)`
+| `String`
+| AdventureWorks
+| 2
+| `dbo.DatabaseLog.TSQL`, `Production.Document.DocumentSummary`
+
+| `nvarchar(max)`
+| `String`
+| WideWorldImporters
+| 29
+| `Application.People.UserPreferences`, `Application.People.CustomFields`, `Application.People.OtherLanguages`, `Application.People_Archive.UserPreferences`, `Application.People_Archive.CustomFields`, `Application.People_Archive.OtherLanguages`, `Application.SystemParameters.ApplicationSettings`, `Purchasing.PurchaseOrders.Comments`, `Purchasing.PurchaseOrders.InternalComments`, `Purchasing.Suppliers.InternalComments`, `Purchasing.Suppliers_Archive.InternalComments`, `Sales.Invoices.CreditNoteReason`, `Sales.Invoices.Comments`, `Sales.Invoices.DeliveryInstructions`, `Sales.Invoices.InternalComments`, `Sales.Invoices.ReturnedDeliveryData`, `Sales.Orders.Comments`, `Sales.Orders.DeliveryInstructions`, `Sales.Orders.InternalComments`, `Warehouse.StockItems.MarketingComments`, `Warehouse.StockItems.InternalComments`, `Warehouse.StockItems.CustomFields`, `Warehouse.StockItems.Tags`, `Warehouse.StockItems.SearchDetails`, `Warehouse.StockItems_Archive.MarketingComments`, `Warehouse.StockItems_Archive.InternalComments`, `Warehouse.StockItems_Archive.CustomFields`, `Warehouse.StockItems_Archive.Tags`, `Warehouse.StockItems_Archive.SearchDetails`
+
+| `nvarchar(max)`
+| `String`
+| FutonManufacturing
+| 11
+| `dbo.BillOfMaterials.Notes`, `dbo.InventoryTransaction.Notes`, `dbo.Items.Description`, `dbo.ProductionCompletion.Notes`, `dbo.ProductionOrder.Notes`, `dbo.Promotion.Description`, `dbo.PurchaseOrder.Notes`, `dbo.QualityInspection.Notes`, `dbo.SalesOrder.Notes`, `dbo.SalesQuote.Notes`, `dbo.SalesReturn.Notes`
+
+|===
+
+== Binary strings
+
+=== `varbinary`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbinary-transact-sql[`varbinary`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `varbinary(max)`
+| `byte[]`
+| AdventureWorks
+| 3
+| `Production.Document.Document`, `Production.ProductPhoto.ThumbNailPhoto`, `Production.ProductPhoto.LargePhoto`
+
+| `varbinary(max)`
+| `byte[]`
+| WideWorldImporters
+| 7
+| `Application.People.HashedPassword`, `Application.People.Photo`, `Application.People_Archive.HashedPassword`, `Application.People_Archive.Photo`, `Warehouse.StockItems.Photo`, `Warehouse.StockItems_Archive.Photo`, `Warehouse.VehicleTemperatures.CompressedSensorData`
+
+|===
+
+== Other data types
+
+`uniqueidentifier` is a `UUID`, which Hibernate ORM maps with no converter; `Production.Document.rowguid`,
+the identifier of `Production.Document`, is a `String`.
+
+A typed `xml` column is the class which binds its schema collection, and an untyped one a `String`; see
+`README.md`. `hierarchyid` and `geography` are `-common`'s `Heirarchyid` and `Geography`, through
+`HeirarchyidAttributeConverter` and `GeographyAttributeConverter`.
+
+=== `uniqueidentifier`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/uniqueidentifier-transact-sql[`uniqueidentifier`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `uniqueidentifier`
+| `UUID`
+| AdventureWorks
+| 28
+| `HumanResources.Employee.rowguid`, `Person.Address.rowguid`, `Person.AddressType.rowguid`, `Person.BusinessEntity.rowguid`, `Person.BusinessEntityAddress.rowguid`, `Person.BusinessEntityContact.rowguid`, `Person.EmailAddress.rowguid`, `Person.Password.rowguid`, `Person.Person.rowguid`, `Person.StateProvince.rowguid`, `Production.Product.rowguid`, `Production.ProductCategory.rowguid`, `Production.ProductDescription.rowguid`, `Production.ProductInventory.rowguid`, `Production.ProductModel.rowguid`, `Production.ProductSubcategory.rowguid`, `Purchasing.ShipMethod.rowguid`, `Sales.Customer.rowguid`, `Sales.SalesOrderDetail.rowguid`, `Sales.SalesOrderHeader.rowguid`, `Sales.SalesPerson.rowguid`, `Sales.SalesPersonQuotaHistory.rowguid`, `Sales.SalesTaxRate.rowguid`, `Sales.SalesTerritory.rowguid`, `Sales.SalesTerritoryHistory.rowguid`, `Sales.SpecialOffer.rowguid`, `Sales.SpecialOfferProduct.rowguid`, `Sales.Store.rowguid`
+
+| `uniqueidentifier`
+| `String`
+| AdventureWorks
+| 1
+| `Production.Document.rowguid`
+
+|===
+
+=== `xml`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/xml-transact-sql[`xml`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `xml`
+| `EventInstance`
+| AdventureWorks
+| 1
+| `dbo.DatabaseLog.XmlEvent`
+
+| `xml`
+| `ResumeType`
+| AdventureWorks
+| 1
+| `HumanResources.JobCandidate.Resume`
+
+| `xml`
+| `AdditionalContactInfo`
+| AdventureWorks
+| 1
+| `Person.Person.AdditionalContactInfo`
+
+| `xml`
+| `IndividualSurvey`
+| AdventureWorks
+| 1
+| `Person.Person.Demographics`
+
+| `xml`
+| `String`
+| AdventureWorks
+| 1
+| `Production.Illustration.Diagram`
+
+| `xml`
+| `ProductDescription`
+| AdventureWorks
+| 1
+| `Production.ProductModel.CatalogDescription`
+
+| `xml`
+| `Root`
+| AdventureWorks
+| 1
+| `Production.ProductModel.Instructions`
+
+| `xml`
+| `StoreSurvey`
+| AdventureWorks
+| 1
+| `Sales.Store.Demographics`
+
+|===
+
+=== `hierarchyid`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/hierarchyid-data-type-method-reference[`hierarchyid`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `hierarchyid`
+| `Heirarchyid`
+| AdventureWorks
+| 3
+| `HumanResources.Employee.OrganizationNode`, `Production.Document.DocumentNode`, `Production.ProductDocument.DocumentNode`
+
+|===
+
+=== `geography`
+
+See link:https://learn.microsoft.com/en-us/sql/t-sql/spatial-geography/spatial-types-geography[`geography`].
+
+[cols="3,2,2,1,6",options="header"]
+|===
+| Declared as | Java type | Database | Count | Columns
+
+| `geography`
+| `Geography`
+| AdventureWorks
+| 1
+| `Person.Address.SpatialLocation`
+
+| `geography`
+| `Geography`
+| WideWorldImporters
+| 11
+| `Application.Cities.Location`, `Application.Cities_Archive.Location`, `Application.Countries.Border`, `Application.Countries_Archive.Border`, `Application.StateProvinces.Border`, `Application.StateProvinces_Archive.Border`, `Application.SystemParameters.DeliveryLocation`, `Purchasing.Suppliers.DeliveryLocation`, `Purchasing.Suppliers_Archive.DeliveryLocation`, `Sales.Customers.DeliveryLocation`, `Sales.Customers_Archive.DeliveryLocation`
+
+|===
+
+[[views]]
+== Views
+
+A view's columns take the types of the columns and expressions which select them, and the `Mapped*` classes of
+the views map them as the sections above say, every one read-only.
+

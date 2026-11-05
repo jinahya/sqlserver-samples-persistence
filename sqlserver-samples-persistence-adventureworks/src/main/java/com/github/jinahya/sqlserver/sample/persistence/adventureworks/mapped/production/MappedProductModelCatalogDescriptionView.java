@@ -20,15 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -538,7 +535,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
         if (!(obj instanceof MappedProductModelCatalogDescriptionView that)) {
             return false;
         }
-        return Objects.equals(productModelId, that.productModelId);
+        return Objects.equals(getProductModelId(), that.getProductModelId());
     }
 
     /**
@@ -549,7 +546,7 @@ public abstract class MappedProductModelCatalogDescriptionView {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(productModelId);
+        return Objects.hash(getProductModelId());
     }
 
     // ------------------------------------------------------------------------------ productModelId
@@ -1076,8 +1073,6 @@ public abstract class MappedProductModelCatalogDescriptionView {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

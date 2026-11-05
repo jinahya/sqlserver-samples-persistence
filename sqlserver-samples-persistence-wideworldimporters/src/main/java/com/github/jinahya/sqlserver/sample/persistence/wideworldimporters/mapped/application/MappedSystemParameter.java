@@ -39,7 +39,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Application.SystemParameters} table.
@@ -337,7 +336,8 @@ public abstract class MappedSystemParameter {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -347,18 +347,20 @@ public abstract class MappedSystemParameter {
         if (!(obj instanceof MappedSystemParameter that)) {
             return false;
         }
-        return Objects.equals(getSystemParameterId(), that.getSystemParameterId());
+        return getSystemParameterId() != null
+               && getSystemParameterId().equals(that.getSystemParameterId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getSystemParameterId());
+        return MappedSystemParameter.class.hashCode();
     }
 
     // --------------------------------------------------------------------------- systemParameterId

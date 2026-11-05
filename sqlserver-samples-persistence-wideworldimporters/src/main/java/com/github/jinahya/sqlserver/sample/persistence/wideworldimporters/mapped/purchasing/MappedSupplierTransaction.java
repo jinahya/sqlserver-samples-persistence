@@ -41,7 +41,6 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * A mapped superclass which holds the mappings of the {@code Purchasing.SupplierTransactions} table.
@@ -447,7 +446,8 @@ public abstract class MappedSupplierTransaction {
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier alone.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
+     *         not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -457,18 +457,20 @@ public abstract class MappedSupplierTransaction {
         if (!(obj instanceof MappedSupplierTransaction that)) {
             return false;
         }
-        return Objects.equals(getSupplierTransactionId(), that.getSupplierTransactionId());
+        return getSupplierTransactionId() != null
+               && getSupplierTransactionId().equals(that.getSupplierTransactionId());
     }
 
     /**
      * {@inheritDoc}
      *
      * @return {@inheritDoc}
-     * @implSpec The hash is over the identifier, consistent with {@link #equals(Object)}.
+     * @implSpec The hash is the same for every instance, so that it does not change when
+     *         persist assigns the identifier; consistent with {@link #equals(Object)}.
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(getSupplierTransactionId());
+        return MappedSupplierTransaction.class.hashCode();
     }
 
     // ----------------------------------------------------------------------- supplierTransactionId

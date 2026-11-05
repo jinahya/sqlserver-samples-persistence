@@ -399,7 +399,7 @@ public abstract class MappedDocument {
         if (!(obj instanceof MappedDocument that)) {
             return false;
         }
-        return Objects.equals(rowguid, that.rowguid);
+        return Objects.equals(getRowguid(), that.getRowguid());
     }
 
     /**
@@ -410,7 +410,7 @@ public abstract class MappedDocument {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(rowguid);
+        return Objects.hash(getRowguid());
     }
 
     // -------------------------------------------------------------------------------- documentNode

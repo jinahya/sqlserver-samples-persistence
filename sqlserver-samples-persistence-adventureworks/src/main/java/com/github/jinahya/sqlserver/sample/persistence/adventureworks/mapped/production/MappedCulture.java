@@ -165,7 +165,7 @@ public abstract class MappedCulture {
         if (!(obj instanceof MappedCulture that)) {
             return false;
         }
-        return Objects.equals(cultureId, that.cultureId);
+        return Objects.equals(getCultureId(), that.getCultureId());
     }
 
     /**
@@ -176,7 +176,7 @@ public abstract class MappedCulture {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(cultureId);
+        return Objects.hash(getCultureId());
     }
 
     // ----------------------------------------------------------------------------------- cultureId

@@ -341,8 +341,6 @@ public abstract class MappedVehicleTemperature {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: SQL Server does not write this view; see the class documentation
-    @Max(SqlServerConstants.BIGINT_MAX)
-    @Min(SqlServerConstants.BIGINT_MIN)
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

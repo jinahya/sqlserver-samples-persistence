@@ -287,7 +287,7 @@ public abstract class MappedTransactionHistoryArchive {
         if (!(obj instanceof MappedTransactionHistoryArchive that)) {
             return false;
         }
-        return Objects.equals(transactionId, that.transactionId);
+        return Objects.equals(getTransactionId(), that.getTransactionId());
     }
 
     /**
@@ -298,7 +298,7 @@ public abstract class MappedTransactionHistoryArchive {
      */
     @Override
     public final int hashCode() {
-        return Objects.hash(transactionId);
+        return Objects.hash(getTransactionId());
     }
 
     // ------------------------------------------------------------------------------- transactionId
