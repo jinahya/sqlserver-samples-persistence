@@ -327,10 +327,8 @@ public abstract class MappedPaymentMethod {
                        sequenceName = "PaymentMethodID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PaymentMethodID")
-    @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
-                          value = "Numeric ID used for reference to a payment type within the "
-                                  + "database")
+    @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a payment type within the database")
     @MsDefault(name = "DF_Application_PaymentMethods_PaymentMethodID",
                value = "(NEXT VALUE FOR [Sequences].[PaymentMethodID])")
     private Integer paymentMethodId;
@@ -339,10 +337,9 @@ public abstract class MappedPaymentMethod {
     @Size(max = COLUMN_LENGTH_PAYMENT_METHOD_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PAYMENT_METHOD_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PAYMENT_METHOD_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_NAME,
-                          value = "Full name of ways that customers can make payments or that "
-                                  + "suppliers can be paid")
+    @Column(name = COLUMN_NAME_PAYMENT_METHOD_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PAYMENT_METHOD_NAME,
+            comment = "Full name of ways that customers can make payments or that suppliers can be "
+                      + "paid")
     private String paymentMethodName;
 
     // ---------------------------------------------------------------------------------------------

@@ -49,6 +49,10 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
     `<Entity>Id_Randomizer`, in `<database>.mapped.<schema>` of the tests.
 - **Every `@Column` and `@JoinColumn` names `nullable`, `insertable` and `updatable`**, even where they take their
   default values.
+- **Descriptions come from the database**, through the queries of each module's `src/test/sql/__.sql`, verbatim: a
+  column's is its `@Column(comment = ...)`, a table's the entity's `@Table(comment = ...)` and, since a mapped
+  superclass has no `@Table`, the mapped superclass's `@MsDescription`, as `oracle-sample-schemas-persistence` does
+  with `@OraComment`.
 - **A read-only `rowguid` has no setter.** Every table's `rowguid` is filled by the database's `DEFAULT (newid())` and
   never written; `Production.Document`'s, its `@Id`, and the views' keep theirs.
 - **Every entity name carries its schema**, with no exception: `@Entity(name = "<Schema><Entity>")`, the schema as

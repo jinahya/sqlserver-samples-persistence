@@ -250,9 +250,8 @@ public abstract class MappedCountryRegion {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = true,
-            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-                          value = "ISO standard code for countries and regions.")
+            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE,
+            comment = "ISO standard code for countries and regions.")
     private String countryRegionCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -260,8 +259,8 @@ public abstract class MappedCountryRegion {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Country or region name.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Country or region name.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -270,9 +269,8 @@ public abstract class MappedCountryRegion {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_CountryRegion_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -35,6 +35,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ApplicationCountry")
 @Table(schema = MappedCountry.TABLE_SCHEMA,
        name = MappedCountry.TABLE_NAME,
+       comment = "Countries that contain the states or provinces (including geographic boundaries)",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Application_Countries_CountryName",

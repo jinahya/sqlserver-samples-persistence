@@ -57,8 +57,8 @@ SELECT SCHEMA_NAME(t.schema_id) AS [schema],
        t.scale,
        t.is_nullable
 FROM sys.types t
-    JOIN sys.types b
-ON b.user_type_id = t.system_type_id
+         JOIN sys.types b
+              ON b.user_type_id = t.system_type_id
 WHERE t.is_user_defined = 1
   AND t.is_table_type = 0
 ORDER BY [schema] ASC, t.name ASC
@@ -84,8 +84,8 @@ FROM sys.types t
 WHERE t.is_user_defined = 1
   AND t.is_table_type = 0
   AND NOT EXISTS (SELECT 1
-    FROM sys.columns c
-    WHERE c.user_type_id = t.user_type_id)
+                  FROM sys.columns c
+                  WHERE c.user_type_id = t.user_type_id)
 ;
 
 
@@ -100,21 +100,66 @@ WHERE t.is_user_defined = 1
 --   ProductPhoto.LargePhoto 101 rows, 101 values, 25925 bytes.
 DECLARE @varbinary_sql nvarchar(max);
 SELECT @varbinary_sql = STRING_AGG(
-               CAST(N'SELECT N' + QUOTENAME(s.name, '''') + N' AS [schema], N' + QUOTENAME(t.name, '''')
-                    + N' AS [table], N' + QUOTENAME(c.name, '''') + N' AS [column], '
-                    + N'''' + IIF(c.max_length = -1, N'max', CAST(c.max_length AS nvarchar(4))) + N''''
-                    + N' AS declared, COUNT(*) AS [rows], COUNT(' + QUOTENAME(c.name) + N') AS non_null, '
-                    + N'MAX(DATALENGTH(' + QUOTENAME(c.name) + N')) AS max_bytes FROM '
-                    + QUOTENAME(s.name) + N'.' + QUOTENAME(t.name) AS nvarchar(max)),
-               N' UNION ALL ')
-           WITHIN GROUP (ORDER BY s.name, t.name, c.column_id)
+        CAST(N'SELECT N' + QUOTENAME(s.name, '''') + N' AS [schema], N' + QUOTENAME(t.name, '''')
+            + N' AS [table], N' + QUOTENAME(c.name, '''') + N' AS [column], '
+            + N'''' + IIF(c.max_length = -1, N'max', CAST(c.max_length AS nvarchar(4))) + N''''
+            + N' AS declared, COUNT(*) AS [rows], COUNT(' + QUOTENAME(c.name) + N') AS non_null, '
+            + N'MAX(DATALENGTH(' + QUOTENAME(c.name) + N')) AS max_bytes FROM '
+            + QUOTENAME(s.name) + N'.' + QUOTENAME(t.name) AS nvarchar(max)),
+        N' UNION ALL ')
+        WITHIN GROUP (ORDER BY s.name, t.name, c.column_id)
 FROM sys.columns c
-    JOIN sys.tables t
-ON t.object_id = c.object_id
-    JOIN sys.schemas s ON s.schema_id = t.schema_id
+         JOIN sys.tables t
+              ON t.object_id = c.object_id
+         JOIN sys.schemas s ON s.schema_id = t.schema_id
 WHERE c.system_type_id = TYPE_ID('varbinary')
   AND t.is_ms_shipped = 0
 ;
 EXEC sp_executesql @varbinary_sql
+;
+
+
+-- -------------------------------------------------------------------------------------------------- table descriptions
+-- SQL Server keeps a comment as an extended property, which AdventureWorks names MS_Description; @MsDescription
+-- documents it in the code, as Jakarta Persistence's @Table(comment) and @Column(comment) would.
+
+-- the description of each table and view; 69 of the 71 tables have one, all but Production.WorkOrder and
+-- Production.WorkOrderRouting, and none of the 20 views.
+SELECT SCHEMA_NAME(o.schema_id)        AS [schema],
+       o.name,
+       o.type,
+       CAST(p.value AS nvarchar(4000)) AS description
+FROM sys.objects o
+         LEFT JOIN sys.extended_properties p
+                   ON p.class = 1
+                       AND p.major_id = o.object_id
+                       AND p.minor_id = 0
+                       AND p.name = N'MS_Description'
+WHERE o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+ORDER BY [schema] ASC, o.name ASC
+;
+
+
+-- ------------------------------------------------------------------------------------------------- column descriptions
+-- the description of each column, in the order its table or view declares them; 461 of the 486 columns of the
+-- tables have one, and none of the 258 of the views. The 25 without are the columns of Production.WorkOrder and
+-- Production.WorkOrderRouting, Person.Password.BusinessEntityID, and Purchasing.Vendor.PurchasingWebServiceURL and
+-- ModifiedDate.
+SELECT SCHEMA_NAME(o.schema_id)        AS [schema],
+       o.name                          AS [table],
+       c.name                          AS [column],
+       CAST(p.value AS nvarchar(4000)) AS description
+FROM sys.columns c
+         JOIN sys.objects o
+              ON o.object_id = c.object_id
+         LEFT JOIN sys.extended_properties p
+                   ON p.class = 1
+                       AND p.major_id = c.object_id
+                       AND p.minor_id = c.column_id
+                       AND p.name = N'MS_Description'
+WHERE o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+ORDER BY [schema] ASC, [table] ASC, c.column_id ASC
 ;
 

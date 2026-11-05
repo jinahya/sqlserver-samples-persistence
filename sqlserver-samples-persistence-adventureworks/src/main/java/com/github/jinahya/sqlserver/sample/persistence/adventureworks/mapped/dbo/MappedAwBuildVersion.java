@@ -69,13 +69,14 @@ import java.time.LocalDateTime;
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedAwBuildVersion.COLUMN_NAME_SYSTEM_INFORMATION_ID,
-                                    nullable = false, insertable = false, updatable = false)
+                                    nullable = false, insertable = false, updatable = false,
+                                    comment = "Primary key for AWBuildVersion records.")
 )
 @MappedSuperclass
 @MsDescription(
         schema = MappedAwBuildVersion.TABLE_SCHEMA,
         table = MappedAwBuildVersion.TABLE_NAME,
-        value = "Current version number of the AdventureWorks 2025 sample database."
+        value = "Current version number of the AdventureWorks 2025 sample database. "
 )
 public abstract class MappedAwBuildVersion
         extends MappedWithIdentityId {
@@ -275,17 +276,15 @@ public abstract class MappedAwBuildVersion
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DATABASE_VERSION, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_DATABASE_VERSION)
-    @MsDescription.Column(name = COLUMN_NAME_DATABASE_VERSION,
-                          value = "Version number of the database in 9.yy.mm.dd.00 format.")
+            updatable = true, length = COLUMN_LENGTH_DATABASE_VERSION,
+            comment = "Version number of the database in 9.yy.mm.dd.00 format.")
     private String databaseVersion;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_VERSION_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_VERSION_DATE,
-                          value = "Date and time the record was last updated.")
+    @Column(name = COLUMN_NAME_VERSION_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date and time the record was last updated.")
     private LocalDateTime versionDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -294,9 +293,8 @@ public abstract class MappedAwBuildVersion
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_AWBuildVersion_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

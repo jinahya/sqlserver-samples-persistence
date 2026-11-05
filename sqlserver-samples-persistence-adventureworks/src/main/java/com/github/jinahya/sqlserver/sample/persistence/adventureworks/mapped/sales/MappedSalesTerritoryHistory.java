@@ -388,10 +388,8 @@ public abstract class MappedSalesTerritoryHistory {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key. The sales rep.  Foreign key to "
-                                  + "SalesPerson.BusinessEntityID.")
+            updatable = false,
+            comment = "Primary key. The sales rep.  Foreign key to SalesPerson.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -401,10 +399,9 @@ public abstract class MappedSalesTerritoryHistory {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
-                          value = "Primary key. Territory identification number. Foreign key to "
-                                  + "SalesTerritory.SalesTerritoryID.")
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Primary key. Territory identification number. Foreign key to "
+                      + "SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -412,27 +409,23 @@ public abstract class MappedSalesTerritoryHistory {
     // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
-                          value = "Primary key. Date the sales representive started work in the "
-                                  + "territory.")
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false,
+            comment = "Primary key. Date the sales representive started work in the territory.")
     private LocalDateTime startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
-                          value = "Date the sales representative left work in the territory.")
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "Date the sales representative left work in the territory.")
     private LocalDateTime endDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SalesTerritoryHistory_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -442,9 +435,8 @@ public abstract class MappedSalesTerritoryHistory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesTerritoryHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

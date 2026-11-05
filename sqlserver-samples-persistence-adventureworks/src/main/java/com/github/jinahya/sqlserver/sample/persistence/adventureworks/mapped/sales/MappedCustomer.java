@@ -419,8 +419,8 @@ public abstract class MappedCustomer {
     // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Primary key.")
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Primary key.")
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -429,9 +429,8 @@ public abstract class MappedCustomer {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PERSON_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PERSON_ID,
-                          value = "Foreign key to Person.BusinessEntityID")
+    @Column(name = COLUMN_NAME_PERSON_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Foreign key to Person.BusinessEntityID")
     private Integer personId;
 
     // ---------------------------------------------------------------------------------------------
@@ -440,9 +439,8 @@ public abstract class MappedCustomer {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STORE_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STORE_ID,
-                          value = "Foreign key to Store.BusinessEntityID")
+    @Column(name = COLUMN_NAME_STORE_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Foreign key to Store.BusinessEntityID")
     private Integer storeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -451,10 +449,9 @@ public abstract class MappedCustomer {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
-                          value = "ID of the territory in which the customer is located. "
-                                  + "Foreign key to SalesTerritory.SalesTerritoryID.")
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of the territory in which the customer is located. Foreign key to "
+                      + "SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -462,10 +459,8 @@ public abstract class MappedCustomer {
     @Size(max = COLUMN_LENGTH_ACCOUNT_NUMBER)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = false,
-            updatable = false, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
-                          value = "Unique number identifying the customer assigned by the "
-                                  + "accounting system.")
+            updatable = false, length = COLUMN_LENGTH_ACCOUNT_NUMBER,
+            comment = "Unique number identifying the customer assigned by the accounting system.")
     @MsComputedColumn("(isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),''))")
     private String accountNumber;
 
@@ -473,10 +468,9 @@ public abstract class MappedCustomer {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_Customer_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -486,9 +480,8 @@ public abstract class MappedCustomer {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Customer_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -281,9 +281,8 @@ public abstract class MappedProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_CATEGORY_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_CATEGORY_ID,
-                          value = "Primary key for ProductCategory records.")
+            updatable = false,
+            comment = "Primary key for ProductCategory records.")
     private Integer productCategoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -291,18 +290,17 @@ public abstract class MappedProductCategory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Category description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Category description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_ProductCategory_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -312,9 +310,8 @@ public abstract class MappedProductCategory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductCategory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

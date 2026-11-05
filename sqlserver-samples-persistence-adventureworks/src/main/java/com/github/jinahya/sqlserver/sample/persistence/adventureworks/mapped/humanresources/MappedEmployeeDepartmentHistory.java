@@ -401,10 +401,8 @@ public abstract class MappedEmployeeDepartmentHistory {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Employee identification number. Foreign key to "
-                                  + "Employee.BusinessEntityID.")
+            updatable = false,
+            comment = "Employee identification number. Foreign key to Employee.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -415,10 +413,9 @@ public abstract class MappedEmployeeDepartmentHistory {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_DEPARTMENT_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DEPARTMENT_ID,
-                          value = "Department in which the employee worked including currently. "
-                                  + "Foreign key to Department.DepartmentID.")
+            updatable = false,
+            comment = "Department in which the employee worked including currently. Foreign key to "
+                      + "Department.DepartmentID.")
     private Long departmentId;
 
     // ---------------------------------------------------------------------------------------------
@@ -428,10 +425,9 @@ public abstract class MappedEmployeeDepartmentHistory {
     @Min(SqlServerConstants.TINYINT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_SHIFT_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SHIFT_ID,
-                          value = "Identifies which 8-hour shift the employee works. Foreign "
-                                  + "key to Shift.Shift.ID.")
+    @Column(name = COLUMN_NAME_SHIFT_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Identifies which 8-hour shift the employee works. Foreign key to "
+                      + "Shift.Shift.ID.")
     private Integer shiftId;
 
     // ---------------------------------------------------------------------------------------------
@@ -439,17 +435,14 @@ public abstract class MappedEmployeeDepartmentHistory {
     // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
-                          value = "Date the employee started work in the department.")
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false,
+            comment = "Date the employee started work in the department.")
     private LocalDate startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
-                          value = "Date the employee left the department. NULL = Current "
-                                  + "department.")
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "Date the employee left the department. NULL = Current department.")
     private LocalDate endDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -458,9 +451,8 @@ public abstract class MappedEmployeeDepartmentHistory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmployeeDepartmentHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -603,10 +603,9 @@ public abstract class MappedPurchaseOrderLine {
                        sequenceName = "PurchaseOrderLineID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PurchaseOrderLineID")
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_LINE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_LINE_ID,
-                          value = "Numeric ID used for reference to a line on a purchase order "
-                                  + "within the database")
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_LINE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a line on a purchase order within the "
+                      + "database")
     @MsDefault(name = "DF_Purchasing_PurchaseOrderLines_PurchaseOrderLineID",
                value = "(NEXT VALUE FOR [Sequences].[PurchaseOrderLineID])")
     private Integer purchaseOrderLineId;
@@ -617,9 +616,8 @@ public abstract class MappedPurchaseOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-                          value = "Purchase order that this line is associated with")
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Purchase order that this line is associated with")
     private Integer purchaseOrderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -628,9 +626,8 @@ public abstract class MappedPurchaseOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-                          value = "Stock item for this purchase order line")
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Stock item for this purchase order line")
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
@@ -638,19 +635,17 @@ public abstract class MappedPurchaseOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDERED_OUTERS, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ORDERED_OUTERS,
-                          value = "Quantity of the stock item that is ordered")
+    @Column(name = COLUMN_NAME_ORDERED_OUTERS, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity of the stock item that is ordered")
     private Integer orderedOuters;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
-    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
-                          value = "Description of the item to be supplied (Often the stock item "
-                                  + "name but could be supplier description)")
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION,
+            comment = "Description of the item to be supplied (Often the stock item name but could "
+                      + "be supplier description)")
     private String description;
 
     // ---------------------------------------------------------------------------------------------
@@ -658,9 +653,8 @@ public abstract class MappedPurchaseOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECEIVED_OUTERS, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_RECEIVED_OUTERS,
-                          value = "Total quantity of the stock item that has been received so far")
+    @Column(name = COLUMN_NAME_RECEIVED_OUTERS, nullable = false, insertable = true, updatable = true,
+            comment = "Total quantity of the stock item that has been received so far")
     private Integer receivedOuters;
 
     // ---------------------------------------------------------------------------------------------
@@ -669,34 +663,30 @@ public abstract class MappedPurchaseOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, value = "Type of package received")
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Type of package received")
     private Integer packageTypeId;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_EXPECTED_UNIT_PRICE_PER_OUTER)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_EXPECTED_UNIT_PRICE_PER_OUTER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER, scale = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER)
-    @MsDescription.Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER,
-                          value = "The unit price that we expect to be charged")
+    @Column(name = COLUMN_NAME_EXPECTED_UNIT_PRICE_PER_OUTER, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXPECTED_UNIT_PRICE_PER_OUTER, scale = COLUMN_SCALE_EXPECTED_UNIT_PRICE_PER_OUTER,
+            comment = "The unit price that we expect to be charged")
     private BigDecimal expectedUnitPricePerOuter;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
-                          value = "The last date on which this stock item was received for this "
-                                  + "purchase order")
+    @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "The last date on which this stock item was received for this purchase order")
     private LocalDate lastReceiptDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ORDER_LINE_FINALIZED, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_ORDER_LINE_FINALIZED,
-                          value = "Is this purchase order line now considered finalized? "
-                                  + "(Receipted quantities and weights are often not precise)")
+    @Column(name = COLUMN_NAME_IS_ORDER_LINE_FINALIZED, nullable = false, insertable = true, updatable = true,
+            comment = "Is this purchase order line now considered finalized? (Receipted quantities "
+                      + "and weights are often not precise)")
     private Boolean isOrderLineFinalized;
 
     // ---------------------------------------------------------------------------------------------

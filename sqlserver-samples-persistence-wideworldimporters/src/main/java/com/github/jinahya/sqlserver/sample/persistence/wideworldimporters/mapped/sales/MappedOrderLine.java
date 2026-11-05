@@ -612,10 +612,8 @@ public abstract class MappedOrderLine {
                        sequenceName = "OrderLineID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.OrderLineID")
-    @Column(name = COLUMN_NAME_ORDER_LINE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_LINE_ID,
-                          value = "Numeric ID used for reference to a line on an Order within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_ORDER_LINE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a line on an Order within the database")
     @MsDefault(name = "DF_Sales_OrderLines_OrderLineID", value = "(NEXT VALUE FOR [Sequences].[OrderLineID])")
     private Integer orderLineId;
 
@@ -625,9 +623,8 @@ public abstract class MappedOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
-                          value = "Order that this line is associated with")
+    @Column(name = COLUMN_NAME_ORDER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Order that this line is associated with")
     private Integer orderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -636,20 +633,17 @@ public abstract class MappedOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-                          value = "Stock item for this order line (FK not indexed as separate "
-                                  + "index exists)")
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Stock item for this order line (FK not indexed as separate index exists)")
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
-    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
-                          value = "Description of the item supplied (Usually the stock item "
-                                  + "name but can be overridden)")
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION,
+            comment = "Description of the item supplied (Usually the stock item name but can be "
+                      + "overridden)")
     private String description;
 
     // ---------------------------------------------------------------------------------------------
@@ -658,9 +652,8 @@ public abstract class MappedOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
-                          value = "Type of package to be supplied")
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Type of package to be supplied")
     private Integer packageTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -668,16 +661,16 @@ public abstract class MappedOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Quantity to be supplied")
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity to be supplied")
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price to be charged")
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE,
+            comment = "Unit price to be charged")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
@@ -685,8 +678,8 @@ public abstract class MappedOrderLine {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
-    @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
+    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE,
+            comment = "Tax rate to be applied")
     private BigDecimal taxRate;
 
     // ---------------------------------------------------------------------------------------------
@@ -694,15 +687,14 @@ public abstract class MappedOrderLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PICKED_QUANTITY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_PICKED_QUANTITY, value = "Quantity picked from stock")
+    @Column(name = COLUMN_NAME_PICKED_QUANTITY, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity picked from stock")
     private Integer pickedQuantity;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
-                          value = "When was picking of this line completed?")
+    @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN, nullable = true, insertable = true, updatable = true,
+            comment = "When was picking of this line completed?")
     private LocalDateTime pickingCompletedWhen;
 
     // ---------------------------------------------------------------------------------------------

@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesCurrency")
 @Table(schema = MappedCurrency.TABLE_SCHEMA,
        name = MappedCurrency.TABLE_NAME,
+       comment = "Lookup table containing standard ISO currencies.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Currency_Name",

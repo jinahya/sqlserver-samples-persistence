@@ -329,10 +329,8 @@ public abstract class MappedCustomerCategory {
                        sequenceName = "CustomerCategoryID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.CustomerCategoryID")
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
-                          value = "Numeric ID used for reference to a customer category within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a customer category within the database")
     @MsDefault(name = "DF_Sales_CustomerCategories_CustomerCategoryID",
                value = "(NEXT VALUE FOR [Sequences].[CustomerCategoryID])")
     private Integer customerCategoryId;
@@ -341,9 +339,8 @@ public abstract class MappedCustomerCategory {
     @Size(max = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME,
-                          value = "Full name of the category that customers can be assigned to")
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_CATEGORY_NAME,
+            comment = "Full name of the category that customers can be assigned to")
     private String customerCategoryName;
 
     // ---------------------------------------------------------------------------------------------

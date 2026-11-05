@@ -505,10 +505,9 @@ public abstract class MappedSalesPerson {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key for SalesPerson records. Foreign key to "
-                                  + "Employee.BusinessEntityID")
+            updatable = false,
+            comment = "Primary key for SalesPerson records. Foreign key to "
+                      + "Employee.BusinessEntityID")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -517,10 +516,9 @@ public abstract class MappedSalesPerson {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
-                          value = "Territory currently assigned to. Foreign key to "
-                                  + "SalesTerritory.SalesTerritoryID.")
+    @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Territory currently assigned to. Foreign key to "
+                      + "SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -528,8 +526,8 @@ public abstract class MappedSalesPerson {
     @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = true, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_QUOTA, value = "Projected yearly sales.")
+    @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = true, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Projected yearly sales.")
     private BigDecimal salesQuota;
 
     // ---------------------------------------------------------------------------------------------
@@ -538,8 +536,8 @@ public abstract class MappedSalesPerson {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_BONUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BONUS, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_BONUS, value = "Bonus due if quota is met.")
+    @Column(name = COLUMN_NAME_BONUS, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Bonus due if quota is met.")
     @MsDefault(name = "DF_SalesPerson_Bonus", value = "((0.00))")
     private BigDecimal bonus;
 
@@ -550,9 +548,8 @@ public abstract class MappedSalesPerson {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMMISSION_PCT, nullable = false, insertable = true,
-            updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_COMMISSION_PCT,
-                          value = "Commision percent received per sale.")
+            updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE,
+            comment = "Commision percent received per sale.")
     @MsDefault(name = "DF_SalesPerson_CommissionPct", value = "((0.00))")
     private BigDecimal commissionPct;
 
@@ -562,8 +559,8 @@ public abstract class MappedSalesPerson {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_YTD, value = "Sales total year to date.")
+    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Sales total year to date.")
     @MsDefault(name = "DF_SalesPerson_SalesYTD", value = "((0.00))")
     private BigDecimal salesYtd;
 
@@ -574,9 +571,8 @@ public abstract class MappedSalesPerson {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true,
-            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
-                          value = "Sales total of previous year.")
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Sales total of previous year.")
     @MsDefault(name = "DF_SalesPerson_SalesLastYear", value = "((0.00))")
     private BigDecimal salesLastYear;
 
@@ -584,10 +580,9 @@ public abstract class MappedSalesPerson {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SalesPerson_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -597,9 +592,8 @@ public abstract class MappedSalesPerson {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesPerson_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

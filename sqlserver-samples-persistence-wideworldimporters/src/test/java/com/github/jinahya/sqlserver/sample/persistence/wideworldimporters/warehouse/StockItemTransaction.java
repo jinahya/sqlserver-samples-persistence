@@ -44,7 +44,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Warehouse.StockItemTransactions} table.
  */
 @Entity(name = "WarehouseStockItemTransaction")
-@Table(schema = MappedStockItemTransaction.TABLE_SCHEMA, name = MappedStockItemTransaction.TABLE_NAME)
+@Table(schema = MappedStockItemTransaction.TABLE_SCHEMA, name = MappedStockItemTransaction.TABLE_NAME,
+       comment = "Transactions covering all movements of all stock items")
 public class StockItemTransaction extends MappedStockItemTransaction {
 
     /**

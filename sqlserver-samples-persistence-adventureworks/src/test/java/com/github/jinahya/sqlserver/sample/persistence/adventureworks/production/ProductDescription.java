@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionProductDescription")
 @Table(schema = MappedProductDescription.TABLE_SCHEMA,
        name = MappedProductDescription.TABLE_NAME,
+       comment = "Product descriptions in several languages.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_ProductDescription_rowguid",

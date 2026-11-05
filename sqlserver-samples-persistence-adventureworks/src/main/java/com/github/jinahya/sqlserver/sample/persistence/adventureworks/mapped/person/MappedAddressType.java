@@ -75,7 +75,7 @@ import java.util.UUID;
 @MsDescription(
         schema = MappedAddressType.TABLE_SCHEMA,
         table = MappedAddressType.TABLE_NAME,
-        value = "Types of addresses stored in the Address table."
+        value = "Types of addresses stored in the Address table. "
 )
 public abstract class MappedAddressType {
 
@@ -280,9 +280,8 @@ public abstract class MappedAddressType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_ADDRESS_TYPE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_TYPE_ID,
-                          value = "Primary key for AddressType records.")
+            updatable = false,
+            comment = "Primary key for AddressType records.")
     private Integer addressTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -290,20 +289,17 @@ public abstract class MappedAddressType {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME,
-                          value = "Address type description. For example, Billing, Home, or "
-                                  + "Shipping.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Address type description. For example, Billing, Home, or Shipping.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_AddressType_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -313,9 +309,8 @@ public abstract class MappedAddressType {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_AddressType_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

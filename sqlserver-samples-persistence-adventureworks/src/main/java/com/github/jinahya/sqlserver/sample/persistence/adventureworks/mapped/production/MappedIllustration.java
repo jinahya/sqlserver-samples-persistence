@@ -242,17 +242,14 @@ public abstract class MappedIllustration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_ILLUSTRATION_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ILLUSTRATION_ID,
-                          value = "Primary key for Illustration records.")
+            updatable = false,
+            comment = "Primary key for Illustration records.")
     private Integer illustrationId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DIAGRAM, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DIAGRAM,
-                          value = "Illustrations used in manufacturing instructions. Stored as "
-                                  + "XML.")
+    @Column(name = COLUMN_NAME_DIAGRAM, nullable = true, insertable = true, updatable = true,
+            comment = "Illustrations used in manufacturing instructions. Stored as XML.")
     private String diagram;
 
     // ---------------------------------------------------------------------------------------------
@@ -261,9 +258,8 @@ public abstract class MappedIllustration {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Illustration_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

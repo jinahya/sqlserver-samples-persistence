@@ -46,6 +46,7 @@ import java.util.Optional;
 @Entity(name = "PurchasingProductVendor")
 @Table(schema = MappedProductVendor.TABLE_SCHEMA,
        name = MappedProductVendor.TABLE_NAME,
+       comment = "Cross-reference table mapping vendors with the products they supply.",
        check = {
                @CheckConstraint(
                        name = "CK_ProductVendor_AverageLeadTime",

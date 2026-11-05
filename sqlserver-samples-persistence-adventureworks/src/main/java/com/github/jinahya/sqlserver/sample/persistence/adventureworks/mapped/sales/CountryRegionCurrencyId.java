@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
@@ -140,10 +139,9 @@ public class CountryRegionCurrencyId {
     @NotNull
     @Column(name = MappedCountryRegionCurrency.COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false,
             insertable = true, updatable = false,
-            length = MappedCountryRegionCurrency.COLUMN_LENGTH_COUNTRY_REGION_CODE)
-    @MsDescription.Column(name = MappedCountryRegionCurrency.COLUMN_NAME_COUNTRY_REGION_CODE,
-                          value = "ISO code for countries and regions. Foreign key to "
-                                  + "CountryRegion.CountryRegionCode.")
+            length = MappedCountryRegionCurrency.COLUMN_LENGTH_COUNTRY_REGION_CODE,
+            comment = "ISO code for countries and regions. Foreign key to "
+                      + "CountryRegion.CountryRegionCode.")
     private String countryRegionCode;
 
     /**
@@ -155,10 +153,8 @@ public class CountryRegionCurrencyId {
     @NotNull
     @Column(name = MappedCountryRegionCurrency.COLUMN_NAME_CURRENCY_CODE, nullable = false,
             insertable = true, updatable = false,
-            length = MappedCountryRegionCurrency.COLUMN_LENGTH_CURRENCY_CODE)
-    @MsDescription.Column(name = MappedCountryRegionCurrency.COLUMN_NAME_CURRENCY_CODE,
-                          value = "ISO standard currency code. Foreign key to "
-                                  + "Currency.CurrencyCode.")
+            length = MappedCountryRegionCurrency.COLUMN_LENGTH_CURRENCY_CODE,
+            comment = "ISO standard currency code. Foreign key to Currency.CurrencyCode.")
     private String currencyCode;
 }
 

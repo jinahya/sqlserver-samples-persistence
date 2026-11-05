@@ -41,3 +41,15 @@ GROUP BY ROLLUP (o.schema_id)
 ORDER BY GROUPING(o.schema_id) ASC, [schema] ASC
 ;
 
+
+-- -------------------------------------------------------------------------------------------------------- descriptions
+-- SQL Server keeps a comment on a table, a view or a column as an extended property, which AdventureWorks names
+-- MS_Description and WideWorldImporters Description.
+
+-- the extended properties of the database, of any name and on anything.
+-- no rows: FutonManufacturing describes nothing, so its classes carry no @MsDescription.
+SELECT p.class_desc, p.name, COUNT(*) AS properties
+FROM sys.extended_properties p
+GROUP BY p.class_desc, p.name
+;
+

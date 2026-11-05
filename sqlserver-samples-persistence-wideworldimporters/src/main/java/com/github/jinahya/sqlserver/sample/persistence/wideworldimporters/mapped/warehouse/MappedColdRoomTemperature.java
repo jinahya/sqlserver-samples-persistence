@@ -360,9 +360,8 @@ public abstract class MappedColdRoomTemperature {
     // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID,
-                          value = "Instantaneous temperature readings for cold rooms (chillers)")
+    @Column(name = COLUMN_NAME_COLD_ROOM_TEMPERATURE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Instantaneous temperature readings for cold rooms (chillers)")
     private Long coldRoomTemperatureId;
 
     // ---------------------------------------------------------------------------------------------
@@ -370,17 +369,15 @@ public abstract class MappedColdRoomTemperature {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER,
-                          value = "Cold room sensor number")
+    @Column(name = COLUMN_NAME_COLD_ROOM_SENSOR_NUMBER, nullable = false, insertable = true, updatable = true,
+            comment = "Cold room sensor number")
     private Integer coldRoomSensorNumber;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RECORDED_WHEN, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_RECORDED_WHEN,
-                          value = "Time when this temperature recording was taken")
+    @Column(name = COLUMN_NAME_RECORDED_WHEN, nullable = false, insertable = true, updatable = true,
+            comment = "Time when this temperature recording was taken")
     private LocalDateTime recordedWhen;
 
     // ---------------------------------------------------------------------------------------------
@@ -388,9 +385,8 @@ public abstract class MappedColdRoomTemperature {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TEMPERATURE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE)
-    @MsDescription.Column(name = COLUMN_NAME_TEMPERATURE,
-                          value = "Temperature at the time of recording")
+    @Column(name = COLUMN_NAME_TEMPERATURE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TEMPERATURE, scale = COLUMN_SCALE_TEMPERATURE,
+            comment = "Temperature at the time of recording")
     private BigDecimal temperature;
 
     // ---------------------------------------------------------------------------------------------

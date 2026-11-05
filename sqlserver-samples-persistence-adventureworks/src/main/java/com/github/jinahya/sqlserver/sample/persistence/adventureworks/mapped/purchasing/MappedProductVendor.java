@@ -604,9 +604,8 @@ public abstract class MappedProductVendor {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Primary key. Foreign key to Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -617,9 +616,8 @@ public abstract class MappedProductVendor {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key. Foreign key to Vendor.BusinessEntityID.")
+            updatable = false,
+            comment = "Primary key. Foreign key to Vendor.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -629,10 +627,9 @@ public abstract class MappedProductVendor {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVERAGE_LEAD_TIME, nullable = false, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_AVERAGE_LEAD_TIME,
-                          value = "The average span of time (in days) between placing an order "
-                                  + "with the vendor and receiving the purchased product.")
+            updatable = true,
+            comment = "The average span of time (in days) between placing an order with the vendor "
+                      + "and receiving the purchased product.")
     private Integer averageLeadTime;
 
     // ---------------------------------------------------------------------------------------------
@@ -642,9 +639,8 @@ public abstract class MappedProductVendor {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STANDARD_PRICE, nullable = false, insertable = true,
-            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_STANDARD_PRICE,
-                          value = "The vendor's usual selling price.")
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "The vendor's usual selling price.")
     private BigDecimal standardPrice;
 
     // ---------------------------------------------------------------------------------------------
@@ -653,17 +649,15 @@ public abstract class MappedProductVendor {
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_LAST_RECEIPT_COST_EXCLUSIVE, inclusive = false)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_RECEIPT_COST, nullable = true, insertable = true,
-            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_COST,
-                          value = "The selling price when last purchased.")
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "The selling price when last purchased.")
     private BigDecimal lastReceiptCost;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LAST_RECEIPT_DATE, nullable = true, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_LAST_RECEIPT_DATE,
-                          value = "Date the product was last received by the vendor.")
+            updatable = true,
+            comment = "Date the product was last received by the vendor.")
     private LocalDateTime lastReceiptDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -672,9 +666,8 @@ public abstract class MappedProductVendor {
     @Min(ATTRIBUTE_MIN_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MIN_ORDER_QTY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MIN_ORDER_QTY,
-                          value = "The maximum quantity that should be ordered.")
+    @Column(name = COLUMN_NAME_MIN_ORDER_QTY, nullable = false, insertable = true, updatable = true,
+            comment = "The maximum quantity that should be ordered.")
     private Integer minOrderQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -683,9 +676,8 @@ public abstract class MappedProductVendor {
     @Min(ATTRIBUTE_MIN_MAX_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_MAX_ORDER_QTY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MAX_ORDER_QTY,
-                          value = "The minimum quantity that should be ordered.")
+    @Column(name = COLUMN_NAME_MAX_ORDER_QTY, nullable = false, insertable = true, updatable = true,
+            comment = "The minimum quantity that should be ordered.")
     private Integer maxOrderQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -693,9 +685,8 @@ public abstract class MappedProductVendor {
     @Max(SqlServerConstants.INT_MAX)
     @Min(ATTRIBUTE_MIN_ON_ORDER_QTY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ON_ORDER_QTY, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ON_ORDER_QTY,
-                          value = "The quantity currently on order.")
+    @Column(name = COLUMN_NAME_ON_ORDER_QTY, nullable = true, insertable = true, updatable = true,
+            comment = "The quantity currently on order.")
     private Integer onOrderQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -705,9 +696,8 @@ public abstract class MappedProductVendor {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = false,
-            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
-                          value = "The product's unit of measure.")
+            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE,
+            comment = "The product's unit of measure.")
     private String unitMeasureCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -716,9 +706,8 @@ public abstract class MappedProductVendor {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductVendor_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

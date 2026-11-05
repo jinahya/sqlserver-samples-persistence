@@ -599,9 +599,8 @@ public abstract class MappedBillOfMaterials {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BILL_OF_MATERIALS_ID,
-                          value = "Primary key for BillOfMaterials records.")
+            updatable = false,
+            comment = "Primary key for BillOfMaterials records.")
     private Integer billOfMaterialsId;
 
     // ---------------------------------------------------------------------------------------------
@@ -611,10 +610,8 @@ public abstract class MappedBillOfMaterials {
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID, nullable = true, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ASSEMBLY_ID,
-                          value = "Parent product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+            updatable = false,
+            comment = "Parent product identification number. Foreign key to Product.ProductID.")
     private Integer productAssemblyId;
 
     // ---------------------------------------------------------------------------------------------
@@ -625,26 +622,22 @@ public abstract class MappedBillOfMaterials {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COMPONENT_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_COMPONENT_ID,
-                          value = "Component identification number. Foreign key to "
-                                  + "Product.ProductID.")
+            updatable = false,
+            comment = "Component identification number. Foreign key to Product.ProductID.")
     private Integer componentId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
-                          value = "Date the component started being used in the assembly item.")
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date the component started being used in the assembly item.")
     @MsDefault(name = "DF_BillOfMaterials_StartDate", value = "(getdate())")
     private LocalDateTime startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
-                          value = "Date the component stopped being used in the assembly item.")
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "Date the component stopped being used in the assembly item.")
     private LocalDateTime endDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -654,9 +647,8 @@ public abstract class MappedBillOfMaterials {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = false,
-            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE,
-                          value = "Standard code identifying the unit of measure for the quantity.")
+            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE,
+            comment = "Standard code identifying the unit of measure for the quantity.")
     private String unitMeasureCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -667,10 +659,8 @@ public abstract class MappedBillOfMaterials {
     @Min(ATTRIBUTE_MIN_BOM_LEVEL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BOM_LEVEL, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_BOM_LEVEL,
-                          value = "Indicates the depth the component is from its parent "
-                                  + "(AssemblyID).")
+    @Column(name = COLUMN_NAME_BOM_LEVEL, nullable = false, insertable = true, updatable = true,
+            comment = "Indicates the depth the component is from its parent (AssemblyID).")
     private Integer bomLevel;
 
     // ---------------------------------------------------------------------------------------------
@@ -681,9 +671,8 @@ public abstract class MappedBillOfMaterials {
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY, nullable = false, insertable = true,
             updatable = true, precision = COLUMN_PRECISION_PER_ASSEMBLY_QTY,
-            scale = COLUMN_SCALE_PER_ASSEMBLY_QTY)
-    @MsDescription.Column(name = COLUMN_NAME_PER_ASSEMBLY_QTY,
-                          value = "Quantity of the component needed to create the assembly.")
+            scale = COLUMN_SCALE_PER_ASSEMBLY_QTY,
+            comment = "Quantity of the component needed to create the assembly.")
     @MsDefault(name = "DF_BillOfMaterials_PerAssemblyQty", value = "((1.00))")
     private BigDecimal perAssemblyQty;
 
@@ -693,9 +682,8 @@ public abstract class MappedBillOfMaterials {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_BillOfMaterials_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

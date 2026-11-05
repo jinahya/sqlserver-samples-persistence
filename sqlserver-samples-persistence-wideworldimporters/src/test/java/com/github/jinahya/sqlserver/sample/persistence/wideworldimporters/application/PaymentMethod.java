@@ -35,6 +35,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ApplicationPaymentMethod")
 @Table(schema = MappedPaymentMethod.TABLE_SCHEMA,
        name = MappedPaymentMethod.TABLE_NAME,
+       comment = "Ways that payments can be made (ie: cash, check, EFT, etc.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Application_PaymentMethods_PaymentMethodName",

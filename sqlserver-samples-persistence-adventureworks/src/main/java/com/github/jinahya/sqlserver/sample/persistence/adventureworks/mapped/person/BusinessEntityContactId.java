@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
-import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
@@ -170,9 +169,8 @@ public class BusinessEntityContactId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedBusinessEntityContact.COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key. Foreign key to BusinessEntity.BusinessEntityID.")
+            insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to BusinessEntity.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -182,9 +180,8 @@ public class BusinessEntityContactId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_PERSON_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedBusinessEntityContact.COLUMN_NAME_PERSON_ID,
-                          value = "Primary key. Foreign key to Person.BusinessEntityID.")
+            insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to Person.BusinessEntityID.")
     private Integer personId;
 
     // ---------------------------------------------------------------------------------------------
@@ -194,9 +191,8 @@ public class BusinessEntityContactId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_CONTACT_TYPE_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedBusinessEntityContact.COLUMN_NAME_CONTACT_TYPE_ID,
-                          value = "Primary key.  Foreign key to ContactType.ContactTypeID.")
+            insertable = true, updatable = false,
+            comment = "Primary key.  Foreign key to ContactType.ContactTypeID.")
     private Integer contactTypeId;
 }
 

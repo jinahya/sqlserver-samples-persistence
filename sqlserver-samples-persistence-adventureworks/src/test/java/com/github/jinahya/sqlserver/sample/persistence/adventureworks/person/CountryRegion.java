@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PersonCountryRegion")
 @Table(schema = MappedCountryRegion.TABLE_SCHEMA,
        name = MappedCountryRegion.TABLE_NAME,
+       comment = "Lookup table containing the ISO standard codes for countries and regions.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_CountryRegion_Name",

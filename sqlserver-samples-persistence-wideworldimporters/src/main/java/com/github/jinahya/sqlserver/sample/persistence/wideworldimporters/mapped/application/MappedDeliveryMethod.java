@@ -327,10 +327,8 @@ public abstract class MappedDeliveryMethod {
                        sequenceName = "DeliveryMethodID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.DeliveryMethodID")
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-                          value = "Numeric ID used for reference to a delivery method within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a delivery method within the database")
     @MsDefault(name = "DF_Application_DeliveryMethods_DeliveryMethodID",
                value = "(NEXT VALUE FOR [Sequences].[DeliveryMethodID])")
     private Integer deliveryMethodId;
@@ -339,10 +337,8 @@ public abstract class MappedDeliveryMethod {
     @Size(max = COLUMN_LENGTH_DELIVERY_METHOD_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_METHOD_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_NAME,
-                          value = "Full name of methods that can be used for delivery of "
-                                  + "customer orders")
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_METHOD_NAME,
+            comment = "Full name of methods that can be used for delivery of customer orders")
     private String deliveryMethodName;
 
     // ---------------------------------------------------------------------------------------------

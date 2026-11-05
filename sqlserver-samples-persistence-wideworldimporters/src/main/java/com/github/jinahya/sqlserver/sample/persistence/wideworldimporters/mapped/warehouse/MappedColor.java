@@ -324,9 +324,8 @@ public abstract class MappedColor {
     @SequenceGenerator(name = "WideWorldImporters.Sequences.ColorID", schema = "Sequences", sequenceName = "ColorID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.ColorID")
-    @Column(name = COLUMN_NAME_COLOR_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_COLOR_ID,
-                          value = "Numeric ID used for reference to a color within the database")
+    @Column(name = COLUMN_NAME_COLOR_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a color within the database")
     @MsDefault(name = "DF_Warehouse_Colors_ColorID", value = "(NEXT VALUE FOR [Sequences].[ColorID])")
     private Integer colorId;
 
@@ -334,9 +333,8 @@ public abstract class MappedColor {
     @Size(max = COLUMN_LENGTH_COLOR_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COLOR_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_COLOR_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_COLOR_NAME,
-                          value = "Full name of a color that can be used to describe stock items")
+    @Column(name = COLUMN_NAME_COLOR_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_COLOR_NAME,
+            comment = "Full name of a color that can be used to describe stock items")
     private String colorName;
 
     // ---------------------------------------------------------------------------------------------

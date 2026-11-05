@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "WarehouseColor")
 @Table(schema = MappedColor.TABLE_SCHEMA,
        name = MappedColor.TABLE_NAME,
+       comment = "Stock items can (optionally) have colors",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Warehouse_Colors_ColorName",

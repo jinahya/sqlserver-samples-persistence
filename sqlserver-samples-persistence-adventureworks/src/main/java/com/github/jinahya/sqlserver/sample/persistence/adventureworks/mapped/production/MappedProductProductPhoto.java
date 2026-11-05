@@ -246,10 +246,8 @@ public abstract class MappedProductProductPhoto
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRIMARY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_PRIMARY,
-                          value = "0 = Photo is not the principal image. 1 = Photo is the "
-                                  + "principal image.")
+    @Column(name = COLUMN_NAME_PRIMARY, nullable = false, insertable = true, updatable = true,
+            comment = "0 = Photo is not the principal image. 1 = Photo is the principal image.")
     @MsDefault(name = "DF_ProductProductPhoto_Primary", value = "((0))")
     private Boolean primary;
 
@@ -259,9 +257,8 @@ public abstract class MappedProductProductPhoto
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductProductPhoto_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -248,9 +248,8 @@ public abstract class MappedPhoneNumberType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID,
-                          value = "Primary key for telephone number type records.")
+            updatable = false,
+            comment = "Primary key for telephone number type records.")
     private Integer phoneNumberTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -258,8 +257,8 @@ public abstract class MappedPhoneNumberType {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the telephone number type")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Name of the telephone number type")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -268,9 +267,8 @@ public abstract class MappedPhoneNumberType {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PhoneNumberType_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

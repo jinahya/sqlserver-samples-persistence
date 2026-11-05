@@ -88,6 +88,7 @@ import java.time.LocalDateTime;
 @Entity(name = "HumanResourcesEmployee")
 @Table(schema = MappedEmployee.TABLE_SCHEMA,
        name = MappedEmployee.TABLE_NAME,
+       comment = "Employee information such as salary, department, and title.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Employee_LoginID",

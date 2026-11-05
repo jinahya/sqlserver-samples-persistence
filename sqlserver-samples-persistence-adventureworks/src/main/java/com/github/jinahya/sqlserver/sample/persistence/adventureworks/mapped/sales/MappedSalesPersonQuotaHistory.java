@@ -329,10 +329,9 @@ public abstract class MappedSalesPersonQuotaHistory {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Sales person identification number. Foreign key to "
-                                  + "SalesPerson.BusinessEntityID.")
+            updatable = false,
+            comment = "Sales person identification number. Foreign key to "
+                      + "SalesPerson.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -340,8 +339,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_QUOTA_DATE, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_QUOTA_DATE, value = "Sales quota date.")
+    @Column(name = COLUMN_NAME_QUOTA_DATE, nullable = false, insertable = true, updatable = false,
+            comment = "Sales quota date.")
     private LocalDateTime quotaDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -350,18 +349,17 @@ public abstract class MappedSalesPersonQuotaHistory {
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SALES_QUOTA_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_QUOTA, value = "Sales quota amount.")
+    @Column(name = COLUMN_NAME_SALES_QUOTA, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Sales quota amount.")
     private BigDecimal salesQuota;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SalesPersonQuotaHistory_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -371,9 +369,8 @@ public abstract class MappedSalesPersonQuotaHistory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesPersonQuotaHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

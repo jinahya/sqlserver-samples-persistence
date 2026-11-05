@@ -36,6 +36,7 @@ import jakarta.persistence.Table;
 @Entity(name = "SalesShoppingCartItem")
 @Table(schema = MappedShoppingCartItem.TABLE_SCHEMA,
        name = MappedShoppingCartItem.TABLE_NAME,
+       comment = "Contains online customer orders until the order is submitted or cancelled.",
        check = {
                @CheckConstraint(
                        name = "CK_ShoppingCartItem_Quantity",

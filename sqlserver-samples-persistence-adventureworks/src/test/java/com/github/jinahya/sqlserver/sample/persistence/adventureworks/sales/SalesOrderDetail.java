@@ -45,6 +45,7 @@ import java.util.Optional;
 @Entity(name = "SalesSalesOrderDetail")
 @Table(schema = MappedSalesOrderDetail.TABLE_SCHEMA,
        name = MappedSalesOrderDetail.TABLE_NAME,
+       comment = "Individual products associated with a specific sales order. See SalesOrderHeader.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SalesOrderDetail_rowguid",

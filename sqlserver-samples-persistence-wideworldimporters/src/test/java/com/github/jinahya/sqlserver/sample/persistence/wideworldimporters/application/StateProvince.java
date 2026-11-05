@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ApplicationStateProvince")
 @Table(schema = MappedStateProvince.TABLE_SCHEMA,
        name = MappedStateProvince.TABLE_NAME,
+       comment = "States or provinces that contain cities (including geographic location)",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Application_StateProvinces_StateProvinceName",

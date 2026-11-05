@@ -354,9 +354,8 @@ public abstract class MappedProductCostHistory {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to Product.ProductID")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -364,14 +363,14 @@ public abstract class MappedProductCostHistory {
     // an entity
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_START_DATE, value = "Product cost start date.")
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = false,
+            comment = "Product cost start date.")
     private LocalDateTime startDate;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_END_DATE, value = "Product cost end date.")
+    @Column(name = COLUMN_NAME_END_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "Product cost end date.")
     private LocalDateTime endDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -380,8 +379,8 @@ public abstract class MappedProductCostHistory {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_COST)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_STANDARD_COST, value = "Standard cost of the product.")
+    @Column(name = COLUMN_NAME_STANDARD_COST, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Standard cost of the product.")
     private BigDecimal standardCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -390,9 +389,8 @@ public abstract class MappedProductCostHistory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductCostHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

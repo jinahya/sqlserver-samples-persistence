@@ -35,6 +35,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesCurrencyRate")
 @Table(schema = MappedCurrencyRate.TABLE_SCHEMA,
        name = MappedCurrencyRate.TABLE_NAME,
+       comment = "Currency exchange rates.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_CurrencyRate_CurrencyRateDate_FromCurrencyCode_ToCurrencyCode",

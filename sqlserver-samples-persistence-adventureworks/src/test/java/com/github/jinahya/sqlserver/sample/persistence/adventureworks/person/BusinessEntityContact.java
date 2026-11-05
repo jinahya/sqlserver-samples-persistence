@@ -46,6 +46,7 @@ import java.util.Objects;
 @Entity(name = "PersonBusinessEntityContact")
 @Table(schema = MappedBusinessEntityContact.TABLE_SCHEMA,
        name = MappedBusinessEntityContact.TABLE_NAME,
+       comment = "Cross-reference table mapping stores, vendors, and employees to people",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_BusinessEntityContact_rowguid",

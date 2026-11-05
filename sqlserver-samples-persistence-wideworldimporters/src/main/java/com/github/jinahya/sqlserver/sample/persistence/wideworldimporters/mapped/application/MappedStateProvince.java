@@ -518,10 +518,8 @@ public abstract class MappedStateProvince {
                        sequenceName = "StateProvinceID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.StateProvinceID")
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-                          value = "Numeric ID used for reference to a state or province within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a state or province within the database")
     @MsDefault(name = "DF_Application_StateProvinces_StateProvinceID",
                value = "(NEXT VALUE FOR [Sequences].[StateProvinceID])")
     private Integer stateProvinceId;
@@ -530,19 +528,16 @@ public abstract class MappedStateProvince {
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
-                          value = "Common code for this state or province (such as WA - "
-                                  + "Washington for the USA)")
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_CODE,
+            comment = "Common code for this state or province (such as WA - Washington for the USA)")
     private String stateProvinceCode;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_STATE_PROVINCE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_NAME,
-                          value = "Formal name of the state or province")
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_NAME,
+            comment = "Formal name of the state or province")
     private String stateProvinceName;
 
     // ---------------------------------------------------------------------------------------------
@@ -551,34 +546,31 @@ public abstract class MappedStateProvince {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COUNTRY_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_ID, value = "Country for this StateProvince")
+    @Column(name = COLUMN_NAME_COUNTRY_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Country for this StateProvince")
     private Integer countryId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SALES_TERRITORY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_TERRITORY, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SALES_TERRITORY)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_TERRITORY,
-                          value = "Sales territory for this StateProvince")
+    @Column(name = COLUMN_NAME_SALES_TERRITORY, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SALES_TERRITORY,
+            comment = "Sales territory for this StateProvince")
     private String salesTerritory;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BORDER, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_BORDER,
-                          value = "Geographic boundary of the state or province")
+    @Column(name = COLUMN_NAME_BORDER, nullable = true, insertable = true, updatable = true,
+            comment = "Geographic boundary of the state or province")
     private Geography border;
 
     // ---------------------------------------------------------------------------------------------
     @Max(SqlServerConstants.BIGINT_MAX)
     @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
-                          value = "Latest available population for the StateProvince")
+    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true,
+            comment = "Latest available population for the StateProvince")
     private Long latestRecordedPopulation;
 
     // ---------------------------------------------------------------------------------------------

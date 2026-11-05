@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
-import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
@@ -144,9 +143,8 @@ public class SalesOrderHeaderSalesReasonId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_ORDER_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_ORDER_ID,
-                          value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
+            insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
     private Integer salesOrderId;
 
     /**
@@ -156,9 +154,8 @@ public class SalesOrderHeaderSalesReasonId {
     // an entity
     @NotNull
     @Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_REASON_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedSalesOrderHeaderSalesReason.COLUMN_NAME_SALES_REASON_ID,
-                          value = "Primary key. Foreign key to SalesReason.SalesReasonID.")
+            insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to SalesReason.SalesReasonID.")
     private Integer salesReasonId;
 }
 

@@ -40,6 +40,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "WarehouseStockItem")
 @Table(schema = MappedStockItem.TABLE_SCHEMA,
        name = MappedStockItem.TABLE_NAME,
+       comment = "Main entity table for stock items",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Warehouse_StockItems_StockItemName",

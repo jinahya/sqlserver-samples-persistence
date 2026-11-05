@@ -716,9 +716,8 @@ public abstract class MappedDocument {
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
-                          value = "Primary key for Document records.")
+    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = false,
+            comment = "Primary key for Document records.")
     private Heirarchyid documentNode;
 
     // ---------------------------------------------------------------------------------------------
@@ -727,9 +726,8 @@ public abstract class MappedDocument {
     @Min(SqlServerConstants.SMALLINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_LEVEL, nullable = true, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_LEVEL,
-                          value = "Depth in the document hierarchy.")
+            updatable = false,
+            comment = "Depth in the document hierarchy.")
     @MsComputedColumn("([DocumentNode].[GetLevel]())")
     private Integer documentLevel;
 
@@ -738,8 +736,8 @@ public abstract class MappedDocument {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TITLE, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_TITLE)
-    @MsDescription.Column(name = COLUMN_NAME_TITLE, value = "Title of the document.")
+            length = COLUMN_LENGTH_TITLE,
+            comment = "Title of the document.")
     private String title;
 
     // ---------------------------------------------------------------------------------------------
@@ -749,18 +747,16 @@ public abstract class MappedDocument {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_OWNER, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_OWNER,
-                          value = "Employee who controls the document.  Foreign key to "
-                                  + "Employee.BusinessEntityID")
+    @Column(name = COLUMN_NAME_OWNER, nullable = false, insertable = false, updatable = false,
+            comment = "Employee who controls the document.  Foreign key to "
+                      + "Employee.BusinessEntityID")
     private Integer owner;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FOLDER_FLAG, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_FOLDER_FLAG,
-                          value = "0 = This is a folder, 1 = This is a document.")
+    @Column(name = COLUMN_NAME_FOLDER_FLAG, nullable = false, insertable = true, updatable = true,
+            comment = "0 = This is a folder, 1 = This is a document.")
     @MsDefault(name = "DF_Document_FolderFlag", value = "((0))")
     private Boolean folderFlag;
 
@@ -769,8 +765,8 @@ public abstract class MappedDocument {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FILE_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_FILE_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_FILE_NAME, value = "File name of the document")
+            length = COLUMN_LENGTH_FILE_NAME,
+            comment = "File name of the document")
     private String fileName;
 
     // ---------------------------------------------------------------------------------------------
@@ -778,10 +774,8 @@ public abstract class MappedDocument {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_FILE_EXTENSION, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_FILE_EXTENSION)
-    @MsDescription.Column(name = COLUMN_NAME_FILE_EXTENSION,
-                          value = "File extension indicating the document type. For example, "
-                                  + ".doc or .txt.")
+            updatable = true, length = COLUMN_LENGTH_FILE_EXTENSION,
+            comment = "File extension indicating the document type. For example, .doc or .txt.")
     private String fileExtension;
 
     // ---------------------------------------------------------------------------------------------
@@ -789,8 +783,8 @@ public abstract class MappedDocument {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REVISION, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_REVISION)
-    @MsDescription.Column(name = COLUMN_NAME_REVISION, value = "Revision number of the document.")
+            length = COLUMN_LENGTH_REVISION,
+            comment = "Revision number of the document. ")
     private String revision;
 
     // ---------------------------------------------------------------------------------------------
@@ -798,9 +792,8 @@ public abstract class MappedDocument {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CHANGE_NUMBER, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_CHANGE_NUMBER,
-                          value = "Engineering change approval number.")
+    @Column(name = COLUMN_NAME_CHANGE_NUMBER, nullable = false, insertable = true, updatable = true,
+            comment = "Engineering change approval number.")
     @MsDefault(name = "DF_Document_ChangeNumber", value = "((0))")
     private Integer changeNumber;
 
@@ -810,24 +803,23 @@ public abstract class MappedDocument {
     @Min(ATTRIBUTE_MIN_STATUS)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_STATUS,
-                          value = "1 = Pending approval, 2 = Approved, 3 = Obsolete")
+    @Column(name = COLUMN_NAME_STATUS, nullable = false, insertable = true, updatable = true,
+            comment = "1 = Pending approval, 2 = Approved, 3 = Obsolete")
     private Integer status;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: 784 bytes (392 characters)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, nullable = true, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_SUMMARY, value = "Document abstract.")
+            updatable = true,
+            comment = "Document abstract.")
     private String documentSummary;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: 46592 bytes
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DOCUMENT, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT, value = "Complete document.")
+    @Column(name = COLUMN_NAME_DOCUMENT, nullable = true, insertable = true, updatable = true,
+            comment = "Complete document.")
     private byte[] document;
 
     // ---------------------------------------------------------------------------------------------
@@ -839,10 +831,8 @@ public abstract class MappedDocument {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = true, updatable = false,
-            length = COLUMN_LENGTH_ROWGUID)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Required "
-                                  + "for FileStream.")
+            length = COLUMN_LENGTH_ROWGUID,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Required for FileStream.")
     @MsDefault(name = "DF_Document_rowguid", value = "(newid())")
     private String rowguid;
 
@@ -852,9 +842,8 @@ public abstract class MappedDocument {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Document_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

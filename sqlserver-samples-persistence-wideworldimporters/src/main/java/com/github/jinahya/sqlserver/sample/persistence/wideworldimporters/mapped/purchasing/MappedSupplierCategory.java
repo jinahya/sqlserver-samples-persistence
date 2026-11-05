@@ -329,10 +329,8 @@ public abstract class MappedSupplierCategory {
                        sequenceName = "SupplierCategoryID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.SupplierCategoryID")
-    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID,
-                          value = "Numeric ID used for reference to a supplier category within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a supplier category within the database")
     @MsDefault(name = "DF_Purchasing_SupplierCategories_SupplierCategoryID",
                value = "(NEXT VALUE FOR [Sequences].[SupplierCategoryID])")
     private Integer supplierCategoryId;
@@ -341,9 +339,8 @@ public abstract class MappedSupplierCategory {
     @Size(max = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_NAME,
-                          value = "Full name of the category that suppliers can be assigned to")
+    @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_CATEGORY_NAME,
+            comment = "Full name of the category that suppliers can be assigned to")
     private String supplierCategoryName;
 
     // ---------------------------------------------------------------------------------------------

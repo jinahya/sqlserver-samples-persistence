@@ -325,10 +325,8 @@ public abstract class MappedBuyingGroup {
                        sequenceName = "BuyingGroupID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.BuyingGroupID")
-    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
-                          value = "Numeric ID used for reference to a buying group within the "
-                                  + "database")
+    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a buying group within the database")
     @MsDefault(name = "DF_Sales_BuyingGroups_BuyingGroupID", value = "(NEXT VALUE FOR [Sequences].[BuyingGroupID])")
     private Integer buyingGroupId;
 
@@ -336,9 +334,8 @@ public abstract class MappedBuyingGroup {
     @Size(max = COLUMN_LENGTH_BUYING_GROUP_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BUYING_GROUP_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_BUYING_GROUP_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_NAME,
-                          value = "Full name of a buying group that customers can be members of")
+    @Column(name = COLUMN_NAME_BUYING_GROUP_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_BUYING_GROUP_NAME,
+            comment = "Full name of a buying group that customers can be members of")
     private String buyingGroupName;
 
     // ---------------------------------------------------------------------------------------------

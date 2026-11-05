@@ -357,10 +357,8 @@ public abstract class MappedEmployeePayHistory {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Employee identification number. Foreign key to "
-                                  + "Employee.BusinessEntityID.")
+            updatable = false,
+            comment = "Employee identification number. Foreign key to Employee.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -369,9 +367,8 @@ public abstract class MappedEmployeePayHistory {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_RATE_CHANGE_DATE, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_RATE_CHANGE_DATE,
-                          value = "Date the change in pay is effective")
+            updatable = false,
+            comment = "Date the change in pay is effective")
     private LocalDateTime rateChangeDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -382,8 +379,8 @@ public abstract class MappedEmployeePayHistory {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_RATE, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_RATE, value = "Salary hourly rate.")
+    @Column(name = COLUMN_NAME_RATE, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Salary hourly rate.")
     private BigDecimal rate;
 
     // ---------------------------------------------------------------------------------------------
@@ -395,9 +392,8 @@ public abstract class MappedEmployeePayHistory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PAY_FREQUENCY, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PAY_FREQUENCY,
-                          value = "1 = Salary received monthly, 2 = Salary received biweekly")
+            updatable = false,
+            comment = "1 = Salary received monthly, 2 = Salary received biweekly")
     private Integer payFrequency;
 
     // ---------------------------------------------------------------------------------------------
@@ -406,9 +402,8 @@ public abstract class MappedEmployeePayHistory {
     // the database's DEFAULT (getdate()) fills it on the INSERT of the procedure
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = false,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmployeePayHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

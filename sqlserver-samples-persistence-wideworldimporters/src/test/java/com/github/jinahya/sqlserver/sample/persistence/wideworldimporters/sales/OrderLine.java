@@ -38,7 +38,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Sales.OrderLines} table.
  */
 @Entity(name = "SalesOrderLine")
-@Table(schema = MappedOrderLine.TABLE_SCHEMA, name = MappedOrderLine.TABLE_NAME)
+@Table(schema = MappedOrderLine.TABLE_SCHEMA, name = MappedOrderLine.TABLE_NAME,
+       comment = "Detail lines from customer orders")
 public class OrderLine extends MappedOrderLine {
 
     /**

@@ -38,6 +38,7 @@ import jakarta.persistence.Table;
 @Entity(name = "PurchasingPurchaseOrderHeader")
 @Table(schema = MappedPurchaseOrderHeader.TABLE_SCHEMA,
        name = MappedPurchaseOrderHeader.TABLE_NAME,
+       comment = "General purchase order information. See PurchaseOrderDetail.",
        check = {
                @CheckConstraint(
                        name = "CK_PurchaseOrderHeader_Freight",

@@ -28,7 +28,11 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code dbo.ErrorLog} table.
  */
 @Entity(name = "DboErrorLog")
-@Table(schema = MappedErrorLog.TABLE_SCHEMA, name = MappedErrorLog.TABLE_NAME)
+@Table(schema = MappedErrorLog.TABLE_SCHEMA, name = MappedErrorLog.TABLE_NAME,
+       comment = "Audit table tracking errors in the the AdventureWorks database that are caught "
+                 + "by the CATCH block of a TRY...CATCH construct. Data is inserted by stored "
+                 + "procedure dbo.uspLogError when it is executed from inside the CATCH block of a "
+                 + "TRY...CATCH construct.")
 public class ErrorLog
         extends MappedErrorLog {
 

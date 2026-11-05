@@ -44,7 +44,9 @@ import java.util.Objects;
  */
 @Entity(name = "ProductionProductModelProductDescriptionCulture")
 @Table(schema = MappedProductModelProductDescriptionCulture.TABLE_SCHEMA,
-       name = MappedProductModelProductDescriptionCulture.TABLE_NAME)
+       name = MappedProductModelProductDescriptionCulture.TABLE_NAME,
+       comment = "Cross-reference table mapping product descriptions and the language the "
+                 + "description is written in.")
 public class ProductModelProductDescriptionCulture
         extends MappedProductModelProductDescriptionCulture {
 

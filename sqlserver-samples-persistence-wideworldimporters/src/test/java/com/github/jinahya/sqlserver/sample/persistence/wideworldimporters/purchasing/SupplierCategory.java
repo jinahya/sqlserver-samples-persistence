@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PurchasingSupplierCategory")
 @Table(schema = MappedSupplierCategory.TABLE_SCHEMA,
        name = MappedSupplierCategory.TABLE_NAME,
+       comment = "Categories for suppliers (ie novelties, toys, clothing, packaging, etc.)",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Purchasing_SupplierCategories_SupplierCategoryName",

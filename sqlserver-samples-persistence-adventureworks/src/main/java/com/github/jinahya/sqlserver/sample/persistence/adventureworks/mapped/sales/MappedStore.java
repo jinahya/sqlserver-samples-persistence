@@ -366,9 +366,8 @@ public abstract class MappedStore {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key. Foreign key to Customer.BusinessEntityID.")
+            updatable = false,
+            comment = "Primary key. Foreign key to Customer.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -376,8 +375,8 @@ public abstract class MappedStore {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the store.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Name of the store.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -387,30 +386,27 @@ public abstract class MappedStore {
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_PERSON_ID,
-                          value = "ID of the sales person assigned to the customer. Foreign key "
-                                  + "to SalesPerson.BusinessEntityID.")
+            updatable = false,
+            comment = "ID of the sales person assigned to the customer. Foreign key to "
+                      + "SalesPerson.BusinessEntityID.")
     private Integer salesPersonId;
 
     // ---------------------------------------------------------------------------------------------
     @Valid
     @Convert(converter = StoreSurveyStringAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DEMOGRAPHICS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DEMOGRAPHICS,
-                          value = "Demographic informationg about the store such as the number "
-                                  + "of employees, annual sales and store type.")
+    @Column(name = COLUMN_NAME_DEMOGRAPHICS, nullable = true, insertable = true, updatable = true,
+            comment = "Demographic informationg about the store such as the number of employees, "
+                      + "annual sales and store type.")
     private StoreSurvey demographics;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_Store_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -420,9 +416,8 @@ public abstract class MappedStore {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Store_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

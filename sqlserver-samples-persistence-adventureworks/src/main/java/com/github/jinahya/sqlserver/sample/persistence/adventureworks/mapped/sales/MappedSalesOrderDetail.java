@@ -645,9 +645,8 @@ public abstract class MappedSalesOrderDetail {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_ID,
-                          value = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
+            updatable = false,
+            comment = "Primary key. Foreign key to SalesOrderHeader.SalesOrderID.")
     private Integer salesOrderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -656,18 +655,16 @@ public abstract class MappedSalesOrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_ORDER_DETAIL_ID,
-                          value = "Primary key. One incremental unique number per product sold.")
+            updatable = false,
+            comment = "Primary key. One incremental unique number per product sold.")
     private Integer salesOrderDetailId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER, nullable = true, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_CARRIER_TRACKING_NUMBER,
-                          value = "Shipment tracking number supplied by the shipper.")
+            updatable = true, length = COLUMN_LENGTH_CARRIER_TRACKING_NUMBER,
+            comment = "Shipment tracking number supplied by the shipper.")
     private String carrierTrackingNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -676,8 +673,8 @@ public abstract class MappedSalesOrderDetail {
     @Min(ATTRIBUTE_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_QTY, value = "Quantity ordered per product.")
+    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity ordered per product.")
     private Integer orderQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -687,9 +684,8 @@ public abstract class MappedSalesOrderDetail {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product sold to customer. Foreign key to Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Product sold to customer. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -700,9 +696,8 @@ public abstract class MappedSalesOrderDetail {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
-                          value = "Promotional code. Foreign key to SpecialOffer.SpecialOfferID.")
+            updatable = false,
+            comment = "Promotional code. Foreign key to SpecialOffer.SpecialOfferID.")
     private Integer specialOfferId;
 
     // ---------------------------------------------------------------------------------------------
@@ -711,9 +706,8 @@ public abstract class MappedSalesOrderDetail {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
-                          value = "Selling price of a single product.")
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Selling price of a single product.")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
@@ -723,8 +717,8 @@ public abstract class MappedSalesOrderDetail {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, nullable = false, insertable = true,
-            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE_DISCOUNT, value = "Discount amount.")
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Discount amount.")
     @MsDefault(name = "DF_SalesOrderDetail_UnitPriceDiscount", value = "((0.0))")
     private BigDecimal unitPriceDiscount;
 
@@ -734,10 +728,9 @@ public abstract class MappedSalesOrderDetail {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LINE_TOTAL)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false,
-            precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL)
-    @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
-                          value = "Per product subtotal. Computed as UnitPrice * (1 - "
-                                  + "UnitPriceDiscount) * OrderQty.")
+            precision = COLUMN_PRECISION_LINE_TOTAL, scale = COLUMN_SCALE_LINE_TOTAL,
+            comment = "Per product subtotal. Computed as UnitPrice * (1 - UnitPriceDiscount) * "
+                      + "OrderQty.")
     @MsComputedColumn("(isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))")
     private BigDecimal lineTotal;
 
@@ -745,10 +738,9 @@ public abstract class MappedSalesOrderDetail {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SalesOrderDetail_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -758,9 +750,8 @@ public abstract class MappedSalesOrderDetail {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesOrderDetail_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

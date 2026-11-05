@@ -44,7 +44,8 @@ import java.util.Objects;
  */
 @Entity(name = "SalesCountryRegionCurrency")
 @Table(schema = MappedCountryRegionCurrency.TABLE_SCHEMA,
-       name = MappedCountryRegionCurrency.TABLE_NAME)
+       name = MappedCountryRegionCurrency.TABLE_NAME,
+       comment = "Cross-reference table mapping ISO currency codes to a country or region.")
 public class CountryRegionCurrency
         extends MappedCountryRegionCurrency {
 

@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionScrapReason")
 @Table(schema = MappedScrapReason.TABLE_SCHEMA,
        name = MappedScrapReason.TABLE_NAME,
+       comment = "Manufacturing failure reasons lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_ScrapReason_Name",

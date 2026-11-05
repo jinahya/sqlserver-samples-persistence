@@ -36,6 +36,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PersonPerson")
 @Table(schema = MappedPerson.TABLE_SCHEMA,
        name = MappedPerson.TABLE_NAME,
+       comment = "Human beings involved with AdventureWorks: employees, customer contacts, and "
+                 + "vendor contacts.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Person_rowguid",

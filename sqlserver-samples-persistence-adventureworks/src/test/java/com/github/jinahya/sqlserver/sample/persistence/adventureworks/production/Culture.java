@@ -31,6 +31,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionCulture")
 @Table(schema = MappedCulture.TABLE_SCHEMA,
        name = MappedCulture.TABLE_NAME,
+       comment = "Lookup table containing the languages in which some AdventureWorks data is "
+                 + "stored.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Culture_Name",

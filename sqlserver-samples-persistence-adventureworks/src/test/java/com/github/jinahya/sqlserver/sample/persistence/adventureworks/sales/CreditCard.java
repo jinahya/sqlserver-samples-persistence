@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesCreditCard")
 @Table(schema = MappedCreditCard.TABLE_SCHEMA,
        name = MappedCreditCard.TABLE_NAME,
+       comment = "Customer credit card information.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_CreditCard_CardNumber",

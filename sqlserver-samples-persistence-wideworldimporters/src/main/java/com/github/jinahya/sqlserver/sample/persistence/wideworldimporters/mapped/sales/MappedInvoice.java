@@ -1081,9 +1081,8 @@ public abstract class MappedInvoice {
                        sequenceName = "InvoiceID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.InvoiceID")
-    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
-                          value = "Numeric ID used for reference to an invoice within the database")
+    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to an invoice within the database")
     @MsDefault(name = "DF_Sales_Invoices_InvoiceID", value = "(NEXT VALUE FOR [Sequences].[InvoiceID])")
     private Integer invoiceId;
 
@@ -1093,8 +1092,8 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this invoice")
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer for this invoice")
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1103,10 +1102,9 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
-                          value = "Bill to customer for this invoice (invoices might be billed "
-                                  + "to a head office)")
+    @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Bill to customer for this invoice (invoices might be billed to a head "
+                      + "office)")
     private Integer billToCustomerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1114,9 +1112,8 @@ public abstract class MappedInvoice {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ORDER_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
-                          value = "Sales order (if any) for this invoice")
+    @Column(name = COLUMN_NAME_ORDER_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Sales order (if any) for this invoice")
     private Integer orderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1125,9 +1122,8 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-                          value = "How these stock items are beign delivered")
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false,
+            comment = "How these stock items are beign delivered")
     private Integer deliveryMethodId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1136,9 +1132,8 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
-                          value = "Customer contact for this invoice")
+    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer contact for this invoice")
     private Integer contactPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1147,9 +1142,8 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID,
-                          value = "Customer accounts contact for this invoice")
+    @Column(name = COLUMN_NAME_ACCOUNTS_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer accounts contact for this invoice")
     private Integer accountsPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1158,9 +1152,8 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
-                          value = "Salesperson for this invoice")
+    @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Salesperson for this invoice")
     private Integer salespersonPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1169,67 +1162,57 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID,
-                          value = "Person who packed this shipment (or checked the packing)")
+    @Column(name = COLUMN_NAME_PACKED_BY_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Person who packed this shipment (or checked the packing)")
     private Integer packedByPersonId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_INVOICE_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_INVOICE_DATE,
-                          value = "Date that this invoice was raised")
+    @Column(name = COLUMN_NAME_INVOICE_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date that this invoice was raised")
     private LocalDate invoiceDate;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
-                          value = "Purchase Order Number received from customer")
+    @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER,
+            comment = "Purchase Order Number received from customer")
     private String customerPurchaseOrderNumber;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_CREDIT_NOTE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_CREDIT_NOTE,
-                          value = "Is this a credit note (rather than an invoice)")
+    @Column(name = COLUMN_NAME_IS_CREDIT_NOTE, nullable = false, insertable = true, updatable = true,
+            comment = "Is this a credit note (rather than an invoice)")
     private Boolean isCreditNote;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREDIT_NOTE_REASON, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_CREDIT_NOTE_REASON,
-                          value = "Reason that this credit note needed to be generated (if "
-                                  + "applicable)")
+    @Column(name = COLUMN_NAME_CREDIT_NOTE_REASON, nullable = true, insertable = true, updatable = true,
+            comment = "Reason that this credit note needed to be generated (if applicable)")
     private String creditNoteReason;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
-                          value = "Any comments related to this invoice (sent to customer)")
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true,
+            comment = "Any comments related to this invoice (sent to customer)")
     private String comments;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: 72 bytes (36 characters)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
-                          value = "Any comments related to delivery (sent to customer)")
+    @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS, nullable = true, insertable = true, updatable = true,
+            comment = "Any comments related to delivery (sent to customer)")
     private String deliveryInstructions;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-                          value = "Any internal comments related to this invoice (not sent to "
-                                  + "the customer)")
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true,
+            comment = "Any internal comments related to this invoice (not sent to the customer)")
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------
@@ -1237,10 +1220,8 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS,
-                          value = "Total number of dry packages (information for the delivery "
-                                  + "driver)")
+    @Column(name = COLUMN_NAME_TOTAL_DRY_ITEMS, nullable = false, insertable = true, updatable = true,
+            comment = "Total number of dry packages (information for the delivery driver)")
     private Integer totalDryItems;
 
     // ---------------------------------------------------------------------------------------------
@@ -1248,43 +1229,37 @@ public abstract class MappedInvoice {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS,
-                          value = "Total number of chiller packages (information for the "
-                                  + "delivery driver)")
+    @Column(name = COLUMN_NAME_TOTAL_CHILLER_ITEMS, nullable = false, insertable = true, updatable = true,
+            comment = "Total number of chiller packages (information for the delivery driver)")
     private Integer totalChillerItems;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_RUN, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_RUN)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_RUN, value = "Delivery run for this shipment")
+    @Column(name = COLUMN_NAME_DELIVERY_RUN, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_RUN,
+            comment = "Delivery run for this shipment")
     private String deliveryRun;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RUN_POSITION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_RUN_POSITION)
-    @MsDescription.Column(name = COLUMN_NAME_RUN_POSITION,
-                          value = "Position in the delivery run for this shipment")
+    @Column(name = COLUMN_NAME_RUN_POSITION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_RUN_POSITION,
+            comment = "Position in the delivery run for this shipment")
     private String runPosition;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: 746 bytes (373 characters)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA,
-                          value = "JSON-structured data returned from delivery devices for "
-                                  + "deliveries made directly by the organization")
+    @Column(name = COLUMN_NAME_RETURNED_DELIVERY_DATA, nullable = true, insertable = true, updatable = true,
+            comment = "JSON-structured data returned from delivery devices for deliveries made "
+                      + "directly by the organization")
     private String returnedDeliveryData;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME,
-                          value = "Confirmed delivery date and time promoted from JSON delivery "
-                                  + "data")
+    @Column(name = COLUMN_NAME_CONFIRMED_DELIVERY_TIME, nullable = true, insertable = false, updatable = false,
+            comment = "Confirmed delivery date and time promoted from JSON delivery data")
     @MsComputedColumn("(TRY_CONVERT([datetime2](7),json_value([ReturnedDeliveryData],N'$.DeliveredWhen'),(126)))")
     private LocalDateTime confirmedDeliveryTime;
 
@@ -1292,9 +1267,8 @@ public abstract class MappedInvoice {
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Size(max = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY)
-    @MsDescription.Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY,
-                          value = "Confirmed receiver promoted from JSON delivery data")
+    @Column(name = COLUMN_NAME_CONFIRMED_RECEIVED_BY, nullable = true, insertable = false, updatable = false, length = COLUMN_LENGTH_CONFIRMED_RECEIVED_BY,
+            comment = "Confirmed receiver promoted from JSON delivery data")
     @MsComputedColumn("(json_value([ReturnedDeliveryData],N'$.ReceivedBy'))")
     private String confirmedReceivedBy;
 

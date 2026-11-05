@@ -357,9 +357,8 @@ public abstract class MappedLocation {
     // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_LOCATION_ID,
-                          value = "Primary key for Location records.")
+    @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Primary key for Location records.")
     private Long locationId;
 
     // ---------------------------------------------------------------------------------------------
@@ -367,8 +366,8 @@ public abstract class MappedLocation {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Location description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Location description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -377,9 +376,8 @@ public abstract class MappedLocation {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COST_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COST_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_COST_RATE,
-                          value = "Standard hourly cost of the manufacturing location.")
+    @Column(name = COLUMN_NAME_COST_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE,
+            comment = "Standard hourly cost of the manufacturing location.")
     @MsDefault(name = "DF_Location_CostRate", value = "((0.00))")
     private BigDecimal costRate;
 
@@ -390,9 +388,8 @@ public abstract class MappedLocation {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_AVAILABILITY, nullable = false, insertable = true, updatable = true,
-            precision = COLUMN_PRECISION_AVAILABILITY, scale = COLUMN_SCALE_AVAILABILITY)
-    @MsDescription.Column(name = COLUMN_NAME_AVAILABILITY,
-                          value = "Work capacity (in hours) of the manufacturing location.")
+            precision = COLUMN_PRECISION_AVAILABILITY, scale = COLUMN_SCALE_AVAILABILITY,
+            comment = "Work capacity (in hours) of the manufacturing location.")
     @MsDefault(name = "DF_Location_Availability", value = "((0.00))")
     private BigDecimal availability;
 
@@ -402,9 +399,8 @@ public abstract class MappedLocation {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Location_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

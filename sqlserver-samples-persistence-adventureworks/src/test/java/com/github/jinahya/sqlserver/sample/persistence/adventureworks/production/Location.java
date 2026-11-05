@@ -32,6 +32,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionLocation")
 @Table(schema = MappedLocation.TABLE_SCHEMA,
        name = MappedLocation.TABLE_NAME,
+       comment = "Product inventory and manufacturing locations.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Location_Name",

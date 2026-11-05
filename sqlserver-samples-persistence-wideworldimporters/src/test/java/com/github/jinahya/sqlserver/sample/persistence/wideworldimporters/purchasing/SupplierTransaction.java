@@ -39,7 +39,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Purchasing.SupplierTransactions} table.
  */
 @Entity(name = "PurchasingSupplierTransaction")
-@Table(schema = MappedSupplierTransaction.TABLE_SCHEMA, name = MappedSupplierTransaction.TABLE_NAME)
+@Table(schema = MappedSupplierTransaction.TABLE_SCHEMA, name = MappedSupplierTransaction.TABLE_NAME,
+       comment = "All financial transactions that are supplier-related")
 public class SupplierTransaction extends MappedSupplierTransaction {
 
     /**

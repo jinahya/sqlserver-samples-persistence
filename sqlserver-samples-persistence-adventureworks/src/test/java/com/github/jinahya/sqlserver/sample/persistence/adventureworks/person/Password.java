@@ -32,7 +32,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Person.Password} table.
  */
 @Entity(name = "PersonPassword")
-@Table(schema = MappedPassword.TABLE_SCHEMA, name = MappedPassword.TABLE_NAME)
+@Table(schema = MappedPassword.TABLE_SCHEMA, name = MappedPassword.TABLE_NAME,
+       comment = "One way hashed authentication information")
 public class Password
         extends MappedPassword {
 

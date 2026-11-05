@@ -31,6 +31,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "HumanResourcesDepartment")
 @Table(schema = MappedDepartment.TABLE_SCHEMA,
        name = MappedDepartment.TABLE_NAME,
+       comment = "Lookup table containing the departments within the Adventure Works Cycles "
+                 + "company.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Department_Name",

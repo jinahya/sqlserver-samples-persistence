@@ -69,7 +69,8 @@ import java.time.LocalDateTime;
 // (error 8102)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDepartment.COLUMN_NAME_DEPARTMENT_ID,
-                                    nullable = false, insertable = false, updatable = false)
+                                    nullable = false, insertable = false, updatable = false,
+                                    comment = "Primary key for Department records.")
 )
 @MappedSuperclass
 @MsDescription(
@@ -279,8 +280,8 @@ public abstract class MappedDepartment
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Name of the department.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Name of the department.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -288,9 +289,8 @@ public abstract class MappedDepartment
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_GROUP_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_GROUP_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_GROUP_NAME,
-                          value = "Name of the group to which the department belongs.")
+            length = COLUMN_LENGTH_GROUP_NAME,
+            comment = "Name of the group to which the department belongs.")
     private String groupName;
 
     // ---------------------------------------------------------------------------------------------
@@ -299,9 +299,8 @@ public abstract class MappedDepartment
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Department_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

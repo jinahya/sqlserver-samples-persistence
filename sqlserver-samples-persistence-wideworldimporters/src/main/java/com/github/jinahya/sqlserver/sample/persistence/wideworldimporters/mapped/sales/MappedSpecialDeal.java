@@ -755,9 +755,8 @@ public abstract class MappedSpecialDeal {
                        sequenceName = "SpecialDealID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.SpecialDealID")
-    @Column(name = COLUMN_NAME_SPECIAL_DEAL_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SPECIAL_DEAL_ID,
-                          value = "ID (sequence based) for a special deal")
+    @Column(name = COLUMN_NAME_SPECIAL_DEAL_ID, nullable = false, insertable = true, updatable = false,
+            comment = "ID (sequence based) for a special deal")
     @MsDefault(name = "DF_Sales_SpecialDeals_SpecialDealID", value = "(NEXT VALUE FOR [Sequences].[SpecialDealID])")
     private Integer specialDealId;
 
@@ -766,10 +765,9 @@ public abstract class MappedSpecialDeal {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-                          value = "Stock item that the deal applies to (if NULL, then only "
-                                  + "discounts are permitted not unit prices)")
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Stock item that the deal applies to (if NULL, then only discounts are "
+                      + "permitted not unit prices)")
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
@@ -777,10 +775,9 @@ public abstract class MappedSpecialDeal {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
-                          value = "ID of the customer that the special pricing applies to (if "
-                                  + "NULL then all customers)")
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of the customer that the special pricing applies to (if NULL then all "
+                      + "customers)")
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -788,10 +785,8 @@ public abstract class MappedSpecialDeal {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
-                          value = "ID of the buying group that the special pricing applies to "
-                                  + "(optional)")
+    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of the buying group that the special pricing applies to (optional)")
     private Integer buyingGroupId;
 
     // ---------------------------------------------------------------------------------------------
@@ -799,10 +794,8 @@ public abstract class MappedSpecialDeal {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID,
-                          value = "ID of the customer category that the special pricing applies "
-                                  + "to (optional)")
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of the customer category that the special pricing applies to (optional)")
     private Integer customerCategoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -810,64 +803,54 @@ public abstract class MappedSpecialDeal {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
-                          value = "ID of the stock group that the special pricing applies to "
-                                  + "(optional)")
+    @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of the stock group that the special pricing applies to (optional)")
     private Integer stockGroupId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DEAL_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DEAL_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DEAL_DESCRIPTION)
-    @MsDescription.Column(name = COLUMN_NAME_DEAL_DESCRIPTION,
-                          value = "Description of the special deal")
+    @Column(name = COLUMN_NAME_DEAL_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DEAL_DESCRIPTION,
+            comment = "Description of the special deal")
     private String dealDescription;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_START_DATE,
-                          value = "Date that the special pricing starts from")
+    @Column(name = COLUMN_NAME_START_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date that the special pricing starts from")
     private LocalDate startDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_END_DATE,
-                          value = "Date that the special pricing ends on")
+    @Column(name = COLUMN_NAME_END_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date that the special pricing ends on")
     private LocalDate endDate;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_AMOUNT)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_AMOUNT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT)
-    @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_AMOUNT,
-                          value = "Discount per unit to be applied to sale price (optional)")
+    @Column(name = COLUMN_NAME_DISCOUNT_AMOUNT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_AMOUNT, scale = COLUMN_SCALE_DISCOUNT_AMOUNT,
+            comment = "Discount per unit to be applied to sale price (optional)")
     private BigDecimal discountAmount;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_DISCOUNT_PERCENTAGE)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_DISCOUNT_PERCENTAGE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_PERCENTAGE, scale = COLUMN_SCALE_DISCOUNT_PERCENTAGE)
-    @MsDescription.Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE,
-                          value = "Discount percentage per unit to be applied to sale price "
-                                  + "(optional)")
+    @Column(name = COLUMN_NAME_DISCOUNT_PERCENTAGE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_DISCOUNT_PERCENTAGE, scale = COLUMN_SCALE_DISCOUNT_PERCENTAGE,
+            comment = "Discount percentage per unit to be applied to sale price (optional)")
     private BigDecimal discountPercentage;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
-                          value = "Special price per unit to be applied instead of sale price "
-                                  + "(optional)")
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE,
+            comment = "Special price per unit to be applied instead of sale price (optional)")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------

@@ -927,10 +927,9 @@ public abstract class MappedEmployee {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key for Employee records.  Foreign key to "
-                                  + "BusinessEntity.BusinessEntityID.")
+            updatable = false,
+            comment = "Primary key for Employee records.  Foreign key to "
+                      + "BusinessEntity.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -938,10 +937,8 @@ public abstract class MappedEmployee {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NATIONAL_ID_NUMBER, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_NATIONAL_ID_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_NATIONAL_ID_NUMBER,
-                          value = "Unique national identification number such as a social "
-                                  + "security number.")
+            updatable = true, length = COLUMN_LENGTH_NATIONAL_ID_NUMBER,
+            comment = "Unique national identification number such as a social security number.")
     private String nationalIdNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -949,17 +946,16 @@ public abstract class MappedEmployee {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LOGIN_ID, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_LOGIN_ID)
-    @MsDescription.Column(name = COLUMN_NAME_LOGIN_ID, value = "Network login.")
+            length = COLUMN_LENGTH_LOGIN_ID,
+            comment = "Network login.")
     private String loginId;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_NODE, nullable = true, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ORGANIZATION_NODE,
-                          value = "Where the employee is located in corporate hierarchy.")
+            updatable = true,
+            comment = "Where the employee is located in corporate hierarchy.")
     private Heirarchyid organizationNode;
 
     // ---------------------------------------------------------------------------------------------
@@ -968,9 +964,8 @@ public abstract class MappedEmployee {
     @Min(SqlServerConstants.SMALLINT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ORGANIZATION_LEVEL, nullable = true, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ORGANIZATION_LEVEL,
-                          value = "The depth of the employee in the corporate hierarchy.")
+            updatable = false,
+            comment = "The depth of the employee in the corporate hierarchy.")
     @MsComputedColumn("([OrganizationNode].[GetLevel]())")
     private Integer organizationLevel;
 
@@ -979,16 +974,15 @@ public abstract class MappedEmployee {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_JOB_TITLE, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_JOB_TITLE)
-    @MsDescription.Column(name = COLUMN_NAME_JOB_TITLE,
-                          value = "Work title such as Buyer or Sales Representative.")
+            length = COLUMN_LENGTH_JOB_TITLE,
+            comment = "Work title such as Buyer or Sales Representative.")
     private String jobTitle;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BIRTH_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_BIRTH_DATE, value = "Date of birth.")
+    @Column(name = COLUMN_NAME_BIRTH_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date of birth.")
     private LocalDate birthDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -996,8 +990,8 @@ public abstract class MappedEmployee {
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MARITAL_STATUS, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_MARITAL_STATUS)
-    @MsDescription.Column(name = COLUMN_NAME_MARITAL_STATUS, value = "M = Married, S = Single")
+            updatable = true, length = COLUMN_LENGTH_MARITAL_STATUS,
+            comment = "M = Married, S = Single")
     private MaritalStatus maritalStatus;
 
     // ---------------------------------------------------------------------------------------------
@@ -1005,24 +999,23 @@ public abstract class MappedEmployee {
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_GENDER, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_GENDER)
-    @MsDescription.Column(name = COLUMN_NAME_GENDER, value = "M = Male, F = Female")
+            length = COLUMN_LENGTH_GENDER,
+            comment = "M = Male, F = Female")
     private Gender gender;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_HIRE_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_HIRE_DATE, value = "Employee hired on this date.")
+    @Column(name = COLUMN_NAME_HIRE_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Employee hired on this date.")
     private LocalDate hireDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALARIED_FLAG, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_SALARIED_FLAG,
-                          value = "Job classification. 0 = Hourly, not exempt from collective "
-                                  + "bargaining. 1 = Salaried, exempt from collective bargaining.")
+    @Column(name = COLUMN_NAME_SALARIED_FLAG, nullable = false, insertable = true, updatable = true,
+            comment = "Job classification. 0 = Hourly, not exempt from collective bargaining. 1 = "
+                      + "Salaried, exempt from collective bargaining.")
     @MsDefault(name = "DF_Employee_SalariedFlag", value = "((1))")
     private Boolean salariedFlag;
 
@@ -1033,9 +1026,8 @@ public abstract class MappedEmployee {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VACATION_HOURS, nullable = false, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_VACATION_HOURS,
-                          value = "Number of available vacation hours.")
+            updatable = true,
+            comment = "Number of available vacation hours.")
     @MsDefault(name = "DF_Employee_VacationHours", value = "((0))")
     private Integer vacationHours;
 
@@ -1046,17 +1038,16 @@ public abstract class MappedEmployee {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SICK_LEAVE_HOURS, nullable = false, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_SICK_LEAVE_HOURS,
-                          value = "Number of available sick leave hours.")
+            updatable = true,
+            comment = "Number of available sick leave hours.")
     @MsDefault(name = "DF_Employee_SickLeaveHours", value = "((0))")
     private Integer sickLeaveHours;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CURRENT_FLAG, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_CURRENT_FLAG, value = "0 = Inactive, 1 = Active")
+    @Column(name = COLUMN_NAME_CURRENT_FLAG, nullable = false, insertable = true, updatable = true,
+            comment = "0 = Inactive, 1 = Active")
     @MsDefault(name = "DF_Employee_CurrentFlag", value = "((1))")
     private Boolean currentFlag;
 
@@ -1064,10 +1055,9 @@ public abstract class MappedEmployee {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_Employee_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -1077,9 +1067,8 @@ public abstract class MappedEmployee {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Employee_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

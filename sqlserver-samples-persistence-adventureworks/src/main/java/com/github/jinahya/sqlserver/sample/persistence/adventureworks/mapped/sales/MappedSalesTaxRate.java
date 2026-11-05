@@ -418,9 +418,8 @@ public abstract class MappedSalesTaxRate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_TAX_RATE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_TAX_RATE_ID,
-                          value = "Primary key for SalesTaxRate records.")
+            updatable = false,
+            comment = "Primary key for SalesTaxRate records.")
     private Integer salesTaxRateId;
 
     // ---------------------------------------------------------------------------------------------
@@ -431,9 +430,8 @@ public abstract class MappedSalesTaxRate {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-                          value = "State, province, or country/region the sales tax applies to.")
+            updatable = false,
+            comment = "State, province, or country/region the sales tax applies to.")
     private Integer stateProvinceId;
 
     // ---------------------------------------------------------------------------------------------
@@ -442,11 +440,10 @@ public abstract class MappedSalesTaxRate {
     @Min(ATTRIBUTE_MIN_TAX_TYPE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_TYPE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_TAX_TYPE,
-                          value = "1 = Tax applied to retail transactions, 2 = Tax applied to "
-                                  + "wholesale transactions, 3 = Tax applied to all sales (retail "
-                                  + "and wholesale) transactions.")
+    @Column(name = COLUMN_NAME_TAX_TYPE, nullable = false, insertable = true, updatable = true,
+            comment = "1 = Tax applied to retail transactions, 2 = Tax applied to wholesale "
+                      + "transactions, 3 = Tax applied to all sales (retail and wholesale) "
+                      + "transactions.")
     private Integer taxType;
 
     // ---------------------------------------------------------------------------------------------
@@ -454,8 +451,8 @@ public abstract class MappedSalesTaxRate {
     @DecimalMin(SqlServerConstants.SMALLMONEY_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate amount.")
+    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.SMALLMONEY_PRECISION, scale = SqlServerConstants.SMALLMONEY_SCALE,
+            comment = "Tax rate amount.")
     @MsDefault(name = "DF_SalesTaxRate_TaxRate", value = "((0.00))")
     private BigDecimal taxRate;
 
@@ -464,18 +461,17 @@ public abstract class MappedSalesTaxRate {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Tax rate description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Tax rate description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SalesTaxRate_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -485,9 +481,8 @@ public abstract class MappedSalesTaxRate {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesTaxRate_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

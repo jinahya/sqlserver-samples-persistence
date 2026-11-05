@@ -44,6 +44,7 @@ import java.util.Optional;
 @Entity(name = "SalesSalesPersonQuotaHistory")
 @Table(schema = MappedSalesPersonQuotaHistory.TABLE_SCHEMA,
        name = MappedSalesPersonQuotaHistory.TABLE_NAME,
+       comment = "Sales performance tracking.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SalesPersonQuotaHistory_rowguid",

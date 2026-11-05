@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionUnitMeasure")
 @Table(schema = MappedUnitMeasure.TABLE_SCHEMA,
        name = MappedUnitMeasure.TABLE_NAME,
+       comment = "Unit of measure lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_UnitMeasure_Name",

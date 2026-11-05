@@ -43,7 +43,8 @@ import java.util.Objects;
  */
 @Entity(name = "SalesSalesOrderHeaderSalesReason")
 @Table(schema = MappedSalesOrderHeaderSalesReason.TABLE_SCHEMA,
-       name = MappedSalesOrderHeaderSalesReason.TABLE_NAME)
+       name = MappedSalesOrderHeaderSalesReason.TABLE_NAME,
+       comment = "Cross-reference table mapping sales orders to sales reason codes.")
 public class SalesOrderHeaderSalesReason
         extends MappedSalesOrderHeaderSalesReason {
 

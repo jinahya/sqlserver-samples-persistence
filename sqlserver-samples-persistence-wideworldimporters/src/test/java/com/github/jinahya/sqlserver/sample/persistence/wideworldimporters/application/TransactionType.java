@@ -35,6 +35,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ApplicationTransactionType")
 @Table(schema = MappedTransactionType.TABLE_SCHEMA,
        name = MappedTransactionType.TABLE_NAME,
+       comment = "Types of customer, supplier, or stock transactions (ie: invoice, credit note, "
+                 + "etc.)",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Application_TransactionTypes_TransactionTypeName",

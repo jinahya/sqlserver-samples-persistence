@@ -70,7 +70,8 @@ import java.time.LocalTime;
 // (error 8102)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedShift.COLUMN_NAME_SHIFT_ID, nullable = false,
-                                    insertable = false, updatable = false)
+                                    insertable = false, updatable = false,
+                                    comment = "Primary key for Shift records.")
 )
 @MappedSuperclass
 @MsDescription(
@@ -310,22 +311,22 @@ public abstract class MappedShift
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Shift description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Shift description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_START_TIME, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_START_TIME, value = "Shift start time.")
+    @Column(name = COLUMN_NAME_START_TIME, nullable = false, insertable = true, updatable = true,
+            comment = "Shift start time.")
     private LocalTime startTime;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_END_TIME, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_END_TIME, value = "Shift end time.")
+    @Column(name = COLUMN_NAME_END_TIME, nullable = false, insertable = true, updatable = true,
+            comment = "Shift end time.")
     private LocalTime endTime;
 
     // ---------------------------------------------------------------------------------------------
@@ -334,9 +335,8 @@ public abstract class MappedShift
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Shift_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

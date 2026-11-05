@@ -747,10 +747,8 @@ public abstract class MappedCustomerTransaction {
                        sequenceName = "TransactionID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.TransactionID")
-    @Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID,
-                          value = "Numeric ID used to refer to a customer transaction within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_CUSTOMER_TRANSACTION_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used to refer to a customer transaction within the database")
     @MsDefault(name = "DF_Sales_CustomerTransactions_CustomerTransactionID",
                value = "(NEXT VALUE FOR [Sequences].[TransactionID])")
     private Integer customerTransactionId;
@@ -761,8 +759,8 @@ public abstract class MappedCustomerTransaction {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this transaction")
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer for this transaction")
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -771,8 +769,8 @@ public abstract class MappedCustomerTransaction {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, value = "Type of transaction")
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Type of transaction")
     private Integer transactionTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -780,9 +778,8 @@ public abstract class MappedCustomerTransaction {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
-                          value = "ID of an invoice (for transactions associated with an invoice)")
+    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of an invoice (for transactions associated with an invoice)")
     private Integer invoiceId;
 
     // ---------------------------------------------------------------------------------------------
@@ -790,16 +787,15 @@ public abstract class MappedCustomerTransaction {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_METHOD_ID,
-                          value = "ID of a payment method (for transactions involving payments)")
+    @Column(name = COLUMN_NAME_PAYMENT_METHOD_ID, nullable = true, insertable = false, updatable = false,
+            comment = "ID of a payment method (for transactions involving payments)")
     private Integer paymentMethodId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE, value = "Date for the transaction")
+    @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date for the transaction")
     private LocalDate transactionDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -807,9 +803,8 @@ public abstract class MappedCustomerTransaction {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_AMOUNT_EXCLUDING_TAX)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX, scale = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX)
-    @MsDescription.Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX,
-                          value = "Transaction amount (excluding tax)")
+    @Column(name = COLUMN_NAME_AMOUNT_EXCLUDING_TAX, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_AMOUNT_EXCLUDING_TAX, scale = COLUMN_SCALE_AMOUNT_EXCLUDING_TAX,
+            comment = "Transaction amount (excluding tax)")
     private BigDecimal amountExcludingTax;
 
     // ---------------------------------------------------------------------------------------------
@@ -817,8 +812,8 @@ public abstract class MappedCustomerTransaction {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
-    @MsDescription.Column(name = COLUMN_NAME_TAX_AMOUNT, value = "Tax amount calculated")
+    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT,
+            comment = "Tax amount calculated")
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
@@ -826,9 +821,8 @@ public abstract class MappedCustomerTransaction {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TRANSACTION_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TRANSACTION_AMOUNT, scale = COLUMN_SCALE_TRANSACTION_AMOUNT)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_AMOUNT,
-                          value = "Transaction amount (including tax)")
+    @Column(name = COLUMN_NAME_TRANSACTION_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TRANSACTION_AMOUNT, scale = COLUMN_SCALE_TRANSACTION_AMOUNT,
+            comment = "Transaction amount (including tax)")
     private BigDecimal transactionAmount;
 
     // ---------------------------------------------------------------------------------------------
@@ -836,25 +830,22 @@ public abstract class MappedCustomerTransaction {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_OUTSTANDING_BALANCE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_OUTSTANDING_BALANCE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_OUTSTANDING_BALANCE, scale = COLUMN_SCALE_OUTSTANDING_BALANCE)
-    @MsDescription.Column(name = COLUMN_NAME_OUTSTANDING_BALANCE,
-                          value = "Amount still outstanding for this transaction")
+    @Column(name = COLUMN_NAME_OUTSTANDING_BALANCE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_OUTSTANDING_BALANCE, scale = COLUMN_SCALE_OUTSTANDING_BALANCE,
+            comment = "Amount still outstanding for this transaction")
     private BigDecimal outstandingBalance;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_FINALIZATION_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_FINALIZATION_DATE,
-                          value = "Date that this transaction was finalized (if it has been)")
+    @Column(name = COLUMN_NAME_FINALIZATION_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "Date that this transaction was finalized (if it has been)")
     private LocalDate finalizationDate;
 
     // ---------------------------------------------------------------------------------------------
     // read-only: a computed column; SQL Server derives it, and rejects a value for it (error 271)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_IS_FINALIZED, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_IS_FINALIZED,
-                          value = "Is this transaction finalized (invoices, credits and "
-                                  + "payments have been matched)")
+    @Column(name = COLUMN_NAME_IS_FINALIZED, nullable = true, insertable = false, updatable = false,
+            comment = "Is this transaction finalized (invoices, credits and payments have been "
+                      + "matched)")
     @MsComputedColumn(value = "(case when [FinalizationDate] IS NULL then CONVERT([bit],(0)) else CONVERT([bit],(1)) "
                               + "end)",
                       persisted = true)

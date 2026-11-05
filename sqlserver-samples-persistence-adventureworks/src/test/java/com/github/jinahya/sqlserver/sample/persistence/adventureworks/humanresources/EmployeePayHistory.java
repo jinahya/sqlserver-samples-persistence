@@ -44,6 +44,7 @@ import java.util.Optional;
 @Entity(name = "HumanResourcesEmployeePayHistory")
 @Table(schema = MappedEmployeePayHistory.TABLE_SCHEMA,
        name = MappedEmployeePayHistory.TABLE_NAME,
+       comment = "Employee pay history.",
        check = {
                @CheckConstraint(
                        name = "CK_EmployeePayHistory_PayFrequency",

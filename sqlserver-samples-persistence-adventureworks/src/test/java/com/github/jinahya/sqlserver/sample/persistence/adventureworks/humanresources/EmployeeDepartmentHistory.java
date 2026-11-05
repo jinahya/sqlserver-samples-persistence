@@ -45,6 +45,7 @@ import java.util.Optional;
 @Entity(name = "HumanResourcesEmployeeDepartmentHistory")
 @Table(schema = MappedEmployeeDepartmentHistory.TABLE_SCHEMA,
        name = MappedEmployeeDepartmentHistory.TABLE_NAME,
+       comment = "Employee department transfers.",
        check = {
                @CheckConstraint(
                        name = "CK_EmployeeDepartmentHistory_EndDate",

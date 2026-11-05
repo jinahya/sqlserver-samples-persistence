@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesBuyingGroup")
 @Table(schema = MappedBuyingGroup.TABLE_SCHEMA,
        name = MappedBuyingGroup.TABLE_NAME,
+       comment = "Customer organizations can be part of groups that exert greater buying power",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Sales_BuyingGroups_BuyingGroupName",

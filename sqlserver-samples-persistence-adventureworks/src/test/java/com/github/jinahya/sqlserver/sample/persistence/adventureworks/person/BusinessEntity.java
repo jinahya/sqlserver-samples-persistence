@@ -31,6 +31,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PersonBusinessEntity")
 @Table(schema = MappedBusinessEntity.TABLE_SCHEMA,
        name = MappedBusinessEntity.TABLE_NAME,
+       comment = "Source of the ID that connects vendors, customers, and employees with address "
+                 + "and contact information.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_BusinessEntity_rowguid",

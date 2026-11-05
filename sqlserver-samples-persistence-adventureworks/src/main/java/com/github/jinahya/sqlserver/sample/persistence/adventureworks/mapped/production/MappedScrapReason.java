@@ -246,9 +246,8 @@ public abstract class MappedScrapReason {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SCRAP_REASON_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SCRAP_REASON_ID,
-                          value = "Primary key for ScrapReason records.")
+            updatable = false,
+            comment = "Primary key for ScrapReason records.")
     private Long scrapReasonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -256,8 +255,8 @@ public abstract class MappedScrapReason {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Failure description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Failure description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -266,9 +265,8 @@ public abstract class MappedScrapReason {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ScrapReason_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

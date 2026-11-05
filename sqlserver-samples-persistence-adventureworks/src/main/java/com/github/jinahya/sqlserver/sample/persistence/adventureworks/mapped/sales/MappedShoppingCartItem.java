@@ -376,9 +376,8 @@ public abstract class MappedShoppingCartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SHOPPING_CART_ITEM_ID,
-                          value = "Primary key for ShoppingCartItem records.")
+            updatable = false,
+            comment = "Primary key for ShoppingCartItem records.")
     private Integer shoppingCartItemId;
 
     // ---------------------------------------------------------------------------------------------
@@ -386,9 +385,8 @@ public abstract class MappedShoppingCartItem {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHOPPING_CART_ID, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_SHOPPING_CART_ID)
-    @MsDescription.Column(name = COLUMN_NAME_SHOPPING_CART_ID,
-                          value = "Shopping cart identification number.")
+            updatable = true, length = COLUMN_LENGTH_SHOPPING_CART_ID,
+            comment = "Shopping cart identification number.")
     private String shoppingCartId;
 
     // ---------------------------------------------------------------------------------------------
@@ -397,8 +395,8 @@ public abstract class MappedShoppingCartItem {
     @Min(ATTRIBUTE_MIN_QUANTITY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity ordered.")
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true,
+            comment = "Product quantity ordered.")
     @MsDefault(name = "DF_ShoppingCartItem_Quantity", value = "((1))")
     private Integer quantity;
 
@@ -409,17 +407,15 @@ public abstract class MappedShoppingCartItem {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product ordered. Foreign key to Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Product ordered. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DATE_CREATED, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DATE_CREATED,
-                          value = "Date the time the record was created.")
+    @Column(name = COLUMN_NAME_DATE_CREATED, nullable = false, insertable = true, updatable = true,
+            comment = "Date the time the record was created.")
     @MsDefault(name = "DF_ShoppingCartItem_DateCreated", value = "(getdate())")
     private LocalDateTime dateCreated;
 
@@ -429,9 +425,8 @@ public abstract class MappedShoppingCartItem {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ShoppingCartItem_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

@@ -32,6 +32,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesSpecialOffer")
 @Table(schema = MappedSpecialOffer.TABLE_SCHEMA,
        name = MappedSpecialOffer.TABLE_NAME,
+       comment = "Sale discounts lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SpecialOffer_rowguid",

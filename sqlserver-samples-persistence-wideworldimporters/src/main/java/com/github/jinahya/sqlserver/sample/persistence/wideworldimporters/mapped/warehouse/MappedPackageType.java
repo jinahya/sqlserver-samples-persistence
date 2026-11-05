@@ -325,10 +325,8 @@ public abstract class MappedPackageType {
                        sequenceName = "PackageTypeID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PackageTypeID")
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID,
-                          value = "Numeric ID used for reference to a package type within the "
-                                  + "database")
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a package type within the database")
     @MsDefault(name = "DF_Warehouse_PackageTypes_PackageTypeID", value = "(NEXT VALUE FOR [Sequences].[PackageTypeID])")
     private Integer packageTypeId;
 
@@ -336,10 +334,8 @@ public abstract class MappedPackageType {
     @Size(max = COLUMN_LENGTH_PACKAGE_TYPE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PACKAGE_TYPE_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_NAME,
-                          value = "Full name of package types that stock items can be purchased "
-                                  + "in or sold in")
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PACKAGE_TYPE_NAME,
+            comment = "Full name of package types that stock items can be purchased in or sold in")
     private String packageTypeName;
 
     // ---------------------------------------------------------------------------------------------

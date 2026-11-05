@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "WarehousePackageType")
 @Table(schema = MappedPackageType.TABLE_SCHEMA,
        name = MappedPackageType.TABLE_NAME,
+       comment = "Ways that stock items can be packaged (ie: each, box, carton, pallet, kg, etc.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Warehouse_PackageTypes_PackageTypeName",

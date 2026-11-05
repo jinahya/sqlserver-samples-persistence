@@ -719,9 +719,8 @@ public abstract class MappedOrder {
     @SequenceGenerator(name = "WideWorldImporters.Sequences.OrderID", schema = "Sequences", sequenceName = "OrderID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.OrderID")
-    @Column(name = COLUMN_NAME_ORDER_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_ID,
-                          value = "Numeric ID used for reference to an order within the database")
+    @Column(name = COLUMN_NAME_ORDER_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to an order within the database")
     @MsDefault(name = "DF_Sales_Orders_OrderID", value = "(NEXT VALUE FOR [Sequences].[OrderID])")
     private Integer orderId;
 
@@ -731,8 +730,8 @@ public abstract class MappedOrder {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID, value = "Customer for this order")
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer for this order")
     private Integer customerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -741,9 +740,8 @@ public abstract class MappedOrder {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID,
-                          value = "Salesperson for this order")
+    @Column(name = COLUMN_NAME_SALESPERSON_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Salesperson for this order")
     private Integer salespersonPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -751,9 +749,8 @@ public abstract class MappedOrder {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID,
-                          value = "Person who picked this shipment")
+    @Column(name = COLUMN_NAME_PICKED_BY_PERSON_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Person who picked this shipment")
     private Integer pickedByPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -762,9 +759,8 @@ public abstract class MappedOrder {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
-                          value = "Customer contact for this order")
+    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer contact for this order")
     private Integer contactPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -772,73 +768,63 @@ public abstract class MappedOrder {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BACKORDER_ORDER_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BACKORDER_ORDER_ID,
-                          value = "If this order is a backorder, this column holds the original "
-                                  + "order number")
+    @Column(name = COLUMN_NAME_BACKORDER_ORDER_ID, nullable = true, insertable = false, updatable = false,
+            comment = "If this order is a backorder, this column holds the original order number")
     private Integer backorderOrderId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE, value = "Date that this order was raised")
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date that this order was raised")
     private LocalDate orderDate;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
-                          value = "Expected delivery date")
+    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Expected delivery date")
     private LocalDate expectedDeliveryDate;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER,
-                          value = "Purchase Order Number received from customer")
+    @Column(name = COLUMN_NAME_CUSTOMER_PURCHASE_ORDER_NUMBER, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_PURCHASE_ORDER_NUMBER,
+            comment = "Purchase Order Number received from customer")
     private String customerPurchaseOrderNumber;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_UNDERSUPPLY_BACKORDERED, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_UNDERSUPPLY_BACKORDERED,
-                          value = "If items cannot be supplied are they backordered?")
+    @Column(name = COLUMN_NAME_IS_UNDERSUPPLY_BACKORDERED, nullable = false, insertable = true, updatable = true,
+            comment = "If items cannot be supplied are they backordered?")
     private Boolean isUndersupplyBackordered;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
-                          value = "Any comments related to this order (sent to customer)")
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true,
+            comment = "Any comments related to this order (sent to customer)")
     private String comments;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS,
-                          value = "Any comments related to order delivery (sent to customer)")
+    @Column(name = COLUMN_NAME_DELIVERY_INSTRUCTIONS, nullable = true, insertable = true, updatable = true,
+            comment = "Any comments related to order delivery (sent to customer)")
     private String deliveryInstructions;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-                          value = "Any internal comments related to this order (not sent to the "
-                                  + "customer)")
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true,
+            comment = "Any internal comments related to this order (not sent to the customer)")
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN,
-                          value = "When was picking of the entire order completed?")
+    @Column(name = COLUMN_NAME_PICKING_COMPLETED_WHEN, nullable = true, insertable = true, updatable = true,
+            comment = "When was picking of the entire order completed?")
     private LocalDateTime pickingCompletedWhen;
 
     // ---------------------------------------------------------------------------------------------

@@ -27,12 +27,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Documents the {@code MS_Description} extended properties of the table, or view, the annotated
- * class maps, and of its columns, so that a reader of the code need not read the DDL.
+ * Documents the description, an extended property, of the table, or view, the annotated mapped
+ * superclass maps, as the database holds it ({@code MS_Description} in AdventureWorks,
+ * {@code Description} in WideWorldImporters).
  * <p>
- * Jakarta Persistence 3.2 has {@link jakarta.persistence.Table#comment() @Table(comment = ...)} and
- * {@link jakarta.persistence.Column#comment() @Column(comment = ...)}, which a provider writes to the
- * DDL it generates; this annotation is for the reader only.
+ * A mapped superclass has no {@link jakarta.persistence.Table @Table}, so its table's description
+ * is here; the entity which extends it repeats it in
+ * {@link jakarta.persistence.Table#comment() @Table(comment = ...)}, and a column's is in
+ * {@link jakarta.persistence.Column#comment() @Column(comment = ...)}, both of which a provider
+ * writes to the DDL it generates. This annotation is for the reader only.
  *
  * @see <a href="https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-addextendedproperty-transact-sql">
  *      sp_addextendedproperty</a>
@@ -69,7 +72,10 @@ public @interface MsDescription {
      * Column descriptions (MS_Description on each column).
      *
      * @return column descriptions (MS_Description on each column).
+     * @deprecated A column's description is in
+     *         {@link jakarta.persistence.Column#comment() @Column(comment = ...)}.
      */
+    @Deprecated(forRemoval = true)
     Column[] columns() default {};
 
     /**
@@ -78,7 +84,10 @@ public @interface MsDescription {
      *
      * @see <a href="https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-addextendedproperty-transact-sql">
      *      sp_addextendedproperty</a>
+     * @deprecated A column's description is in
+     *         {@link jakarta.persistence.Column#comment() @Column(comment = ...)}.
      */
+    @Deprecated(forRemoval = true)
     @Documented
     @Target(ElementType.FIELD)          // on the attribute; or inside @MsDescription
     @Retention(RetentionPolicy.SOURCE)

@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesCustomerCategory")
 @Table(schema = MappedCustomerCategory.TABLE_SCHEMA,
        name = MappedCustomerCategory.TABLE_NAME,
+       comment = "Categories for customers (ie restaurants, cafes, supermarkets, etc.)",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Sales_CustomerCategories_CustomerCategoryName",

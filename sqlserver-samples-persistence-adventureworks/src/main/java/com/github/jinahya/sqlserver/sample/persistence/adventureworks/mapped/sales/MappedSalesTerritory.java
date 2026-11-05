@@ -552,9 +552,8 @@ public abstract class MappedSalesTerritory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
-                          value = "Primary key for SalesTerritory records.")
+            updatable = false,
+            comment = "Primary key for SalesTerritory records.")
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -562,8 +561,8 @@ public abstract class MappedSalesTerritory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Sales territory description")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Sales territory description")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -573,10 +572,9 @@ public abstract class MappedSalesTerritory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = false,
-            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-                          value = "ISO standard country or region code. Foreign key to "
-                                  + "CountryRegion.CountryRegionCode.")
+            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE,
+            comment = "ISO standard country or region code. Foreign key to "
+                      + "CountryRegion.CountryRegionCode. ")
     private String countryRegionCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -584,9 +582,8 @@ public abstract class MappedSalesTerritory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_GROUP, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_GROUP)
-    @MsDescription.Column(name = COLUMN_NAME_GROUP,
-                          value = "Geographic area to which the sales territory belong.")
+            length = COLUMN_LENGTH_GROUP,
+            comment = "Geographic area to which the sales territory belong.")
     private String group;
 
     // ---------------------------------------------------------------------------------------------
@@ -595,9 +592,8 @@ public abstract class MappedSalesTerritory {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_SALES_YTD)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_YTD,
-                          value = "Sales in the territory year to date.")
+    @Column(name = COLUMN_NAME_SALES_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Sales in the territory year to date.")
     @MsDefault(name = "DF_SalesTerritory_SalesYTD", value = "((0.00))")
     private BigDecimal salesYtd;
 
@@ -608,9 +604,8 @@ public abstract class MappedSalesTerritory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SALES_LAST_YEAR, nullable = false, insertable = true,
-            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_LAST_YEAR,
-                          value = "Sales in the territory the previous year.")
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Sales in the territory the previous year.")
     @MsDefault(name = "DF_SalesTerritory_SalesLastYear", value = "((0.00))")
     private BigDecimal salesLastYear;
 
@@ -620,9 +615,8 @@ public abstract class MappedSalesTerritory {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_COST_YTD)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_COST_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_COST_YTD,
-                          value = "Business costs in the territory year to date.")
+    @Column(name = COLUMN_NAME_COST_YTD, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Business costs in the territory year to date.")
     @MsDefault(name = "DF_SalesTerritory_CostYTD", value = "((0.00))")
     private BigDecimal costYtd;
 
@@ -633,9 +627,8 @@ public abstract class MappedSalesTerritory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COST_LAST_YEAR, nullable = false, insertable = true,
-            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_COST_LAST_YEAR,
-                          value = "Business costs in the territory the previous year.")
+            updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Business costs in the territory the previous year.")
     @MsDefault(name = "DF_SalesTerritory_CostLastYear", value = "((0.00))")
     private BigDecimal costLastYear;
 
@@ -643,10 +636,9 @@ public abstract class MappedSalesTerritory {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SalesTerritory_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -656,9 +648,8 @@ public abstract class MappedSalesTerritory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesTerritory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

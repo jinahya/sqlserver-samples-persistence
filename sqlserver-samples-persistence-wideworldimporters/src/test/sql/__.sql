@@ -41,3 +41,47 @@ GROUP BY ROLLUP (o.schema_id)
 ORDER BY GROUPING(o.schema_id) ASC, [schema] ASC
 ;
 
+
+-- -------------------------------------------------------------------------------------------------- table descriptions
+-- SQL Server keeps a comment as an extended property, which WideWorldImporters names Description; @MsDescription
+-- documents it in the code, as Jakarta Persistence's @Table(comment) and @Column(comment) would.
+
+-- the description of each table and view; 31 of the 48 tables have one, all but the 17 *_Archive tables, and none
+-- of the 3 views.
+SELECT SCHEMA_NAME(o.schema_id)        AS [schema],
+       o.name,
+       o.type,
+       CAST(p.value AS nvarchar(4000)) AS description
+FROM sys.objects o
+    LEFT JOIN sys.extended_properties p
+ON p.class = 1
+    AND p.major_id = o.object_id
+    AND p.minor_id = 0
+    AND p.name = N'Description'
+WHERE o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+ORDER BY [schema] ASC, o.name ASC
+;
+
+
+-- ------------------------------------------------------------------------------------------------- column descriptions
+-- the description of each column, in the order its table or view declares them; 292 of the 557 columns of the
+-- tables have one, and none of the 32 of the views. The 265 without are the columns of the *_Archive tables and the
+-- bookkeeping columns, LastEditedBy, LastEditedWhen, ValidFrom and ValidTo.
+SELECT SCHEMA_NAME(o.schema_id)        AS [schema],
+       o.name                          AS [table],
+       c.name                          AS [column],
+       CAST(p.value AS nvarchar(4000)) AS description
+FROM sys.columns c
+    JOIN sys.objects o
+ON o.object_id = c.object_id
+    LEFT JOIN sys.extended_properties p
+ON p.class = 1
+    AND p.major_id = c.object_id
+    AND p.minor_id = c.column_id
+    AND p.name = N'Description'
+WHERE o.type IN ('U', 'V')
+  AND o.is_ms_shipped = 0
+ORDER BY [schema] ASC, [table] ASC, c.column_id ASC
+;
+

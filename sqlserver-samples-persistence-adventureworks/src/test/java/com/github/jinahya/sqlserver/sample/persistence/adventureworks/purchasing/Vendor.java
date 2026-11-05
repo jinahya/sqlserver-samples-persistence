@@ -37,6 +37,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PurchasingVendor")
 @Table(schema = MappedVendor.TABLE_SCHEMA,
        name = MappedVendor.TABLE_NAME,
+       comment = "Companies from whom Adventure Works Cycles purchases parts or other goods.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Vendor_AccountNumber",

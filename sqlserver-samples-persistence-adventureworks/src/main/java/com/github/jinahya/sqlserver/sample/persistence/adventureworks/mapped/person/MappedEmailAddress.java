@@ -333,10 +333,9 @@ public abstract class MappedEmailAddress {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key. Person associated with this email address.  "
-                                  + "Foreign key to Person.BusinessEntityID")
+            updatable = false,
+            comment = "Primary key. Person associated with this email address.  Foreign key to "
+                      + "Person.BusinessEntityID")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -345,9 +344,8 @@ public abstract class MappedEmailAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_EMAIL_ADDRESS_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS_ID,
-                          value = "Primary key. ID of this email address.")
+            updatable = false,
+            comment = "Primary key. ID of this email address.")
     private Integer emailAddressId;
 
     // ---------------------------------------------------------------------------------------------
@@ -356,19 +354,17 @@ public abstract class MappedEmailAddress {
     @Size(max = COLUMN_LENGTH_EMAIL_ADDRESS)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMAIL_ADDRESS, nullable = true, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_EMAIL_ADDRESS)
-    @MsDescription.Column(name = COLUMN_NAME_EMAIL_ADDRESS,
-                          value = "E-mail address for the person.")
+            length = COLUMN_LENGTH_EMAIL_ADDRESS,
+            comment = "E-mail address for the person.")
     private String emailAddress;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_EmailAddress_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -378,9 +374,8 @@ public abstract class MappedEmailAddress {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_EmailAddress_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

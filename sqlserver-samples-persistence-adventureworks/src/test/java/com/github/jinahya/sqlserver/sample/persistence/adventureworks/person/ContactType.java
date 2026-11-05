@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PersonContactType")
 @Table(schema = MappedContactType.TABLE_SCHEMA,
        name = MappedContactType.TABLE_NAME,
+       comment = "Lookup table containing the types of business entity contacts.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_ContactType_Name",

@@ -329,10 +329,8 @@ public abstract class MappedTransactionType {
                        sequenceName = "TransactionTypeID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.TransactionTypeID")
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID,
-                          value = "Numeric ID used for reference to a transaction type within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a transaction type within the database")
     @MsDefault(name = "DF_Application_TransactionTypes_TransactionTypeID",
                value = "(NEXT VALUE FOR [Sequences].[TransactionTypeID])")
     private Integer transactionTypeId;
@@ -341,9 +339,8 @@ public abstract class MappedTransactionType {
     @Size(max = COLUMN_LENGTH_TRANSACTION_TYPE_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TRANSACTION_TYPE_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE_NAME,
-                          value = "Full name of the transaction type")
+    @Column(name = COLUMN_NAME_TRANSACTION_TYPE_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_TRANSACTION_TYPE_NAME,
+            comment = "Full name of the transaction type")
     private String transactionTypeName;
 
     // ---------------------------------------------------------------------------------------------

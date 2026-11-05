@@ -45,6 +45,7 @@ import java.util.Optional;
 @Entity(name = "SalesSalesTerritoryHistory")
 @Table(schema = MappedSalesTerritoryHistory.TABLE_SCHEMA,
        name = MappedSalesTerritoryHistory.TABLE_NAME,
+       comment = "Sales representative transfers to other sales territories.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SalesTerritoryHistory_rowguid",

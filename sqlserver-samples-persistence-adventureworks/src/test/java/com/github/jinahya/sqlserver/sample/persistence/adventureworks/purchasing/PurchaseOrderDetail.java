@@ -44,6 +44,8 @@ import java.util.Optional;
 @Entity(name = "PurchasingPurchaseOrderDetail")
 @Table(schema = MappedPurchaseOrderDetail.TABLE_SCHEMA,
        name = MappedPurchaseOrderDetail.TABLE_NAME,
+       comment = "Individual products associated with a specific purchase order. See "
+                 + "PurchaseOrderHeader.",
        check = {
                @CheckConstraint(
                        name = "CK_PurchaseOrderDetail_OrderQty",

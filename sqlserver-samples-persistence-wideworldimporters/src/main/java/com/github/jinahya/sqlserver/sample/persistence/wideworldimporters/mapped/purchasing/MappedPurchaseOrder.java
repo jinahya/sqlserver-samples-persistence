@@ -572,10 +572,8 @@ public abstract class MappedPurchaseOrder {
                        sequenceName = "PurchaseOrderID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.PurchaseOrderID")
-    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-                          value = "Numeric ID used for reference to a purchase order within the "
-                                  + "database")
+    @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a purchase order within the database")
     @MsDefault(name = "DF_Purchasing_PurchaseOrders_PurchaseOrderID",
                value = "(NEXT VALUE FOR [Sequences].[PurchaseOrderID])")
     private Integer purchaseOrderId;
@@ -586,17 +584,15 @@ public abstract class MappedPurchaseOrder {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_ID,
-                          value = "Supplier for this purchase order")
+    @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Supplier for this purchase order")
     private Integer supplierId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_DATE,
-                          value = "Date that this purchase order was raised")
+    @Column(name = COLUMN_NAME_ORDER_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date that this purchase order was raised")
     private LocalDate orderDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -605,9 +601,8 @@ public abstract class MappedPurchaseOrder {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-                          value = "How this purchase order should be delivered")
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false,
+            comment = "How this purchase order should be delivered")
     private Integer deliveryMethodId;
 
     // ---------------------------------------------------------------------------------------------
@@ -616,51 +611,44 @@ public abstract class MappedPurchaseOrder {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CONTACT_PERSON_ID,
-                          value = "The person who is the primary contact for this purchase order")
+    @Column(name = COLUMN_NAME_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "The person who is the primary contact for this purchase order")
     private Integer contactPersonId;
 
     // ---------------------------------------------------------------------------------------------
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE,
-                          value = "Expected delivery date for this purchase order")
+    @Column(name = COLUMN_NAME_EXPECTED_DELIVERY_DATE, nullable = true, insertable = true, updatable = true,
+            comment = "Expected delivery date for this purchase order")
     private LocalDate expectedDeliveryDate;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_SUPPLIER_REFERENCE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_REFERENCE)
-    @MsDescription.Column(name = COLUMN_NAME_SUPPLIER_REFERENCE,
-                          value = "Supplier reference for our organization (might be our "
-                                  + "account number at the supplier)")
+    @Column(name = COLUMN_NAME_SUPPLIER_REFERENCE, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_SUPPLIER_REFERENCE,
+            comment = "Supplier reference for our organization (might be our account number at the "
+                      + "supplier)")
     private String supplierReference;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ORDER_FINALIZED, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_ORDER_FINALIZED,
-                          value = "Is this purchase order now considered finalized?")
+    @Column(name = COLUMN_NAME_IS_ORDER_FINALIZED, nullable = false, insertable = true, updatable = true,
+            comment = "Is this purchase order now considered finalized?")
     private Boolean isOrderFinalized;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_COMMENTS,
-                          value = "Any comments related this purchase order (comments sent to "
-                                  + "the supplier)")
+    @Column(name = COLUMN_NAME_COMMENTS, nullable = true, insertable = true, updatable = true,
+            comment = "Any comments related this purchase order (comments sent to the supplier)")
     private String comments;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: NULL; no row has a value
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_INTERNAL_COMMENTS,
-                          value = "Any internal comments related this purchase order (comments "
-                                  + "for internal reference only and not sent to the supplier)")
+    @Column(name = COLUMN_NAME_INTERNAL_COMMENTS, nullable = true, insertable = true, updatable = true,
+            comment = "Any internal comments related this purchase order (comments for internal "
+                      + "reference only and not sent to the supplier)")
     private String internalComments;
 
     // ---------------------------------------------------------------------------------------------

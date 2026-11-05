@@ -43,7 +43,9 @@ import java.util.Objects;
  * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "SalesPersonCreditCard")
-@Table(schema = MappedPersonCreditCard.TABLE_SCHEMA, name = MappedPersonCreditCard.TABLE_NAME)
+@Table(schema = MappedPersonCreditCard.TABLE_SCHEMA, name = MappedPersonCreditCard.TABLE_NAME,
+       comment = "Cross-reference table mapping people to their credit card information in the "
+                 + "CreditCard table. ")
 public class PersonCreditCard
         extends MappedPersonCreditCard {
 

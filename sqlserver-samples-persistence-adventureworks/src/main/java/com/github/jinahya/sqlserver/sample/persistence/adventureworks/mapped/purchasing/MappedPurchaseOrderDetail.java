@@ -687,10 +687,8 @@ public abstract class MappedPurchaseOrderDetail {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_ID,
-                          value = "Primary key. Foreign key to "
-                                  + "PurchaseOrderHeader.PurchaseOrderID.")
+            updatable = false,
+            comment = "Primary key. Foreign key to PurchaseOrderHeader.PurchaseOrderID.")
     private Integer purchaseOrderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -699,17 +697,15 @@ public abstract class MappedPurchaseOrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PURCHASE_ORDER_DETAIL_ID,
-                          value = "Primary key. One line number per purchased product.")
+            updatable = false,
+            comment = "Primary key. One line number per purchased product.")
     private Integer purchaseOrderDetailId;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DUE_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DUE_DATE,
-                          value = "Date the product is expected to be received.")
+    @Column(name = COLUMN_NAME_DUE_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date the product is expected to be received.")
     private LocalDateTime dueDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -718,8 +714,8 @@ public abstract class MappedPurchaseOrderDetail {
     @Min(ATTRIBUTE_MIN_ORDER_QTY)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ORDER_QTY, value = "Quantity ordered.")
+    @Column(name = COLUMN_NAME_ORDER_QTY, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity ordered.")
     private Integer orderQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -729,10 +725,8 @@ public abstract class MappedPurchaseOrderDetail {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -741,9 +735,8 @@ public abstract class MappedPurchaseOrderDetail {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE,
-                          value = "Vendor's selling price of a single product.")
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Vendor's selling price of a single product.")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
@@ -751,9 +744,8 @@ public abstract class MappedPurchaseOrderDetail {
     @DecimalMax(SqlServerConstants.MONEY_MAX)
     @DecimalMin(SqlServerConstants.MONEY_MIN)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_LINE_TOTAL,
-                          value = "Per product subtotal. Computed as OrderQty * UnitPrice.")
+    @Column(name = COLUMN_NAME_LINE_TOTAL, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Per product subtotal. Computed as OrderQty * UnitPrice.")
     @MsComputedColumn("(isnull([OrderQty]*[UnitPrice],(0.00)))")
     private BigDecimal lineTotal;
 
@@ -764,9 +756,8 @@ public abstract class MappedPurchaseOrderDetail {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_RECEIVED_QTY, nullable = false, insertable = true, updatable = true,
-            precision = COLUMN_PRECISION_RECEIVED_QTY, scale = COLUMN_SCALE_RECEIVED_QTY)
-    @MsDescription.Column(name = COLUMN_NAME_RECEIVED_QTY,
-                          value = "Quantity actually received from the vendor.")
+            precision = COLUMN_PRECISION_RECEIVED_QTY, scale = COLUMN_SCALE_RECEIVED_QTY,
+            comment = "Quantity actually received from the vendor.")
     private BigDecimal receivedQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -776,9 +767,8 @@ public abstract class MappedPurchaseOrderDetail {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REJECTED_QTY, nullable = false, insertable = true, updatable = true,
-            precision = COLUMN_PRECISION_REJECTED_QTY, scale = COLUMN_SCALE_REJECTED_QTY)
-    @MsDescription.Column(name = COLUMN_NAME_REJECTED_QTY,
-                          value = "Quantity rejected during inspection.")
+            precision = COLUMN_PRECISION_REJECTED_QTY, scale = COLUMN_SCALE_REJECTED_QTY,
+            comment = "Quantity rejected during inspection.")
     private BigDecimal rejectedQty;
 
     // ---------------------------------------------------------------------------------------------
@@ -787,10 +777,8 @@ public abstract class MappedPurchaseOrderDetail {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STOCKED_QTY)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCKED_QTY, nullable = false, insertable = false, updatable = false,
-            precision = COLUMN_PRECISION_STOCKED_QTY, scale = COLUMN_SCALE_STOCKED_QTY)
-    @MsDescription.Column(name = COLUMN_NAME_STOCKED_QTY,
-                          value = "Quantity accepted into inventory. Computed as ReceivedQty - "
-                                  + "RejectedQty.")
+            precision = COLUMN_PRECISION_STOCKED_QTY, scale = COLUMN_SCALE_STOCKED_QTY,
+            comment = "Quantity accepted into inventory. Computed as ReceivedQty - RejectedQty.")
     @MsComputedColumn("(isnull([ReceivedQty]-[RejectedQty],(0.00)))")
     private BigDecimal stockedQty;
 
@@ -800,9 +788,8 @@ public abstract class MappedPurchaseOrderDetail {
     // on every UPDATE
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = false,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PurchaseOrderDetail_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

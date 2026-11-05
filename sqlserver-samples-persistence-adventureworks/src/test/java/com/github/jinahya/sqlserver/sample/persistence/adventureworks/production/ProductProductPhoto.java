@@ -42,7 +42,8 @@ import java.util.Objects;
  * {@link MapsId @MapsId}, from the association which references the same column.
  */
 @Entity(name = "ProductionProductProductPhoto")
-@Table(schema = MappedProductProductPhoto.TABLE_SCHEMA, name = MappedProductProductPhoto.TABLE_NAME)
+@Table(schema = MappedProductProductPhoto.TABLE_SCHEMA, name = MappedProductProductPhoto.TABLE_NAME,
+       comment = "Cross-reference table mapping products and product photos.")
 public class ProductProductPhoto
         extends MappedProductProductPhoto {
 

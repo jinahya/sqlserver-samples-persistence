@@ -39,7 +39,8 @@ import java.util.Optional;
  * An entity which maps the {@code Person.EmailAddress} table.
  */
 @Entity(name = "PersonEmailAddress")
-@Table(schema = MappedEmailAddress.TABLE_SCHEMA, name = MappedEmailAddress.TABLE_NAME)
+@Table(schema = MappedEmailAddress.TABLE_SCHEMA, name = MappedEmailAddress.TABLE_NAME,
+       comment = "Where to send a person email.")
 @IdClass(EmailAddressId.class)
 public class EmailAddress
         extends MappedEmailAddress {

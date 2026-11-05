@@ -44,6 +44,7 @@ import java.util.Optional;
 @Entity(name = "SalesSpecialOfferProduct")
 @Table(schema = MappedSpecialOfferProduct.TABLE_SCHEMA,
        name = MappedSpecialOfferProduct.TABLE_NAME,
+       comment = "Cross-reference table mapping products to special offer discounts.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SpecialOfferProduct_rowguid",

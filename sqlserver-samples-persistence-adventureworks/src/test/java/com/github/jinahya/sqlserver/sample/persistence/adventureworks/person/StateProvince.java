@@ -37,6 +37,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PersonStateProvince")
 @Table(schema = MappedStateProvince.TABLE_SCHEMA,
        name = MappedStateProvince.TABLE_NAME,
+       comment = "State and province lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_StateProvince_Name",

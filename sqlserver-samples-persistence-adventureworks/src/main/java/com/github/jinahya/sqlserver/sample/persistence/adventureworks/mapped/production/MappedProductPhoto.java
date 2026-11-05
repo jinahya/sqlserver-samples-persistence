@@ -365,43 +365,39 @@ public abstract class MappedProductPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_PHOTO_ID,
-                          value = "Primary key for ProductPhoto records.")
+            updatable = false,
+            comment = "Primary key for ProductPhoto records.")
     private Integer productPhotoId;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: 17623 bytes
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO, nullable = true, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_THUMB_NAIL_PHOTO,
-                          value = "Small image of the product.")
+            updatable = true,
+            comment = "Small image of the product.")
     private byte[] thumbNailPhoto;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME, nullable = true, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_THUMBNAIL_PHOTO_FILE_NAME,
-                          value = "Small image file name.")
+            updatable = true, length = COLUMN_LENGTH_THUMBNAIL_PHOTO_FILE_NAME,
+            comment = "Small image file name.")
     private String thumbnailPhotoFileName;
 
     // ---------------------------------------------------------------------------------------------
     // DATA.MAX: 25925 bytes
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LARGE_PHOTO, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_LARGE_PHOTO, value = "Large image of the product.")
+    @Column(name = COLUMN_NAME_LARGE_PHOTO, nullable = true, insertable = true, updatable = true,
+            comment = "Large image of the product.")
     private byte[] largePhoto;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME, nullable = true, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_LARGE_PHOTO_FILE_NAME,
-                          value = "Large image file name.")
+            updatable = true, length = COLUMN_LENGTH_LARGE_PHOTO_FILE_NAME,
+            comment = "Large image file name.")
     private String largePhotoFileName;
 
     // ---------------------------------------------------------------------------------------------
@@ -410,9 +406,8 @@ public abstract class MappedProductPhoto {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductPhoto_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

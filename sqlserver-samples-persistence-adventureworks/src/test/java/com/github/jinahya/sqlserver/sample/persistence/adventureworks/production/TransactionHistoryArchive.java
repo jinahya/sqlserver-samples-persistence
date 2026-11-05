@@ -31,6 +31,7 @@ import jakarta.persistence.Table;
 @Entity(name = "ProductionTransactionHistoryArchive")
 @Table(schema = MappedTransactionHistoryArchive.TABLE_SCHEMA,
        name = MappedTransactionHistoryArchive.TABLE_NAME,
+       comment = "Transactions for previous years.",
        check = {
                @CheckConstraint(
                        name = "CK_TransactionHistoryArchive_TransactionType",

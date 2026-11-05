@@ -434,9 +434,8 @@ public abstract class MappedCity {
     @SequenceGenerator(name = "WideWorldImporters.Sequences.CityID", schema = "Sequences", sequenceName = "CityID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.CityID")
-    @Column(name = COLUMN_NAME_CITY_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CITY_ID,
-                          value = "Numeric ID used for reference to a city within the database")
+    @Column(name = COLUMN_NAME_CITY_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a city within the database")
     @MsDefault(name = "DF_Application_Cities_CityID", value = "(NEXT VALUE FOR [Sequences].[CityID])")
     private Integer cityId;
 
@@ -444,8 +443,8 @@ public abstract class MappedCity {
     @Size(max = COLUMN_LENGTH_CITY_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CITY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CITY_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_CITY_NAME, value = "Formal name of the city")
+    @Column(name = COLUMN_NAME_CITY_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CITY_NAME,
+            comment = "Formal name of the city")
     private String cityName;
 
     // ---------------------------------------------------------------------------------------------
@@ -454,25 +453,23 @@ public abstract class MappedCity {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-                          value = "State or province for this city")
+    @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "State or province for this city")
     private Integer stateProvinceId;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LOCATION, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_LOCATION, value = "Geographic location of the city")
+    @Column(name = COLUMN_NAME_LOCATION, nullable = true, insertable = true, updatable = true,
+            comment = "Geographic location of the city")
     private Geography location;
 
     // ---------------------------------------------------------------------------------------------
     @Max(SqlServerConstants.BIGINT_MAX)
     @Min(SqlServerConstants.BIGINT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION,
-                          value = "Latest available population for the City")
+    @Column(name = COLUMN_NAME_LATEST_RECORDED_POPULATION, nullable = true, insertable = true, updatable = true,
+            comment = "Latest available population for the City")
     private Long latestRecordedPopulation;
 
     // ---------------------------------------------------------------------------------------------

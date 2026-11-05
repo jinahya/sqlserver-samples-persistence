@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PersonAddressType")
 @Table(schema = MappedAddressType.TABLE_SCHEMA,
        name = MappedAddressType.TABLE_NAME,
+       comment = "Types of addresses stored in the Address table. ",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_AddressType_Name",

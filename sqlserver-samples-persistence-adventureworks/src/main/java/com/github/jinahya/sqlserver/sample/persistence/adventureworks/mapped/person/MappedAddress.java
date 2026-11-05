@@ -487,8 +487,8 @@ public abstract class MappedAddress {
     // (error 8102)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_NAME_ADDRESS_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_ID, value = "Primary key for Address records.")
+    @Column(name = COLUMN_NAME_ADDRESS_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Primary key for Address records.")
     private Integer addressId;
 
     // ---------------------------------------------------------------------------------------------
@@ -496,16 +496,16 @@ public abstract class MappedAddress {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ADDRESS_LINE_1, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_ADDRESS_LINE_1)
-    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_LINE_1, value = "First street address line.")
+            updatable = true, length = COLUMN_LENGTH_ADDRESS_LINE_1,
+            comment = "First street address line.")
     private String addressLine1;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ADDRESS_LINE_2)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_ADDRESS_LINE_2)
-    @MsDescription.Column(name = COLUMN_NAME_ADDRESS_LINE_2, value = "Second street address line.")
+            length = COLUMN_LENGTH_ADDRESS_LINE_2,
+            comment = "Second street address line.")
     private String addressLine2;
 
     // ---------------------------------------------------------------------------------------------
@@ -513,8 +513,8 @@ public abstract class MappedAddress {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CITY, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_CITY)
-    @MsDescription.Column(name = COLUMN_NAME_CITY, value = "Name of the city.")
+            length = COLUMN_LENGTH_CITY,
+            comment = "Name of the city.")
     private String city;
 
     // ---------------------------------------------------------------------------------------------
@@ -525,10 +525,9 @@ public abstract class MappedAddress {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-                          value = "Unique identification number for the state or province. "
-                                  + "Foreign key to StateProvince table.")
+            updatable = false,
+            comment = "Unique identification number for the state or province. Foreign key to "
+                      + "StateProvince table.")
     private Integer stateProvinceId;
 
     // ---------------------------------------------------------------------------------------------
@@ -536,28 +535,25 @@ public abstract class MappedAddress {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_CODE, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_POSTAL_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_POSTAL_CODE,
-                          value = "Postal code for the street address.")
+            length = COLUMN_LENGTH_POSTAL_CODE,
+            comment = "Postal code for the street address.")
     private String postalCode;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SPATIAL_LOCATION, nullable = true, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_SPATIAL_LOCATION,
-                          value = "Latitude and longitude of this address.")
+            updatable = true,
+            comment = "Latitude and longitude of this address.")
     private Geography spatialLocation;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_Address_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -567,9 +563,8 @@ public abstract class MappedAddress {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Address_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

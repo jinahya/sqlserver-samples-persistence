@@ -43,7 +43,8 @@ import java.util.Objects;
  */
 @Entity(name = "ProductionProductModelIllustration")
 @Table(schema = MappedProductModelIllustration.TABLE_SCHEMA,
-       name = MappedProductModelIllustration.TABLE_NAME)
+       name = MappedProductModelIllustration.TABLE_NAME,
+       comment = "Cross-reference table mapping product models and illustrations.")
 public class ProductModelIllustration
         extends MappedProductModelIllustration {
 

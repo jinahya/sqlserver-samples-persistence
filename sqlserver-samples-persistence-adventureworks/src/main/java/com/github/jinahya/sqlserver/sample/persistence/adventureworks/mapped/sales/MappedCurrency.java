@@ -248,9 +248,8 @@ public abstract class MappedCurrency {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CURRENCY_CODE, nullable = false, insertable = true,
-            updatable = false, length = COLUMN_LENGTH_CURRENCY_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_CURRENCY_CODE,
-                          value = "The ISO code for the Currency.")
+            updatable = false, length = COLUMN_LENGTH_CURRENCY_CODE,
+            comment = "The ISO code for the Currency.")
     private String currencyCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -258,8 +257,8 @@ public abstract class MappedCurrency {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Currency name.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Currency name.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -268,9 +267,8 @@ public abstract class MappedCurrency {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Currency_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

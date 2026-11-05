@@ -37,6 +37,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionBillOfMaterials")
 @Table(schema = MappedBillOfMaterials.TABLE_SCHEMA,
        name = MappedBillOfMaterials.TABLE_NAME,
+       comment = "Items required to make bicycles and bicycle subassemblies. It identifies the "
+                 + "heirarchical relationship between a parent product and its components.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_BillOfMaterials_ProductAssemblyID_ComponentID_StartDate",

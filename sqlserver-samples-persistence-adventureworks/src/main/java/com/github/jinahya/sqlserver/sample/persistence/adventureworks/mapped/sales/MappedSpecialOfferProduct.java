@@ -286,9 +286,8 @@ public abstract class MappedSpecialOfferProduct {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SPECIAL_OFFER_ID,
-                          value = "Primary key for SpecialOfferProduct records.")
+            updatable = false,
+            comment = "Primary key for SpecialOfferProduct records.")
     private Integer specialOfferId;
 
     // ---------------------------------------------------------------------------------------------
@@ -298,20 +297,17 @@ public abstract class MappedSpecialOfferProduct {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_SpecialOfferProduct_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -321,9 +317,8 @@ public abstract class MappedSpecialOfferProduct {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SpecialOfferProduct_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

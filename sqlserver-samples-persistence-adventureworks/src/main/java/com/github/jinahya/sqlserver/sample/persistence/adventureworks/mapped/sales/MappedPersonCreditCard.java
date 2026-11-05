@@ -71,7 +71,7 @@ import java.time.LocalDateTime;
         schema = MappedPersonCreditCard.TABLE_SCHEMA,
         table = MappedPersonCreditCard.TABLE_NAME,
         value = "Cross-reference table mapping people to their credit card information in the "
-                + "CreditCard table."
+                + "CreditCard table. "
 )
 public abstract class MappedPersonCreditCard
         extends MappedWithEmbeddedId<PersonCreditCardId> {
@@ -209,9 +209,8 @@ public abstract class MappedPersonCreditCard
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PersonCreditCard_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

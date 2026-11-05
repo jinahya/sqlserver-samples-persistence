@@ -282,9 +282,8 @@ public abstract class MappedProductDescription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_DESCRIPTION_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
-                          value = "Primary key for ProductDescription records.")
+            updatable = false,
+            comment = "Primary key for ProductDescription records.")
     private Integer productDescriptionId;
 
     // ---------------------------------------------------------------------------------------------
@@ -292,18 +291,17 @@ public abstract class MappedProductDescription {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_DESCRIPTION)
-    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION, value = "Description of the product.")
+            length = COLUMN_LENGTH_DESCRIPTION,
+            comment = "Description of the product.")
     private String description;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_ProductDescription_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -313,9 +311,8 @@ public abstract class MappedProductDescription {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductDescription_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

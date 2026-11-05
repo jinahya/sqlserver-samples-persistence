@@ -299,10 +299,9 @@ public abstract class MappedPersonPhone {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Business entity identification number. Foreign key to "
-                                  + "Person.BusinessEntityID.")
+            updatable = false,
+            comment = "Business entity identification number. Foreign key to "
+                      + "Person.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -312,9 +311,8 @@ public abstract class MappedPersonPhone {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = false, insertable = true, updatable = false,
-            length = COLUMN_LENGTH_PHONE_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER,
-                          value = "Telephone number identification number.")
+            length = COLUMN_LENGTH_PHONE_NUMBER,
+            comment = "Telephone number identification number.")
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -325,10 +323,8 @@ public abstract class MappedPersonPhone {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER_TYPE_ID,
-                          value = "Kind of phone number. Foreign key to "
-                                  + "PhoneNumberType.PhoneNumberTypeID.")
+            updatable = false,
+            comment = "Kind of phone number. Foreign key to PhoneNumberType.PhoneNumberTypeID.")
     private Integer phoneNumberTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -337,9 +333,8 @@ public abstract class MappedPersonPhone {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_PersonPhone_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

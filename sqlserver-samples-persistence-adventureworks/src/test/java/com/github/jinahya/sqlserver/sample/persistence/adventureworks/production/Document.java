@@ -37,6 +37,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ProductionDocument")
 @Table(schema = MappedDocument.TABLE_SCHEMA,
        name = MappedDocument.TABLE_NAME,
+       comment = "Product maintenance documents.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Document_DocumentLevel_DocumentNode",

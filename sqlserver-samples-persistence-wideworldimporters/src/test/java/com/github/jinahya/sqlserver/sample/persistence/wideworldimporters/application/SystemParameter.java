@@ -33,7 +33,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Application.SystemParameters} table.
  */
 @Entity(name = "ApplicationSystemParameter")
-@Table(schema = MappedSystemParameter.TABLE_SCHEMA, name = MappedSystemParameter.TABLE_NAME)
+@Table(schema = MappedSystemParameter.TABLE_SCHEMA, name = MappedSystemParameter.TABLE_NAME,
+       comment = "Any configurable parameters for the whole system")
 public class SystemParameter extends MappedSystemParameter {
 
     /**

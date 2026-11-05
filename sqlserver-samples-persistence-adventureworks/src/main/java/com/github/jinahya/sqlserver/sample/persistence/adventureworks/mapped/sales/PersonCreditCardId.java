@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
-import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
@@ -143,10 +142,9 @@ public class PersonCreditCardId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedPersonCreditCard.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedPersonCreditCard.COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Business entity identification number. Foreign key to "
-                                  + "Person.BusinessEntityID.")
+            insertable = true, updatable = false,
+            comment = "Business entity identification number. Foreign key to "
+                      + "Person.BusinessEntityID.")
     private Integer businessEntityId;
 
     /**
@@ -156,10 +154,8 @@ public class PersonCreditCardId {
     // an entity
     @NotNull
     @Column(name = MappedPersonCreditCard.COLUMN_NAME_CREDIT_CARD_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedPersonCreditCard.COLUMN_NAME_CREDIT_CARD_ID,
-                          value = "Credit card identification number. Foreign key to "
-                                  + "CreditCard.CreditCardID.")
+            insertable = true, updatable = false,
+            comment = "Credit card identification number. Foreign key to CreditCard.CreditCardID.")
     private Integer creditCardId;
 }
 

@@ -1392,9 +1392,8 @@ public abstract class MappedCustomer {
                        sequenceName = "CustomerID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.CustomerID")
-    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_ID,
-                          value = "Numeric ID used for reference to a customer within the database")
+    @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a customer within the database")
     @MsDefault(name = "DF_Sales_Customers_CustomerID", value = "(NEXT VALUE FOR [Sequences].[CustomerID])")
     private Integer customerId;
 
@@ -1402,9 +1401,8 @@ public abstract class MappedCustomer {
     @Size(max = COLUMN_LENGTH_CUSTOMER_NAME)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_NAME,
-                          value = "Customer's full name (usually a trading name)")
+    @Column(name = COLUMN_NAME_CUSTOMER_NAME, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_CUSTOMER_NAME,
+            comment = "Customer's full name (usually a trading name)")
     private String customerName;
 
     // ---------------------------------------------------------------------------------------------
@@ -1413,10 +1411,9 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID,
-                          value = "Customer that this is billed to (usually the same customer "
-                                  + "but can be another parent company)")
+    @Column(name = COLUMN_NAME_BILL_TO_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer that this is billed to (usually the same customer but can be "
+                      + "another parent company)")
     private Integer billToCustomerId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1425,8 +1422,8 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, value = "Customer's category")
+    @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Customer's category")
     private Integer customerCategoryId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1434,9 +1431,8 @@ public abstract class MappedCustomer {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUYING_GROUP_ID,
-                          value = "Customer's buying group (optional)")
+    @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Customer's buying group (optional)")
     private Integer buyingGroupId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1445,8 +1441,8 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, value = "Primary contact")
+    @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Primary contact")
     private Integer primaryContactPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1454,9 +1450,8 @@ public abstract class MappedCustomer {
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID, nullable = true, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID,
-                          value = "Alternate contact")
+    @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID, nullable = true, insertable = false, updatable = false,
+            comment = "Alternate contact")
     private Integer alternateContactPersonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1465,9 +1460,8 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_METHOD_ID,
-                          value = "Standard delivery method for stock items sent to this customer")
+    @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Standard delivery method for stock items sent to this customer")
     private Integer deliveryMethodId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1476,9 +1470,8 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_CITY_ID,
-                          value = "ID of the delivery city for this address")
+    @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false,
+            comment = "ID of the delivery city for this address")
     private Integer deliveryCityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -1487,26 +1480,23 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_POSTAL_CITY_ID,
-                          value = "ID of the postal city for this address")
+    @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false,
+            comment = "ID of the postal city for this address")
     private Integer postalCityId;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_CREDIT_LIMIT)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_CREDIT_LIMIT)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_CREDIT_LIMIT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_CREDIT_LIMIT, scale = COLUMN_SCALE_CREDIT_LIMIT)
-    @MsDescription.Column(name = COLUMN_NAME_CREDIT_LIMIT,
-                          value = "Credit limit for this customer (NULL if unlimited)")
+    @Column(name = COLUMN_NAME_CREDIT_LIMIT, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_CREDIT_LIMIT, scale = COLUMN_SCALE_CREDIT_LIMIT,
+            comment = "Credit limit for this customer (NULL if unlimited)")
     private BigDecimal creditLimit;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACCOUNT_OPENED_DATE, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_OPENED_DATE,
-                          value = "Date this customer account was opened")
+    @Column(name = COLUMN_NAME_ACCOUNT_OPENED_DATE, nullable = false, insertable = true, updatable = true,
+            comment = "Date this customer account was opened")
     private LocalDate accountOpenedDate;
 
     // ---------------------------------------------------------------------------------------------
@@ -1514,27 +1504,23 @@ public abstract class MappedCustomer {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_STANDARD_DISCOUNT_PERCENTAGE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STANDARD_DISCOUNT_PERCENTAGE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_STANDARD_DISCOUNT_PERCENTAGE, scale = COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE)
-    @MsDescription.Column(name = COLUMN_NAME_STANDARD_DISCOUNT_PERCENTAGE,
-                          value = "Standard discount offered to this customer")
+    @Column(name = COLUMN_NAME_STANDARD_DISCOUNT_PERCENTAGE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_STANDARD_DISCOUNT_PERCENTAGE, scale = COLUMN_SCALE_STANDARD_DISCOUNT_PERCENTAGE,
+            comment = "Standard discount offered to this customer")
     private BigDecimal standardDiscountPercentage;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_STATEMENT_SENT, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_STATEMENT_SENT,
-                          value = "Is a statement sent to this customer? (Or do they just pay "
-                                  + "on each invoice?)")
+    @Column(name = COLUMN_NAME_IS_STATEMENT_SENT, nullable = false, insertable = true, updatable = true,
+            comment = "Is a statement sent to this customer? (Or do they just pay on each invoice?)")
     private Boolean isStatementSent;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_IS_ON_CREDIT_HOLD, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_ON_CREDIT_HOLD,
-                          value = "Is this customer on credit hold? (Prevents further "
-                                  + "deliveries to this customer)")
+    @Column(name = COLUMN_NAME_IS_ON_CREDIT_HOLD, nullable = false, insertable = true, updatable = true,
+            comment = "Is this customer on credit hold? (Prevents further deliveries to this "
+                      + "customer)")
     private Boolean isOnCreditHold;
 
     // ---------------------------------------------------------------------------------------------
@@ -1542,110 +1528,99 @@ public abstract class MappedCustomer {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PAYMENT_DAYS, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_PAYMENT_DAYS,
-                          value = "Number of days for payment of an invoice (ie payment terms)")
+    @Column(name = COLUMN_NAME_PAYMENT_DAYS, nullable = false, insertable = true, updatable = true,
+            comment = "Number of days for payment of an invoice (ie payment terms)")
     private Integer paymentDays;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_PHONE_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_PHONE_NUMBER, value = "Phone number")
+    @Column(name = COLUMN_NAME_PHONE_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_PHONE_NUMBER,
+            comment = "Phone number")
     private String phoneNumber;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_FAX_NUMBER)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_FAX_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FAX_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_FAX_NUMBER, value = "Fax number")
+    @Column(name = COLUMN_NAME_FAX_NUMBER, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_FAX_NUMBER,
+            comment = "Fax number  ")
     private String faxNumber;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_RUN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_RUN, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_RUN)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_RUN,
-                          value = "Normal delivery run for this customer")
+    @Column(name = COLUMN_NAME_DELIVERY_RUN, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_RUN,
+            comment = "Normal delivery run for this customer")
     private String deliveryRun;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_RUN_POSITION)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RUN_POSITION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_RUN_POSITION)
-    @MsDescription.Column(name = COLUMN_NAME_RUN_POSITION,
-                          value = "Normal position in the delivery run for this customer")
+    @Column(name = COLUMN_NAME_RUN_POSITION, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_RUN_POSITION,
+            comment = "Normal position in the delivery run for this customer")
     private String runPosition;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_WEBSITE_URL)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_WEBSITE_URL, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WEBSITE_URL)
-    @MsDescription.Column(name = COLUMN_NAME_WEBSITE_URL,
-                          value = "URL for the website for this customer")
+    @Column(name = COLUMN_NAME_WEBSITE_URL, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_WEBSITE_URL,
+            comment = "URL for the website for this customer")
     private String websiteUrl;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1,
-                          value = "First delivery address line for the customer")
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_1,
+            comment = "First delivery address line for the customer")
     private String deliveryAddressLine1;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2,
-                          value = "Second delivery address line for the customer")
+    @Column(name = COLUMN_NAME_DELIVERY_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_ADDRESS_LINE_2,
+            comment = "Second delivery address line for the customer")
     private String deliveryAddressLine2;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE,
-                          value = "Delivery postal code for the customer")
+    @Column(name = COLUMN_NAME_DELIVERY_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DELIVERY_POSTAL_CODE,
+            comment = "Delivery postal code for the customer")
     private String deliveryPostalCode;
 
     // ---------------------------------------------------------------------------------------------
     @Convert(converter = GeographyAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_DELIVERY_LOCATION, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_DELIVERY_LOCATION,
-                          value = "Geographic location for the customer's office/warehouse")
+    @Column(name = COLUMN_NAME_DELIVERY_LOCATION, nullable = true, insertable = true, updatable = true,
+            comment = "Geographic location for the customer's office/warehouse")
     private Geography deliveryLocation;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1)
-    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1,
-                          value = "First postal address line for the customer")
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_1, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_1,
+            comment = "First postal address line for the customer")
     private String postalAddressLine1;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2)
-    @MsDescription.Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2,
-                          value = "Second postal address line for the customer")
+    @Column(name = COLUMN_NAME_POSTAL_ADDRESS_LINE_2, nullable = true, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_ADDRESS_LINE_2,
+            comment = "Second postal address line for the customer")
     private String postalAddressLine2;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_POSTAL_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE,
-                          value = "Postal code for the customer when sending by mail")
+    @Column(name = COLUMN_NAME_POSTAL_POSTAL_CODE, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_POSTAL_POSTAL_CODE,
+            comment = "Postal code for the customer when sending by mail")
     private String postalPostalCode;
 
     // ---------------------------------------------------------------------------------------------

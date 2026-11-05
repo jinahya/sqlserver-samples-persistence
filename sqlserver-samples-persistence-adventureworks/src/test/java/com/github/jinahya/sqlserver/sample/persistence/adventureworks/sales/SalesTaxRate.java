@@ -37,6 +37,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesSalesTaxRate")
 @Table(schema = MappedSalesTaxRate.TABLE_SCHEMA,
        name = MappedSalesTaxRate.TABLE_NAME,
+       comment = "Tax rate lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SalesTaxRate_rowguid",

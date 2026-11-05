@@ -43,6 +43,7 @@ import java.util.Optional;
 @Entity(name = "ProductionProductListPriceHistory")
 @Table(schema = MappedProductListPriceHistory.TABLE_SCHEMA,
        name = MappedProductListPriceHistory.TABLE_NAME,
+       comment = "Changes in the list price of a product over time.",
        check = {
                @CheckConstraint(
                        name = "CK_ProductListPriceHistory_EndDate",

@@ -40,7 +40,8 @@ import java.util.Optional;
  * An entity which maps the {@code Person.PersonPhone} table.
  */
 @Entity(name = "PersonPersonPhone")
-@Table(schema = MappedPersonPhone.TABLE_SCHEMA, name = MappedPersonPhone.TABLE_NAME)
+@Table(schema = MappedPersonPhone.TABLE_SCHEMA, name = MappedPersonPhone.TABLE_NAME,
+       comment = "Telephone number and type of a person.")
 @IdClass(PersonPhoneId.class)
 public class PersonPhone
         extends MappedPersonPhone {

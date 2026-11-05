@@ -360,9 +360,8 @@ public abstract class MappedProductModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_MODEL_ID,
-                          value = "Primary key for ProductModel records.")
+            updatable = false,
+            comment = "Primary key for ProductModel records.")
     private Integer productModelId;
 
     // ---------------------------------------------------------------------------------------------
@@ -370,8 +369,8 @@ public abstract class MappedProductModel {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Product model description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Product model description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -383,28 +382,25 @@ public abstract class MappedProductModel {
     @org.hibernate.annotations.Mutability(org.hibernate.type.descriptor.java.Immutability.class)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CATALOG_DESCRIPTION, nullable = true, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_CATALOG_DESCRIPTION,
-                          value = "Detailed product catalog information in xml format.")
+            updatable = true,
+            comment = "Detailed product catalog information in xml format.")
     private ProductDescription catalogDescription;
 
     // ---------------------------------------------------------------------------------------------
     @Valid
     @Convert(converter = ManuInstructionsStringAttributeConverter.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_INSTRUCTIONS, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_INSTRUCTIONS,
-                          value = "Manufacturing instructions in xml format.")
+    @Column(name = COLUMN_NAME_INSTRUCTIONS, nullable = true, insertable = true, updatable = true,
+            comment = "Manufacturing instructions in xml format.")
     private Root instructions;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_ProductModel_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -414,9 +410,8 @@ public abstract class MappedProductModel {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductModel_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

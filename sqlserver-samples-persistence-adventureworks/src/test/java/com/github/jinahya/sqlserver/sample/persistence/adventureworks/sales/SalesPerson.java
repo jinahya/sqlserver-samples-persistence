@@ -38,6 +38,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "SalesSalesPerson")
 @Table(schema = MappedSalesPerson.TABLE_SCHEMA,
        name = MappedSalesPerson.TABLE_NAME,
+       comment = "Sales representative current information.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_SalesPerson_rowguid",

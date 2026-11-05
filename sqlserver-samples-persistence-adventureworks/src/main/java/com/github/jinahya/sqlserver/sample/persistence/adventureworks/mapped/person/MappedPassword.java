@@ -308,9 +308,8 @@ public abstract class MappedPassword {
     @Basic(optional = false)
     @Convert(converter = Base64StringAttributeConverter.OfBasic.class)
     @Column(name = COLUMN_NAME_PASSWORD_HASH, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_PASSWORD_HASH)
-    @MsDescription.Column(name = COLUMN_NAME_PASSWORD_HASH,
-                          value = "Password for the e-mail account.")
+            length = COLUMN_LENGTH_PASSWORD_HASH,
+            comment = "Password for the e-mail account.")
     private byte[] passwordHash;
 
     // ---------------------------------------------------------------------------------------------
@@ -320,20 +319,18 @@ public abstract class MappedPassword {
     @Basic(optional = false)
     @Convert(converter = Base64StringAttributeConverter.OfBasic.class)
     @Column(name = COLUMN_NAME_PASSWORD_SALT, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_PASSWORD_SALT)
-    @MsDescription.Column(name = COLUMN_NAME_PASSWORD_SALT,
-                          value = "Random value concatenated with the password string before "
-                                  + "the password is hashed.")
+            length = COLUMN_LENGTH_PASSWORD_SALT,
+            comment = "Random value concatenated with the password string before the password is "
+                      + "hashed.")
     private byte[] passwordSalt;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_Password_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -343,9 +340,8 @@ public abstract class MappedPassword {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Password_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 

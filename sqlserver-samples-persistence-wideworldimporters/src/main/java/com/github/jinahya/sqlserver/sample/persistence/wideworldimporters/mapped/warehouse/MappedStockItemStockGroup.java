@@ -321,9 +321,8 @@ public abstract class MappedStockItemStockGroup {
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
                     generator = "WideWorldImporters.Sequences.StockItemStockGroupID")
-    @Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID,
-                          value = "Internal reference for this linking row")
+    @Column(name = COLUMN_NAME_STOCK_ITEM_STOCK_GROUP_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Internal reference for this linking row")
     @MsDefault(name = "DF_Warehouse_StockItemStockGroups_StockItemStockGroupID",
                value = "(NEXT VALUE FOR [Sequences].[StockItemStockGroupID])")
     private Integer stockItemStockGroupId;
@@ -334,10 +333,8 @@ public abstract class MappedStockItemStockGroup {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-                          value = "Stock item assigned to this stock group (FK indexed via "
-                                  + "unique constraint)")
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Stock item assigned to this stock group (FK indexed via unique constraint)")
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
@@ -346,10 +343,8 @@ public abstract class MappedStockItemStockGroup {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_GROUP_ID,
-                          value = "StockGroup assigned to this stock item (FK indexed via "
-                                  + "unique constraint)")
+    @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = false, insertable = false, updatable = false,
+            comment = "StockGroup assigned to this stock item (FK indexed via unique constraint)")
     private Integer stockGroupId;
 
     // ---------------------------------------------------------------------------------------------

@@ -371,9 +371,8 @@ public abstract class MappedShipMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SHIP_METHOD_ID,
-                          value = "Primary key for ShipMethod records.")
+            updatable = false,
+            comment = "Primary key for ShipMethod records.")
     private Integer shipMethodId;
 
     // ---------------------------------------------------------------------------------------------
@@ -381,8 +380,8 @@ public abstract class MappedShipMethod {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Shipping company name.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Shipping company name.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -391,8 +390,8 @@ public abstract class MappedShipMethod {
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SHIP_BASE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_BASE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SHIP_BASE, value = "Minimum shipping charge.")
+    @Column(name = COLUMN_NAME_SHIP_BASE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Minimum shipping charge.")
     @MsDefault(name = "DF_ShipMethod_ShipBase", value = "((0.00))")
     private BigDecimal shipBase;
 
@@ -402,8 +401,8 @@ public abstract class MappedShipMethod {
     @DecimalMin(value = ATTRIBUTE_DECIMAL_MIN_SHIP_RATE_EXCLUSIVE, inclusive = false)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_SHIP_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_SHIP_RATE, value = "Shipping charge per pound.")
+    @Column(name = COLUMN_NAME_SHIP_RATE, nullable = false, insertable = true, updatable = true, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Shipping charge per pound.")
     @MsDefault(name = "DF_ShipMethod_ShipRate", value = "((0.00))")
     private BigDecimal shipRate;
 
@@ -411,10 +410,9 @@ public abstract class MappedShipMethod {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_ShipMethod_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -424,9 +422,8 @@ public abstract class MappedShipMethod {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ShipMethod_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

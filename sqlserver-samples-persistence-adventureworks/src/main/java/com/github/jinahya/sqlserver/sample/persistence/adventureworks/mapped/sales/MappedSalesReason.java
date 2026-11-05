@@ -287,9 +287,8 @@ public abstract class MappedSalesReason {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_SALES_REASON_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_SALES_REASON_ID,
-                          value = "Primary key for SalesReason records.")
+            updatable = false,
+            comment = "Primary key for SalesReason records.")
     private Integer salesReasonId;
 
     // ---------------------------------------------------------------------------------------------
@@ -297,8 +296,8 @@ public abstract class MappedSalesReason {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Sales reason description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Sales reason description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -306,9 +305,8 @@ public abstract class MappedSalesReason {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REASON_TYPE, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_REASON_TYPE)
-    @MsDescription.Column(name = COLUMN_NAME_REASON_TYPE,
-                          value = "Category the sales reason belongs to.")
+            length = COLUMN_LENGTH_REASON_TYPE,
+            comment = "Category the sales reason belongs to.")
     private String reasonType;
 
     // ---------------------------------------------------------------------------------------------
@@ -317,9 +315,8 @@ public abstract class MappedSalesReason {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_SalesReason_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

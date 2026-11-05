@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
-import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
@@ -143,10 +142,8 @@ public class ProductProductPhotoId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+            insertable = true, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID.")
     private Integer productId;
 
     /**
@@ -156,10 +153,9 @@ public class ProductProductPhotoId {
     // an entity
     @NotNull
     @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID, nullable = false,
-            insertable = true, updatable = false)
-    @MsDescription.Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_PHOTO_ID,
-                          value = "Product photo identification number. Foreign key to "
-                                  + "ProductPhoto.ProductPhotoID.")
+            insertable = true, updatable = false,
+            comment = "Product photo identification number. Foreign key to "
+                      + "ProductPhoto.ProductPhotoID.")
     private Integer productPhotoId;
 }
 

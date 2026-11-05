@@ -31,6 +31,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "HumanResourcesShift")
 @Table(schema = MappedShift.TABLE_SCHEMA,
        name = MappedShift.TABLE_NAME,
+       comment = "Work shift lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_Shift_Name",

@@ -456,9 +456,8 @@ public abstract class MappedStateProvince {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_ID,
-                          value = "Primary key for StateProvince records.")
+            updatable = false,
+            comment = "Primary key for StateProvince records.")
     private Integer stateProvinceId;
 
     // ---------------------------------------------------------------------------------------------
@@ -466,9 +465,8 @@ public abstract class MappedStateProvince {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STATE_PROVINCE_CODE, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_STATE_PROVINCE_CODE,
-                          value = "ISO standard state or province code.")
+            updatable = true, length = COLUMN_LENGTH_STATE_PROVINCE_CODE,
+            comment = "ISO standard state or province code.")
     private String stateProvinceCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -478,20 +476,18 @@ public abstract class MappedStateProvince {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_COUNTRY_REGION_CODE, nullable = false, insertable = false,
-            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_COUNTRY_REGION_CODE,
-                          value = "ISO standard country or region code. Foreign key to "
-                                  + "CountryRegion.CountryRegionCode.")
+            updatable = false, length = COLUMN_LENGTH_COUNTRY_REGION_CODE,
+            comment = "ISO standard country or region code. Foreign key to "
+                      + "CountryRegion.CountryRegionCode. ")
     private String countryRegionCode;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG, nullable = false, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_IS_ONLY_STATE_PROVINCE_FLAG,
-                          value = "0 = StateProvinceCode exists. 1 = StateProvinceCode "
-                                  + "unavailable, using CountryRegionCode.")
+            updatable = true,
+            comment = "0 = StateProvinceCode exists. 1 = StateProvinceCode unavailable, using "
+                      + "CountryRegionCode.")
     @MsDefault(name = "DF_StateProvince_IsOnlyStateProvinceFlag", value = "((1))")
     private Boolean isOnlyStateProvinceFlag;
 
@@ -500,8 +496,8 @@ public abstract class MappedStateProvince {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "State or province description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "State or province description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -512,20 +508,18 @@ public abstract class MappedStateProvince {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TERRITORY_ID,
-                          value = "ID of the territory in which the state or province is "
-                                  + "located. Foreign key to SalesTerritory.SalesTerritoryID.")
+            updatable = false,
+            comment = "ID of the territory in which the state or province is located. Foreign key "
+                      + "to SalesTerritory.SalesTerritoryID.")
     private Integer territoryId;
 
     // ---------------------------------------------------------------------------------------------
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_StateProvince_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -535,9 +529,8 @@ public abstract class MappedStateProvince {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_StateProvince_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

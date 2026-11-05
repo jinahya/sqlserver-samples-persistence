@@ -537,9 +537,8 @@ public abstract class MappedTransactionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_TRANSACTION_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_ID,
-                          value = "Primary key for TransactionHistory records.")
+            updatable = false,
+            comment = "Primary key for TransactionHistory records.")
     private Integer transactionId;
 
     // ---------------------------------------------------------------------------------------------
@@ -550,10 +549,8 @@ public abstract class MappedTransactionHistory {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -565,10 +562,8 @@ public abstract class MappedTransactionHistory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_ID,
-                          value = "Purchase order, sales order, or work order identification "
-                                  + "number.")
+            updatable = false,
+            comment = "Purchase order, sales order, or work order identification number.")
     private Integer referenceOrderId;
 
     // ---------------------------------------------------------------------------------------------
@@ -580,10 +575,8 @@ public abstract class MappedTransactionHistory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_REFERENCE_ORDER_LINE_ID,
-                          value = "Line number associated with the purchase order, sales order, "
-                                  + "or work order.")
+            updatable = false,
+            comment = "Line number associated with the purchase order, sales order, or work order.")
     @MsDefault(name = "DF_TransactionHistory_ReferenceOrderLineID", value = "((0))")
     private Integer referenceOrderLineId;
 
@@ -594,9 +587,8 @@ public abstract class MappedTransactionHistory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_DATE, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_DATE,
-                          value = "Date and time of the transaction.")
+            updatable = false,
+            comment = "Date and time of the transaction.")
     @MsDefault(name = "DF_TransactionHistory_TransactionDate", value = "(getdate())")
     private LocalDateTime transactionDate;
 
@@ -608,9 +600,8 @@ public abstract class MappedTransactionHistory {
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE, nullable = false, insertable = false,
-            updatable = false, length = COLUMN_LENGTH_TRANSACTION_TYPE)
-    @MsDescription.Column(name = COLUMN_NAME_TRANSACTION_TYPE,
-                          value = "W = WorkOrder, S = SalesOrder, P = PurchaseOrder")
+            updatable = false, length = COLUMN_LENGTH_TRANSACTION_TYPE,
+            comment = "W = WorkOrder, S = SalesOrder, P = PurchaseOrder")
     private TransactionType transactionType;
 
     // ---------------------------------------------------------------------------------------------
@@ -621,8 +612,8 @@ public abstract class MappedTransactionHistory {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Product quantity.")
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = false, updatable = false,
+            comment = "Product quantity.")
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
@@ -633,8 +624,8 @@ public abstract class MappedTransactionHistory {
     @DecimalMin(SqlServerConstants.MONEY_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE)
-    @MsDescription.Column(name = COLUMN_NAME_ACTUAL_COST, value = "Product cost.")
+    @Column(name = COLUMN_NAME_ACTUAL_COST, nullable = false, insertable = false, updatable = false, precision = SqlServerConstants.MONEY_PRECISION, scale = SqlServerConstants.MONEY_SCALE,
+            comment = "Product cost.")
     private BigDecimal actualCost;
 
     // ---------------------------------------------------------------------------------------------
@@ -643,9 +634,8 @@ public abstract class MappedTransactionHistory {
     // class documentation
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = false,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_TransactionHistory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

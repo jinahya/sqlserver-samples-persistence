@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
-import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
@@ -175,10 +174,8 @@ public class ProductModelProductDescriptionCultureId {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID,
-            nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(
-            name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_MODEL_ID,
-            value = "Primary key. Foreign key to ProductModel.ProductModelID.")
+            nullable = false, insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to ProductModel.ProductModelID.")
     private Integer productModelId;
 
     /**
@@ -188,11 +185,8 @@ public class ProductModelProductDescriptionCultureId {
     // an entity
     @NotNull
     @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
-            nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(
-            name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_PRODUCT_DESCRIPTION_ID,
-            value = "Primary key. Foreign key to "
-                    + "ProductDescription.ProductDescriptionID.")
+            nullable = false, insertable = true, updatable = false,
+            comment = "Primary key. Foreign key to ProductDescription.ProductDescriptionID.")
     private Integer productDescriptionId;
 
     /**
@@ -204,10 +198,8 @@ public class ProductModelProductDescriptionCultureId {
     @NotNull
     @Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_CULTURE_ID,
             nullable = false, insertable = true, updatable = false,
-            length = MappedProductModelProductDescriptionCulture.COLUMN_LENGTH_CULTURE_ID)
-    @MsDescription.Column(name = MappedProductModelProductDescriptionCulture.COLUMN_NAME_CULTURE_ID,
-                          value = "Culture identification number. Foreign key to "
-                                  + "Culture.CultureID.")
+            length = MappedProductModelProductDescriptionCulture.COLUMN_LENGTH_CULTURE_ID,
+            comment = "Culture identification number. Foreign key to Culture.CultureID.")
     private String cultureId;
 }
 

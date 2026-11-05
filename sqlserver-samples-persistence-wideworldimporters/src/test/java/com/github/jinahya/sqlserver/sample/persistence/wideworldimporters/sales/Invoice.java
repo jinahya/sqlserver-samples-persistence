@@ -40,6 +40,7 @@ import jakarta.persistence.Table;
 @Entity(name = "SalesInvoice")
 @Table(schema = MappedInvoice.TABLE_SCHEMA,
        name = MappedInvoice.TABLE_NAME,
+       comment = "Details of customer invoices",
        check = {
                @CheckConstraint(
                        name = "CK_Sales_Invoices_ReturnedDeliveryData_Must_Be_Valid_JSON",

@@ -80,7 +80,8 @@ import java.time.LocalDateTime;
 // (error 8102)
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedJobCandidate.COLUMN_NAME_JOB_CANDIDATE_ID,
-                                    nullable = false, insertable = false, updatable = false)
+                                    nullable = false, insertable = false, updatable = false,
+                                    comment = "Primary key for JobCandidate records.")
 )
 @MappedSuperclass
 @MsDescription(
@@ -284,10 +285,9 @@ public abstract class MappedJobCandidate
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = true, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Employee identification number if applicant was hired. "
-                                  + "Foreign key to Employee.BusinessEntityID.")
+            updatable = false,
+            comment = "Employee identification number if applicant was hired. Foreign key to "
+                      + "Employee.BusinessEntityID.")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -298,8 +298,8 @@ public abstract class MappedJobCandidate
     @Convert(converter = ResumeTypeStringAttributeConverter.class)
     @org.hibernate.annotations.Mutability(org.hibernate.type.descriptor.java.Immutability.class)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_RESUME, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_RESUME, value = "Résumé in XML format.")
+    @Column(name = COLUMN_NAME_RESUME, nullable = true, insertable = true, updatable = true,
+            comment = "Résumé in XML format.")
     private ResumeType resume;
 
     // ---------------------------------------------------------------------------------------------
@@ -308,9 +308,8 @@ public abstract class MappedJobCandidate
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_JobCandidate_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

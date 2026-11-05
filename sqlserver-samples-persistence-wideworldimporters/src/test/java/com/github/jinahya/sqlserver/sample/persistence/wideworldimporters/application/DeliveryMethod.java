@@ -35,6 +35,8 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "ApplicationDeliveryMethod")
 @Table(schema = MappedDeliveryMethod.TABLE_SCHEMA,
        name = MappedDeliveryMethod.TABLE_NAME,
+       comment = "Ways that stock items can be delivered (ie: truck/van, post, pickup, courier, "
+                 + "etc.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Application_DeliveryMethods_DeliveryMethodName",

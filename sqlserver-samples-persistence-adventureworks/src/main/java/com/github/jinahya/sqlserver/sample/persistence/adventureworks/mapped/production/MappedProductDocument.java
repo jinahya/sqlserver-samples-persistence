@@ -220,10 +220,8 @@ public abstract class MappedProductDocument {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -233,10 +231,8 @@ public abstract class MappedProductDocument {
     @NotNull
     @Convert(converter = HeirarchyidAttributeConverter.class)
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_DOCUMENT_NODE,
-                          value = "Document identification number. Foreign key to "
-                                  + "Document.DocumentNode.")
+    @Column(name = COLUMN_NAME_DOCUMENT_NODE, nullable = false, insertable = true, updatable = false,
+            comment = "Document identification number. Foreign key to Document.DocumentNode.")
     private Heirarchyid documentNode;
 
     // ---------------------------------------------------------------------------------------------
@@ -245,9 +241,8 @@ public abstract class MappedProductDocument {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductDocument_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

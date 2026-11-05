@@ -248,8 +248,8 @@ public abstract class MappedUnitMeasure {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, nullable = false, insertable = true,
-            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_MEASURE_CODE, value = "Primary key.")
+            updatable = false, length = COLUMN_LENGTH_UNIT_MEASURE_CODE,
+            comment = "Primary key.")
     private String unitMeasureCode;
 
     // ---------------------------------------------------------------------------------------------
@@ -257,8 +257,8 @@ public abstract class MappedUnitMeasure {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Unit of measure description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Unit of measure description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -267,9 +267,8 @@ public abstract class MappedUnitMeasure {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_UnitMeasure_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

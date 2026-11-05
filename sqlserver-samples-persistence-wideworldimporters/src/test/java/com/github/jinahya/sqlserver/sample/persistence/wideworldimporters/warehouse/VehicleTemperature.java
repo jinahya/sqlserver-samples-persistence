@@ -28,7 +28,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Warehouse.VehicleTemperatures} table.
  */
 @Entity(name = "WarehouseVehicleTemperature")
-@Table(schema = MappedVehicleTemperature.TABLE_SCHEMA, name = MappedVehicleTemperature.TABLE_NAME)
+@Table(schema = MappedVehicleTemperature.TABLE_SCHEMA, name = MappedVehicleTemperature.TABLE_NAME,
+       comment = "Regularly recorded temperatures of vehicle chillers")
 public class VehicleTemperature extends MappedVehicleTemperature {
 
     // -------------------------------------------------------------------------------- CONSTRUCTORS

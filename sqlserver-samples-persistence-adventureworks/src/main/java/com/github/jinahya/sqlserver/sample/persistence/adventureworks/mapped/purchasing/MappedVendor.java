@@ -478,10 +478,9 @@ public abstract class MappedVendor {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID,
-                          value = "Primary key for Vendor records.  Foreign key to "
-                                  + "BusinessEntity.BusinessEntityID")
+            updatable = false,
+            comment = "Primary key for Vendor records.  Foreign key to "
+                      + "BusinessEntity.BusinessEntityID")
     private Integer businessEntityId;
 
     // ---------------------------------------------------------------------------------------------
@@ -489,9 +488,8 @@ public abstract class MappedVendor {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ACCOUNT_NUMBER, nullable = false, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_ACCOUNT_NUMBER)
-    @MsDescription.Column(name = COLUMN_NAME_ACCOUNT_NUMBER,
-                          value = "Vendor account (identification) number.")
+            updatable = true, length = COLUMN_LENGTH_ACCOUNT_NUMBER,
+            comment = "Vendor account (identification) number.")
     private String accountNumber;
 
     // ---------------------------------------------------------------------------------------------
@@ -499,8 +497,8 @@ public abstract class MappedVendor {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Company name.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Company name.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -509,29 +507,26 @@ public abstract class MappedVendor {
     @Min(ATTRIBUTE_MIN_CREDIT_RATING)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_CREDIT_RATING, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_CREDIT_RATING,
-                          value = "1 = Superior, 2 = Excellent, 3 = Above average, 4 = Average, "
-                                  + "5 = Below average")
+    @Column(name = COLUMN_NAME_CREDIT_RATING, nullable = false, insertable = true, updatable = true,
+            comment = "1 = Superior, 2 = Excellent, 3 = Above average, 4 = Average, 5 = Below "
+                      + "average")
     private Integer creditRating;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS, nullable = false, insertable = true,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_PREFERRED_VENDOR_STATUS,
-                          value = "0 = Do not use if another vendor is available. 1 = Preferred "
-                                  + "over other vendors supplying the same product.")
+            updatable = true,
+            comment = "0 = Do not use if another vendor is available. 1 = Preferred over other "
+                      + "vendors supplying the same product.")
     @MsDefault(name = "DF_Vendor_PreferredVendorStatus", value = "((1))")
     private Boolean preferredVendorStatus;
 
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ACTIVE_FLAG, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ACTIVE_FLAG,
-                          value = "0 = Vendor no longer used. 1 = Vendor is actively used.")
+    @Column(name = COLUMN_NAME_ACTIVE_FLAG, nullable = false, insertable = true, updatable = true,
+            comment = "0 = Vendor no longer used. 1 = Vendor is actively used.")
     @MsDefault(name = "DF_Vendor_ActiveFlag", value = "((1))")
     private Boolean activeFlag;
 

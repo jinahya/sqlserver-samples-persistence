@@ -33,7 +33,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Application.Cities} table.
  */
 @Entity(name = "ApplicationCity")
-@Table(schema = MappedCity.TABLE_SCHEMA, name = MappedCity.TABLE_NAME)
+@Table(schema = MappedCity.TABLE_SCHEMA, name = MappedCity.TABLE_NAME,
+       comment = "Cities that are part of any address (including geographic location)")
 public class City extends MappedCity {
 
     /**

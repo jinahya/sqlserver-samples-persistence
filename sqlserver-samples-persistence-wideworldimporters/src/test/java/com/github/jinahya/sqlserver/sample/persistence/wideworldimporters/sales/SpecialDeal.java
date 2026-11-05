@@ -43,6 +43,7 @@ import jakarta.persistence.Table;
 @Entity(name = "SalesSpecialDeal")
 @Table(schema = MappedSpecialDeal.TABLE_SCHEMA,
        name = MappedSpecialDeal.TABLE_NAME,
+       comment = "Special pricing (can include fixed prices, discount $ or discount %)",
        check = {
                @CheckConstraint(
                        name = "CK_Sales_SpecialDeals_Exactly_One_NOT_NULL_Pricing_Option_Is_Required",

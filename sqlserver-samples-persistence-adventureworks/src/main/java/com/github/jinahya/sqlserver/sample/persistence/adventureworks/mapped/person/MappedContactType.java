@@ -246,9 +246,8 @@ public abstract class MappedContactType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_CONTACT_TYPE_ID, nullable = false, insertable = false,
-            updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_CONTACT_TYPE_ID,
-                          value = "Primary key for ContactType records.")
+            updatable = false,
+            comment = "Primary key for ContactType records.")
     private Integer contactTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -256,8 +255,8 @@ public abstract class MappedContactType {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Contact type description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Contact type description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -266,9 +265,8 @@ public abstract class MappedContactType {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ContactType_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

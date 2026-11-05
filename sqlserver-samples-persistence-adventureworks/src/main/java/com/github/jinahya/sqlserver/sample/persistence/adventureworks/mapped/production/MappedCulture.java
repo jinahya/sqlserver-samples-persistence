@@ -248,8 +248,8 @@ public abstract class MappedCulture {
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_CULTURE_ID, nullable = false, insertable = true, updatable = false,
-            length = COLUMN_LENGTH_CULTURE_ID)
-    @MsDescription.Column(name = COLUMN_NAME_CULTURE_ID, value = "Primary key for Culture records.")
+            length = COLUMN_LENGTH_CULTURE_ID,
+            comment = "Primary key for Culture records.")
     private String cultureId;
 
     // ---------------------------------------------------------------------------------------------
@@ -257,8 +257,8 @@ public abstract class MappedCulture {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_NAME, value = "Culture description.")
+            length = COLUMN_LENGTH_NAME,
+            comment = "Culture description.")
     private String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -267,9 +267,8 @@ public abstract class MappedCulture {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_Culture_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }

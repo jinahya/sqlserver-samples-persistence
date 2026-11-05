@@ -31,7 +31,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Application.People} table.
  */
 @Entity(name = "ApplicationPerson")
-@Table(schema = MappedPerson.TABLE_SCHEMA, name = MappedPerson.TABLE_NAME)
+@Table(schema = MappedPerson.TABLE_SCHEMA, name = MappedPerson.TABLE_NAME,
+       comment = "People known to the application (staff, customer contacts, supplier contacts)")
 public class Person extends MappedPerson {
 
     /**

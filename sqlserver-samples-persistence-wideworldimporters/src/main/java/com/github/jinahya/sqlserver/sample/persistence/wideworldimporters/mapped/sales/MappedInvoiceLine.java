@@ -710,10 +710,8 @@ public abstract class MappedInvoiceLine {
                        sequenceName = "InvoiceLineID",
                        allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WideWorldImporters.Sequences.InvoiceLineID")
-    @Column(name = COLUMN_NAME_INVOICE_LINE_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_INVOICE_LINE_ID,
-                          value = "Numeric ID used for reference to a line on an invoice within "
-                                  + "the database")
+    @Column(name = COLUMN_NAME_INVOICE_LINE_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Numeric ID used for reference to a line on an invoice within the database")
     @MsDefault(name = "DF_Sales_InvoiceLines_InvoiceLineID", value = "(NEXT VALUE FOR [Sequences].[InvoiceLineID])")
     private Integer invoiceLineId;
 
@@ -723,9 +721,8 @@ public abstract class MappedInvoiceLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_INVOICE_ID,
-                          value = "Invoice that this line is associated with")
+    @Column(name = COLUMN_NAME_INVOICE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Invoice that this line is associated with")
     private Integer invoiceId;
 
     // ---------------------------------------------------------------------------------------------
@@ -734,19 +731,17 @@ public abstract class MappedInvoiceLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_STOCK_ITEM_ID,
-                          value = "Stock item for this invoice line")
+    @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Stock item for this invoice line")
     private Integer stockItemId;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_DESCRIPTION)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION)
-    @MsDescription.Column(name = COLUMN_NAME_DESCRIPTION,
-                          value = "Description of the item supplied (Usually the stock item "
-                                  + "name but can be overridden)")
+    @Column(name = COLUMN_NAME_DESCRIPTION, nullable = false, insertable = true, updatable = true, length = COLUMN_LENGTH_DESCRIPTION,
+            comment = "Description of the item supplied (Usually the stock item name but can be "
+                      + "overridden)")
     private String description;
 
     // ---------------------------------------------------------------------------------------------
@@ -755,8 +750,8 @@ public abstract class MappedInvoiceLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, value = "Type of package supplied")
+    @Column(name = COLUMN_NAME_PACKAGE_TYPE_ID, nullable = false, insertable = false, updatable = false,
+            comment = "Type of package supplied")
     private Integer packageTypeId;
 
     // ---------------------------------------------------------------------------------------------
@@ -764,16 +759,16 @@ public abstract class MappedInvoiceLine {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_QUANTITY, value = "Quantity supplied")
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity supplied")
     private Integer quantity;
 
     // ---------------------------------------------------------------------------------------------
     @DecimalMax(ATTRIBUTE_DECIMAL_MAX_UNIT_PRICE)
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_UNIT_PRICE)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE)
-    @MsDescription.Column(name = COLUMN_NAME_UNIT_PRICE, value = "Unit price charged")
+    @Column(name = COLUMN_NAME_UNIT_PRICE, nullable = true, insertable = true, updatable = true, precision = COLUMN_PRECISION_UNIT_PRICE, scale = COLUMN_SCALE_UNIT_PRICE,
+            comment = "Unit price charged")
     private BigDecimal unitPrice;
 
     // ---------------------------------------------------------------------------------------------
@@ -781,8 +776,8 @@ public abstract class MappedInvoiceLine {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_RATE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE)
-    @MsDescription.Column(name = COLUMN_NAME_TAX_RATE, value = "Tax rate to be applied")
+    @Column(name = COLUMN_NAME_TAX_RATE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_RATE, scale = COLUMN_SCALE_TAX_RATE,
+            comment = "Tax rate to be applied")
     private BigDecimal taxRate;
 
     // ---------------------------------------------------------------------------------------------
@@ -790,8 +785,8 @@ public abstract class MappedInvoiceLine {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_TAX_AMOUNT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT)
-    @MsDescription.Column(name = COLUMN_NAME_TAX_AMOUNT, value = "Tax amount calculated")
+    @Column(name = COLUMN_NAME_TAX_AMOUNT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_TAX_AMOUNT, scale = COLUMN_SCALE_TAX_AMOUNT,
+            comment = "Tax amount calculated")
     private BigDecimal taxAmount;
 
     // ---------------------------------------------------------------------------------------------
@@ -799,9 +794,8 @@ public abstract class MappedInvoiceLine {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_LINE_PROFIT)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_LINE_PROFIT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LINE_PROFIT, scale = COLUMN_SCALE_LINE_PROFIT)
-    @MsDescription.Column(name = COLUMN_NAME_LINE_PROFIT,
-                          value = "Profit made on this line item at current cost price")
+    @Column(name = COLUMN_NAME_LINE_PROFIT, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_LINE_PROFIT, scale = COLUMN_SCALE_LINE_PROFIT,
+            comment = "Profit made on this line item at current cost price")
     private BigDecimal lineProfit;
 
     // ---------------------------------------------------------------------------------------------
@@ -809,8 +803,8 @@ public abstract class MappedInvoiceLine {
     @DecimalMin(ATTRIBUTE_DECIMAL_MIN_EXTENDED_PRICE)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_EXTENDED_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXTENDED_PRICE, scale = COLUMN_SCALE_EXTENDED_PRICE)
-    @MsDescription.Column(name = COLUMN_NAME_EXTENDED_PRICE, value = "Extended line price charged")
+    @Column(name = COLUMN_NAME_EXTENDED_PRICE, nullable = false, insertable = true, updatable = true, precision = COLUMN_PRECISION_EXTENDED_PRICE, scale = COLUMN_SCALE_EXTENDED_PRICE,
+            comment = "Extended line price charged")
     private BigDecimal extendedPrice;
 
     // ---------------------------------------------------------------------------------------------

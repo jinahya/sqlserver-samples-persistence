@@ -39,7 +39,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code Sales.CustomerTransactions} table.
  */
 @Entity(name = "SalesCustomerTransaction")
-@Table(schema = MappedCustomerTransaction.TABLE_SCHEMA, name = MappedCustomerTransaction.TABLE_NAME)
+@Table(schema = MappedCustomerTransaction.TABLE_SCHEMA, name = MappedCustomerTransaction.TABLE_NAME,
+       comment = "All financial transactions that are customer-related")
 public class CustomerTransaction extends MappedCustomerTransaction {
 
     /**

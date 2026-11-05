@@ -36,6 +36,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "WarehouseStockGroup")
 @Table(schema = MappedStockGroup.TABLE_SCHEMA,
        name = MappedStockGroup.TABLE_NAME,
+       comment = "Groups for categorizing stock items (ie: novelties, toys, edible novelties, etc.)",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "UQ_Warehouse_StockGroups_StockGroupName",

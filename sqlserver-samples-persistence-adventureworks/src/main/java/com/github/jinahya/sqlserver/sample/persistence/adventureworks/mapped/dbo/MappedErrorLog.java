@@ -81,7 +81,8 @@ import java.time.LocalDateTime;
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedErrorLog.COLUMN_NAME_ERROR_LOG_ID,
-                                    nullable = false, insertable = false, updatable = false)
+                                    nullable = false, insertable = false, updatable = false,
+                                    comment = "Primary key for ErrorLog records.")
 )
 @MappedSuperclass
 @MsDescription(
@@ -473,9 +474,8 @@ public abstract class MappedErrorLog
     // ---------------------------------------------------------------------------------------------
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ERROR_TIME, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_TIME,
-                          value = "The date and time at which the error occurred.")
+    @Column(name = COLUMN_NAME_ERROR_TIME, nullable = false, insertable = true, updatable = true,
+            comment = "The date and time at which the error occurred.")
     @MsDefault(name = "DF_ErrorLog_ErrorTime", value = "(getdate())")
     private LocalDateTime errorTime;
 
@@ -484,9 +484,8 @@ public abstract class MappedErrorLog
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_USER_NAME, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_USER_NAME)
-    @MsDescription.Column(name = COLUMN_NAME_USER_NAME,
-                          value = "The user who executed the batch in which the error occurred.")
+            length = COLUMN_LENGTH_USER_NAME,
+            comment = "The user who executed the batch in which the error occurred.")
     private String userName;
 
     // ---------------------------------------------------------------------------------------------
@@ -494,46 +493,40 @@ public abstract class MappedErrorLog
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ERROR_NUMBER, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_NUMBER,
-                          value = "The error number of the error that occurred.")
+    @Column(name = COLUMN_NAME_ERROR_NUMBER, nullable = false, insertable = true, updatable = true,
+            comment = "The error number of the error that occurred.")
     private Integer errorNumber;
 
     // ---------------------------------------------------------------------------------------------
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ERROR_SEVERITY, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_SEVERITY,
-                          value = "The severity of the error that occurred.")
+    @Column(name = COLUMN_NAME_ERROR_SEVERITY, nullable = true, insertable = true, updatable = true,
+            comment = "The severity of the error that occurred.")
     private Integer errorSeverity;
 
     // ---------------------------------------------------------------------------------------------
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ERROR_STATE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_STATE,
-                          value = "The state number of the error that occurred.")
+    @Column(name = COLUMN_NAME_ERROR_STATE, nullable = true, insertable = true, updatable = true,
+            comment = "The state number of the error that occurred.")
     private Integer errorState;
 
     // ---------------------------------------------------------------------------------------------
     @Size(max = COLUMN_LENGTH_ERROR_PROCEDURE)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_ERROR_PROCEDURE, nullable = true, insertable = true,
-            updatable = true, length = COLUMN_LENGTH_ERROR_PROCEDURE)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_PROCEDURE,
-                          value = "The name of the stored procedure or trigger where the error "
-                                  + "occurred.")
+            updatable = true, length = COLUMN_LENGTH_ERROR_PROCEDURE,
+            comment = "The name of the stored procedure or trigger where the error occurred.")
     private String errorProcedure;
 
     // ---------------------------------------------------------------------------------------------
     @Max(SqlServerConstants.INT_MAX)
     @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
-    @Column(name = COLUMN_NAME_ERROR_LINE, nullable = true, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_LINE,
-                          value = "The line number at which the error occurred.")
+    @Column(name = COLUMN_NAME_ERROR_LINE, nullable = true, insertable = true, updatable = true,
+            comment = "The line number at which the error occurred.")
     private Integer errorLine;
 
     // ---------------------------------------------------------------------------------------------
@@ -541,9 +534,8 @@ public abstract class MappedErrorLog
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ERROR_MESSAGE, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_ERROR_MESSAGE)
-    @MsDescription.Column(name = COLUMN_NAME_ERROR_MESSAGE,
-                          value = "The message text of the error that occurred.")
+            length = COLUMN_LENGTH_ERROR_MESSAGE,
+            comment = "The message text of the error that occurred.")
     private String errorMessage;
 }
 

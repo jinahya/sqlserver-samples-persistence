@@ -32,7 +32,8 @@ import jakarta.persistence.Table;
  * An entity which maps the {@code HumanResources.JobCandidate} table.
  */
 @Entity(name = "HumanResourcesJobCandidate")
-@Table(schema = MappedJobCandidate.TABLE_SCHEMA, name = MappedJobCandidate.TABLE_NAME)
+@Table(schema = MappedJobCandidate.TABLE_SCHEMA, name = MappedJobCandidate.TABLE_NAME,
+       comment = "Résumés submitted to Human Resources by job applicants.")
 public class JobCandidate
         extends MappedJobCandidate {
 

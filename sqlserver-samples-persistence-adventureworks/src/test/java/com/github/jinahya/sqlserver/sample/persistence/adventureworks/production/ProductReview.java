@@ -35,6 +35,7 @@ import jakarta.persistence.Table;
 @Entity(name = "ProductionProductReview")
 @Table(schema = MappedProductReview.TABLE_SCHEMA,
        name = MappedProductReview.TABLE_NAME,
+       comment = "Customer reviews of products they have purchased.",
        check = {
                @CheckConstraint(
                        name = "CK_ProductReview_Rating",

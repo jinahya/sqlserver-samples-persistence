@@ -103,6 +103,10 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
   the database restamps it; `Purchasing.PurchaseOrderDetail.ModifiedDate`, which its `uPurchaseOrderDetail` trigger
   restamps, is read-only. Such an attribute carries no `@NotNull`, for it is null until the INSERT.
 - A primary-key column is not updatable, and an `IDENTITY` column, which SQL Server assigns, is not insertable either.
+- A description the database holds, as an extended property (`MS_Description` in AdventureWorks, `Description` in
+  WideWorldImporters; FutonManufacturing has none), is the `comment` of the column's `@Column` and of the entity's
+  `@Table`, verbatim; a mapped superclass, which has no `@Table`, keeps its table's in `-common`'s `@MsDescription`.
+  Each module's `src/test/sql/__.sql` selects them.
 - A read-only attribute has a `protected` setter, and a read-only `rowguid` none. A foreign-key attribute has
   `protected` accessors, for the association is what the entity exposes; a single-column primary key which is a foreign
   key (`Person.Person.BusinessEntityID`) has a `public` getter and a `protected` setter, which its association's setter

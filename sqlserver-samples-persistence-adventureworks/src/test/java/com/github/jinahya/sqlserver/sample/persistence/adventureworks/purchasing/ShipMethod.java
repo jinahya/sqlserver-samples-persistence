@@ -32,6 +32,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "PurchasingShipMethod")
 @Table(schema = MappedShipMethod.TABLE_SCHEMA,
        name = MappedShipMethod.TABLE_NAME,
+       comment = "Shipping company lookup table.",
        uniqueConstraints = {
                @UniqueConstraint(
                        name = "AK_ShipMethod_Name",

@@ -35,6 +35,8 @@ import jakarta.persistence.Table;
 @Entity(name = "ProductionTransactionHistory")
 @Table(schema = MappedTransactionHistory.TABLE_SCHEMA,
        name = MappedTransactionHistory.TABLE_NAME,
+       comment = "Record of each purchase order, sales order, or work order transaction year to "
+                 + "date.",
        check = {
                @CheckConstraint(
                        name = "CK_TransactionHistory_TransactionType",

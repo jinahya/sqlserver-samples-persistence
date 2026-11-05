@@ -43,6 +43,7 @@ import java.util.Optional;
 @Entity(name = "ProductionProductInventory")
 @Table(schema = MappedProductInventory.TABLE_SCHEMA,
        name = MappedProductInventory.TABLE_NAME,
+       comment = "Product inventory information.",
        check = {
                @CheckConstraint(
                        name = "CK_ProductInventory_Bin",

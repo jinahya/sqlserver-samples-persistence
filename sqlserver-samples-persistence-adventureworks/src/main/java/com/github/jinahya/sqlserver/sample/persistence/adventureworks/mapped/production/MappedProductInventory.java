@@ -441,10 +441,8 @@ public abstract class MappedProductInventory {
     @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_PRODUCT_ID,
-                          value = "Product identification number. Foreign key to "
-                                  + "Product.ProductID.")
+    @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Product identification number. Foreign key to Product.ProductID.")
     private Integer productId;
 
     // ---------------------------------------------------------------------------------------------
@@ -454,10 +452,9 @@ public abstract class MappedProductInventory {
     @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Id
-    @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_LOCATION_ID,
-                          value = "Inventory location identification number. Foreign key to "
-                                  + "Location.LocationID.")
+    @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = true, updatable = false,
+            comment = "Inventory location identification number. Foreign key to "
+                      + "Location.LocationID. ")
     private Long locationId;
 
     // ---------------------------------------------------------------------------------------------
@@ -465,9 +462,8 @@ public abstract class MappedProductInventory {
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHELF, nullable = false, insertable = true, updatable = true,
-            length = COLUMN_LENGTH_SHELF)
-    @MsDescription.Column(name = COLUMN_NAME_SHELF,
-                          value = "Storage compartment within an inventory location.")
+            length = COLUMN_LENGTH_SHELF,
+            comment = "Storage compartment within an inventory location.")
     private String shelf;
 
     // ---------------------------------------------------------------------------------------------
@@ -476,9 +472,8 @@ public abstract class MappedProductInventory {
     @Min(ATTRIBUTE_MIN_BIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_BIN, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_BIN,
-                          value = "Storage container on a shelf in an inventory location.")
+    @Column(name = COLUMN_NAME_BIN, nullable = false, insertable = true, updatable = true,
+            comment = "Storage container on a shelf in an inventory location.")
     private Integer bin;
 
     // ---------------------------------------------------------------------------------------------
@@ -486,9 +481,8 @@ public abstract class MappedProductInventory {
     @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_QUANTITY,
-                          value = "Quantity of products in the inventory location.")
+    @Column(name = COLUMN_NAME_QUANTITY, nullable = false, insertable = true, updatable = true,
+            comment = "Quantity of products in the inventory location.")
     @MsDefault(name = "DF_ProductInventory_Quantity", value = "((0))")
     private Integer quantity;
 
@@ -496,10 +490,9 @@ public abstract class MappedProductInventory {
     // read-only; the database's DEFAULT (newid()) fills it on an INSERT, and nothing in the
     // database changes it
     @Basic(optional = false)
-    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false)
-    @MsDescription.Column(name = COLUMN_NAME_ROWGUID,
-                          value = "ROWGUIDCOL number uniquely identifying the record. Used to "
-                                  + "support a merge replication sample.")
+    @Column(name = COLUMN_NAME_ROWGUID, nullable = false, insertable = false, updatable = false,
+            comment = "ROWGUIDCOL number uniquely identifying the record. Used to support a merge "
+                      + "replication sample.")
     @MsDefault(name = "DF_ProductInventory_rowguid", value = "(newid())")
     private UUID rowguid;
 
@@ -509,9 +502,8 @@ public abstract class MappedProductInventory {
     // which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true)
-    @MsDescription.Column(name = COLUMN_NAME_MODIFIED_DATE,
-                          value = "Date and time the record was last updated.")
+            updatable = true,
+            comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_ProductInventory_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
