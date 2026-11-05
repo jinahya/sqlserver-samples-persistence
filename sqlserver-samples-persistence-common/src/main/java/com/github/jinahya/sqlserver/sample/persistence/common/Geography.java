@@ -40,8 +40,8 @@ import java.util.stream.IntStream;
  *
  * <h2>Why the class parses the specification itself</h2>
  * The class reads and writes the serialized form directly, as the specification states it, instead
- * of using what the dependency stack provides: Hibernate Spatial's {@code SqlServerGeographyType}
- * and the SQL Server codec of geolatte-geom, beneath it. That stack reads and writes a
+ * of using Hibernate Spatial's {@code SqlServerGeographyType} and the SQL Server codec of
+ * geolatte-geom, beneath it, which the project no longer depends on. That stack reads and writes a
  * {@code geography} with its latitude and longitude swapped. As checked against
  * {@code Person.Address.SpatialLocation} with Hibernate ORM 7.4.12, geolatte-geom 1.11 and
  * mssql-jdbc 13.4.0:

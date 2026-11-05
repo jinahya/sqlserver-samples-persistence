@@ -165,10 +165,10 @@ until it is, and the hash is the same for every instance.
 
 ## Hibernate Spatial and `geography`
 
-Hibernate Spatial and geolatte-geom are provided dependencies, but no mapping uses them: a `geography` column stays
-`-common`'s `Geography`. Hibernate Spatial reads and writes a SQL Server `geography` with its latitude and longitude
-swapped. Checked against `Person.Address.SpatialLocation`, with Hibernate ORM 7.4.12, geolatte-geom 1.11, and
-mssql-jdbc 13.4.0:
+Hibernate Spatial and geolatte-geom are not dependencies, and a `geography` column is `-common`'s `Geography`; they
+were, while what follows was checked, and no mapping used them. Hibernate Spatial reads and writes a SQL Server
+`geography` with its latitude and longitude swapped. Checked against `Person.Address.SpatialLocation`, with Hibernate
+ORM 7.4.12, geolatte-geom 1.11, and mssql-jdbc 13.4.0:
 
 | What | Result |
 |---|---|
