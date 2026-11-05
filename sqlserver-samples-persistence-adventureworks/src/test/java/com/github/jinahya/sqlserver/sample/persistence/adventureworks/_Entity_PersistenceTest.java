@@ -242,7 +242,8 @@ public abstract class _Entity_PersistenceTest<T, U>
 
     /**
      * Persists a new, randomized instance of {@link #targetClass}, through its persister, flushes
-     * it, and hands it to {@link #randomizedEntityInstancePersisted__(EntityManager, Object)}.
+     * it, and hands it to
+     * {@link #randomizedEntityInstancePersisted__(EntityManagerFactory, EntityManager, Object)}.
      * <p>
      * An entity which is not persisted -- a view, or a table which only SQL Server, the installer,
      * or a procedure writes -- overrides this method with an empty one,
@@ -264,7 +265,7 @@ public abstract class _Entity_PersistenceTest<T, U>
                     assertThat(emf.getPersistenceUnitUtil().getIdentifier(persisted))
                             .as("the identifier of the persisted %s", persisted)
                             .isNotNull();
-                    randomizedEntityInstancePersisted__(em, persisted);
+                    randomizedEntityInstancePersisted__(emf, em, persisted);
                     return null;
                 })
         ));
@@ -274,13 +275,15 @@ public abstract class _Entity_PersistenceTest<T, U>
      * Called with the instance {@link #persistRandomizedEntityInstance__()} persisted and flushed,
      * while it is still managed.
      *
-     * @param entityManager  the entity manager which persisted the instance.
-     * @param entityInstance the persisted instance.
+     * @param entityManagerFactory the factory of the {@code entityManager}.
+     * @param entityManager        the entity manager which persisted the instance.
+     * @param entityInstance       the persisted instance.
      * @implSpec This class does nothing; a subclass overrides it to assert what its mapping
      *         does with a new row.
      */
-    protected void randomizedEntityInstancePersisted__(final EntityManager entityManager,
-                                                       final T entityInstance) {
+    protected void randomizedEntityInstancePersisted__(
+            final EntityManagerFactory entityManagerFactory, final EntityManager entityManager,
+            final T entityInstance) {
         // empty
     }
 
@@ -288,15 +291,15 @@ public abstract class _Entity_PersistenceTest<T, U>
 
     /**
      * Selects a random instance of {@link #targetClass} and hands it to
-     * {@link #randomEntityInstanceSelected__(EntityManager, Object)}.
+     * {@link #randomEntityInstanceSelected__(EntityManagerFactory, EntityManager, Object)}.
      *
      * @implNote The selection and the callback both run inside a transaction which is
      *         rolled back, so the instance handed over is still managed, and nothing the callback
      *         does survives the test.
      * @implSpec Selecting from an empty table is not a failure: the schema is generated
      *         empty, and every test rolls back, so the query is what is tested, and
-     *         {@link #randomEntityInstanceSelected__(EntityManager, Object)} is invoked only when
-     *         a row is there.
+     *         {@link #randomEntityInstanceSelected__(EntityManagerFactory, EntityManager, Object)}
+     *         is invoked only when a row is there.
      */
     @DisplayName("a random instance is selected")
     @Test
@@ -306,7 +309,7 @@ public abstract class _Entity_PersistenceTest<T, U>
                         emf,
                         targetClass,
                         (em, v) -> {
-                            randomEntityInstanceSelected__(em, v);
+                            randomEntityInstanceSelected__(emf, em, v);
                             return null;
                         }
                 )
@@ -317,12 +320,14 @@ public abstract class _Entity_PersistenceTest<T, U>
      * Called with the instance {@link #selectRandomEntityInstance__()} selected, while it is still
      * managed.
      *
-     * @param entityManager  the entity manager which selected the instance.
-     * @param entityInstance the randomly selected instance.
+     * @param entityManagerFactory the factory of the {@code entityManager}.
+     * @param entityManager        the entity manager which selected the instance.
+     * @param entityInstance       the randomly selected instance.
      * @implSpec This class does nothing; a subclass overrides it to assert what its entity
      *         promises of a row.
      */
-    protected void randomEntityInstanceSelected__(final EntityManager entityManager,
+    protected void randomEntityInstanceSelected__(final EntityManagerFactory entityManagerFactory,
+                                                  final EntityManager entityManager,
                                                   final T entityInstance) {
         // empty
     }

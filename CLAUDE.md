@@ -95,8 +95,9 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   validation. The bases hold no entity manager, one entity manager per call. `___Persistence_TestUtils` holds only what the library has no
   single call for, `selectRandomEntityInstance(EntityManagerFactory, Class, BiFunction)`. `_Entity_PersistenceIT` runs
   `persistRandomizedEntityInstance__` and `selectRandomEntityInstance__`, and hands the instance to the hooks
-  `randomizedEntityInstancePersisted__` and `randomEntityInstanceSelected__(EntityManager, T)`; an entity which is not
-  persisted overrides `persistRandomizedEntityInstance__` with a `@Disabled` one. `___Validation_TestUtils` holds the
+  `randomizedEntityInstancePersisted__` and `randomEntityInstanceSelected__(EntityManagerFactory, EntityManager, T)`,
+  as `_Entity_PersistenceTest` does and as in `oracle-sample-schemas-persistence`; an entity which is not persisted
+  overrides `persistRandomizedEntityInstance__` with a `@Disabled` one. `___Validation_TestUtils` holds the
   validator factory, and `selectRandomEntityInstance__` validates the row it loads with it, since Jakarta Persistence
   validates only on persist, update and remove. `_Entity_PersistenceIT.attributePaths` resolves every `ATTRIBUTE_PATH_*`
   constant of an entity through the metamodel. `_Entity_Test`, `_Entity_PersistenceTest` and `_Entity_PersistenceIT`

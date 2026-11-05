@@ -24,6 +24,7 @@ import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -56,8 +57,9 @@ class Address_PersistenceIT
      *         byte.
      */
     @Override
-    protected void randomizedEntityInstancePersisted__(final EntityManager entityManager,
-                                                       final Address entityInstance) {
+    protected void randomizedEntityInstancePersisted__(
+            final EntityManagerFactory entityManagerFactory, final EntityManager entityManager,
+            final Address entityInstance) {
         assertThat(entityInstance.getSpatialLocation()).isNotNull();
         assertThat((byte[]) storedSpatialLocation(entityManager, entityInstance))
                 .as("the SpatialLocation stored for %s", entityInstance.getSpatialLocation())

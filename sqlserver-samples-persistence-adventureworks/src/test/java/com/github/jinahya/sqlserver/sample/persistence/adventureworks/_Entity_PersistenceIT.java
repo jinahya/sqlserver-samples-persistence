@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
  */
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.criteria.Path;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -137,7 +138,8 @@ public abstract class _Entity_PersistenceIT<T, U> {
 
     /**
      * Persists a new, randomized instance of the entity, through its persister, flushes it, and
-     * hands it to {@link #randomizedEntityInstancePersisted__(EntityManager, Object)}.
+     * hands it to
+     * {@link #randomizedEntityInstancePersisted__(EntityManagerFactory, EntityManager, Object)}.
      * <p>
      * The randomizer, {@code <Entity>_Randomizer}, and the persister, {@code <Entity>_Persister},
      * are found by name, beside the entity. An entity which is not persisted -- a view, or a table
@@ -159,7 +161,7 @@ public abstract class _Entity_PersistenceIT<T, U> {
                     assertThat(emf.getPersistenceUnitUtil().getIdentifier(persisted))
                             .as("the identifier of the persisted %s", persisted)
                             .isNotNull();
-                    randomizedEntityInstancePersisted__(em, persisted);
+                    randomizedEntityInstancePersisted__(emf, em, persisted);
                     return null;
                 })
         ));
@@ -169,13 +171,15 @@ public abstract class _Entity_PersistenceIT<T, U> {
      * Called with the instance {@link #persistRandomizedEntityInstance__()} persisted and flushed,
      * while it is still managed.
      *
-     * @param entityManager  the entity manager which persisted the instance.
-     * @param entityInstance the persisted instance.
+     * @param entityManagerFactory the factory of the {@code entityManager}.
+     * @param entityManager        the entity manager which persisted the instance.
+     * @param entityInstance       the persisted instance.
      * @implSpec This class does nothing; a subclass overrides it to assert what its table
      *         does with a new row.
      */
-    protected void randomizedEntityInstancePersisted__(final EntityManager entityManager,
-                                                       final T entityInstance) {
+    protected void randomizedEntityInstancePersisted__(
+            final EntityManagerFactory entityManagerFactory, final EntityManager entityManager,
+            final T entityInstance) {
         // empty
     }
 
@@ -184,7 +188,7 @@ public abstract class _Entity_PersistenceIT<T, U> {
     /**
      * Selects a random instance of the entity, from the installed rows, validates it against the
      * constraints of the mapping, and hands it to
-     * {@link #randomEntityInstanceSelected__(EntityManager, Object)}.
+     * {@link #randomEntityInstanceSelected__(EntityManagerFactory, EntityManager, Object)}.
      * <p>
      * The validation is here, since Jakarta Persistence validates an entity only when it persists,
      * updates, or removes it, never when it loads it.
@@ -206,7 +210,7 @@ public abstract class _Entity_PersistenceIT<T, U> {
                         entityClass,
                         (em, v) -> {
                             ___Validation_TestUtils.assertValid(v);
-                            randomEntityInstanceSelected__(em, v);
+                            randomEntityInstanceSelected__(emf, em, v);
                             return v;
                         }
                 )
@@ -219,12 +223,14 @@ public abstract class _Entity_PersistenceIT<T, U> {
      * Called with the instance {@link #selectRandomEntityInstance__()} selected, while it is still
      * managed.
      *
-     * @param entityManager  the entity manager which selected the instance.
-     * @param entityInstance the randomly selected instance.
+     * @param entityManagerFactory the factory of the {@code entityManager}.
+     * @param entityManager        the entity manager which selected the instance.
+     * @param entityInstance       the randomly selected instance.
      * @implSpec This class does nothing; a subclass overrides it to assert what its entity
      *         promises of an installed row.
      */
-    protected void randomEntityInstanceSelected__(final EntityManager entityManager,
+    protected void randomEntityInstanceSelected__(final EntityManagerFactory entityManagerFactory,
+                                                  final EntityManager entityManager,
                                                   final T entityInstance) {
         // empty
     }
