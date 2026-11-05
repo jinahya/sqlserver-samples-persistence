@@ -35,7 +35,7 @@ class ProductProductPhoto_Randomizer
 
     ProductProductPhoto_Randomizer() {
         super(ProductProductPhoto.class, List.of(
-                ProductProductPhoto.ATTRIBUTE_NAME_ID,
+                ProductProductPhoto.ATTRIBUTE_NAME_ID_,
                 ProductProductPhoto.ATTRIBUTE_NAME_PRODUCT,
                 ProductProductPhoto.ATTRIBUTE_NAME_PRODUCT_PHOTO,
                 ProductProductPhoto.ATTRIBUTE_NAME_MODIFIED_DATE

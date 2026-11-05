@@ -25,11 +25,11 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
     type (a link table): `ProductModelIllustration`, `ProductModelProductDescriptionCulture`, `ProductProductPhoto`,
     `BusinessEntityContact`, `CountryRegionCurrency`, `PersonCreditCard`, `SalesOrderHeaderSalesReason`. The id class
     is an `@Embeddable` which maps the key columns; the mapped superclass extends `-common`'s
-    `MappedWithEmbeddedId<<Entity>Id>`, which holds `@Valid @NotNull @EmbeddedId id`, `null` until persist creates
-    it, a `protected getId()` and no setter, `ATTRIBUTE_NAME_ID` and a `toString` of the id, and itself holds an
+    `MappedWithEmbeddedId<<Entity>Id>`, which holds `@Valid @NotNull @EmbeddedId id_`, `null` until persist creates
+    it, a `protected getId_()` and no setter, `ATTRIBUTE_NAME_ID_` and a `toString` of the id, and itself holds an
     `ATTRIBUTE_PATH_ID_<COLUMN>` per key column, its own `equals` and `hashCode`, and a `toString` of its other
     attributes. The entity puts `@MapsId(<Entity>Id.ATTRIBUTE_NAME_<COLUMN>)` on each association of the key, which
-    writes its column, and has no setter for them. Its `<Entity>_Test` gives EqualsVerifier two ids for the `id`
+    writes its column, and has no setter for them. Its `<Entity>_Test` gives EqualsVerifier two ids for the `id_`
     field, whose type is a type variable.
   - `@IdClass` otherwise: a key with a value of the row's own (a date, a number, an `IDENTITY` column), a view, and
     `BusinessEntityAddress`, `ProductInventory` (an `Integer` key column over `Location`'s `Short` id), `ProductVendor`

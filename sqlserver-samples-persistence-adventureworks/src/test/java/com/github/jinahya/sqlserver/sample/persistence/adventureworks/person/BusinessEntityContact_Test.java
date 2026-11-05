@@ -53,7 +53,7 @@ class BusinessEntityContact_Test
      * {@inheritDoc}
      *
      * @implNote {@link BusinessEntityContact#equals(Object) equals} compares only the {@code
-     *         @EmbeddedId} {@code id}, which persist assigns, because every other attribute is
+     *         @EmbeddedId} {@code id_}, which persist assigns, because every other attribute is
      *         mutable state; {@link BusinessEntityContact#hashCode() hashCode} is the same for
      *         every instance, so that it does not change when persist assigns the key. The key is a
      *         type variable of {@link MappedWithEmbeddedId}, which EqualsVerifier fills with an
@@ -62,7 +62,7 @@ class BusinessEntityContact_Test
     @Override
     public SingleTypeEqualsVerifierApi<BusinessEntityContact> equals_verifier_() {
         return super.equals_verifier_()
-                .withPrefabValuesForField(BusinessEntityContact.ATTRIBUTE_NAME_ID,
+                .withPrefabValuesForField(BusinessEntityContact.ATTRIBUTE_NAME_ID_,
                         id(1, 1, 1),
                         id(2, 2, 2))
                 .suppress(Warning.SURROGATE_KEY, Warning.STRICT_HASHCODE);

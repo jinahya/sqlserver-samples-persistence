@@ -36,7 +36,7 @@ class ProductModelIllustration_Randomizer
 
     ProductModelIllustration_Randomizer() {
         super(ProductModelIllustration.class, List.of(
-                ProductModelIllustration.ATTRIBUTE_NAME_ID,
+                ProductModelIllustration.ATTRIBUTE_NAME_ID_,
                 ProductModelIllustration.ATTRIBUTE_NAME_PRODUCT_MODEL,
                 ProductModelIllustration.ATTRIBUTE_NAME_ILLUSTRATION,
                 ProductModelIllustration.ATTRIBUTE_NAME_MODIFIED_DATE

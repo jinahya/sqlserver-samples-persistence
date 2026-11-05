@@ -51,7 +51,7 @@ class CountryRegionCurrency_Test
      * {@inheritDoc}
      *
      * @implNote {@link CountryRegionCurrency#equals(Object) equals} compares only the {@code
-     *         @EmbeddedId} {@code id}, which persist assigns, because every other attribute is
+     *         @EmbeddedId} {@code id_}, which persist assigns, because every other attribute is
      *         mutable state; {@link CountryRegionCurrency#hashCode() hashCode} is the same for
      *         every instance, so that it does not change when persist assigns the key. The key is a
      *         type variable of {@link MappedWithEmbeddedId}, which EqualsVerifier fills with an
@@ -60,7 +60,7 @@ class CountryRegionCurrency_Test
     @Override
     public SingleTypeEqualsVerifierApi<CountryRegionCurrency> equals_verifier_() {
         return super.equals_verifier_()
-                .withPrefabValuesForField(CountryRegionCurrency.ATTRIBUTE_NAME_ID,
+                .withPrefabValuesForField(CountryRegionCurrency.ATTRIBUTE_NAME_ID_,
                         id("A", "A"),
                         id("B", "B"))
                 .suppress(Warning.SURROGATE_KEY, Warning.STRICT_HASHCODE);

@@ -36,7 +36,7 @@ class ProductModelProductDescriptionCulture_Randomizer
 
     ProductModelProductDescriptionCulture_Randomizer() {
         super(ProductModelProductDescriptionCulture.class, List.of(
-                ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_ID,
+                ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_ID_,
                 ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_PRODUCT_MODEL,
                 ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_PRODUCT_DESCRIPTION,
                 ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_CULTURE,

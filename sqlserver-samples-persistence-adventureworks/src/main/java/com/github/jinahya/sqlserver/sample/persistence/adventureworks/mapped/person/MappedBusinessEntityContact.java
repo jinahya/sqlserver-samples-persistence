@@ -106,7 +106,7 @@ public abstract class MappedBusinessEntityContact
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_BUSINESS_ENTITY_ID = "id.businessEntityId";
+    public static final String ATTRIBUTE_PATH_ID_BUSINESS_ENTITY_ID = "id_.businessEntityId";
 
     // ------------------------------------------------------------------------------------ PersonID
 
@@ -120,7 +120,7 @@ public abstract class MappedBusinessEntityContact
      * into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value
      * is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_PERSON_ID = "id.personId";
+    public static final String ATTRIBUTE_PATH_ID_PERSON_ID = "id_.personId";
 
     // ------------------------------------------------------------------------------- ContactTypeID
 
@@ -134,7 +134,7 @@ public abstract class MappedBusinessEntityContact
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_CONTACT_TYPE_ID = "id.contactTypeId";
+    public static final String ATTRIBUTE_PATH_ID_CONTACT_TYPE_ID = "id_.contactTypeId";
 
     // ------------------------------------------------------------------------------------- rowguid
 
@@ -200,12 +200,12 @@ public abstract class MappedBusinessEntityContact
         if (!(obj instanceof MappedBusinessEntityContact that)) {
             return false;
         }
-        final var id = getId();
+        final var id = getId_();
         return id != null
                && id.getBusinessEntityId() != null
                && id.getPersonId() != null
                && id.getContactTypeId() != null
-               && id.equals(that.getId());
+               && id.equals(that.getId_());
     }
 
     /**

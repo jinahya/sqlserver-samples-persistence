@@ -102,7 +102,7 @@ public abstract class MappedProductModelProductDescriptionCulture
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_PRODUCT_MODEL_ID = "id.productModelId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_MODEL_ID = "id_.productModelId";
 
     // ------------------------------------------------------------------------ ProductDescriptionID
 
@@ -116,7 +116,7 @@ public abstract class MappedProductModelProductDescriptionCulture
      * -- a path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives.
      * The value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_PRODUCT_DESCRIPTION_ID = "id.productDescriptionId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_DESCRIPTION_ID = "id_.productDescriptionId";
 
     // ----------------------------------------------------------------------------------- CultureID
 
@@ -130,7 +130,7 @@ public abstract class MappedProductModelProductDescriptionCulture
      * into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value
      * is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_CULTURE_ID = "id.cultureId";
+    public static final String ATTRIBUTE_PATH_ID_CULTURE_ID = "id_.cultureId";
 
     /**
      * The length of the {@value #COLUMN_NAME_CULTURE_ID} column. The value is {@value}.
@@ -186,12 +186,12 @@ public abstract class MappedProductModelProductDescriptionCulture
         if (!(obj instanceof MappedProductModelProductDescriptionCulture that)) {
             return false;
         }
-        final var id = getId();
+        final var id = getId_();
         return id != null
                && id.getProductModelId() != null
                && id.getProductDescriptionId() != null
                && id.getCultureId() != null
-               && id.equals(that.getId());
+               && id.equals(that.getId_());
     }
 
     /**

@@ -98,7 +98,7 @@ public abstract class MappedPersonCreditCard
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_BUSINESS_ENTITY_ID = "id.businessEntityId";
+    public static final String ATTRIBUTE_PATH_ID_BUSINESS_ENTITY_ID = "id_.businessEntityId";
 
     // -------------------------------------------------------------------------------- CreditCardID
 
@@ -112,7 +112,7 @@ public abstract class MappedPersonCreditCard
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_CREDIT_CARD_ID = "id.creditCardId";
+    public static final String ATTRIBUTE_PATH_ID_CREDIT_CARD_ID = "id_.creditCardId";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
@@ -163,11 +163,11 @@ public abstract class MappedPersonCreditCard
         if (!(obj instanceof MappedPersonCreditCard that)) {
             return false;
         }
-        final var id = getId();
+        final var id = getId_();
         return id != null
                && id.getBusinessEntityId() != null
                && id.getCreditCardId() != null
-               && id.equals(that.getId());
+               && id.equals(that.getId_());
     }
 
     /**

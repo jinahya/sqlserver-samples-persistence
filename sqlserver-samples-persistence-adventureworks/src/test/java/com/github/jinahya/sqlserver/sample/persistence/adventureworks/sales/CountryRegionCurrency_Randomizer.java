@@ -36,7 +36,7 @@ class CountryRegionCurrency_Randomizer
 
     CountryRegionCurrency_Randomizer() {
         super(CountryRegionCurrency.class, List.of(
-                CountryRegionCurrency.ATTRIBUTE_NAME_ID,
+                CountryRegionCurrency.ATTRIBUTE_NAME_ID_,
                 CountryRegionCurrency.ATTRIBUTE_NAME_COUNTRY_REGION,
                 CountryRegionCurrency.ATTRIBUTE_NAME_CURRENCY,
                 CountryRegionCurrency.ATTRIBUTE_NAME_MODIFIED_DATE

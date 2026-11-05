@@ -98,7 +98,7 @@ public abstract class MappedSalesOrderHeaderSalesReason
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_SALES_ORDER_ID = "id.salesOrderId";
+    public static final String ATTRIBUTE_PATH_ID_SALES_ORDER_ID = "id_.salesOrderId";
 
     // ------------------------------------------------------------------------------- SalesReasonID
 
@@ -112,7 +112,7 @@ public abstract class MappedSalesOrderHeaderSalesReason
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_SALES_REASON_ID = "id.salesReasonId";
+    public static final String ATTRIBUTE_PATH_ID_SALES_REASON_ID = "id_.salesReasonId";
 
     // -------------------------------------------------------------------------------- ModifiedDate
 
@@ -163,11 +163,11 @@ public abstract class MappedSalesOrderHeaderSalesReason
         if (!(obj instanceof MappedSalesOrderHeaderSalesReason that)) {
             return false;
         }
-        final var id = getId();
+        final var id = getId_();
         return id != null
                && id.getSalesOrderId() != null
                && id.getSalesReasonId() != null
-               && id.equals(that.getId());
+               && id.equals(that.getId_());
     }
 
     /**

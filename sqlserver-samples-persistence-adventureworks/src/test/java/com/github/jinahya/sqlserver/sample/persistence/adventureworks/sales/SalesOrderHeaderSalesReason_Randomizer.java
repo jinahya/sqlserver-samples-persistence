@@ -36,7 +36,7 @@ class SalesOrderHeaderSalesReason_Randomizer
 
     SalesOrderHeaderSalesReason_Randomizer() {
         super(SalesOrderHeaderSalesReason.class, List.of(
-                SalesOrderHeaderSalesReason.ATTRIBUTE_NAME_ID,
+                SalesOrderHeaderSalesReason.ATTRIBUTE_NAME_ID_,
                 SalesOrderHeaderSalesReason.ATTRIBUTE_NAME_SALES_ORDER,
                 SalesOrderHeaderSalesReason.ATTRIBUTE_NAME_SALES_REASON,
                 SalesOrderHeaderSalesReason.ATTRIBUTE_NAME_MODIFIED_DATE

@@ -51,7 +51,7 @@ class ProductModelIllustration_Test
      * {@inheritDoc}
      *
      * @implNote {@link ProductModelIllustration#equals(Object) equals} compares only the {@code
-     *         @EmbeddedId} {@code id}, which persist assigns, because every other attribute is
+     *         @EmbeddedId} {@code id_}, which persist assigns, because every other attribute is
      *         mutable state; {@link ProductModelIllustration#hashCode() hashCode} is the same for
      *         every instance, so that it does not change when persist assigns the key. The key is a
      *         type variable of {@link MappedWithEmbeddedId}, which EqualsVerifier fills with an
@@ -60,7 +60,7 @@ class ProductModelIllustration_Test
     @Override
     public SingleTypeEqualsVerifierApi<ProductModelIllustration> equals_verifier_() {
         return super.equals_verifier_()
-                .withPrefabValuesForField(ProductModelIllustration.ATTRIBUTE_NAME_ID,
+                .withPrefabValuesForField(ProductModelIllustration.ATTRIBUTE_NAME_ID_,
                         id(1, 1),
                         id(2, 2))
                 .suppress(Warning.SURROGATE_KEY, Warning.STRICT_HASHCODE);

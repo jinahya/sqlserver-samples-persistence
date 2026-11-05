@@ -98,7 +98,7 @@ public abstract class MappedCountryRegionCurrency
      * a path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_COUNTRY_REGION_CODE = "id.countryRegionCode";
+    public static final String ATTRIBUTE_PATH_ID_COUNTRY_REGION_CODE = "id_.countryRegionCode";
 
     /**
      * The length of the {@value #COLUMN_NAME_COUNTRY_REGION_CODE} column. The value is {@value}.
@@ -117,7 +117,7 @@ public abstract class MappedCountryRegionCurrency
      * into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value
      * is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_CURRENCY_CODE = "id.currencyCode";
+    public static final String ATTRIBUTE_PATH_ID_CURRENCY_CODE = "id_.currencyCode";
 
     /**
      * The length of the {@value #COLUMN_NAME_CURRENCY_CODE} column. The value is {@value}.
@@ -173,11 +173,11 @@ public abstract class MappedCountryRegionCurrency
         if (!(obj instanceof MappedCountryRegionCurrency that)) {
             return false;
         }
-        final var id = getId();
+        final var id = getId_();
         return id != null
                && id.getCountryRegionCode() != null
                && id.getCurrencyCode() != null
-               && id.equals(that.getId());
+               && id.equals(that.getId_());
     }
 
     /**

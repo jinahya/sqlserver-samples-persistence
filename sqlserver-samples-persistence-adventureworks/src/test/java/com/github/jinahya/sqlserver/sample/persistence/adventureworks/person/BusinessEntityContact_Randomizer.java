@@ -36,7 +36,7 @@ class BusinessEntityContact_Randomizer
 
     BusinessEntityContact_Randomizer() {
         super(BusinessEntityContact.class, List.of(
-                BusinessEntityContact.ATTRIBUTE_NAME_ID,
+                BusinessEntityContact.ATTRIBUTE_NAME_ID_,
                 BusinessEntityContact.ATTRIBUTE_NAME_BUSINESS_ENTITY,
                 BusinessEntityContact.ATTRIBUTE_NAME_PERSON,
                 BusinessEntityContact.ATTRIBUTE_NAME_CONTACT_TYPE,

@@ -53,7 +53,7 @@ class ProductModelProductDescriptionCulture_Test
      * {@inheritDoc}
      *
      * @implNote {@link ProductModelProductDescriptionCulture#equals(Object) equals} compares only
-     *         the {@code @EmbeddedId} {@code id}, which persist assigns, because every other
+     *         the {@code @EmbeddedId} {@code id_}, which persist assigns, because every other
      *         attribute is mutable state; {@link ProductModelProductDescriptionCulture#hashCode()
      *         hashCode} is the same for every instance, so that it does not change when persist
      *         assigns the key. The key is a type variable of {@link MappedWithEmbeddedId}, which
@@ -63,7 +63,7 @@ class ProductModelProductDescriptionCulture_Test
     @Override
     public SingleTypeEqualsVerifierApi<ProductModelProductDescriptionCulture> equals_verifier_() {
         return super.equals_verifier_()
-                .withPrefabValuesForField(ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_ID,
+                .withPrefabValuesForField(ProductModelProductDescriptionCulture.ATTRIBUTE_NAME_ID_,
                         id(1, 1, "A"),
                         id(2, 2, "B"))
                 .suppress(Warning.SURROGATE_KEY, Warning.STRICT_HASHCODE);

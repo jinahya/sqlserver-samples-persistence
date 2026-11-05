@@ -50,7 +50,7 @@ class PersonCreditCard_Test
      * {@inheritDoc}
      *
      * @implNote {@link PersonCreditCard#equals(Object) equals} compares only the {@code
-     *         @EmbeddedId} {@code id}, which persist assigns, because every other attribute is
+     *         @EmbeddedId} {@code id_}, which persist assigns, because every other attribute is
      *         mutable state; {@link PersonCreditCard#hashCode() hashCode} is the same for every
      *         instance, so that it does not change when persist assigns the key. The key is a type
      *         variable of {@link MappedWithEmbeddedId}, which EqualsVerifier fills with an {@link
@@ -59,7 +59,7 @@ class PersonCreditCard_Test
     @Override
     public SingleTypeEqualsVerifierApi<PersonCreditCard> equals_verifier_() {
         return super.equals_verifier_()
-                .withPrefabValuesForField(PersonCreditCard.ATTRIBUTE_NAME_ID, id(1, 1), id(2, 2))
+                .withPrefabValuesForField(PersonCreditCard.ATTRIBUTE_NAME_ID_, id(1, 1), id(2, 2))
                 .suppress(Warning.SURROGATE_KEY, Warning.STRICT_HASHCODE);
     }
 }

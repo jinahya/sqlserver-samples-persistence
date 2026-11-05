@@ -103,7 +103,7 @@ public abstract class MappedProductProductPhoto
      * into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The value
      * is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_PRODUCT_ID = "id.productId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_ID = "id_.productId";
 
     // ------------------------------------------------------------------------------ ProductPhotoID
 
@@ -117,7 +117,7 @@ public abstract class MappedProductProductPhoto
      * path into the {@link EmbeddedId @EmbeddedId}, which is where the column actually lives. The
      * value is {@value}.
      */
-    public static final String ATTRIBUTE_PATH_ID_PRODUCT_PHOTO_ID = "id.productPhotoId";
+    public static final String ATTRIBUTE_PATH_ID_PRODUCT_PHOTO_ID = "id_.productPhotoId";
 
     // ------------------------------------------------------------------------------------- Primary
 
@@ -182,11 +182,11 @@ public abstract class MappedProductProductPhoto
         if (!(obj instanceof MappedProductProductPhoto that)) {
             return false;
         }
-        final var id = getId();
+        final var id = getId_();
         return id != null
                && id.getProductId() != null
                && id.getProductPhotoId() != null
-               && id.equals(that.getId());
+               && id.equals(that.getId_());
     }
 
     /**
