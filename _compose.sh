@@ -4,10 +4,11 @@
 # Ctrl-C, which tears the stack back down again. Both ends use `down -v`.
 #
 # One SQL Server, on localhost:1433, holds the three databases, AdventureWorks,
-# WideWorldImporters and FutonManufacturing. Its data directory is not mounted, so it lives in
-# the container's anonymous volume, which `down -v` removes. Every run therefore starts from an
-# empty data directory, and opt/sample-databases/load.sh restores the backups, runs the scripts
-# and creates the dmlonly login before the container reports healthy, which takes under a minute.
+# WideWorldImporters and FutonManufacturing. Its data directory, /var/opt/mssql, is not bound to
+# the host (its line in compose.yaml is commented out), so it lives in the container, which
+# `down -v` removes. Every run therefore starts from an empty data directory, and
+# opt/sample-databases/load.sh restores the backups, runs the scripts and creates the dmlonly
+# login before the container reports healthy, which takes under a minute.
 #
 set -eu
 

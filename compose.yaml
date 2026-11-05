@@ -11,8 +11,9 @@ services:
   # SQL Server is linux/amd64 only; on Apple silicon it runs under Rosetta (Docker Desktop: Use Rosetta for
   # x86_64/amd64 emulation).
   #
-  # The health check reports healthy only once every database is loaded, under a minute. /var/opt/mssql is not mounted,
-  # so it lives in the container's anonymous volume, which `down -v` removes, and every run loads the databases again.
+  # The health check reports healthy only once every database is loaded, under a minute. /var/opt/mssql, the data, the
+  # log and the secrets, is not mounted (its line below is commented out), and the image declares no volume for it, so
+  # it lives in the container, which `down` removes, and every run loads the databases again.
   sqlserver-samples:
     image: mcr.microsoft.com/mssql/server:2025-latest
     platform: linux/amd64
@@ -30,6 +31,10 @@ services:
     command: [ "/opt/mssql/bin/sqlservr" ]
     volumes:
       - ./opt/sample-databases:/opt/sample-databases:ro
+      # not bound: the databases live in the container, which `down` removes, so every run loads them afresh. Bound,
+      # load.sh finds its marker there and loads nothing on a later start; the directory must be writable by the
+      # image's mssql user (uid 10001).
+#      - ./var/opt/mssql:/var/opt/mssql
       - type: image
         source: jinahya/sql-server-samples:adventureworks-2025
         target: /sample-databases/adventureworks

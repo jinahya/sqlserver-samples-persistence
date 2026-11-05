@@ -26,7 +26,7 @@ name, `@Entity(name = "<Schema><Entity>")`: `SalesCustomer`, `WebsiteCustomer`, 
 ## The database
 
 ```shell
-$ ./compose.sh
+$ ./_compose.sh
 ```
 
 Brings up one SQL Server, the official `mcr.microsoft.com/mssql/server:2025-latest` image, in the container

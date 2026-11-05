@@ -1,5 +1,5 @@
 #!/bin/sh
-# Opens sqlcmd, as sa, in the container from ./compose.sh, on one of its databases: adventureworks, wideworldimporters
+# Opens sqlcmd, as sa, in the container from ./_compose.sh, on one of its databases: adventureworks, wideworldimporters
 # or futonmanufacturing. Further arguments go to sqlcmd, `-Q` say.
 case "${1:-}" in
     adventureworks) database=AdventureWorks ;;

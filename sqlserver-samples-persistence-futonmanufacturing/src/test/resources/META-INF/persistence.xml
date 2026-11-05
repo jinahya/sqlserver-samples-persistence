@@ -166,7 +166,7 @@
     <validation-mode>CALLBACK</validation-mode>
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-      <!-- the database from compose.yaml, as its DML-only login; see compose.sh -->
+      <!-- the database from compose.yaml, as its DML-only login; see _compose.sh -->
       <property name="jakarta.persistence.jdbc.url"
                 value="jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=FutonManufacturing"/>
       <property name="jakarta.persistence.jdbc.user" value="dmlonly"/>
