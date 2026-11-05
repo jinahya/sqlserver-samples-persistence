@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class UnitOfMeasure_PersistenceTest
-        extends _Entity_PersistenceTest<UnitOfMeasure> {
+        extends _Entity_PersistenceTest<UnitOfMeasure, Integer> {
 
     UnitOfMeasure_PersistenceTest() {
-        super(UnitOfMeasure.class);
+        super(UnitOfMeasure.class, Integer.class);
     }
 }

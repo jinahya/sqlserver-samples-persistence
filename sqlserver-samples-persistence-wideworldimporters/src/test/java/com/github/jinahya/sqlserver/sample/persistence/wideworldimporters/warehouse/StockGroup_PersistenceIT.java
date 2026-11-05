@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class StockGroup_PersistenceIT extends _Entity_PersistenceIT<StockGroup> {
+class StockGroup_PersistenceIT extends _Entity_PersistenceIT<StockGroup, Integer> {
 
     StockGroup_PersistenceIT() {
-        super(StockGroup.class);
+        super(StockGroup.class, Integer.class);
     }
 }

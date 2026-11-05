@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Shift} entity class.
  */
 class Shift_Test
-        extends _Entity_Test<Shift> {
+        extends _Entity_Test<Shift, Long> {
 
     Shift_Test() {
-        super(Shift.class);
+        super(Shift.class, Long.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * Verifies the mappings of {@link Vendor} against the schema generated into the in-memory database.
  */
 class Vendor_PersistenceTest
-        extends _Entity_PersistenceTest<Vendor> {
+        extends _Entity_PersistenceTest<Vendor, Integer> {
 
     Vendor_PersistenceTest() {
-        super(Vendor.class);
+        super(Vendor.class, Integer.class);
     }
 }

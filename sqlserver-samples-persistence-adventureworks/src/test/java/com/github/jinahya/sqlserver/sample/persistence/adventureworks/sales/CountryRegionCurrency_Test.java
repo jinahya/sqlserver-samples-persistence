@@ -30,7 +30,7 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link CountryRegionCurrency} entity class.
  */
 class CountryRegionCurrency_Test
-        extends _Entity_Test<CountryRegionCurrency> {
+        extends _Entity_Test<CountryRegionCurrency, CountryRegionCurrencyId> {
 
     private static CountryRegionCurrencyId id(final String countryRegionCode,
                                               final String currencyCode) {
@@ -42,7 +42,7 @@ class CountryRegionCurrency_Test
 
     // ---------------------------------------------------------------------------------------------
     CountryRegionCurrency_Test() {
-        super(CountryRegionCurrency.class);
+        super(CountryRegionCurrency.class, CountryRegionCurrencyId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

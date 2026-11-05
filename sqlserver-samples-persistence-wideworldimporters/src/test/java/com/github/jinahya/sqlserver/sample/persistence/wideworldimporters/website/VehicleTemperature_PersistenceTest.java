@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * in-memory database.
  */
 class VehicleTemperature_PersistenceTest
-        extends _Entity_PersistenceTest<VehicleTemperature> {
+        extends _Entity_PersistenceTest<VehicleTemperature, Long> {
 
     VehicleTemperature_PersistenceTest() {
-        super(VehicleTemperature.class);
+        super(VehicleTemperature.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

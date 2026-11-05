@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
 
-class ReturnReason_PersistenceIT extends _Entity_PersistenceIT<ReturnReason> {
+class ReturnReason_PersistenceIT extends _Entity_PersistenceIT<ReturnReason, Integer> {
 
     ReturnReason_PersistenceIT() {
-        super(ReturnReason.class);
+        super(ReturnReason.class, Integer.class);
     }
 }

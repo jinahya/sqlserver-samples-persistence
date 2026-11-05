@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class BuyingGroup_PersistenceTest
-        extends _Entity_PersistenceTest<BuyingGroup> {
+        extends _Entity_PersistenceTest<BuyingGroup, Integer> {
 
     BuyingGroup_PersistenceTest() {
-        super(BuyingGroup.class);
+        super(BuyingGroup.class, Integer.class);
     }
 }

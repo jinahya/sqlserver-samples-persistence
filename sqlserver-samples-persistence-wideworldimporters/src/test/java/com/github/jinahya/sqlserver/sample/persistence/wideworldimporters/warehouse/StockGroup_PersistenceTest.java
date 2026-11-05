@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class StockGroup_PersistenceTest
-        extends _Entity_PersistenceTest<StockGroup> {
+        extends _Entity_PersistenceTest<StockGroup, Integer> {
 
     StockGroup_PersistenceTest() {
-        super(StockGroup.class);
+        super(StockGroup.class, Integer.class);
     }
 }

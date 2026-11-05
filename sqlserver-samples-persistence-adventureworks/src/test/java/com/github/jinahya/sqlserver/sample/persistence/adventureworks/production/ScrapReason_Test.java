@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ScrapReason} entity class.
  */
 class ScrapReason_Test
-        extends _Entity_Test<ScrapReason> {
+        extends _Entity_Test<ScrapReason, Long> {
 
     ScrapReason_Test() {
-        super(ScrapReason.class);
+        super(ScrapReason.class, Long.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

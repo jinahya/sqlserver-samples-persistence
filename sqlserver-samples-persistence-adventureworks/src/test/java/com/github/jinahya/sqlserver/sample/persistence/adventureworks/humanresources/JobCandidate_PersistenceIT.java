@@ -32,10 +32,10 @@ import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___
 import static org.assertj.core.api.Assertions.assertThat;
 
 class JobCandidate_PersistenceIT
-        extends _Entity_PersistenceIT<JobCandidate> {
+        extends _Entity_PersistenceIT<JobCandidate, Long> {
 
     JobCandidate_PersistenceIT() {
-        super(JobCandidate.class);
+        super(JobCandidate.class, Long.class);
     }
 
     /**

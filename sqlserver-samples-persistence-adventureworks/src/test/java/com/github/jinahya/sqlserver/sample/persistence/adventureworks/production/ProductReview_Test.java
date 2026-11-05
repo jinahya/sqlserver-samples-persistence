@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ProductReview} entity class.
  */
 class ProductReview_Test
-        extends _Entity_Test<ProductReview> {
+        extends _Entity_Test<ProductReview, Integer> {
 
     ProductReview_Test() {
-        super(ProductReview.class);
+        super(ProductReview.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

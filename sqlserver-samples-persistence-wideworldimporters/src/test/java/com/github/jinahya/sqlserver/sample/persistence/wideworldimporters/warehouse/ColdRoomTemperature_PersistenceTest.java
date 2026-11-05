@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * in-memory database.
  */
 class ColdRoomTemperature_PersistenceTest
-        extends _Entity_PersistenceTest<ColdRoomTemperature> {
+        extends _Entity_PersistenceTest<ColdRoomTemperature, Long> {
 
     ColdRoomTemperature_PersistenceTest() {
-        super(ColdRoomTemperature.class);
+        super(ColdRoomTemperature.class, Long.class);
     }
 }

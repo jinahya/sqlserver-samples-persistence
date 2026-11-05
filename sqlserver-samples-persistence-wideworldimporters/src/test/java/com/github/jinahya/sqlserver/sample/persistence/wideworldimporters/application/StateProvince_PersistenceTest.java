@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class StateProvince_PersistenceTest
-        extends _Entity_PersistenceTest<StateProvince> {
+        extends _Entity_PersistenceTest<StateProvince, Integer> {
 
     StateProvince_PersistenceTest() {
-        super(StateProvince.class);
+        super(StateProvince.class, Integer.class);
     }
 }

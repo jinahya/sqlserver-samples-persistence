@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * in-memory database.
  */
 class WorkCenterCapacityView_PersistenceTest
-        extends _Entity_PersistenceTest<WorkCenterCapacityView> {
+        extends _Entity_PersistenceTest<WorkCenterCapacityView, String> {
 
     WorkCenterCapacityView_PersistenceTest() {
-        super(WorkCenterCapacityView.class);
+        super(WorkCenterCapacityView.class, String.class);
     }
 
     // ---------------------------------------------------------------------------------------------

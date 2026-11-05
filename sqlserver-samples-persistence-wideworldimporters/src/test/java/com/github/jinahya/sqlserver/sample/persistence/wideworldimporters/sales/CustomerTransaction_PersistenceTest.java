@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * in-memory database.
  */
 class CustomerTransaction_PersistenceTest
-        extends _Entity_PersistenceTest<CustomerTransaction> {
+        extends _Entity_PersistenceTest<CustomerTransaction, Integer> {
 
     CustomerTransaction_PersistenceTest() {
-        super(CustomerTransaction.class);
+        super(CustomerTransaction.class, Integer.class);
     }
 }

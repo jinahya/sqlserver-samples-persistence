@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * the in-memory database.
  */
 class StateProvinceCountryRegionView_PersistenceTest
-        extends _Entity_PersistenceTest<StateProvinceCountryRegionView> {
+        extends _Entity_PersistenceTest<StateProvinceCountryRegionView, Integer> {
 
     StateProvinceCountryRegionView_PersistenceTest() {
-        super(StateProvinceCountryRegionView.class);
+        super(StateProvinceCountryRegionView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

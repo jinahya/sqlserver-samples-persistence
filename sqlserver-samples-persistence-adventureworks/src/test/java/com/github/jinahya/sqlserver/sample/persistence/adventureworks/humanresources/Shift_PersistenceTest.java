@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * Verifies the mappings of {@link Shift} against the schema generated into the in-memory database.
  */
 class Shift_PersistenceTest
-        extends _Entity_PersistenceTest<Shift> {
+        extends _Entity_PersistenceTest<Shift, Long> {
 
     Shift_PersistenceTest() {
-        super(Shift.class);
+        super(Shift.class, Long.class);
     }
 }

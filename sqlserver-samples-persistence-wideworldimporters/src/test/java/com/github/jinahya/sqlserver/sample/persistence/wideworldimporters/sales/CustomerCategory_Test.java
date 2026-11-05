@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link CustomerCategory} entity class.
  */
 class CustomerCategory_Test
-        extends _Entity_Test<CustomerCategory> {
+        extends _Entity_Test<CustomerCategory, Integer> {
 
     CustomerCategory_Test() {
-        super(CustomerCategory.class);
+        super(CustomerCategory.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

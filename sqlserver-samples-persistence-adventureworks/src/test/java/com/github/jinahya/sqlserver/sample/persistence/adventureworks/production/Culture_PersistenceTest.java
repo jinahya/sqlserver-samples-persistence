@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class Culture_PersistenceTest
-        extends _Entity_PersistenceTest<Culture> {
+        extends _Entity_PersistenceTest<Culture, String> {
 
     Culture_PersistenceTest() {
-        super(Culture.class);
+        super(Culture.class, String.class);
     }
 }

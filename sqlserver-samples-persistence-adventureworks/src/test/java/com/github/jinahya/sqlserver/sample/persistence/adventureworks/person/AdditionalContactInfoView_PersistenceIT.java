@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class AdditionalContactInfoView_PersistenceIT
-        extends _Entity_PersistenceIT<AdditionalContactInfoView> {
+        extends _Entity_PersistenceIT<AdditionalContactInfoView, Integer> {
 
     AdditionalContactInfoView_PersistenceIT() {
-        super(AdditionalContactInfoView.class);
+        super(AdditionalContactInfoView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

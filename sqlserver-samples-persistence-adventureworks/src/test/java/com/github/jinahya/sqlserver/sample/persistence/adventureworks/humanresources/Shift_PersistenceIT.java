@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class Shift_PersistenceIT
-        extends _Entity_PersistenceIT<Shift> {
+        extends _Entity_PersistenceIT<Shift, Long> {
 
     Shift_PersistenceIT() {
-        super(Shift.class);
+        super(Shift.class, Long.class);
     }
 }

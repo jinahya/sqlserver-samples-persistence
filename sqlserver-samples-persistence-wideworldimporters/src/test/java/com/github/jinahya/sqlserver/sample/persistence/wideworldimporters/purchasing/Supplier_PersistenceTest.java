@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class Supplier_PersistenceTest
-        extends _Entity_PersistenceTest<Supplier> {
+        extends _Entity_PersistenceTest<Supplier, Integer> {
 
     Supplier_PersistenceTest() {
-        super(Supplier.class);
+        super(Supplier.class, Integer.class);
     }
 }

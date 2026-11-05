@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class ProductModel_PersistenceTest
-        extends _Entity_PersistenceTest<ProductModel> {
+        extends _Entity_PersistenceTest<ProductModel, Integer> {
 
     ProductModel_PersistenceTest() {
-        super(ProductModel.class);
+        super(ProductModel.class, Integer.class);
     }
 }

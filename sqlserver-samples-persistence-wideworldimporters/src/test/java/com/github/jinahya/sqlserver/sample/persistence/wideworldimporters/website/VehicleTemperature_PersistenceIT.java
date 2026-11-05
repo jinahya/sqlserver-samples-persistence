@@ -24,10 +24,10 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class VehicleTemperature_PersistenceIT extends _Entity_PersistenceIT<VehicleTemperature> {
+class VehicleTemperature_PersistenceIT extends _Entity_PersistenceIT<VehicleTemperature, Long> {
 
     VehicleTemperature_PersistenceIT() {
-        super(VehicleTemperature.class);
+        super(VehicleTemperature.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

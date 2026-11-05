@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * Verifies the mappings of {@link Person} against the schema generated into the in-memory database.
  */
 class Person_PersistenceTest
-        extends _Entity_PersistenceTest<Person> {
+        extends _Entity_PersistenceTest<Person, Integer> {
 
     Person_PersistenceTest() {
-        super(Person.class);
+        super(Person.class, Integer.class);
     }
 }

@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class Promotion_PersistenceTest
-        extends _Entity_PersistenceTest<Promotion> {
+        extends _Entity_PersistenceTest<Promotion, Integer> {
 
     Promotion_PersistenceTest() {
-        super(Promotion.class);
+        super(Promotion.class, Integer.class);
     }
 }

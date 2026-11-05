@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class Location_PersistenceIT
-        extends _Entity_PersistenceIT<Location> {
+        extends _Entity_PersistenceIT<Location, Long> {
 
     Location_PersistenceIT() {
-        super(Location.class);
+        super(Location.class, Long.class);
     }
 }

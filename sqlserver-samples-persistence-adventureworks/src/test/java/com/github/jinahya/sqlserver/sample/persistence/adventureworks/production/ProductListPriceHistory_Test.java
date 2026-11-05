@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductListPriceHistoryId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ProductListPriceHistory} entity class.
  */
 class ProductListPriceHistory_Test
-        extends _Entity_Test<ProductListPriceHistory> {
+        extends _Entity_Test<ProductListPriceHistory, ProductListPriceHistoryId> {
 
     ProductListPriceHistory_Test() {
-        super(ProductListPriceHistory.class);
+        super(ProductListPriceHistory.class, ProductListPriceHistoryId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

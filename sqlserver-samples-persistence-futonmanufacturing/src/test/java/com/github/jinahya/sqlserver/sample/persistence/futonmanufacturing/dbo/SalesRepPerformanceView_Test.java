@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link SalesRepPerformanceView} entity class.
  */
 class SalesRepPerformanceView_Test
-        extends _Entity_Test<SalesRepPerformanceView> {
+        extends _Entity_Test<SalesRepPerformanceView, String> {
 
     SalesRepPerformanceView_Test() {
-        super(SalesRepPerformanceView.class);
+        super(SalesRepPerformanceView.class, String.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

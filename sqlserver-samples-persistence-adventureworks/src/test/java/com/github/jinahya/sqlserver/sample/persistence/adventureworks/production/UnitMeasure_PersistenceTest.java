@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class UnitMeasure_PersistenceTest
-        extends _Entity_PersistenceTest<UnitMeasure> {
+        extends _Entity_PersistenceTest<UnitMeasure, String> {
 
     UnitMeasure_PersistenceTest() {
-        super(UnitMeasure.class);
+        super(UnitMeasure.class, String.class);
     }
 }

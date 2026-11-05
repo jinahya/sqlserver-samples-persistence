@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * database.
  */
 class AwBuildVersion_PersistenceTest
-        extends _Entity_PersistenceTest<AwBuildVersion> {
+        extends _Entity_PersistenceTest<AwBuildVersion, Long> {
 
     AwBuildVersion_PersistenceTest() {
-        super(AwBuildVersion.class);
+        super(AwBuildVersion.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

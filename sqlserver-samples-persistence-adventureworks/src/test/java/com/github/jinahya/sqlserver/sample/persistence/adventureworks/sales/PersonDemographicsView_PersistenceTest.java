@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * in-memory database.
  */
 class PersonDemographicsView_PersistenceTest
-        extends _Entity_PersistenceTest<PersonDemographicsView> {
+        extends _Entity_PersistenceTest<PersonDemographicsView, Integer> {
 
     PersonDemographicsView_PersistenceTest() {
-        super(PersonDemographicsView.class);
+        super(PersonDemographicsView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

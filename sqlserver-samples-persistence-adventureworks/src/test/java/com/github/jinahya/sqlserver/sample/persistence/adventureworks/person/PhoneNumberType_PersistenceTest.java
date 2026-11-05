@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class PhoneNumberType_PersistenceTest
-        extends _Entity_PersistenceTest<PhoneNumberType> {
+        extends _Entity_PersistenceTest<PhoneNumberType, Integer> {
 
     PhoneNumberType_PersistenceTest() {
-        super(PhoneNumberType.class);
+        super(PhoneNumberType.class, Integer.class);
     }
 }

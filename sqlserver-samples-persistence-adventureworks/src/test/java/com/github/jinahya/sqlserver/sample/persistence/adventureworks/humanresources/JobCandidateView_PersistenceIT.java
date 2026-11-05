@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class JobCandidateView_PersistenceIT
-        extends _Entity_PersistenceIT<JobCandidateView> {
+        extends _Entity_PersistenceIT<JobCandidateView, Long> {
 
     JobCandidateView_PersistenceIT() {
-        super(JobCandidateView.class);
+        super(JobCandidateView.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

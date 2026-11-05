@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class StateProvince_PersistenceIT extends _Entity_PersistenceIT<StateProvince> {
+class StateProvince_PersistenceIT extends _Entity_PersistenceIT<StateProvince, Integer> {
 
     StateProvince_PersistenceIT() {
-        super(StateProvince.class);
+        super(StateProvince.class, Integer.class);
     }
 }

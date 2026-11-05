@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class Illustration_PersistenceIT
-        extends _Entity_PersistenceIT<Illustration> {
+        extends _Entity_PersistenceIT<Illustration, Integer> {
 
     Illustration_PersistenceIT() {
-        super(Illustration.class);
+        super(Illustration.class, Integer.class);
     }
 }

@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.PurchaseOrderDetailId;
 
 /**
  * Verifies the mappings of {@link PurchaseOrderDetail} against the schema generated into the
  * in-memory database.
  */
 class PurchaseOrderDetail_PersistenceTest
-        extends _Entity_PersistenceTest<PurchaseOrderDetail> {
+        extends _Entity_PersistenceTest<PurchaseOrderDetail, PurchaseOrderDetailId> {
 
     PurchaseOrderDetail_PersistenceTest() {
-        super(PurchaseOrderDetail.class);
+        super(PurchaseOrderDetail.class, PurchaseOrderDetailId.class);
     }
 }

@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * in-memory database.
  */
 class PurchaseOrderLine_PersistenceTest
-        extends _Entity_PersistenceTest<PurchaseOrderLine> {
+        extends _Entity_PersistenceTest<PurchaseOrderLine, Integer> {
 
     PurchaseOrderLine_PersistenceTest() {
-        super(PurchaseOrderLine.class);
+        super(PurchaseOrderLine.class, Integer.class);
     }
 }

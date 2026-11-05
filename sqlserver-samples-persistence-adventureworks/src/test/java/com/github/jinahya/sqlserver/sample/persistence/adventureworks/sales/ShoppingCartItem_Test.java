@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ShoppingCartItem} entity class.
  */
 class ShoppingCartItem_Test
-        extends _Entity_Test<ShoppingCartItem> {
+        extends _Entity_Test<ShoppingCartItem, Integer> {
 
     ShoppingCartItem_Test() {
-        super(ShoppingCartItem.class);
+        super(ShoppingCartItem.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

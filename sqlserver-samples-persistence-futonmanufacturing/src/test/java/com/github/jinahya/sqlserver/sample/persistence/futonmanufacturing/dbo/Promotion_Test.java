@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Promotion} entity class.
  */
 class Promotion_Test
-        extends _Entity_Test<Promotion> {
+        extends _Entity_Test<Promotion, Integer> {
 
     Promotion_Test() {
-        super(Promotion.class);
+        super(Promotion.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

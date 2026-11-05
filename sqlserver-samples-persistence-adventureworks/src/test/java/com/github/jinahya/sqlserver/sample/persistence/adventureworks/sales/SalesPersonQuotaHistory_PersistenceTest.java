@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesPersonQuotaHistoryId;
 
 /**
  * Verifies the mappings of {@link SalesPersonQuotaHistory} against the schema generated into the
  * in-memory database.
  */
 class SalesPersonQuotaHistory_PersistenceTest
-        extends _Entity_PersistenceTest<SalesPersonQuotaHistory> {
+        extends _Entity_PersistenceTest<SalesPersonQuotaHistory, SalesPersonQuotaHistoryId> {
 
     SalesPersonQuotaHistory_PersistenceTest() {
-        super(SalesPersonQuotaHistory.class);
+        super(SalesPersonQuotaHistory.class, SalesPersonQuotaHistoryId.class);
     }
 }

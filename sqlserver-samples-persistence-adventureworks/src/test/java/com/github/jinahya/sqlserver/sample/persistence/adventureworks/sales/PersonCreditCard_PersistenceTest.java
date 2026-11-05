@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.PersonCreditCardId;
 
 /**
  * Verifies the mappings of {@link PersonCreditCard} against the schema generated into the in-memory
  * database.
  */
 class PersonCreditCard_PersistenceTest
-        extends _Entity_PersistenceTest<PersonCreditCard> {
+        extends _Entity_PersistenceTest<PersonCreditCard, PersonCreditCardId> {
 
     PersonCreditCard_PersistenceTest() {
-        super(PersonCreditCard.class);
+        super(PersonCreditCard.class, PersonCreditCardId.class);
     }
 }

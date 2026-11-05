@@ -35,10 +35,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
 class Employee_PersistenceIT
-        extends _Entity_PersistenceIT<Employee> {
+        extends _Entity_PersistenceIT<Employee, Integer> {
 
     Employee_PersistenceIT() {
-        super(Employee.class);
+        super(Employee.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

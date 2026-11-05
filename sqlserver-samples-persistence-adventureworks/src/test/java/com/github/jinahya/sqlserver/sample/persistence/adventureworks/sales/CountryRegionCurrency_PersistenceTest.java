@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.CountryRegionCurrencyId;
 
 /**
  * Verifies the mappings of {@link CountryRegionCurrency} against the schema generated into the
  * in-memory database.
  */
 class CountryRegionCurrency_PersistenceTest
-        extends _Entity_PersistenceTest<CountryRegionCurrency> {
+        extends _Entity_PersistenceTest<CountryRegionCurrency, CountryRegionCurrencyId> {
 
     CountryRegionCurrency_PersistenceTest() {
-        super(CountryRegionCurrency.class);
+        super(CountryRegionCurrency.class, CountryRegionCurrencyId.class);
     }
 }

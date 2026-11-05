@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class SpecialDeal_PersistenceTest
-        extends _Entity_PersistenceTest<SpecialDeal> {
+        extends _Entity_PersistenceTest<SpecialDeal, Integer> {
 
     SpecialDeal_PersistenceTest() {
-        super(SpecialDeal.class);
+        super(SpecialDeal.class, Integer.class);
     }
 }

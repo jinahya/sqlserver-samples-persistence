@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SpecialOfferProductId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link SpecialOfferProduct} entity class.
  */
 class SpecialOfferProduct_Test
-        extends _Entity_Test<SpecialOfferProduct> {
+        extends _Entity_Test<SpecialOfferProduct, SpecialOfferProductId> {
 
     SpecialOfferProduct_Test() {
-        super(SpecialOfferProduct.class);
+        super(SpecialOfferProduct.class, SpecialOfferProductId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

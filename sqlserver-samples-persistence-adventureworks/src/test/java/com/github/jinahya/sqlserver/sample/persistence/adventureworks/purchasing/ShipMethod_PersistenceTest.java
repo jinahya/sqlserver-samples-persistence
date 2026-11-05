@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class ShipMethod_PersistenceTest
-        extends _Entity_PersistenceTest<ShipMethod> {
+        extends _Entity_PersistenceTest<ShipMethod, Integer> {
 
     ShipMethod_PersistenceTest() {
-        super(ShipMethod.class);
+        super(ShipMethod.class, Integer.class);
     }
 }

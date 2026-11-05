@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class DeliveryMethod_PersistenceIT extends _Entity_PersistenceIT<DeliveryMethod> {
+class DeliveryMethod_PersistenceIT extends _Entity_PersistenceIT<DeliveryMethod, Integer> {
 
     DeliveryMethod_PersistenceIT() {
-        super(DeliveryMethod.class);
+        super(DeliveryMethod.class, Integer.class);
     }
 }

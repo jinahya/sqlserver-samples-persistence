@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.EmailAddressId;
 
 /**
  * Verifies the mappings of {@link EmailAddress} against the schema generated into the in-memory
  * database.
  */
 class EmailAddress_PersistenceTest
-        extends _Entity_PersistenceTest<EmailAddress> {
+        extends _Entity_PersistenceTest<EmailAddress, EmailAddressId> {
 
     EmailAddress_PersistenceTest() {
-        super(EmailAddress.class);
+        super(EmailAddress.class, EmailAddressId.class);
     }
 }

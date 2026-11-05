@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.WorkOrderRoutingId;
 
 class WorkOrderRouting_PersistenceIT
-        extends _Entity_PersistenceIT<WorkOrderRouting> {
+        extends _Entity_PersistenceIT<WorkOrderRouting, WorkOrderRoutingId> {
 
     WorkOrderRouting_PersistenceIT() {
-        super(WorkOrderRouting.class);
+        super(WorkOrderRouting.class, WorkOrderRoutingId.class);
     }
 }

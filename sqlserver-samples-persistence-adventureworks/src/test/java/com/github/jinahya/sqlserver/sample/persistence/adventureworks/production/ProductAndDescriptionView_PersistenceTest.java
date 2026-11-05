@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductAndDescriptionViewId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -29,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * in-memory database.
  */
 class ProductAndDescriptionView_PersistenceTest
-        extends _Entity_PersistenceTest<ProductAndDescriptionView> {
+        extends _Entity_PersistenceTest<ProductAndDescriptionView, ProductAndDescriptionViewId> {
 
     ProductAndDescriptionView_PersistenceTest() {
-        super(ProductAndDescriptionView.class);
+        super(ProductAndDescriptionView.class, ProductAndDescriptionViewId.class);
     }
 
     // ---------------------------------------------------------------------------------------------

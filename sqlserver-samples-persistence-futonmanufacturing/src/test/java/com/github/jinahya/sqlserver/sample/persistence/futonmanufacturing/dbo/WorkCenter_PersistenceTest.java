@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class WorkCenter_PersistenceTest
-        extends _Entity_PersistenceTest<WorkCenter> {
+        extends _Entity_PersistenceTest<WorkCenter, Integer> {
 
     WorkCenter_PersistenceTest() {
-        super(WorkCenter.class);
+        super(WorkCenter.class, Integer.class);
     }
 }

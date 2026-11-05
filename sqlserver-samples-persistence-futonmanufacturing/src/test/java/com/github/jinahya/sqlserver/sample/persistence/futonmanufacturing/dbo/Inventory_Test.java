@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Inventory} entity class.
  */
 class Inventory_Test
-        extends _Entity_Test<Inventory> {
+        extends _Entity_Test<Inventory, Integer> {
 
     Inventory_Test() {
-        super(Inventory.class);
+        super(Inventory.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

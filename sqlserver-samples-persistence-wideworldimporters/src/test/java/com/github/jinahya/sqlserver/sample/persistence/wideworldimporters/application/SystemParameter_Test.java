@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link SystemParameter} entity class.
  */
 class SystemParameter_Test
-        extends _Entity_Test<SystemParameter> {
+        extends _Entity_Test<SystemParameter, Integer> {
 
     SystemParameter_Test() {
-        super(SystemParameter.class);
+        super(SystemParameter.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

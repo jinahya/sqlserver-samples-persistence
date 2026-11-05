@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class SystemParameter_PersistenceTest
-        extends _Entity_PersistenceTest<SystemParameter> {
+        extends _Entity_PersistenceTest<SystemParameter, Integer> {
 
     SystemParameter_PersistenceTest() {
-        super(SystemParameter.class);
+        super(SystemParameter.class, Integer.class);
     }
 }

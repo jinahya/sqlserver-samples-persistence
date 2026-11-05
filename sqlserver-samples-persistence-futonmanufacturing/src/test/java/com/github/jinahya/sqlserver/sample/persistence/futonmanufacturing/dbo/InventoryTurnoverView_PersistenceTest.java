@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * in-memory database.
  */
 class InventoryTurnoverView_PersistenceTest
-        extends _Entity_PersistenceTest<InventoryTurnoverView> {
+        extends _Entity_PersistenceTest<InventoryTurnoverView, String> {
 
     InventoryTurnoverView_PersistenceTest() {
-        super(InventoryTurnoverView.class);
+        super(InventoryTurnoverView.class, String.class);
     }
 
     // ---------------------------------------------------------------------------------------------

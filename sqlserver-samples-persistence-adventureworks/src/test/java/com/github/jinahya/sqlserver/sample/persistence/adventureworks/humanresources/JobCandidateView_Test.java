@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link JobCandidateView} entity class.
  */
 class JobCandidateView_Test
-        extends _Entity_Test<JobCandidateView> {
+        extends _Entity_Test<JobCandidateView, Long> {
 
     JobCandidateView_Test() {
-        super(JobCandidateView.class);
+        super(JobCandidateView.class, Long.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

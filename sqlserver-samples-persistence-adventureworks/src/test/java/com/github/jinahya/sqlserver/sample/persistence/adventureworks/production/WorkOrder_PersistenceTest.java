@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class WorkOrder_PersistenceTest
-        extends _Entity_PersistenceTest<WorkOrder> {
+        extends _Entity_PersistenceTest<WorkOrder, Integer> {
 
     WorkOrder_PersistenceTest() {
-        super(WorkOrder.class);
+        super(WorkOrder.class, Integer.class);
     }
 }

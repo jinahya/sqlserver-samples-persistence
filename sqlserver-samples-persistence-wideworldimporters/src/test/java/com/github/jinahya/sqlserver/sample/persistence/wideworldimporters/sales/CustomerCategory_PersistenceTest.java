@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class CustomerCategory_PersistenceTest
-        extends _Entity_PersistenceTest<CustomerCategory> {
+        extends _Entity_PersistenceTest<CustomerCategory, Integer> {
 
     CustomerCategory_PersistenceTest() {
-        super(CustomerCategory.class);
+        super(CustomerCategory.class, Integer.class);
     }
 }

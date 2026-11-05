@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link WorkCenter} entity class.
  */
 class WorkCenter_Test
-        extends _Entity_Test<WorkCenter> {
+        extends _Entity_Test<WorkCenter, Integer> {
 
     WorkCenter_Test() {
-        super(WorkCenter.class);
+        super(WorkCenter.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

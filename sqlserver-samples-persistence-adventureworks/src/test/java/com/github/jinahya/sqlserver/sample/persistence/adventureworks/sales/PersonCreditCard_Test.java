@@ -30,7 +30,7 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link PersonCreditCard} entity class.
  */
 class PersonCreditCard_Test
-        extends _Entity_Test<PersonCreditCard> {
+        extends _Entity_Test<PersonCreditCard, PersonCreditCardId> {
 
     private static PersonCreditCardId id(final int businessEntityId, final int creditCardId) {
         final var id = new PersonCreditCardId();
@@ -41,7 +41,7 @@ class PersonCreditCard_Test
 
     // ---------------------------------------------------------------------------------------------
     PersonCreditCard_Test() {
-        super(PersonCreditCard.class);
+        super(PersonCreditCard.class, PersonCreditCardId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

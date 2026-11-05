@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * Verifies the mappings of {@link Store} against the schema generated into the in-memory database.
  */
 class Store_PersistenceTest
-        extends _Entity_PersistenceTest<Store> {
+        extends _Entity_PersistenceTest<Store, Integer> {
 
     Store_PersistenceTest() {
-        super(Store.class);
+        super(Store.class, Integer.class);
     }
 }

@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductAndDescriptionViewId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 import org.junit.jupiter.api.Disabled;
@@ -30,10 +31,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link ProductAndDescriptionView} entity class.
  */
 class ProductAndDescriptionView_Test
-        extends _Entity_Test<ProductAndDescriptionView> {
+        extends _Entity_Test<ProductAndDescriptionView, ProductAndDescriptionViewId> {
 
     ProductAndDescriptionView_Test() {
-        super(ProductAndDescriptionView.class);
+        super(ProductAndDescriptionView.class, ProductAndDescriptionViewId.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

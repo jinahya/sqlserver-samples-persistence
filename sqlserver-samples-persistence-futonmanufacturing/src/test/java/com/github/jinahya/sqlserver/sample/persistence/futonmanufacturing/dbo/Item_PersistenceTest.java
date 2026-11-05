@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * Verifies the mappings of {@link Item} against the schema generated into the in-memory database.
  */
 class Item_PersistenceTest
-        extends _Entity_PersistenceTest<Item> {
+        extends _Entity_PersistenceTest<Item, Integer> {
 
     Item_PersistenceTest() {
-        super(Item.class);
+        super(Item.class, Integer.class);
     }
 }

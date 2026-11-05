@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesPersonQuotaHistoryId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link SalesPersonQuotaHistory} entity class.
  */
 class SalesPersonQuotaHistory_Test
-        extends _Entity_Test<SalesPersonQuotaHistory> {
+        extends _Entity_Test<SalesPersonQuotaHistory, SalesPersonQuotaHistoryId> {
 
     SalesPersonQuotaHistory_Test() {
-        super(SalesPersonQuotaHistory.class);
+        super(SalesPersonQuotaHistory.class, SalesPersonQuotaHistoryId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeePayHistoryId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 import org.junit.jupiter.api.Disabled;
@@ -30,10 +31,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link EmployeePayHistory} entity class.
  */
 class EmployeePayHistory_Test
-        extends _Entity_Test<EmployeePayHistory> {
+        extends _Entity_Test<EmployeePayHistory, EmployeePayHistoryId> {
 
     EmployeePayHistory_Test() {
-        super(EmployeePayHistory.class);
+        super(EmployeePayHistory.class, EmployeePayHistoryId.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

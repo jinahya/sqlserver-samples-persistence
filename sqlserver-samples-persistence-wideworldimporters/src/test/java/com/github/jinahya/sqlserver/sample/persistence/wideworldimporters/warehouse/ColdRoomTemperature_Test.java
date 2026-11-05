@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ColdRoomTemperature} entity class.
  */
 class ColdRoomTemperature_Test
-        extends _Entity_Test<ColdRoomTemperature> {
+        extends _Entity_Test<ColdRoomTemperature, Long> {
 
     ColdRoomTemperature_Test() {
-        super(ColdRoomTemperature.class);
+        super(ColdRoomTemperature.class, Long.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

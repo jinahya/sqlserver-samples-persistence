@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesOrderHeaderSalesReasonId;
 
 class SalesOrderHeaderSalesReason_PersistenceIT
-        extends _Entity_PersistenceIT<SalesOrderHeaderSalesReason> {
+        extends _Entity_PersistenceIT<SalesOrderHeaderSalesReason, SalesOrderHeaderSalesReasonId> {
 
     SalesOrderHeaderSalesReason_PersistenceIT() {
-        super(SalesOrderHeaderSalesReason.class);
+        super(SalesOrderHeaderSalesReason.class, SalesOrderHeaderSalesReasonId.class);
     }
 }

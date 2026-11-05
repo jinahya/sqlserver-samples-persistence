@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class SalesOrderHeader_PersistenceIT
-        extends _Entity_PersistenceIT<SalesOrderHeader> {
+        extends _Entity_PersistenceIT<SalesOrderHeader, Integer> {
 
     SalesOrderHeader_PersistenceIT() {
-        super(SalesOrderHeader.class);
+        super(SalesOrderHeader.class, Integer.class);
     }
 }

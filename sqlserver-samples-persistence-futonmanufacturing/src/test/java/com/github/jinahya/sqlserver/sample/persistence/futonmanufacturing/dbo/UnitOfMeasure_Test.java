@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link UnitOfMeasure} entity class.
  */
 class UnitOfMeasure_Test
-        extends _Entity_Test<UnitOfMeasure> {
+        extends _Entity_Test<UnitOfMeasure, Integer> {
 
     UnitOfMeasure_Test() {
-        super(UnitOfMeasure.class);
+        super(UnitOfMeasure.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

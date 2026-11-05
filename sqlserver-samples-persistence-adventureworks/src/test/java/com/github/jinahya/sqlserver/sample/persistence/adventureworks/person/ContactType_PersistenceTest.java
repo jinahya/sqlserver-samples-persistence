@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class ContactType_PersistenceTest
-        extends _Entity_PersistenceTest<ContactType> {
+        extends _Entity_PersistenceTest<ContactType, Integer> {
 
     ContactType_PersistenceTest() {
-        super(ContactType.class);
+        super(ContactType.class, Integer.class);
     }
 }

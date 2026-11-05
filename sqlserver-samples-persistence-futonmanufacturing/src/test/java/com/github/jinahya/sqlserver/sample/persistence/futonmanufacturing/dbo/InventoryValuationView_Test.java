@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link InventoryValuationView} entity class.
  */
 class InventoryValuationView_Test
-        extends _Entity_Test<InventoryValuationView> {
+        extends _Entity_Test<InventoryValuationView, String> {
 
     InventoryValuationView_Test() {
-        super(InventoryValuationView.class);
+        super(InventoryValuationView.class, String.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

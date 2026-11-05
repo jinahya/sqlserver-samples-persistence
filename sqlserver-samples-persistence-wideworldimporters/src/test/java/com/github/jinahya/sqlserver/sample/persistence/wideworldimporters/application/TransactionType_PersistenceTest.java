@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class TransactionType_PersistenceTest
-        extends _Entity_PersistenceTest<TransactionType> {
+        extends _Entity_PersistenceTest<TransactionType, Integer> {
 
     TransactionType_PersistenceTest() {
-        super(TransactionType.class);
+        super(TransactionType.class, Integer.class);
     }
 }

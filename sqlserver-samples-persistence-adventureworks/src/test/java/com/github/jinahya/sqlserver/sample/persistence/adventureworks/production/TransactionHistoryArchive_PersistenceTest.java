@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * in-memory database.
  */
 class TransactionHistoryArchive_PersistenceTest
-        extends _Entity_PersistenceTest<TransactionHistoryArchive> {
+        extends _Entity_PersistenceTest<TransactionHistoryArchive, Integer> {
 
     TransactionHistoryArchive_PersistenceTest() {
-        super(TransactionHistoryArchive.class);
+        super(TransactionHistoryArchive.class, Integer.class);
     }
 }

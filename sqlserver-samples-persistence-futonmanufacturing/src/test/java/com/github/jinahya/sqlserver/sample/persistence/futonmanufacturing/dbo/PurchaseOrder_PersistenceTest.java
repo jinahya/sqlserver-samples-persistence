@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class PurchaseOrder_PersistenceTest
-        extends _Entity_PersistenceTest<PurchaseOrder> {
+        extends _Entity_PersistenceTest<PurchaseOrder, Integer> {
 
     PurchaseOrder_PersistenceTest() {
-        super(PurchaseOrder.class);
+        super(PurchaseOrder.class, Integer.class);
     }
 }

@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * database.
  */
 class CostRollUpView_PersistenceTest
-        extends _Entity_PersistenceTest<CostRollUpView> {
+        extends _Entity_PersistenceTest<CostRollUpView, String> {
 
     CostRollUpView_PersistenceTest() {
-        super(CostRollUpView.class);
+        super(CostRollUpView.class, String.class);
     }
 
     // ---------------------------------------------------------------------------------------------

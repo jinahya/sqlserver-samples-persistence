@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class StoreWithDemographicsView_PersistenceIT
-        extends _Entity_PersistenceIT<StoreWithDemographicsView> {
+        extends _Entity_PersistenceIT<StoreWithDemographicsView, Integer> {
 
     StoreWithDemographicsView_PersistenceIT() {
-        super(StoreWithDemographicsView.class);
+        super(StoreWithDemographicsView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

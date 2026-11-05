@@ -28,6 +28,8 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 import org.junit.platform.commons.util.ReflectionUtils;
 
+import java.util.Objects;
+
 /**
  * An abstract base class for testing, without a persistence context, an entity class.
  * <p>
@@ -35,12 +37,14 @@ import org.junit.platform.commons.util.ReflectionUtils;
  * too; checks only an entity has to pass go here.
  *
  * @param <T> the type of the entity.
+ * @param <U> the type of the identifier of the entity: its id class, the type of its
+ *            {@code @EmbeddedId}, or the type of its {@code @Id}.
  */
 @SuppressWarnings({
         "java:S101", // Class names should comply with a naming convention
         "java:S118"  // Abstract class names should comply with a naming convention
 })
-public abstract class _Entity_Test<T>
+public abstract class _Entity_Test<T, U>
         extends __Test<T>
         implements __Object_Test<T> {
 
@@ -48,9 +52,12 @@ public abstract class _Entity_Test<T>
      * Creates a new instance for the specified entity class.
      *
      * @param targetClass the entity class to test.
+     * @param idClass     the class of the identifier of the entity: its id class, the type of its
+     *                    {@code @EmbeddedId}, or the type of its {@code @Id}.
      */
-    protected _Entity_Test(final Class<T> targetClass) {
+    protected _Entity_Test(final Class<T> targetClass, final Class<U> idClass) {
         super(targetClass);
+        this.idClass = Objects.requireNonNull(idClass, "idClass is null");
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode
@@ -93,4 +100,12 @@ public abstract class _Entity_Test<T>
                                   withKey(Order.class, MappedOrder.class, "orderId", 1),
                                   withKey(Order.class, MappedOrder.class, "orderId", 2));
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * The class of the identifier of {@link #targetClass}: its id class, the type of its
+     * {@code @EmbeddedId}, or the type of its {@code @Id}.
+     */
+    protected final Class<U> idClass;
 }

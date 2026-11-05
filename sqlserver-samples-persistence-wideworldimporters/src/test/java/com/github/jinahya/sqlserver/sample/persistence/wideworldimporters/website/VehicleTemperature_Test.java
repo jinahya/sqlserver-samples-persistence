@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link VehicleTemperature} entity class.
  */
 class VehicleTemperature_Test
-        extends _Entity_Test<VehicleTemperature> {
+        extends _Entity_Test<VehicleTemperature, Long> {
 
     VehicleTemperature_Test() {
-        super(VehicleTemperature.class);
+        super(VehicleTemperature.class, Long.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

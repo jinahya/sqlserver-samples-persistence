@@ -21,17 +21,20 @@ lacks, and a load script for the installed rows the persisters refer to. A unit 
 | `___PersistenceTest_Utils`
 | surefire
 | the factory of the `<database>-test` unit, as `applyEntityManagerFactory(Function)`, opened once for the run, as
-  `___PersistenceIT_Utils` holds the `<database>-it` one
+  `___PersistenceIT_Utils` holds the `<database>-it` one, and the same entity manager shortcuts, `applyEntityManager_`,
+  `applyEntityManagerInTransactionAndRollback_` and `applyEntityManagerInTransactionAndCommit_`
 
 | `_Entity_PersistenceTest`
 | surefire
 | from `oracle-sample-schemas-persistence`'s: every `ATTRIBUTE_NAME_*` constant names a managed attribute, and every
   managed attribute's constant holds its name; every `ATTRIBUTE_PATH_*` constant resolves; a new randomized instance,
-  persisted through its persister, flushes; a random row, if any, is selected. Each test rolls back.
+  persisted through its persister, flushes; a random row, if any, is selected. Each test rolls back. It takes the
+  entity's identifier class, as `_Entity_PersistenceIT` does, and selects a random identifier or reference with it.
 
 | `<Entity>_PersistenceTest`
 | surefire
-| one per entity which has an `<Entity>_PersistenceIT`, extending `_Entity_PersistenceTest`
+| one per entity which has an `<Entity>_PersistenceIT`, extending `_Entity_PersistenceTest` with the same identifier
+  class
 |===
 
 A keyless class has none: it is read by a native query from a view, which the generated schema does not have.

@@ -20,6 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
  * #L%
  */
 
+import java.util.Objects;
+
 /**
  * An abstract base class for testing, without a persistence context, an entity class.
  * <p>
@@ -27,12 +29,14 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
  * too; checks only an entity has to pass go here.
  *
  * @param <T> the type of the entity.
+ * @param <U> the type of the identifier of the entity: its id class, the type of its
+ *            {@code @EmbeddedId}, or the type of its {@code @Id}.
  */
 @SuppressWarnings({
         "java:S101", // Class names should comply with a naming convention
         "java:S118"  // Abstract class names should comply with a naming convention
 })
-public abstract class _Entity_Test<T>
+public abstract class _Entity_Test<T, U>
         extends __Test<T>
         implements __Object_Test<T> {
 
@@ -40,8 +44,19 @@ public abstract class _Entity_Test<T>
      * Creates a new instance for the specified entity class.
      *
      * @param targetClass the entity class to test.
+     * @param idClass     the class of the identifier of the entity: its id class, the type of its
+     *                    {@code @EmbeddedId}, or the type of its {@code @Id}.
      */
-    protected _Entity_Test(final Class<T> targetClass) {
+    protected _Entity_Test(final Class<T> targetClass, final Class<U> idClass) {
         super(targetClass);
+        this.idClass = Objects.requireNonNull(idClass, "idClass is null");
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * The class of the identifier of {@link #targetClass}: its id class, the type of its
+     * {@code @EmbeddedId}, or the type of its {@code @Id}.
+     */
+    protected final Class<U> idClass;
 }

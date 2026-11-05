@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link ErrorLog} entity class.
  */
 class ErrorLog_Test
-        extends _Entity_Test<ErrorLog> {
+        extends _Entity_Test<ErrorLog, Long> {
 
     ErrorLog_Test() {
-        super(ErrorLog.class);
+        super(ErrorLog.class, Long.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

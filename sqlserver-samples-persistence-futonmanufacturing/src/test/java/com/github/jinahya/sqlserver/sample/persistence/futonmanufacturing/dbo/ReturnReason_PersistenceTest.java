@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class ReturnReason_PersistenceTest
-        extends _Entity_PersistenceTest<ReturnReason> {
+        extends _Entity_PersistenceTest<ReturnReason, Integer> {
 
     ReturnReason_PersistenceTest() {
-        super(ReturnReason.class);
+        super(ReturnReason.class, Integer.class);
     }
 }

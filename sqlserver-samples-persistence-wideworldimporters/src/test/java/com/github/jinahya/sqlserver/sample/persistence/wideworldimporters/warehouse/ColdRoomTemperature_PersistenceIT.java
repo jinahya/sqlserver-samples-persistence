@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class ColdRoomTemperature_PersistenceIT extends _Entity_PersistenceIT<ColdRoomTemperature> {
+class ColdRoomTemperature_PersistenceIT extends _Entity_PersistenceIT<ColdRoomTemperature, Long> {
 
     ColdRoomTemperature_PersistenceIT() {
-        super(ColdRoomTemperature.class);
+        super(ColdRoomTemperature.class, Long.class);
     }
 }

@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * in-memory database.
  */
 class ProductionCompletion_PersistenceTest
-        extends _Entity_PersistenceTest<ProductionCompletion> {
+        extends _Entity_PersistenceTest<ProductionCompletion, Integer> {
 
     ProductionCompletion_PersistenceTest() {
-        super(ProductionCompletion.class);
+        super(ProductionCompletion.class, Integer.class);
     }
 }

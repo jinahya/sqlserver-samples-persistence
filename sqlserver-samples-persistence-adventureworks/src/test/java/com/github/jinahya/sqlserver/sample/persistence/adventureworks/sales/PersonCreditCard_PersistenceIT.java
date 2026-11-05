@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.PersonCreditCardId;
 
 class PersonCreditCard_PersistenceIT
-        extends _Entity_PersistenceIT<PersonCreditCard> {
+        extends _Entity_PersistenceIT<PersonCreditCard, PersonCreditCardId> {
 
     PersonCreditCard_PersistenceIT() {
-        super(PersonCreditCard.class);
+        super(PersonCreditCard.class, PersonCreditCardId.class);
     }
 }

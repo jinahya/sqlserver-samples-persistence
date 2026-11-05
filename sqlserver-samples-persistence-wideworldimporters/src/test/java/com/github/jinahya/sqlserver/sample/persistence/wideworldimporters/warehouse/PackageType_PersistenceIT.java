@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class PackageType_PersistenceIT extends _Entity_PersistenceIT<PackageType> {
+class PackageType_PersistenceIT extends _Entity_PersistenceIT<PackageType, Integer> {
 
     PackageType_PersistenceIT() {
-        super(PackageType.class);
+        super(PackageType.class, Integer.class);
     }
 }

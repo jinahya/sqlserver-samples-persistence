@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link AwBuildVersion} entity class.
  */
 class AwBuildVersion_Test
-        extends _Entity_Test<AwBuildVersion> {
+        extends _Entity_Test<AwBuildVersion, Long> {
 
     AwBuildVersion_Test() {
-        super(AwBuildVersion.class);
+        super(AwBuildVersion.class, Long.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class AwBuildVersion_PersistenceIT
-        extends _Entity_PersistenceIT<AwBuildVersion> {
+        extends _Entity_PersistenceIT<AwBuildVersion, Long> {
 
     AwBuildVersion_PersistenceIT() {
-        super(AwBuildVersion.class);
+        super(AwBuildVersion.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

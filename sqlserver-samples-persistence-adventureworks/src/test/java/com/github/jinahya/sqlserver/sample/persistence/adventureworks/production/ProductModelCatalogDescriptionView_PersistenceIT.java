@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class ProductModelCatalogDescriptionView_PersistenceIT
-        extends _Entity_PersistenceIT<ProductModelCatalogDescriptionView> {
+        extends _Entity_PersistenceIT<ProductModelCatalogDescriptionView, Integer> {
 
     ProductModelCatalogDescriptionView_PersistenceIT() {
-        super(ProductModelCatalogDescriptionView.class);
+        super(ProductModelCatalogDescriptionView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

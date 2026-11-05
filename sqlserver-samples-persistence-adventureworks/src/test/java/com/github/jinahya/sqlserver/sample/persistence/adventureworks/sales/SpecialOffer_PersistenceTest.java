@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class SpecialOffer_PersistenceTest
-        extends _Entity_PersistenceTest<SpecialOffer> {
+        extends _Entity_PersistenceTest<SpecialOffer, Integer> {
 
     SpecialOffer_PersistenceTest() {
-        super(SpecialOffer.class);
+        super(SpecialOffer.class, Integer.class);
     }
 }

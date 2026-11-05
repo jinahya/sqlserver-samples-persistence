@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class PaymentMethod_PersistenceTest
-        extends _Entity_PersistenceTest<PaymentMethod> {
+        extends _Entity_PersistenceTest<PaymentMethod, Integer> {
 
     PaymentMethod_PersistenceTest() {
-        super(PaymentMethod.class);
+        super(PaymentMethod.class, Integer.class);
     }
 }

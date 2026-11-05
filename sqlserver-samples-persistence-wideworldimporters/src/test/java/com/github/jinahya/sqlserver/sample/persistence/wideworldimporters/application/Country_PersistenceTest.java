@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class Country_PersistenceTest
-        extends _Entity_PersistenceTest<Country> {
+        extends _Entity_PersistenceTest<Country, Integer> {
 
     Country_PersistenceTest() {
-        super(Country.class);
+        super(Country.class, Integer.class);
     }
 }

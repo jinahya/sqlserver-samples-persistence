@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Culture} entity class.
  */
 class Culture_Test
-        extends _Entity_Test<Culture> {
+        extends _Entity_Test<Culture, String> {
 
     Culture_Test() {
-        super(Culture.class);
+        super(Culture.class, String.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

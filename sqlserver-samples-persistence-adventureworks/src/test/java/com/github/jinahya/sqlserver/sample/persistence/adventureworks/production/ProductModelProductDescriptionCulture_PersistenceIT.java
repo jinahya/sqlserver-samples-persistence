@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductModelProductDescriptionCultureId;
 
 class ProductModelProductDescriptionCulture_PersistenceIT
-        extends _Entity_PersistenceIT<ProductModelProductDescriptionCulture> {
+        extends _Entity_PersistenceIT<ProductModelProductDescriptionCulture, ProductModelProductDescriptionCultureId> {
 
     ProductModelProductDescriptionCulture_PersistenceIT() {
-        super(ProductModelProductDescriptionCulture.class);
+        super(ProductModelProductDescriptionCulture.class, ProductModelProductDescriptionCultureId.class);
     }
 }

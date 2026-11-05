@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.WorkOrderRoutingId;
 
 /**
  * Verifies the mappings of {@link WorkOrderRouting} against the schema generated into the in-memory
  * database.
  */
 class WorkOrderRouting_PersistenceTest
-        extends _Entity_PersistenceTest<WorkOrderRouting> {
+        extends _Entity_PersistenceTest<WorkOrderRouting, WorkOrderRoutingId> {
 
     WorkOrderRouting_PersistenceTest() {
-        super(WorkOrderRouting.class);
+        super(WorkOrderRouting.class, WorkOrderRoutingId.class);
     }
 }

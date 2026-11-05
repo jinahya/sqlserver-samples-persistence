@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link TransactionType} entity class.
  */
 class TransactionType_Test
-        extends _Entity_Test<TransactionType> {
+        extends _Entity_Test<TransactionType, Integer> {
 
     TransactionType_Test() {
-        super(TransactionType.class);
+        super(TransactionType.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

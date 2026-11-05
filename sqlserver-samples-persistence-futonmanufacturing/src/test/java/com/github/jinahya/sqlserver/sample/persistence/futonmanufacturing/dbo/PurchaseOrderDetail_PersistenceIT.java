@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
 
 import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
 
-class PurchaseOrderDetail_PersistenceIT extends _Entity_PersistenceIT<PurchaseOrderDetail> {
+class PurchaseOrderDetail_PersistenceIT extends _Entity_PersistenceIT<PurchaseOrderDetail, Integer> {
 
     PurchaseOrderDetail_PersistenceIT() {
-        super(PurchaseOrderDetail.class);
+        super(PurchaseOrderDetail.class, Integer.class);
     }
 }

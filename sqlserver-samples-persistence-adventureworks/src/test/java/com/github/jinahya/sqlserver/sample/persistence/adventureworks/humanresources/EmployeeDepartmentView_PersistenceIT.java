@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class EmployeeDepartmentView_PersistenceIT
-        extends _Entity_PersistenceIT<EmployeeDepartmentView> {
+        extends _Entity_PersistenceIT<EmployeeDepartmentView, Integer> {
 
     EmployeeDepartmentView_PersistenceIT() {
-        super(EmployeeDepartmentView.class);
+        super(EmployeeDepartmentView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

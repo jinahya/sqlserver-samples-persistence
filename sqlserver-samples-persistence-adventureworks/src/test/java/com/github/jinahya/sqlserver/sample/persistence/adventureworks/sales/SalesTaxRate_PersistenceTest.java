@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class SalesTaxRate_PersistenceTest
-        extends _Entity_PersistenceTest<SalesTaxRate> {
+        extends _Entity_PersistenceTest<SalesTaxRate, Integer> {
 
     SalesTaxRate_PersistenceTest() {
-        super(SalesTaxRate.class);
+        super(SalesTaxRate.class, Integer.class);
     }
 }

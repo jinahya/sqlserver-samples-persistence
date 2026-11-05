@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class Order_PersistenceIT extends _Entity_PersistenceIT<Order> {
+class Order_PersistenceIT extends _Entity_PersistenceIT<Order, Integer> {
 
     Order_PersistenceIT() {
-        super(Order.class);
+        super(Order.class, Integer.class);
     }
 }

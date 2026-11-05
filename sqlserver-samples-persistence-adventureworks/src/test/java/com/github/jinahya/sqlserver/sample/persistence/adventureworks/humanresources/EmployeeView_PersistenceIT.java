@@ -35,10 +35,10 @@ import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EmployeeView_PersistenceIT
-        extends _Entity_PersistenceIT<EmployeeView> {
+        extends _Entity_PersistenceIT<EmployeeView, Integer> {
 
     EmployeeView_PersistenceIT() {
-        super(EmployeeView.class);
+        super(EmployeeView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

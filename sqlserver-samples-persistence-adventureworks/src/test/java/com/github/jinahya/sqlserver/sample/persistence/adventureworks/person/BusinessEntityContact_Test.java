@@ -30,7 +30,7 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link BusinessEntityContact} entity class.
  */
 class BusinessEntityContact_Test
-        extends _Entity_Test<BusinessEntityContact> {
+        extends _Entity_Test<BusinessEntityContact, BusinessEntityContactId> {
 
     private static BusinessEntityContactId id(final int businessEntityId,
                                               final int personId,
@@ -44,7 +44,7 @@ class BusinessEntityContact_Test
 
     // ---------------------------------------------------------------------------------------------
     BusinessEntityContact_Test() {
-        super(BusinessEntityContact.class);
+        super(BusinessEntityContact.class, BusinessEntityContactId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

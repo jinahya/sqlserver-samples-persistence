@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link PackageType} entity class.
  */
 class PackageType_Test
-        extends _Entity_Test<PackageType> {
+        extends _Entity_Test<PackageType, Integer> {
 
     PackageType_Test() {
-        super(PackageType.class);
+        super(PackageType.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

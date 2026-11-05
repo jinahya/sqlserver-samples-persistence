@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class CountryRegion_PersistenceTest
-        extends _Entity_PersistenceTest<CountryRegion> {
+        extends _Entity_PersistenceTest<CountryRegion, String> {
 
     CountryRegion_PersistenceTest() {
-        super(CountryRegion.class);
+        super(CountryRegion.class, String.class);
     }
 }

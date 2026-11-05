@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class SalesReturn_PersistenceTest
-        extends _Entity_PersistenceTest<SalesReturn> {
+        extends _Entity_PersistenceTest<SalesReturn, Integer> {
 
     SalesReturn_PersistenceTest() {
-        super(SalesReturn.class);
+        super(SalesReturn.class, Integer.class);
     }
 }

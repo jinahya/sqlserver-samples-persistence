@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * in-memory database.
  */
 class PurchaseOrderHeader_PersistenceTest
-        extends _Entity_PersistenceTest<PurchaseOrderHeader> {
+        extends _Entity_PersistenceTest<PurchaseOrderHeader, Integer> {
 
     PurchaseOrderHeader_PersistenceTest() {
-        super(PurchaseOrderHeader.class);
+        super(PurchaseOrderHeader.class, Integer.class);
     }
 }

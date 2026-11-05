@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class CountryRegion_PersistenceIT
-        extends _Entity_PersistenceIT<CountryRegion> {
+        extends _Entity_PersistenceIT<CountryRegion, String> {
 
     CountryRegion_PersistenceIT() {
-        super(CountryRegion.class);
+        super(CountryRegion.class, String.class);
     }
 }

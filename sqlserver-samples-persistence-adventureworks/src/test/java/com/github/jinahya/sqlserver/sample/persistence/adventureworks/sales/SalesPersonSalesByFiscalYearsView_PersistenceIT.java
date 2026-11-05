@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class SalesPersonSalesByFiscalYearsView_PersistenceIT
-        extends _Entity_PersistenceIT<SalesPersonSalesByFiscalYearsView> {
+        extends _Entity_PersistenceIT<SalesPersonSalesByFiscalYearsView, Integer> {
 
     SalesPersonSalesByFiscalYearsView_PersistenceIT() {
-        super(SalesPersonSalesByFiscalYearsView.class);
+        super(SalesPersonSalesByFiscalYearsView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

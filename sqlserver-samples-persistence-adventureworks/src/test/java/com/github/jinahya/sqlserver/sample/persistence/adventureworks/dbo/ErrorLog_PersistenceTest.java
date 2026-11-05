@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * database.
  */
 class ErrorLog_PersistenceTest
-        extends _Entity_PersistenceTest<ErrorLog> {
+        extends _Entity_PersistenceTest<ErrorLog, Long> {
 
     ErrorLog_PersistenceTest() {
-        super(ErrorLog.class);
+        super(ErrorLog.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

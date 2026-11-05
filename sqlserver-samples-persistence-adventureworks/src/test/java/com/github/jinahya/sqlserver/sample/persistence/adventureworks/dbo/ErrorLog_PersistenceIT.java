@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class ErrorLog_PersistenceIT
-        extends _Entity_PersistenceIT<ErrorLog> {
+        extends _Entity_PersistenceIT<ErrorLog, Long> {
 
     ErrorLog_PersistenceIT() {
-        super(ErrorLog.class);
+        super(ErrorLog.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

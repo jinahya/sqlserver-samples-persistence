@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link DatabaseLog} entity class.
  */
 class DatabaseLog_Test
-        extends _Entity_Test<DatabaseLog> {
+        extends _Entity_Test<DatabaseLog, Long> {
 
     DatabaseLog_Test() {
-        super(DatabaseLog.class);
+        super(DatabaseLog.class, Long.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

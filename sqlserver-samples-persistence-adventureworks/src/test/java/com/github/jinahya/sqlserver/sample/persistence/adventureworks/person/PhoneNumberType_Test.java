@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link PhoneNumberType} entity class.
  */
 class PhoneNumberType_Test
-        extends _Entity_Test<PhoneNumberType> {
+        extends _Entity_Test<PhoneNumberType, Integer> {
 
     PhoneNumberType_Test() {
-        super(PhoneNumberType.class);
+        super(PhoneNumberType.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

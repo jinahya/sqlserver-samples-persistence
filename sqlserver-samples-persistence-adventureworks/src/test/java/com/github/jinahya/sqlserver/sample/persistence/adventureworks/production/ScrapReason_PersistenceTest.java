@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class ScrapReason_PersistenceTest
-        extends _Entity_PersistenceTest<ScrapReason> {
+        extends _Entity_PersistenceTest<ScrapReason, Long> {
 
     ScrapReason_PersistenceTest() {
-        super(ScrapReason.class);
+        super(ScrapReason.class, Long.class);
     }
 }

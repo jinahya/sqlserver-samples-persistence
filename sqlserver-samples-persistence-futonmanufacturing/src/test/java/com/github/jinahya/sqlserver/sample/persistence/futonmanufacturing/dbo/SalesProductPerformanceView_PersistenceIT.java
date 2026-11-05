@@ -24,10 +24,10 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class SalesProductPerformanceView_PersistenceIT extends _Entity_PersistenceIT<SalesProductPerformanceView> {
+class SalesProductPerformanceView_PersistenceIT extends _Entity_PersistenceIT<SalesProductPerformanceView, String> {
 
     SalesProductPerformanceView_PersistenceIT() {
-        super(SalesProductPerformanceView.class);
+        super(SalesProductPerformanceView.class, String.class);
     }
 
     // ---------------------------------------------------------------------------------------------

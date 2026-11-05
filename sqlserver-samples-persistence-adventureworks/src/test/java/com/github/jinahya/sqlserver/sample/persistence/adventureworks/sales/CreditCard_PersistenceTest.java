@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class CreditCard_PersistenceTest
-        extends _Entity_PersistenceTest<CreditCard> {
+        extends _Entity_PersistenceTest<CreditCard, Integer> {
 
     CreditCard_PersistenceTest() {
-        super(CreditCard.class);
+        super(CreditCard.class, Integer.class);
     }
 }

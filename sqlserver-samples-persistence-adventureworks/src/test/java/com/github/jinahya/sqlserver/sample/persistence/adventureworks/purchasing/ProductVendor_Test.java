@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.ProductVendorId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ProductVendor} entity class.
  */
 class ProductVendor_Test
-        extends _Entity_Test<ProductVendor> {
+        extends _Entity_Test<ProductVendor, ProductVendorId> {
 
     ProductVendor_Test() {
-        super(ProductVendor.class);
+        super(ProductVendor.class, ProductVendorId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

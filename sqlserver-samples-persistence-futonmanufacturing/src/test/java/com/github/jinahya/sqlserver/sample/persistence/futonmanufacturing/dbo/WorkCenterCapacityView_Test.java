@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link WorkCenterCapacityView} entity class.
  */
 class WorkCenterCapacityView_Test
-        extends _Entity_Test<WorkCenterCapacityView> {
+        extends _Entity_Test<WorkCenterCapacityView, String> {
 
     WorkCenterCapacityView_Test() {
-        super(WorkCenterCapacityView.class);
+        super(WorkCenterCapacityView.class, String.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

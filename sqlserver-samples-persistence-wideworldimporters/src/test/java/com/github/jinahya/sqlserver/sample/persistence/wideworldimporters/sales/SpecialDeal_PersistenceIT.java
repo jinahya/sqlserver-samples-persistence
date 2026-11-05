@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class SpecialDeal_PersistenceIT extends _Entity_PersistenceIT<SpecialDeal> {
+class SpecialDeal_PersistenceIT extends _Entity_PersistenceIT<SpecialDeal, Integer> {
 
     SpecialDeal_PersistenceIT() {
-        super(SpecialDeal.class);
+        super(SpecialDeal.class, Integer.class);
     }
 }

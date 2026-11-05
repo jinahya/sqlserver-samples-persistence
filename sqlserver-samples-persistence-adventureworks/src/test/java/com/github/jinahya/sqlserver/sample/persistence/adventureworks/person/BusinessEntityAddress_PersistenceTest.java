@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.BusinessEntityAddressId;
 
 /**
  * Verifies the mappings of {@link BusinessEntityAddress} against the schema generated into the
  * in-memory database.
  */
 class BusinessEntityAddress_PersistenceTest
-        extends _Entity_PersistenceTest<BusinessEntityAddress> {
+        extends _Entity_PersistenceTest<BusinessEntityAddress, BusinessEntityAddressId> {
 
     BusinessEntityAddress_PersistenceTest() {
-        super(BusinessEntityAddress.class);
+        super(BusinessEntityAddress.class, BusinessEntityAddressId.class);
     }
 }

@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link CreditCard} entity class.
  */
 class CreditCard_Test
-        extends _Entity_Test<CreditCard> {
+        extends _Entity_Test<CreditCard, Integer> {
 
     CreditCard_Test() {
-        super(CreditCard.class);
+        super(CreditCard.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeeDepartmentHistoryId;
 
 /**
  * Verifies the mappings of {@link EmployeeDepartmentHistory} against the schema generated into the
  * in-memory database.
  */
 class EmployeeDepartmentHistory_PersistenceTest
-        extends _Entity_PersistenceTest<EmployeeDepartmentHistory> {
+        extends _Entity_PersistenceTest<EmployeeDepartmentHistory, EmployeeDepartmentHistoryId> {
 
     EmployeeDepartmentHistory_PersistenceTest() {
-        super(EmployeeDepartmentHistory.class);
+        super(EmployeeDepartmentHistory.class, EmployeeDepartmentHistoryId.class);
     }
 }

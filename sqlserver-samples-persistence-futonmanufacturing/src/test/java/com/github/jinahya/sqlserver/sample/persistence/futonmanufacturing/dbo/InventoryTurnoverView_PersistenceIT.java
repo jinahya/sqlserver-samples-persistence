@@ -24,10 +24,10 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class InventoryTurnoverView_PersistenceIT extends _Entity_PersistenceIT<InventoryTurnoverView> {
+class InventoryTurnoverView_PersistenceIT extends _Entity_PersistenceIT<InventoryTurnoverView, String> {
 
     InventoryTurnoverView_PersistenceIT() {
-        super(InventoryTurnoverView.class);
+        super(InventoryTurnoverView.class, String.class);
     }
 
     // ---------------------------------------------------------------------------------------------

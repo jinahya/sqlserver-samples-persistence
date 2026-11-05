@@ -32,8 +32,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManagerFactory;
+import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManager_;
 import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___Persistence_TestUtils.selectRandomEntityInstance;
 import static com.github.jinahya.persistence.test.util.EntityPersisterUtils.newPersistedInstanceOf;
+import static com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils.selectRandomEntityId;
+import static com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils.selectRandomEntityReference;
 import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManager;
 import static com.github.jinahya.persistence.util.JinahyaEntityManagerUtils.applyInTransactionAndRollback;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,16 +51,58 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  * and goes through the jinahya library directly, one entity manager per call.
  *
  * @param <T> the type of the entity.
+ * @param <U> the type of the identifier of the entity: its id class, the type of its
+ *            {@code @EmbeddedId}, or the type of its {@code @Id}.
  */
 @SuppressWarnings({
         "java:S101", // Class names should comply with a naming convention
         "java:S118"  // Abstract class names should comply with a naming convention
 })
-public abstract class _Entity_PersistenceIT<T> {
+public abstract class _Entity_PersistenceIT<T, U> {
 
-    protected _Entity_PersistenceIT(final Class<T> entityClass) {
+    /**
+     * Creates a new instance for the specified entity class.
+     *
+     * @param entityClass the class of the entity under test.
+     * @param idClass     the class of the identifier of the entity: its id class, the type of its
+     *                    {@code @EmbeddedId}, or the type of its {@code @Id}.
+     */
+    protected _Entity_PersistenceIT(final Class<T> entityClass, final Class<U> idClass) {
         super();
         this.entityClass = Objects.requireNonNull(entityClass, "entityClass is null");
+        this.idClass = Objects.requireNonNull(idClass, "idClass is null");
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Selects a reference to a randomly chosen instance of {@link #entityClass}, with an entity
+     * manager of its own of the {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit, through
+     * {@code JinahyaEntityManagerTestUtils.selectRandomEntityReference}.
+     *
+     * @return an optional of the reference selected; {@code empty} when there is no instance.
+     * @apiNote The entity manager is closed when this method returns, so the reference is
+     *         detached; only its identifier is safe to read, for its state may never have been
+     *         loaded.
+     */
+    Optional<T> selectRandomEntityReference_() {
+        return applyEntityManager_(
+                emf -> em -> selectRandomEntityReference(em, entityClass)
+        );
+    }
+
+    /**
+     * Selects the identifier of a randomly chosen instance of {@link #entityClass}, as an instance
+     * of {@link #idClass}, with an entity manager of its own of the
+     * {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit, through
+     * {@code JinahyaEntityManagerTestUtils.selectRandomEntityId}.
+     *
+     * @return an optional of the identifier selected; {@code empty} when there is no instance.
+     */
+    Optional<U> selectRandomEntityId_() {
+        return applyEntityManager_(
+                emf -> em -> selectRandomEntityId(em, entityClass, idClass)
+        );
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -186,4 +231,10 @@ public abstract class _Entity_PersistenceIT<T> {
 
     // ---------------------------------------------------------------------------------------------
     protected final Class<T> entityClass;
+
+    /**
+     * The class of the identifier of {@link #entityClass}: its id class, the type of its
+     * {@code @EmbeddedId}, or the type of its {@code @Id}.
+     */
+    protected final Class<U> idClass;
 }

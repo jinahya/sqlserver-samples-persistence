@@ -21,15 +21,16 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductProductPhotoId;
 
 /**
  * Verifies the mappings of {@link ProductProductPhoto} against the schema generated into the
  * in-memory database.
  */
 class ProductProductPhoto_PersistenceTest
-        extends _Entity_PersistenceTest<ProductProductPhoto> {
+        extends _Entity_PersistenceTest<ProductProductPhoto, ProductProductPhotoId> {
 
     ProductProductPhoto_PersistenceTest() {
-        super(ProductProductPhoto.class);
+        super(ProductProductPhoto.class, ProductProductPhotoId.class);
     }
 }

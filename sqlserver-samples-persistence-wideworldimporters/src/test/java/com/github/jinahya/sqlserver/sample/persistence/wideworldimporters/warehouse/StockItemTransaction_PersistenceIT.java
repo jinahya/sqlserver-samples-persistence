@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class StockItemTransaction_PersistenceIT extends _Entity_PersistenceIT<StockItemTransaction> {
+class StockItemTransaction_PersistenceIT extends _Entity_PersistenceIT<StockItemTransaction, Integer> {
 
     StockItemTransaction_PersistenceIT() {
-        super(StockItemTransaction.class);
+        super(StockItemTransaction.class, Integer.class);
     }
 }

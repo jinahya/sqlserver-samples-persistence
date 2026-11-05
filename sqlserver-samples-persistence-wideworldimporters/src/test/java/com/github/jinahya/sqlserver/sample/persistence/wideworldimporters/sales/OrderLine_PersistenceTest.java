@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class OrderLine_PersistenceTest
-        extends _Entity_PersistenceTest<OrderLine> {
+        extends _Entity_PersistenceTest<OrderLine, Integer> {
 
     OrderLine_PersistenceTest() {
-        super(OrderLine.class);
+        super(OrderLine.class, Integer.class);
     }
 }

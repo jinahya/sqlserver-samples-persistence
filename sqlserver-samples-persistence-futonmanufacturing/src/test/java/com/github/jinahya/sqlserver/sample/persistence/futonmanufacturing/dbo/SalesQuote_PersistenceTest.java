@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class SalesQuote_PersistenceTest
-        extends _Entity_PersistenceTest<SalesQuote> {
+        extends _Entity_PersistenceTest<SalesQuote, Integer> {
 
     SalesQuote_PersistenceTest() {
-        super(SalesQuote.class);
+        super(SalesQuote.class, Integer.class);
     }
 }

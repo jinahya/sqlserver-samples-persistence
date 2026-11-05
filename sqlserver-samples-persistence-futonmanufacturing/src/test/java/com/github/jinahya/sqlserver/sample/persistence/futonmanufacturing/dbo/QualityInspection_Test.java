@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link QualityInspection} entity class.
  */
 class QualityInspection_Test
-        extends _Entity_Test<QualityInspection> {
+        extends _Entity_Test<QualityInspection, Integer> {
 
     QualityInspection_Test() {
-        super(QualityInspection.class);
+        super(QualityInspection.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

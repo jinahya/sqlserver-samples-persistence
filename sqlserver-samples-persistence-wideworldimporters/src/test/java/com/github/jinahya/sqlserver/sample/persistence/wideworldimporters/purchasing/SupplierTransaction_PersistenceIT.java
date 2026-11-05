@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purch
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class SupplierTransaction_PersistenceIT extends _Entity_PersistenceIT<SupplierTransaction> {
+class SupplierTransaction_PersistenceIT extends _Entity_PersistenceIT<SupplierTransaction, Integer> {
 
     SupplierTransaction_PersistenceIT() {
-        super(SupplierTransaction.class);
+        super(SupplierTransaction.class, Integer.class);
     }
 }

@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.BusinessEntityAddressId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link BusinessEntityAddress} entity class.
  */
 class BusinessEntityAddress_Test
-        extends _Entity_Test<BusinessEntityAddress> {
+        extends _Entity_Test<BusinessEntityAddress, BusinessEntityAddressId> {
 
     BusinessEntityAddress_Test() {
-        super(BusinessEntityAddress.class);
+        super(BusinessEntityAddress.class, BusinessEntityAddressId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

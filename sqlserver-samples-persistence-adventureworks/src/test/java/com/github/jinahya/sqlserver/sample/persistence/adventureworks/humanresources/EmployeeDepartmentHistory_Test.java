@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeeDepartmentHistoryId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link EmployeeDepartmentHistory} entity class.
  */
 class EmployeeDepartmentHistory_Test
-        extends _Entity_Test<EmployeeDepartmentHistory> {
+        extends _Entity_Test<EmployeeDepartmentHistory, EmployeeDepartmentHistoryId> {
 
     EmployeeDepartmentHistory_Test() {
-        super(EmployeeDepartmentHistory.class);
+        super(EmployeeDepartmentHistory.class, EmployeeDepartmentHistoryId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

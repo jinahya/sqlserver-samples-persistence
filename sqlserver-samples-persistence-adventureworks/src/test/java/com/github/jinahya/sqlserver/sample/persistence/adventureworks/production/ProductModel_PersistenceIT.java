@@ -33,10 +33,10 @@ import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductModel_PersistenceIT
-        extends _Entity_PersistenceIT<ProductModel> {
+        extends _Entity_PersistenceIT<ProductModel, Integer> {
 
     ProductModel_PersistenceIT() {
-        super(ProductModel.class);
+        super(ProductModel.class, Integer.class);
     }
 
     /**

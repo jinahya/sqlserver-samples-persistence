@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class DeliveryMethod_PersistenceTest
-        extends _Entity_PersistenceTest<DeliveryMethod> {
+        extends _Entity_PersistenceTest<DeliveryMethod, Integer> {
 
     DeliveryMethod_PersistenceTest() {
-        super(DeliveryMethod.class);
+        super(DeliveryMethod.class, Integer.class);
     }
 }

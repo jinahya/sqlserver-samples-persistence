@@ -24,10 +24,10 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class CostRollUpView_PersistenceIT extends _Entity_PersistenceIT<CostRollUpView> {
+class CostRollUpView_PersistenceIT extends _Entity_PersistenceIT<CostRollUpView, String> {
 
     CostRollUpView_PersistenceIT() {
-        super(CostRollUpView.class);
+        super(CostRollUpView.class, String.class);
     }
 
     // ---------------------------------------------------------------------------------------------

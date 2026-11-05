@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Color} entity class.
  */
 class Color_Test
-        extends _Entity_Test<Color> {
+        extends _Entity_Test<Color, Integer> {
 
     Color_Test() {
-        super(Color.class);
+        super(Color.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

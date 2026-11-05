@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.PersonPhoneId;
 
 class PersonPhone_PersistenceIT
-        extends _Entity_PersistenceIT<PersonPhone> {
+        extends _Entity_PersistenceIT<PersonPhone, PersonPhoneId> {
 
     PersonPhone_PersistenceIT() {
-        super(PersonPhone.class);
+        super(PersonPhone.class, PersonPhoneId.class);
     }
 }

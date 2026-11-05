@@ -30,7 +30,7 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link SalesOrderHeaderSalesReason} entity class.
  */
 class SalesOrderHeaderSalesReason_Test
-        extends _Entity_Test<SalesOrderHeaderSalesReason> {
+        extends _Entity_Test<SalesOrderHeaderSalesReason, SalesOrderHeaderSalesReasonId> {
 
     private static SalesOrderHeaderSalesReasonId id(final int salesOrderId,
                                                     final int salesReasonId) {
@@ -42,7 +42,7 @@ class SalesOrderHeaderSalesReason_Test
 
     // ---------------------------------------------------------------------------------------------
     SalesOrderHeaderSalesReason_Test() {
-        super(SalesOrderHeaderSalesReason.class);
+        super(SalesOrderHeaderSalesReason.class, SalesOrderHeaderSalesReasonId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

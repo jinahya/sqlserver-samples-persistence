@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * in-memory database.
  */
 class ProductionOrderMaterial_PersistenceTest
-        extends _Entity_PersistenceTest<ProductionOrderMaterial> {
+        extends _Entity_PersistenceTest<ProductionOrderMaterial, Integer> {
 
     ProductionOrderMaterial_PersistenceTest() {
-        super(ProductionOrderMaterial.class);
+        super(ProductionOrderMaterial.class, Integer.class);
     }
 }

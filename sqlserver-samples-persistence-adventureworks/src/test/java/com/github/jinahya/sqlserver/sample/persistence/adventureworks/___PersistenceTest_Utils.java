@@ -21,6 +21,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
  */
 
 import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
+import com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.Objects;
@@ -62,6 +64,104 @@ public final class ___PersistenceTest_Utils {
         return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(
                 PERSISTENCE_UNIT_NAME,
                 function
+        );
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Applies the specified function to the factory of the {@value #PERSISTENCE_UNIT_NAME} unit and
+     * a new entity manager of it, which is closed when the function returns, through
+     * {@link JinahyaEntityManagerFactoryUtils#applyEntityManager(EntityManagerFactory, Function)}.
+     *
+     * @param function a function which takes the factory and returns the function to apply to the
+     *                 entity manager; the factory is there for what the entity manager does not
+     *                 give, such as its
+     *                 {@link EntityManagerFactory#getPersistenceUnitUtil() persistence unit util}.
+     * @param <R>      the type of the result.
+     * @return the result of the {@code function}.
+     */
+    public static <R> R applyEntityManager_(
+            final Function<
+                    ? super EntityManagerFactory,
+                    ? extends Function<
+                            ? super EntityManager,
+                            ? extends R
+                            >
+                    >
+                    function) {
+        Objects.requireNonNull(function, "function is null");
+        return applyEntityManagerFactory(
+                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManager(
+                        emf,
+                        em -> function.apply(emf).apply(em)
+                )
+        );
+    }
+
+    /**
+     * Applies the specified function to the factory of the {@value #PERSISTENCE_UNIT_NAME} unit and
+     * a new entity manager of it, inside a transaction which is rolled back when the function
+     * returns, through
+     * {@link
+     * JinahyaEntityManagerFactoryUtils#applyEntityManagerInTransactionAndRollback(EntityManagerFactory,
+     * Function)}.
+     *
+     * @param function a function which takes the factory and returns the function to apply to the
+     *                 entity manager; the factory is there for what the entity manager does not
+     *                 give, such as its
+     *                 {@link EntityManagerFactory#getPersistenceUnitUtil() persistence unit util}.
+     * @param <R>      the type of the result.
+     * @return the result of the {@code function}.
+     */
+    public static <R> R applyEntityManagerInTransactionAndRollback_(
+            final Function<
+                    ? super EntityManagerFactory,
+                    ? extends Function<
+                            ? super EntityManager,
+                            ? extends R
+                            >
+                    >
+                    function) {
+        Objects.requireNonNull(function, "function is null");
+        return applyEntityManagerFactory(
+                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndRollback(
+                        emf,
+                        em -> function.apply(emf).apply(em)
+                )
+        );
+    }
+
+    /**
+     * Applies the specified function to the factory of the {@value #PERSISTENCE_UNIT_NAME} unit and
+     * a new entity manager of it, inside a transaction which is committed when the function
+     * returns, through
+     * {@link
+     * JinahyaEntityManagerFactoryUtils#applyEntityManagerInTransactionAndCommit(EntityManagerFactory,
+     * Function)}.
+     *
+     * @param function a function which takes the factory and returns the function to apply to the
+     *                 entity manager; the factory is there for what the entity manager does not
+     *                 give, such as its
+     *                 {@link EntityManagerFactory#getPersistenceUnitUtil() persistence unit util}.
+     * @param <R>      the type of the result.
+     * @return the result of the {@code function}.
+     */
+    public static <R> R applyEntityManagerInTransactionAndCommit_(
+            final Function<
+                    ? super EntityManagerFactory,
+                    ? extends Function<
+                            ? super EntityManager,
+                            ? extends R
+                            >
+                    >
+                    function) {
+        Objects.requireNonNull(function, "function is null");
+        return applyEntityManagerFactory(
+                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManagerInTransactionAndCommit(
+                        emf,
+                        em -> function.apply(emf).apply(em)
+                )
         );
     }
 

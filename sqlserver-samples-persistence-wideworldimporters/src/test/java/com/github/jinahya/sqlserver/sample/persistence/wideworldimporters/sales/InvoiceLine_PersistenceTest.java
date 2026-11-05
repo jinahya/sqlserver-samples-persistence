@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class InvoiceLine_PersistenceTest
-        extends _Entity_PersistenceTest<InvoiceLine> {
+        extends _Entity_PersistenceTest<InvoiceLine, Integer> {
 
     InvoiceLine_PersistenceTest() {
-        super(InvoiceLine.class);
+        super(InvoiceLine.class, Integer.class);
     }
 }

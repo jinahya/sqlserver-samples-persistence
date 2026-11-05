@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class Password_PersistenceTest
-        extends _Entity_PersistenceTest<Password> {
+        extends _Entity_PersistenceTest<Password, Integer> {
 
     Password_PersistenceTest() {
-        super(Password.class);
+        super(Password.class, Integer.class);
     }
 }

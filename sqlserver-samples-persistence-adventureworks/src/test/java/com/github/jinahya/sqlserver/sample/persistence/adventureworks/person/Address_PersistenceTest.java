@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class Address_PersistenceTest
-        extends _Entity_PersistenceTest<Address> {
+        extends _Entity_PersistenceTest<Address, Integer> {
 
     Address_PersistenceTest() {
-        super(Address.class);
+        super(Address.class, Integer.class);
     }
 }

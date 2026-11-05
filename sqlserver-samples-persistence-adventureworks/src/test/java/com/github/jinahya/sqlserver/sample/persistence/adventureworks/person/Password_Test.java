@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Password} entity class.
  */
 class Password_Test
-        extends _Entity_Test<Password> {
+        extends _Entity_Test<Password, Integer> {
 
     Password_Test() {
-        super(Password.class);
+        super(Password.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

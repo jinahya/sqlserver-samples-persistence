@@ -31,10 +31,10 @@ import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DatabaseLog_PersistenceIT
-        extends _Entity_PersistenceIT<DatabaseLog> {
+        extends _Entity_PersistenceIT<DatabaseLog, Long> {
 
     DatabaseLog_PersistenceIT() {
-        super(DatabaseLog.class);
+        super(DatabaseLog.class, Long.class);
     }
 
     // ---------------------------------------------------------------------------------------------

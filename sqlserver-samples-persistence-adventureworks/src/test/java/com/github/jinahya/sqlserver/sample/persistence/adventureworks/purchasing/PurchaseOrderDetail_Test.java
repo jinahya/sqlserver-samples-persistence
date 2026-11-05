@@ -21,6 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.purchasing.PurchaseOrderDetailId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -28,10 +29,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link PurchaseOrderDetail} entity class.
  */
 class PurchaseOrderDetail_Test
-        extends _Entity_Test<PurchaseOrderDetail> {
+        extends _Entity_Test<PurchaseOrderDetail, PurchaseOrderDetailId> {
 
     PurchaseOrderDetail_Test() {
-        super(PurchaseOrderDetail.class);
+        super(PurchaseOrderDetail.class, PurchaseOrderDetailId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

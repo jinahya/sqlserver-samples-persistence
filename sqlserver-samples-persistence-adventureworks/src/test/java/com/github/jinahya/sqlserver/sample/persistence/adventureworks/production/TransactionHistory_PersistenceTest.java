@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * in-memory database.
  */
 class TransactionHistory_PersistenceTest
-        extends _Entity_PersistenceTest<TransactionHistory> {
+        extends _Entity_PersistenceTest<TransactionHistory, Integer> {
 
     TransactionHistory_PersistenceTest() {
-        super(TransactionHistory.class);
+        super(TransactionHistory.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

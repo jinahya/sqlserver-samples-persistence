@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
  * database.
  */
 class Supplier_PersistenceTest
-        extends _Entity_PersistenceTest<Supplier> {
+        extends _Entity_PersistenceTest<Supplier, Integer> {
 
     Supplier_PersistenceTest() {
-        super(Supplier.class);
+        super(Supplier.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

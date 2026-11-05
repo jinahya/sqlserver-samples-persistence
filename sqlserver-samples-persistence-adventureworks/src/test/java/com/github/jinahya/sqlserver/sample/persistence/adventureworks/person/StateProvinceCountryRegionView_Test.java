@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link StateProvinceCountryRegionView} entity class.
  */
 class StateProvinceCountryRegionView_Test
-        extends _Entity_Test<StateProvinceCountryRegionView> {
+        extends _Entity_Test<StateProvinceCountryRegionView, Integer> {
 
     StateProvinceCountryRegionView_Test() {
-        super(StateProvinceCountryRegionView.class);
+        super(StateProvinceCountryRegionView.class, Integer.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

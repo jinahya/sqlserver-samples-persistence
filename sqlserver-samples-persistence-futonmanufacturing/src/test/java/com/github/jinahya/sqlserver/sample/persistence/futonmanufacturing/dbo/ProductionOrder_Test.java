@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ProductionOrder} entity class.
  */
 class ProductionOrder_Test
-        extends _Entity_Test<ProductionOrder> {
+        extends _Entity_Test<ProductionOrder, Integer> {
 
     ProductionOrder_Test() {
-        super(ProductionOrder.class);
+        super(ProductionOrder.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

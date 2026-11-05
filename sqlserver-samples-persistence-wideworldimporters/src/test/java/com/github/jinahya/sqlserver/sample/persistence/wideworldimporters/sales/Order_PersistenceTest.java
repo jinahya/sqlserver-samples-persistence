@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * Verifies the mappings of {@link Order} against the schema generated into the in-memory database.
  */
 class Order_PersistenceTest
-        extends _Entity_PersistenceTest<Order> {
+        extends _Entity_PersistenceTest<Order, Integer> {
 
     Order_PersistenceTest() {
-        super(Order.class);
+        super(Order.class, Integer.class);
     }
 }

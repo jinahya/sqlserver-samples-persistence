@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class Department_PersistenceIT
-        extends _Entity_PersistenceIT<Department> {
+        extends _Entity_PersistenceIT<Department, Long> {
 
     Department_PersistenceIT() {
-        super(Department.class);
+        super(Department.class, Long.class);
     }
 }

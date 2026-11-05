@@ -81,19 +81,25 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   number of its schema and tier, and a removed one is marked `retired: true`, never reused. The id is the asciidoc
   anchor and heading prefix, and the marker above the statement in the `.sql` file.
 - **Test bases, one copy per module**: `___PersistenceIT_Utils`, `___Persistence_TestUtils`,
-  `___Validation_TestUtils`, `_Entity_PersistenceIT`, `_Keyless_PersistenceIT`. A fix to one is carried to the other
-  two. `___PersistenceIT_Utils` holds the entity manager factory, as `applyEntityManagerFactory(Function)`, and nothing
-  of validation or of entity managers; as in `oracle-sample-schemas-persistence`, the bases hold no entity manager and
-  no wrapper of their own, and a test goes through the jinahya library directly, one entity manager per call:
-  `applyEntityManagerFactory(emf -> applyEntityManagerInTransactionAndRollback(emf, em -> ...))`, or
-  `applyEntityManager` alone for a test which only reads. `___Persistence_TestUtils` holds only what the library has no
+  `___Validation_TestUtils`, `___JsonProcessing_TestUtils`, `___JsonBinding_TestUtils`, `___Jackson_TestUtils`, `_Entity_PersistenceIT`,
+  `_Keyless_PersistenceIT`. A fix to one is carried to the other
+  two. `___PersistenceIT_Utils` and `___PersistenceTest_Utils` hold the entity manager factory of their unit, as
+  `applyEntityManagerFactory(Function)`, and, as in `oracle-sample-schemas-persistence`, the shortcuts
+  `applyEntityManager_`, `applyEntityManagerInTransactionAndRollback_` and `applyEntityManagerInTransactionAndCommit_`,
+  which take a function of the factory to a function of a new entity manager, `emf -> em -> ...`; nothing of
+  validation. The bases hold no entity manager, one entity manager per call. `___Persistence_TestUtils` holds only what the library has no
   single call for, `selectRandomEntityInstance(EntityManagerFactory, Class, BiFunction)`. `_Entity_PersistenceIT` runs
   `persistRandomizedEntityInstance__` and `selectRandomEntityInstance__`, and hands the instance to the hooks
   `randomizedEntityInstancePersisted__` and `randomEntityInstanceSelected__(EntityManager, T)`; an entity which is not
   persisted overrides `persistRandomizedEntityInstance__` with a `@Disabled` one. `___Validation_TestUtils` holds the
   validator factory, and `selectRandomEntityInstance__` validates the row it loads with it, since Jakarta Persistence
   validates only on persist, update and remove. `_Entity_PersistenceIT.attributePaths` resolves every `ATTRIBUTE_PATH_*`
-  constant of an entity through the metamodel. The unit-test bases (from `oracle-sample-schemas-persistence`), run by
+  constant of an entity through the metamodel. `_Entity_Test`, `_Entity_PersistenceTest` and `_Entity_PersistenceIT`
+  take the class of the entity's identifier too, as `U` and a constructor's `Class<U> idClass`, as in
+  `oracle-sample-schemas-persistence`: the `@IdClass` (`ProductInventoryId`), the `@EmbeddedId`'s type
+  (`ProductProductPhotoId`), or the `@Id`'s (`Integer`; `Long` for `MappedWithIdentityId`); the two persistence bases
+  select a random identifier with it, `selectRandomEntityId_`, and a random reference, `selectRandomEntityReference_`.
+  The unit-test bases (from `oracle-sample-schemas-persistence`), run by
   surefire, are `__Test`, `__Object_Test` and `_Entity_Test` in every module, and `_NonEntity_Test`, for the id
   classes, in AdventureWorks only, the one module with composite keys. Every entity has an `<Entity>_Test`, which
   suppresses EqualsVerifier's `SURROGATE_KEY`, since its `equals` is by its key, and `STRICT_HASHCODE` where its
@@ -119,6 +125,14 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
 `enforce-dependency-convergence` runs on every module and is not skipped. Jakarta EE 11 is the only platform; the
 `jakarta.*` APIs come from `jakarta.jakartaee-bom` with no version of their own. Declare any other version in the root
 `pom.xml`.
+
+`jakarta.json-api` and `jakarta.json.bind-api` are `provided`, and their implementations, Parsson and Yasson, `test`,
+for every module, from the root, as in `oracle-sample-schemas-persistence`; their versions are the ones whose APIs are
+the BOM's (Parsson 1.1.7: `jakarta.json-api` 2.1.3; Yasson 3.0.4: `jakarta.json.bind-api` 3.0.1), and Parsson's is the
+one Yasson takes. `___JsonProcessing_TestUtils` and `___JsonBinding_TestUtils` read and write a JSON document with
+them, a reader and a writer factory, and a `Jsonb`, each created once per JVM; `___Jackson_TestUtils` does the same with
+an `ObjectMapper`, left as its constructor configures it, from `jackson-databind`, `test` for every module, whose
+version `jackson-bom` manages.
 
 **Every `<dependency>` names its `<scope>`**, `compile` included, though it is the default; a module's dependency
 never leaves it out.

@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class BillOfMaterials_PersistenceTest
-        extends _Entity_PersistenceTest<BillOfMaterials> {
+        extends _Entity_PersistenceTest<BillOfMaterials, Integer> {
 
     BillOfMaterials_PersistenceTest() {
-        super(BillOfMaterials.class);
+        super(BillOfMaterials.class, Integer.class);
     }
 }

@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link TransactionHistoryArchive} entity class.
  */
 class TransactionHistoryArchive_Test
-        extends _Entity_Test<TransactionHistoryArchive> {
+        extends _Entity_Test<TransactionHistoryArchive, Integer> {
 
     TransactionHistoryArchive_Test() {
-        super(TransactionHistoryArchive.class);
+        super(TransactionHistoryArchive.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

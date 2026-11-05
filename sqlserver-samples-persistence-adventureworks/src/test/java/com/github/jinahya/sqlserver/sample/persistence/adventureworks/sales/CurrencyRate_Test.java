@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link CurrencyRate} entity class.
  */
 class CurrencyRate_Test
-        extends _Entity_Test<CurrencyRate> {
+        extends _Entity_Test<CurrencyRate, Integer> {
 
     CurrencyRate_Test() {
-        super(CurrencyRate.class);
+        super(CurrencyRate.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

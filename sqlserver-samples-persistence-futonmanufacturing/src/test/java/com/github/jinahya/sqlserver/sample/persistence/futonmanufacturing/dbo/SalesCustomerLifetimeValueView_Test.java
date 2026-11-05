@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link SalesCustomerLifetimeValueView} entity class.
  */
 class SalesCustomerLifetimeValueView_Test
-        extends _Entity_Test<SalesCustomerLifetimeValueView> {
+        extends _Entity_Test<SalesCustomerLifetimeValueView, Integer> {
 
     SalesCustomerLifetimeValueView_Test() {
-        super(SalesCustomerLifetimeValueView.class);
+        super(SalesCustomerLifetimeValueView.class, Integer.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

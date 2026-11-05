@@ -22,9 +22,9 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
 
 import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
 
-class VehicleTemperature_PersistenceIT extends _Entity_PersistenceIT<VehicleTemperature> {
+class VehicleTemperature_PersistenceIT extends _Entity_PersistenceIT<VehicleTemperature, Long> {
 
     VehicleTemperature_PersistenceIT() {
-        super(VehicleTemperature.class);
+        super(VehicleTemperature.class, Long.class);
     }
 }

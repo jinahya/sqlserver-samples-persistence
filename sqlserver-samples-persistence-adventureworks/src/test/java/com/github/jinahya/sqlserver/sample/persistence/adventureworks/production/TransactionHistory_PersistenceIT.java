@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class TransactionHistory_PersistenceIT
-        extends _Entity_PersistenceIT<TransactionHistory> {
+        extends _Entity_PersistenceIT<TransactionHistory, Integer> {
 
     TransactionHistory_PersistenceIT() {
-        super(TransactionHistory.class);
+        super(TransactionHistory.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

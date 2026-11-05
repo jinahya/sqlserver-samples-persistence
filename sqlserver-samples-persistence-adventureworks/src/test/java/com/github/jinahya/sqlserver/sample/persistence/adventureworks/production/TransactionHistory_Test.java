@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link TransactionHistory} entity class.
  */
 class TransactionHistory_Test
-        extends _Entity_Test<TransactionHistory> {
+        extends _Entity_Test<TransactionHistory, Integer> {
 
     TransactionHistory_Test() {
-        super(TransactionHistory.class);
+        super(TransactionHistory.class, Integer.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

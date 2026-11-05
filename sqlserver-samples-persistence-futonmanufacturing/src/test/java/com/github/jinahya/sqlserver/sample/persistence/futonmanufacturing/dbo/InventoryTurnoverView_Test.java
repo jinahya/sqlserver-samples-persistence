@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link InventoryTurnoverView} entity class.
  */
 class InventoryTurnoverView_Test
-        extends _Entity_Test<InventoryTurnoverView> {
+        extends _Entity_Test<InventoryTurnoverView, String> {
 
     InventoryTurnoverView_Test() {
-        super(InventoryTurnoverView.class);
+        super(InventoryTurnoverView.class, String.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

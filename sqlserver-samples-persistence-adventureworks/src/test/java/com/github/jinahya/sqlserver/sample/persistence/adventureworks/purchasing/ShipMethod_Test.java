@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ShipMethod} entity class.
  */
 class ShipMethod_Test
-        extends _Entity_Test<ShipMethod> {
+        extends _Entity_Test<ShipMethod, Integer> {
 
     ShipMethod_Test() {
-        super(ShipMethod.class);
+        super(ShipMethod.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

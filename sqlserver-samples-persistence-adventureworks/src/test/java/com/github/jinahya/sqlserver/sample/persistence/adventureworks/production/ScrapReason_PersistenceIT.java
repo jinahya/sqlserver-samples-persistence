@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class ScrapReason_PersistenceIT
-        extends _Entity_PersistenceIT<ScrapReason> {
+        extends _Entity_PersistenceIT<ScrapReason, Long> {
 
     ScrapReason_PersistenceIT() {
-        super(ScrapReason.class);
+        super(ScrapReason.class, Long.class);
     }
 }

@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link ProductModelCatalogDescriptionView} entity class.
  */
 class ProductModelCatalogDescriptionView_Test
-        extends _Entity_Test<ProductModelCatalogDescriptionView> {
+        extends _Entity_Test<ProductModelCatalogDescriptionView, Integer> {
 
     ProductModelCatalogDescriptionView_Test() {
-        super(ProductModelCatalogDescriptionView.class);
+        super(ProductModelCatalogDescriptionView.class, Integer.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

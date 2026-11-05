@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ContactType} entity class.
  */
 class ContactType_Test
-        extends _Entity_Test<ContactType> {
+        extends _Entity_Test<ContactType, Integer> {
 
     ContactType_Test() {
-        super(ContactType.class);
+        super(ContactType.class, Integer.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

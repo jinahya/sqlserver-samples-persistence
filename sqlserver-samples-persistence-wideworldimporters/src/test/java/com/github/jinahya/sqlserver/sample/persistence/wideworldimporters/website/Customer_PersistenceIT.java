@@ -24,10 +24,10 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class Customer_PersistenceIT extends _Entity_PersistenceIT<Customer> {
+class Customer_PersistenceIT extends _Entity_PersistenceIT<Customer, Integer> {
 
     Customer_PersistenceIT() {
-        super(Customer.class);
+        super(Customer.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

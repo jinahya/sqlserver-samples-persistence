@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class StateProvinceCountryRegionView_PersistenceIT
-        extends _Entity_PersistenceIT<StateProvinceCountryRegionView> {
+        extends _Entity_PersistenceIT<StateProvinceCountryRegionView, Integer> {
 
     StateProvinceCountryRegionView_PersistenceIT() {
-        super(StateProvinceCountryRegionView.class);
+        super(StateProvinceCountryRegionView.class, Integer.class);
     }
 
     // ---------------------------------------------------------------------------------------------

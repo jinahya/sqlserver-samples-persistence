@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * database.
  */
 class PriceListDetail_PersistenceTest
-        extends _Entity_PersistenceTest<PriceListDetail> {
+        extends _Entity_PersistenceTest<PriceListDetail, Integer> {
 
     PriceListDetail_PersistenceTest() {
-        super(PriceListDetail.class);
+        super(PriceListDetail.class, Integer.class);
     }
 }

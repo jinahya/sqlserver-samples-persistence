@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class CurrencyRate_PersistenceTest
-        extends _Entity_PersistenceTest<CurrencyRate> {
+        extends _Entity_PersistenceTest<CurrencyRate, Integer> {
 
     CurrencyRate_PersistenceTest() {
-        super(CurrencyRate.class);
+        super(CurrencyRate.class, Integer.class);
     }
 }

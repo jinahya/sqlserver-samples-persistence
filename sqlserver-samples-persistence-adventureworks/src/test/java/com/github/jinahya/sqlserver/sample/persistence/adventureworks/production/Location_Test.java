@@ -28,10 +28,10 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link Location} entity class.
  */
 class Location_Test
-        extends _Entity_Test<Location> {
+        extends _Entity_Test<Location, Long> {
 
     Location_Test() {
-        super(Location.class);
+        super(Location.class, Long.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

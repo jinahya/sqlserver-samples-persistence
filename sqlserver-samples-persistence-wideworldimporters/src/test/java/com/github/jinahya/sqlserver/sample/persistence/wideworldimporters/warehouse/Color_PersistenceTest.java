@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * Verifies the mappings of {@link Color} against the schema generated into the in-memory database.
  */
 class Color_PersistenceTest
-        extends _Entity_PersistenceTest<Color> {
+        extends _Entity_PersistenceTest<Color, Integer> {
 
     Color_PersistenceTest() {
-        super(Color.class);
+        super(Color.class, Integer.class);
     }
 }

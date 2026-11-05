@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
  * A class for testing the {@link CostRollUpView} entity class.
  */
 class CostRollUpView_Test
-        extends _Entity_Test<CostRollUpView> {
+        extends _Entity_Test<CostRollUpView, String> {
 
     CostRollUpView_Test() {
-        super(CostRollUpView.class);
+        super(CostRollUpView.class, String.class);
     }
 
     // ------------------------------------------------------------------------------------ toString

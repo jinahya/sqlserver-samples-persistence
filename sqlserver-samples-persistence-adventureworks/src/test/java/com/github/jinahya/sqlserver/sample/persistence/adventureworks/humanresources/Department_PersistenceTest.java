@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Pe
  * database.
  */
 class Department_PersistenceTest
-        extends _Entity_PersistenceTest<Department> {
+        extends _Entity_PersistenceTest<Department, Long> {
 
     Department_PersistenceTest() {
-        super(Department.class);
+        super(Department.class, Long.class);
     }
 }

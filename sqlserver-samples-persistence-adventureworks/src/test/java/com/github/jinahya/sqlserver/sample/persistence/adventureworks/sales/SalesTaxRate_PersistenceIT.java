@@ -23,9 +23,9 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
 
 class SalesTaxRate_PersistenceIT
-        extends _Entity_PersistenceIT<SalesTaxRate> {
+        extends _Entity_PersistenceIT<SalesTaxRate, Integer> {
 
     SalesTaxRate_PersistenceIT() {
-        super(SalesTaxRate.class);
+        super(SalesTaxRate.class, Integer.class);
     }
 }

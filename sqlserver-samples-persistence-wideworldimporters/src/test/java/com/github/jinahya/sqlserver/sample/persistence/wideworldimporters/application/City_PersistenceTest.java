@@ -26,9 +26,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * Verifies the mappings of {@link City} against the schema generated into the in-memory database.
  */
 class City_PersistenceTest
-        extends _Entity_PersistenceTest<City> {
+        extends _Entity_PersistenceTest<City, Integer> {
 
     City_PersistenceTest() {
-        super(City.class);
+        super(City.class, Integer.class);
     }
 }

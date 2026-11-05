@@ -22,6 +22,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.BusinessEntityAddressId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,10 +31,10 @@ import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BusinessEntityAddress_PersistenceIT
-        extends _Entity_PersistenceIT<BusinessEntityAddress> {
+        extends _Entity_PersistenceIT<BusinessEntityAddress, BusinessEntityAddressId> {
 
     BusinessEntityAddress_PersistenceIT() {
-        super(BusinessEntityAddress.class);
+        super(BusinessEntityAddress.class, BusinessEntityAddressId.class);
     }
 
     // ---------------------------------------------------------------------------------------------

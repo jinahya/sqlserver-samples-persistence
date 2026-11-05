@@ -21,11 +21,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.CountryRegionCurrencyId;
 
 class CountryRegionCurrency_PersistenceIT
-        extends _Entity_PersistenceIT<CountryRegionCurrency> {
+        extends _Entity_PersistenceIT<CountryRegionCurrency, CountryRegionCurrencyId> {
 
     CountryRegionCurrency_PersistenceIT() {
-        super(CountryRegionCurrency.class);
+        super(CountryRegionCurrency.class, CountryRegionCurrencyId.class);
     }
 }

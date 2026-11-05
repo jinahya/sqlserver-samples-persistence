@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * in-memory database.
  */
 class InventoryTransaction_PersistenceTest
-        extends _Entity_PersistenceTest<InventoryTransaction> {
+        extends _Entity_PersistenceTest<InventoryTransaction, Integer> {
 
     InventoryTransaction_PersistenceTest() {
-        super(InventoryTransaction.class);
+        super(InventoryTransaction.class, Integer.class);
     }
 }

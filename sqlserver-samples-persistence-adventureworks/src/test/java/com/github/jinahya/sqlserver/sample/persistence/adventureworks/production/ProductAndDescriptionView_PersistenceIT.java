@@ -21,14 +21,15 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductAndDescriptionViewId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class ProductAndDescriptionView_PersistenceIT
-        extends _Entity_PersistenceIT<ProductAndDescriptionView> {
+        extends _Entity_PersistenceIT<ProductAndDescriptionView, ProductAndDescriptionViewId> {
 
     ProductAndDescriptionView_PersistenceIT() {
-        super(ProductAndDescriptionView.class);
+        super(ProductAndDescriptionView.class, ProductAndDescriptionViewId.class);
     }
 
     // ---------------------------------------------------------------------------------------------

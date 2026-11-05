@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entit
  * in-memory database.
  */
 class QualityInspection_PersistenceTest
-        extends _Entity_PersistenceTest<QualityInspection> {
+        extends _Entity_PersistenceTest<QualityInspection, Integer> {
 
     QualityInspection_PersistenceTest() {
-        super(QualityInspection.class);
+        super(QualityInspection.class, Integer.class);
     }
 }

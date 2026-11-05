@@ -30,7 +30,7 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
  * A class for testing the {@link ProductModelIllustration} entity class.
  */
 class ProductModelIllustration_Test
-        extends _Entity_Test<ProductModelIllustration> {
+        extends _Entity_Test<ProductModelIllustration, ProductModelIllustrationId> {
 
     private static ProductModelIllustrationId id(final int productModelId,
                                                  final int illustrationId) {
@@ -42,7 +42,7 @@ class ProductModelIllustration_Test
 
     // ---------------------------------------------------------------------------------------------
     ProductModelIllustration_Test() {
-        super(ProductModelIllustration.class);
+        super(ProductModelIllustration.class, ProductModelIllustrationId.class);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode

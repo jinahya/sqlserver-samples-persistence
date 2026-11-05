@@ -27,9 +27,9 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entit
  * database.
  */
 class PackageType_PersistenceTest
-        extends _Entity_PersistenceTest<PackageType> {
+        extends _Entity_PersistenceTest<PackageType, Integer> {
 
     PackageType_PersistenceTest() {
-        super(PackageType.class);
+        super(PackageType.class, Integer.class);
     }
 }
