@@ -172,6 +172,16 @@ ALTER TABLE [Sales].[SalesOrderDetail] ALTER COLUMN [LineTotal] SET NULL;
 ALTER TABLE [Sales].[SalesOrderHeader] ALTER COLUMN [SalesOrderNumber] SET NULL;
 ALTER TABLE [Sales].[SalesOrderHeader] ALTER COLUMN [TotalDue] SET NULL;
 
+-- ------------------------------------------------------------------------------------ padded check constraints
+-- A check constraint which compares an nchar column, padded to its length ('R '), with a shorter literal
+-- ('R') is dropped: SQL Server ignores the trailing spaces, and H2 does not.
+-- CK_Product_ProductLine, on the nchar(2) [ProductLine]: (upper([ProductLine])='R' OR upper([ProductLine])='M' OR upper([ProductLine])='T' OR upper([ProductLine])='S' OR [ProductLine] IS NULL)
+ALTER TABLE [Production].[Product] DROP CONSTRAINT [CK_Product_ProductLine];
+-- CK_Product_Class, on the nchar(2) [Class]: (upper([Class])='H' OR upper([Class])='M' OR upper([Class])='L' OR [Class] IS NULL)
+ALTER TABLE [Production].[Product] DROP CONSTRAINT [CK_Product_Class];
+-- CK_Product_Style, on the nchar(2) [Style]: (upper([Style])='U' OR upper([Style])='M' OR upper([Style])='W' OR [Style] IS NULL)
+ALTER TABLE [Production].[Product] DROP CONSTRAINT [CK_Product_Style];
+
 -- ----------------------------------------------------------------------------------------- unbounded columns
 -- A column SQL Server does not bound, (max), xml, geography or hierarchyid, which the mapping gives no
 -- length, and the provider, so, 255, is unbounded here too.

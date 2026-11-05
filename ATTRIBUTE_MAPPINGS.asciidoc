@@ -175,7 +175,7 @@ Each of the 239 foreign-key columns has an attribute of its key's type, and no `
 | `byte[]`
 | `@Convert(Base64StringAttributeConverter.OfBasic)`
 | 2
-| Base64 text, decoded; see <<enums-and-converters>>.
+| Base64 text, decoded; see <<converters>>.
 | AdventureWorks: `Person.Password.PasswordHash`, `Person.Password.PasswordSalt`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
@@ -189,49 +189,49 @@ Each of the 239 foreign-key columns has an attribute of its key's type, and no `
 | `Gender`
 | `@Enumerated(STRING)`
 | 1
-| See <<enums-and-converters>>.
+| See <<enums>>.
 | AdventureWorks: `HumanResources.Employee.Gender`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `MaritalStatus`
 | `@Enumerated(STRING)`
 | 1
-| See <<enums-and-converters>>.
+| See <<enums>>.
 | AdventureWorks: `HumanResources.Employee.MaritalStatus`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `PersonType`
 | `@Enumerated(STRING)`
 | 1
-| See <<enums-and-converters>>.
+| See <<enums>>.
 | AdventureWorks: `Person.Person.PersonType`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `ProductClass`
 | `@Convert(ProductClassConverter)`
 | 1
-| A nested converter of `MappedProduct`; see <<enums-and-converters>>.
+| A nested converter of `MappedProduct`; see <<enums>>.
 | AdventureWorks: `Production.Product.Class`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `ProductLine`
 | `@Convert(ProductLineConverter)`
 | 1
-| A nested converter of `MappedProduct`; see <<enums-and-converters>>.
+| A nested converter of `MappedProduct`; see <<enums>>.
 | AdventureWorks: `Production.Product.ProductLine`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `ProductStyle`
 | `@Convert(ProductStyleConverter)`
 | 1
-| A nested converter of `MappedProduct`; see <<enums-and-converters>>.
+| A nested converter of `MappedProduct`; see <<enums>>.
 | AdventureWorks: `Production.Product.Style`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `TransactionType`
 | `@Enumerated(STRING)`
 | 2
-| See <<enums-and-converters>>.
+| See <<enums>>.
 | AdventureWorks: `Production.TransactionHistory.TransactionType`, `Production.TransactionHistoryArchive.TransactionType`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nvarchar`]
@@ -370,8 +370,8 @@ The `@Embeddable` id classes of AdventureWorks' seven link tables, `<Entity>Id`,
 `MappedWithEmbeddedId`'s `id_`, map their key columns; their attributes are among the rows above. The
 `@IdClass` id classes map no column. See link:COMPOSITE_PK.asciidoc[Composite Primary Keys].
 
-[[enums-and-converters]]
-== Enums and converters
+[[enums]]
+== Enums
 
 [cols="3,2,3,4",options="header"]
 |===
@@ -380,44 +380,104 @@ The `@Embeddable` id classes of AdventureWorks' seven link tables, `<Entity>Id`,
 | `HumanResources.Employee.Gender`
 | `MappedEmployee.Gender`
 | `@Enumerated(EnumType.STRING)`
-| `nchar(1)`
+| `nchar(1)`; `CK_Employee_Gender` allows `F` and `M`. A value fills the column, so `@Enumerated` reads the constant's name.
 
 | `HumanResources.Employee.MaritalStatus`
 | `MappedEmployee.MaritalStatus`
 | `@Enumerated(EnumType.STRING)`
-| `nchar(1)`
+| `nchar(1)`; `CK_Employee_MaritalStatus` allows `S` and `M`. As `Gender`.
 
 | `Person.Person.PersonType`
 | `MappedPerson.PersonType`
 | `@Enumerated(EnumType.STRING)`
-| `nchar(2)`
+| `nchar(2)`; `CK_Person_PersonType` allows `SC`, `IN`, `SP`, `EM`, `VC`, `GC` and `NULL`. Two letters fill the column, so `@Enumerated` reads the constant's name.
 
 | `Production.TransactionHistory.TransactionType`, `Production.TransactionHistoryArchive.TransactionType`
 | `MappedTransactionHistory.TransactionType`
 | `@Enumerated(EnumType.STRING)`
-| `nchar(1)`
+| `nchar(1)`; `CK_TransactionHistory_TransactionType` and `CK_TransactionHistoryArchive_TransactionType` allow `W`, `S` and `P`. One enum serves both tables. As `Gender`.
 
 | `Production.Product.ProductLine`
 | `MappedProduct.ProductLine`
 | `@Convert(converter = ProductLineConverter.class)`
-| `nchar(2)` holding one letter, blank-padded (`R `), which the converter strips; `@Enumerated` would not
+| `nchar(2)`; `CK_Product_ProductLine` allows `R`, `M`, `T`, `S` and `NULL`. One letter does not fill the column: SQL Server stores and returns it padded (`R `), which `@Enumerated` cannot read. The enum is an `AttributeEnum.OfString` whose attribute value is its name padded to the column's length, and the converter an `AttributeEnumConverter.OfString`, of `jinahya-persistence-more`. On H2, which compares the padding, the check is dropped; see link:H2.asciidoc[H2].
 
 | `Production.Product.Class`
 | `MappedProduct.ProductClass`
 | `@Convert(converter = ProductClassConverter.class)`
-| the same
+| `nchar(2)`; `CK_Product_Class` allows `H`, `M`, `L` and `NULL`. As `ProductLine`.
 
 | `Production.Product.Style`
 | `MappedProduct.ProductStyle`
 | `@Convert(converter = ProductStyleConverter.class)`
-| the same
-
-| `Person.Password.PasswordHash`, `PasswordSalt`
-| `byte[]`
-| `@Convert(converter = Base64StringAttributeConverter.OfBasic.class)`
-| `varchar` holding Base64 text, of `jinahya-persistence-more`
+| `nchar(2)`; `CK_Product_Style` allows `W`, `M`, `U` and `NULL`. As `ProductLine`.
 
 |===
 
-Each enum's constants are named after the column's values, which the table's check constraint allows.
+Each enum's constants are named after the values the column's check constraint allows, which it compares in
+upper case.
+`Product_ProductLine_Test` and its converter's `Product_ProductLineConverter_Test`, and those of `ProductClass`
+and `ProductStyle`, are `jinahya-persistence-more-test`'s `AttributeEnum_Test.OfStringTest` and
+`AttributeEnumConverter_Test.OfStringTest`, as `oracle-sample-schemas-persistence`'s `ShipmentStatus`'s are.
+
+[[converters]]
+== Converters
+
+Every converter which is not an enum's, with the attributes it converts:
+
+[cols="3,2,4,4",options="header"]
+|===
+| Converter | Java type | Columns | Note
+
+| `Base64StringAttributeConverter.OfBasic`
+| `byte[]`
+| AdventureWorks: `Person.Password.PasswordHash`, `Person.Password.PasswordSalt`
+| `jinahya-persistence-more`'s; `varchar` holding Base64 text, decoded into the bytes and encoded back. No check limits the values.
+
+| `GeographyAttributeConverter`
+| `Geography`
+| AdventureWorks: `Person.Address.SpatialLocation`; WideWorldImporters: `Application.Cities.Location`, `Application.Cities_Archive.Location`, `Application.Countries.Border`, `Application.Countries_Archive.Border`, `Application.StateProvinces.Border`, `Application.StateProvinces_Archive.Border`, `Application.SystemParameters.DeliveryLocation`, `Purchasing.Suppliers.DeliveryLocation`, `Purchasing.Suppliers_Archive.DeliveryLocation`, `Sales.Customers.DeliveryLocation`, `Sales.Customers_Archive.DeliveryLocation`, `Website.Customers.DeliveryLocation`, `Website.Suppliers.DeliveryLocation`
+| `-common`'s; the serialized form of [MS-SSCLRT] section 2.1, read and written by the class itself; see <<spatial-and-hierarchy>>.
+
+| `HeirarchyidAttributeConverter`
+| `Heirarchyid`
+| AdventureWorks: `HumanResources.Employee.OrganizationNode`, `Production.Document.DocumentNode`, `Production.ProductDocument.DocumentNode`
+| `-common`'s; the serialized form of [MS-SSCLRT] section 2.2; see <<spatial-and-hierarchy>>.
+
+| `AdditionalContactInfoStringAttributeConverter`
+| `AdditionalContactInfo`
+| AdventureWorks: `HumanResources.vEmployee.AdditionalContactInfo`, `Person.Person.AdditionalContactInfo`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+| `EventInstanceStringAttributeConverter`
+| `EventInstance`
+| AdventureWorks: `dbo.DatabaseLog.XmlEvent`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+| `IndividualSurveyStringAttributeConverter`
+| `IndividualSurvey`
+| AdventureWorks: `Person.Person.Demographics`, `Sales.vIndividualCustomer.Demographics`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+| `ManuInstructionsStringAttributeConverter`
+| `Root`
+| AdventureWorks: `Production.ProductModel.Instructions`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+| `ProductDescriptionStringAttributeConverter`
+| `ProductDescription`
+| AdventureWorks: `Production.ProductModel.CatalogDescription`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+| `ResumeTypeStringAttributeConverter`
+| `ResumeType`
+| AdventureWorks: `HumanResources.JobCandidate.Resume`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+| `StoreSurveyStringAttributeConverter`
+| `StoreSurvey`
+| AdventureWorks: `Sales.Store.Demographics`
+| A `JaxbAttributeConverter` of `jinahya-persistence-more`, binding the column's schema collection; see <<xml-schemas>>.
+
+|===
 

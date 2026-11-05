@@ -94,6 +94,11 @@ database's catalog, for the tables the unit maps, and is not edited by hand:
 | One which matches with a character class, `LIKE '[A-Za-z]'` (AdventureWorks' `CK_ProductInventory_Shelf`), which
   H2's `LIKE` does not have, is dropped.
 
+| padded check constraints
+| One which compares an `nchar` column, padded to its length (`'R '`), with a shorter literal (`'R'`) is dropped:
+  SQL Server ignores the trailing spaces, and H2 does not (AdventureWorks' `CK_Product_ProductLine`, `CK_Product_Class`,
+  `CK_Product_Style`).
+
 | unbounded columns
 | A column SQL Server does not bound, `(max)`, `xml`, `geography` or `hierarchyid`, has no length in the mapping, so
   the provider makes it 255; it is unbounded here too, `CHARACTER VARYING` or `BINARY VARYING`.
