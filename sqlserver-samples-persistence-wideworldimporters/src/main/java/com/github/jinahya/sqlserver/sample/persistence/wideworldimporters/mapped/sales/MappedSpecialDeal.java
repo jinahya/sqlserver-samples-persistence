@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -33,8 +32,6 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -762,8 +759,6 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = true, insertable = false, updatable = false,
             comment = "Stock item that the deal applies to (if NULL, then only discounts are "
@@ -772,8 +767,6 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of the customer that the special pricing applies to (if NULL then all "
@@ -782,8 +775,6 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUYING_GROUP_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of the buying group that the special pricing applies to (optional)")
@@ -791,8 +782,6 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_CATEGORY_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of the customer category that the special pricing applies to (optional)")
@@ -800,8 +789,6 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STOCK_GROUP_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of the stock group that the special pricing applies to (optional)")
@@ -855,8 +842,6 @@ public abstract class MappedSpecialDeal {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

@@ -600,8 +600,6 @@ public abstract class MappedProductVendor {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,
@@ -611,8 +609,6 @@ public abstract class MappedProductVendor {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,

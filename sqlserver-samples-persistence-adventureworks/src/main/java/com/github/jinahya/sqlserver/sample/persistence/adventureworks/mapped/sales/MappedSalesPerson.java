@@ -29,8 +29,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -500,8 +498,6 @@ public abstract class MappedSalesPerson {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -513,8 +509,6 @@ public abstract class MappedSalesPerson {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false,
             comment = "Territory currently assigned to. Foreign key to "

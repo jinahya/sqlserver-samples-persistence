@@ -20,11 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
@@ -136,10 +133,6 @@ public class ProductProductPhotoId {
      */
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedProductProductPhoto.COLUMN_NAME_PRODUCT_ID, nullable = false,
             insertable = true, updatable = false,

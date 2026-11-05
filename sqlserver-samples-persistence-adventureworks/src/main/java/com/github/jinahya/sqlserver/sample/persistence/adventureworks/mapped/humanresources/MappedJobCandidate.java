@@ -21,7 +21,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  */
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.ResumeTypeStringAttributeConverter;
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithIdentityId;
@@ -34,8 +33,6 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import java.time.LocalDateTime;
 
 /**
@@ -281,8 +278,6 @@ public abstract class MappedJobCandidate
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = true, insertable = false,
             updatable = false,

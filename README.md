@@ -76,6 +76,8 @@ an `@EmbeddedId`, the association writes it, and `@MapsId` derives the attribute
 - An `IDENTITY` column is `@GeneratedValue(strategy = IDENTITY)`, and WideWorldImporters' keys, whose defaults are
   [`NEXT VALUE FOR`](https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql) `[Sequences].[...]`, `@GeneratedValue(strategy = SEQUENCE)` with a `@SequenceGenerator` per
   sequence. An `IDENTITY` column has no `@Min` or `@Max`: the database assigns it, and the attribute is never set.
+- A foreign-key column's attribute takes the Java type of the key it refers to, whatever the column declares, so that
+  the two compare, and has no `@Min` or `@Max`: the key bounds it.
 - An AdventureWorks `dbo` or `HumanResources` table keyed by a single `IDENTITY` column extends `-common`'s
   `MappedWithIdentityId`, whose `Long id_` maps the column through an `@AttributeOverride`, whatever its width.
   `Production.Location` and `Production.ScrapReason`, keyed by `smallint` `IDENTITY` columns too, map them as `Long`s

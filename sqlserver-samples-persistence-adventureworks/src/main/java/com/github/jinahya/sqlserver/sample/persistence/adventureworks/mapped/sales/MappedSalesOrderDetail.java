@@ -640,8 +640,6 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SALES_ORDER_ID, nullable = false, insertable = true,
@@ -680,8 +678,6 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false,
@@ -691,8 +687,6 @@ public abstract class MappedSalesOrderDetail {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SPECIAL_OFFER_ID, nullable = false, insertable = false,

@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.mappe
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -32,8 +31,6 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -569,8 +566,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = false, updatable = false,
@@ -579,8 +574,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_TRANSACTION_TYPE_ID, nullable = false, insertable = false, updatable = false,
@@ -589,8 +582,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = true, insertable = false, updatable = false,
             comment = "Customer for this transaction (if applicable)")
@@ -598,8 +589,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_INVOICE_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of an invoice (for transactions associated with an invoice)")
@@ -607,8 +596,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SUPPLIER_ID, nullable = true, insertable = false, updatable = false,
             comment = "Supplier for this stock transaction (if applicable)")
@@ -616,8 +603,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PURCHASE_ORDER_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of an purchase order (for transactions associated with a purchase order)")
@@ -642,8 +627,6 @@ public abstract class MappedStockItemTransaction {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

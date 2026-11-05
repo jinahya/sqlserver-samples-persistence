@@ -1,6 +1,29 @@
 = Column Types
 :data-types: https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql
 
+////
+AI: how this file is made -- as oracle-sample-schemas-persistence's COLUMN_TYPES.asciidoc says, for SQL Server.
+
+* Scope: every column of every table the three databases create; a view adds no type of its own, and is covered by
+  the last section, Views.
+* Sections: the categories of Microsoft's Data types (Transact-SQL) page, in its order (exact numerics, approximate
+  numerics, date and time, character strings, Unicode character strings, binary strings, other data types), one
+  subsection per type used; each section links its anchor on that page, each subsection its type's page.
+* Each declared type is listed as the catalog reports it, length and all (`nvarchar(50)`, `decimal(19,4)`,
+  `int IDENTITY`), an alias type with the system type it is based on (`Name` (`nvarchar(50)`)); one row per
+  declared type, Java type and database.
+* Columns: Declared as | Java type | Database | Count | Columns; each column as `Schema.Table.Column`, the database
+  in its own column, since AdventureWorks and WideWorldImporters share schema names; the counts add up to the
+  columns stated in the introduction, per database and in all.
+* Java type: the type of the attribute which maps the column in the `Mapped*` classes, resolved through the
+  constants, including an `@AttributeOverride` and an `@Embeddable` id class: `java.time` for the date and time
+  types, a wrapper type, never a primitive. A foreign-key column takes the type of the key it refers to; say so
+  where that differs from its own declaration.
+* Take the types from the live databases' catalogs (`sys.columns`, `sys.types`), never from memory.
+* Name the types of the reference which no column uses, in the introduction.
+* End the file with two newlines.
+////
+
 Every column type the tables of AdventureWorks, WideWorldImporters and FutonManufacturing declare, grouped by the
 categories of link:{data-types}[Data types (Transact-SQL)]. Each type is listed as the database's catalog
 (`sys.columns`, `sys.types`) reports it, an alias type with the system type it is based on, and each column as
@@ -16,6 +39,8 @@ No column is `float`, `real`, `char`, `text`, `ntext`, `binary`, `image`, `small
 `rowversion`, `sql_variant`, `geometry`, `json` or `vector`.
 
 == Exact numerics
+
+See link:{data-types}#exact-numerics[Exact numerics].
 
 `int`, `smallint` and `tinyint` are `Integer`s, and `bigint` a `Long`. An AdventureWorks `dbo` or
 `HumanResources` table keyed by a single `IDENTITY` column extends `-common`'s `MappedWithIdentityId`, whose
@@ -134,10 +159,16 @@ See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/int-bigint-small
 | Declared as | Java type | Database | Count | Columns
 
 | `tinyint`
+| `Long`
+| AdventureWorks
+| 1
+| `HumanResources.EmployeeDepartmentHistory.ShiftID`
+
+| `tinyint`
 | `Integer`
 | AdventureWorks
-| 11
-| `HumanResources.EmployeeDepartmentHistory.ShiftID`, `HumanResources.EmployeePayHistory.PayFrequency`, `Production.Document.Status`, `Production.ProductInventory.Bin`, `Purchasing.PurchaseOrderHeader.RevisionNumber`, `Purchasing.PurchaseOrderHeader.Status`, `Purchasing.Vendor.CreditRating`, `Sales.CreditCard.ExpMonth`, `Sales.SalesOrderHeader.RevisionNumber`, `Sales.SalesOrderHeader.Status`, `Sales.SalesTaxRate.TaxType`
+| 10
+| `HumanResources.EmployeePayHistory.PayFrequency`, `Production.Document.Status`, `Production.ProductInventory.Bin`, `Purchasing.PurchaseOrderHeader.RevisionNumber`, `Purchasing.PurchaseOrderHeader.Status`, `Purchasing.Vendor.CreditRating`, `Sales.CreditCard.ExpMonth`, `Sales.SalesOrderHeader.RevisionNumber`, `Sales.SalesOrderHeader.Status`, `Sales.SalesTaxRate.TaxType`
 
 | `tinyint IDENTITY`
 | `Long`
@@ -325,6 +356,8 @@ See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/money-and-smallm
 
 == Date and time
 
+See link:{data-types}#date-and-time[Date and time].
+
 === `date`
 
 See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/date-transact-sql[`date`].
@@ -409,6 +442,8 @@ See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/time-transact-sq
 
 == Character strings
 
+See link:{data-types}#character-strings[Character strings].
+
 `Person.Password.PasswordHash` and `PasswordSalt` hold Base64 text, which `Base64StringAttributeConverter`
 decodes into the bytes.
 
@@ -447,6 +482,8 @@ See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar
 |===
 
 == Unicode character strings
+
+See link:{data-types}#unicode-character-strings[Unicode character strings].
 
 `sysname` is `nvarchar(128)`. The `nchar` code columns of AdventureWorks which hold one of a few values are
 enums, each through a converter or `@Enumerated(EnumType.STRING)`.
@@ -785,6 +822,8 @@ See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarch
 
 == Binary strings
 
+See link:{data-types}#binary-strings[Binary strings].
+
 === `varbinary`
 
 See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbinary-transact-sql[`varbinary`].
@@ -808,6 +847,8 @@ See link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbi
 |===
 
 == Other data types
+
+See link:{data-types}#other-data-types[Other data types].
 
 `uniqueidentifier` is a `UUID`, which Hibernate ORM maps with no converter; `Production.Document.rowguid`,
 the identifier of `Production.Document`, is a `String`.

@@ -1355,8 +1355,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_CUSTOMER_ID, nullable = false, insertable = false, updatable = false,
@@ -1366,8 +1364,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_SALES_PERSON_ID, nullable = true, insertable = false,
             updatable = false,
@@ -1378,8 +1374,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false,
             comment = "Territory in which the sale was made. Foreign key to "
@@ -1389,8 +1383,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_BILL_TO_ADDRESS_ID, nullable = false, insertable = false,
@@ -1401,8 +1393,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHIP_TO_ADDRESS_ID, nullable = false, insertable = false,
@@ -1413,8 +1403,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false,
@@ -1425,8 +1413,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CREDIT_CARD_ID, nullable = true, insertable = false,
             updatable = false,
@@ -1444,8 +1430,6 @@ public abstract class MappedSalesOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CURRENCY_RATE_ID, nullable = true, insertable = false,
             updatable = false,

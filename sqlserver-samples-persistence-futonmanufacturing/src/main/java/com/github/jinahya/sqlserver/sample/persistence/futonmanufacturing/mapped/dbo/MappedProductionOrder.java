@@ -792,8 +792,6 @@ public abstract class MappedProductionOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -801,8 +799,6 @@ public abstract class MappedProductionOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)
@@ -810,8 +806,6 @@ public abstract class MappedProductionOrder {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_WORK_CENTER_ID, nullable = true, insertable = false, updatable = false)
     private Integer workCenterId;

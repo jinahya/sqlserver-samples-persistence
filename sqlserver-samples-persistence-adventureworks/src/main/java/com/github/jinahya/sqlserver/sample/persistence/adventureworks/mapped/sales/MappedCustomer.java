@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
@@ -30,8 +29,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -426,8 +423,6 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PERSON_ID, nullable = true, insertable = false, updatable = false,
             comment = "Foreign key to Person.BusinessEntityID")
@@ -436,8 +431,6 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STORE_ID, nullable = true, insertable = false, updatable = false,
             comment = "Foreign key to Store.BusinessEntityID")
@@ -446,8 +439,6 @@ public abstract class MappedCustomer {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_TERRITORY_ID, nullable = true, insertable = false, updatable = false,
             comment = "ID of the territory in which the customer is located. Foreign key to "

@@ -545,8 +545,6 @@ public abstract class MappedTransactionHistory {
     // read-only: only the order and work-order triggers insert a row of this table, and nothing
     // updates one; see the
     // class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = false, updatable = false,

@@ -352,8 +352,6 @@ public abstract class MappedEmployeePayHistory {
     // ---------------------------------------------------------------------------------------------
     // read-only: HumanResources.uspUpdateEmployeeHireInfo writes this table; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = false,

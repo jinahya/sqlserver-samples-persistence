@@ -30,8 +30,6 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -350,8 +348,6 @@ public abstract class MappedProductCostHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,

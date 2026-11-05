@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.mappe
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsComputedColumn;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 
@@ -32,8 +31,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -477,8 +474,6 @@ public abstract class MappedInventory {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ITEM_ID, nullable = false, insertable = false, updatable = false)
@@ -486,8 +481,6 @@ public abstract class MappedInventory {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_WAREHOUSE_ID, nullable = false, insertable = false, updatable = false)

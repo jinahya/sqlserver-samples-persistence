@@ -755,8 +755,6 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMPLOYEE_ID, nullable = false, insertable = false, updatable = false,
@@ -767,8 +765,6 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_VENDOR_ID, nullable = false, insertable = false, updatable = false,
@@ -779,8 +775,6 @@ public abstract class MappedPurchaseOrderHeader {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SHIP_METHOD_ID, nullable = false, insertable = false,

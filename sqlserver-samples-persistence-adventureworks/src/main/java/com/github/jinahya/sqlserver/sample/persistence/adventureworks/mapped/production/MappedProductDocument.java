@@ -22,15 +22,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
 
 import com.github.jinahya.sqlserver.sample.persistence.common.Heirarchyid;
 import com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter;
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -216,8 +213,6 @@ public abstract class MappedProductDocument {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: part of the primary key
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRODUCT_ID, nullable = false, insertable = true, updatable = false,

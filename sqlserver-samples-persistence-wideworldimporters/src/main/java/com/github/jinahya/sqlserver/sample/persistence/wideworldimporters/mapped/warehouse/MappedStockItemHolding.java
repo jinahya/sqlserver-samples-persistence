@@ -472,8 +472,6 @@ public abstract class MappedStockItemHolding {
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_STOCK_ITEM_ID, nullable = false, insertable = true, updatable = false,
@@ -536,8 +534,6 @@ public abstract class MappedStockItemHolding {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

@@ -1641,8 +1641,6 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_SUBCATEGORY_ID, nullable = true, insertable = false,
             updatable = false,
@@ -1653,8 +1651,6 @@ public abstract class MappedProduct {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_MODEL_ID, nullable = true, insertable = false,
             updatable = false,

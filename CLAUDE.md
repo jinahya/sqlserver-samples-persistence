@@ -59,6 +59,9 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   the database spells it with its first letter in upper case (`SalesCustomer`, `HumanResourcesEmployee`, `DboItem`).
   A class is named after its table within its schema, never with a schema prefix; where one class uses two of the
   same simple name, the second is qualified.
+- **A foreign-key column takes its key's Java type, and has no `@Min` or `@Max`**, wherever it is mapped (a mapped
+  superclass, an id class): the key, not the column's own declaration, decides both. `ATTRIBUTE_MAPPINGS.asciidoc`
+  checks every foreign key against its key.
 - **A foreign-key column is read-only in the mapped superclass** unless the column is part of the primary key or of
   another foreign key; then the basic attribute writes it and the association is read-only, except under an
   `@EmbeddedId`, where the association writes it through `@MapsId`. A column has exactly one writable mapping.

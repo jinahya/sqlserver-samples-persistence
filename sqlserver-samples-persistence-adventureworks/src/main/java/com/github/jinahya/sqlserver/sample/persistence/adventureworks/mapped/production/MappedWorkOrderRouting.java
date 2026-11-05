@@ -636,8 +636,6 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_WORK_ORDER_ID, nullable = false, insertable = true,
@@ -668,8 +666,6 @@ public abstract class MappedWorkOrderRouting {
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class
     // documentation
-    @Max(SqlServerConstants.SMALLINT_MAX)
-    @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LOCATION_ID, nullable = false, insertable = false, updatable = false)

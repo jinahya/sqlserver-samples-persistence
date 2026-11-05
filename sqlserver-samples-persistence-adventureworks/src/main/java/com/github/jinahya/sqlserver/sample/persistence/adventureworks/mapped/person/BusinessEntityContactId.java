@@ -20,11 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
@@ -165,8 +162,6 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false,
             insertable = true, updatable = false,
@@ -176,8 +171,6 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_PERSON_ID, nullable = false,
             insertable = true, updatable = false,
@@ -187,8 +180,6 @@ public class BusinessEntityContactId {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Column(name = MappedBusinessEntityContact.COLUMN_NAME_CONTACT_TYPE_ID, nullable = false,
             insertable = true, updatable = false,

@@ -1292,8 +1292,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_SUPPLIER_CATEGORY_ID, nullable = false, insertable = false, updatable = false,
@@ -1302,8 +1300,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_PRIMARY_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false,
@@ -1312,8 +1308,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_ALTERNATE_CONTACT_PERSON_ID, nullable = false, insertable = false, updatable = false,
@@ -1322,8 +1316,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_DELIVERY_METHOD_ID, nullable = true, insertable = false, updatable = false,
             comment = "Standard delivery method for stock items received from this supplier")
@@ -1331,8 +1323,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_DELIVERY_CITY_ID, nullable = false, insertable = false, updatable = false,
@@ -1341,8 +1331,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_POSTAL_CITY_ID, nullable = false, insertable = false, updatable = false,
@@ -1493,8 +1481,6 @@ public abstract class MappedSupplier {
 
     // ---------------------------------------------------------------------------------------------
     // read-only: the extending entity owns the writable mapping of this column; see the class documentation
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_LAST_EDITED_BY, nullable = false, insertable = false, updatable = false)

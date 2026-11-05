@@ -187,8 +187,7 @@ public class EmployeeDepartmentHistory
      */
     private void setShift(final Shift shift) {
         this.shift = shift;
-        setShiftId(Optional.ofNullable(shift).map(MappedShift::getShiftId).map(Long::intValue)
-                           .orElse(null));
+        setShiftId(Optional.ofNullable(shift).map(MappedShift::getShiftId).orElse(null));
     }
 
     // ---------------------------------------------------------------------------------------------

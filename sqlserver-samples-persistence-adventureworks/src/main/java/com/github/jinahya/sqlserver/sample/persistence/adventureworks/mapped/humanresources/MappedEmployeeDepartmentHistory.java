@@ -20,7 +20,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.hu
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
@@ -28,8 +27,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -316,7 +313,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *         {@code protected}, not package-private, since a proxy is a subclass in the package of
      *         the entity, and overrides only what that package sees.
      */
-    protected Integer getShiftId() {
+    protected Long getShiftId() {
         return shiftId;
     }
 
@@ -326,7 +323,7 @@ public abstract class MappedEmployeeDepartmentHistory {
      *
      * @param shiftId new value for {@value #ATTRIBUTE_NAME_SHIFT_ID} attribute.
      */
-    protected void setShiftId(final Integer shiftId) {
+    protected void setShiftId(final Long shiftId) {
         this.shiftId = shiftId;
     }
 
@@ -396,8 +393,6 @@ public abstract class MappedEmployeeDepartmentHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.INT_MAX)
-    @Min(SqlServerConstants.INT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_BUSINESS_ENTITY_ID, nullable = false, insertable = true,
@@ -408,8 +403,6 @@ public abstract class MappedEmployeeDepartmentHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.SMALLINT_MAX)
-    @Min(SqlServerConstants.SMALLINT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_DEPARTMENT_ID, nullable = false, insertable = true,
@@ -421,14 +414,12 @@ public abstract class MappedEmployeeDepartmentHistory {
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
     // an entity
-    @Max(SqlServerConstants.TINYINT_MAX)
-    @Min(SqlServerConstants.TINYINT_MIN)
     @NotNull
     @Id
     @Column(name = COLUMN_NAME_SHIFT_ID, nullable = false, insertable = true, updatable = false,
             comment = "Identifies which 8-hour shift the employee works. Foreign key to "
                       + "Shift.Shift.ID.")
-    private Integer shiftId;
+    private Long shiftId;
 
     // ---------------------------------------------------------------------------------------------
     // not updatable: an identifier column; Jakarta Persistence does not change the identifier of
