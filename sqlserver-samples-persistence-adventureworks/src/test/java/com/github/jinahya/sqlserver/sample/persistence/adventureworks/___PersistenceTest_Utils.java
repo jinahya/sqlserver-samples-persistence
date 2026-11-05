@@ -21,46 +21,51 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks;
  */
 
 import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
-import com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils;
-import com.github.jinahya.persistence.util.JinahyaEntityManagerUtils;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * The helpers the {@code *_PersistenceTest}s share, on the {@value #PERSISTENCE_UNIT_NAME} unit, an
+ * The entity manager factory of the unit tests, on the {@value #PERSISTENCE_UNIT_NAME} unit: an
  * in-memory H2 database whose schema the provider generates from the mappings. The factory is
  * opened once for the whole run, through
  * {@link JinahyaPersistenceTestUtils#applyCachedEntityManagerFactory(String, Function)}, and closed
  * when the virtual machine shuts down.
- * <p>
- * It is the counterpart of {@link ___PersistenceIT_Utils}, whose unit is on the database
- * {@code compose.yaml} brings up; a {@code *_PersistenceTest} needs no database, and is run by
- * surefire.
+ *
+ * @see ___PersistenceIT_Utils
  */
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
 })
 public final class ___PersistenceTest_Utils {
 
+    /**
+     * The name of the persistence unit, which this module's {@code META-INF/persistence.xml}
+     * declares. The value is {@value}.
+     */
     static final String PERSISTENCE_UNIT_NAME = "adventureworks-test";
 
+    // ---------------------------------------------------------------------------------------------
+
     /**
-     * Applies the specified function to a new entity manager, inside a transaction which is rolled
-     * back afterwards.
+     * Applies the specified function to the factory of the {@value #PERSISTENCE_UNIT_NAME} unit,
+     * opening it on the first call.
+     *
+     * @param function the function to apply.
+     * @param <R>      the type of the result.
+     * @return the result of the {@code function}.
      */
-    public static <R> R applyInTransactionAndRollback(
-            final Function<? super EntityManager, ? extends R> function) {
+    public static <R> R applyEntityManagerFactory(
+            final Function<? super EntityManagerFactory, ? extends R> function) {
         Objects.requireNonNull(function, "function is null");
         return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(
                 PERSISTENCE_UNIT_NAME,
-                emf -> JinahyaEntityManagerFactoryUtils.applyEntityManager(
-                        emf,
-                        em -> JinahyaEntityManagerUtils.applyInTransaction(em, function, true)
-                )
+                function
         );
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     private ___PersistenceTest_Utils() {
         throw new AssertionError("instantiation is not allowed");

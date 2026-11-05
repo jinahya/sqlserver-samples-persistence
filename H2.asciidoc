@@ -1,0 +1,127 @@
+= H2
+
+What the unit tests on H2 are, and what was decided for them. They test the mappings without SQL Server: each module's
+`<database>-test` persistence unit is an in-memory H2 database, whose schema Hibernate ORM, the only provider,
+generates from the mappings. SQL Server, its data, its constraints and its triggers stay the integration tests'.
+
+== The rule
+
+*Nothing of the integration tests changes for H2.* The `<database>-it` unit, the `*_PersistenceIT` classes, and the
+randomizers and persisters, which both kinds of test share, are what they are for SQL Server. What H2 needs is given
+to it in the standard way, by Jakarta Persistence's schema generation: a create script for what the generated schema
+lacks, and a load script for the installed rows the persisters refer to. A unit test which still cannot work on H2 is
+`@Disabled` in its `*_PersistenceTest`, with the reason.
+
+== The tests
+
+[cols="2,3,4",options="header"]
+|===
+| Class | Runs | Holds
+
+| `___PersistenceTest_Utils`
+| surefire
+| the factory of the `<database>-test` unit, as `applyEntityManagerFactory(Function)`, opened once for the run, as
+  `___PersistenceIT_Utils` holds the `<database>-it` one
+
+| `_Entity_PersistenceTest`
+| surefire
+| from `oracle-sample-schemas-persistence`'s: every `ATTRIBUTE_NAME_*` constant names a managed attribute, and every
+  managed attribute's constant holds its name; every `ATTRIBUTE_PATH_*` constant resolves; a new randomized instance,
+  persisted through its persister, flushes; a random row, if any, is selected. Each test rolls back.
+
+| `<Entity>_PersistenceTest`
+| surefire
+| one per entity which has an `<Entity>_PersistenceIT`, extending `_Entity_PersistenceTest`
+|===
+
+A keyless class has none: it is read by a native query from a view, which the generated schema does not have.
+
+An `ATTRIBUTE_PATH_*` constant is resolved by navigating a criteria `Path` from a root of the entity, not with
+`JinayaManagedTypeUtils.resolveAttributePath`, which reads an attribute's type where it is declared:
+`MappedWithEmbeddedId`'s `id_` is of its type variable, an `Object` there.
+
+== Disabled persists
+
+[cols="3,2,5",options="header"]
+|===
+| Entities | Module | Why
+
+| the views, and the tables which only the database writes
+| all three
+| as their ITs: nothing persists them
+|===
+
+== The unit
+
+Each module's `src/test/resources/META-INF/persistence.xml` declares `<database>-test` beside `<database>-it`, with
+the same classes:
+
+* `jdbc:h2:mem:<database>`, named, and kept with `DB_CLOSE_DELAY=-1`, so that every connection of the pool sees one
+  database;
+* `MODE=MSSQLServer`, so that the check constraints' `[Column]` parse, and `DATABASE_TO_UPPER=false`, so that the
+  names keep their case;
+* `jakarta.persistence.schema-generation.database.action=drop-and-create`, with
+  `jakarta.persistence.schema-generation.create-source=metadata-then-script`: the schema from the mappings, then
+  `jakarta.persistence.schema-generation.create-script-source`, `META-INF/<database>/create-test.sql`;
+* `jakarta.persistence.sql-load-script-source`, `META-INF/<database>/load-test.sql`, where a module has seeds;
+* `hibernate.hbm2ddl.create_namespaces`, which creates the schemas (`Sales`, `Person`, ...), and
+  `hibernate.auto_quote_keyword`, since a column may be named after an H2 keyword, FutonManufacturing's `Month`; the
+  two have no standard equivalent.
+
+== `create-test.sql`
+
+What the generated schema lacks of the database, run once it is created. Each module's is generated from the
+database's catalog, for the tables the unit maps, and is not edited by hand:
+
+[cols="2,5",options="header"]
+|===
+| What | How
+
+| defaults
+| A column the database fills, and which the mapping leaves out of an `INSERT` (a `ModifiedDate`, a `rowguid`, ...),
+  takes the table's `DEFAULT` definition, verbatim, from `sys.default_constraints`. A `NEXT VALUE FOR` one is left
+  out, since the provider assigns the key from its `@SequenceGenerator`, and so is FutonManufacturing's
+  `CONVERT([date],getdate())`, since H2 takes no SQL Server data type in a `CONVERT`.
+
+| period columns
+| WideWorldImporters' system-versioned tables' `ValidFrom` and `ValidTo` have no default; SQL Server fills them. They
+  take the time of the `INSERT` and the end of time, as SQL Server sets them for a current row.
+
+| computed columns
+| take `NULL`, from `sys.computed_columns`; H2 computes nothing.
+
+| check constraints
+| One which matches with a character class, `LIKE '[A-Za-z]'` (AdventureWorks' `CK_ProductInventory_Shelf`), which
+  H2's `LIKE` does not have, is dropped.
+
+| unbounded columns
+| A column SQL Server does not bound, `(max)`, `xml`, `geography` or `hierarchyid`, has no length in the mapping, so
+  the provider makes it 255; it is unbounded here too, `CHARACTER VARYING` or `BINARY VARYING`.
+|===
+
+== `load-test.sql`
+
+The installed rows the persisters refer a new row to, copied from the database as they are, but for their computed
+columns; generated, and not edited by hand. Only WideWorldImporters has any:
+
+* person 1, Data Conversion Only, whom `Person_Persister` makes a new person last edited by, and which is last edited
+  by itself;
+* customer 1, to whom `Customer_Persister` bills a new customer, and which is billed to itself, with the rows it refers
+  to: people 1001 and 1002, its contacts, and 8, who last edited its state; its buying group, category and delivery
+  method; its city, state and country.
+
+`Application.People.LastEditedBy` is a `NOT NULL` foreign key to the table itself, as is
+`Sales.Customers.BillToCustomerID`: a new row needs one which is already there, the cycle Sakila's store and its
+manager make. A single `INSERT` of a row which refers to itself satisfies the key, as it did when the database was
+built; the rest of the sample data hangs off those rows. The sequence of each seeded table's key restarts past its
+rows, so that the provider's keys do not take theirs.
+
+WideWorldImporters' check constraints and defaults call `isjson` and `sysdatetime`, which H2 does not have; its unit's
+URL creates an alias of each, through `INIT`, to `___H2_TestFunctions`. Its `isjson` takes any text.
+
+== What the log shows
+
+* `create-drop` drops first, in schemas which do not exist yet: `Schema "dbo" not found`, as warnings.
+* Hibernate ORM does not escape an apostrophe in a comment, `comment on column ... is 'Customer's ...'`, which H2
+  rejects; the column and its table are created, without the comment.
+

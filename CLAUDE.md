@@ -62,11 +62,16 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
 - **A foreign-key column is read-only in the mapped superclass** unless the column is part of the primary key or of
   another foreign key; then the basic attribute writes it and the association is read-only, except under an
   `@EmbeddedId`, where the association writes it through `@MapsId`. A column has exactly one writable mapping.
-- **No H2, ITs only.** Each module has one persistence unit, `<database>-it`, on the database `compose.yaml` brings
-  up. A test that needs the database is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`). `-common` has no
-  persistence unit; its `*Test`s, run by surefire, test what needs no database (the `hierarchyid` and `geography`
-  codecs), and a database module's ITs test them against SQL Server. The other surefire tests, which need no database
-  either, are each module's `<Entity>_Test`s and AdventureWorks' `<Entity>Id_Test`s, of the id classes.
+- **Two persistence units: `<database>-it` on SQL Server, `<database>-test` on H2.** `<database>-it` is the database
+  `compose.yaml` brings up; a test that needs it is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`).
+  `<database>-test` is an in-memory H2 database whose schema Hibernate ORM generates from the mappings; each entity's
+  `*_PersistenceTest`, run by surefire, tests the mapping on it. **Nothing of the ITs changes for H2**: the `-it` unit,
+  the ITs, and the randomizers and persisters both share stay as SQL Server needs them. What H2 needs comes through
+  Jakarta Persistence's schema generation, a create script and a load script of seeds, generated from the database;
+  a `*_PersistenceTest` which still cannot work is `@Disabled` with the reason. `H2.asciidoc` holds every H2 decision.
+  `-common` has no persistence unit; its `*Test`s, run by surefire, test what needs no database (the `hierarchyid` and
+  `geography` codecs), and a database module's ITs test them against SQL Server. The other surefire tests, which need
+  no database either, are each module's `<Entity>_Test`s and AdventureWorks' `<Entity>Id_Test`s, of the id classes.
 - **Exercises are registered.** Each module's `EXERCISES.asciidoc` states every problem, and the `EXERCISES.yaml`
   beside it registers every id, `<DB>_<SCHEMA>_<TIER>_<NN>` (`AW`, `FUTON`, `WWI`), with its `sql` file and its
   `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused

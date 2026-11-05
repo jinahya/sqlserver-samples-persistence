@@ -38,7 +38,8 @@ class Color_Persister
     // ---------------------------------------------------------------------------------------------
     @Override
     public Color apply(final EntityManager entityManager, final Color entityInstance) {
-        final var lastEditedByPerson = EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
+        final var lastEditedByPerson =
+                EntityPersisterUtils.newPersistedInstanceOf(entityManager, Person.class);
         entityInstance.setLastEditedByPerson(lastEditedByPerson);
         return super.apply(entityManager, entityInstance);
     }

@@ -26,6 +26,88 @@
              version="${persistence.version}">
   <!-- named after the database, not just `it`: the modules' test classpaths can meet in one JVM (an IDE running -->
   <!-- every test of the project), and two units sharing a name there is unspecified -->
+  <persistence-unit name="futonmanufacturing-test" transaction-type="RESOURCE_LOCAL">
+    <description>Persistence Unit for FutonManufacturing on an In-Memory Database</description>
+    <provider>${persistence-unit.provider}</provider>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.BillOfMaterials</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.CostRollUpView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Customer</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.CustomerFulfillmentRateView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Inventory</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.InventoryTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.InventoryTurnoverView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.InventoryValuationView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Item</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.ItemType</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.PriceList</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.PriceListDetail</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.ProductionCompletion</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.ProductionOrder</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.ProductionOrderMaterial</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Promotion</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.PurchaseOrder</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.PurchaseOrderDetail</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.PurchaseOrderStatusView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.QualityInspection</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.ReturnReason</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesByTerritoryView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesChannel</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesChannelProfitabilityView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesCustomerAnalysisView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesCustomerLifetimeValueView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesCustomerSegmentationView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesOrder</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesOrderBacklogView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesOrderDetail</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesProductPerformanceView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesQuote</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesQuoteConversionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesQuoteDetail</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesRep</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesRepPerformanceView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesReturn</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesReturnDetail</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesReturnsAnalysisView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesStorePerformanceView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SalesTerritory</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Store</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Supplier</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SupplierItem</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.SupplierPerformanceView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.TransactionType</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.UnitOfMeasure</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.Warehouse</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.WorkCenter</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo.WorkCenterCapacityView</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>CALLBACK</validation-mode>
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+      <!-- named, and kept while the virtual machine runs, so that every connection of the pool sees one database; -->
+      <!-- MSSQLServer mode takes the [Column] of the check constraints -->
+      <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:h2:mem:futonmanufacturing;MODE=MSSQLServer;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1"/>
+      <property name="jakarta.persistence.jdbc.user" value="sa"/>
+      <property name="jakarta.persistence.jdbc.password" value=""/>
+      <!-- //////////////////////////////////////////////////////////////////////////////////// schema generation -->
+      <!-- the schema is generated from the mappings, then the script adds what it lacks of the database's
+           (defaults, ...); see H2.asciidoc -->
+      <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="jakarta.persistence.schema-generation.create-source" value="metadata-then-script"/>
+      <property name="jakarta.persistence.schema-generation.create-script-source"
+                value="META-INF/futonmanufacturing/create-test.sql"/>
+      <!-- /////////////////////////////////////////////////////////////////////////////////////////////// hibernate -->
+      <property name="hibernate.format_sql" value="true"/>
+      <!-- the schemas (Sales, Person, ...) are created too -->
+      <property name="hibernate.hbm2ddl.create_namespaces" value="true"/>
+      <!-- a column named after a keyword of H2, such as FutonManufacturing's Month, is quoted -->
+      <property name="hibernate.auto_quote_keyword" value="true"/>
+      <property name="hibernate.highlight_sql" value="true"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.use_sql_comment" value="true"/>
+    </properties>
+  </persistence-unit>
   <persistence-unit name="futonmanufacturing-it" transaction-type="RESOURCE_LOCAL">
     <description>Persistence Unit for FutonManufacturing on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>

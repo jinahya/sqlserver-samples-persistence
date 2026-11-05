@@ -77,6 +77,8 @@
     <tests.skipAfterFailureCount>1</tests.skipAfterFailureCount>
     <version.maven-failsafe>${version.maven-surefire}</version.maven-failsafe>
     <version.maven-surefire>3.6.0</version.maven-surefire>
+    <!-- https://central.sonatype.com/artifact/com.h2database/h2/versions -->
+    <version.com.h2database>2.5.252</version.com.h2database>
     <!-- https://central.sonatype.com/artifact/com.microsoft.sqlserver/mssql-jdbc/versions -->
     <version.com.microsoft.sqlserver>13.4.0.jre11</version.com.microsoft.sqlserver>
     <!-- https://central.sonatype.com/artifact/io.github.jinahya/bit-io/versions -->
@@ -123,6 +125,11 @@
         <groupId>${project.groupId}</groupId>
         <artifactId>sqlserver-samples-persistence-common</artifactId>
         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${version.com.h2database}</version>
       </dependency>
       <dependency>
         <groupId>com.microsoft.sqlserver</groupId>

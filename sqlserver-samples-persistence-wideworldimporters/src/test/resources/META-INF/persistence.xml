@@ -26,6 +26,76 @@
              version="${persistence.version}">
   <!-- named after the database, not just `it`: the modules' test classpaths can meet in one JVM (an IDE running -->
   <!-- every test of the project), and two units sharing a name there is unspecified -->
+  <persistence-unit name="wideworldimporters-test" transaction-type="RESOURCE_LOCAL">
+    <description>Persistence Unit for WideWorldImporters on an In-Memory Database</description>
+    <provider>${persistence-unit.provider}</provider>
+    <class>com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.BuyingGroup</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.City</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.ColdRoomTemperature</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.Color</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.Country</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.Customer</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.CustomerCategory</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.CustomerTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.DeliveryMethod</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.Invoice</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.InvoiceLine</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.Order</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.OrderLine</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.PackageType</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.PaymentMethod</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.Person</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.PurchaseOrder</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.PurchaseOrderLine</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.SpecialDeal</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.StateProvince</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockGroup</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItem</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemHolding</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemStockGroup</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.StockItemTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.Supplier</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.SupplierCategory</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purchasing.SupplierTransaction</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.SystemParameter</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.application.TransactionType</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.warehouse.VehicleTemperature</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.website.Customer</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.website.Supplier</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.website.VehicleTemperature</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>CALLBACK</validation-mode>
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+      <!-- named, and kept while the virtual machine runs, so that every connection of the pool sees one database; -->
+      <!-- MSSQLServer mode takes the [Column] of the check constraints; INIT gives H2 the SQL Server functions -->
+      <!-- the check constraints and the defaults call, through ___H2_TestFunctions -->
+      <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:h2:mem:wideworldimporters;MODE=MSSQLServer;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1;INIT=CREATE ALIAS IF NOT EXISTS isjson FOR 'com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___H2_TestFunctions.isjson'\;CREATE ALIAS IF NOT EXISTS sysdatetime FOR 'com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___H2_TestFunctions.sysdatetime'"/>
+      <property name="jakarta.persistence.jdbc.user" value="sa"/>
+      <property name="jakarta.persistence.jdbc.password" value=""/>
+      <!-- //////////////////////////////////////////////////////////////////////////////////// schema generation -->
+      <!-- the schema is generated from the mappings, then the script adds what it lacks of the database's
+           (defaults, ...); see H2.asciidoc -->
+      <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="jakarta.persistence.schema-generation.create-source" value="metadata-then-script"/>
+      <property name="jakarta.persistence.schema-generation.create-script-source"
+                value="META-INF/wideworldimporters/create-test.sql"/>
+      <!-- the installed rows the persisters refer a new row to; see the script -->
+      <property name="jakarta.persistence.sql-load-script-source" value="META-INF/wideworldimporters/load-test.sql"/>
+      <!-- /////////////////////////////////////////////////////////////////////////////////////////////// hibernate -->
+      <property name="hibernate.format_sql" value="true"/>
+      <!-- the schemas (Sales, Person, ...) are created too -->
+      <property name="hibernate.hbm2ddl.create_namespaces" value="true"/>
+      <!-- a column named after a keyword of H2, such as FutonManufacturing's Month, is quoted -->
+      <property name="hibernate.auto_quote_keyword" value="true"/>
+      <property name="hibernate.highlight_sql" value="true"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.use_sql_comment" value="true"/>
+    </properties>
+  </persistence-unit>
   <persistence-unit name="wideworldimporters-it" transaction-type="RESOURCE_LOCAL">
     <description>Persistence Unit for WideWorldImporters on a Physical Database</description>
     <provider>${persistence-unit.provider}</provider>

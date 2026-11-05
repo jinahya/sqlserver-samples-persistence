@@ -229,6 +229,9 @@ Each entity's `*_PersistenceIT`, each test inside a transaction it rolls back,
 An entity which is not persisted -- a view, or a table which only SQL Server,
 the installer or a procedure writes -- has the test `@Disabled`, with the reason.
 
+Each entity's `*_PersistenceTest`, run by surefire, tests the same mapping without SQL Server, on the module's
+`<database>-test` unit, an in-memory H2 database whose schema Hibernate ORM generates; see `H2.asciidoc`.
+
 Each id class of a composite key has a unit test, `<Entity>Id_Test`, run by surefire: its `toString`, its `equals` and
 `hashCode`, with EqualsVerifier, and its accessors.
 
