@@ -63,8 +63,7 @@ import java.time.LocalDateTime;
  * </tbody>
  * </table>
  *
- * @see <a
- *         href="https://learn.microsoft
+ * @see <a href="https://learn.microsoft
  *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
@@ -169,8 +168,8 @@ public abstract class MappedAwBuildVersion
      *
      * @param obj {@inheritDoc}
      * @return {@inheritDoc}
-     * @implSpec Equality is by the identifier, once it is assigned; an instance whose identifier is
-     *         not yet assigned, which persist does, equals only itself.
+     * @implSpec Equality is by the identifier, once it is assigned; an instance whose
+     *         identifier is not yet assigned, which persist does, equals only itself.
      */
     @Override
     public final boolean equals(final Object obj) {
@@ -289,12 +288,10 @@ public abstract class MappedAwBuildVersion
 
     // ---------------------------------------------------------------------------------------------
     // the database's DEFAULT (getdate()) fills it on an INSERT; the date and time the record was
-    // last updated,
-    // which nothing in the database restamps, so an UPDATE writes it
+    // last updated, which nothing in the database restamps, so an UPDATE writes it
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_MODIFIED_DATE, nullable = false, insertable = false,
-            updatable = true,
-            comment = "Date and time the record was last updated.")
+            updatable = true, comment = "Date and time the record was last updated.")
     @MsDefault(name = "DF_AWBuildVersion_ModifiedDate", value = "(getdate())")
     private LocalDateTime modifiedDate;
 }
