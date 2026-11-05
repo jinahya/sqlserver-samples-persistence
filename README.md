@@ -29,21 +29,31 @@ name, `@Entity(name = "<Schema><Entity>")`: `SalesCustomer`, `WebsiteCustomer`, 
 $ ./compose.sh
 ```
 
-Brings up one container per database, from
+Brings up one SQL Server, the official `mcr.microsoft.com/mssql/server:2025-latest` image, in the container
+`sqlserver-samples` on port 1433, with the three databases loaded, and follows its log; Ctrl-C takes it down again.
+Each database comes from its image of
 [`jinahya/sql-server-samples`](https://hub.docker.com/r/jinahya/sql-server-samples) (see
-[sql-server-samples-docker](https://github.com/jinahya/sql-server-samples-docker)), as `sa` / `Passw0rd!`, and follows
-their logs; Ctrl-C takes them down again.
+[sql-server-samples-docker](https://github.com/jinahya/sql-server-samples-docker)), which is not run: its backup or
+scripts are mounted read-only, an image mount, which needs Docker Engine 28 or later, and
+[`opt/sample-databases/load.sh`](opt/sample-databases/load.sh) loads them.
 
-| Container | Image | Port | JDBC URL |
-|---|---|---|---|
-| `adventureworks` | `jinahya/sql-server-samples:adventureworks-2025` | 1433 | `jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=AdventureWorks` |
-| `wideworldimporters` | `jinahya/sql-server-samples:wideworldimporters-2025` | 1434 | `jdbc:sqlserver://localhost:1434;encrypt=true;trustServerCertificate=true;databaseName=WideWorldImporters` |
-| `futonmanufacturing` | `jinahya/sql-server-samples:futon-manufacturing-2025` | 1435 | `jdbc:sqlserver://localhost:1435;encrypt=true;trustServerCertificate=true;databaseName=FutonManufacturing` |
+| Database | Image | JDBC URL |
+|---|---|---|
+| `AdventureWorks` | `jinahya/sql-server-samples:adventureworks-2025` | `jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=AdventureWorks` |
+| `WideWorldImporters` | `jinahya/sql-server-samples:wideworldimporters-2025` | `jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=WideWorldImporters` |
+| `FutonManufacturing` | `jinahya/sql-server-samples:futon-manufacturing-2025` | `jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=FutonManufacturing` |
 
-Each is the official `mcr.microsoft.com/mssql/server:2025-latest` image with its database loaded on first start. Every
-run starts from an empty data directory, so loading happens every time, under a minute; a container is `healthy` once
-its database is there. The three SQL Servers want about 6 GB of Docker's memory together. The images are `linux/amd64`
-only; on Apple silicon, turn on Rosetta in Docker Desktop.
+There are two logins, both with the password `Passw0rd!`: `sa`, and `dmlonly`, which the integration tests connect as.
+`dmlonly` is a user in each of the three databases, with `SELECT`, `INSERT`, `UPDATE`, `DELETE` and `EXECUTE` on the
+database (a typed `xml` column needs `EXECUTE` on its XML schema collection, and the tests call stored procedures) and
+no DDL, and `VIEW SERVER PERFORMANCE STATE`, for the tests which read `sys.dm_tran_database_transactions`. The entities
+name their schemas and the URL names the database, so the login changes no name. WideWorldImporters shows a row of
+`Sales.Customers` only to `db_owner` or a member of its sales territory's role, `<territory> Sales`, so `dmlonly` is a
+member of every one of those roles, which hold no permission of their own.
+
+Every run starts from an empty data directory, so loading happens every time, under a minute; the container is
+`healthy` once every database is there. The image is `linux/amd64` only; on Apple silicon, turn on Rosetta in Docker
+Desktop.
 
 ```shell
 $ ./_docker_exec_sqlcmd.sh adventureworks

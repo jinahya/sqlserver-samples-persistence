@@ -67,6 +67,11 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   `@EmbeddedId`, where the association writes it through `@MapsId`. A column has exactly one writable mapping.
 - **Two persistence units: `<database>-it` on SQL Server, `<database>-test` on H2.** `<database>-it` is the database
   `compose.yaml` brings up; a test that needs it is a `*_PersistenceIT`, run by failsafe (`-Pfailsafe`).
+  `compose.yaml` runs one SQL Server, the official image, on port 1433, holding the three databases; the
+  `jinahya/sql-server-samples` images are not run, but mounted for their backups and scripts, which
+  `opt/sample-databases/load.sh` loads. Every `-it` unit connects as `dmlonly`, a login with `sa`'s password and a user
+  in each database, granted `SELECT`, `INSERT`, `UPDATE`, `DELETE` and `EXECUTE` on it and no DDL; a test which needs
+  more is given it there, with the reason, never by connecting as `sa`.
   `<database>-test` is an in-memory H2 database whose schema Hibernate ORM generates from the mappings; each entity's
   `*_PersistenceTest`, run by surefire, tests the mapping on it. **Nothing of the ITs changes for H2**: the `-it` unit,
   the ITs, and the randomizers and persisters both share stay as SQL Server needs them. What H2 needs comes through

@@ -1,41 +1,53 @@
 services:
-  # The official SQL Server image with one of Microsoft's sample databases loaded on first start, an image per database:
+  # One SQL Server, the official image, holding the three sample databases. Each database comes from its image of
   #   https://hub.docker.com/r/jinahya/sql-server-samples         (also ghcr.io/jinahya/sql-server-samples)
   #   https://github.com/jinahya/sql-server-samples-docker
-  # AdventureWorks and WideWorldImporters are restored from their backups, FutonManufacturing is built from its
-  # scripts. `<database>-2025` is rebuilt weekly on mcr.microsoft.com/mssql/server:2025-latest; a SQL Server build tag,
-  # `adventureworks-17.0.5035.5` say, never changes.
+  # which is not run: its /opt/sample-databases, the database's backup or scripts, is mounted read-only (an image
+  # mount, Docker Engine 28 or later), and ./opt/sample-databases/load.sh loads them all, AdventureWorks and
+  # WideWorldImporters restored from their backups, FutonManufacturing built from its scripts, then creates the dmlonly
+  # login the integration tests connect as. `<database>-2025` is rebuilt weekly on
+  # mcr.microsoft.com/mssql/server:2025-latest; a SQL Server build tag, `adventureworks-17.0.5035.5` say, never changes.
   #
   # SQL Server is linux/amd64 only; on Apple silicon it runs under Rosetta (Docker Desktop: Use Rosetta for
   # x86_64/amd64 emulation).
   #
-  # Each image's own HEALTHCHECK reports healthy only once its database is loaded, under a minute. /var/opt/mssql is
-  # not mounted, so it lives in the container's anonymous volume, which `down -v` removes, and every run loads the
-  # databases again.
-  adventureworks:
-    image: jinahya/sql-server-samples:adventureworks-2025
+  # The health check reports healthy only once every database is loaded, under a minute. /var/opt/mssql is not mounted,
+  # so it lives in the container's anonymous volume, which `down -v` removes, and every run loads the databases again.
+  sqlserver-samples:
+    image: mcr.microsoft.com/mssql/server:2025-latest
     platform: linux/amd64
-    container_name: adventureworks
+    container_name: sqlserver-samples
     ports:
       - "1433:1433"
-    environment: &environment
+    environment:
       # required; Y accepts the SQL Server license (https://go.microsoft.com/fwlink/?linkid=857698), and without it
       # SQL Server exits at start. MSSQL_PID=developer, free for development and testing only, is preset by the image.
       ACCEPT_EULA: "Y"
-      # required, and must meet SQL Server's password policy; each module's persistence.xml repeats it as
-      # jakarta.persistence.jdbc.password.
+      # required, and must meet SQL Server's password policy; dmlonly takes it too, and each module's persistence.xml
+      # repeats it as jakarta.persistence.jdbc.password.
       MSSQL_SA_PASSWORD: Passw0rd!
-  wideworldimporters:
-    image: jinahya/sql-server-samples:wideworldimporters-2025
-    platform: linux/amd64
-    container_name: wideworldimporters
-    ports:
-      - "1434:1433"
-    environment: *environment
-  futonmanufacturing:
-    image: jinahya/sql-server-samples:futon-manufacturing-2025
-    platform: linux/amd64
-    container_name: futonmanufacturing
-    ports:
-      - "1435:1433"
-    environment: *environment
+    entrypoint: [ "/opt/sample-databases/entrypoint.sh" ]
+    command: [ "/opt/mssql/bin/sqlservr" ]
+    volumes:
+      - ./opt/sample-databases:/opt/sample-databases:ro
+      - type: image
+        source: jinahya/sql-server-samples:adventureworks-2025
+        target: /sample-databases/adventureworks
+        image:
+          subpath: opt/sample-databases
+      - type: image
+        source: jinahya/sql-server-samples:wideworldimporters-2025
+        target: /sample-databases/wideworldimporters
+        image:
+          subpath: opt/sample-databases
+      - type: image
+        source: jinahya/sql-server-samples:futon-manufacturing-2025
+        target: /sample-databases/futonmanufacturing
+        image:
+          subpath: opt/sample-databases
+    healthcheck:
+      test: [ "CMD", "/opt/sample-databases/healthcheck.sh" ]
+      interval: 5s
+      timeout: 10s
+      start_period: 30s
+      retries: 60
