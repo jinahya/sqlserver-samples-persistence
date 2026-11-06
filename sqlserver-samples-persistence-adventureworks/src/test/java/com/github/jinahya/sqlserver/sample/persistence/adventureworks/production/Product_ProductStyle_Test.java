@@ -23,10 +23,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.persistence.more.test.AttributeEnum_Test;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct.ProductStyle;
+import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * A class for testing the {@link ProductStyle} enum, whose attribute values are the padded values
@@ -40,16 +42,16 @@ class Product_ProductStyle_Test
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return the column's values, padded to its length.
+     * Verifies that the attribute values are the column's values, padded to its length.
      */
-    @Override
-    protected Set<String> expectedAttributeValues() {
-        return Stream.of(MappedProduct.COLUMN_VALUE_STYLE_WOMENS,
-                         MappedProduct.COLUMN_VALUE_STYLE_MENS,
-                         MappedProduct.COLUMN_VALUE_STYLE_UNIVERSAL)
+    @Test
+    void attributeValues_ColumnValues() {
+        final var expected = Stream.of(MappedProduct.COLUMN_VALUE_STYLE_WOMENS,
+                                       MappedProduct.COLUMN_VALUE_STYLE_MENS,
+                                       MappedProduct.COLUMN_VALUE_STYLE_UNIVERSAL)
                 .map(v -> String.format("%-" + MappedProduct.COLUMN_LENGTH_STYLE + "s", v))
-                .collect(Collectors.toSet());
+                .toArray(String[]::new);
+        assertThat(Arrays.stream(ProductStyle.values()).map(ProductStyle::attributeValue))
+                .containsExactlyInAnyOrder(expected);
     }
 }

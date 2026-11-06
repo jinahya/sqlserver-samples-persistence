@@ -23,10 +23,12 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 import com.github.jinahya.persistence.more.test.AttributeEnum_Test;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct.ProductLine;
+import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * A class for testing the {@link ProductLine} enum, whose attribute values are the padded values
@@ -40,17 +42,17 @@ class Product_ProductLine_Test
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return the column's values, padded to its length.
+     * Verifies that the attribute values are the column's values, padded to its length.
      */
-    @Override
-    protected Set<String> expectedAttributeValues() {
-        return Stream.of(MappedProduct.COLUMN_VALUE_PRODUCT_LINE_ROAD,
-                         MappedProduct.COLUMN_VALUE_PRODUCT_LINE_MOUNTAIN,
-                         MappedProduct.COLUMN_VALUE_PRODUCT_LINE_TOURING,
-                         MappedProduct.COLUMN_VALUE_PRODUCT_LINE_STANDARD)
+    @Test
+    void attributeValues_ColumnValues() {
+        final var expected = Stream.of(MappedProduct.COLUMN_VALUE_PRODUCT_LINE_ROAD,
+                                       MappedProduct.COLUMN_VALUE_PRODUCT_LINE_MOUNTAIN,
+                                       MappedProduct.COLUMN_VALUE_PRODUCT_LINE_TOURING,
+                                       MappedProduct.COLUMN_VALUE_PRODUCT_LINE_STANDARD)
                 .map(v -> String.format("%-" + MappedProduct.COLUMN_LENGTH_PRODUCT_LINE + "s", v))
-                .collect(Collectors.toSet());
+                .toArray(String[]::new);
+        assertThat(Arrays.stream(ProductLine.values()).map(ProductLine::attributeValue))
+                .containsExactlyInAnyOrder(expected);
     }
 }
