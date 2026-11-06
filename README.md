@@ -257,7 +257,7 @@ that its public constructor takes them all.
 | wideworldimporters | 150 | 31 | 4 |
 
 Each module's `<Database>_Exercises_PersistenceIT` answers the exercises of its `EXERCISES.asciidoc` with the Query
-Language and the Criteria API, and asserts what the SQL in `src/test/sql/exercises` returns from the installed data.
+Language and the Criteria API, and asserts what the SQL in `src/test/sql-exercises` returns from the installed data.
 
 All of them pass. A test is skipped when a table or a view returns no row, or an entity is not persisted: a view, or
 a table which only SQL Server, the installer or a procedure writes.

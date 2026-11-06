@@ -1,0 +1,893 @@
+= Exercises
+:toc: left
+:toclevels: 3
+:sectanchors:
+:source-highlighter: rouge
+
+Exercises for WideWorldImporters: business questions that the sales, purchasing, warehouse and finance people of a
+wholesale novelty-goods importer would ask, each answered with a query. Every problem is stated as a request, followed
+by its solutions. The `sql` blocks are Transact-SQL against the installed database (see the project's
+link:../../../../README.md[README.md]); a parameter is a local variable, `DECLARE`d right above the query. The `jpaql` blocks are
+Jakarta Persistence 3.2 query language against this module's entities, with named parameters of the same names.
+
+The SQL is in `src/test/sql-exercises/_<Schema>/<NN>_<level>.sql`, a file per schema and level. The query language and Criteria API
+solutions are the nested classes of the `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
+`src/test/java-exercises`, a nested class per exercise, which assert
+the rows the SQL returns.
+
+The problems are grouped by the schema of the table they are about; a problem which joins another schema's tables
+stays with the one it asks about. Each section goes from Basic (`B`) through Intermediate (`I`) to Advanced (`A`). An
+id is `WWI_<SCHEMA>_<TIER>_<NN>`, numbered within its schema and tier, and `EXERCISES.yaml` registers every one; an
+id is permanent: it is never renumbered or reused.
+
+A few things about the mappings shape the solutions:
+
+* A foreign key is mapped twice: as an association on the entity, and as a read-only basic attribute on its mapped
+  superclass. `Invoice` has `customer`, and `customerId` from `MappedInvoice`; a query may use either.
+* A computed column (`IsFinalized`, `ConfirmedDeliveryTime`, `ConfirmedReceivedBy`, `Tags`, `SearchDetails`, ...) is a
+  read-only attribute, and a query reads it like any other.
+* What the query language has no word for is SQL only: the JSON functions (`JSON_VALUE`), the methods of `geography`
+  (`STDistance`), window functions (`RANK() OVER`) and the temporal clauses (`FOR SYSTEM_TIME`). From Jakarta
+  Persistence such SQL is sent as a native query; `WWI_SALES_A_02` shows one.
+* Grouping is by an entity's identifier and the columns selected, not by the entity: `Customer` and `Supplier` have
+  `geography` columns, which SQL Server can not group by.
+
+== Application
+
+=== Basic
+
+[[WWI_APPLICATION_B_01]]
+==== WWI_APPLICATION_B_01: The salespeople, by name
+
+The sales manager wants the salespeople, by name, with their phone number and email address.
+
+[source,sql]
+----
+SELECT PersonID, FullName, PhoneNumber, EmailAddress
+FROM Application.People
+WHERE IsSalesperson = 1
+ORDER BY FullName, PersonID
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT p
+FROM ApplicationPerson AS p
+WHERE p.isSalesperson = true
+ORDER BY p.fullName
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+[[WWI_APPLICATION_B_02]]
+==== WWI_APPLICATION_B_02: The sales territories of a country
+
+The sales manager sizes the sales territories of a country: for each territory, the number of states or provinces and their total population, the most populous first, a tie by territory.
+
+[source,sql]
+----
+DECLARE @countryName nvarchar(60) = N'United States';
+SELECT sp.SalesTerritory, COUNT(*) AS StateProvinces, SUM(sp.LatestRecordedPopulation) AS Population
+FROM Application.StateProvinces sp
+         JOIN Application.Countries c ON c.CountryID = sp.CountryID
+WHERE c.CountryName = @countryName
+GROUP BY sp.SalesTerritory
+ORDER BY Population DESC, sp.SalesTerritory
+----
+
+// NOT YET RUN
+
+
+[[WWI_APPLICATION_B_03]]
+==== WWI_APPLICATION_B_03: The cities of a country's states and provinces
+
+List a country's cities with their state or province and their latest recorded population, by state or province, city name and `CityID`.
+
+[source,sql]
+----
+DECLARE @countryId int = 230;
+SELECT c.CityID, c.CityName, sp.StateProvinceName, co.CountryName, c.LatestRecordedPopulation
+FROM Application.Cities c
+         JOIN Application.StateProvinces sp ON sp.StateProvinceID = c.StateProvinceID
+         JOIN Application.Countries co ON co.CountryID = sp.CountryID
+WHERE co.CountryID = @countryId
+ORDER BY sp.StateProvinceName, c.CityName, c.CityID
+----
+
+// NOT YET RUN
+
+
+=== Intermediate
+
+[[WWI_APPLICATION_I_01]]
+==== WWI_APPLICATION_I_01: The countries and the population of each continent
+
+Marketing sizes the markets: for each continent, the number of countries and their total population, the most populous
+continent first.
+
+[source,sql]
+----
+SELECT Continent, COUNT(*) AS Countries, SUM(LatestRecordedPopulation) AS Population
+FROM Application.Countries
+GROUP BY Continent
+ORDER BY Population DESC
+----
+
+[source,jpaql]
+----
+SELECT c.continent, COUNT(c) AS countries, SUM(c.latestRecordedPopulation) AS population
+FROM ApplicationCountry AS c
+GROUP BY c.continent
+ORDER BY population DESC
+----
+
+[[WWI_APPLICATION_I_02]]
+==== WWI_APPLICATION_I_02: The employees by title, from the CustomFields JSON
+
+Human resources counts the employees by title, with the earliest hire date of each title. The title and the hire date
+are in the CustomFields JSON document; JSON_VALUE is SQL only.
+
+[source,sql]
+----
+SELECT JSON_VALUE(CustomFields, '$.Title')                       AS Title,
+       COUNT(*)                                                  AS Employees,
+       MIN(CAST(JSON_VALUE(CustomFields, '$.HireDate') AS date)) AS FirstHired
+FROM Application.People
+WHERE IsEmployee = 1
+GROUP BY JSON_VALUE(CustomFields, '$.Title')
+ORDER BY Employees DESC, Title
+----
+
+SQL only; from Jakarta Persistence, send it as a native query.
+
+=== Advanced
+
+[[WWI_APPLICATION_A_01]]
+==== WWI_APPLICATION_A_01: The five cities nearest to a city
+
+Find the five other cities nearest to a given city, with their state code and the distance in kilometres; a city whose distance cannot be computed is left out, and `CityID` breaks a tie.
+
+[source,sql]
+----
+DECLARE @cityId int = 30378; -- San Francisco
+SELECT TOP (5) c.CityID, c.CityName, sp.StateProvinceCode, CAST(c.Location.STDistance(o.Location) / 1000 AS decimal(10, 1)) AS Kilometres
+FROM Application.Cities c
+         JOIN Application.StateProvinces sp ON sp.StateProvinceID = c.StateProvinceID
+         JOIN Application.Cities o ON o.CityID = @cityId
+WHERE c.CityID <> o.CityID
+  AND c.Location.STDistance(o.Location) IS NOT NULL
+ORDER BY c.Location.STDistance(o.Location), c.CityID
+----
+
+// NOT YET RUN
+
+SQL only; from Jakarta Persistence, send it as a native query.
+
+== Purchasing
+
+=== Basic
+
+[[WWI_PURCHASING_B_01]]
+==== WWI_PURCHASING_B_01: The suppliers, by category and then by name
+
+The buyer wants the suppliers with their category and payment days, by category and then by name.
+
+[source,sql]
+----
+SELECT s.SupplierID, s.SupplierName, sc.SupplierCategoryName, s.PaymentDays
+FROM Purchasing.Suppliers s
+         JOIN Purchasing.SupplierCategories sc ON sc.SupplierCategoryID = s.SupplierCategoryID
+ORDER BY sc.SupplierCategoryName, s.SupplierName
+----
+
+[source,jpaql]
+----
+SELECT s
+FROM PurchasingSupplier AS s
+     JOIN s.supplierCategory AS sc
+ORDER BY sc.supplierCategoryName, s.supplierName
+----
+
+[[WWI_PURCHASING_B_02]]
+==== WWI_PURCHASING_B_02: What is still owed to each supplier
+
+Accounts payable wants what is still owed to each supplier: the transactions not finalized, their number and the outstanding balance, the largest first, a tie by name.
+`IsFinalized` is a computed column.
+
+[source,sql]
+----
+SELECT s.SupplierName, COUNT(*) AS Transactions, SUM(st.OutstandingBalance) AS Outstanding
+FROM Purchasing.SupplierTransactions st
+         JOIN Purchasing.Suppliers s ON s.SupplierID = st.SupplierID
+WHERE st.IsFinalized = 0
+GROUP BY s.SupplierID, s.SupplierName
+ORDER BY Outstanding DESC, s.SupplierName
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT s.supplierName, COUNT(st) AS transactions, SUM(st.outstandingBalance) AS outstanding
+FROM PurchasingSupplierTransaction AS st
+     JOIN st.supplier AS s
+WHERE st.isFinalized = false
+GROUP BY s.supplierId, s.supplierName
+ORDER BY outstanding DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+=== Intermediate
+
+[[WWI_PURCHASING_I_01]]
+==== WWI_PURCHASING_I_01: The purchase orders and the amount ordered from each supplier in a year
+
+The buyer reviews a year of purchasing: for each supplier, the purchase orders placed in the year and the amount ordered
+at the expected prices, the largest amount first.
+
+[source,sql]
+----
+DECLARE @from date = '2015-01-01', @to date = '2016-01-01';
+SELECT s.SupplierName,
+       COUNT(DISTINCT po.PurchaseOrderID)                     AS Orders,
+       SUM(pol.OrderedOuters * pol.ExpectedUnitPricePerOuter) AS Amount
+FROM Purchasing.PurchaseOrders po
+         JOIN Purchasing.PurchaseOrderLines pol ON pol.PurchaseOrderID = po.PurchaseOrderID
+         JOIN Purchasing.Suppliers s ON s.SupplierID = po.SupplierID
+WHERE po.OrderDate >= @from
+  AND po.OrderDate < @to
+GROUP BY s.SupplierID, s.SupplierName
+ORDER BY Amount DESC, s.SupplierID
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT s.supplierName,
+       COUNT(DISTINCT po) AS orders,
+       SUM(pol.orderedOuters * pol.expectedUnitPricePerOuter) AS amount
+FROM PurchasingPurchaseOrderLine AS pol
+     JOIN pol.purchaseOrder AS po
+     JOIN po.supplier AS s
+WHERE po.orderDate >= :from
+  AND po.orderDate < :to
+GROUP BY s.supplierId, s.supplierName
+ORDER BY amount DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+[[WWI_PURCHASING_I_02]]
+==== WWI_PURCHASING_I_02: Purchase orders the amounts cannot count
+
+WWI_PURCHASING_I_01 sums the lines of each order at their expected prices, which assumes every order has a line and every line an expected price; the schema enforces neither.
+Count the purchase orders with no line, and the lines with no expected price; the check passes when both are 0.
+
+[source,sql]
+----
+SELECT (SELECT COUNT(*)
+        FROM Purchasing.PurchaseOrders po
+        WHERE NOT EXISTS (SELECT 1 FROM Purchasing.PurchaseOrderLines pol WHERE pol.PurchaseOrderID = po.PurchaseOrderID)) AS OrdersWithoutLines,
+       (SELECT COUNT(*) FROM Purchasing.PurchaseOrderLines WHERE ExpectedUnitPricePerOuter IS NULL)              AS LinesWithoutPrice
+----
+
+// NOT YET RUN
+
+
+=== Advanced
+
+[[WWI_PURCHASING_A_01]]
+==== WWI_PURCHASING_A_01: The suppliers' late deliveries
+
+The buyer rates the suppliers on delivery: for each supplier, the finalized purchase orders received in full, how many of them arrived after the expected delivery date, and the average days late; the most late orders first, a tie by name.
+
+[source,sql]
+----
+WITH received AS (SELECT po.PurchaseOrderID, po.SupplierID, po.ExpectedDeliveryDate, MAX(pol.LastReceiptDate) AS ReceivedDate
+                  FROM Purchasing.PurchaseOrders po
+                           JOIN Purchasing.PurchaseOrderLines pol ON pol.PurchaseOrderID = po.PurchaseOrderID
+                  WHERE po.IsOrderFinalized = 1
+                    AND po.ExpectedDeliveryDate IS NOT NULL
+                  GROUP BY po.PurchaseOrderID, po.SupplierID, po.ExpectedDeliveryDate
+                  HAVING COUNT(pol.LastReceiptDate) = COUNT(*))
+SELECT s.SupplierName,
+       COUNT(*)                                                                                AS Orders,
+       SUM(CASE WHEN r.ReceivedDate > r.ExpectedDeliveryDate THEN 1 ELSE 0 END)                AS Late,
+       CAST(AVG(CAST(DATEDIFF(day, r.ExpectedDeliveryDate, r.ReceivedDate) AS decimal(10, 1))) AS decimal(10, 1)) AS AverageDaysLate
+FROM received r
+         JOIN Purchasing.Suppliers s ON s.SupplierID = r.SupplierID
+GROUP BY s.SupplierID, s.SupplierName
+ORDER BY Late DESC, s.SupplierName
+----
+
+// NOT YET RUN
+
+
+[[WWI_PURCHASING_A_02]]
+==== WWI_PURCHASING_A_02: Each supplier's three most overdue purchase orders
+
+For each supplier, up to three purchase orders not finalized whose expected delivery date is before a cutoff and which have a line not finalized and short-received, the earliest expected first; `PurchaseOrderID` breaks a tie.
+
+[source,sql]
+----
+DECLARE @asOf date = '2016-06-01';
+WITH overdue AS (SELECT po.PurchaseOrderID,
+                        po.SupplierID,
+                        po.ExpectedDeliveryDate,
+                        ROW_NUMBER() OVER (PARTITION BY po.SupplierID ORDER BY po.ExpectedDeliveryDate, po.PurchaseOrderID) AS Position
+                 FROM Purchasing.PurchaseOrders po
+                 WHERE po.IsOrderFinalized = 0
+                   AND po.ExpectedDeliveryDate < @asOf
+                   AND EXISTS (SELECT 1
+                               FROM Purchasing.PurchaseOrderLines pol
+                               WHERE pol.PurchaseOrderID = po.PurchaseOrderID
+                                 AND pol.IsOrderLineFinalized = 0
+                                 AND pol.ReceivedOuters < pol.OrderedOuters))
+SELECT s.SupplierID, s.SupplierName, o.PurchaseOrderID, o.ExpectedDeliveryDate
+FROM overdue o
+         JOIN Purchasing.Suppliers s ON s.SupplierID = o.SupplierID
+WHERE o.Position <= 3
+ORDER BY s.SupplierName, o.Position
+----
+
+// NOT YET RUN
+
+
+== Sales
+
+=== Basic
+
+[[WWI_SALES_B_01]]
+==== WWI_SALES_B_01: The customers of each buying group
+
+Count the customers of every buying group, a group without customers included, with the customers in no group as a group of their own, NULL; the most first, then by name.
+
+[source,sql]
+----
+SELECT bg.BuyingGroupName, COUNT(c.CustomerID) AS Customers
+FROM Sales.BuyingGroups bg
+         LEFT JOIN Sales.Customers c ON c.BuyingGroupID = bg.BuyingGroupID
+GROUP BY bg.BuyingGroupID, bg.BuyingGroupName
+UNION ALL
+SELECT CAST(NULL AS nvarchar(50)), COUNT(*)
+FROM Sales.Customers
+WHERE BuyingGroupID IS NULL
+ORDER BY Customers DESC, BuyingGroupName
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT bg.buyingGroupName, COUNT(c) AS customers
+FROM SalesCustomer AS c
+     LEFT JOIN c.buyingGroup AS bg
+GROUP BY bg.buyingGroupName
+ORDER BY customers DESC, bg.buyingGroupName
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+[[WWI_SALES_B_02]]
+==== WWI_SALES_B_02: The customers billed for others
+
+Accounts receivable wants the customers who are billed for others: each bill-to customer, with the number of other
+customers it is billed for, the most first; a tie by the identifier.
+
+[source,sql]
+----
+SELECT b.CustomerID, b.CustomerName, COUNT(*) AS Billed
+FROM Sales.Customers c
+         JOIN Sales.Customers b ON b.CustomerID = c.BillToCustomerID
+WHERE c.BillToCustomerID <> c.CustomerID
+GROUP BY b.CustomerID, b.CustomerName
+ORDER BY Billed DESC, b.CustomerID
+----
+
+[source,jpaql]
+----
+SELECT b.customerId, b.customerName, COUNT(c) AS billed
+FROM SalesCustomer AS c
+     JOIN c.billToCustomer AS b
+WHERE b <> c
+GROUP BY b.customerId, b.customerName
+ORDER BY billed DESC, b.customerId
+----
+
+[[WWI_SALES_B_03]]
+==== WWI_SALES_B_03: The first five customers of no buying group, from the Website.Customers view
+
+The web team lists, from the Website.Customers view, the first five customers by name who belong to no buying group,
+with their category, city and delivery method.
+
+[source,sql]
+----
+SELECT TOP (5) CustomerID, CustomerName, CustomerCategoryName, CityName, DeliveryMethod
+FROM Website.Customers
+WHERE BuyingGroupName IS NULL
+ORDER BY CustomerName
+----
+
+[source,jpaql]
+----
+SELECT c
+FROM WebsiteCustomer AS c
+WHERE c.buyingGroupName IS NULL
+ORDER BY c.customerName
+----
+
+=== Intermediate
+
+[[WWI_SALES_I_01]]
+==== WWI_SALES_I_01: The five stock items which earned the most in a year
+
+The sales manager wants the five stock items which earned the most in a year, by the invoiced extended price, with the quantity sold; `StockItemID` breaks a tie.
+
+[source,sql]
+----
+DECLARE @from date = '2015-01-01', @to date = '2016-01-01';
+SELECT TOP (5) si.StockItemID, si.StockItemName, SUM(il.Quantity) AS Quantity, SUM(il.ExtendedPrice) AS Revenue
+FROM Sales.InvoiceLines il
+         JOIN Sales.Invoices i ON i.InvoiceID = il.InvoiceID
+         JOIN Warehouse.StockItems si ON si.StockItemID = il.StockItemID
+WHERE i.InvoiceDate >= @from
+  AND i.InvoiceDate < @to
+GROUP BY si.StockItemID, si.StockItemName
+ORDER BY Revenue DESC, si.StockItemID
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT si.stockItemId, si.stockItemName, SUM(il.quantity), SUM(il.extendedPrice) AS revenue
+FROM SalesInvoiceLine AS il
+     JOIN il.invoice AS i
+     JOIN il.stockItem AS si
+WHERE i.invoiceDate >= :from
+  AND i.invoiceDate < :to
+GROUP BY si.stockItemId, si.stockItemName
+ORDER BY revenue DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+[[WWI_SALES_I_02]]
+==== WWI_SALES_I_02: The sales of a year by month
+
+Finance wants the sales of a year by month: the number of invoices and the invoiced extended price of each month.
+
+[source,sql]
+----
+DECLARE @from date = '2015-01-01', @to date = '2016-01-01';
+SELECT MONTH(i.InvoiceDate) AS InvoiceMonth, COUNT(DISTINCT i.InvoiceID) AS Invoices, SUM(il.ExtendedPrice) AS Revenue
+FROM Sales.Invoices i
+         JOIN Sales.InvoiceLines il ON il.InvoiceID = i.InvoiceID
+WHERE i.InvoiceDate >= @from
+  AND i.InvoiceDate < @to
+GROUP BY MONTH(i.InvoiceDate)
+ORDER BY InvoiceMonth
+----
+
+[source,jpaql]
+----
+SELECT EXTRACT(MONTH FROM i.invoiceDate) AS invoiceMonth,
+       COUNT(DISTINCT i),
+       SUM(il.extendedPrice)
+FROM SalesInvoiceLine AS il
+     JOIN il.invoice AS i
+WHERE i.invoiceDate >= :from
+  AND i.invoiceDate < :to
+GROUP BY EXTRACT(MONTH FROM i.invoiceDate)
+ORDER BY invoiceMonth
+----
+
+[[WWI_SALES_I_03]]
+==== WWI_SALES_I_03: The confirmed deliveries of a customer since a date
+
+Show a customer's deliveries confirmed on or after a date, with the invoice, the confirmation time and who received it, the earliest confirmation first.
+
+[source,sql]
+----
+DECLARE @customerId int = 1, @from date = '2016-04-01';
+SELECT InvoiceID, InvoiceDate, ConfirmedDeliveryTime, ConfirmedReceivedBy
+FROM Sales.Invoices
+WHERE CustomerID = @customerId
+  AND ConfirmedDeliveryTime >= @from
+ORDER BY ConfirmedDeliveryTime, InvoiceID
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT i
+FROM SalesInvoice AS i
+WHERE i.customerId = :customerId
+  AND i.invoiceDate >= :from
+ORDER BY i.invoiceId
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+[[WWI_SALES_I_04]]
+==== WWI_SALES_I_04: The history of a customer's credit limit
+
+Accounts receivable wants the history of a customer's credit limit: each limit it has had, from when it was set, the oldest first.
+`FOR SYSTEM_TIME ALL` reads the current row and the history together, and `LAG` keeps the versions whose limit changed, NULLs compared as equal; this is SQL only.
+
+[source,sql]
+----
+DECLARE @customerId int = 890;
+WITH versions AS (SELECT CustomerID,
+                         CreditLimit,
+                         ValidFrom,
+                         LAG(CreditLimit) OVER (ORDER BY ValidFrom) AS PreviousLimit,
+                         ROW_NUMBER() OVER (ORDER BY ValidFrom)     AS Version
+                  FROM Sales.Customers FOR SYSTEM_TIME ALL
+                  WHERE CustomerID = @customerId)
+SELECT CustomerID, CreditLimit, ValidFrom AS SetFrom
+FROM versions
+WHERE Version = 1
+   OR NOT EXISTS (SELECT CreditLimit
+                  INTERSECT
+                  SELECT PreviousLimit)
+ORDER BY ValidFrom
+----
+
+// NOT YET RUN
+
+SQL only; from Jakarta Persistence, send it as a native query.
+
+[[WWI_SALES_I_05]]
+==== WWI_SALES_I_05: The special deals in force on a date
+
+The sales desk wants the special deals in force on a date: each deal, what it applies to (stock item or stock group, customer, buying group or customer category) and its discount or price, by deal.
+
+[source,sql]
+----
+DECLARE @on date = '2016-01-01';
+SELECT d.SpecialDealID, d.DealDescription, d.StartDate, d.EndDate,
+       si.StockItemName, sg.StockGroupName, c.CustomerName, bg.BuyingGroupName, cc.CustomerCategoryName,
+       d.DiscountAmount, d.DiscountPercentage, d.UnitPrice
+FROM Sales.SpecialDeals d
+         LEFT JOIN Warehouse.StockItems si ON si.StockItemID = d.StockItemID
+         LEFT JOIN Warehouse.StockGroups sg ON sg.StockGroupID = d.StockGroupID
+         LEFT JOIN Sales.Customers c ON c.CustomerID = d.CustomerID
+         LEFT JOIN Sales.BuyingGroups bg ON bg.BuyingGroupID = d.BuyingGroupID
+         LEFT JOIN Sales.CustomerCategories cc ON cc.CustomerCategoryID = d.CustomerCategoryID
+WHERE d.StartDate <= @on
+  AND d.EndDate >= @on
+ORDER BY d.SpecialDealID
+----
+
+// NOT YET RUN
+
+
+[[WWI_SALES_I_06]]
+==== WWI_SALES_I_06: The special deals that apply to a customer and an item
+
+List the special deals that apply to a given customer and stock item on a date, a NULL target meaning no restriction and both dates included, with their three pricing options, without choosing one deal over another.
+
+[source,sql]
+----
+DECLARE @customerId int = 1, @stockItemId int = 1, @on date = '2016-05-01';
+SELECT sd.SpecialDealID, sd.DealDescription, sd.StartDate, sd.EndDate, sd.DiscountAmount, sd.DiscountPercentage, sd.UnitPrice
+FROM Sales.SpecialDeals sd
+         JOIN Sales.Customers c ON c.CustomerID = @customerId
+         JOIN Warehouse.StockItems si ON si.StockItemID = @stockItemId
+WHERE sd.StartDate <= @on
+  AND sd.EndDate >= @on
+  AND (sd.CustomerID IS NULL OR sd.CustomerID = c.CustomerID)
+  AND (sd.BuyingGroupID IS NULL OR sd.BuyingGroupID = c.BuyingGroupID)
+  AND (sd.CustomerCategoryID IS NULL OR sd.CustomerCategoryID = c.CustomerCategoryID)
+  AND (sd.StockItemID IS NULL OR sd.StockItemID = si.StockItemID)
+  AND (sd.StockGroupID IS NULL
+    OR EXISTS (SELECT 1 FROM Warehouse.StockItemStockGroups sisg WHERE sisg.StockItemID = si.StockItemID AND sisg.StockGroupID = sd.StockGroupID))
+ORDER BY sd.SpecialDealID
+----
+
+// NOT YET RUN
+
+
+[[WWI_SALES_I_07]]
+==== WWI_SALES_I_07: The ten customers using the most of their credit limit
+
+Accounts receivable wants the ten customers with a credit limit whose outstanding balance uses the most of it: the limit, the balance of the transactions not finalized, and the share of the limit used; `CustomerID` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (10) c.CustomerID,
+                c.CustomerName,
+                c.CreditLimit,
+                SUM(ct.OutstandingBalance)                                               AS Outstanding,
+                CAST(SUM(ct.OutstandingBalance) * 100 / c.CreditLimit AS decimal(10, 1)) AS PercentUsed
+FROM Sales.CustomerTransactions ct
+         JOIN Sales.Customers c ON c.CustomerID = ct.CustomerID
+WHERE ct.IsFinalized = 0
+  AND c.CreditLimit > 0
+GROUP BY c.CustomerID, c.CustomerName, c.CreditLimit
+ORDER BY PercentUsed DESC, c.CustomerID
+----
+
+// NOT YET RUN
+
+
+=== Advanced
+
+[[WWI_SALES_A_01]]
+==== WWI_SALES_A_01: The top three salespeople of each year
+
+The sales manager ranks the salespeople of each year by the invoiced extended price and wants the top three places of each year, all of those tied for a place included, ordered by `PersonID` within a place.
+`RANK() OVER (...)`, a window function, is SQL only; a tie for third can return more than three rows.
+
+[source,sql]
+----
+WITH yearly AS (SELECT YEAR(i.InvoiceDate) AS SalesYear, i.SalespersonPersonID, SUM(il.ExtendedPrice) AS Revenue
+                FROM Sales.Invoices i
+                         JOIN Sales.InvoiceLines il ON il.InvoiceID = i.InvoiceID
+                GROUP BY YEAR(i.InvoiceDate), i.SalespersonPersonID),
+     ranked AS (SELECT y.*, RANK() OVER (PARTITION BY y.SalesYear ORDER BY y.Revenue DESC) AS SalesRank
+                FROM yearly y)
+SELECT r.SalesYear, r.SalesRank, p.PersonID, p.FullName, r.Revenue
+FROM ranked r
+         JOIN Application.People p ON p.PersonID = r.SalespersonPersonID
+WHERE r.SalesRank <= 3
+ORDER BY r.SalesYear, r.SalesRank, p.PersonID
+----
+
+// NOT YET RUN
+
+SQL only; from Jakarta Persistence, send it as a native query.
+
+[[WWI_SALES_A_02]]
+==== WWI_SALES_A_02: The customers whose credit limit changed since a moment, by a native query
+
+Accounts receivable wants the customers whose credit limit is not what it was at a past moment, a limit set or removed since then included, with the limit then and now.
+`NOT EXISTS (SELECT then INTERSECT SELECT now)` compares the two with NULLs as equal, which `<>` does not.
+
+[source,sql]
+----
+DECLARE @asOf datetime2 = '2015-01-01';
+SELECT c.CustomerID, c.CustomerName, h.CreditLimit AS CreditLimitThen, c.CreditLimit AS CreditLimitNow
+FROM Sales.Customers c
+         JOIN Sales.Customers FOR SYSTEM_TIME AS OF @asOf h ON h.CustomerID = c.CustomerID
+WHERE NOT EXISTS (SELECT h.CreditLimit
+                  INTERSECT
+                  SELECT c.CreditLimit)
+ORDER BY c.CustomerID
+----
+
+// NOT YET RUN
+
+SQL only. `_Sales_Exercises_03_Advanced_PersistenceIT` sends it as a native query, with the moment as a
+positional parameter:
+
+[source,java]
+----
+entityManager.createNativeQuery("""
+SELECT c.CustomerID, c.CustomerName, h.CreditLimit, c.CreditLimit
+FROM Sales.Customers c
+         JOIN Sales.Customers FOR SYSTEM_TIME AS OF ?1 h ON h.CustomerID = c.CustomerID
+WHERE h.CreditLimit <> c.CreditLimit
+ORDER BY c.CustomerID""")
+        .setParameter(1, LocalDateTime.of(2015, 1, 1, 0, 0))
+        .getResultList()
+----
+
+[[WWI_SALES_A_03]]
+==== WWI_SALES_A_03: The five oldest backorders never invoiced, and the orders which backordered them
+
+The warehouse wants the five oldest backorders which were never invoiced, with the customer and the order which
+backordered them.
+
+[source,sql]
+----
+SELECT TOP (5) o.OrderID, o.OrderDate, c.CustomerName, p.OrderID AS BackorderedBy
+FROM Sales.Orders p
+         JOIN Sales.Orders o ON o.OrderID = p.BackorderOrderID
+         JOIN Sales.Customers c ON c.CustomerID = o.CustomerID
+WHERE NOT EXISTS (SELECT 1
+                  FROM Sales.Invoices i
+                  WHERE i.OrderID = o.OrderID)
+ORDER BY o.OrderDate, o.OrderID
+----
+
+[source,jpaql]
+----
+SELECT p
+FROM SalesOrder AS p
+     JOIN p.backorderOrder AS o
+WHERE NOT EXISTS (SELECT i
+                  FROM SalesInvoice AS i
+                  WHERE i.order = o)
+ORDER BY o.orderDate, o.orderId
+----
+
+== Warehouse
+
+=== Basic
+
+[[WWI_WAREHOUSE_B_01]]
+==== WWI_WAREHOUSE_B_01: The stock items below their reorder level
+
+The warehouse manager wants the stock items whose quantity on hand is below the reorder level, by name.
+
+[source,sql]
+----
+SELECT si.StockItemID, si.StockItemName, h.QuantityOnHand, h.ReorderLevel
+FROM Warehouse.StockItemHoldings h
+         JOIN Warehouse.StockItems si ON si.StockItemID = h.StockItemID
+WHERE h.QuantityOnHand < h.ReorderLevel
+ORDER BY si.StockItemName
+----
+
+[source,jpaql]
+----
+SELECT h
+FROM WarehouseStockItemHolding AS h
+     JOIN h.stockItem AS si
+WHERE h.quantityOnHand < h.reorderLevel
+ORDER BY si.stockItemName
+----
+
+[[WWI_WAREHOUSE_B_02]]
+==== WWI_WAREHOUSE_B_02: The chiller stock items, by name
+
+The cold room keeps the chiller stock: list those stock items by name, with their supplier and unit price.
+
+[source,sql]
+----
+SELECT si.StockItemID, si.StockItemName, s.SupplierName, si.UnitPrice
+FROM Warehouse.StockItems si
+         JOIN Purchasing.Suppliers s ON s.SupplierID = si.SupplierID
+WHERE si.IsChillerStock = 1
+ORDER BY si.StockItemName
+----
+
+[source,jpaql]
+----
+SELECT si
+FROM WarehouseStockItem AS si
+WHERE si.isChillerStock = true
+ORDER BY si.stockItemName
+----
+
+[[WWI_WAREHOUSE_B_03]]
+==== WWI_WAREHOUSE_B_03: The latest vehicle temperature readings
+
+The transport team wants the ten latest chiller readings of the delivery vehicles, from the Website.VehicleTemperatures view, with the vehicle, sensor, temperature and full sensor data; `VehicleTemperatureID` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (10) VehicleTemperatureID, VehicleRegistration, ChillerSensorNumber, RecordedWhen, Temperature, FullSensorData
+FROM Website.VehicleTemperatures
+ORDER BY RecordedWhen DESC, VehicleTemperatureID DESC
+----
+
+// NOT YET RUN
+
+
+=== Intermediate
+
+[[WWI_WAREHOUSE_I_01]]
+==== WWI_WAREHOUSE_I_01: The stock items of each stock group
+
+Count the stock items in every stock group, a group without items included, the most first; a tie by the group's name.
+
+[source,sql]
+----
+SELECT sg.StockGroupName, COUNT(sisg.StockItemStockGroupID) AS StockItems
+FROM Warehouse.StockGroups sg
+         LEFT JOIN Warehouse.StockItemStockGroups sisg ON sisg.StockGroupID = sg.StockGroupID
+GROUP BY sg.StockGroupID, sg.StockGroupName
+ORDER BY StockItems DESC, sg.StockGroupName
+----
+
+// NOT YET RUN
+
+[source,jpaql]
+----
+SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
+FROM WarehouseStockItemStockGroup AS sisg
+     JOIN sisg.stockGroup AS sg
+GROUP BY sg.stockGroupId, sg.stockGroupName
+ORDER BY stockItems DESC, sg.stockGroupName
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+[[WWI_WAREHOUSE_I_02]]
+==== WWI_WAREHOUSE_I_02: The stock items by country of manufacture, from the CustomFields JSON
+
+Compliance counts the stock items by country of manufacture, which is in the CustomFields JSON document, the most first, a tie by country; the items with no country recorded count as one group.
+`JSON_VALUE` is SQL only.
+
+[source,sql]
+----
+SELECT JSON_VALUE(CustomFields, '$.CountryOfManufacture') AS CountryOfManufacture, COUNT(*) AS StockItems
+FROM Warehouse.StockItems
+GROUP BY JSON_VALUE(CustomFields, '$.CountryOfManufacture')
+ORDER BY StockItems DESC, CountryOfManufacture
+----
+
+// NOT YET RUN
+
+SQL only; from Jakarta Persistence, send it as a native query.
+
+[[WWI_WAREHOUSE_I_03]]
+==== WWI_WAREHOUSE_I_03: The movements of a stock item in a year, by transaction type
+
+The warehouse manager wants the movements of a stock item in a year: for each transaction type, the number of transactions and the net quantity, by type name.
+
+[source,sql]
+----
+DECLARE @stockItemId int = 1, @from datetime2 = '2015-01-01', @to datetime2 = '2016-01-01';
+SELECT tt.TransactionTypeName, COUNT(*) AS Transactions, SUM(sit.Quantity) AS Quantity
+FROM Warehouse.StockItemTransactions sit
+         JOIN Application.TransactionTypes tt ON tt.TransactionTypeID = sit.TransactionTypeID
+WHERE sit.StockItemID = @stockItemId
+  AND sit.TransactionOccurredWhen >= @from
+  AND sit.TransactionOccurredWhen < @to
+GROUP BY tt.TransactionTypeID, tt.TransactionTypeName
+ORDER BY tt.TransactionTypeName
+----
+
+// NOT YET RUN
+
+
+[[WWI_WAREHOUSE_I_04]]
+==== WWI_WAREHOUSE_I_04: Incoming and outgoing stock movements
+
+For each stock item with movements in a period, the quantity in, the quantity out as a positive amount, and the net movement, by item name.
+
+[source,sql]
+----
+DECLARE @from datetime2 = '2016-05-01', @to datetime2 = '2016-06-01';
+SELECT si.StockItemID,
+       si.StockItemName,
+       SUM(CASE WHEN st.Quantity > 0 THEN st.Quantity ELSE 0 END)  AS Incoming,
+       SUM(CASE WHEN st.Quantity < 0 THEN -st.Quantity ELSE 0 END) AS Outgoing,
+       SUM(st.Quantity)                                             AS NetMovement
+FROM Warehouse.StockItemTransactions st
+         JOIN Warehouse.StockItems si ON si.StockItemID = st.StockItemID
+WHERE st.TransactionOccurredWhen >= @from
+  AND st.TransactionOccurredWhen < @to
+GROUP BY si.StockItemID, si.StockItemName
+ORDER BY si.StockItemName
+----
+
+// NOT YET RUN
+
+
+=== Advanced
+
+[[WWI_WAREHOUSE_A_01]]
+==== WWI_WAREHOUSE_A_01: The cold-room readings of a period, from the history
+
+Quality control checks the cold rooms over a period: for each sensor, the number of readings recorded in the period and the lowest, highest and average temperature.
+Each reading is a version of a row of a system-versioned table, so the query reads them all with `FOR SYSTEM_TIME ALL` and keeps those recorded in the period by `RecordedWhen`; `FROM ... TO` would also return the reading still in force when the period began. This is SQL only.
+
+[source,sql]
+----
+DECLARE @from datetime2 = '2016-05-01', @to datetime2 = '2016-05-02';
+SELECT ColdRoomSensorNumber,
+       COUNT(*)                                 AS Readings,
+       MIN(Temperature)                         AS Lowest,
+       MAX(Temperature)                         AS Highest,
+       CAST(AVG(Temperature) AS decimal(10, 2)) AS Average
+FROM Warehouse.ColdRoomTemperatures FOR SYSTEM_TIME ALL
+WHERE RecordedWhen >= @from
+  AND RecordedWhen < @to
+GROUP BY ColdRoomSensorNumber
+ORDER BY ColdRoomSensorNumber
+----
+
+// NOT YET RUN
+
+SQL only; from Jakarta Persistence, send it as a native query.
+
