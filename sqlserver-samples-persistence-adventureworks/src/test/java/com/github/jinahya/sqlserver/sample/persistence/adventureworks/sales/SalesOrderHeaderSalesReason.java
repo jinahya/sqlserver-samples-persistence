@@ -24,6 +24,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesOrderHeaderSalesReason;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedSalesReason;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.SalesOrderHeaderSalesReasonId;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -91,6 +92,18 @@ public class SalesOrderHeaderSalesReason
         super();
     }
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     */
+    @Override
+    protected SalesOrderHeaderSalesReasonId getId_() {
+        return id_;
+    }
+
     // --------------------------------------------------------------------------------- salesReason
 
     /**
@@ -114,6 +127,12 @@ public class SalesOrderHeaderSalesReason
     public SalesOrderHeader getSalesOrder() {
         return salesOrder;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private SalesOrderHeaderSalesReasonId id_;
 
     // ---------------------------------------------------------------------------------------------
     @Valid

@@ -22,7 +22,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sa
 
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
-import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithEmbeddedId;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -35,7 +34,11 @@ import java.time.LocalDateTime;
  * <p>
  * The key is a {@link PersonCreditCardId} embedded with {@link EmbeddedId @EmbeddedId}, whose
  * fields map the columns of the key; an entity which extends this class derives each of its
- * attributes from an association with {@link jakarta.persistence.MapsId @MapsId}.
+ * attributes from an association with {@link jakarta.persistence.MapsId @MapsId}. The entity
+ * declares the attribute, {@value #ATTRIBUTE_NAME_ID_}, and returns it from {@link #getId_()},
+ * which {@link #equals(Object)} and {@link #toString()} read: an {@code @EmbeddedId} of a type
+ * variable, declared in a mapped superclass, is what neither EclipseLink nor
+ * {@code hibernate-processor} resolves.
  *
  * <table class="striped">
  * <caption>Columns of {@code Sales.PersonCreditCard}</caption>
@@ -73,8 +76,7 @@ import java.time.LocalDateTime;
         value = "Cross-reference table mapping people to their credit card information in the "
                 + "CreditCard table. "
 )
-public abstract class MappedPersonCreditCard
-        extends MappedWithEmbeddedId<PersonCreditCardId> {
+public abstract class MappedPersonCreditCard {
 
     /**
      * The name of the schema of the table to which this class maps. The value is {@value}.
@@ -128,6 +130,14 @@ public abstract class MappedPersonCreditCard
      */
     public static final String ATTRIBUTE_NAME_MODIFIED_DATE = "modifiedDate";
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * The name of the attribute which embeds the key, which the extending entity declares. The
+     * value is {@value}.
+     */
+    public static final String ATTRIBUTE_NAME_ID_ = "id_";
+
     // -------------------------------------------------------------------------------- CONSTRUCTORS
 
     /**
@@ -142,7 +152,8 @@ public abstract class MappedPersonCreditCard
     @Override
     public String toString() {
         return super.toString() + "{"
-               + "modifiedDate=" + modifiedDate
+               + "id_=" + getId_()
+               + ",modifiedDate=" + modifiedDate
                + "}";
     }
 
@@ -181,6 +192,21 @@ public abstract class MappedPersonCreditCard
     public final int hashCode() {
         return MappedPersonCreditCard.class.hashCode();
     }
+
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute, which the extending entity
+     * declares.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute; {@code null} until the
+     *         instance is persisted.
+     * @implNote {@link #equals(Object)} reads the key through this method, not the field, so that a
+     *         Hibernate proxy, whose own fields are unset, answers with the key of the row it
+     *         stands for. The method is {@code protected}, not package-private, since a proxy is a
+     *         subclass in the package of the entity, and overrides only what that package sees.
+     */
+    protected abstract PersonCreditCardId getId_();
 
     // -------------------------------------------------------------------------------- modifiedDate
 

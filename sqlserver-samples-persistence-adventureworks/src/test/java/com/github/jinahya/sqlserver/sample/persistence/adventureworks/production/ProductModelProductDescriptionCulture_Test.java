@@ -22,7 +22,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductModelProductDescriptionCultureId;
-import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithEmbeddedId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -54,11 +53,10 @@ class ProductModelProductDescriptionCulture_Test
      *
      * @implNote {@link ProductModelProductDescriptionCulture#equals(Object) equals} compares only
      *         the {@code @EmbeddedId} {@code id_}, which persist assigns, because every other
-     *         attribute is mutable state; {@link ProductModelProductDescriptionCulture#hashCode()
-     *         hashCode} is the same for every instance, so that it does not change when persist
-     *         assigns the key. The key is a type variable of {@link MappedWithEmbeddedId}, which
-     *         EqualsVerifier fills with an {@link Object}, so the field is given values of its
-     *         actual class.
+     *         attribute is mutable state;
+     *         {@link ProductModelProductDescriptionCulture#hashCode() hashCode} is the same for
+     *         every instance, so that it does not change when persist assigns the key. The field is
+     *         given two keys of its class, which differ in every attribute.
      */
     @Override
     public SingleTypeEqualsVerifierApi<ProductModelProductDescriptionCulture> equals_verifier_() {

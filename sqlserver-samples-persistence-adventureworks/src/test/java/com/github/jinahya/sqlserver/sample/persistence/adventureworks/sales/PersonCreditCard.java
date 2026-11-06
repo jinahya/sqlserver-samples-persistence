@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedPersonCreditCard;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.PersonCreditCardId;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Person;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -90,6 +91,18 @@ public class PersonCreditCard
         super();
     }
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     */
+    @Override
+    protected PersonCreditCardId getId_() {
+        return id_;
+    }
+
     // ------------------------------------------------------------------------------ businessEntity
 
     /**
@@ -113,6 +126,12 @@ public class PersonCreditCard
     public CreditCard getCreditCard() {
         return creditCard;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private PersonCreditCardId id_;
 
     // ---------------------------------------------------------------------------------------------
     @Valid

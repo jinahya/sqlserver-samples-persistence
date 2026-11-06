@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pro
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductModel;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductModelProductDescriptionCulture;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductModelProductDescriptionCultureId;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -106,6 +107,18 @@ public class ProductModelProductDescriptionCulture
         super();
     }
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     */
+    @Override
+    protected ProductModelProductDescriptionCultureId getId_() {
+        return id_;
+    }
+
     // -------------------------------------------------------------------------- productDescription
 
     /**
@@ -143,6 +156,12 @@ public class ProductModelProductDescriptionCulture
     public ProductModel getProductModel() {
         return productModel;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private ProductModelProductDescriptionCultureId id_;
 
     // ---------------------------------------------------------------------------------------------
     @Valid

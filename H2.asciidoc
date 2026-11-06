@@ -40,8 +40,8 @@ lacks, and a load script for the installed rows the persisters refer to. A unit 
 A keyless class has none: it is read by a native query from a view, which the generated schema does not have.
 
 An `ATTRIBUTE_PATH_*` constant is resolved by navigating a criteria `Path` from a root of the entity, not with
-`JinayaManagedTypeUtils.resolveAttributePath`, which reads an attribute's type where it is declared:
-`MappedWithEmbeddedId`'s `id_` is of its type variable, an `Object` there.
+`JinayaManagedTypeUtils.resolveAttributePath`, which reads an attribute's type where it is declared, while a root
+of the entity knows the type the entity gives it.
 
 == Disabled persists
 

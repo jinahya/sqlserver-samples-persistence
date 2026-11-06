@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sal
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedCountryRegionCurrency;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.MappedCurrency;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.CountryRegion;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -91,6 +92,18 @@ public class CountryRegionCurrency
         super();
     }
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     */
+    @Override
+    protected CountryRegionCurrencyId getId_() {
+        return id_;
+    }
+
     // ------------------------------------------------------------------------------- countryRegion
 
     /**
@@ -114,6 +127,12 @@ public class CountryRegionCurrency
     public Currency getCurrency() {
         return currency;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private CountryRegionCurrencyId id_;
 
     // ---------------------------------------------------------------------------------------------
     @Valid

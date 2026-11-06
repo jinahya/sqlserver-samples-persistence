@@ -43,28 +43,13 @@ When every key column is a foreign key to another entity's `@Id` of the same Jav
 | `salesOrderId`, `salesReasonId`
 |===
 
-=== The base, `-common`'s `MappedWithEmbeddedId`
+=== No base: the entity declares the key
 
-It holds the key, `null` until persist creates it and fills it from the associations.
-
-[source,java]
-----
-@MappedSuperclass
-public abstract class MappedWithEmbeddedId<T> {
-
-    public static final String ATTRIBUTE_NAME_ID_ = "id_";
-
-    @Override
-    public String toString() { ... } // the key
-
-    protected T getId_() { ... } // no setter
-
-    @Valid
-    @NotNull
-    @EmbeddedId
-    private T id_;
-}
-----
+The `@EmbeddedId` is declared by the entity, of the id class, as `oracle-sample-schemas-persistence` does; no mapped
+superclass declares it. A generic base which held an `@EmbeddedId T id_`, as `-common`'s `MappedWithEmbeddedId<T>`
+once did, gives the attribute a type variable as its declared type: EclipseLink 5.0 reads it as `String`
+(EclipseLink-7246) or fails predeploy, and `hibernate-processor` rejects a Jakarta Data repository's inherited
+`findById` and `deleteById` ("matching field has type 'T'").
 
 === The id class, in main
 
@@ -100,17 +85,21 @@ public class ProductProductPhotoId {
 
 === The mapped superclass, in main
 
-It fixes the base's type to the id class, and holds a path into the key per key column, its own `equals` and
-`hashCode`, and a `toString` of its other attributes.
+It names the key attribute, `ATTRIBUTE_NAME_ID_`, and holds a path into the key per key column, an abstract
+`getId_()` of the id class, which its `equals` and `toString` read, and its `hashCode`.
 
 [source,java]
 ----
 @MappedSuperclass
-public abstract class MappedProductProductPhoto
-        extends MappedWithEmbeddedId<ProductProductPhotoId> {
+public abstract class MappedProductProductPhoto {
 
     public static final String ATTRIBUTE_PATH_ID_PRODUCT_ID = "id_.productId";
     public static final String ATTRIBUTE_PATH_ID_PRODUCT_PHOTO_ID = "id_.productPhotoId";
+
+    public static final String ATTRIBUTE_NAME_ID_ = "id_";
+
+    @Override
+    public String toString() { ... } // the key, then the other attributes
 
     @Override
     public final boolean equals(final Object obj) {
@@ -126,13 +115,16 @@ public abstract class MappedProductProductPhoto
     public final int hashCode() {
         return MappedProductProductPhoto.class.hashCode();
     }
+
+    protected abstract ProductProductPhotoId getId_();
 }
 ----
 
 === The entity, in the tests
 
-Each association of the key names an attribute of the id class with `@MapsId`, and writes its column. There is no
-setter for them; `of(...)` sets them.
+It declares the key, `null` until persist creates it and fills it from the associations, and returns it from
+`getId_()`; there is no setter. Each association of the key names an attribute of the id class with `@MapsId`, and
+writes its column. There is no setter for them; `of(...)` sets them.
 
 [source,java]
 ----
@@ -142,6 +134,14 @@ public class ProductProductPhoto
 
     public static ProductProductPhoto of(final Product product,
                                          final ProductPhoto productPhoto) { ... }
+
+    @Override
+    protected ProductProductPhotoId getId_() { ... }
+
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private ProductProductPhotoId id_;
 
     @Valid
     @NotNull
@@ -376,7 +376,7 @@ public class ProductVendor
 | plain class, no columns
 
 | Who holds the key
-| `MappedWithEmbeddedId<T>.id_`, `null` until persist
+| the entity's `id_`, `null` until persist
 | the mapped superclass's `@Id` attributes
 
 | Which mapping writes a key column

@@ -366,8 +366,8 @@ converter reaches, takes the column's bytes in its constructor and decodes them.
 
 == Embeddables
 
-The `@Embeddable` id classes of AdventureWorks' seven link tables, `<Entity>Id`, each embedded as
-`MappedWithEmbeddedId`'s `id_`, map their key columns; their attributes are among the rows above. The
+The `@Embeddable` id classes of AdventureWorks' seven link tables, `<Entity>Id`, each embedded as the
+entity's own `id_`, map their key columns; their attributes are among the rows above. The
 `@IdClass` id classes map no column. See link:COMPOSITE_PK.asciidoc[Composite Primary Keys].
 
 [[enums]]

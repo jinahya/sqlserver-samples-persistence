@@ -247,11 +247,10 @@ public abstract class _Entity_PersistenceTest<T, U>
      * Verifies that every {@code ATTRIBUTE_PATH_*} constant of {@link #targetClass} holds a
      * dotted path which resolves, segment by segment, from the entity, as a query navigates it.
      *
-     * @implNote The path is navigated with a criteria {@link Path}, from a root of the entity,
-     *         not with {@code JinayaManagedTypeUtils.resolveAttributePath}, which reads an
-     *         attribute's type where it is declared: {@code MappedWithEmbeddedId}'s {@code id_} is
-     *         of its type variable, an {@link Object} there, while a root of the entity knows the
-     *         id class.
+     * @implNote The path is navigated with a criteria {@link Path}, from a root of the entity, not
+     *         with {@code JinayaManagedTypeUtils.resolveAttributePath}, which reads an attribute's
+     *         type where it is declared, while a root of the entity knows the type the entity gives
+     *         it.
      */
     @DisplayName("every ATTRIBUTE_PATH_* constant resolves through the metamodel")
     @Test

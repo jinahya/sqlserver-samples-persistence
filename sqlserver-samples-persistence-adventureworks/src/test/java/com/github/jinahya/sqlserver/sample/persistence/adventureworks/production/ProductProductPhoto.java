@@ -24,6 +24,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pro
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductPhoto;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProductProductPhoto;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductProductPhotoId;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -88,6 +89,18 @@ public class ProductProductPhoto
         super();
     }
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     */
+    @Override
+    protected ProductProductPhotoId getId_() {
+        return id_;
+    }
+
     // ------------------------------------------------------------------------------------- product
 
     /**
@@ -111,6 +124,12 @@ public class ProductProductPhoto
     public ProductPhoto getProductPhoto() {
         return productPhoto;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private ProductProductPhotoId id_;
 
     // ---------------------------------------------------------------------------------------------
     @Valid

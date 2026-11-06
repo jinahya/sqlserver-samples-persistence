@@ -24,13 +24,17 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   - `@EmbeddedId` with `@MapsId`, when every key column is a foreign key to another entity's `@Id` of the same Java
     type (a link table): `ProductModelIllustration`, `ProductModelProductDescriptionCulture`, `ProductProductPhoto`,
     `BusinessEntityContact`, `CountryRegionCurrency`, `PersonCreditCard`, `SalesOrderHeaderSalesReason`. The id class
-    is an `@Embeddable` which maps the key columns; the mapped superclass extends `-common`'s
-    `MappedWithEmbeddedId<<Entity>Id>`, which holds `@Valid @NotNull @EmbeddedId id_`, `null` until persist creates
-    it, a `protected getId_()` and no setter, `ATTRIBUTE_NAME_ID_` and a `toString` of the id, and itself holds an
-    `ATTRIBUTE_PATH_ID_<COLUMN>` per key column, its own `equals` and `hashCode`, and a `toString` of its other
-    attributes. The entity puts `@MapsId(<Entity>Id.ATTRIBUTE_NAME_<COLUMN>)` on each association of the key, which
-    writes its column, and has no setter for them. Its `<Entity>_Test` gives EqualsVerifier two ids for the `id_`
-    field, whose type is a type variable.
+    is an `@Embeddable` which maps the key columns. **The entity declares the `@EmbeddedId`, not the mapped
+    superclass**, as in `oracle-sample-schemas-persistence`: an `@EmbeddedId` of a type variable in a mapped
+    superclass (the `MappedWithEmbeddedId<T>` this project had) is read by EclipseLink 5.0 as `String`
+    (EclipseLink-7246), and `hibernate-processor` checks a Jakarta Data repository's inherited `findById` and
+    `deleteById` against the type variable ("matching field has type 'T'"). The mapped superclass extends nothing for
+    the key; it holds `ATTRIBUTE_NAME_ID_` (`"id_"`), an `ATTRIBUTE_PATH_ID_<COLUMN>` per key column, a
+    `protected abstract <Entity>Id getId_()`, which its `final` `equals` and its `toString` read, and its `hashCode`.
+    The entity holds `@Valid @NotNull @EmbeddedId private <Entity>Id id_`, `null` until persist creates it, overrides
+    `getId_()`, `protected`, and has no setter; it puts `@MapsId(<Entity>Id.ATTRIBUTE_NAME_<COLUMN>)` on each
+    association of the key, which writes its column, and has no setter for them. Its `<Entity>_Test` gives
+    EqualsVerifier two ids for the `id_` field.
   - `@IdClass` otherwise: a key with a value of the row's own (a date, a number, an `IDENTITY` column), a view, and
     `BusinessEntityAddress`, `ProductInventory`, `ProductVendor` and `SpecialOfferProduct` (the book quotes both as
     `@IdClass`). The `@Id` attributes stay in the mapped superclass: a key column which is a foreign key has a

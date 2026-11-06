@@ -25,6 +25,7 @@ import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.per
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedBusinessEntityContact;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedContactType;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.MappedPerson;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -112,6 +113,18 @@ public class BusinessEntityContact
         super();
     }
 
+    // ----------------------------------------------------------------------------------------- id_
+
+    /**
+     * Returns current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     *
+     * @return current value of {@value #ATTRIBUTE_NAME_ID_} attribute.
+     */
+    @Override
+    protected BusinessEntityContactId getId_() {
+        return id_;
+    }
+
     // -------------------------------------------------------------------------------------- person
 
     /**
@@ -147,6 +160,12 @@ public class BusinessEntityContact
     public BusinessEntity getBusinessEntity() {
         return businessEntity;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    @Valid
+    @NotNull
+    @EmbeddedId
+    private BusinessEntityContactId id_;
 
     // ---------------------------------------------------------------------------------------------
     @Valid

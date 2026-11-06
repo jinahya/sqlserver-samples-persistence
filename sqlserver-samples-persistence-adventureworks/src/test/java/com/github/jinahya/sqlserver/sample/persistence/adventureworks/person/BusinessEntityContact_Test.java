@@ -22,7 +22,6 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
 
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_Test;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.BusinessEntityContactId;
-import com.github.jinahya.sqlserver.sample.persistence.common.mapped.MappedWithEmbeddedId;
 import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 
@@ -52,12 +51,11 @@ class BusinessEntityContact_Test
     /**
      * {@inheritDoc}
      *
-     * @implNote {@link BusinessEntityContact#equals(Object) equals} compares only the {@code
-     *         @EmbeddedId} {@code id_}, which persist assigns, because every other attribute is
-     *         mutable state; {@link BusinessEntityContact#hashCode() hashCode} is the same for
-     *         every instance, so that it does not change when persist assigns the key. The key is a
-     *         type variable of {@link MappedWithEmbeddedId}, which EqualsVerifier fills with an
-     *         {@link Object}, so the field is given values of its actual class.
+     * @implNote {@link BusinessEntityContact#equals(Object) equals} compares only the
+     *         {@code @EmbeddedId} {@code id_}, which persist assigns, because every other attribute
+     *         is mutable state; {@link BusinessEntityContact#hashCode() hashCode} is the same for
+     *         every instance, so that it does not change when persist assigns the key. The field is
+     *         given two keys of its class, which differ in every attribute.
      */
     @Override
     public SingleTypeEqualsVerifierApi<BusinessEntityContact> equals_verifier_() {
