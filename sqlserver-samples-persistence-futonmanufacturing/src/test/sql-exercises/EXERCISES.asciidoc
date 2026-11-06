@@ -173,9 +173,7 @@ GROUP BY p.ItemID, p.ItemCode, p.ItemName, p.ListPrice
 ORDER BY p.ItemCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/02_intermediate.sql`, FUTON_DBO_I_02, run on 2026-11-01
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_02, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -235,7 +233,13 @@ WHERE b.IsActive = 1
 ORDER BY p.ItemCode, c.ItemCode, b.BOMID
 ----
 
-// NOT YET RUN
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_07, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_A_01]]
@@ -270,9 +274,7 @@ ORDER BY i.ItemCode
 OPTION (MAXRECURSION 0)
 ----
 
-// NOT YET RUN
-
-.`_dbo/03_advanced.sql`, FUTON_DBO_A_01, run on 2026-11-01
+.`_dbo/03_advanced.sql`, FUTON_DBO_A_01, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -397,7 +399,13 @@ ORDER BY i.ItemCode
 OPTION (MAXRECURSION 0)
 ----
 
-// NOT YET RUN
+.`_dbo/03_advanced.sql`, FUTON_DBO_A_05, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 == Inventory
@@ -464,7 +472,13 @@ WHERE i.ItemCode = 'RM-FILL-001'
 ORDER BY it.TransactionDate, it.TransactionID
 ----
 
-// NOT YET RUN
+.`_dbo/01_basic.sql`, FUTON_DBO_B_06, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_I_03]]
@@ -487,18 +501,16 @@ WHERE i.ReorderPoint > 0
 ORDER BY v.QuantityAvailable / i.ReorderPoint, i.ItemCode, w.WarehouseCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/02_intermediate.sql`, FUTON_DBO_I_03, run on 2026-11-01
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_03, run on 2026-11-06
 [%collapsible]
 ====
 ....
-ItemCode      ItemName                              QuantityAvailable  ReorderPoint  Ratio
-RM-METAL-002  Steel Hinge Mechanism                 200.00             150.00        1.33
-RM-FIN-001    Wood Stain - Dark Walnut (Quart)      45.00              30.00         1.50
-FG-FUT-004    Queen Premium Futon - Velvet Emerald  8.00               5.00          1.60
-RM-HARD-002   Bolt and Nut Kit (50 pack)            80.00              50.00         1.60
-RM-FIN-002    Wood Stain - Natural Oak (Quart)      50.00              30.00         1.67
+ItemCode      ItemName                              WarehouseCode  QuantityAvailable  ReorderPoint  Ratio
+RM-METAL-002  Steel Hinge Mechanism                 WH-MAIN        200.00             150.00        1.33
+RM-FIN-001    Wood Stain - Dark Walnut (Quart)      WH-MAIN        45.00              30.00         1.50
+FG-FUT-004    Queen Premium Futon - Velvet Emerald  WH-MAIN        8.00               5.00          1.60
+RM-HARD-002   Bolt and Nut Kit (50 pack)            WH-MAIN        80.00              50.00         1.60
+RM-FIN-002    Wood Stain - Natural Oak (Quart)      WH-MAIN        50.00              30.00         1.67
 ....
 ====
 
@@ -534,9 +546,7 @@ GROUP BY p.ItemID, p.ItemCode, p.ItemName
 ORDER BY Buildable DESC, p.ItemCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/03_advanced.sql`, FUTON_DBO_A_03, run on 2026-11-01
+.`_dbo/03_advanced.sql`, FUTON_DBO_A_03, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -594,7 +604,13 @@ WHERE r.Rn = 1
 ORDER BY i.ItemCode
 ----
 
-// NOT YET RUN
+.`_dbo/03_advanced.sql`, FUTON_DBO_A_06, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 == Purchasing
@@ -617,9 +633,7 @@ WHERE s.SupplierCode = 'SUP-002'
 ORDER BY i.ItemCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/01_basic.sql`, FUTON_DBO_B_04, run on 2026-11-01
+.`_dbo/01_basic.sql`, FUTON_DBO_B_04, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -661,7 +675,13 @@ WHERE po.Status <> 'Cancelled'
 ORDER BY CASE WHEN po.ExpectedDeliveryDate IS NULL THEN 1 ELSE 0 END, po.ExpectedDeliveryDate, po.PONumber, d.LineNumber, d.PODetailID
 ----
 
-// NOT YET RUN
+.`_dbo/01_basic.sql`, FUTON_DBO_B_07, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_I_04]]
@@ -683,9 +703,7 @@ GROUP BY s.SupplierID, s.SupplierCode, s.SupplierName
 ORDER BY RejectedPercent DESC, s.SupplierCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/02_intermediate.sql`, FUTON_DBO_I_04, run on 2026-11-01
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_04, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -735,9 +753,7 @@ WHERE so.Status NOT IN ('Delivered', 'Cancelled')
 ORDER BY CASE WHEN so.RequestedDeliveryDate IS NULL THEN 1 ELSE 0 END, so.RequestedDeliveryDate, so.OrderNumber
 ----
 
-// NOT YET RUN
-
-.`_dbo/01_basic.sql`, FUTON_DBO_B_05, run on 2026-11-01
+.`_dbo/01_basic.sql`, FUTON_DBO_B_05, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -776,7 +792,13 @@ WHERE q.Status = 'Accepted'
 ORDER BY q.QuoteDate, q.QuoteNumber
 ----
 
-// NOT YET RUN
+.`_dbo/01_basic.sql`, FUTON_DBO_B_08, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_I_05]]
@@ -796,9 +818,7 @@ GROUP BY ch.SalesChannelID, ch.ChannelCode, ch.ChannelName
 ORDER BY NetAmount DESC, ch.ChannelCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/02_intermediate.sql`, FUTON_DBO_I_05, run on 2026-11-01
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_05, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -838,9 +858,7 @@ GROUP BY i.ItemID, i.ItemCode, i.ItemName
 ORDER BY Quantity DESC, i.ItemCode
 ----
 
-// NOT YET RUN
-
-.`_dbo/02_intermediate.sql`, FUTON_DBO_I_06, run on 2026-11-01
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_06, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -888,7 +906,19 @@ GROUP BY i.ItemID, i.ItemCode, i.ItemName
 ORDER BY ReturnedPercent DESC, i.ItemCode
 ----
 
-// NOT YET RUN
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_08, run on 2026-11-06
+[%collapsible]
+====
+....
+ItemCode    ItemName                              Sold   Returned  ReturnedPercent
+FG-FUT-006  Queen Luxury Futon - Linen Beige      4.00   1.00      25.00
+FG-FUT-002  Full Economy Futon - Navy Canvas      57.00  1.00      1.75
+FG-FUT-001  Twin Economy Futon - Natural Canvas   49.00  .00       .00
+FG-FUT-003  Full Deluxe Futon - Microfiber Black  15.00  .00       .00
+FG-FUT-004  Queen Premium Futon - Velvet Emerald  7.00   .00       .00
+FG-FUT-005  Full Comfort Futon - Chocolate Suede  18.00  .00       .00
+....
+====
 
 
 [[FUTON_DBO_I_09]]
@@ -911,7 +941,15 @@ GROUP BY rr.ReturnReasonID, rr.ReasonCode, rr.ReasonDescription, i.ItemID, i.Ite
 ORDER BY RefundAmount DESC, rr.ReasonCode, i.ItemCode
 ----
 
-// NOT YET RUN
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_09, run on 2026-11-06
+[%collapsible]
+====
+....
+ReasonCode  ReasonDescription                ItemCode    ItemName                          SalesLines  QuantityReturned  RefundAmount
+DEFECT      Product defect or quality issue  FG-FUT-006  Queen Luxury Futon - Linen Beige  1           1.00              899.99
+CHANGE      Customer changed mind            FG-FUT-002  Full Economy Futon - Navy Canvas  1           1.00              399.99
+....
+====
 
 
 [[FUTON_DBO_A_04]]
@@ -933,9 +971,7 @@ WHERE c.CustomerType = 'Wholesale'
 ORDER BY c.CustomerCode, so.OrderDate, so.SalesOrderID
 ----
 
-// NOT YET RUN
-
-.`_dbo/03_advanced.sql`, FUTON_DBO_A_04, run on 2026-11-01
+.`_dbo/03_advanced.sql`, FUTON_DBO_A_04, run on 2026-11-06
 [%collapsible]
 ====
 ....
@@ -986,7 +1022,13 @@ WHERE po.Status = 'Completed'
 ORDER BY po.PlannedCompletionDate, po.WorkOrderNumber
 ----
 
-// NOT YET RUN
+.`_dbo/01_basic.sql`, FUTON_DBO_B_09, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_B_10]]
@@ -1006,7 +1048,13 @@ ORDER BY CASE WHEN po.PlannedCompletionDate IS NULL THEN 1 ELSE 0 END, po.Planne
          CASE WHEN po.Priority IS NULL THEN 1 ELSE 0 END, po.Priority, po.WorkOrderNumber
 ----
 
-// NOT YET RUN
+.`_dbo/01_basic.sql`, FUTON_DBO_B_10, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_I_10]]
@@ -1029,7 +1077,13 @@ GROUP BY wc.WorkCenterID, wc.WorkCenterCode, wc.WorkCenterName
 ORDER BY ScrapPercent DESC, wc.WorkCenterCode
 ----
 
-// NOT YET RUN
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_10, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 
 
 [[FUTON_DBO_I_11]]
@@ -1061,5 +1115,11 @@ WHERE po.Status IN ('Planned', 'Released', 'InProgress')
 ORDER BY po.WorkOrderNumber, i.ItemCode
 ----
 
-// NOT YET RUN
+.`_dbo/02_intermediate.sql`, FUTON_DBO_I_11, run on 2026-11-06
+[%collapsible]
+====
+....
+no rows.
+....
+====
 

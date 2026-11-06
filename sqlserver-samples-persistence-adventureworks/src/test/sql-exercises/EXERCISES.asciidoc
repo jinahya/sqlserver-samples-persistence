@@ -50,8 +50,6 @@ GROUP BY d.DepartmentID, d.Name, d.GroupName
 ORDER BY Employees DESC, d.Name
 ----
 
-// NOT YET RUN
-
 [source,jpaql]
 ----
 SELECT d.name, d.groupName, COUNT(h)
@@ -153,8 +151,6 @@ HAVING COUNT(DISTINCT h.DepartmentID) > 1
 ORDER BY p.LastName, p.FirstName, h.BusinessEntityID
 ----
 
-// NOT YET RUN
-
 
 [[AW_HUMANRESOURCES_I_04]]
 ==== AW_HUMANRESOURCES_I_04: Shift lengths across midnight
@@ -168,8 +164,6 @@ SELECT s.ShiftID, s.Name, s.StartTime, s.EndTime,
 FROM HumanResources.Shift s
 ORDER BY s.ShiftID
 ----
-
-// NOT YET RUN
 
 
 === Advanced
@@ -233,8 +227,6 @@ GROUP BY t.AddressTypeID, t.Name
 ORDER BY Addresses DESC, t.Name
 ----
 
-// NOT YET RUN
-
 
 [[AW_PERSON_B_03]]
 ==== AW_PERSON_B_03: An organization's contacts and their roles
@@ -251,8 +243,6 @@ FROM Person.BusinessEntityContact c
 WHERE c.BusinessEntityID = @businessEntityId
 ORDER BY p.LastName, p.FirstName, p.BusinessEntityID, t.ContactTypeID
 ----
-
-// NOT YET RUN
 
 
 === Intermediate
@@ -271,8 +261,6 @@ FROM Person.Address a
 GROUP BY c.CountryRegionCode, c.Name
 ORDER BY Addresses DESC, c.CountryRegionCode
 ----
-
-// NOT YET RUN
 
 [source,jpaql]
 ----
@@ -304,8 +292,6 @@ FROM (SELECT p.Demographics.value('(/IndividualSurvey/YearlyIncome)[1]', 'nvarch
 GROUP BY i.YearlyIncome
 ORDER BY i.YearlyIncome
 ----
-
-// NOT YET RUN
 
 [source,jpaql]
 ----
@@ -367,8 +353,6 @@ WHERE h.ProductID = @productId
   AND (h.EndDate IS NULL OR h.EndDate >= @onDate)
 ----
 
-// NOT YET RUN
-
 
 === Intermediate
 
@@ -386,8 +370,6 @@ GROUP BY p.ProductID, p.Name, p.SafetyStockLevel
 HAVING COALESCE(SUM(i.Quantity), 0) * 2 < p.SafetyStockLevel
 ORDER BY Quantity, p.ProductID
 ----
-
-// NOT YET RUN
 
 [source,jpaql]
 ----
@@ -415,8 +397,6 @@ GROUP BY r.ScrapReasonID, r.Name
 ORDER BY ScrappedQty DESC, r.ScrapReasonID
 ----
 
-// NOT YET RUN
-
 [source,jpaql]
 ----
 SELECT r.name, COUNT(w), SUM(w.scrappedQty)
@@ -443,8 +423,6 @@ WHERE w.EndDate > w.DueDate
 GROUP BY p.ProductID, p.Name
 ORDER BY LateWorkOrders DESC, p.ProductID
 ----
-
-// NOT YET RUN
 
 
 === Advanced
@@ -474,8 +452,6 @@ FROM Parts p
          JOIN Production.Product c ON c.ProductID = p.ComponentID
 ORDER BY p.BomLevel, p.AssemblyID, p.ComponentID
 ----
-
-// NOT YET RUN
 
 SQL only: answered with a native query, the SQL above, in `_Production_Exercises_03_Advanced_PersistenceIT`.
 
@@ -544,8 +520,6 @@ GROUP BY h.Status
 ORDER BY h.Status
 ----
 
-// NOT YET RUN
-
 
 === Intermediate
 
@@ -563,8 +537,6 @@ WHERE h.Status IN (2, 4)
 GROUP BY v.BusinessEntityID, v.AccountNumber, v.Name
 ORDER BY TotalDue DESC, v.BusinessEntityID
 ----
-
-// NOT YET RUN
 
 [source,jpaql]
 ----
@@ -595,8 +567,6 @@ GROUP BY v.BusinessEntityID, v.Name
 HAVING SUM(d.ReceivedQty) > 0
 ORDER BY SUM(d.RejectedQty) / NULLIF(SUM(d.ReceivedQty), 0) DESC, v.BusinessEntityID
 ----
-
-// NOT YET RUN
 
 [source,jpaql]
 ----
@@ -633,8 +603,6 @@ FROM Yearly y
          JOIN Purchasing.Vendor v ON v.BusinessEntityID = y.VendorID
 ORDER BY v.Name, y.VendorID, y.OrderYear
 ----
-
-// NOT YET RUN
 
 
 == Sales
@@ -676,8 +644,6 @@ SELECT COUNT(*)                                                                 
 FROM Sales.Customer c
 ----
 
-// NOT YET RUN
-
 [source,jpaql]
 ----
 SELECT COUNT(c), COUNT(c.personId), COUNT(c.storeId)
@@ -699,8 +665,6 @@ FROM Sales.SalesReason r
 GROUP BY r.SalesReasonID, r.ReasonType, r.Name
 ORDER BY Orders DESC, r.Name
 ----
-
-// NOT YET RUN
 
 
 === Intermediate
@@ -742,8 +706,6 @@ FROM Sales.SalesOrderDetail d
 GROUP BY p.ProductID, p.ProductNumber, p.Name
 ORDER BY LineTotal DESC, p.ProductID
 ----
-
-// NOT YET RUN
 
 [source,jpaql]
 ----
@@ -801,8 +763,6 @@ FROM Sales.SalesPerson sp
 ORDER BY sp.SalesYTD DESC, sp.BusinessEntityID
 ----
 
-// NOT YET RUN
-
 [source,jpaql]
 ----
 SELECT p.firstName, p.lastName, t.name, sp.salesYtd
@@ -832,8 +792,6 @@ GROUP BY COALESCE(r.ToCurrencyCode, N'USD')
 ORDER BY Orders DESC, CurrencyCode
 ----
 
-// NOT YET RUN
-
 
 === Advanced
 
@@ -860,8 +818,6 @@ FROM (SELECT sp.BusinessEntityID AS SalesPersonID, p.LastName, h.SubTotal, YEAR(
          PIVOT (SUM(s.SubTotal) FOR s.FiscalYear IN ([2022], [2023], [2024], [2025])) AS pvt
 ORDER BY COALESCE(pvt.[2025], 0) DESC, pvt.SalesPersonID
 ----
-
-// NOT YET RUN
 
 SQL only: answered with a native query, the SQL above, in `_Sales_Exercises_03_Advanced_PersistenceIT`.
 
