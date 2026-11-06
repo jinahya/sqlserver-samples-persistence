@@ -85,10 +85,24 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   `test`, `<Database>_Exercises_PersistenceIT.<ID>_Test`. Ids are permanent: a new exercise takes the next unused
   number of its schema and tier, and a removed one is marked `retired: true`, never reused. The id is the asciidoc
   anchor and heading prefix, and the marker above the statement in the `.sql` file.
-- **Test bases, one copy per module**: `___PersistenceIT_Utils`, `___Persistence_TestUtils`,
-  `___Validation_TestUtils`, `___JsonProcessing_TestUtils`, `___JsonBinding_TestUtils`, `___Jackson_TestUtils`, `_Entity_PersistenceIT`,
-  `_Keyless_PersistenceIT`. A fix to one is carried to the other
-  two. `___PersistenceIT_Utils` and `___PersistenceTest_Utils` hold the entity manager factory of their unit, as
+- **Test bases, shared as sources**, as in `oracle-sample-schemas-persistence` and `jinahya-persistence`: `__Test`,
+  `__Object_Test`, `_NonEntity_Test`, `_Entity_Test`, `_Entity_PersistenceTest`, `_Entity_PersistenceIT`,
+  `_Keyless_PersistenceIT`, `___Persistence_TestUtils`, `___Validation_TestUtils`, `___JsonProcessing_TestUtils`,
+  `___JsonBinding_TestUtils`, `___Jackson_TestUtils` and `__Random_TestUtils` live once, in the project root's
+  `src/test-shared/java`, package `com.github.jinahya.sqlserver.sample.persistence.shared`, which each database module
+  adds as a test source root (`build-helper:add-test-source`, execution `add-shared-test-source`, on
+  `${maven.multiModuleProjectDirectory}/src/test-shared/java`) and compiles into its own test classes; `-common` does
+  not. There is no shared test module. The shared sources hold nothing particular to a module; what is stays in the
+  module's own `<database>` test package: `___PersistenceIT_Utils` and `___PersistenceTest_Utils`, which name its units,
+  WideWorldImporters' `___H2_TestFunctions`, and, in AdventureWorks and WideWorldImporters, an `_Entity_Test` which
+  extends the shared one with the module's EqualsVerifier prefab values, and which their entity tests extend. The three
+  persistence bases take the unit's name as their last constructor argument, which each subclass passes from its
+  module's helper, `super(Product.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME)`, and reach the
+  factory through a `private` `applyEntityManagerFactory` / `applyEntityManager_` of their own. The library is used
+  directly wherever it has the call (`JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory`,
+  `JinahyaEntityManagerTestUtils.selectRandomEntity*`, `EntityPersisterUtils.newPersistedInstanceOf`); its provider
+  checks and conditions (`JinahyaPersistenceProviderTestUtils`, the `condition` package) are for EclipseLink and are
+  not used here. `___PersistenceIT_Utils` and `___PersistenceTest_Utils` hold the entity manager factory of their unit, as
   `applyEntityManagerFactory(Function)`, and, as in `oracle-sample-schemas-persistence`, the shortcuts
   `applyEntityManager_`, `applyEntityManagerInTransactionAndRollback_` and `applyEntityManagerInTransactionAndCommit_`,
   which take a function of the factory to a function of a new entity manager, `emf -> em -> ...`; nothing of
@@ -106,8 +120,8 @@ share, and on nothing of the others, tests included. See `README.md` for the typ
   (`ProductProductPhotoId`), or the `@Id`'s (`Integer`; `Long` for `MappedWithIdentityId`); the two persistence bases
   select a random identifier with it, `selectRandomEntityId_`, and a random reference, `selectRandomEntityReference_`.
   The unit-test bases (from `oracle-sample-schemas-persistence`), run by
-  surefire, are `__Test`, `__Object_Test` and `_Entity_Test` in every module, and `_NonEntity_Test`, for the id
-  classes, in AdventureWorks only, the one module with composite keys. Every entity has an `<Entity>_Test`, which
+  surefire, are `__Test`, `__Object_Test`, `_Entity_Test` and `_NonEntity_Test`, for the id classes, which only
+  AdventureWorks, the one module with composite keys, uses. Every entity has an `<Entity>_Test`, which
   suppresses EqualsVerifier's `SURROGATE_KEY`, since its `equals` is by its key, and `STRICT_HASHCODE` where its
   `hashCode` is a constant, and, where the key is generated (`IDENTITY`, `SEQUENCE`, `MappedWithIdentityId`), also
   `IDENTICAL_COPY_FOR_VERSIONED_ENTITY`, since an instance whose key is not yet assigned equals only itself; as

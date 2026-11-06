@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link CurrencyRate} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class CurrencyRate_PersistenceTest
         extends _Entity_PersistenceTest<CurrencyRate, Integer> {
 
     CurrencyRate_PersistenceTest() {
-        super(CurrencyRate.class, Integer.class);
+        super(CurrencyRate.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

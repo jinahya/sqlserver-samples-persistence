@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 
 class Person_PersistenceIT extends _Entity_PersistenceIT<Person, Integer> {
 
     Person_PersistenceIT() {
-        super(Person.class, Integer.class);
+        super(Person.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 
 class TransactionType_PersistenceIT extends _Entity_PersistenceIT<TransactionType, Integer> {
 
     TransactionType_PersistenceIT() {
-        super(TransactionType.class, Integer.class);
+        super(TransactionType.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

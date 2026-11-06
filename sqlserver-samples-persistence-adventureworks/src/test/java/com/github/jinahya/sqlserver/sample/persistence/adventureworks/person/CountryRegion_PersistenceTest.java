@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link CountryRegion} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class CountryRegion_PersistenceTest
         extends _Entity_PersistenceTest<CountryRegion, String> {
 
     CountryRegion_PersistenceTest() {
-        super(CountryRegion.class, String.class);
+        super(CountryRegion.class, String.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

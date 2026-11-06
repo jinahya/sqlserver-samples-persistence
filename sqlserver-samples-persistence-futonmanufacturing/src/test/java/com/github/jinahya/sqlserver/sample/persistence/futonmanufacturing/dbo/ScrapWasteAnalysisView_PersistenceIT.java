@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class ScrapWasteAnalysisView_PersistenceIT extends _Keyless_PersistenceIT<ScrapWasteAnalysisView> {
 
     ScrapWasteAnalysisView_PersistenceIT() {
-        super(ScrapWasteAnalysisView.class);
+        super(ScrapWasteAnalysisView.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link ProductModel} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class ProductModel_PersistenceTest
         extends _Entity_PersistenceTest<ProductModel, Integer> {
 
     ProductModel_PersistenceTest() {
-        super(ProductModel.class, Integer.class);
+        super(ProductModel.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

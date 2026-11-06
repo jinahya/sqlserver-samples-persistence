@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link QualityInspection} against the schema generated into the
@@ -30,6 +31,6 @@ class QualityInspection_PersistenceTest
         extends _Entity_PersistenceTest<QualityInspection, Integer> {
 
     QualityInspection_PersistenceTest() {
-        super(QualityInspection.class, Integer.class);
+        super(QualityInspection.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

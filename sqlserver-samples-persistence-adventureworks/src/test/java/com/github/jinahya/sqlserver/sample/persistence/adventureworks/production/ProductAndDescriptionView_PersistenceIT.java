@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductAndDescriptionViewId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class ProductAndDescriptionView_PersistenceIT
         extends _Entity_PersistenceIT<ProductAndDescriptionView, ProductAndDescriptionViewId> {
 
     ProductAndDescriptionView_PersistenceIT() {
-        super(ProductAndDescriptionView.class, ProductAndDescriptionViewId.class);
+        super(ProductAndDescriptionView.class, ProductAndDescriptionViewId.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 
 class DeliveryMethod_PersistenceIT extends _Entity_PersistenceIT<DeliveryMethod, Integer> {
 
     DeliveryMethod_PersistenceIT() {
-        super(DeliveryMethod.class, Integer.class);
+        super(DeliveryMethod.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

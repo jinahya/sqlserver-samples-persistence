@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.ProductModelProductDescriptionCultureId;
 
 /**
@@ -31,6 +32,6 @@ class ProductModelProductDescriptionCulture_PersistenceTest
         extends _Entity_PersistenceTest<ProductModelProductDescriptionCulture, ProductModelProductDescriptionCultureId> {
 
     ProductModelProductDescriptionCulture_PersistenceTest() {
-        super(ProductModelProductDescriptionCulture.class, ProductModelProductDescriptionCultureId.class);
+        super(ProductModelProductDescriptionCulture.class, ProductModelProductDescriptionCultureId.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.websi
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ class Supplier_PersistenceTest
         extends _Entity_PersistenceTest<Supplier, Integer> {
 
     Supplier_PersistenceTest() {
-        super(Supplier.class, Integer.class);
+        super(Supplier.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link Vendor} against the schema generated into the in-memory database.
@@ -29,6 +30,6 @@ class Vendor_PersistenceTest
         extends _Entity_PersistenceTest<Vendor, Integer> {
 
     Vendor_PersistenceTest() {
-        super(Vendor.class, Integer.class);
+        super(Vendor.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

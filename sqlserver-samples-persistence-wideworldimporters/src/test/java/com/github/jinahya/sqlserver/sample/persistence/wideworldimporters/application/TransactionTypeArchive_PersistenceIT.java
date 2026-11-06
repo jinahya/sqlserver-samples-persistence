@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class TransactionTypeArchive_PersistenceIT extends _Keyless_PersistenceIT<TransactionTypeArchive> {
 
     TransactionTypeArchive_PersistenceIT() {
-        super(TransactionTypeArchive.class);
+        super(TransactionTypeArchive.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

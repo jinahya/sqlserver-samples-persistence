@@ -20,12 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 
 class Vendor_PersistenceIT
         extends _Entity_PersistenceIT<Vendor, Integer> {
 
     Vendor_PersistenceIT() {
-        super(Vendor.class, Integer.class);
+        super(Vendor.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

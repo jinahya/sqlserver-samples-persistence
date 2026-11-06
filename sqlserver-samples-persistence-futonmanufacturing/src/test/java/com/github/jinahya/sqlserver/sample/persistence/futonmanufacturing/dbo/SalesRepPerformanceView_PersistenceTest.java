@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ class SalesRepPerformanceView_PersistenceTest
         extends _Entity_PersistenceTest<SalesRepPerformanceView, String> {
 
     SalesRepPerformanceView_PersistenceTest() {
-        super(SalesRepPerformanceView.class, String.class);
+        super(SalesRepPerformanceView.class, String.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

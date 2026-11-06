@@ -20,12 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class StoreWithContactsView_PersistenceIT
         extends _Keyless_PersistenceIT<StoreWithContactsView> {
 
     StoreWithContactsView_PersistenceIT() {
-        super(StoreWithContactsView.class);
+        super(StoreWithContactsView.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

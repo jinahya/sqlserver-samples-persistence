@@ -43,7 +43,7 @@ public final class ___PersistenceIT_Utils {
      * The name of the persistence unit, which this module's {@code META-INF/persistence.xml}
      * declares. The value is {@value}.
      */
-    static final String PERSISTENCE_UNIT_NAME = "wideworldimporters-it";
+    public static final String PERSISTENCE_UNIT_NAME = "wideworldimporters-it";
 
     // ---------------------------------------------------------------------------------------------
 

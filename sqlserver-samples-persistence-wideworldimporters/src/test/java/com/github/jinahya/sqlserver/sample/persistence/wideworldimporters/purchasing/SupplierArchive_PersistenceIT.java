@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purch
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class SupplierArchive_PersistenceIT extends _Keyless_PersistenceIT<SupplierArchive> {
 
     SupplierArchive_PersistenceIT() {
-        super(SupplierArchive.class);
+        super(SupplierArchive.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

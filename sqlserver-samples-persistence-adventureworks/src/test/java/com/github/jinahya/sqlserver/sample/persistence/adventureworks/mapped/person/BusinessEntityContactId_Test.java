@@ -20,7 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pe
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._NonEntity_Test;
+import com.github.jinahya.sqlserver.sample.persistence.shared._NonEntity_Test;
 
 /**
  * A class for testing the {@link BusinessEntityContactId} id class.

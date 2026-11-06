@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.purch
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link PurchaseOrderLine} against the schema generated into the
@@ -30,6 +31,6 @@ class PurchaseOrderLine_PersistenceTest
         extends _Entity_PersistenceTest<PurchaseOrderLine, Integer> {
 
     PurchaseOrderLine_PersistenceTest() {
-        super(PurchaseOrderLine.class, Integer.class);
+        super(PurchaseOrderLine.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
+package com.github.jinahya.sqlserver.sample.persistence.shared;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-futonmanufacturing
+ * sqlserver-samples-persistence
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%
@@ -20,6 +20,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.criteria.Path;
@@ -31,11 +32,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.TreeMap;
 
-import static com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceTest_Utils.applyEntityManagerFactory;
-import static com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceTest_Utils.applyEntityManager_;
-import static com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___Persistence_TestUtils.selectRandomEntityInstance;
+import static com.github.jinahya.sqlserver.sample.persistence.shared.___Persistence_TestUtils.selectRandomEntityInstance;
 import static com.github.jinahya.persistence.test.util.EntityPersisterUtils.newPersistedInstanceOf;
 import static com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils.selectRandomEntityId;
 import static com.github.jinahya.persistence.test.util.JinahyaEntityManagerTestUtils.selectRandomEntityReference;
@@ -46,19 +46,18 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 /**
  * The unit tests of an entity which need a persistence context, against the
- * {@value ___PersistenceTest_Utils#PERSISTENCE_UNIT_NAME} unit: an in-memory H2 database whose
+ * {@link #persistenceUnitName} unit: an in-memory H2 database whose
  * schema the provider generates from the mappings, empty but for what the tests of the run write.
  * <p>
- * The base holds no entity manager. Each test takes the factory from
- * {@link ___PersistenceTest_Utils} and goes through the jinahya library directly, one entity
- * manager per call. Nothing here reaches SQL Server; a test which needs its data, its constraints
+ * The base holds no entity manager. Each test takes the factory of the unit the constructor names,
+ * which each module passes from its own {@code ___PersistenceTest_Utils}, opened once for the
+ * whole run, and goes through the jinahya library directly, one entity manager per call. Nothing here reaches SQL Server; a test which needs its data, its constraints
  * or its triggers extends {@link _Entity_PersistenceIT} and is named {@code *_PersistenceIT}, so
  * that failsafe, not surefire, runs it.
  *
  * @param <T> the type of the entity.
  * @param <U> the type of the identifier of the entity: its id class, the type of its
  *            {@code @EmbeddedId}, or the type of its {@code @Id}.
- * @see ___PersistenceTest_Utils
  */
 @SuppressWarnings({
         "java:S101", // Class names should comply with a naming convention
@@ -98,17 +97,55 @@ public abstract class _Entity_PersistenceTest<T, U>
      * @param targetClass the class of the entity under test.
      * @param idClass     the class of the identifier of the entity: its id class, the type of its
      *                    {@code @EmbeddedId}, or the type of its {@code @Id}.
+     * @param persistenceUnitName the name of the module's unit-test persistence unit;
+     *                            {@code ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME}.
      */
-    protected _Entity_PersistenceTest(final Class<T> targetClass, final Class<U> idClass) {
+    protected _Entity_PersistenceTest(final Class<T> targetClass, final Class<U> idClass,
+                                      final String persistenceUnitName) {
         super(targetClass);
         this.idClass = Objects.requireNonNull(idClass, "idClass is null");
+        this.persistenceUnitName =
+                Objects.requireNonNull(persistenceUnitName, "persistenceUnitName is null");
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Applies the specified function to the factory of the {@link #persistenceUnitName} unit,
+     * opening it on the first call.
+     */
+    private <R> R applyEntityManagerFactory(
+            final Function<? super EntityManagerFactory, ? extends R> function) {
+        return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(persistenceUnitName,
+                                                                           function);
+    }
+
+    /**
+     * Applies the specified function to the factory of the {@link #persistenceUnitName} unit and
+     * a new entity manager of it, which is closed when the function returns.
+     */
+    private <R> R applyEntityManager_(
+            final Function<
+                    ? super EntityManagerFactory,
+                    ? extends Function<
+                            ? super EntityManager,
+                            ? extends R
+                            >
+                    >
+                    function) {
+        return applyEntityManagerFactory(
+                emf -> applyEntityManager(
+                        emf,
+                        em -> function.apply(emf).apply(em)
+                )
+        );
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
      * Selects a reference to a randomly chosen instance of {@link #targetClass}, with an entity
-     * manager of its own of the {@value ___PersistenceTest_Utils#PERSISTENCE_UNIT_NAME} unit, through
+     * manager of its own of the {@link #persistenceUnitName} unit, through
      * {@code JinahyaEntityManagerTestUtils.selectRandomEntityReference}.
      *
      * @return an optional of the reference selected; {@code empty} when there is no instance.
@@ -116,7 +153,7 @@ public abstract class _Entity_PersistenceTest<T, U>
      *         detached; only its identifier is safe to read, for its state may never have been
      *         loaded.
      */
-    Optional<T> selectRandomEntityReference_() {
+    protected Optional<T> selectRandomEntityReference_() {
         return applyEntityManager_(
                 emf -> em -> selectRandomEntityReference(em, targetClass)
         );
@@ -125,12 +162,12 @@ public abstract class _Entity_PersistenceTest<T, U>
     /**
      * Selects the identifier of a randomly chosen instance of {@link #targetClass}, as an instance
      * of {@link #idClass}, with an entity manager of its own of the
-     * {@value ___PersistenceTest_Utils#PERSISTENCE_UNIT_NAME} unit, through
+     * {@link #persistenceUnitName} unit, through
      * {@code JinahyaEntityManagerTestUtils.selectRandomEntityId}.
      *
      * @return an optional of the identifier selected; {@code empty} when there is no instance.
      */
-    Optional<U> selectRandomEntityId_() {
+    protected Optional<U> selectRandomEntityId_() {
         return applyEntityManager_(
                 emf -> em -> selectRandomEntityId(em, targetClass, idClass)
         );
@@ -339,4 +376,10 @@ public abstract class _Entity_PersistenceTest<T, U>
      * {@code @EmbeddedId}, or the type of its {@code @Id}.
      */
     protected final Class<U> idClass;
+
+    /**
+     * The name of the unit-test persistence unit of the module, which {@code META-INF/persistence.xml}
+     * declares.
+     */
+    protected final String persistenceUnitName;
 }

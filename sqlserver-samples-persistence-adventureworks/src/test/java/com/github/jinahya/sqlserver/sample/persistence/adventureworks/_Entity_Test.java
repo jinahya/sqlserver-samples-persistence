@@ -26,13 +26,10 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import java.util.Objects;
-
 /**
- * An abstract base class for testing, without a persistence context, an entity class.
- * <p>
- * Its checks are, for now, the ones of {@link __Object_Test}, which {@link _NonEntity_Test} runs
- * too; checks only an entity has to pass go here.
+ * This module's {@link com.github.jinahya.sqlserver.sample.persistence.shared._Entity_Test}, which
+ * gives EqualsVerifier two {@code XMLGregorianCalendar}s, which the classes binding the typed
+ * {@code xml} columns hold.
  *
  * @param <T> the type of the entity.
  * @param <U> the type of the identifier of the entity: its id class, the type of its
@@ -43,8 +40,7 @@ import java.util.Objects;
         "java:S118"  // Abstract class names should comply with a naming convention
 })
 public abstract class _Entity_Test<T, U>
-        extends __Test<T>
-        implements __Object_Test<T> {
+        extends com.github.jinahya.sqlserver.sample.persistence.shared._Entity_Test<T, U> {
 
     /**
      * Creates a new instance for the specified entity class.
@@ -54,8 +50,7 @@ public abstract class _Entity_Test<T, U>
      *                    {@code @EmbeddedId}, or the type of its {@code @Id}.
      */
     protected _Entity_Test(final Class<T> targetClass, final Class<U> idClass) {
-        super(targetClass);
-        this.idClass = Objects.requireNonNull(idClass, "idClass is null");
+        super(targetClass, idClass);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode
@@ -77,17 +72,9 @@ public abstract class _Entity_Test<T, U>
      */
     @Override
     public SingleTypeEqualsVerifierApi<T> equals_verifier_() {
-        return __Object_Test.super.equals_verifier_()
+        return super.equals_verifier_()
                 .withPrefabValues(XMLGregorianCalendar.class,
                                   calendar("2001-01-01T00:00:00Z"),
                                   calendar("2002-02-02T00:00:00Z"));
     }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * The class of the identifier of {@link #targetClass}: its id class, the type of its
-     * {@code @EmbeddedId}, or the type of its {@code @Id}.
-     */
-    protected final Class<U> idClass;
 }

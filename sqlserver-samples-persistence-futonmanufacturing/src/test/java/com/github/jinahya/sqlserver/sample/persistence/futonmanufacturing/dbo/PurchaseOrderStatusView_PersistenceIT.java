@@ -20,14 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class PurchaseOrderStatusView_PersistenceIT extends _Entity_PersistenceIT<PurchaseOrderStatusView, String> {
 
     PurchaseOrderStatusView_PersistenceIT() {
-        super(PurchaseOrderStatusView.class, String.class);
+        super(PurchaseOrderStatusView.class, String.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

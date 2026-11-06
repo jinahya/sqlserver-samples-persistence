@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
+package com.github.jinahya.sqlserver.sample.persistence.shared;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-wideworldimporters
+ * sqlserver-samples-persistence
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%

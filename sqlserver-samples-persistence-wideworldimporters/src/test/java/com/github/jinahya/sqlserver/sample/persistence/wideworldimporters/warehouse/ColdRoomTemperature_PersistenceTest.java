@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link ColdRoomTemperature} against the schema generated into the
@@ -30,6 +31,6 @@ class ColdRoomTemperature_PersistenceTest
         extends _Entity_PersistenceTest<ColdRoomTemperature, Long> {
 
     ColdRoomTemperature_PersistenceTest() {
-        super(ColdRoomTemperature.class, Long.class);
+        super(ColdRoomTemperature.class, Long.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

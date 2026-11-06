@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link ShipMethod} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class ShipMethod_PersistenceTest
         extends _Entity_PersistenceTest<ShipMethod, Integer> {
 
     ShipMethod_PersistenceTest() {
-        super(ShipMethod.class, Integer.class);
+        super(ShipMethod.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

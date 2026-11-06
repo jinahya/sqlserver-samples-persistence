@@ -20,13 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.WorkOrderRoutingId;
 
 class WorkOrderRouting_PersistenceIT
         extends _Entity_PersistenceIT<WorkOrderRouting, WorkOrderRoutingId> {
 
     WorkOrderRouting_PersistenceIT() {
-        super(WorkOrderRouting.class, WorkOrderRoutingId.class);
+        super(WorkOrderRouting.class, WorkOrderRoutingId.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
+package com.github.jinahya.sqlserver.sample.persistence.shared;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-wideworldimporters
+ * sqlserver-samples-persistence
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%
@@ -20,23 +20,26 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
  * #L%
  */
 
+import com.github.jinahya.persistence.test.util.JinahyaPersistenceTestUtils;
+import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.Function;
 
 import static com.github.jinahya.persistence.util.JinahyaEntityManagerFactoryUtils.applyEntityManager;
-import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils.applyEntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * The integration tests of a class which maps a view, or a table, that no entity can map, against the
- * {@value ___PersistenceIT_Utils#PERSISTENCE_UNIT_NAME} unit.
+ * The integration tests of a class which maps a view, or a table, that no entity can map, against
+ * the {@link #persistenceUnitName} unit.
  * <p>
- * The class is no managed type, so what is checked is that every column its mapped superclass names exists, by a native
- * query of them all, and that the class takes every one of them in its public constructor.
+ * The class is no managed type, so what is checked is that every column its mapped superclass names
+ * exists, by a native query of them all, and that the class takes every one of them in its public
+ * constructor.
  *
  * @param <T> the type of the class.
  */
@@ -46,9 +49,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 })
 public abstract class _Keyless_PersistenceIT<T> {
 
-    protected _Keyless_PersistenceIT(final Class<T> targetClass) {
+    /**
+     * Creates a new instance for the specified class.
+     *
+     * @param targetClass         the class under test.
+     * @param persistenceUnitName the name of the module's integration-test persistence unit;
+     *                            {@code ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME}.
+     */
+    protected _Keyless_PersistenceIT(final Class<T> targetClass, final String persistenceUnitName) {
         super();
         this.targetClass = Objects.requireNonNull(targetClass, "targetClass is null");
+        this.persistenceUnitName =
+                Objects.requireNonNull(persistenceUnitName, "persistenceUnitName is null");
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Applies the specified function to the factory of the {@link #persistenceUnitName} unit,
+     * opening it on the first call.
+     */
+    private <R> R applyEntityManagerFactory(
+            final Function<? super EntityManagerFactory, ? extends R> function) {
+        return JinahyaPersistenceTestUtils.applyCachedEntityManagerFactory(persistenceUnitName,
+                                                                           function);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -79,7 +103,8 @@ public abstract class _Keyless_PersistenceIT<T> {
         applyEntityManagerFactory(emf -> applyEntityManager(emf, em -> {
             final var rows = em.createNativeQuery(sql).getResultList();
             for (final var row : rows) {
-                assertThat(columns.length == 1 ? new Object[]{row} : (Object[]) row).hasSize(columns.length);
+                assertThat(columns.length == 1 ? new Object[]{row} : (Object[]) row).hasSize(
+                        columns.length);
             }
             return null;
         }));
@@ -96,4 +121,10 @@ public abstract class _Keyless_PersistenceIT<T> {
 
     // ---------------------------------------------------------------------------------------------
     protected final Class<T> targetClass;
+
+    /**
+     * The name of the integration-test persistence unit of the module, which {@code META-INF/persistence.xml}
+     * declares.
+     */
+    protected final String persistenceUnitName;
 }

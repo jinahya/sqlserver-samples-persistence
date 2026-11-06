@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasin
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link PurchaseOrderHeader} against the schema generated into the
@@ -30,6 +31,6 @@ class PurchaseOrderHeader_PersistenceTest
         extends _Entity_PersistenceTest<PurchaseOrderHeader, Integer> {
 
     PurchaseOrderHeader_PersistenceTest() {
-        super(PurchaseOrderHeader.class, Integer.class);
+        super(PurchaseOrderHeader.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

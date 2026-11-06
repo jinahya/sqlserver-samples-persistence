@@ -20,14 +20,15 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.websi
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class Customer_PersistenceIT extends _Entity_PersistenceIT<Customer, Integer> {
 
     Customer_PersistenceIT() {
-        super(Customer.class, Integer.class);
+        super(Customer.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

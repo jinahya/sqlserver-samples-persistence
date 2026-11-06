@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link Location} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class Location_PersistenceTest
         extends _Entity_PersistenceTest<Location, Long> {
 
     Location_PersistenceTest() {
-        super(Location.class, Long.class);
+        super(Location.class, Long.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

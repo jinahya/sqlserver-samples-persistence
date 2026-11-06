@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
+package com.github.jinahya.sqlserver.sample.persistence.shared;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-futonmanufacturing
+ * sqlserver-samples-persistence
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%

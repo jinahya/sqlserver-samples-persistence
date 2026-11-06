@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link ProductSubcategory} against the schema generated into the
@@ -30,6 +31,6 @@ class ProductSubcategory_PersistenceTest
         extends _Entity_PersistenceTest<ProductSubcategory, Integer> {
 
     ProductSubcategory_PersistenceTest() {
-        super(ProductSubcategory.class, Integer.class);
+        super(ProductSubcategory.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

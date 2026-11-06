@@ -20,9 +20,10 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
 import com.github.jinahya.object.randomizer.ObjectRandomizerUtils;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import io.github.jinahya.sqlserver.xml.schema.binding.b0fd0e.ProductDescription;
 import io.github.jinahya.sqlserver.xml.schema.binding.b73cae.Root;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +37,7 @@ class ProductModel_PersistenceIT
         extends _Entity_PersistenceIT<ProductModel, Integer> {
 
     ProductModel_PersistenceIT() {
-        super(ProductModel.class, Integer.class);
+        super(ProductModel.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     /**

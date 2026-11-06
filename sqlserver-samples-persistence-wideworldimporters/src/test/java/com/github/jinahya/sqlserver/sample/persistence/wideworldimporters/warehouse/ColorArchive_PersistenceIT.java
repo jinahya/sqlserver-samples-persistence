@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class ColorArchive_PersistenceIT extends _Keyless_PersistenceIT<ColorArchive> {
 
     ColorArchive_PersistenceIT() {
-        super(ColorArchive.class);
+        super(ColorArchive.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

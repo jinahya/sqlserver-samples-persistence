@@ -23,7 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.shared.__Random_TestUtils;
 import jakarta.persistence.EntityManager;
 
 /**

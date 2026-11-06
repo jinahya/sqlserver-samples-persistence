@@ -23,7 +23,7 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
 
 import com.github.jinahya.persistence.test.util.AbstractEntityPersister;
 import com.github.jinahya.persistence.test.util.EntityPersisterUtils;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.__Random_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.shared.__Random_TestUtils;
 import jakarta.persistence.EntityManager;
 
 import java.util.concurrent.ThreadLocalRandom;

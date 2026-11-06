@@ -28,13 +28,10 @@ import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales.
 import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 import org.junit.platform.commons.util.ReflectionUtils;
 
-import java.util.Objects;
-
 /**
- * An abstract base class for testing, without a persistence context, an entity class.
- * <p>
- * Its checks are, for now, the ones of {@link __Object_Test}, which {@link _NonEntity_Test} runs
- * too; checks only an entity has to pass go here.
+ * This module's {@link com.github.jinahya.sqlserver.sample.persistence.shared._Entity_Test}, which
+ * gives EqualsVerifier two of each of {@code Person}, {@code Customer} and {@code Order}, whose
+ * associations are cyclic.
  *
  * @param <T> the type of the entity.
  * @param <U> the type of the identifier of the entity: its id class, the type of its
@@ -45,8 +42,7 @@ import java.util.Objects;
         "java:S118"  // Abstract class names should comply with a naming convention
 })
 public abstract class _Entity_Test<T, U>
-        extends __Test<T>
-        implements __Object_Test<T> {
+        extends com.github.jinahya.sqlserver.sample.persistence.shared._Entity_Test<T, U> {
 
     /**
      * Creates a new instance for the specified entity class.
@@ -56,8 +52,7 @@ public abstract class _Entity_Test<T, U>
      *                    {@code @EmbeddedId}, or the type of its {@code @Id}.
      */
     protected _Entity_Test(final Class<T> targetClass, final Class<U> idClass) {
-        super(targetClass);
-        this.idClass = Objects.requireNonNull(idClass, "idClass is null");
+        super(targetClass, idClass);
     }
 
     // ----------------------------------------------------------------------------- equals/hashCode
@@ -89,7 +84,7 @@ public abstract class _Entity_Test<T, U>
      */
     @Override
     public SingleTypeEqualsVerifierApi<T> equals_verifier_() {
-        return __Object_Test.super.equals_verifier_()
+        return super.equals_verifier_()
                 .withPrefabValues(Person.class,
                                   withKey(Person.class, MappedPerson.class, "personId", 1),
                                   withKey(Person.class, MappedPerson.class, "personId", 2))
@@ -100,12 +95,4 @@ public abstract class _Entity_Test<T, U>
                                   withKey(Order.class, MappedOrder.class, "orderId", 1),
                                   withKey(Order.class, MappedOrder.class, "orderId", 2));
     }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * The class of the identifier of {@link #targetClass}: its id class, the type of its
-     * {@code @EmbeddedId}, or the type of its {@code @Id}.
-     */
-    protected final Class<U> idClass;
 }

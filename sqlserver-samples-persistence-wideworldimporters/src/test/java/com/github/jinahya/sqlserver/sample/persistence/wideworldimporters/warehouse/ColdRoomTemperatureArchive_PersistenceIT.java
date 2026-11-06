@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class ColdRoomTemperatureArchive_PersistenceIT extends _Keyless_PersistenceIT<ColdRoomTemperatureArchive> {
 
     ColdRoomTemperatureArchive_PersistenceIT() {
-        super(ColdRoomTemperatureArchive.class);
+        super(ColdRoomTemperatureArchive.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

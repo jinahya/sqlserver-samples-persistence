@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeeDepartmentHistoryId;
 
 /**
@@ -31,6 +32,6 @@ class EmployeeDepartmentHistory_PersistenceTest
         extends _Entity_PersistenceTest<EmployeeDepartmentHistory, EmployeeDepartmentHistoryId> {
 
     EmployeeDepartmentHistory_PersistenceTest() {
-        super(EmployeeDepartmentHistory.class, EmployeeDepartmentHistoryId.class);
+        super(EmployeeDepartmentHistory.class, EmployeeDepartmentHistoryId.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

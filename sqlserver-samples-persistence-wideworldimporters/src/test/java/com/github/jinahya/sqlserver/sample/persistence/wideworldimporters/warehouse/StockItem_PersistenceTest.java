@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.wareh
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link StockItem} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class StockItem_PersistenceTest
         extends _Entity_PersistenceTest<StockItem, Integer> {
 
     StockItem_PersistenceTest() {
-        super(StockItem.class, Integer.class);
+        super(StockItem.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

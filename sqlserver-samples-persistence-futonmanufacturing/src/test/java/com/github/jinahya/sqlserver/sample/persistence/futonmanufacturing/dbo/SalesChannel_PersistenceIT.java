@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 
 class SalesChannel_PersistenceIT extends _Entity_PersistenceIT<SalesChannel, Integer> {
 
     SalesChannel_PersistenceIT() {
-        super(SalesChannel.class, Integer.class);
+        super(SalesChannel.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

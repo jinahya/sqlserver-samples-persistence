@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing;
+package com.github.jinahya.sqlserver.sample.persistence.shared;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-futonmanufacturing
+ * sqlserver-samples-persistence
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%
@@ -26,7 +26,8 @@ import java.util.Objects;
  * An abstract base class for testing, without a persistence context, an entity class.
  * <p>
  * Its checks are, for now, the ones of {@link __Object_Test}, which {@link _NonEntity_Test} runs
- * too; checks only an entity has to pass go here.
+ * too; checks only an entity has to pass go here. A module whose entities need more of
+ * EqualsVerifier, prefab values say, extends this class with its own {@code _Entity_Test}.
  *
  * @param <T> the type of the entity.
  * @param <U> the type of the identifier of the entity: its id class, the type of its

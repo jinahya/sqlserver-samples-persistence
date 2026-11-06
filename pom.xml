@@ -37,7 +37,6 @@
 
   <modules>
     <module>sqlserver-samples-persistence-common</module>
-    <module>sqlserver-samples-persistence-test-common</module>
     <module>sqlserver-samples-persistence-adventureworks</module>
     <module>sqlserver-samples-persistence-futonmanufacturing</module>
     <module>sqlserver-samples-persistence-wideworldimporters</module>
@@ -418,6 +417,12 @@
               </tag>
             </tags>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <!-- https://central.sonatype.com/artifact/org.codehaus.mojo/build-helper-maven-plugin/versions -->
+          <version>3.6.2</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>

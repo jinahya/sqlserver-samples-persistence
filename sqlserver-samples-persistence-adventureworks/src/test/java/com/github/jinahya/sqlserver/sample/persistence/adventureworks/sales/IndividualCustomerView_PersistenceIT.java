@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.IndividualSurveyStringAttributeConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ class IndividualCustomerView_PersistenceIT
         extends _Keyless_PersistenceIT<IndividualCustomerView> {
 
     IndividualCustomerView_PersistenceIT() {
-        super(IndividualCustomerView.class);
+        super(IndividualCustomerView.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // -------------------------------------------------------------------------------- demographics

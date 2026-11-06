@@ -21,7 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  */
 
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.__Random_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.shared.__Random_TestUtils;
 
 import java.util.List;
 

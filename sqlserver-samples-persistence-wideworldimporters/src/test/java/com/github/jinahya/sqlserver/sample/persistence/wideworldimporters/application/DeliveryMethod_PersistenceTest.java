@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link DeliveryMethod} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class DeliveryMethod_PersistenceTest
         extends _Entity_PersistenceTest<DeliveryMethod, Integer> {
 
     DeliveryMethod_PersistenceTest() {
-        super(DeliveryMethod.class, Integer.class);
+        super(DeliveryMethod.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link JobCandidate} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class JobCandidate_PersistenceTest
         extends _Entity_PersistenceTest<JobCandidate, Long> {
 
     JobCandidate_PersistenceTest() {
-        super(JobCandidate.class, Long.class);
+        super(JobCandidate.class, Long.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

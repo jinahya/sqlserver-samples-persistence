@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.sales.CountryRegionCurrencyId;
 
 /**
@@ -31,6 +32,6 @@ class CountryRegionCurrency_PersistenceTest
         extends _Entity_PersistenceTest<CountryRegionCurrency, CountryRegionCurrencyId> {
 
     CountryRegionCurrency_PersistenceTest() {
-        super(CountryRegionCurrency.class, CountryRegionCurrencyId.class);
+        super(CountryRegionCurrency.class, CountryRegionCurrencyId.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

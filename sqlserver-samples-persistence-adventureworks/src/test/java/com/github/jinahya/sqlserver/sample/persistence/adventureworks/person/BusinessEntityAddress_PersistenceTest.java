@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.person;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.person.BusinessEntityAddressId;
 
 /**
@@ -31,6 +32,6 @@ class BusinessEntityAddress_PersistenceTest
         extends _Entity_PersistenceTest<BusinessEntityAddress, BusinessEntityAddressId> {
 
     BusinessEntityAddress_PersistenceTest() {
-        super(BusinessEntityAddress.class, BusinessEntityAddressId.class);
+        super(BusinessEntityAddress.class, BusinessEntityAddressId.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

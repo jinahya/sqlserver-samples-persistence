@@ -21,7 +21,7 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.sales
  */
 
 import com.github.jinahya.object.randomizer.PodamObjectRandomizer;
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.__Random_TestUtils;
+import com.github.jinahya.sqlserver.sample.persistence.shared.__Random_TestUtils;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;

@@ -20,11 +20,12 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class SalesByChannelView_PersistenceIT extends _Keyless_PersistenceIT<SalesByChannelView> {
 
     SalesByChannelView_PersistenceIT() {
-        super(SalesByChannelView.class);
+        super(SalesByChannelView.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

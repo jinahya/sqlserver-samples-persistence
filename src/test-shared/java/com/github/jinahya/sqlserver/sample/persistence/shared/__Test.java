@@ -1,8 +1,8 @@
-package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters;
+package com.github.jinahya.sqlserver.sample.persistence.shared;
 
 /*-
  * #%L
- * sqlserver-samples-persistence-wideworldimporters
+ * sqlserver-samples-persistence
  * %%
  * Copyright (C) 2026 Jinahya, Inc.
  * %%
@@ -26,7 +26,7 @@ import org.junit.platform.commons.util.ReflectionUtils;
 import java.util.Objects;
 
 /**
- * The root of every unit-test base of this module; it holds the target class, and the factories of
+ * The root of every unit-test base; it holds the target class, and the factories of
  * its instances.
  * <p>
  * The checks a class has to pass on its own are not here but in {@link __Object_Test}, which

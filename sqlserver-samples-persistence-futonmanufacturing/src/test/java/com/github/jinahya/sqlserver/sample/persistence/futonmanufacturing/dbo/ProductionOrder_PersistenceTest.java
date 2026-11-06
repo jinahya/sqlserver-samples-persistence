@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.dbo;
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link ProductionOrder} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class ProductionOrder_PersistenceTest
         extends _Entity_PersistenceTest<ProductionOrder, Integer> {
 
     ProductionOrder_PersistenceTest() {
-        super(ProductionOrder.class, Integer.class);
+        super(ProductionOrder.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

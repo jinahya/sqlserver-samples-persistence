@@ -20,12 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 
 class ScrapReason_PersistenceIT
         extends _Entity_PersistenceIT<ScrapReason, Long> {
 
     ScrapReason_PersistenceIT() {
-        super(ScrapReason.class, Long.class);
+        super(ScrapReason.class, Long.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

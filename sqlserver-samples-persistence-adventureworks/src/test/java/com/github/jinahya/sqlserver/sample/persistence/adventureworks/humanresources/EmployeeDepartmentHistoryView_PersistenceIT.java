@@ -20,12 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class EmployeeDepartmentHistoryView_PersistenceIT
         extends _Keyless_PersistenceIT<EmployeeDepartmentHistoryView> {
 
     EmployeeDepartmentHistoryView_PersistenceIT() {
-        super(EmployeeDepartmentHistoryView.class);
+        super(EmployeeDepartmentHistoryView.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

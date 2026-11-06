@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.humanresources.EmployeePayHistoryId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +40,7 @@ class EmployeePayHistory_PersistenceIT
         extends _Entity_PersistenceIT<EmployeePayHistory, EmployeePayHistoryId> {
 
     EmployeePayHistory_PersistenceIT() {
-        super(EmployeePayHistory.class, EmployeePayHistoryId.class);
+        super(EmployeePayHistory.class, EmployeePayHistoryId.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -20,12 +20,13 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Keyless_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Keyless_PersistenceIT;
 
 class ProductModelInstructionsView_PersistenceIT
         extends _Keyless_PersistenceIT<ProductModelInstructionsView> {
 
     ProductModelInstructionsView_PersistenceIT() {
-        super(ProductModelInstructionsView.class);
+        super(ProductModelInstructionsView.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 }

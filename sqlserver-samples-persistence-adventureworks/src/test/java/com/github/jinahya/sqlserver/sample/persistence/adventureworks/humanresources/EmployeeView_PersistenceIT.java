@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanreso
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks._Entity_PersistenceIT;
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.___PersistenceIT_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceIT;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter;
 import io.github.jinahya.sqlserver.xml.schema.binding.b80e2e.ContactRecord;
 import jakarta.xml.bind.JAXBElement;
@@ -38,7 +39,7 @@ class EmployeeView_PersistenceIT
         extends _Entity_PersistenceIT<EmployeeView, Integer> {
 
     EmployeeView_PersistenceIT() {
-        super(EmployeeView.class, Integer.class);
+        super(EmployeeView.class, Integer.class, ___PersistenceIT_Utils.PERSISTENCE_UNIT_NAME);
     }
 
     // ---------------------------------------------------------------------------------------------

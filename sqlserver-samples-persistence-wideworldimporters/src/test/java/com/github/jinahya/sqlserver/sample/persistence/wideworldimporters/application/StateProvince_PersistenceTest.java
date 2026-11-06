@@ -20,7 +20,8 @@ package com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.appli
  * #L%
  */
 
-import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters._Entity_PersistenceTest;
+import com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.___PersistenceTest_Utils;
+import com.github.jinahya.sqlserver.sample.persistence.shared._Entity_PersistenceTest;
 
 /**
  * Verifies the mappings of {@link StateProvince} against the schema generated into the in-memory
@@ -30,6 +31,6 @@ class StateProvince_PersistenceTest
         extends _Entity_PersistenceTest<StateProvince, Integer> {
 
     StateProvince_PersistenceTest() {
-        super(StateProvince.class, Integer.class);
+        super(StateProvince.class, Integer.class, ___PersistenceTest_Utils.PERSISTENCE_UNIT_NAME);
     }
 }
