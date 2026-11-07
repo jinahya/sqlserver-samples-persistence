@@ -1,0 +1,642 @@
+= Exercises picks
+:toc: left
+:toclevels: 3
+:sectanchors:
+:source-highlighter: rouge
+
+// AI: Editorial review dated 2026-11-08. Source: sibling EXERCISES.asciidoc and EXERCISES.yaml.
+// AI: Reviewed every exercise in this module against Jakarta Persistence Applied, master src/main/asciidoc/00_book.asciidoc.
+// AI: This is a candidate shortlist, not a change to the official PROJECTS_EXERCISES.asciidoc picks or the manuscript.
+// AI: Preserve source scope order, level classifications, permanent IDs, statements, SQL, JPQL, and existing answer blocks.
+// AI: At most three candidates per original scope and level; fewer or zero is intentional. Do not fill slots mechanically.
+// AI: Prefer mapped attributes, identifiers, enum/converter behavior, associations, joins, aggregates, subqueries, fetching, and paging.
+// AI: Omit contrived name/string puzzles, redundant integrity audits, arbitrary rankings, and unrelated SQL analytics.
+// AI: Native-only candidates are explicit chapter-specific exceptions, not permission to replace portable solutions elsewhere.
+// AI: Agent handoff: read each rationale and TODO, resolve the registry sql/test paths, inspect the mapped types and actual tests,
+// AI: reconcile stale solutions, and run the relevant database/provider tests before promoting any candidate to the book.
+// AI: Existing output blocks below are archival copies from the source, not fresh test results or verified publication output.
+// AI: For manuscript output, rerun the query, retain // AI: provenance, and use the current mappings and provider policy.
+// AI: Source SHA-256 at review: 138e9d288d6d509ac305b53cf7554b5c0af6f03814d9de0a27b85a5fa289fd4f.
+
+Selected exercises for a persistence-focused teaching sequence.
+The original scope and difficulty headings are retained; an empty level intentionally has no suitable pick.
+Statements and answers are copied from link:EXERCISES.asciidoc[the complete exercise collection].
+Selection is an editorial recommendation; implementation notes in the source comments identify follow-up work.
+
+// AI: Original source conventions below apply to the copied subset.
+Exercises for the `AdventureWorks` database: business questions that the analysts of a bicycle maker -- human
+resources, marketing, production, purchasing and sales -- would ask, each answered with a query. Every problem is
+stated as a request, followed by its solutions. The `sql` blocks are SQL Server's SQL against the installed database
+(see link:../../../../README.md[README.md]), and are the ones in `src/test/sql-exercises`, a directory per schema; a parameter is a
+T-SQL variable, `@name`, declared with the value the tests use. The `jpaql` blocks are Jakarta Persistence 3.2 query
+language against this module's entities. The `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
+`src/test/java-exercises`, run every one of them, and its Criteria API counterpart, and check the rows the SQL returns.
+
+The problems are grouped by the schema whose question they answer, and some of them read the other schemas too. Each
+section goes from Basic through Intermediate to Advanced. An id is `AW_<SCHEMA>_<TIER>_<NN>`, numbered within its
+schema and tier, and `EXERCISES.yaml` registers every one; an id is never renumbered or reused.
+
+A few things about the mappings shape the JPQL below:
+
+* A foreign key is mapped twice: as an association on the entity, and as a read-only attribute on its mapped
+  superclass. Where the column is part of the primary key, the attribute writes it and the association is the
+  read-only one. Either can be read in a query: `pv.productId`, or `pv.product`.
+* `SalesOrderDetail` references `SpecialOfferProduct` by a composite foreign key, `(SpecialOfferID, ProductID)`. The
+  answers reach a sold product as `d.specialOfferProduct.product`, and a special offer as
+  `d.specialOfferProduct.specialOffer`.
+* Computed columns -- `SalesOrderNumber`, `TotalDue`, `LineTotal`, `OrganizationLevel` -- are read-only attributes, and
+  can be selected, compared and summed like any other.
+* `hierarchyid` (`OrganizationNode`, `DocumentNode`) is a `byte[]`, and `xml` (`Demographics`) a `String`. Their
+  methods, `GetAncestor`, `IsDescendantOf`, `ToString`, `value`, are SQL Server's; the problems which need them, and
+  those which need a recursive common table expression, `PIVOT` or a window function, are SQL only. Jakarta
+  Persistence sends them as native queries.
+* `ProductDocument` is not an entity: its key includes a `hierarchyid`. A problem reading it is SQL only.
+
+== HumanResources
+
+=== Basic
+
+// AI: Basic: selected 2 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: hierarchyid traversal is deferred; computed level and ordinary associations already demonstrate the mapping boundary.
+
+// AI: Pick AW_HUMANRESOURCES_B_01: A LEFT JOIN ON filter retains departments with no current assignment.
+// AI: Copied from EXERCISES.asciidoc:39, anchor AW_HUMANRESOURCES_B_01; retain the permanent ID when revising.
+// AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=_HumanResources_Exercises_01_Basic_PersistenceIT.AW_HUMANRESOURCES_B_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[AW_HUMANRESOURCES_B_01]]
+==== AW_HUMANRESOURCES_B_01: The current employees of each department
+
+HR plans next year's budget. Show how many employees each department has now, the largest first.
+
+[source,sql]
+----
+SELECT d.Name, d.GroupName, COUNT(h.BusinessEntityID) AS Employees
+FROM HumanResources.Department d
+         LEFT JOIN HumanResources.EmployeeDepartmentHistory h ON h.DepartmentID = d.DepartmentID AND h.EndDate IS NULL
+GROUP BY d.DepartmentID, d.Name, d.GroupName
+ORDER BY Employees DESC, d.Name
+----
+
+[source,jpaql]
+----
+SELECT d.name, d.groupName, COUNT(h)
+FROM HumanResourcesEmployeeDepartmentHistory h
+         JOIN h.department d
+WHERE h.endDate IS NULL
+GROUP BY d.id_, d.name, d.groupName
+ORDER BY COUNT(h) DESC, d.name
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick AW_HUMANRESOURCES_B_02: Aggregate a database-computed attribute like an ordinary mapped attribute.
+// AI: Copied from EXERCISES.asciidoc:65, anchor AW_HUMANRESOURCES_B_02; retain the permanent ID when revising.
+// AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=_HumanResources_Exercises_01_Basic_PersistenceIT.AW_HUMANRESOURCES_B_02_Test.
+[[AW_HUMANRESOURCES_B_02]]
+==== AW_HUMANRESOURCES_B_02: The employees at each level of the organization
+
+HR draws the organization chart. Show how many employees are at each level of the organization.
+
+[source,sql]
+----
+SELECT e.OrganizationLevel, COUNT(*) AS Employees
+FROM HumanResources.Employee e
+GROUP BY e.OrganizationLevel
+ORDER BY e.OrganizationLevel
+;
+----
+
+[source,jpaql]
+----
+SELECT e.organizationLevel, COUNT(e)
+FROM HumanResourcesEmployee e
+GROUP BY e.organizationLevel
+ORDER BY e.organizationLevel
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 2 of 4 reviewed candidates in this original scope.
+// AI: Selection boundary: hierarchyid traversal is deferred; computed level and ordinary associations already demonstrate the mapping boundary.
+// AI: Not selected: AW_HUMANRESOURCES_I_02, AW_HUMANRESOURCES_I_04.
+
+// AI: Pick AW_HUMANRESOURCES_I_01: A correlated maximum picks current pay before applying the top-n limit.
+// AI: Copied from EXERCISES.asciidoc:89, anchor AW_HUMANRESOURCES_I_01; retain the permanent ID when revising.
+// AI: Registry: section=HUMANRESOURCES; tier=Intermediate; sql=src/test/sql-exercises/_HumanResources/02_intermediate.sql; test=_HumanResources_Exercises_02_Intermediate_PersistenceIT.AW_HUMANRESOURCES_I_01_Test.
+[[AW_HUMANRESOURCES_I_01]]
+==== AW_HUMANRESOURCES_I_01: The ten highest current hourly rates
+
+Payroll reviews the highest pay. Show the ten employees with the highest current hourly rate, the rate of each one's latest change.
+
+[source,sql]
+----
+SELECT TOP (10) p.FirstName, p.LastName, e.JobTitle, ph.Rate, CAST(ph.RateChangeDate AS date) AS RateChangeDate
+FROM HumanResources.EmployeePayHistory ph
+         JOIN HumanResources.Employee e ON e.BusinessEntityID = ph.BusinessEntityID
+         JOIN Person.Person p ON p.BusinessEntityID = e.BusinessEntityID
+WHERE ph.RateChangeDate = (SELECT MAX(ph2.RateChangeDate)
+                           FROM HumanResources.EmployeePayHistory ph2
+                           WHERE ph2.BusinessEntityID = ph.BusinessEntityID)
+ORDER BY ph.Rate DESC, e.BusinessEntityID
+;
+----
+
+[source,jpaql]
+----
+SELECT p.firstName, p.lastName, e.jobTitle, ph.rate, ph.rateChangeDate
+FROM HumanResourcesEmployeePayHistory ph
+         JOIN ph.businessEntity e
+         JOIN e.businessEntity p
+WHERE ph.rateChangeDate = (SELECT MAX(ph2.rateChangeDate)
+                           FROM HumanResourcesEmployeePayHistory ph2
+                           WHERE ph2.businessEntityId = ph.businessEntityId)
+ORDER BY ph.rate DESC, e.businessEntityId
+----
+
+// AI: Pick AW_HUMANRESOURCES_I_03: COUNT DISTINCT over department history avoids repeated assignments.
+// AI: Copied from EXERCISES.asciidoc:139, anchor AW_HUMANRESOURCES_I_03; retain the permanent ID when revising.
+// AI: Registry: section=HUMANRESOURCES; tier=Intermediate; sql=src/test/sql-exercises/_HumanResources/02_intermediate.sql; test=_HumanResources_Exercises_02_Intermediate_PersistenceIT.AW_HUMANRESOURCES_I_03_Test.
+[[AW_HUMANRESOURCES_I_03]]
+==== AW_HUMANRESOURCES_I_03: The employees who worked in more than one department
+
+HR looks at internal mobility. Show the employees who have worked in more than one department, with how many departments each one worked in.
+
+[source,sql]
+----
+SELECT p.FirstName, p.LastName, COUNT(DISTINCT h.DepartmentID) AS Departments
+FROM HumanResources.EmployeeDepartmentHistory h
+         JOIN Person.Person p ON p.BusinessEntityID = h.BusinessEntityID
+GROUP BY h.BusinessEntityID, p.FirstName, p.LastName
+HAVING COUNT(DISTINCT h.DepartmentID) > 1
+ORDER BY p.LastName, p.FirstName, h.BusinessEntityID
+----
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 1 reviewed candidates in this original scope.
+// AI: Selection boundary: hierarchyid traversal is deferred; computed level and ordinary associations already demonstrate the mapping boundary.
+// AI: Not selected: AW_HUMANRESOURCES_A_01.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
+== Person
+
+=== Basic
+
+// AI: Basic: selected 2 of 3 reviewed candidates in this original scope.
+// AI: Selection boundary: XML survey shredding is deferred; focus on mapped contacts and composite-key associations.
+// AI: Not selected: AW_PERSON_B_02.
+
+// AI: Pick AW_PERSON_B_01: Group by the mapped person-type value.
+// AI: Copied from EXERCISES.asciidoc:194, anchor AW_PERSON_B_01; retain the permanent ID when revising.
+// AI: Registry: section=PERSON; tier=Basic; sql=src/test/sql-exercises/_Person/01_basic.sql; test=_Person_Exercises_01_Basic_PersistenceIT.AW_PERSON_B_01_Test.
+[[AW_PERSON_B_01]]
+==== AW_PERSON_B_01: The persons of each type
+
+The data steward checks who the database holds. Show how many persons there are of each type, the most first.
+
+[source,sql]
+----
+SELECT p.PersonType, COUNT(*) AS Persons
+FROM Person.Person p
+GROUP BY p.PersonType
+ORDER BY Persons DESC
+;
+----
+
+[source,jpaql]
+----
+SELECT p.personType, COUNT(p)
+FROM PersonPerson p
+GROUP BY p.personType
+ORDER BY COUNT(p) DESC
+----
+
+// AI: Pick AW_PERSON_B_03: Navigate the composite-key contact entity to person and contact-type roles.
+// AI: Copied from EXERCISES.asciidoc:231, anchor AW_PERSON_B_03; retain the permanent ID when revising.
+// AI: Registry: section=PERSON; tier=Basic; sql=src/test/sql-exercises/_Person/01_basic.sql; test=_Person_Exercises_01_Basic_PersistenceIT.AW_PERSON_B_03_Test.
+[[AW_PERSON_B_03]]
+==== AW_PERSON_B_03: An organization's contacts and their roles
+
+The account manager wants the contact persons of a business entity and the role of each, ordered by last name, first name, person and role.
+
+[source,sql]
+----
+DECLARE @businessEntityId int = 1492;
+SELECT p.BusinessEntityID AS PersonID, p.FirstName, p.LastName, t.Name AS ContactType
+FROM Person.BusinessEntityContact c
+         JOIN Person.Person p ON p.BusinessEntityID = c.PersonID
+         JOIN Person.ContactType t ON t.ContactTypeID = c.ContactTypeID
+WHERE c.BusinessEntityID = @businessEntityId
+ORDER BY p.LastName, p.FirstName, p.BusinessEntityID, t.ContactTypeID
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 1 of 1 reviewed candidates in this original scope.
+// AI: Selection boundary: XML survey shredding is deferred; focus on mapped contacts and composite-key associations.
+
+// AI: Pick AW_PERSON_I_01: A multi-hop country aggregation with a deterministic result limit.
+// AI: Copied from EXERCISES.asciidoc:250, anchor AW_PERSON_I_01; retain the permanent ID when revising.
+// AI: Registry: section=PERSON; tier=Intermediate; sql=src/test/sql-exercises/_Person/02_intermediate.sql; test=_Person_Exercises_02_Intermediate_PersistenceIT.AW_PERSON_I_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[AW_PERSON_I_01]]
+==== AW_PERSON_I_01: The five countries with the most addresses
+
+Marketing picks the countries for a mailing. Show the five countries with the most addresses; `CountryRegionCode` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (5) c.CountryRegionCode, c.Name, COUNT(*) AS Addresses
+FROM Person.Address a
+         JOIN Person.StateProvince s ON s.StateProvinceID = a.StateProvinceID
+         JOIN Person.CountryRegion c ON c.CountryRegionCode = s.CountryRegionCode
+GROUP BY c.CountryRegionCode, c.Name
+ORDER BY Addresses DESC, c.CountryRegionCode
+----
+
+[source,jpaql]
+----
+SELECT c.countryRegionCode, c.name, COUNT(a)
+FROM PersonAddress a
+         JOIN a.stateProvince s
+         JOIN s.countryRegion c
+GROUP BY c.countryRegionCode, c.name
+ORDER BY COUNT(a) DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 1 reviewed candidates in this original scope.
+// AI: Selection boundary: XML survey shredding is deferred; focus on mapped contacts and composite-key associations.
+// AI: Not selected: AW_PERSON_A_01.
+// AI: Deferred AW_PERSON_A_01: source SQL/JPQL synchronization is explicitly unfinished.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
+== Production
+
+=== Basic
+
+// AI: Basic: selected 2 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Recursive parts expansion and hierarchyid documents are deferred; Futon provides the bounded recursion example.
+
+// AI: Pick AW_PRODUCTION_B_01: Aggregate products through subcategory and category associations.
+// AI: Copied from EXERCISES.asciidoc:312, anchor AW_PRODUCTION_B_01; retain the permanent ID when revising.
+// AI: Registry: section=PRODUCTION; tier=Basic; sql=src/test/sql-exercises/_Production/01_basic.sql; test=_Production_Exercises_01_Basic_PersistenceIT.AW_PRODUCTION_B_01_Test.
+[[AW_PRODUCTION_B_01]]
+==== AW_PRODUCTION_B_01: The products on sale of each category, and their list prices
+
+The catalog manager reviews the range. Show, for each category, how many products are on sale, and their lowest and highest list prices.
+
+[source,sql]
+----
+SELECT c.Name AS Category, COUNT(*) AS Products, MIN(p.ListPrice) AS MinListPrice, MAX(p.ListPrice) AS MaxListPrice
+FROM Production.Product p
+         JOIN Production.ProductSubcategory s ON s.ProductSubcategoryID = p.ProductSubcategoryID
+         JOIN Production.ProductCategory c ON c.ProductCategoryID = s.ProductCategoryID
+WHERE p.SellEndDate IS NULL
+GROUP BY c.ProductCategoryID, c.Name
+ORDER BY c.Name
+;
+----
+
+[source,jpaql]
+----
+SELECT c.name, COUNT(p), MIN(p.listPrice), MAX(p.listPrice)
+FROM ProductionProduct p
+         JOIN p.productSubcategory s
+         JOIN s.productCategory c
+WHERE p.sellEndDate IS NULL
+GROUP BY c.productCategoryId, c.name
+ORDER BY c.name
+----
+
+// AI: Pick AW_PRODUCTION_B_02: An as-of lookup on a composite-key price-history entity.
+// AI: Copied from EXERCISES.asciidoc:340, anchor AW_PRODUCTION_B_02; retain the permanent ID when revising.
+// AI: Registry: section=PRODUCTION; tier=Basic; sql=src/test/sql-exercises/_Production/01_basic.sql; test=_Production_Exercises_01_Basic_PersistenceIT.AW_PRODUCTION_B_02_Test.
+[[AW_PRODUCTION_B_02]]
+==== AW_PRODUCTION_B_02: The list price of a product on a date
+
+A customer disputes an old invoice. Show the list price a product had on a given date; a price runs from its `StartDate` through its `EndDate`, or with no end.
+
+[source,sql]
+----
+DECLARE @productId int = 707;
+DECLARE @onDate date = '2024-01-01';
+SELECT h.ProductID, h.ListPrice, CAST(h.StartDate AS date) AS StartDate, CAST(h.EndDate AS date) AS EndDate
+FROM Production.ProductListPriceHistory h
+WHERE h.ProductID = @productId
+  AND h.StartDate <= @onDate
+  AND (h.EndDate IS NULL OR h.EndDate >= @onDate)
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 2 of 3 reviewed candidates in this original scope.
+// AI: Selection boundary: Recursive parts expansion and hierarchyid documents are deferred; Futon provides the bounded recursion example.
+// AI: Not selected: AW_PRODUCTION_I_03.
+
+// AI: Pick AW_PRODUCTION_I_01: LEFT JOIN, COALESCE, and HAVING preserve products with no stock.
+// AI: Copied from EXERCISES.asciidoc:359, anchor AW_PRODUCTION_I_01; retain the permanent ID when revising.
+// AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=_Production_Exercises_02_Intermediate_PersistenceIT.AW_PRODUCTION_I_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[AW_PRODUCTION_I_01]]
+==== AW_PRODUCTION_I_01: The products whose stock is less than half their safety stock level
+
+The warehouse refills the shelves. Show the products whose stock, over every location, is less than half their safety stock level, a product with no inventory row counting as 0, the lowest stock first; `ProductID` breaks a tie.
+
+[source,sql]
+----
+SELECT p.ProductID, p.Name, p.SafetyStockLevel, COALESCE(SUM(i.Quantity), 0) AS Quantity
+FROM Production.Product p
+         LEFT JOIN Production.ProductInventory i ON i.ProductID = p.ProductID
+GROUP BY p.ProductID, p.Name, p.SafetyStockLevel
+HAVING COALESCE(SUM(i.Quantity), 0) * 2 < p.SafetyStockLevel
+ORDER BY Quantity, p.ProductID
+----
+
+[source,jpaql]
+----
+SELECT p.productId, p.name, p.safetyStockLevel, SUM(i.quantity)
+FROM ProductionProductInventory i
+         JOIN i.product p
+GROUP BY p.productId, p.name, p.safetyStockLevel
+HAVING SUM(i.quantity) * 2 < p.safetyStockLevel
+ORDER BY SUM(i.quantity), p.productId
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick AW_PRODUCTION_I_02: A top-n aggregate over the work-order scrap-reason association.
+// AI: Copied from EXERCISES.asciidoc:386, anchor AW_PRODUCTION_I_02; retain the permanent ID when revising.
+// AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=_Production_Exercises_02_Intermediate_PersistenceIT.AW_PRODUCTION_I_02_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[AW_PRODUCTION_I_02]]
+==== AW_PRODUCTION_I_02: The five scrap reasons with the most scrapped quantity
+
+The plant manager looks for the costliest failures. Show the five scrap reasons with the most scrapped quantity, and how many work orders scrapped parts for each one; `ScrapReasonID` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (5) r.Name, COUNT(*) AS WorkOrders, SUM(w.ScrappedQty) AS ScrappedQty
+FROM Production.WorkOrder w
+         JOIN Production.ScrapReason r ON r.ScrapReasonID = w.ScrapReasonID
+GROUP BY r.ScrapReasonID, r.Name
+ORDER BY ScrappedQty DESC, r.ScrapReasonID
+----
+
+[source,jpaql]
+----
+SELECT r.name, COUNT(w), SUM(w.scrappedQty)
+FROM ProductionWorkOrder w
+         JOIN w.scrapReason r
+GROUP BY r.scrapReasonId, r.name
+ORDER BY SUM(w.scrappedQty) DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Recursive parts expansion and hierarchyid documents are deferred; Futon provides the bounded recursion example.
+// AI: Not selected: AW_PRODUCTION_A_01, AW_PRODUCTION_A_02.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
+== Purchasing
+
+=== Basic
+
+// AI: Basic: selected 2 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Received/rejected percentage semantics need a documented denominator; prefer the straightforward vendor-spend query.
+
+// AI: Pick AW_PURCHASING_B_01: Navigate a product-vendor link entity to compare offers.
+// AI: Copied from EXERCISES.asciidoc:482, anchor AW_PURCHASING_B_01; retain the permanent ID when revising.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.AW_PURCHASING_B_01_Test.
+[[AW_PURCHASING_B_01]]
+==== AW_PURCHASING_B_01: The vendors of a product, the cheapest first
+
+A buyer orders a part. Show the vendors who supply a product, the cheapest first.
+
+[source,sql]
+----
+DECLARE @productId int = 322;
+SELECT v.Name, pv.StandardPrice, pv.AverageLeadTime, pv.MinOrderQty
+FROM Purchasing.ProductVendor pv
+         JOIN Purchasing.Vendor v ON v.BusinessEntityID = pv.BusinessEntityID
+WHERE pv.ProductID = @productId
+ORDER BY pv.StandardPrice, v.Name
+;
+----
+
+[source,jpaql]
+----
+SELECT pv
+FROM PurchasingProductVendor pv
+         JOIN pv.businessEntity v
+WHERE pv.productId = :productId
+ORDER BY pv.standardPrice, v.name
+----
+
+// AI: Pick AW_PURCHASING_B_02: Group a status value and sum a computed total.
+// AI: Copied from EXERCISES.asciidoc:507, anchor AW_PURCHASING_B_02; retain the permanent ID when revising.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.AW_PURCHASING_B_02_Test.
+[[AW_PURCHASING_B_02]]
+==== AW_PURCHASING_B_02: The purchase orders of each status
+
+The purchasing manager checks the pipeline. Show, for each status of the purchase orders, how many orders there are and what they come to: 1 Pending, 2 Approved, 3 Rejected, 4 Complete.
+
+[source,sql]
+----
+SELECT h.Status,
+       CASE h.Status WHEN 1 THEN 'Pending' WHEN 2 THEN 'Approved' WHEN 3 THEN 'Rejected' WHEN 4 THEN 'Complete' END AS StatusName,
+       COUNT(*)        AS Orders,
+       SUM(h.TotalDue) AS TotalDue
+FROM Purchasing.PurchaseOrderHeader h
+GROUP BY h.Status
+ORDER BY h.Status
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 1 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Received/rejected percentage semantics need a documented denominator; prefer the straightforward vendor-spend query.
+// AI: Not selected: AW_PURCHASING_I_02.
+// AI: Deferred AW_PURCHASING_I_02: source SQL/JPQL synchronization is explicitly unfinished.
+
+// AI: Pick AW_PURCHASING_I_01: Filter order statuses, aggregate by vendor, and paginate.
+// AI: Copied from EXERCISES.asciidoc:526, anchor AW_PURCHASING_I_01; retain the permanent ID when revising.
+// AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=_Purchasing_Exercises_02_Intermediate_PersistenceIT.AW_PURCHASING_I_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[AW_PURCHASING_I_01]]
+==== AW_PURCHASING_I_01: The five vendors the company spent the most with
+
+The purchasing manager prepares the vendor reviews. Show the five vendors the company spent the most with, counting approved and complete purchase orders, `Status` 2 and 4, and how many such orders each one had; `BusinessEntityID` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (5) v.AccountNumber, v.Name, COUNT(*) AS Orders, SUM(h.TotalDue) AS TotalDue
+FROM Purchasing.PurchaseOrderHeader h
+         JOIN Purchasing.Vendor v ON v.BusinessEntityID = h.VendorID
+WHERE h.Status IN (2, 4)
+GROUP BY v.BusinessEntityID, v.AccountNumber, v.Name
+ORDER BY TotalDue DESC, v.BusinessEntityID
+----
+
+[source,jpaql]
+----
+SELECT v.accountNumber, v.name, COUNT(h), SUM(h.totalDue)
+FROM PurchasingPurchaseOrderHeader h
+         JOIN h.vendor v
+GROUP BY v.businessEntityId, v.accountNumber, v.name
+ORDER BY SUM(h.totalDue) DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 1 reviewed candidates in this original scope.
+// AI: Selection boundary: Received/rejected percentage semantics need a documented denominator; prefer the straightforward vendor-spend query.
+// AI: Not selected: AW_PURCHASING_A_01.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
+== Sales
+
+=== Basic
+
+// AI: Basic: selected 2 of 3 reviewed candidates in this original scope.
+// AI: Not selected: AW_SALES_B_02.
+// AI: Deferred AW_SALES_B_02: source SQL/JPQL synchronization is explicitly unfinished.
+
+// AI: Pick AW_SALES_B_01: Find an order by its database-computed order number.
+// AI: Copied from EXERCISES.asciidoc:612, anchor AW_SALES_B_01; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.AW_SALES_B_01_Test.
+[[AW_SALES_B_01]]
+==== AW_SALES_B_01: An order, by its order number
+
+A customer calls with an order number. Show the order, with its amounts.
+
+[source,sql]
+----
+DECLARE @salesOrderNumber nvarchar(25) = N'SO43659';
+SELECT h.SalesOrderID, h.SalesOrderNumber, h.SubTotal, h.TaxAmt, h.Freight, h.TotalDue
+FROM Sales.SalesOrderHeader h
+WHERE h.SalesOrderNumber = @salesOrderNumber
+;
+----
+
+[source,jpaql]
+----
+SELECT h
+FROM SalesSalesOrderHeader h
+WHERE h.salesOrderNumber = :salesOrderNumber
+----
+
+// AI: Pick AW_SALES_B_03: Count through a composite-key reason link while retaining unused reasons.
+// AI: Copied from EXERCISES.asciidoc:655, anchor AW_SALES_B_03; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.AW_SALES_B_03_Test.
+[[AW_SALES_B_03]]
+==== AW_SALES_B_03: The orders that gave each sales reason
+
+Marketing asks why customers buy. Show, for each sales reason and its type, how many orders gave it, the most first, a reason no order gave included.
+
+[source,sql]
+----
+SELECT r.ReasonType, r.Name, COUNT(hr.SalesOrderID) AS Orders
+FROM Sales.SalesReason r
+         LEFT JOIN Sales.SalesOrderHeaderSalesReason hr ON hr.SalesReasonID = r.SalesReasonID
+GROUP BY r.SalesReasonID, r.ReasonType, r.Name
+ORDER BY Orders DESC, r.Name
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 3 of 5 reviewed candidates in this original scope.
+// AI: Not selected: AW_SALES_I_03, AW_SALES_I_04.
+// AI: Deferred AW_SALES_I_04: source SQL/JPQL synchronization is explicitly unfinished.
+
+// AI: Pick AW_SALES_I_01: Aggregate orders by the territory association.
+// AI: Copied from EXERCISES.asciidoc:672, anchor AW_SALES_I_01; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.AW_SALES_I_01_Test.
+[[AW_SALES_I_01]]
+==== AW_SALES_I_01: The orders of each territory
+
+The sales director compares the territories. Show, for each territory, its group, how many orders it had and how much they came to, the largest first.
+
+[source,sql]
+----
+SELECT t.Name, t.[Group], COUNT(*) AS Orders, SUM(h.TotalDue) AS TotalDue
+FROM Sales.SalesOrderHeader h
+         JOIN Sales.SalesTerritory t ON t.TerritoryID = h.TerritoryID
+GROUP BY t.TerritoryID, t.Name, t.[Group]
+ORDER BY TotalDue DESC
+;
+----
+
+[source,jpaql]
+----
+SELECT t.name, t.group, COUNT(h), SUM(h.totalDue)
+FROM SalesSalesOrderHeader h
+         JOIN h.territory t
+GROUP BY t.territoryId, t.name, t.group
+ORDER BY SUM(h.totalDue) DESC
+----
+
+// AI: Pick AW_SALES_I_02: Reach product through the special-offer/product composite association.
+// AI: Copied from EXERCISES.asciidoc:696, anchor AW_SALES_I_02; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.AW_SALES_I_02_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[AW_SALES_I_02]]
+==== AW_SALES_I_02: The five products which brought in the most
+
+The product manager looks for the best sellers. Show the five products that brought in the most, with the quantity sold.
+
+[source,sql]
+----
+SELECT TOP (5) p.ProductNumber, p.Name, SUM(d.OrderQty) AS OrderQty, SUM(d.LineTotal) AS LineTotal
+FROM Sales.SalesOrderDetail d
+         JOIN Production.Product p ON p.ProductID = d.ProductID
+GROUP BY p.ProductID, p.ProductNumber, p.Name
+ORDER BY LineTotal DESC, p.ProductID
+----
+
+[source,jpaql]
+----
+SELECT p.productNumber, p.name, SUM(d.orderQty), SUM(d.lineTotal)
+FROM SalesSalesOrderDetail d
+         JOIN d.specialOfferProduct sop
+         JOIN sop.product p
+GROUP BY p.productId, p.productNumber, p.name
+ORDER BY SUM(d.lineTotal) DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick AW_SALES_I_05: An optional currency-rate association with COALESCE defaults.
+// AI: Copied from EXERCISES.asciidoc:778, anchor AW_SALES_I_05; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.AW_SALES_I_05_Test.
+[[AW_SALES_I_05]]
+==== AW_SALES_I_05: The orders and their amounts in each currency
+
+Finance reports sales by currency. Show, for each currency the orders were paid in, how many orders there were, their total in US dollars, and their total in that currency; an order with no rate is in US dollars.
+
+[source,sql]
+----
+SELECT COALESCE(r.ToCurrencyCode, N'USD')           AS CurrencyCode,
+       COUNT(*)                                     AS Orders,
+       SUM(h.TotalDue)                              AS TotalDueUsd,
+       SUM(h.TotalDue * COALESCE(r.AverageRate, 1)) AS TotalDueInCurrency
+FROM Sales.SalesOrderHeader h
+         LEFT JOIN Sales.CurrencyRate r ON r.CurrencyRateID = h.CurrencyRateID
+GROUP BY COALESCE(r.ToCurrencyCode, N'USD')
+ORDER BY Orders DESC, CurrencyCode
+----
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 2 reviewed candidates in this original scope.
+// AI: Not selected: AW_SALES_A_01, AW_SALES_A_02.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+

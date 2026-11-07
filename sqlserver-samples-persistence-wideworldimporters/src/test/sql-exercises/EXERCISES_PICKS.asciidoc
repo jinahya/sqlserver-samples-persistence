@@ -1,0 +1,678 @@
+= Exercises picks
+:toc: left
+:toclevels: 3
+:sectanchors:
+:source-highlighter: rouge
+
+// AI: Editorial review dated 2026-11-08. Source: sibling EXERCISES.asciidoc and EXERCISES.yaml.
+// AI: Reviewed every exercise in this module against Jakarta Persistence Applied, master src/main/asciidoc/00_book.asciidoc.
+// AI: This is a candidate shortlist, not a change to the official PROJECTS_EXERCISES.asciidoc picks or the manuscript.
+// AI: Preserve source scope order, level classifications, permanent IDs, statements, SQL, JPQL, and existing answer blocks.
+// AI: At most three candidates per original scope and level; fewer or zero is intentional. Do not fill slots mechanically.
+// AI: Prefer mapped attributes, identifiers, enum/converter behavior, associations, joins, aggregates, subqueries, fetching, and paging.
+// AI: Omit contrived name/string puzzles, redundant integrity audits, arbitrary rankings, and unrelated SQL analytics.
+// AI: Native-only candidates are explicit chapter-specific exceptions, not permission to replace portable solutions elsewhere.
+// AI: Agent handoff: read each rationale and TODO, resolve the registry sql/test paths, inspect the mapped types and actual tests,
+// AI: reconcile stale solutions, and run the relevant database/provider tests before promoting any candidate to the book.
+// AI: Existing output blocks below are archival copies from the source, not fresh test results or verified publication output.
+// AI: For manuscript output, rerun the query, retain // AI: provenance, and use the current mappings and provider policy.
+// AI: Source SHA-256 at review: a3022e431f1d55614c45901fbd2dabf537d27cfe9c472ec1c45bf780b800c892.
+
+Selected exercises for a persistence-focused teaching sequence.
+The original scope and difficulty headings are retained; an empty level intentionally has no suitable pick.
+Statements and answers are copied from link:EXERCISES.asciidoc[the complete exercise collection].
+Selection is an editorial recommendation; implementation notes in the source comments identify follow-up work.
+
+// AI: Original source conventions below apply to the copied subset.
+Exercises for WideWorldImporters: business questions that the sales, purchasing, warehouse and finance people of a
+wholesale novelty-goods importer would ask, each answered with a query. Every problem is stated as a request, followed
+by its solutions. The `sql` blocks are Transact-SQL against the installed database (see the project's
+link:../../../../README.md[README.md]); a parameter is a local variable, `DECLARE`d right above the query. The `jpaql` blocks are
+Jakarta Persistence 3.2 query language against this module's entities, with named parameters of the same names.
+
+The SQL is in `src/test/sql-exercises/_<Schema>/<NN>_<level>.sql`, a file per schema and level. The query language and Criteria API
+solutions are the nested classes of the `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
+`src/test/java-exercises`, a nested class per exercise, which assert
+the rows the SQL returns.
+
+The problems are grouped by the schema of the table they are about; a problem which joins another schema's tables
+stays with the one it asks about. Each section goes from Basic (`B`) through Intermediate (`I`) to Advanced (`A`). An
+id is `WWI_<SCHEMA>_<TIER>_<NN>`, numbered within its schema and tier, and `EXERCISES.yaml` registers every one; an
+id is permanent: it is never renumbered or reused.
+
+A few things about the mappings shape the solutions:
+
+* A foreign key is mapped twice: as an association on the entity, and as a read-only basic attribute on its mapped
+  superclass. `Invoice` has `customer`, and `customerId` from `MappedInvoice`; a query may use either.
+* A computed column (`IsFinalized`, `ConfirmedDeliveryTime`, `ConfirmedReceivedBy`, `Tags`, `SearchDetails`, ...) is a
+  read-only attribute, and a query reads it like any other.
+* What the query language has no word for is SQL only: the JSON functions (`JSON_VALUE`), the methods of `geography`
+  (`STDistance`), window functions (`RANK() OVER`) and the temporal clauses (`FOR SYSTEM_TIME`). From Jakarta
+  Persistence such SQL is sent as a native query; `WWI_SALES_A_02` shows one.
+* Grouping is by an entity's identifier and the columns selected, not by the entity: `Customer` and `Supplier` have
+  `geography` columns, which SQL Server can not group by.
+
+== Application
+
+=== Basic
+
+// AI: Basic: selected 2 of 3 reviewed candidates in this original scope.
+// AI: Selection boundary: JSON extraction and geospatial nearest-neighbour SQL are deferred; keep the core location associations.
+// AI: Not selected: WWI_APPLICATION_B_02.
+
+// AI: Pick WWI_APPLICATION_B_01: A predicate on the mapped salesperson flag.
+// AI: Copied from EXERCISES.asciidoc:39, anchor WWI_APPLICATION_B_01; retain the permanent ID when revising.
+// AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=_Application_Exercises_01_Basic_PersistenceIT.WWI_APPLICATION_B_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[WWI_APPLICATION_B_01]]
+==== WWI_APPLICATION_B_01: The salespeople, by name
+
+The sales manager wants the salespeople, by name, with their phone number and email address.
+
+[source,sql]
+----
+SELECT PersonID, FullName, PhoneNumber, EmailAddress
+FROM Application.People
+WHERE IsSalesperson = 1
+ORDER BY FullName, PersonID
+----
+
+[source,jpaql]
+----
+SELECT p
+FROM ApplicationPerson AS p
+WHERE p.isSalesperson = true
+ORDER BY p.fullName
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick WWI_APPLICATION_B_03: Navigate city, state/province, and country associations.
+// AI: Copied from EXERCISES.asciidoc:79, anchor WWI_APPLICATION_B_03; retain the permanent ID when revising.
+// AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=_Application_Exercises_01_Basic_PersistenceIT.WWI_APPLICATION_B_03_Test.
+[[WWI_APPLICATION_B_03]]
+==== WWI_APPLICATION_B_03: The cities of a country's states and provinces
+
+List a country's cities with their state or province and their latest recorded population, by state or province, city name and `CityID`.
+
+[source,sql]
+----
+DECLARE @countryId int = 230;
+SELECT c.CityID, c.CityName, sp.StateProvinceName, co.CountryName, c.LatestRecordedPopulation
+FROM Application.Cities c
+         JOIN Application.StateProvinces sp ON sp.StateProvinceID = c.StateProvinceID
+         JOIN Application.Countries co ON co.CountryID = sp.CountryID
+WHERE co.CountryID = @countryId
+ORDER BY sp.StateProvinceName, c.CityName, c.CityID
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 1 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: JSON extraction and geospatial nearest-neighbour SQL are deferred; keep the core location associations.
+// AI: Not selected: WWI_APPLICATION_I_02.
+
+// AI: Pick WWI_APPLICATION_I_01: A simple geographic GROUP BY over mapped attributes.
+// AI: Copied from EXERCISES.asciidoc:98, anchor WWI_APPLICATION_I_01; retain the permanent ID when revising.
+// AI: Registry: section=APPLICATION; tier=Intermediate; sql=src/test/sql-exercises/_Application/02_intermediate.sql; test=_Application_Exercises_02_Intermediate_PersistenceIT.WWI_APPLICATION_I_01_Test.
+[[WWI_APPLICATION_I_01]]
+==== WWI_APPLICATION_I_01: The countries and the population of each continent
+
+Marketing sizes the markets: for each continent, the number of countries and their total population, the most populous
+continent first.
+
+[source,sql]
+----
+SELECT Continent, COUNT(*) AS Countries, SUM(LatestRecordedPopulation) AS Population
+FROM Application.Countries
+GROUP BY Continent
+ORDER BY Population DESC
+----
+
+[source,jpaql]
+----
+SELECT c.continent, COUNT(c) AS countries, SUM(c.latestRecordedPopulation) AS population
+FROM ApplicationCountry AS c
+GROUP BY c.continent
+ORDER BY population DESC
+----
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 1 reviewed candidates in this original scope.
+// AI: Selection boundary: JSON extraction and geospatial nearest-neighbour SQL are deferred; keep the core location associations.
+// AI: Not selected: WWI_APPLICATION_A_01.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
+== Purchasing
+
+=== Basic
+
+// AI: Basic: selected 2 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Late-delivery averages and per-supplier window rankings add complexity beyond the selected purchasing joins.
+
+// AI: Pick WWI_PURCHASING_B_01: Navigate the supplier-category association.
+// AI: Copied from EXERCISES.asciidoc:164, anchor WWI_PURCHASING_B_01; retain the permanent ID when revising.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.WWI_PURCHASING_B_01_Test.
+[[WWI_PURCHASING_B_01]]
+==== WWI_PURCHASING_B_01: The suppliers, by category and then by name
+
+The buyer wants the suppliers with their category and payment days, by category and then by name.
+
+[source,sql]
+----
+SELECT s.SupplierID, s.SupplierName, sc.SupplierCategoryName, s.PaymentDays
+FROM Purchasing.Suppliers s
+         JOIN Purchasing.SupplierCategories sc ON sc.SupplierCategoryID = s.SupplierCategoryID
+ORDER BY sc.SupplierCategoryName, s.SupplierName
+----
+
+[source,jpaql]
+----
+SELECT s
+FROM PurchasingSupplier AS s
+     JOIN s.supplierCategory AS sc
+ORDER BY sc.supplierCategoryName, s.supplierName
+----
+
+// AI: Pick WWI_PURCHASING_B_02: Filter unfinalized transactions and aggregate outstanding balances.
+// AI: Copied from EXERCISES.asciidoc:185, anchor WWI_PURCHASING_B_02; retain the permanent ID when revising.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.WWI_PURCHASING_B_02_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[WWI_PURCHASING_B_02]]
+==== WWI_PURCHASING_B_02: What is still owed to each supplier
+
+Accounts payable wants what is still owed to each supplier: the transactions not finalized, their number and the outstanding balance, the largest first, a tie by name.
+`IsFinalized` is a computed column.
+
+[source,sql]
+----
+SELECT s.SupplierName, COUNT(*) AS Transactions, SUM(st.OutstandingBalance) AS Outstanding
+FROM Purchasing.SupplierTransactions st
+         JOIN Purchasing.Suppliers s ON s.SupplierID = st.SupplierID
+WHERE st.IsFinalized = 0
+GROUP BY s.SupplierID, s.SupplierName
+ORDER BY Outstanding DESC, s.SupplierName
+----
+
+[source,jpaql]
+----
+SELECT s.supplierName, COUNT(st) AS transactions, SUM(st.outstandingBalance) AS outstanding
+FROM PurchasingSupplierTransaction AS st
+     JOIN st.supplier AS s
+WHERE st.isFinalized = false
+GROUP BY s.supplierId, s.supplierName
+ORDER BY outstanding DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+=== Intermediate
+
+// AI: Intermediate: selected 1 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Late-delivery averages and per-supplier window rankings add complexity beyond the selected purchasing joins.
+// AI: Not selected: WWI_PURCHASING_I_02.
+
+// AI: Pick WWI_PURCHASING_I_01: COUNT DISTINCT prevents order-line fan-out from inflating order counts.
+// AI: Copied from EXERCISES.asciidoc:215, anchor WWI_PURCHASING_I_01; retain the permanent ID when revising.
+// AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=_Purchasing_Exercises_02_Intermediate_PersistenceIT.WWI_PURCHASING_I_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[WWI_PURCHASING_I_01]]
+==== WWI_PURCHASING_I_01: The purchase orders and the amount ordered from each supplier in a year
+
+The buyer reviews a year of purchasing: for each supplier, the purchase orders placed in the year and the amount ordered
+at the expected prices, the largest amount first.
+
+[source,sql]
+----
+DECLARE @from date = '2015-01-01', @to date = '2016-01-01';
+SELECT s.SupplierName,
+       COUNT(DISTINCT po.PurchaseOrderID)                     AS Orders,
+       SUM(pol.OrderedOuters * pol.ExpectedUnitPricePerOuter) AS Amount
+FROM Purchasing.PurchaseOrders po
+         JOIN Purchasing.PurchaseOrderLines pol ON pol.PurchaseOrderID = po.PurchaseOrderID
+         JOIN Purchasing.Suppliers s ON s.SupplierID = po.SupplierID
+WHERE po.OrderDate >= @from
+  AND po.OrderDate < @to
+GROUP BY s.SupplierID, s.SupplierName
+ORDER BY Amount DESC, s.SupplierID
+----
+
+[source,jpaql]
+----
+SELECT s.supplierName,
+       COUNT(DISTINCT po) AS orders,
+       SUM(pol.orderedOuters * pol.expectedUnitPricePerOuter) AS amount
+FROM PurchasingPurchaseOrderLine AS pol
+     JOIN pol.purchaseOrder AS po
+     JOIN po.supplier AS s
+WHERE po.orderDate >= :from
+  AND po.orderDate < :to
+GROUP BY s.supplierId, s.supplierName
+ORDER BY amount DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 2 reviewed candidates in this original scope.
+// AI: Selection boundary: Late-delivery averages and per-supplier window rankings add complexity beyond the selected purchasing joins.
+// AI: Not selected: WWI_PURCHASING_A_01, WWI_PURCHASING_A_02.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
+== Sales
+
+=== Basic
+
+// AI: Basic: selected 3 of 3 reviewed candidates in this original scope.
+
+// AI: Pick WWI_SALES_B_01: Retain optional buying-group membership and explicitly include the no-group category.
+// AI: Copied from EXERCISES.asciidoc:326, anchor WWI_SALES_B_01; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.WWI_SALES_B_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[WWI_SALES_B_01]]
+==== WWI_SALES_B_01: The customers of each buying group
+
+Count the customers of every buying group, a group without customers included, with the customers in no group as a group of their own, NULL; the most first, then by name.
+
+[source,sql]
+----
+SELECT bg.BuyingGroupName, COUNT(c.CustomerID) AS Customers
+FROM Sales.BuyingGroups bg
+         LEFT JOIN Sales.Customers c ON c.BuyingGroupID = bg.BuyingGroupID
+GROUP BY bg.BuyingGroupID, bg.BuyingGroupName
+UNION ALL
+SELECT CAST(NULL AS nvarchar(50)), COUNT(*)
+FROM Sales.Customers
+WHERE BuyingGroupID IS NULL
+ORDER BY Customers DESC, BuyingGroupName
+----
+
+[source,jpaql]
+----
+SELECT bg.buyingGroupName, COUNT(c) AS customers
+FROM SalesCustomer AS c
+     LEFT JOIN c.buyingGroup AS bg
+GROUP BY bg.buyingGroupName
+ORDER BY customers DESC, bg.buyingGroupName
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick WWI_SALES_B_02: A self-referencing billing-customer association.
+// AI: Copied from EXERCISES.asciidoc:355, anchor WWI_SALES_B_02; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.WWI_SALES_B_02_Test.
+[[WWI_SALES_B_02]]
+==== WWI_SALES_B_02: The customers billed for others
+
+Accounts receivable wants the customers who are billed for others: each bill-to customer, with the number of other
+customers it is billed for, the most first; a tie by the identifier.
+
+[source,sql]
+----
+SELECT b.CustomerID, b.CustomerName, COUNT(*) AS Billed
+FROM Sales.Customers c
+         JOIN Sales.Customers b ON b.CustomerID = c.BillToCustomerID
+WHERE c.BillToCustomerID <> c.CustomerID
+GROUP BY b.CustomerID, b.CustomerName
+ORDER BY Billed DESC, b.CustomerID
+----
+
+[source,jpaql]
+----
+SELECT b.customerId, b.customerName, COUNT(c) AS billed
+FROM SalesCustomer AS c
+     JOIN c.billToCustomer AS b
+WHERE b <> c
+GROUP BY b.customerId, b.customerName
+ORDER BY billed DESC, b.customerId
+----
+
+// AI: Pick WWI_SALES_B_03: Filter and page the mapped Website.Customers reporting view.
+// AI: Copied from EXERCISES.asciidoc:381, anchor WWI_SALES_B_03; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.WWI_SALES_B_03_Test.
+[[WWI_SALES_B_03]]
+==== WWI_SALES_B_03: The first five customers of no buying group, from the Website.Customers view
+
+The web team lists, from the Website.Customers view, the first five customers by name who belong to no buying group,
+with their category, city and delivery method.
+
+[source,sql]
+----
+SELECT TOP (5) CustomerID, CustomerName, CustomerCategoryName, CityName, DeliveryMethod
+FROM Website.Customers
+WHERE BuyingGroupName IS NULL
+ORDER BY CustomerName
+----
+
+[source,jpaql]
+----
+SELECT c
+FROM WebsiteCustomer AS c
+WHERE c.buyingGroupName IS NULL
+ORDER BY c.customerName
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 3 of 7 reviewed candidates in this original scope.
+// AI: Not selected: WWI_SALES_I_02, WWI_SALES_I_03, WWI_SALES_I_04, WWI_SALES_I_06.
+// AI: Deferred WWI_SALES_I_03: source SQL/JPQL synchronization is explicitly unfinished.
+
+// AI: Pick WWI_SALES_I_01: A bounded revenue ranking across invoice and stock-item associations.
+// AI: Copied from EXERCISES.asciidoc:405, anchor WWI_SALES_I_01; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.WWI_SALES_I_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[WWI_SALES_I_01]]
+==== WWI_SALES_I_01: The five stock items which earned the most in a year
+
+The sales manager wants the five stock items which earned the most in a year, by the invoiced extended price, with the quantity sold; `StockItemID` breaks a tie.
+
+[source,sql]
+----
+DECLARE @from date = '2015-01-01', @to date = '2016-01-01';
+SELECT TOP (5) si.StockItemID, si.StockItemName, SUM(il.Quantity) AS Quantity, SUM(il.ExtendedPrice) AS Revenue
+FROM Sales.InvoiceLines il
+         JOIN Sales.Invoices i ON i.InvoiceID = il.InvoiceID
+         JOIN Warehouse.StockItems si ON si.StockItemID = il.StockItemID
+WHERE i.InvoiceDate >= @from
+  AND i.InvoiceDate < @to
+GROUP BY si.StockItemID, si.StockItemName
+ORDER BY Revenue DESC, si.StockItemID
+----
+
+[source,jpaql]
+----
+SELECT si.stockItemId, si.stockItemName, SUM(il.quantity), SUM(il.extendedPrice) AS revenue
+FROM SalesInvoiceLine AS il
+     JOIN il.invoice AS i
+     JOIN il.stockItem AS si
+WHERE i.invoiceDate >= :from
+  AND i.invoiceDate < :to
+GROUP BY si.stockItemId, si.stockItemName
+ORDER BY revenue DESC
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick WWI_SALES_I_05: Several optional associations remain visible through LEFT JOIN.
+// AI: Copied from EXERCISES.asciidoc:520, anchor WWI_SALES_I_05; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.WWI_SALES_I_05_Test.
+[[WWI_SALES_I_05]]
+==== WWI_SALES_I_05: The special deals in force on a date
+
+The sales desk wants the special deals in force on a date: each deal, what it applies to (stock item or stock group, customer, buying group or customer category) and its discount or price, by deal.
+
+[source,sql]
+----
+DECLARE @on date = '2016-01-01';
+SELECT d.SpecialDealID, d.DealDescription, d.StartDate, d.EndDate,
+       si.StockItemName, sg.StockGroupName, c.CustomerName, bg.BuyingGroupName, cc.CustomerCategoryName,
+       d.DiscountAmount, d.DiscountPercentage, d.UnitPrice
+FROM Sales.SpecialDeals d
+         LEFT JOIN Warehouse.StockItems si ON si.StockItemID = d.StockItemID
+         LEFT JOIN Warehouse.StockGroups sg ON sg.StockGroupID = d.StockGroupID
+         LEFT JOIN Sales.Customers c ON c.CustomerID = d.CustomerID
+         LEFT JOIN Sales.BuyingGroups bg ON bg.BuyingGroupID = d.BuyingGroupID
+         LEFT JOIN Sales.CustomerCategories cc ON cc.CustomerCategoryID = d.CustomerCategoryID
+WHERE d.StartDate <= @on
+  AND d.EndDate >= @on
+ORDER BY d.SpecialDealID
+----
+
+// AI: Pick WWI_SALES_I_07: Group outstanding balances and guard division by the credit limit.
+// AI: Copied from EXERCISES.asciidoc:567, anchor WWI_SALES_I_07; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.WWI_SALES_I_07_Test.
+[[WWI_SALES_I_07]]
+==== WWI_SALES_I_07: The ten customers using the most of their credit limit
+
+Accounts receivable wants the ten customers with a credit limit whose outstanding balance uses the most of it: the limit, the balance of the transactions not finalized, and the share of the limit used; `CustomerID` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (10) c.CustomerID,
+                c.CustomerName,
+                c.CreditLimit,
+                SUM(ct.OutstandingBalance)                                               AS Outstanding,
+                CAST(SUM(ct.OutstandingBalance) * 100 / c.CreditLimit AS decimal(10, 1)) AS PercentUsed
+FROM Sales.CustomerTransactions ct
+         JOIN Sales.Customers c ON c.CustomerID = ct.CustomerID
+WHERE ct.IsFinalized = 0
+  AND c.CreditLimit > 0
+GROUP BY c.CustomerID, c.CustomerName, c.CreditLimit
+ORDER BY PercentUsed DESC, c.CustomerID
+----
+
+=== Advanced
+
+// AI: Advanced: selected 2 of 3 reviewed candidates in this original scope.
+// AI: Not selected: WWI_SALES_A_01.
+
+// AI: Pick WWI_SALES_A_02: A deliberate native-query example: FOR SYSTEM_TIME belongs to this chapter's temporal-table lesson.
+// AI: Copied from EXERCISES.asciidoc:613, anchor WWI_SALES_A_02; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Advanced; sql=src/test/sql-exercises/_Sales/03_advanced.sql; test=_Sales_Exercises_03_Advanced_PersistenceIT.WWI_SALES_A_02_Test.
+// AI: Native-only in the registry: deliberate chapter-specific exception; explain the native-query/result-mapping boundary.
+// AI: Retain the historical AS OF time and the explicit native-query path; a current entity read does not retrieve its historical version.
+[[WWI_SALES_A_02]]
+==== WWI_SALES_A_02: The customers whose credit limit changed since a moment, by a native query
+
+Accounts receivable wants the customers whose credit limit is not what it was at a past moment, a limit set or removed since then included, with the limit then and now.
+`NOT EXISTS (SELECT then INTERSECT SELECT now)` compares the two with NULLs as equal, which `<>` does not.
+
+[source,sql]
+----
+DECLARE @asOf datetime2 = '2015-01-01';
+SELECT c.CustomerID, c.CustomerName, h.CreditLimit AS CreditLimitThen, c.CreditLimit AS CreditLimitNow
+FROM Sales.Customers c
+         JOIN Sales.Customers FOR SYSTEM_TIME AS OF @asOf h ON h.CustomerID = c.CustomerID
+WHERE NOT EXISTS (SELECT h.CreditLimit
+                  INTERSECT
+                  SELECT c.CreditLimit)
+ORDER BY c.CustomerID
+----
+
+SQL only. `_Sales_Exercises_03_Advanced_PersistenceIT` sends it as a native query, with the moment as a
+positional parameter:
+
+[source,java]
+----
+entityManager.createNativeQuery("""
+SELECT c.CustomerID, c.CustomerName, h.CreditLimit, c.CreditLimit
+FROM Sales.Customers c
+         JOIN Sales.Customers FOR SYSTEM_TIME AS OF ?1 h ON h.CustomerID = c.CustomerID
+WHERE h.CreditLimit <> c.CreditLimit
+ORDER BY c.CustomerID""")
+        .setParameter(1, LocalDateTime.of(2015, 1, 1, 0, 0))
+        .getResultList()
+----
+
+// AI: Pick WWI_SALES_A_03: Combine a self-referencing backorder association, NOT EXISTS, and pagination.
+// AI: Copied from EXERCISES.asciidoc:646, anchor WWI_SALES_A_03; retain the permanent ID when revising.
+// AI: Registry: section=SALES; tier=Advanced; sql=src/test/sql-exercises/_Sales/03_advanced.sql; test=_Sales_Exercises_03_Advanced_PersistenceIT.WWI_SALES_A_03_Test.
+[[WWI_SALES_A_03]]
+==== WWI_SALES_A_03: The five oldest backorders never invoiced, and the orders which backordered them
+
+The warehouse wants the five oldest backorders which were never invoiced, with the customer and the order which
+backordered them.
+
+[source,sql]
+----
+SELECT TOP (5) o.OrderID, o.OrderDate, c.CustomerName, p.OrderID AS BackorderedBy
+FROM Sales.Orders p
+         JOIN Sales.Orders o ON o.OrderID = p.BackorderOrderID
+         JOIN Sales.Customers c ON c.CustomerID = o.CustomerID
+WHERE NOT EXISTS (SELECT 1
+                  FROM Sales.Invoices i
+                  WHERE i.OrderID = o.OrderID)
+ORDER BY o.OrderDate, o.OrderID
+----
+
+[source,jpaql]
+----
+SELECT p
+FROM SalesOrder AS p
+     JOIN p.backorderOrder AS o
+WHERE NOT EXISTS (SELECT i
+                  FROM SalesInvoice AS i
+                  WHERE i.order = o)
+ORDER BY o.orderDate, o.orderId
+----
+
+== Warehouse
+
+=== Basic
+
+// AI: Basic: selected 3 of 3 reviewed candidates in this original scope.
+
+// AI: Pick WWI_WAREHOUSE_B_01: Compare stock-holding attributes through the item association.
+// AI: Copied from EXERCISES.asciidoc:679, anchor WWI_WAREHOUSE_B_01; retain the permanent ID when revising.
+// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=_Warehouse_Exercises_01_Basic_PersistenceIT.WWI_WAREHOUSE_B_01_Test.
+[[WWI_WAREHOUSE_B_01]]
+==== WWI_WAREHOUSE_B_01: The stock items below their reorder level
+
+The warehouse manager wants the stock items whose quantity on hand is below the reorder level, by name.
+
+[source,sql]
+----
+SELECT si.StockItemID, si.StockItemName, h.QuantityOnHand, h.ReorderLevel
+FROM Warehouse.StockItemHoldings h
+         JOIN Warehouse.StockItems si ON si.StockItemID = h.StockItemID
+WHERE h.QuantityOnHand < h.ReorderLevel
+ORDER BY si.StockItemName
+----
+
+[source,jpaql]
+----
+SELECT h
+FROM WarehouseStockItemHolding AS h
+     JOIN h.stockItem AS si
+WHERE h.quantityOnHand < h.reorderLevel
+ORDER BY si.stockItemName
+----
+
+// AI: Pick WWI_WAREHOUSE_B_02: A boolean predicate with a supplier association.
+// AI: Copied from EXERCISES.asciidoc:702, anchor WWI_WAREHOUSE_B_02; retain the permanent ID when revising.
+// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=_Warehouse_Exercises_01_Basic_PersistenceIT.WWI_WAREHOUSE_B_02_Test.
+[[WWI_WAREHOUSE_B_02]]
+==== WWI_WAREHOUSE_B_02: The chiller stock items, by name
+
+The cold room keeps the chiller stock: list those stock items by name, with their supplier and unit price.
+
+[source,sql]
+----
+SELECT si.StockItemID, si.StockItemName, s.SupplierName, si.UnitPrice
+FROM Warehouse.StockItems si
+         JOIN Purchasing.Suppliers s ON s.SupplierID = si.SupplierID
+WHERE si.IsChillerStock = 1
+ORDER BY si.StockItemName
+----
+
+[source,jpaql]
+----
+SELECT si
+FROM WarehouseStockItem AS si
+WHERE si.isChillerStock = true
+ORDER BY si.stockItemName
+----
+
+// AI: Pick WWI_WAREHOUSE_B_03: Read the Website view and page by timestamp plus identifier.
+// AI: Copied from EXERCISES.asciidoc:724, anchor WWI_WAREHOUSE_B_03; retain the permanent ID when revising.
+// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=_Warehouse_Exercises_01_Basic_PersistenceIT.WWI_WAREHOUSE_B_03_Test.
+[[WWI_WAREHOUSE_B_03]]
+==== WWI_WAREHOUSE_B_03: The latest vehicle temperature readings
+
+The transport team wants the ten latest chiller readings of the delivery vehicles, from the Website.VehicleTemperatures view, with the vehicle, sensor, temperature and full sensor data; `VehicleTemperatureID` breaks a tie.
+
+[source,sql]
+----
+SELECT TOP (10) VehicleTemperatureID, VehicleRegistration, ChillerSensorNumber, RecordedWhen, Temperature, FullSensorData
+FROM Website.VehicleTemperatures
+ORDER BY RecordedWhen DESC, VehicleTemperatureID DESC
+----
+
+=== Intermediate
+
+// AI: Intermediate: selected 3 of 4 reviewed candidates in this original scope.
+// AI: Not selected: WWI_WAREHOUSE_I_02.
+
+// AI: Pick WWI_WAREHOUSE_I_01: An outer join counts a stock-group link entity and retains zero.
+// AI: Copied from EXERCISES.asciidoc:739, anchor WWI_WAREHOUSE_I_01; retain the permanent ID when revising.
+// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=_Warehouse_Exercises_02_Intermediate_PersistenceIT.WWI_WAREHOUSE_I_01_Test.
+// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
+[[WWI_WAREHOUSE_I_01]]
+==== WWI_WAREHOUSE_I_01: The stock items of each stock group
+
+Count the stock items in every stock group, a group without items included, the most first; a tie by the group's name.
+
+[source,sql]
+----
+SELECT sg.StockGroupName, COUNT(sisg.StockItemStockGroupID) AS StockItems
+FROM Warehouse.StockGroups sg
+         LEFT JOIN Warehouse.StockItemStockGroups sisg ON sisg.StockGroupID = sg.StockGroupID
+GROUP BY sg.StockGroupID, sg.StockGroupName
+ORDER BY StockItems DESC, sg.StockGroupName
+----
+
+[source,jpaql]
+----
+SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
+FROM WarehouseStockItemStockGroup AS sisg
+     JOIN sisg.stockGroup AS sg
+GROUP BY sg.stockGroupId, sg.stockGroupName
+ORDER BY stockItems DESC, sg.stockGroupName
+----
+
+// JPQL NOT YET UPDATED: the SQL above changed.
+
+// AI: Pick WWI_WAREHOUSE_I_03: A half-open transaction interval with a transaction-type association.
+// AI: Copied from EXERCISES.asciidoc:780, anchor WWI_WAREHOUSE_I_03; retain the permanent ID when revising.
+// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=_Warehouse_Exercises_02_Intermediate_PersistenceIT.WWI_WAREHOUSE_I_03_Test.
+[[WWI_WAREHOUSE_I_03]]
+==== WWI_WAREHOUSE_I_03: The movements of a stock item in a year, by transaction type
+
+The warehouse manager wants the movements of a stock item in a year: for each transaction type, the number of transactions and the net quantity, by type name.
+
+[source,sql]
+----
+DECLARE @stockItemId int = 1, @from datetime2 = '2015-01-01', @to datetime2 = '2016-01-01';
+SELECT tt.TransactionTypeName, COUNT(*) AS Transactions, SUM(sit.Quantity) AS Quantity
+FROM Warehouse.StockItemTransactions sit
+         JOIN Application.TransactionTypes tt ON tt.TransactionTypeID = sit.TransactionTypeID
+WHERE sit.StockItemID = @stockItemId
+  AND sit.TransactionOccurredWhen >= @from
+  AND sit.TransactionOccurredWhen < @to
+GROUP BY tt.TransactionTypeID, tt.TransactionTypeName
+ORDER BY tt.TransactionTypeName
+----
+
+// AI: Pick WWI_WAREHOUSE_I_04: Conditional aggregation distinguishes incoming and outgoing quantities.
+// AI: Copied from EXERCISES.asciidoc:799, anchor WWI_WAREHOUSE_I_04; retain the permanent ID when revising.
+// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=_Warehouse_Exercises_02_Intermediate_PersistenceIT.WWI_WAREHOUSE_I_04_Test.
+[[WWI_WAREHOUSE_I_04]]
+==== WWI_WAREHOUSE_I_04: Incoming and outgoing stock movements
+
+For each stock item with movements in a period, the quantity in, the quantity out as a positive amount, and the net movement, by item name.
+
+[source,sql]
+----
+DECLARE @from datetime2 = '2016-05-01', @to datetime2 = '2016-06-01';
+SELECT si.StockItemID,
+       si.StockItemName,
+       SUM(CASE WHEN st.Quantity > 0 THEN st.Quantity ELSE 0 END)  AS Incoming,
+       SUM(CASE WHEN st.Quantity < 0 THEN -st.Quantity ELSE 0 END) AS Outgoing,
+       SUM(st.Quantity)                                             AS NetMovement
+FROM Warehouse.StockItemTransactions st
+         JOIN Warehouse.StockItems si ON si.StockItemID = st.StockItemID
+WHERE st.TransactionOccurredWhen >= @from
+  AND st.TransactionOccurredWhen < @to
+GROUP BY si.StockItemID, si.StockItemName
+ORDER BY si.StockItemName
+----
+
+=== Advanced
+
+// AI: Advanced: selected 0 of 1 reviewed candidates in this original scope.
+// AI: Not selected: WWI_WAREHOUSE_A_01.
+// AI: No pick: the available exercises add peripheral SQL, fragile assumptions, audits, or repeat lessons selected elsewhere.
+
