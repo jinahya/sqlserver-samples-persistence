@@ -29,8 +29,9 @@ resources, marketing, production, purchasing and sales -- would ask, each answer
 stated as a request, followed by its solutions. The `sql` blocks are SQL Server's SQL against the installed database
 (see link:../../../../README.md[README.md]), and are the ones in `src/test/sql-exercises`, a directory per schema; a parameter is a
 T-SQL variable, `@name`, declared with the value the tests use. The `jpaql` blocks are Jakarta Persistence 3.2 query
-language against this module's entities. The `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
-`src/test/java-exercises`, run every one of them, and its Criteria API counterpart, and check the rows the SQL returns.
+language against this module's entities. Each exercise has a class of its own in
+`src/test/java-exercises`, `aw.<schema>.<ID>_PersistenceIT`; a picked one runs the query, and its Criteria API
+counterpart, and checks the rows the SQL returns.
 
 The problems are grouped by the schema whose question they answer, and some of them read the other schemas too. Each
 section goes from Basic through Intermediate to Advanced. An id is `AW_<SCHEMA>_<TIER>_<NN>`, numbered within its
@@ -61,7 +62,7 @@ A few things about the mappings shape the JPQL below:
 
 // AI: Pick AW_HUMANRESOURCES_B_01: A LEFT JOIN ON filter retains departments with no current assignment.
 // AI: Copied from EXERCISES.asciidoc:39, anchor AW_HUMANRESOURCES_B_01; retain the permanent ID when revising.
-// AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=_HumanResources_Exercises_01_Basic_PersistenceIT.AW_HUMANRESOURCES_B_01_Test.
+// AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=aw.humanresources.AW_HUMANRESOURCES_B_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_HUMANRESOURCES_B_01]]
 ==== AW_HUMANRESOURCES_B_01: The current employees of each department
@@ -91,7 +92,7 @@ ORDER BY COUNT(h) DESC, d.name
 
 // AI: Pick AW_HUMANRESOURCES_B_02: Aggregate a database-computed attribute like an ordinary mapped attribute.
 // AI: Copied from EXERCISES.asciidoc:65, anchor AW_HUMANRESOURCES_B_02; retain the permanent ID when revising.
-// AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=_HumanResources_Exercises_01_Basic_PersistenceIT.AW_HUMANRESOURCES_B_02_Test.
+// AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=aw.humanresources.AW_HUMANRESOURCES_B_02_PersistenceIT.
 [[AW_HUMANRESOURCES_B_02]]
 ==== AW_HUMANRESOURCES_B_02: The employees at each level of the organization
 
@@ -122,7 +123,7 @@ ORDER BY e.organizationLevel
 
 // AI: Pick AW_HUMANRESOURCES_I_01: A correlated maximum picks current pay before applying the top-n limit.
 // AI: Copied from EXERCISES.asciidoc:89, anchor AW_HUMANRESOURCES_I_01; retain the permanent ID when revising.
-// AI: Registry: section=HUMANRESOURCES; tier=Intermediate; sql=src/test/sql-exercises/_HumanResources/02_intermediate.sql; test=_HumanResources_Exercises_02_Intermediate_PersistenceIT.AW_HUMANRESOURCES_I_01_Test.
+// AI: Registry: section=HUMANRESOURCES; tier=Intermediate; sql=src/test/sql-exercises/_HumanResources/02_intermediate.sql; test=aw.humanresources.AW_HUMANRESOURCES_I_01_PersistenceIT.
 [[AW_HUMANRESOURCES_I_01]]
 ==== AW_HUMANRESOURCES_I_01: The ten highest current hourly rates
 
@@ -155,7 +156,7 @@ ORDER BY ph.rate DESC, e.businessEntityId
 
 // AI: Pick AW_HUMANRESOURCES_I_03: COUNT DISTINCT over department history avoids repeated assignments.
 // AI: Copied from EXERCISES.asciidoc:139, anchor AW_HUMANRESOURCES_I_03; retain the permanent ID when revising.
-// AI: Registry: section=HUMANRESOURCES; tier=Intermediate; sql=src/test/sql-exercises/_HumanResources/02_intermediate.sql; test=_HumanResources_Exercises_02_Intermediate_PersistenceIT.AW_HUMANRESOURCES_I_03_Test.
+// AI: Registry: section=HUMANRESOURCES; tier=Intermediate; sql=src/test/sql-exercises/_HumanResources/02_intermediate.sql; test=aw.humanresources.AW_HUMANRESOURCES_I_03_PersistenceIT.
 [[AW_HUMANRESOURCES_I_03]]
 ==== AW_HUMANRESOURCES_I_03: The employees who worked in more than one department
 
@@ -188,7 +189,7 @@ ORDER BY p.LastName, p.FirstName, h.BusinessEntityID
 
 // AI: Pick AW_PERSON_B_01: Group by the mapped person-type value.
 // AI: Copied from EXERCISES.asciidoc:194, anchor AW_PERSON_B_01; retain the permanent ID when revising.
-// AI: Registry: section=PERSON; tier=Basic; sql=src/test/sql-exercises/_Person/01_basic.sql; test=_Person_Exercises_01_Basic_PersistenceIT.AW_PERSON_B_01_Test.
+// AI: Registry: section=PERSON; tier=Basic; sql=src/test/sql-exercises/_Person/01_basic.sql; test=aw.person.AW_PERSON_B_01_PersistenceIT.
 [[AW_PERSON_B_01]]
 ==== AW_PERSON_B_01: The persons of each type
 
@@ -213,7 +214,7 @@ ORDER BY COUNT(p) DESC
 
 // AI: Pick AW_PERSON_B_03: Navigate the composite-key contact entity to person and contact-type roles.
 // AI: Copied from EXERCISES.asciidoc:231, anchor AW_PERSON_B_03; retain the permanent ID when revising.
-// AI: Registry: section=PERSON; tier=Basic; sql=src/test/sql-exercises/_Person/01_basic.sql; test=_Person_Exercises_01_Basic_PersistenceIT.AW_PERSON_B_03_Test.
+// AI: Registry: section=PERSON; tier=Basic; sql=src/test/sql-exercises/_Person/01_basic.sql; test=aw.person.AW_PERSON_B_03_PersistenceIT.
 [[AW_PERSON_B_03]]
 ==== AW_PERSON_B_03: An organization's contacts and their roles
 
@@ -237,7 +238,7 @@ ORDER BY p.LastName, p.FirstName, p.BusinessEntityID, t.ContactTypeID
 
 // AI: Pick AW_PERSON_I_01: A multi-hop country aggregation with a deterministic result limit.
 // AI: Copied from EXERCISES.asciidoc:250, anchor AW_PERSON_I_01; retain the permanent ID when revising.
-// AI: Registry: section=PERSON; tier=Intermediate; sql=src/test/sql-exercises/_Person/02_intermediate.sql; test=_Person_Exercises_02_Intermediate_PersistenceIT.AW_PERSON_I_01_Test.
+// AI: Registry: section=PERSON; tier=Intermediate; sql=src/test/sql-exercises/_Person/02_intermediate.sql; test=aw.person.AW_PERSON_I_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PERSON_I_01]]
 ==== AW_PERSON_I_01: The five countries with the most addresses
@@ -283,7 +284,7 @@ ORDER BY COUNT(a) DESC
 
 // AI: Pick AW_PRODUCTION_B_01: Aggregate products through subcategory and category associations.
 // AI: Copied from EXERCISES.asciidoc:312, anchor AW_PRODUCTION_B_01; retain the permanent ID when revising.
-// AI: Registry: section=PRODUCTION; tier=Basic; sql=src/test/sql-exercises/_Production/01_basic.sql; test=_Production_Exercises_01_Basic_PersistenceIT.AW_PRODUCTION_B_01_Test.
+// AI: Registry: section=PRODUCTION; tier=Basic; sql=src/test/sql-exercises/_Production/01_basic.sql; test=aw.production.AW_PRODUCTION_B_01_PersistenceIT.
 [[AW_PRODUCTION_B_01]]
 ==== AW_PRODUCTION_B_01: The products on sale of each category, and their list prices
 
@@ -314,7 +315,7 @@ ORDER BY c.name
 
 // AI: Pick AW_PRODUCTION_B_02: An as-of lookup on a composite-key price-history entity.
 // AI: Copied from EXERCISES.asciidoc:340, anchor AW_PRODUCTION_B_02; retain the permanent ID when revising.
-// AI: Registry: section=PRODUCTION; tier=Basic; sql=src/test/sql-exercises/_Production/01_basic.sql; test=_Production_Exercises_01_Basic_PersistenceIT.AW_PRODUCTION_B_02_Test.
+// AI: Registry: section=PRODUCTION; tier=Basic; sql=src/test/sql-exercises/_Production/01_basic.sql; test=aw.production.AW_PRODUCTION_B_02_PersistenceIT.
 [[AW_PRODUCTION_B_02]]
 ==== AW_PRODUCTION_B_02: The list price of a product on a date
 
@@ -339,7 +340,7 @@ WHERE h.ProductID = @productId
 
 // AI: Pick AW_PRODUCTION_I_01: LEFT JOIN, COALESCE, and HAVING preserve products with no stock.
 // AI: Copied from EXERCISES.asciidoc:359, anchor AW_PRODUCTION_I_01; retain the permanent ID when revising.
-// AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=_Production_Exercises_02_Intermediate_PersistenceIT.AW_PRODUCTION_I_01_Test.
+// AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=aw.production.AW_PRODUCTION_I_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PRODUCTION_I_01]]
 ==== AW_PRODUCTION_I_01: The products whose stock is less than half their safety stock level
@@ -370,7 +371,7 @@ ORDER BY SUM(i.quantity), p.productId
 
 // AI: Pick AW_PRODUCTION_I_02: A top-n aggregate over the work-order scrap-reason association.
 // AI: Copied from EXERCISES.asciidoc:386, anchor AW_PRODUCTION_I_02; retain the permanent ID when revising.
-// AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=_Production_Exercises_02_Intermediate_PersistenceIT.AW_PRODUCTION_I_02_Test.
+// AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=aw.production.AW_PRODUCTION_I_02_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PRODUCTION_I_02]]
 ==== AW_PRODUCTION_I_02: The five scrap reasons with the most scrapped quantity
@@ -413,7 +414,7 @@ ORDER BY SUM(w.scrappedQty) DESC
 
 // AI: Pick AW_PURCHASING_B_01: Navigate a product-vendor link entity to compare offers.
 // AI: Copied from EXERCISES.asciidoc:482, anchor AW_PURCHASING_B_01; retain the permanent ID when revising.
-// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.AW_PURCHASING_B_01_Test.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=aw.purchasing.AW_PURCHASING_B_01_PersistenceIT.
 [[AW_PURCHASING_B_01]]
 ==== AW_PURCHASING_B_01: The vendors of a product, the cheapest first
 
@@ -441,7 +442,7 @@ ORDER BY pv.standardPrice, v.name
 
 // AI: Pick AW_PURCHASING_B_02: Group a status value and sum a computed total.
 // AI: Copied from EXERCISES.asciidoc:507, anchor AW_PURCHASING_B_02; retain the permanent ID when revising.
-// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.AW_PURCHASING_B_02_Test.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=aw.purchasing.AW_PURCHASING_B_02_PersistenceIT.
 [[AW_PURCHASING_B_02]]
 ==== AW_PURCHASING_B_02: The purchase orders of each status
 
@@ -467,7 +468,7 @@ ORDER BY h.Status
 
 // AI: Pick AW_PURCHASING_I_01: Filter order statuses, aggregate by vendor, and paginate.
 // AI: Copied from EXERCISES.asciidoc:526, anchor AW_PURCHASING_I_01; retain the permanent ID when revising.
-// AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=_Purchasing_Exercises_02_Intermediate_PersistenceIT.AW_PURCHASING_I_01_Test.
+// AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=aw.purchasing.AW_PURCHASING_I_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PURCHASING_I_01]]
 ==== AW_PURCHASING_I_01: The five vendors the company spent the most with
@@ -512,7 +513,7 @@ ORDER BY SUM(h.totalDue) DESC
 
 // AI: Pick AW_SALES_B_01: Find an order by its database-computed order number.
 // AI: Copied from EXERCISES.asciidoc:612, anchor AW_SALES_B_01; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.AW_SALES_B_01_Test.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=aw.sales.AW_SALES_B_01_PersistenceIT.
 [[AW_SALES_B_01]]
 ==== AW_SALES_B_01: An order, by its order number
 
@@ -536,7 +537,7 @@ WHERE h.salesOrderNumber = :salesOrderNumber
 
 // AI: Pick AW_SALES_B_03: Count through a composite-key reason link while retaining unused reasons.
 // AI: Copied from EXERCISES.asciidoc:655, anchor AW_SALES_B_03; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.AW_SALES_B_03_Test.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=aw.sales.AW_SALES_B_03_PersistenceIT.
 [[AW_SALES_B_03]]
 ==== AW_SALES_B_03: The orders that gave each sales reason
 
@@ -559,7 +560,7 @@ ORDER BY Orders DESC, r.Name
 
 // AI: Pick AW_SALES_I_01: Aggregate orders by the territory association.
 // AI: Copied from EXERCISES.asciidoc:672, anchor AW_SALES_I_01; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.AW_SALES_I_01_Test.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=aw.sales.AW_SALES_I_01_PersistenceIT.
 [[AW_SALES_I_01]]
 ==== AW_SALES_I_01: The orders of each territory
 
@@ -586,7 +587,7 @@ ORDER BY SUM(h.totalDue) DESC
 
 // AI: Pick AW_SALES_I_02: Reach product through the special-offer/product composite association.
 // AI: Copied from EXERCISES.asciidoc:696, anchor AW_SALES_I_02; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.AW_SALES_I_02_Test.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=aw.sales.AW_SALES_I_02_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_SALES_I_02]]
 ==== AW_SALES_I_02: The five products which brought in the most
@@ -616,7 +617,7 @@ ORDER BY SUM(d.lineTotal) DESC
 
 // AI: Pick AW_SALES_I_05: An optional currency-rate association with COALESCE defaults.
 // AI: Copied from EXERCISES.asciidoc:778, anchor AW_SALES_I_05; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.AW_SALES_I_05_Test.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=aw.sales.AW_SALES_I_05_PersistenceIT.
 [[AW_SALES_I_05]]
 ==== AW_SALES_I_05: The orders and their amounts in each currency
 

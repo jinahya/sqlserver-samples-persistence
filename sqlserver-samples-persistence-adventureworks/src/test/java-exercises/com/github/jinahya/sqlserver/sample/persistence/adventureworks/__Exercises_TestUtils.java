@@ -18,9 +18,9 @@ import static com.github.jinahya.sqlserver.sample.persistence.adventureworks.___
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
 })
-final class __Exercises_TestUtils {
+public final class __Exercises_TestUtils {
 
-    static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
+    public static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
         return applyEntityManagerFactory(
                 emf -> applyEntityManagerInTransactionAndRollback(emf, function)
         );
@@ -30,7 +30,7 @@ final class __Exercises_TestUtils {
      * Returns a row's values as the SQL's output shows them, separated by {@code " | "}; a decimal
      * without its trailing zeros, a {@code null} as {@code NULL}.
      */
-    static String row(final Object... values) {
+    public static String row(final Object... values) {
         return Arrays.stream(values)
                 .map(v -> switch (v) {
                     case null -> "NULL";
@@ -41,7 +41,7 @@ final class __Exercises_TestUtils {
                 .collect(Collectors.joining(" | "));
     }
 
-    static List<String> rows(final List<Object[]> found) {
+    public static List<String> rows(final List<Object[]> found) {
         return found.stream().map(r -> row((Object[]) r)).toList();
     }
 

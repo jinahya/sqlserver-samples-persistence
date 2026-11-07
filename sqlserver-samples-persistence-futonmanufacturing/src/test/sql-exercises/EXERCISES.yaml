@@ -8,8 +8,8 @@
 # carries each id as the anchor and the prefix of the exercise's heading, and the .sql file repeats it in the marker
 # above the statement.
 #
-# `sql` is the file that answers the exercise in SQL; `test` is the integration test, and its nested class, that
-# answers it in JPQL and with the Criteria API. `native-only: true` marks an exercise only SQL can answer; its `test`,
+# `sql` is the file that answers the exercise in SQL; `test` is the integration test that answers it in JPQL and with
+# the Criteria API, a class of its own, `futon.<section>.<ID>_PersistenceIT` in the module's test package. `native-only: true` marks an exercise only SQL can answer; its `test`,
 # if it has one, sends the SQL as a native query.
 
 # ---- dbo
@@ -19,162 +19,162 @@
   tier: Basic
   title: "the direct components of a finished futon"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_01_Test
+  test: futon.dbo.FUTON_DBO_B_01_PersistenceIT
 - id: FUTON_DBO_B_02
   section: "DBO"
   tier: Basic
   title: "the raw materials no item uses"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_02_Test
+  test: futon.dbo.FUTON_DBO_B_02_PersistenceIT
 - id: FUTON_DBO_I_01
   section: "DBO"
   tier: Intermediate
   title: "the raw materials which four or more items use"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_01_Test
+  test: futon.dbo.FUTON_DBO_I_01_PersistenceIT
 - id: FUTON_DBO_I_02
   section: "DBO"
   tier: Intermediate
   title: "the material cost and the margin of each finished futon"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_02_Test
+  test: futon.dbo.FUTON_DBO_I_02_PersistenceIT
 - id: FUTON_DBO_I_07
   section: "DBO"
   tier: Intermediate
   title: "the BOM links that break the planning assumptions"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_07_Test
+  test: futon.dbo.FUTON_DBO_I_07_PersistenceIT
 - id: FUTON_DBO_A_01
   section: "DBO"
   tier: Advanced
   title: "the raw materials ten futons need, through every level"
   sql: src/test/sql-exercises/_dbo/03_advanced.sql
-  test: _Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_01_Test
+  test: futon.dbo.FUTON_DBO_A_01_PersistenceIT
 - id: FUTON_DBO_A_02
   section: "DBO"
   tier: Advanced
   title: "the finished goods which use a raw material, at any level"
   sql: src/test/sql-exercises/_dbo/03_advanced.sql
-  test: _Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_02_Test
+  test: futon.dbo.FUTON_DBO_A_02_PersistenceIT
   native-only: true
 - id: FUTON_DBO_A_05
   section: "DBO"
   tier: Advanced
   title: "the items in a cycle of the bill of materials"
   sql: src/test/sql-exercises/_dbo/03_advanced.sql
-  test: _Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_05_Test
+  test: futon.dbo.FUTON_DBO_A_05_PersistenceIT
 - id: FUTON_DBO_B_03
   section: "DBO"
   tier: Basic
   title: "the finished goods in the main warehouse, the fewest first"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_03_Test
+  test: futon.dbo.FUTON_DBO_B_03_PersistenceIT
 - id: FUTON_DBO_B_06
   section: "DBO"
   tier: Basic
   title: "an item's inventory transactions in a month"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_06_Test
+  test: futon.dbo.FUTON_DBO_B_06_PersistenceIT
 - id: FUTON_DBO_I_03
   section: "DBO"
   tier: Intermediate
   title: "the five stocks nearest to their reorder points"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_03_Test
+  test: futon.dbo.FUTON_DBO_I_03_PersistenceIT
 - id: FUTON_DBO_A_03
   section: "DBO"
   tier: Advanced
   title: "how many of each futon the components in stock can build"
   sql: src/test/sql-exercises/_dbo/03_advanced.sql
-  test: _Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_03_Test
+  test: futon.dbo.FUTON_DBO_A_03_PersistenceIT
 - id: FUTON_DBO_A_06
   section: "DBO"
   tier: Advanced
   title: "the last movement of each item in the main warehouse"
   sql: src/test/sql-exercises/_dbo/03_advanced.sql
-  test: _Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_06_Test
+  test: futon.dbo.FUTON_DBO_A_06_PersistenceIT
 - id: FUTON_DBO_B_04
   section: "DBO"
   tier: Basic
   title: "the items a supplier supplies, its price beside the standard cost"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_04_Test
+  test: futon.dbo.FUTON_DBO_B_04_PersistenceIT
 - id: FUTON_DBO_B_07
   section: "DBO"
   tier: Basic
   title: "the purchase-order lines still to receive"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_07_Test
+  test: futon.dbo.FUTON_DBO_B_07_PersistenceIT
 - id: FUTON_DBO_I_04
   section: "DBO"
   tier: Intermediate
   title: "the share rejected on receipt, for each supplier"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_04_Test
+  test: futon.dbo.FUTON_DBO_I_04_PersistenceIT
 - id: FUTON_DBO_B_05
   section: "DBO"
   tier: Basic
   title: "the orders not delivered yet"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_05_Test
+  test: futon.dbo.FUTON_DBO_B_05_PersistenceIT
 - id: FUTON_DBO_B_08
   section: "DBO"
   tier: Basic
   title: "the accepted quotes not turned into orders"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_08_Test
+  test: futon.dbo.FUTON_DBO_B_08_PersistenceIT
 - id: FUTON_DBO_B_09
   section: "DBO"
   tier: Basic
   title: "the production orders completed late"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_09_Test
+  test: futon.dbo.FUTON_DBO_B_09_PersistenceIT
 - id: FUTON_DBO_B_10
   section: "DBO"
   tier: Basic
   title: "the open production schedule"
   sql: src/test/sql-exercises/_dbo/01_basic.sql
-  test: _Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_10_Test
+  test: futon.dbo.FUTON_DBO_B_10_PersistenceIT
 - id: FUTON_DBO_I_05
   section: "DBO"
   tier: Intermediate
   title: "the orders and the net amount of each sales channel"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_05_Test
+  test: futon.dbo.FUTON_DBO_I_05_PersistenceIT
 - id: FUTON_DBO_I_06
   section: "DBO"
   tier: Intermediate
   title: "the three futons sold the most"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_06_Test
+  test: futon.dbo.FUTON_DBO_I_06_PersistenceIT
 - id: FUTON_DBO_I_08
   section: "DBO"
   tier: Intermediate
   title: "the share of each item returned"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_08_Test
+  test: futon.dbo.FUTON_DBO_I_08_PersistenceIT
 - id: FUTON_DBO_I_09
   section: "DBO"
   tier: Intermediate
   title: "the quantities returned and refunded, by reason and item"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_09_Test
+  test: futon.dbo.FUTON_DBO_I_09_PersistenceIT
 - id: FUTON_DBO_I_10
   section: "DBO"
   tier: Intermediate
   title: "the scrap rate of each work center"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_10_Test
+  test: futon.dbo.FUTON_DBO_I_10_PersistenceIT
 - id: FUTON_DBO_I_11
   section: "DBO"
   tier: Intermediate
   title: "the production materials still to issue"
   sql: src/test/sql-exercises/_dbo/02_intermediate.sql
-  test: _Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_11_Test
+  test: futon.dbo.FUTON_DBO_I_11_PersistenceIT
 - id: FUTON_DBO_A_04
   section: "DBO"
   tier: Advanced
   title: "the running total of each wholesale customer"
   sql: src/test/sql-exercises/_dbo/03_advanced.sql
-  test: _Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_04_Test
+  test: futon.dbo.FUTON_DBO_A_04_PersistenceIT
   native-only: true

@@ -31,9 +31,8 @@ link:../../../../README.md[README.md]); a parameter is a local variable, `DECLAR
 Jakarta Persistence 3.2 query language against this module's entities, with named parameters of the same names.
 
 The SQL is in `src/test/sql-exercises/_<Schema>/<NN>_<level>.sql`, a file per schema and level. The query language and Criteria API
-solutions are the nested classes of the `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
-`src/test/java-exercises`, a nested class per exercise, which assert
-the rows the SQL returns.
+solutions are in `src/test/java-exercises`, a class per exercise, `wwi.<schema>.<ID>_PersistenceIT`; a picked one
+asserts the rows the SQL returns.
 
 The problems are grouped by the schema of the table they are about; a problem which joins another schema's tables
 stays with the one it asks about. Each section goes from Basic (`B`) through Intermediate (`I`) to Advanced (`A`). An
@@ -62,7 +61,7 @@ A few things about the mappings shape the solutions:
 
 // AI: Pick WWI_APPLICATION_B_01: A predicate on the mapped salesperson flag.
 // AI: Copied from EXERCISES.asciidoc:39, anchor WWI_APPLICATION_B_01; retain the permanent ID when revising.
-// AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=_Application_Exercises_01_Basic_PersistenceIT.WWI_APPLICATION_B_01_Test.
+// AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=wwi.application.WWI_APPLICATION_B_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_APPLICATION_B_01]]
 ==== WWI_APPLICATION_B_01: The salespeople, by name
@@ -89,7 +88,7 @@ ORDER BY p.fullName
 
 // AI: Pick WWI_APPLICATION_B_03: Navigate city, state/province, and country associations.
 // AI: Copied from EXERCISES.asciidoc:79, anchor WWI_APPLICATION_B_03; retain the permanent ID when revising.
-// AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=_Application_Exercises_01_Basic_PersistenceIT.WWI_APPLICATION_B_03_Test.
+// AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=wwi.application.WWI_APPLICATION_B_03_PersistenceIT.
 [[WWI_APPLICATION_B_03]]
 ==== WWI_APPLICATION_B_03: The cities of a country's states and provinces
 
@@ -114,7 +113,7 @@ ORDER BY sp.StateProvinceName, c.CityName, c.CityID
 
 // AI: Pick WWI_APPLICATION_I_01: A simple geographic GROUP BY over mapped attributes.
 // AI: Copied from EXERCISES.asciidoc:98, anchor WWI_APPLICATION_I_01; retain the permanent ID when revising.
-// AI: Registry: section=APPLICATION; tier=Intermediate; sql=src/test/sql-exercises/_Application/02_intermediate.sql; test=_Application_Exercises_02_Intermediate_PersistenceIT.WWI_APPLICATION_I_01_Test.
+// AI: Registry: section=APPLICATION; tier=Intermediate; sql=src/test/sql-exercises/_Application/02_intermediate.sql; test=wwi.application.WWI_APPLICATION_I_01_PersistenceIT.
 [[WWI_APPLICATION_I_01]]
 ==== WWI_APPLICATION_I_01: The countries and the population of each continent
 
@@ -153,7 +152,7 @@ ORDER BY population DESC
 
 // AI: Pick WWI_PURCHASING_B_01: Navigate the supplier-category association.
 // AI: Copied from EXERCISES.asciidoc:164, anchor WWI_PURCHASING_B_01; retain the permanent ID when revising.
-// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.WWI_PURCHASING_B_01_Test.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=wwi.purchasing.WWI_PURCHASING_B_01_PersistenceIT.
 [[WWI_PURCHASING_B_01]]
 ==== WWI_PURCHASING_B_01: The suppliers, by category and then by name
 
@@ -177,7 +176,7 @@ ORDER BY sc.supplierCategoryName, s.supplierName
 
 // AI: Pick WWI_PURCHASING_B_02: Filter unfinalized transactions and aggregate outstanding balances.
 // AI: Copied from EXERCISES.asciidoc:185, anchor WWI_PURCHASING_B_02; retain the permanent ID when revising.
-// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=_Purchasing_Exercises_01_Basic_PersistenceIT.WWI_PURCHASING_B_02_Test.
+// AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=wwi.purchasing.WWI_PURCHASING_B_02_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_PURCHASING_B_02]]
 ==== WWI_PURCHASING_B_02: What is still owed to each supplier
@@ -215,7 +214,7 @@ ORDER BY outstanding DESC
 
 // AI: Pick WWI_PURCHASING_I_01: COUNT DISTINCT prevents order-line fan-out from inflating order counts.
 // AI: Copied from EXERCISES.asciidoc:215, anchor WWI_PURCHASING_I_01; retain the permanent ID when revising.
-// AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=_Purchasing_Exercises_02_Intermediate_PersistenceIT.WWI_PURCHASING_I_01_Test.
+// AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=wwi.purchasing.WWI_PURCHASING_I_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_PURCHASING_I_01]]
 ==== WWI_PURCHASING_I_01: The purchase orders and the amount ordered from each supplier in a year
@@ -269,7 +268,7 @@ ORDER BY amount DESC
 
 // AI: Pick WWI_SALES_B_01: Retain optional buying-group membership and explicitly include the no-group category.
 // AI: Copied from EXERCISES.asciidoc:326, anchor WWI_SALES_B_01; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.WWI_SALES_B_01_Test.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=wwi.sales.WWI_SALES_B_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_SALES_B_01]]
 ==== WWI_SALES_B_01: The customers of each buying group
@@ -302,7 +301,7 @@ ORDER BY customers DESC, bg.buyingGroupName
 
 // AI: Pick WWI_SALES_B_02: A self-referencing billing-customer association.
 // AI: Copied from EXERCISES.asciidoc:355, anchor WWI_SALES_B_02; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.WWI_SALES_B_02_Test.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=wwi.sales.WWI_SALES_B_02_PersistenceIT.
 [[WWI_SALES_B_02]]
 ==== WWI_SALES_B_02: The customers billed for others
 
@@ -331,7 +330,7 @@ ORDER BY billed DESC, b.customerId
 
 // AI: Pick WWI_SALES_B_03: Filter and page the mapped Website.Customers reporting view.
 // AI: Copied from EXERCISES.asciidoc:381, anchor WWI_SALES_B_03; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=_Sales_Exercises_01_Basic_PersistenceIT.WWI_SALES_B_03_Test.
+// AI: Registry: section=SALES; tier=Basic; sql=src/test/sql-exercises/_Sales/01_basic.sql; test=wwi.sales.WWI_SALES_B_03_PersistenceIT.
 [[WWI_SALES_B_03]]
 ==== WWI_SALES_B_03: The first five customers of no buying group, from the Website.Customers view
 
@@ -362,7 +361,7 @@ ORDER BY c.customerName
 
 // AI: Pick WWI_SALES_I_01: A bounded revenue ranking across invoice and stock-item associations.
 // AI: Copied from EXERCISES.asciidoc:405, anchor WWI_SALES_I_01; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.WWI_SALES_I_01_Test.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=wwi.sales.WWI_SALES_I_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_SALES_I_01]]
 ==== WWI_SALES_I_01: The five stock items which earned the most in a year
@@ -398,7 +397,7 @@ ORDER BY revenue DESC
 
 // AI: Pick WWI_SALES_I_05: Several optional associations remain visible through LEFT JOIN.
 // AI: Copied from EXERCISES.asciidoc:520, anchor WWI_SALES_I_05; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.WWI_SALES_I_05_Test.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=wwi.sales.WWI_SALES_I_05_PersistenceIT.
 [[WWI_SALES_I_05]]
 ==== WWI_SALES_I_05: The special deals in force on a date
 
@@ -423,7 +422,7 @@ ORDER BY d.SpecialDealID
 
 // AI: Pick WWI_SALES_I_07: Group outstanding balances and guard division by the credit limit.
 // AI: Copied from EXERCISES.asciidoc:567, anchor WWI_SALES_I_07; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=_Sales_Exercises_02_Intermediate_PersistenceIT.WWI_SALES_I_07_Test.
+// AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=wwi.sales.WWI_SALES_I_07_PersistenceIT.
 [[WWI_SALES_I_07]]
 ==== WWI_SALES_I_07: The ten customers using the most of their credit limit
 
@@ -451,7 +450,7 @@ ORDER BY PercentUsed DESC, c.CustomerID
 
 // AI: Pick WWI_SALES_A_02: A deliberate native-query example: FOR SYSTEM_TIME belongs to this chapter's temporal-table lesson.
 // AI: Copied from EXERCISES.asciidoc:613, anchor WWI_SALES_A_02; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Advanced; sql=src/test/sql-exercises/_Sales/03_advanced.sql; test=_Sales_Exercises_03_Advanced_PersistenceIT.WWI_SALES_A_02_Test.
+// AI: Registry: section=SALES; tier=Advanced; sql=src/test/sql-exercises/_Sales/03_advanced.sql; test=wwi.sales.WWI_SALES_A_02_PersistenceIT.
 // AI: Native-only in the registry: deliberate chapter-specific exception; explain the native-query/result-mapping boundary.
 // AI: Retain the historical AS OF time and the explicit native-query path; a current entity read does not retrieve its historical version.
 [[WWI_SALES_A_02]]
@@ -472,7 +471,7 @@ WHERE NOT EXISTS (SELECT h.CreditLimit
 ORDER BY c.CustomerID
 ----
 
-SQL only. `_Sales_Exercises_03_Advanced_PersistenceIT` sends it as a native query, with the moment as a
+SQL only. `WWI_SALES_A_02_PersistenceIT` sends it as a native query, with the moment as a
 positional parameter:
 
 [source,java]
@@ -489,7 +488,7 @@ ORDER BY c.CustomerID""")
 
 // AI: Pick WWI_SALES_A_03: Combine a self-referencing backorder association, NOT EXISTS, and pagination.
 // AI: Copied from EXERCISES.asciidoc:646, anchor WWI_SALES_A_03; retain the permanent ID when revising.
-// AI: Registry: section=SALES; tier=Advanced; sql=src/test/sql-exercises/_Sales/03_advanced.sql; test=_Sales_Exercises_03_Advanced_PersistenceIT.WWI_SALES_A_03_Test.
+// AI: Registry: section=SALES; tier=Advanced; sql=src/test/sql-exercises/_Sales/03_advanced.sql; test=wwi.sales.WWI_SALES_A_03_PersistenceIT.
 [[WWI_SALES_A_03]]
 ==== WWI_SALES_A_03: The five oldest backorders never invoiced, and the orders which backordered them
 
@@ -527,7 +526,7 @@ ORDER BY o.orderDate, o.orderId
 
 // AI: Pick WWI_WAREHOUSE_B_01: Compare stock-holding attributes through the item association.
 // AI: Copied from EXERCISES.asciidoc:679, anchor WWI_WAREHOUSE_B_01; retain the permanent ID when revising.
-// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=_Warehouse_Exercises_01_Basic_PersistenceIT.WWI_WAREHOUSE_B_01_Test.
+// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=wwi.warehouse.WWI_WAREHOUSE_B_01_PersistenceIT.
 [[WWI_WAREHOUSE_B_01]]
 ==== WWI_WAREHOUSE_B_01: The stock items below their reorder level
 
@@ -553,7 +552,7 @@ ORDER BY si.stockItemName
 
 // AI: Pick WWI_WAREHOUSE_B_02: A boolean predicate with a supplier association.
 // AI: Copied from EXERCISES.asciidoc:702, anchor WWI_WAREHOUSE_B_02; retain the permanent ID when revising.
-// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=_Warehouse_Exercises_01_Basic_PersistenceIT.WWI_WAREHOUSE_B_02_Test.
+// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=wwi.warehouse.WWI_WAREHOUSE_B_02_PersistenceIT.
 [[WWI_WAREHOUSE_B_02]]
 ==== WWI_WAREHOUSE_B_02: The chiller stock items, by name
 
@@ -578,7 +577,7 @@ ORDER BY si.stockItemName
 
 // AI: Pick WWI_WAREHOUSE_B_03: Read the Website view and page by timestamp plus identifier.
 // AI: Copied from EXERCISES.asciidoc:724, anchor WWI_WAREHOUSE_B_03; retain the permanent ID when revising.
-// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=_Warehouse_Exercises_01_Basic_PersistenceIT.WWI_WAREHOUSE_B_03_Test.
+// AI: Registry: section=WAREHOUSE; tier=Basic; sql=src/test/sql-exercises/_Warehouse/01_basic.sql; test=wwi.warehouse.WWI_WAREHOUSE_B_03_PersistenceIT.
 [[WWI_WAREHOUSE_B_03]]
 ==== WWI_WAREHOUSE_B_03: The latest vehicle temperature readings
 
@@ -598,7 +597,7 @@ ORDER BY RecordedWhen DESC, VehicleTemperatureID DESC
 
 // AI: Pick WWI_WAREHOUSE_I_01: An outer join counts a stock-group link entity and retains zero.
 // AI: Copied from EXERCISES.asciidoc:739, anchor WWI_WAREHOUSE_I_01; retain the permanent ID when revising.
-// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=_Warehouse_Exercises_02_Intermediate_PersistenceIT.WWI_WAREHOUSE_I_01_Test.
+// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=wwi.warehouse.WWI_WAREHOUSE_I_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_WAREHOUSE_I_01]]
 ==== WWI_WAREHOUSE_I_01: The stock items of each stock group
@@ -627,7 +626,7 @@ ORDER BY stockItems DESC, sg.stockGroupName
 
 // AI: Pick WWI_WAREHOUSE_I_03: A half-open transaction interval with a transaction-type association.
 // AI: Copied from EXERCISES.asciidoc:780, anchor WWI_WAREHOUSE_I_03; retain the permanent ID when revising.
-// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=_Warehouse_Exercises_02_Intermediate_PersistenceIT.WWI_WAREHOUSE_I_03_Test.
+// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=wwi.warehouse.WWI_WAREHOUSE_I_03_PersistenceIT.
 [[WWI_WAREHOUSE_I_03]]
 ==== WWI_WAREHOUSE_I_03: The movements of a stock item in a year, by transaction type
 
@@ -648,7 +647,7 @@ ORDER BY tt.TransactionTypeName
 
 // AI: Pick WWI_WAREHOUSE_I_04: Conditional aggregation distinguishes incoming and outgoing quantities.
 // AI: Copied from EXERCISES.asciidoc:799, anchor WWI_WAREHOUSE_I_04; retain the permanent ID when revising.
-// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=_Warehouse_Exercises_02_Intermediate_PersistenceIT.WWI_WAREHOUSE_I_04_Test.
+// AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=wwi.warehouse.WWI_WAREHOUSE_I_04_PersistenceIT.
 [[WWI_WAREHOUSE_I_04]]
 ==== WWI_WAREHOUSE_I_04: Incoming and outgoing stock movements
 

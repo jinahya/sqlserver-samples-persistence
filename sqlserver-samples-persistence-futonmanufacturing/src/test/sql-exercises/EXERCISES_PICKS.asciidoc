@@ -29,9 +29,9 @@ maker would ask, each answered with a query. Every problem is stated as a reques
 blocks are Transact-SQL against the installed database (see link:../../../../README.md[README.md]), with the values written
 in; the files are in `src/test/sql-exercises/_dbo`, a file per level, each exercise under a ruler that carries its id.
 The `jpaql` blocks are Jakarta Persistence 3.2 query language against this module's entities, with named
-parameters. The `_Dbo_Exercises_<NN>_<Level>_PersistenceIT` classes, in `src/test/java-exercises`, answer each with the query language and with the Criteria
-API, as a nested class named after the id, or with a native query where the query language cannot, and check the
-rows the SQL gives.
+parameters. Each exercise has a class of its own in `src/test/java-exercises`, `futon.dbo.<ID>_PersistenceIT`; a picked
+one answers it with the query language and with the Criteria API, or with a native query where the query language
+cannot, and checks the rows the SQL gives.
 
 An id is `FUTON_DBO_<TIER>_<NN>`, after `dbo`, the only schema; the tier is B (Basic), I (Intermediate) or A
 (Advanced), and the number is within that tier. `EXERCISES.yaml` registers every id; an id is never reused or
@@ -47,7 +47,7 @@ Reads `BillOfMaterials`, `Items`, `ItemType`, `UnitOfMeasure`, `Inventory`, `vw_
 
 // AI: Pick FUTON_DBO_B_01: Navigate the parent and component roles of a bill-of-materials link.
 // AI: Copied from EXERCISES.asciidoc:26, anchor FUTON_DBO_B_01; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_01_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_01_PersistenceIT.
 [[FUTON_DBO_B_01]]
 === FUTON_DBO_B_01: the direct components of a finished futon
 
@@ -88,7 +88,7 @@ ORDER BY b.componentItem.itemCode
 
 // AI: Pick FUTON_DBO_B_02: A practical NOT EXISTS query over component usage.
 // AI: Copied from EXERCISES.asciidoc:64, anchor FUTON_DBO_B_02; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_02_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_02_PersistenceIT.
 [[FUTON_DBO_B_02]]
 === FUTON_DBO_B_02: the raw materials no item uses
 
@@ -138,7 +138,7 @@ ORDER BY i.itemCode
 
 // AI: Pick FUTON_DBO_I_01: Group component associations and apply a HAVING usage threshold.
 // AI: Copied from EXERCISES.asciidoc:108, anchor FUTON_DBO_I_01; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_01_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_01_PersistenceIT.
 [[FUTON_DBO_I_01]]
 === FUTON_DBO_I_01: the raw materials which four or more items use
 
@@ -188,7 +188,7 @@ ORDER BY parents DESC, c.itemCode
 
 // AI: Pick FUTON_DBO_I_02: Compute cost across component links while retaining finished goods with no links.
 // AI: Copied from EXERCISES.asciidoc:155, anchor FUTON_DBO_I_02; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_02_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_02_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_I_02]]
 === FUTON_DBO_I_02: the material cost and the margin of each finished futon
@@ -246,7 +246,7 @@ ORDER BY p.itemCode
 
 // AI: Pick FUTON_DBO_A_01: A deliberate native-query example: multilevel BOM recursion is a chapter topic.
 // AI: Copied from EXERCISES.asciidoc:245, anchor FUTON_DBO_A_01; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Advanced; sql=src/test/sql-exercises/_dbo/03_advanced.sql; test=_Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_01_Test.
+// AI: Registry: section=DBO; tier=Advanced; sql=src/test/sql-exercises/_dbo/03_advanced.sql; test=futon.dbo.FUTON_DBO_A_01_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 // AI: Use native SQL or an already-mapped recursive view; JPQL/Criteria do not express recursive CTEs. Check units, scrap propagation, and cycle handling.
 [[FUTON_DBO_A_01]]
@@ -321,7 +321,7 @@ Reads `Inventory`, `Items`, `ItemType`, `Warehouse`, `BillOfMaterials`.
 
 // AI: Pick FUTON_DBO_B_03: Filter inventory through warehouse and item-type associations.
 // AI: Copied from EXERCISES.asciidoc:415, anchor FUTON_DBO_B_03; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_03_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_03_PersistenceIT.
 [[FUTON_DBO_B_03]]
 === FUTON_DBO_B_03: the finished goods in the main warehouse, the fewest first
 
@@ -365,7 +365,7 @@ ORDER BY v.quantityAvailable, v.item.itemCode
 
 // AI: Pick FUTON_DBO_B_06: A half-open transaction timestamp interval with several lookup associations.
 // AI: Copied from EXERCISES.asciidoc:456, anchor FUTON_DBO_B_06; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_06_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_06_PersistenceIT.
 [[FUTON_DBO_B_06]]
 === FUTON_DBO_B_06: an item's inventory transactions in a month
 
@@ -397,7 +397,7 @@ no rows.
 
 // AI: Pick FUTON_DBO_I_03: A bounded top-n stock query with a guarded ratio.
 // AI: Copied from EXERCISES.asciidoc:484, anchor FUTON_DBO_I_03; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_03_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_03_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_I_03]]
 === FUTON_DBO_I_03: the five stocks nearest to their reorder points
@@ -448,7 +448,7 @@ ORDER BY ratio, i.itemCode
 
 // AI: Pick FUTON_DBO_A_03: Multiple optional joins and a subquery compute buildable quantities.
 // AI: Copied from EXERCISES.asciidoc:528, anchor FUTON_DBO_A_03; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Advanced; sql=src/test/sql-exercises/_dbo/03_advanced.sql; test=_Dbo_Exercises_03_Advanced_PersistenceIT.FUTON_DBO_A_03_Test.
+// AI: Registry: section=DBO; tier=Advanced; sql=src/test/sql-exercises/_dbo/03_advanced.sql; test=futon.dbo.FUTON_DBO_A_03_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_A_03]]
 === FUTON_DBO_A_03: how many of each futon the components in stock can build
@@ -511,7 +511,7 @@ Reads `Supplier`, `SupplierItem`, `Items`, `PurchaseOrder`, `QualityInspection`.
 
 // AI: Pick FUTON_DBO_B_04: Filter supplier offers and navigate to item cost.
 // AI: Copied from EXERCISES.asciidoc:620, anchor FUTON_DBO_B_04; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_04_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_04_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_B_04]]
 === FUTON_DBO_B_04: the items a supplier supplies, its price beside the standard cost
@@ -554,7 +554,7 @@ ORDER BY si.item.itemCode
 
 // AI: Pick FUTON_DBO_B_07: Optional received quantities and explicit NULL ordering in an open-order list.
 // AI: Copied from EXERCISES.asciidoc:659, anchor FUTON_DBO_B_07; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_07_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_07_PersistenceIT.
 [[FUTON_DBO_B_07]]
 === FUTON_DBO_B_07: the purchase-order lines still to receive
 
@@ -586,7 +586,7 @@ no rows.
 
 // AI: Pick FUTON_DBO_I_04: A non-FK entity join matches inspection references; explain the missing constraint.
 // AI: Copied from EXERCISES.asciidoc:687, anchor FUTON_DBO_I_04; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_04_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_04_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_I_04]]
 === FUTON_DBO_I_04: the share rejected on receipt, for each supplier
@@ -647,7 +647,7 @@ Reads `SalesOrder`, `SalesOrderDetail`, `Customer`, `SalesChannel`.
 
 // AI: Pick FUTON_DBO_B_05: A clear status-filtered order list with a customer association.
 // AI: Copied from EXERCISES.asciidoc:742, anchor FUTON_DBO_B_05; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_05_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_05_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_B_05]]
 === FUTON_DBO_B_05: the orders not delivered yet
@@ -689,7 +689,7 @@ ORDER BY so.requestedDeliveryDate, so.orderNumber
 
 // AI: Pick FUTON_DBO_B_08: A nullable conversion association distinguishes accepted quotes without orders.
 // AI: Copied from EXERCISES.asciidoc:780, anchor FUTON_DBO_B_08; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_08_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_08_PersistenceIT.
 [[FUTON_DBO_B_08]]
 === FUTON_DBO_B_08: the accepted quotes not turned into orders
 
@@ -718,7 +718,7 @@ no rows.
 
 // AI: Pick FUTON_DBO_I_05: Keep every sales channel with a filtered LEFT JOIN and COALESCE.
 // AI: Copied from EXERCISES.asciidoc:804, anchor FUTON_DBO_I_05; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_05_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_05_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_I_05]]
 === FUTON_DBO_I_05: the orders and the net amount of each sales channel
@@ -761,7 +761,7 @@ ORDER BY netAmount DESC
 
 // AI: Pick FUTON_DBO_I_06: A top-n sales aggregate over order lines and items.
 // AI: Copied from EXERCISES.asciidoc:843, anchor FUTON_DBO_I_06; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_06_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_06_PersistenceIT.
 // AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[FUTON_DBO_I_06]]
 === FUTON_DBO_I_06: the three futons sold the most
@@ -805,7 +805,7 @@ ORDER BY quantity DESC, i.itemCode
 
 // AI: Pick FUTON_DBO_I_09: Join return reasons and items and distinguish sales-line count from return count.
 // AI: Copied from EXERCISES.asciidoc:924, anchor FUTON_DBO_I_09; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_09_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_09_PersistenceIT.
 [[FUTON_DBO_I_09]]
 === FUTON_DBO_I_09: the quantities returned and refunded, by reason and item
 
@@ -848,7 +848,7 @@ The production orders, their materials and their completions, by work center.
 
 // AI: Pick FUTON_DBO_B_09: An optional work-center join and a comparison of planned and actual dates.
 // AI: Copied from EXERCISES.asciidoc:1009, anchor FUTON_DBO_B_09; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_09_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_09_PersistenceIT.
 [[FUTON_DBO_B_09]]
 === FUTON_DBO_B_09: the production orders completed late
 
@@ -875,7 +875,7 @@ no rows.
 
 // AI: Pick FUTON_DBO_B_10: An open schedule with explicit nullable date and priority ordering.
 // AI: Copied from EXERCISES.asciidoc:1034, anchor FUTON_DBO_B_10; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=_Dbo_Exercises_01_Basic_PersistenceIT.FUTON_DBO_B_10_Test.
+// AI: Registry: section=DBO; tier=Basic; sql=src/test/sql-exercises/_dbo/01_basic.sql; test=futon.dbo.FUTON_DBO_B_10_PersistenceIT.
 [[FUTON_DBO_B_10]]
 === FUTON_DBO_B_10: the open production schedule
 
@@ -906,7 +906,7 @@ no rows.
 
 // AI: Pick FUTON_DBO_I_10: A fallback work-center relationship and NULLIF in an aggregate ratio.
 // AI: Copied from EXERCISES.asciidoc:1060, anchor FUTON_DBO_I_10; retain the permanent ID when revising.
-// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=_Dbo_Exercises_02_Intermediate_PersistenceIT.FUTON_DBO_I_10_Test.
+// AI: Registry: section=DBO; tier=Intermediate; sql=src/test/sql-exercises/_dbo/02_intermediate.sql; test=futon.dbo.FUTON_DBO_I_10_PersistenceIT.
 [[FUTON_DBO_I_10]]
 === FUTON_DBO_I_10: the scrap rate of each work center
 

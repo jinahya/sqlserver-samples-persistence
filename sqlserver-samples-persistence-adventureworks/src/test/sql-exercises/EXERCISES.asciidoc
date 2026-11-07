@@ -9,8 +9,9 @@ resources, marketing, production, purchasing and sales -- would ask, each answer
 stated as a request, followed by its solutions. The `sql` blocks are SQL Server's SQL against the installed database
 (see link:../../../../README.md[README.md]), and are the ones in `src/test/sql-exercises`, a directory per schema; a parameter is a
 T-SQL variable, `@name`, declared with the value the tests use. The `jpaql` blocks are Jakarta Persistence 3.2 query
-language against this module's entities. The `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
-`src/test/java-exercises`, run every one of them, and its Criteria API counterpart, and check the rows the SQL returns.
+language against this module's entities. Each exercise has a class of its own in
+`src/test/java-exercises`, `aw.<schema>.<ID>_PersistenceIT`; a picked one runs the query, and its Criteria API
+counterpart, and checks the rows the SQL returns.
 
 The problems are grouped by the schema whose question they answer, and some of them read the other schemas too. Each
 section goes from Basic through Intermediate to Advanced. An id is `AW_<SCHEMA>_<TIER>_<NN>`, numbered within its
@@ -134,7 +135,7 @@ ORDER BY e.OrganizationNode
 ;
 ----
 
-SQL only: answered with a native query, the SQL above, in `_HumanResources_Exercises_02_Intermediate_PersistenceIT`.
+SQL only: answered with a native query, the SQL above, in `AW_HUMANRESOURCES_I_02_PersistenceIT`.
 
 [[AW_HUMANRESOURCES_I_03]]
 ==== AW_HUMANRESOURCES_I_03: The employees who worked in more than one department
@@ -185,7 +186,7 @@ ORDER BY m.OrganizationLevel
 ;
 ----
 
-SQL only: answered with a native query, the SQL above, in `_HumanResources_Exercises_03_Advanced_PersistenceIT`.
+SQL only: answered with a native query, the SQL above, in `AW_HUMANRESOURCES_A_01_PersistenceIT`.
 
 == Person
 
@@ -453,7 +454,7 @@ FROM Parts p
 ORDER BY p.BomLevel, p.AssemblyID, p.ComponentID
 ----
 
-SQL only: answered with a native query, the SQL above, in `_Production_Exercises_03_Advanced_PersistenceIT`.
+SQL only: answered with a native query, the SQL above, in `AW_PRODUCTION_A_01_PersistenceIT`.
 
 [[AW_PRODUCTION_A_02]]
 ==== AW_PRODUCTION_A_02: The documents under a folder, and the products of each
@@ -473,7 +474,7 @@ ORDER BY d.DocumentNode
 ;
 ----
 
-SQL only: answered with a native query, the SQL above, in `_Production_Exercises_03_Advanced_PersistenceIT`.
+SQL only: answered with a native query, the SQL above, in `AW_PRODUCTION_A_02_PersistenceIT`.
 
 == Purchasing
 
@@ -819,7 +820,7 @@ FROM (SELECT sp.BusinessEntityID AS SalesPersonID, p.LastName, h.SubTotal, YEAR(
 ORDER BY COALESCE(pvt.[2025], 0) DESC, pvt.SalesPersonID
 ----
 
-SQL only: answered with a native query, the SQL above, in `_Sales_Exercises_03_Advanced_PersistenceIT`.
+SQL only: answered with a native query, the SQL above, in `AW_SALES_A_01_PersistenceIT`.
 
 [[AW_SALES_A_02]]
 ==== AW_SALES_A_02: The sales persons ranked within the group of their territory
@@ -837,5 +838,5 @@ ORDER BY t.[Group], GroupRank
 ;
 ----
 
-SQL only: answered with a native query, the SQL above, in `_Sales_Exercises_03_Advanced_PersistenceIT`.
+SQL only: answered with a native query, the SQL above, in `AW_SALES_A_02_PersistenceIT`.
 

@@ -9,9 +9,9 @@ maker would ask, each answered with a query. Every problem is stated as a reques
 blocks are Transact-SQL against the installed database (see link:../../../../README.md[README.md]), with the values written
 in; the files are in `src/test/sql-exercises/_dbo`, a file per level, each exercise under a ruler that carries its id.
 The `jpaql` blocks are Jakarta Persistence 3.2 query language against this module's entities, with named
-parameters. The `_Dbo_Exercises_<NN>_<Level>_PersistenceIT` classes, in `src/test/java-exercises`, answer each with the query language and with the Criteria
-API, as a nested class named after the id, or with a native query where the query language cannot, and check the
-rows the SQL gives.
+parameters. Each exercise has a class of its own in `src/test/java-exercises`, `futon.dbo.<ID>_PersistenceIT`; a picked
+one answers it with the query language and with the Criteria API, or with a native query where the query language
+cannot, and checks the rows the SQL gives.
 
 An id is `FUTON_DBO_<TIER>_<NN>`, after `dbo`, the only schema; the tier is B (Basic), I (Intermediate) or A
 (Advanced), and the number is within that tier. `EXERCISES.yaml` registers every id; an id is never reused or
@@ -354,7 +354,7 @@ FG-FUT-002  2      20.0000   RM-FILL-001 used in COMP-MAT-002 > FG-FUT-002
 SQL only: a recursive common table expression. The view `vw_WhereUsed` gives the same rows; the test reads it with the
 native query below and builds a `WhereUsedView`, a keyless class, from each row through its public constructor.
 
-.The native query of `FUTON_DBO_A_02_Test.nativeQuery`
+.The native query of `FUTON_DBO_A_02_PersistenceIT.nativeQuery`
 [source,sql]
 ----
 SELECT ComponentItemID, ComponentItemCode, ComponentItemName,
@@ -986,7 +986,7 @@ CUST-008      SO-2024-1008  2024-10-12  5099.76    5099.76
 
 SQL only: the query language has no window function. The test runs the SQL as a native query.
 
-.The native query of `FUTON_DBO_A_04_Test.nativeQuery`
+.The native query of `FUTON_DBO_A_04_PersistenceIT.nativeQuery`
 [source,sql]
 ----
 SELECT c.CustomerCode,

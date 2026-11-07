@@ -16,15 +16,15 @@ import static com.github.jinahya.sqlserver.sample.persistence.futonmanufacturing
 @SuppressWarnings({
         "java:S101" // Class names should comply with a naming convention
 })
-final class __Exercises_TestUtils {
+public final class __Exercises_TestUtils {
 
-    static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
+    public static <R> R apply(final Function<? super EntityManager, ? extends R> function) {
         return applyEntityManagerFactory(
                 emf -> applyEntityManagerInTransactionAndRollback(emf, function)
         );
     }
 
-    static BigDecimal scale4(final Object value) {
+    public static BigDecimal scale4(final Object value) {
         return new BigDecimal(String.valueOf(value)).setScale(4, RoundingMode.HALF_UP);
     }
 

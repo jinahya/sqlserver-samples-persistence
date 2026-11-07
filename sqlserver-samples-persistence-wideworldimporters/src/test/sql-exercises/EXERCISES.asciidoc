@@ -11,9 +11,8 @@ link:../../../../README.md[README.md]); a parameter is a local variable, `DECLAR
 Jakarta Persistence 3.2 query language against this module's entities, with named parameters of the same names.
 
 The SQL is in `src/test/sql-exercises/_<Schema>/<NN>_<level>.sql`, a file per schema and level. The query language and Criteria API
-solutions are the nested classes of the `_<Schema>_Exercises_<NN>_<Level>_PersistenceIT` classes, in
-`src/test/java-exercises`, a nested class per exercise, which assert
-the rows the SQL returns.
+solutions are in `src/test/java-exercises`, a class per exercise, `wwi.<schema>.<ID>_PersistenceIT`; a picked one
+asserts the rows the SQL returns.
 
 The problems are grouped by the schema of the table they are about; a problem which joins another schema's tables
 stays with the one it asks about. Each section goes from Basic (`B`) through Intermediate (`I`) to Advanced (`A`). An
@@ -628,7 +627,7 @@ WHERE NOT EXISTS (SELECT h.CreditLimit
 ORDER BY c.CustomerID
 ----
 
-SQL only. `_Sales_Exercises_03_Advanced_PersistenceIT` sends it as a native query, with the moment as a
+SQL only. `WWI_SALES_A_02_PersistenceIT` sends it as a native query, with the moment as a
 positional parameter:
 
 [source,java]
