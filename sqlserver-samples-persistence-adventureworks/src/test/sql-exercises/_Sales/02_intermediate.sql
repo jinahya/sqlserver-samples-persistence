@@ -30,13 +30,10 @@
 -- ------------------------------------------------------------------------------------------------------- AW_SALES_I_01
 -- The sales director compares the territories. Show, for each territory, its group, how many orders it had and how
 -- much they came to, the largest first.
-SELECT t.Name, t.[
-Group], COUNT (*) AS Orders, SUM (h.TotalDue) AS TotalDue
+SELECT t.Name, t.[Group], COUNT(*) AS Orders, SUM(h.TotalDue) AS TotalDue
 FROM Sales.SalesOrderHeader h
-    JOIN Sales.SalesTerritory t
-ON t.TerritoryID = h.TerritoryID
-GROUP BY t.TerritoryID, t.Name, t.[
-Group]
+         JOIN Sales.SalesTerritory t ON t.TerritoryID = h.TerritoryID
+GROUP BY t.TerritoryID, t.Name, t.[Group]
 ORDER BY TotalDue DESC
 ;
 GO

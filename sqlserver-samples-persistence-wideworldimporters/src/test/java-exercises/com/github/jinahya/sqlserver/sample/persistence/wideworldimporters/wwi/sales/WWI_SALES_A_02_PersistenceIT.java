@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.__Exercises_TestUtils.applyInTransactionAndRollback;
 import static com.github.jinahya.sqlserver.sample.persistence.wideworldimporters.__Exercises_TestUtils.decimalOf;
@@ -37,16 +38,23 @@ class WWI_SALES_A_02_PersistenceIT {
                                                                          SELECT c.CustomerID, c.CustomerName, h.CreditLimit, c.CreditLimit
                                                                          FROM Sales.Customers c
                                                                                   JOIN Sales.Customers FOR SYSTEM_TIME AS OF ?1 h ON h.CustomerID = c.CustomerID
-                                                                         WHERE h.CreditLimit <> c.CreditLimit
+                                                                         WHERE NOT EXISTS (SELECT h.CreditLimit
+                                                                                           INTERSECT
+                                                                                           SELECT c.CreditLimit)
                                                                          ORDER BY c.CustomerID""")
                     .setParameter(1, LocalDateTime.of(2015, 1, 1, 0, 0))
                     .getResultList();
             return rows.stream()
                     .map(r -> (Object[]) r)
-                    .map(r -> longOf(r[0]) + "," + decimalOf(r[2]) + "," + decimalOf(r[3]))
+                    .map(r -> longOf(r[0]) + "," + creditLimitOf(r[2]) + "," + creditLimitOf(r[3]))
                     .toList();
         });
         assertThat(found).isEqualTo(EXPECTED);
+    }
+
+    // a limit set or removed since then is NULL on one side
+    private static String creditLimitOf(final Object value) {
+        return Optional.ofNullable(value).map(v -> decimalOf(v).toPlainString()).orElse("NULL");
     }
 
 }

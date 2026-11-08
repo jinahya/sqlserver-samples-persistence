@@ -54,14 +54,12 @@ ORDER BY Employees DESC, d.Name
 [source,jpaql]
 ----
 SELECT d.name, d.groupName, COUNT(h)
-FROM HumanResourcesEmployeeDepartmentHistory h
-         JOIN h.department d
-WHERE h.endDate IS NULL
+FROM HumanResourcesDepartment d
+         LEFT JOIN HumanResourcesEmployeeDepartmentHistory h
+                   ON h.department = d AND h.endDate IS NULL
 GROUP BY d.id_, d.name, d.groupName
 ORDER BY COUNT(h) DESC, d.name
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[AW_HUMANRESOURCES_B_02]]
 ==== AW_HUMANRESOURCES_B_02: The employees at each level of the organization
@@ -270,10 +268,8 @@ FROM PersonAddress a
          JOIN a.stateProvince s
          JOIN s.countryRegion c
 GROUP BY c.countryRegionCode, c.name
-ORDER BY COUNT(a) DESC
+ORDER BY COUNT(a) DESC, c.countryRegionCode
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Advanced
 
@@ -374,15 +370,13 @@ ORDER BY Quantity, p.ProductID
 
 [source,jpaql]
 ----
-SELECT p.productId, p.name, p.safetyStockLevel, SUM(i.quantity)
-FROM ProductionProductInventory i
-         JOIN i.product p
+SELECT p.productId, p.name, p.safetyStockLevel, COALESCE(SUM(i.quantity), 0)
+FROM ProductionProduct p
+         LEFT JOIN ProductionProductInventory i ON i.product = p
 GROUP BY p.productId, p.name, p.safetyStockLevel
-HAVING SUM(i.quantity) * 2 < p.safetyStockLevel
-ORDER BY SUM(i.quantity), p.productId
+HAVING COALESCE(SUM(i.quantity), 0) * 2 < p.safetyStockLevel
+ORDER BY COALESCE(SUM(i.quantity), 0), p.productId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[AW_PRODUCTION_I_02]]
 ==== AW_PRODUCTION_I_02: The five scrap reasons with the most scrapped quantity
@@ -404,10 +398,8 @@ SELECT r.name, COUNT(w), SUM(w.scrappedQty)
 FROM ProductionWorkOrder w
          JOIN w.scrapReason r
 GROUP BY r.scrapReasonId, r.name
-ORDER BY SUM(w.scrappedQty) DESC
+ORDER BY SUM(w.scrappedQty) DESC, r.scrapReasonId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[AW_PRODUCTION_I_03]]
 ==== AW_PRODUCTION_I_03: The ten products whose work orders finish late the most
@@ -544,11 +536,10 @@ ORDER BY TotalDue DESC, v.BusinessEntityID
 SELECT v.accountNumber, v.name, COUNT(h), SUM(h.totalDue)
 FROM PurchasingPurchaseOrderHeader h
          JOIN h.vendor v
+WHERE h.status IN (2, 4)
 GROUP BY v.businessEntityId, v.accountNumber, v.name
-ORDER BY SUM(h.totalDue) DESC
+ORDER BY SUM(h.totalDue) DESC, v.businessEntityId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[AW_PURCHASING_I_02]]
 ==== AW_PURCHASING_I_02: The five vendors whose goods were rejected the most
@@ -715,10 +706,8 @@ FROM SalesSalesOrderDetail d
          JOIN d.specialOfferProduct sop
          JOIN sop.product p
 GROUP BY p.productId, p.productNumber, p.name
-ORDER BY SUM(d.lineTotal) DESC
+ORDER BY SUM(d.lineTotal) DESC, p.productId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[AW_SALES_I_03]]
 ==== AW_SALES_I_03: The discount each special offer gave

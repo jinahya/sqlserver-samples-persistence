@@ -26,7 +26,7 @@ class WWI_APPLICATION_B_01_PersistenceIT {
                                                                                                  SELECT p
                                                                                                  FROM ApplicationPerson AS p
                                                                                                  WHERE p.isSalesperson = true
-                                                                                                 ORDER BY p.fullName""",
+                                                                                                 ORDER BY p.fullName, p.personId""",
                                                                                          Person.class)
                         .getResultList()
                         .stream().map(Person::getPersonId).toList());
@@ -41,7 +41,8 @@ class WWI_APPLICATION_B_01_PersistenceIT {
             final var root = query.from(Person.class);
             query.select(root);
             query.where(builder.isTrue(root.get(Person_.isSalesperson)));
-            query.orderBy(builder.asc(root.get(Person_.fullName)));
+            query.orderBy(builder.asc(root.get(Person_.fullName)),
+                          builder.asc(root.get(Person_.personId)));
             return entityManager.createQuery(query).getResultList()
                     .stream().map(Person::getPersonId).toList();
         });

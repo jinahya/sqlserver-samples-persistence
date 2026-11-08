@@ -52,15 +52,12 @@ GO
 -- ------------------------------------------------------------------------------------------------------- AW_SALES_A_02
 -- The sales director ranks the sales persons of each territory group. Show every sales person with a territory, ranked
 -- by this year's sales within the group of their territory.
-SELECT t.[
-Group], t.Name AS Territory, p.LastName, sp.SalesYTD,
-    RANK() OVER (PARTITION BY t.[Group] ORDER BY sp.SalesYTD DESC) AS GroupRank
+SELECT t.[Group], t.Name AS Territory, p.LastName, sp.SalesYTD,
+       RANK() OVER (PARTITION BY t.[Group] ORDER BY sp.SalesYTD DESC) AS GroupRank
 FROM Sales.SalesPerson sp
-    JOIN Person.Person p
-ON p.BusinessEntityID = sp.BusinessEntityID
-    JOIN Sales.SalesTerritory t ON t.TerritoryID = sp.TerritoryID
-ORDER BY t.[
-Group], GroupRank
+         JOIN Person.Person p ON p.BusinessEntityID = sp.BusinessEntityID
+         JOIN Sales.SalesTerritory t ON t.TerritoryID = sp.TerritoryID
+ORDER BY t.[Group], GroupRank
 ;
 GO
 

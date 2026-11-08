@@ -62,7 +62,6 @@ A few things about the mappings shape the solutions:
 // AI: Pick WWI_APPLICATION_B_01: A predicate on the mapped salesperson flag.
 // AI: Copied from EXERCISES.asciidoc:39, anchor WWI_APPLICATION_B_01; retain the permanent ID when revising.
 // AI: Registry: section=APPLICATION; tier=Basic; sql=src/test/sql-exercises/_Application/01_basic.sql; test=wwi.application.WWI_APPLICATION_B_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_APPLICATION_B_01]]
 ==== WWI_APPLICATION_B_01: The salespeople, by name
 
@@ -81,10 +80,8 @@ ORDER BY FullName, PersonID
 SELECT p
 FROM ApplicationPerson AS p
 WHERE p.isSalesperson = true
-ORDER BY p.fullName
+ORDER BY p.fullName, p.personId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 // AI: Pick WWI_APPLICATION_B_03: Navigate city, state/province, and country associations.
 // AI: Copied from EXERCISES.asciidoc:79, anchor WWI_APPLICATION_B_03; retain the permanent ID when revising.
@@ -177,7 +174,6 @@ ORDER BY sc.supplierCategoryName, s.supplierName
 // AI: Pick WWI_PURCHASING_B_02: Filter unfinalized transactions and aggregate outstanding balances.
 // AI: Copied from EXERCISES.asciidoc:185, anchor WWI_PURCHASING_B_02; retain the permanent ID when revising.
 // AI: Registry: section=PURCHASING; tier=Basic; sql=src/test/sql-exercises/_Purchasing/01_basic.sql; test=wwi.purchasing.WWI_PURCHASING_B_02_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_PURCHASING_B_02]]
 ==== WWI_PURCHASING_B_02: What is still owed to each supplier
 
@@ -201,10 +197,8 @@ FROM PurchasingSupplierTransaction AS st
      JOIN st.supplier AS s
 WHERE st.isFinalized = false
 GROUP BY s.supplierId, s.supplierName
-ORDER BY outstanding DESC
+ORDER BY outstanding DESC, s.supplierName
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Intermediate
 
@@ -215,7 +209,6 @@ ORDER BY outstanding DESC
 // AI: Pick WWI_PURCHASING_I_01: COUNT DISTINCT prevents order-line fan-out from inflating order counts.
 // AI: Copied from EXERCISES.asciidoc:215, anchor WWI_PURCHASING_I_01; retain the permanent ID when revising.
 // AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=wwi.purchasing.WWI_PURCHASING_I_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_PURCHASING_I_01]]
 ==== WWI_PURCHASING_I_01: The purchase orders and the amount ordered from each supplier in a year
 
@@ -248,10 +241,8 @@ FROM PurchasingPurchaseOrderLine AS pol
 WHERE po.orderDate >= :from
   AND po.orderDate < :to
 GROUP BY s.supplierId, s.supplierName
-ORDER BY amount DESC
+ORDER BY amount DESC, s.supplierId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Advanced
 
@@ -362,7 +353,6 @@ ORDER BY c.customerName
 // AI: Pick WWI_SALES_I_01: A bounded revenue ranking across invoice and stock-item associations.
 // AI: Copied from EXERCISES.asciidoc:405, anchor WWI_SALES_I_01; retain the permanent ID when revising.
 // AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=wwi.sales.WWI_SALES_I_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_SALES_I_01]]
 ==== WWI_SALES_I_01: The five stock items which earned the most in a year
 
@@ -390,10 +380,8 @@ FROM SalesInvoiceLine AS il
 WHERE i.invoiceDate >= :from
   AND i.invoiceDate < :to
 GROUP BY si.stockItemId, si.stockItemName
-ORDER BY revenue DESC
+ORDER BY revenue DESC, si.stockItemId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 // AI: Pick WWI_SALES_I_05: Several optional associations remain visible through LEFT JOIN.
 // AI: Copied from EXERCISES.asciidoc:520, anchor WWI_SALES_I_05; retain the permanent ID when revising.
@@ -598,7 +586,6 @@ ORDER BY RecordedWhen DESC, VehicleTemperatureID DESC
 // AI: Pick WWI_WAREHOUSE_I_01: An outer join counts a stock-group link entity and retains zero.
 // AI: Copied from EXERCISES.asciidoc:739, anchor WWI_WAREHOUSE_I_01; retain the permanent ID when revising.
 // AI: Registry: section=WAREHOUSE; tier=Intermediate; sql=src/test/sql-exercises/_Warehouse/02_intermediate.sql; test=wwi.warehouse.WWI_WAREHOUSE_I_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[WWI_WAREHOUSE_I_01]]
 ==== WWI_WAREHOUSE_I_01: The stock items of each stock group
 
@@ -616,13 +603,11 @@ ORDER BY StockItems DESC, sg.StockGroupName
 [source,jpaql]
 ----
 SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
-FROM WarehouseStockItemStockGroup AS sisg
-     JOIN sisg.stockGroup AS sg
+FROM WarehouseStockGroup AS sg
+     LEFT JOIN WarehouseStockItemStockGroup AS sisg ON sisg.stockGroup = sg
 GROUP BY sg.stockGroupId, sg.stockGroupName
 ORDER BY stockItems DESC, sg.stockGroupName
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 // AI: Pick WWI_WAREHOUSE_I_03: A half-open transaction interval with a transaction-type association.
 // AI: Copied from EXERCISES.asciidoc:780, anchor WWI_WAREHOUSE_I_03; retain the permanent ID when revising.

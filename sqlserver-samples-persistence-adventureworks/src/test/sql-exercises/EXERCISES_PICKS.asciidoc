@@ -63,7 +63,6 @@ A few things about the mappings shape the JPQL below:
 // AI: Pick AW_HUMANRESOURCES_B_01: A LEFT JOIN ON filter retains departments with no current assignment.
 // AI: Copied from EXERCISES.asciidoc:39, anchor AW_HUMANRESOURCES_B_01; retain the permanent ID when revising.
 // AI: Registry: section=HUMANRESOURCES; tier=Basic; sql=src/test/sql-exercises/_HumanResources/01_basic.sql; test=aw.humanresources.AW_HUMANRESOURCES_B_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_HUMANRESOURCES_B_01]]
 ==== AW_HUMANRESOURCES_B_01: The current employees of each department
 
@@ -81,14 +80,12 @@ ORDER BY Employees DESC, d.Name
 [source,jpaql]
 ----
 SELECT d.name, d.groupName, COUNT(h)
-FROM HumanResourcesEmployeeDepartmentHistory h
-         JOIN h.department d
-WHERE h.endDate IS NULL
+FROM HumanResourcesDepartment d
+         LEFT JOIN HumanResourcesEmployeeDepartmentHistory h
+                   ON h.department = d AND h.endDate IS NULL
 GROUP BY d.id_, d.name, d.groupName
 ORDER BY COUNT(h) DESC, d.name
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 // AI: Pick AW_HUMANRESOURCES_B_02: Aggregate a database-computed attribute like an ordinary mapped attribute.
 // AI: Copied from EXERCISES.asciidoc:65, anchor AW_HUMANRESOURCES_B_02; retain the permanent ID when revising.
@@ -239,7 +236,6 @@ ORDER BY p.LastName, p.FirstName, p.BusinessEntityID, t.ContactTypeID
 // AI: Pick AW_PERSON_I_01: A multi-hop country aggregation with a deterministic result limit.
 // AI: Copied from EXERCISES.asciidoc:250, anchor AW_PERSON_I_01; retain the permanent ID when revising.
 // AI: Registry: section=PERSON; tier=Intermediate; sql=src/test/sql-exercises/_Person/02_intermediate.sql; test=aw.person.AW_PERSON_I_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PERSON_I_01]]
 ==== AW_PERSON_I_01: The five countries with the most addresses
 
@@ -262,10 +258,8 @@ FROM PersonAddress a
          JOIN a.stateProvince s
          JOIN s.countryRegion c
 GROUP BY c.countryRegionCode, c.name
-ORDER BY COUNT(a) DESC
+ORDER BY COUNT(a) DESC, c.countryRegionCode
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Advanced
 
@@ -341,7 +335,6 @@ WHERE h.ProductID = @productId
 // AI: Pick AW_PRODUCTION_I_01: LEFT JOIN, COALESCE, and HAVING preserve products with no stock.
 // AI: Copied from EXERCISES.asciidoc:359, anchor AW_PRODUCTION_I_01; retain the permanent ID when revising.
 // AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=aw.production.AW_PRODUCTION_I_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PRODUCTION_I_01]]
 ==== AW_PRODUCTION_I_01: The products whose stock is less than half their safety stock level
 
@@ -359,20 +352,17 @@ ORDER BY Quantity, p.ProductID
 
 [source,jpaql]
 ----
-SELECT p.productId, p.name, p.safetyStockLevel, SUM(i.quantity)
-FROM ProductionProductInventory i
-         JOIN i.product p
+SELECT p.productId, p.name, p.safetyStockLevel, COALESCE(SUM(i.quantity), 0)
+FROM ProductionProduct p
+         LEFT JOIN ProductionProductInventory i ON i.product = p
 GROUP BY p.productId, p.name, p.safetyStockLevel
-HAVING SUM(i.quantity) * 2 < p.safetyStockLevel
-ORDER BY SUM(i.quantity), p.productId
+HAVING COALESCE(SUM(i.quantity), 0) * 2 < p.safetyStockLevel
+ORDER BY COALESCE(SUM(i.quantity), 0), p.productId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 // AI: Pick AW_PRODUCTION_I_02: A top-n aggregate over the work-order scrap-reason association.
 // AI: Copied from EXERCISES.asciidoc:386, anchor AW_PRODUCTION_I_02; retain the permanent ID when revising.
 // AI: Registry: section=PRODUCTION; tier=Intermediate; sql=src/test/sql-exercises/_Production/02_intermediate.sql; test=aw.production.AW_PRODUCTION_I_02_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PRODUCTION_I_02]]
 ==== AW_PRODUCTION_I_02: The five scrap reasons with the most scrapped quantity
 
@@ -393,10 +383,8 @@ SELECT r.name, COUNT(w), SUM(w.scrappedQty)
 FROM ProductionWorkOrder w
          JOIN w.scrapReason r
 GROUP BY r.scrapReasonId, r.name
-ORDER BY SUM(w.scrappedQty) DESC
+ORDER BY SUM(w.scrappedQty) DESC, r.scrapReasonId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Advanced
 
@@ -469,7 +457,6 @@ ORDER BY h.Status
 // AI: Pick AW_PURCHASING_I_01: Filter order statuses, aggregate by vendor, and paginate.
 // AI: Copied from EXERCISES.asciidoc:526, anchor AW_PURCHASING_I_01; retain the permanent ID when revising.
 // AI: Registry: section=PURCHASING; tier=Intermediate; sql=src/test/sql-exercises/_Purchasing/02_intermediate.sql; test=aw.purchasing.AW_PURCHASING_I_01_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_PURCHASING_I_01]]
 ==== AW_PURCHASING_I_01: The five vendors the company spent the most with
 
@@ -490,11 +477,10 @@ ORDER BY TotalDue DESC, v.BusinessEntityID
 SELECT v.accountNumber, v.name, COUNT(h), SUM(h.totalDue)
 FROM PurchasingPurchaseOrderHeader h
          JOIN h.vendor v
+WHERE h.status IN (2, 4)
 GROUP BY v.businessEntityId, v.accountNumber, v.name
-ORDER BY SUM(h.totalDue) DESC
+ORDER BY SUM(h.totalDue) DESC, v.businessEntityId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Advanced
 
@@ -588,7 +574,6 @@ ORDER BY SUM(h.totalDue) DESC
 // AI: Pick AW_SALES_I_02: Reach product through the special-offer/product composite association.
 // AI: Copied from EXERCISES.asciidoc:696, anchor AW_SALES_I_02; retain the permanent ID when revising.
 // AI: Registry: section=SALES; tier=Intermediate; sql=src/test/sql-exercises/_Sales/02_intermediate.sql; test=aw.sales.AW_SALES_I_02_PersistenceIT.
-// AI: TODO before manuscript use: source explicitly marks JPQL NOT YET UPDATED; reconcile SQL, JPQL, Criteria API, and tests.
 [[AW_SALES_I_02]]
 ==== AW_SALES_I_02: The five products which brought in the most
 
@@ -610,10 +595,8 @@ FROM SalesSalesOrderDetail d
          JOIN d.specialOfferProduct sop
          JOIN sop.product p
 GROUP BY p.productId, p.productNumber, p.name
-ORDER BY SUM(d.lineTotal) DESC
+ORDER BY SUM(d.lineTotal) DESC, p.productId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 // AI: Pick AW_SALES_I_05: An optional currency-rate association with COALESCE defaults.
 // AI: Copied from EXERCISES.asciidoc:778, anchor AW_SALES_I_05; retain the permanent ID when revising.

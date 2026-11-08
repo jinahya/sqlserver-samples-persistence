@@ -46,7 +46,7 @@ class WWI_SALES_I_01_PersistenceIT {
                                                                                                  WHERE i.invoiceDate >= :from
                                                                                                    AND i.invoiceDate < :to
                                                                                                  GROUP BY si.stockItemId, si.stockItemName
-                                                                                                 ORDER BY revenue DESC""",
+                                                                                                 ORDER BY revenue DESC, si.stockItemId""",
                                                                                          Object[].class)
                         .setParameter("from", FROM_2015)
                         .setParameter("to", TO_2015)
@@ -72,7 +72,7 @@ class WWI_SALES_I_01_PersistenceIT {
                     builder.greaterThanOrEqualTo(invoice.get(Invoice_.invoiceDate), FROM_2015),
                     builder.lessThan(invoice.get(Invoice_.invoiceDate), TO_2015));
             query.groupBy(item.get(StockItem_.stockItemId), item.get(StockItem_.stockItemName));
-            query.orderBy(builder.desc(revenue));
+            query.orderBy(builder.desc(revenue), builder.asc(item.get(StockItem_.stockItemId)));
             return entityManager.createQuery(query).setMaxResults(5).getResultList()
                     .stream().map(WWI_SALES_I_01_PersistenceIT::row).toList();
         });

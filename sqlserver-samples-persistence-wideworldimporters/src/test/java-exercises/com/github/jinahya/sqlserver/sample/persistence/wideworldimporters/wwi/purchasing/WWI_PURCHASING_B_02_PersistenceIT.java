@@ -38,7 +38,7 @@ class WWI_PURCHASING_B_02_PersistenceIT {
                                                                                                       JOIN st.supplier AS s
                                                                                                  WHERE st.isFinalized = false
                                                                                                  GROUP BY s.supplierId, s.supplierName
-                                                                                                 ORDER BY outstanding DESC""",
+                                                                                                 ORDER BY outstanding DESC, s.supplierName""",
                                                                                          Object[].class)
                         .getResultList()
                         .stream().map(WWI_PURCHASING_B_02_PersistenceIT::row).toList());
@@ -59,7 +59,8 @@ class WWI_PURCHASING_B_02_PersistenceIT {
             query.where(builder.isFalse(root.get(SupplierTransaction_.isFinalized)));
             query.groupBy(supplier.get(Supplier_.supplierId),
                           supplier.get(Supplier_.supplierName));
-            query.orderBy(builder.desc(outstanding));
+            query.orderBy(builder.desc(outstanding),
+                          builder.asc(supplier.get(Supplier_.supplierName)));
             return entityManager.createQuery(query).getResultList()
                     .stream().map(WWI_PURCHASING_B_02_PersistenceIT::row).toList();
         });

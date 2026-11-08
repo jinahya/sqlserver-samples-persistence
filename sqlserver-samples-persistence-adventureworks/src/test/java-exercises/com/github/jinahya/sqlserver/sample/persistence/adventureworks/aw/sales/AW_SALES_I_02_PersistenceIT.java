@@ -39,7 +39,7 @@ class AW_SALES_I_02_PersistenceIT {
                                  JOIN d.specialOfferProduct sop
                                  JOIN sop.product p
                         GROUP BY p.productId, p.productNumber, p.name
-                        ORDER BY SUM(d.lineTotal) DESC""",
+                        ORDER BY SUM(d.lineTotal) DESC, p.productId""",
                 Object[].class
         ).setMaxResults(5).getResultList()));
     }
@@ -57,7 +57,7 @@ class AW_SALES_I_02_PersistenceIT {
                               builder.sum(d.get(SalesOrderDetail_.orderQty)), lineTotal);
             query.groupBy(p.get(Product_.productId), p.get(Product_.productNumber),
                           p.get(Product_.name));
-            query.orderBy(builder.desc(lineTotal));
+            query.orderBy(builder.desc(lineTotal), builder.asc(p.get(Product_.productId)));
             return entityManager.createQuery(query).setMaxResults(5).getResultList();
         }));
     }

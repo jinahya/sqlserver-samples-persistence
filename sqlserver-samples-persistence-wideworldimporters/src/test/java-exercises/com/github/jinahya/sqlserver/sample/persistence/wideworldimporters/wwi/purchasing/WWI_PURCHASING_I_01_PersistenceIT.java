@@ -48,7 +48,7 @@ class WWI_PURCHASING_I_01_PersistenceIT {
                                                                                                  WHERE po.orderDate >= :from
                                                                                                    AND po.orderDate < :to
                                                                                                  GROUP BY s.supplierId, s.supplierName
-                                                                                                 ORDER BY amount DESC""",
+                                                                                                 ORDER BY amount DESC, s.supplierId""",
                                                                                          Object[].class)
                         .setParameter("from", FROM_2015)
                         .setParameter("to", TO_2015)
@@ -76,7 +76,8 @@ class WWI_PURCHASING_I_01_PersistenceIT {
                         builder.lessThan(order.get(PurchaseOrder_.orderDate), TO_2015));
             query.groupBy(supplier.get(Supplier_.supplierId),
                           supplier.get(Supplier_.supplierName));
-            query.orderBy(builder.desc(amount));
+            query.orderBy(builder.desc(amount),
+                          builder.asc(supplier.get(Supplier_.supplierId)));
             return entityManager.createQuery(query).getResultList()
                     .stream().map(WWI_PURCHASING_I_01_PersistenceIT::row).toList();
         });

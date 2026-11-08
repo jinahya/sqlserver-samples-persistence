@@ -39,7 +39,7 @@ class AW_PERSON_I_01_PersistenceIT {
                                  JOIN a.stateProvince s
                                  JOIN s.countryRegion c
                         GROUP BY c.countryRegionCode, c.name
-                        ORDER BY COUNT(a) DESC""",
+                        ORDER BY COUNT(a) DESC, c.countryRegionCode""",
                 Object[].class
         ).setMaxResults(5).getResultList()));
     }
@@ -55,7 +55,8 @@ class AW_PERSON_I_01_PersistenceIT {
             query.multiselect(c.get(CountryRegion_.countryRegionCode),
                               c.get(CountryRegion_.name), addresses);
             query.groupBy(c.get(CountryRegion_.countryRegionCode), c.get(CountryRegion_.name));
-            query.orderBy(builder.desc(addresses));
+            query.orderBy(builder.desc(addresses),
+                          builder.asc(c.get(CountryRegion_.countryRegionCode)));
             return entityManager.createQuery(query).setMaxResults(5).getResultList();
         }));
     }

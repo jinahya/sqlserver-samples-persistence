@@ -38,7 +38,7 @@ class AW_PRODUCTION_I_02_PersistenceIT {
                         FROM ProductionWorkOrder w
                                  JOIN w.scrapReason r
                         GROUP BY r.scrapReasonId, r.name
-                        ORDER BY SUM(w.scrappedQty) DESC""",
+                        ORDER BY SUM(w.scrappedQty) DESC, r.scrapReasonId""",
                 Object[].class
         ).setMaxResults(5).getResultList()));
     }
@@ -53,7 +53,8 @@ class AW_PRODUCTION_I_02_PersistenceIT {
             final var scrappedQty = builder.sum(w.get(WorkOrder_.scrappedQty));
             query.multiselect(r.get(ScrapReason_.name), builder.count(w), scrappedQty);
             query.groupBy(r.get(ScrapReason_.scrapReasonId), r.get(ScrapReason_.name));
-            query.orderBy(builder.desc(scrappedQty));
+            query.orderBy(builder.desc(scrappedQty),
+                          builder.asc(r.get(ScrapReason_.scrapReasonId)));
             return entityManager.createQuery(query).setMaxResults(5).getResultList();
         }));
     }

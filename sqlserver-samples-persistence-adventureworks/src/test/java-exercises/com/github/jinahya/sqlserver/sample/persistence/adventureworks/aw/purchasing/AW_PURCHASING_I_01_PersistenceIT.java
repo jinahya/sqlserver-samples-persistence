@@ -22,11 +22,11 @@ class AW_PURCHASING_I_01_PersistenceIT {
 
     private void verify(final List<Object[]> found) {
         assertThat(rows(found)).containsExactly(
-                "SUPERIOR0001 | Superior Bicycles | 50 | 5034266.74",
-                "PROFESSI0001 | Professional Athletic Consultants | 50 | 3379946.3215",
-                "CHICAGO0001 | Chicago City Saddles | 51 | 3347165.1965",
-                "JACKSON0001 | Jackson Authority | 51 | 2821333.516",
-                "VISIONC0001 | Vision Cycles, Inc. | 50 | 2777684.911"
+                "SUPERIOR0001 | Superior Bicycles | 45 | 4530840.066",
+                "PROFESSI0001 | Professional Athletic Consultants | 47 | 3239313.5792",
+                "CHICAGO0001 | Chicago City Saddles | 47 | 3128743.493",
+                "JACKSON0001 | Jackson Authority | 47 | 2561247.815",
+                "VISIONC0001 | Vision Cycles, Inc. | 46 | 2558969.6642"
         );
     }
 
@@ -37,8 +37,9 @@ class AW_PURCHASING_I_01_PersistenceIT {
                         SELECT v.accountNumber, v.name, COUNT(h), SUM(h.totalDue)
                         FROM PurchasingPurchaseOrderHeader h
                                  JOIN h.vendor v
+                        WHERE h.status IN (2, 4)
                         GROUP BY v.businessEntityId, v.accountNumber, v.name
-                        ORDER BY SUM(h.totalDue) DESC""",
+                        ORDER BY SUM(h.totalDue) DESC, v.businessEntityId""",
                 Object[].class
         ).setMaxResults(5).getResultList()));
     }
@@ -53,9 +54,10 @@ class AW_PURCHASING_I_01_PersistenceIT {
             final var totalDue = builder.sum(h.get(PurchaseOrderHeader_.totalDue));
             query.multiselect(v.get(Vendor_.accountNumber), v.get(Vendor_.name),
                               builder.count(h), totalDue);
+            query.where(h.get(PurchaseOrderHeader_.status).in(2, 4));
             query.groupBy(v.get(Vendor_.businessEntityId), v.get(Vendor_.accountNumber),
                           v.get(Vendor_.name));
-            query.orderBy(builder.desc(totalDue));
+            query.orderBy(builder.desc(totalDue), builder.asc(v.get(Vendor_.businessEntityId)));
             return entityManager.createQuery(query).setMaxResults(5).getResultList();
         }));
     }

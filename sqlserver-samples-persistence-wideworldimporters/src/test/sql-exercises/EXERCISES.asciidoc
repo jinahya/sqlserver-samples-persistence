@@ -53,10 +53,8 @@ ORDER BY FullName, PersonID
 SELECT p
 FROM ApplicationPerson AS p
 WHERE p.isSalesperson = true
-ORDER BY p.fullName
+ORDER BY p.fullName, p.personId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[WWI_APPLICATION_B_02]]
 ==== WWI_APPLICATION_B_02: The sales territories of a country
@@ -204,10 +202,8 @@ FROM PurchasingSupplierTransaction AS st
      JOIN st.supplier AS s
 WHERE st.isFinalized = false
 GROUP BY s.supplierId, s.supplierName
-ORDER BY outstanding DESC
+ORDER BY outstanding DESC, s.supplierName
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 === Intermediate
 
@@ -243,10 +239,8 @@ FROM PurchasingPurchaseOrderLine AS pol
 WHERE po.orderDate >= :from
   AND po.orderDate < :to
 GROUP BY s.supplierId, s.supplierName
-ORDER BY amount DESC
+ORDER BY amount DESC, s.supplierId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[WWI_PURCHASING_I_02]]
 ==== WWI_PURCHASING_I_02: Purchase orders the amounts cannot count
@@ -428,10 +422,8 @@ FROM SalesInvoiceLine AS il
 WHERE i.invoiceDate >= :from
   AND i.invoiceDate < :to
 GROUP BY si.stockItemId, si.stockItemName
-ORDER BY revenue DESC
+ORDER BY revenue DESC, si.stockItemId
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[WWI_SALES_I_02]]
 ==== WWI_SALES_I_02: The sales of a year by month
@@ -752,13 +744,11 @@ ORDER BY StockItems DESC, sg.StockGroupName
 [source,jpaql]
 ----
 SELECT sg.stockGroupName, COUNT(sisg) AS stockItems
-FROM WarehouseStockItemStockGroup AS sisg
-     JOIN sisg.stockGroup AS sg
+FROM WarehouseStockGroup AS sg
+     LEFT JOIN WarehouseStockItemStockGroup AS sisg ON sisg.stockGroup = sg
 GROUP BY sg.stockGroupId, sg.stockGroupName
 ORDER BY stockItems DESC, sg.stockGroupName
 ----
-
-// JPQL NOT YET UPDATED: the SQL above changed.
 
 [[WWI_WAREHOUSE_I_02]]
 ==== WWI_WAREHOUSE_I_02: The stock items by country of manufacture, from the CustomFields JSON

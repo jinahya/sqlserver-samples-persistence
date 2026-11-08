@@ -1,9 +1,10 @@
 package com.github.jinahya.sqlserver.sample.persistence.adventureworks.aw.humanresources;
 
+import com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.Department;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.Department_;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartmentHistory;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartmentHistory_;
-import com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Document;
+import jakarta.persistence.criteria.JoinType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,9 +48,9 @@ class AW_HUMANRESOURCES_B_01_PersistenceIT {
         verify(apply(entityManager -> entityManager.createQuery(
                 """
                         SELECT d.name, d.groupName, COUNT(h)
-                        FROM HumanResourcesEmployeeDepartmentHistory h
-                                 JOIN h.department d
-                        WHERE h.endDate IS NULL
+                        FROM HumanResourcesDepartment d
+                                 LEFT JOIN HumanResourcesEmployeeDepartmentHistory h
+                                           ON h.department = d AND h.endDate IS NULL
                         GROUP BY d.id_, d.name, d.groupName
                         ORDER BY COUNT(h) DESC, d.name""",
                 Object[].class
@@ -61,11 +62,13 @@ class AW_HUMANRESOURCES_B_01_PersistenceIT {
         verify(apply(entityManager -> {
             final var builder = entityManager.getCriteriaBuilder();
             final var query = builder.createQuery(Object[].class);
-            final var h = query.from(EmployeeDepartmentHistory.class);
-            final var d = h.join(EmployeeDepartmentHistory_.department);
+            final var d = query.from(Department.class);
+            // Department has no association to EmployeeDepartmentHistory; an entity join with ON
+            final var h = d.join(EmployeeDepartmentHistory.class, JoinType.LEFT);
+            h.on(builder.equal(h.get(EmployeeDepartmentHistory_.department), d),
+                 builder.isNull(h.get(EmployeeDepartmentHistory_.endDate)));
             final var employees = builder.count(h);
             query.multiselect(d.get(Department_.name), d.get(Department_.groupName), employees);
-            query.where(builder.isNull(h.get(EmployeeDepartmentHistory_.endDate)));
             query.groupBy(d.get(Department_.id_), d.get(Department_.name),
                           d.get(Department_.groupName));
             query.orderBy(builder.desc(employees), builder.asc(d.get(Department_.name)));
