@@ -70,8 +70,7 @@ import java.time.LocalDateTime;
  * </table>
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 @MsDescription(

@@ -76,8 +76,7 @@ import java.time.LocalDateTime;
  * </table>
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedErrorLog.COLUMN_NAME_ERROR_LOG_ID,

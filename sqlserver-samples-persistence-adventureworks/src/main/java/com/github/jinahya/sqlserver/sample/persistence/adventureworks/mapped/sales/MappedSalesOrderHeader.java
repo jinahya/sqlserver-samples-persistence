@@ -157,16 +157,13 @@ import java.util.UUID;
  * </table>
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  * @see <a
  *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/newid-transact-sql">NEWID</a>
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql">ISNULL</a>
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql">
  *         CAST and CONVERT</a>
  */
 @MappedSuperclass

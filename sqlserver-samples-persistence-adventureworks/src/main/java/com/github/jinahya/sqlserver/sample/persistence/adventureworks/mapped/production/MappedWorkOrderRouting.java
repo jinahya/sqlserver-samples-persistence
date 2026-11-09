@@ -56,8 +56,7 @@ import java.util.Objects;
  * </table>
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 @MappedSuperclass
 public abstract class MappedWorkOrderRouting {

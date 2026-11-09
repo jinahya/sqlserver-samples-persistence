@@ -64,8 +64,7 @@ import java.time.LocalDateTime;
  * </table>
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
  */
 @AttributeOverride(name = MappedWithIdentityId.ATTRIBUTE_NAME_ID_,
                    column = @Column(name = MappedDatabaseLog.COLUMN_NAME_DATABASE_LOG_ID,

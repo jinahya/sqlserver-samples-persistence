@@ -62,8 +62,7 @@ import java.time.LocalDateTime;
  * </table>
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/getdate-transact-sql">GETDATE</a>
  */
 // read-only: an identity column, which SQL Server assigns on an INSERT and does not update
 // (error 8102)

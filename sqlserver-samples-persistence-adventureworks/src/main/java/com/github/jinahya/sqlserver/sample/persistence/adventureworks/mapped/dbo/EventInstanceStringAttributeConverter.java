@@ -48,8 +48,7 @@ import javax.xml.transform.Source;
  * the element would carry an {@code xsi:type}, which {@code EVENTDATA()} does not write.
  *
  * @see <a
- *         href="https://learn.microsoft
- *         .com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
+ *         href="https://learn.microsoft.com/en-us/sql/t-sql/functions/eventdata-transact-sql">EVENTDATA</a>
  */
 @Converter(autoApply = false)
 public class EventInstanceStringAttributeConverter
