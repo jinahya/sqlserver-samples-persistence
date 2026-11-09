@@ -5,83 +5,83 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- FutonManufacturing.ProductionCompletion: the table, the tables it references and the tables referencing it -->
-<svg width="289pt" height="222pt"
- viewBox="0.00 0.00 289.00 222.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 214.45)">
+<svg width="252pt" height="189pt"
+ viewBox="0.00 0.00 252.00 189.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 181.82)">
 <title>erd</title>
 <!-- ProductionCompletion -->
 <g id="node1" class="node">
 <title>ProductionCompletion</title>
-<polygon fill="#1f4e79" stroke="none" points="0,-141 0,-166.5 117,-166.5 117,-141 0,-141"/>
-<polygon fill="none" stroke="#000000" points="0,-141 0,-166.5 117,-166.5 117,-141 0,-141"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-152.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">ProductionCompletion</text>
-<polygon fill="none" stroke="#000000" points="0,-115.5 0,-141 91.88,-141 91.88,-115.5 0,-115.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-127.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CompletionID</text>
-<polygon fill="none" stroke="#000000" points="91.88,-115.5 91.88,-141 117,-141 117,-115.5 91.88,-115.5"/>
-<text xml:space="preserve" text-anchor="start" x="97.88" y="-124.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="0,-90 0,-115.5 91.88,-115.5 91.88,-90 0,-90"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-99" font-family="Noto Sans KR" font-size="9.00">ProductionOrderID</text>
-<polygon fill="none" stroke="#000000" points="91.88,-90 91.88,-115.5 117,-115.5 117,-90 91.88,-90"/>
-<text xml:space="preserve" text-anchor="start" x="97.88" y="-99" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-64.5 0,-90 91.88,-90 91.88,-64.5 0,-64.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-76.45" font-family="Noto Sans KR" font-style="italic" font-size="9.00">WorkCenterID</text>
-<polygon fill="none" stroke="#000000" points="91.88,-64.5 91.88,-90 117,-90 117,-64.5 91.88,-64.5"/>
-<text xml:space="preserve" text-anchor="start" x="97.88" y="-73.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#1f4e79" stroke="none" points="0,-117.5 0,-138.25 97.25,-138.25 97.25,-117.5 0,-117.5"/>
+<polygon fill="none" stroke="#000000" points="0,-117.5 0,-138.25 97.25,-138.25 97.25,-117.5 0,-117.5"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-127.65" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">ProductionCompletion</text>
+<polygon fill="none" stroke="#000000" points="0,-96.75 0,-117.5 78.62,-117.5 78.62,-96.75 0,-96.75"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-106.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CompletionID</text>
+<polygon fill="none" stroke="#000000" points="78.62,-96.75 78.62,-117.5 97.25,-117.5 97.25,-96.75 78.62,-96.75"/>
+<text xml:space="preserve" text-anchor="start" x="82.62" y="-103.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="0,-76 0,-96.75 78.62,-96.75 78.62,-76 0,-76"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-83" font-family="Noto Sans KR" font-size="8.00">ProductionOrderID</text>
+<polygon fill="none" stroke="#000000" points="78.62,-76 78.62,-96.75 97.25,-96.75 97.25,-76 78.62,-76"/>
+<text xml:space="preserve" text-anchor="start" x="82.62" y="-83" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-55.25 0,-76 78.62,-76 78.62,-55.25 0,-55.25"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-65.4" font-family="Noto Sans KR" font-style="italic" font-size="8.00">WorkCenterID</text>
+<polygon fill="none" stroke="#000000" points="78.62,-55.25 78.62,-76 97.25,-76 97.25,-55.25 78.62,-55.25"/>
+<text xml:space="preserve" text-anchor="start" x="82.62" y="-62.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- ProductionOrder -->
 <g id="node2" class="node">
 <title>ProductionOrder</title>
-<polygon fill="#d9e2ec" stroke="none" points="160,-181.75 160,-207.25 274.75,-207.25 274.75,-181.75 160,-181.75"/>
-<polygon fill="none" stroke="#000000" points="160,-181.75 160,-207.25 274.75,-207.25 274.75,-181.75 160,-181.75"/>
-<text xml:space="preserve" text-anchor="start" x="179.12" y="-193.7" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">ProductionOrder</text>
-<polygon fill="none" stroke="#000000" points="160,-156.25 160,-181.75 250.75,-181.75 250.75,-156.25 160,-156.25"/>
-<text xml:space="preserve" text-anchor="start" x="166" y="-168.2" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">ProductionOrderID</text>
-<polygon fill="none" stroke="#000000" points="250.75,-156.25 250.75,-181.75 274.75,-181.75 274.75,-156.25 250.75,-156.25"/>
-<text xml:space="preserve" text-anchor="start" x="256.75" y="-165.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="160,-130.75 160,-156.25 250.75,-156.25 250.75,-130.75 160,-130.75"/>
-<text xml:space="preserve" text-anchor="start" x="166" y="-139.75" font-family="Noto Sans KR" font-size="9.00">ItemID</text>
-<polygon fill="none" stroke="#000000" points="250.75,-130.75 250.75,-156.25 274.75,-156.25 274.75,-130.75 250.75,-130.75"/>
-<text xml:space="preserve" text-anchor="start" x="256.75" y="-139.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="160,-105.25 160,-130.75 250.75,-130.75 250.75,-105.25 160,-105.25"/>
-<text xml:space="preserve" text-anchor="start" x="166" y="-114.25" font-family="Noto Sans KR" font-size="9.00">WarehouseID</text>
-<polygon fill="none" stroke="#000000" points="250.75,-105.25 250.75,-130.75 274.75,-130.75 274.75,-105.25 250.75,-105.25"/>
-<text xml:space="preserve" text-anchor="start" x="256.75" y="-114.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="160,-79.75 160,-105.25 250.75,-105.25 250.75,-79.75 160,-79.75"/>
-<text xml:space="preserve" text-anchor="start" x="166" y="-91.7" font-family="Noto Sans KR" font-style="italic" font-size="9.00">WorkCenterID</text>
-<polygon fill="none" stroke="#000000" points="250.75,-79.75 250.75,-105.25 274.75,-105.25 274.75,-79.75 250.75,-79.75"/>
-<text xml:space="preserve" text-anchor="start" x="256.75" y="-88.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="140.25,-153.88 140.25,-174.62 237.25,-174.62 237.25,-153.88 140.25,-153.88"/>
+<polygon fill="none" stroke="#000000" points="140.25,-153.88 140.25,-174.62 237.25,-174.62 237.25,-153.88 140.25,-153.88"/>
+<text xml:space="preserve" text-anchor="start" x="155.75" y="-164.03" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">ProductionOrder</text>
+<polygon fill="none" stroke="#000000" points="140.25,-133.12 140.25,-153.88 218.75,-153.88 218.75,-133.12 140.25,-133.12"/>
+<text xml:space="preserve" text-anchor="start" x="144.25" y="-143.28" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">ProductionOrderID</text>
+<polygon fill="none" stroke="#000000" points="218.75,-133.12 218.75,-153.88 237.25,-153.88 237.25,-133.12 218.75,-133.12"/>
+<text xml:space="preserve" text-anchor="start" x="222.75" y="-140.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="140.25,-112.38 140.25,-133.12 218.75,-133.12 218.75,-112.38 140.25,-112.38"/>
+<text xml:space="preserve" text-anchor="start" x="144.25" y="-119.38" font-family="Noto Sans KR" font-size="8.00">ItemID</text>
+<polygon fill="none" stroke="#000000" points="218.75,-112.38 218.75,-133.12 237.25,-133.12 237.25,-112.38 218.75,-112.38"/>
+<text xml:space="preserve" text-anchor="start" x="222.75" y="-119.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="140.25,-91.62 140.25,-112.38 218.75,-112.38 218.75,-91.62 140.25,-91.62"/>
+<text xml:space="preserve" text-anchor="start" x="144.25" y="-98.62" font-family="Noto Sans KR" font-size="8.00">WarehouseID</text>
+<polygon fill="none" stroke="#000000" points="218.75,-91.62 218.75,-112.38 237.25,-112.38 237.25,-91.62 218.75,-91.62"/>
+<text xml:space="preserve" text-anchor="start" x="222.75" y="-98.62" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="140.25,-70.88 140.25,-91.62 218.75,-91.62 218.75,-70.88 140.25,-70.88"/>
+<text xml:space="preserve" text-anchor="start" x="144.25" y="-81.03" font-family="Noto Sans KR" font-style="italic" font-size="8.00">WorkCenterID</text>
+<polygon fill="none" stroke="#000000" points="218.75,-70.88 218.75,-91.62 237.25,-91.62 237.25,-70.88 218.75,-70.88"/>
+<text xml:space="preserve" text-anchor="start" x="222.75" y="-77.88" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- ProductionCompletion&#45;&gt;ProductionOrder -->
 <g id="edge1" class="edge">
 <title>ProductionCompletion:e&#45;&gt;ProductionOrder:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M131.37,-109.34C142.58,-124.4 133.96,-160.56 152.57,-167.74"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="124.64,-106.25 118.87,-99.65 120.64,-104.42 117.73,-103.08 117.73,-103.08 117.73,-103.08 120.64,-104.42 115.86,-106.19 124.64,-106.25"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="129.42" cy="-108.45" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="159.88,-164.92 158.54,-172.81 156.97,-172.54 158.3,-164.66 159.88,-164.92"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="160,-169 156.06,-168.33"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="155.93,-164.26 154.6,-172.14 153.02,-171.88 154.36,-163.99 155.93,-164.26"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="156.06,-168.33 152.11,-167.67"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M111.69,-93.38C121.27,-106.85 116.84,-135.6 132.76,-142.15"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="104.81,-90.04 99.18,-83.31 100.85,-88.12 97.97,-86.73 97.97,-86.73 97.97,-86.73 100.85,-88.12 96.04,-89.79 104.81,-90.04"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="109.54" cy="-92.34" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="140.17,-139.42 138.75,-147.29 137.18,-147.01 138.6,-139.14 140.17,-139.42"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="140.25,-143.5 136.31,-142.79"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="136.23,-138.71 134.82,-146.59 133.24,-146.3 134.66,-138.43 136.23,-138.71"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="136.31,-142.79 132.38,-142.08"/>
 </g>
 <!-- WorkCenter -->
 <g id="node3" class="node">
 <title>WorkCenter</title>
-<polygon fill="#d9e2ec" stroke="none" points="169.38,-25.5 169.38,-51 265.38,-51 265.38,-25.5 169.38,-25.5"/>
-<polygon fill="none" stroke="#000000" points="169.38,-25.5 169.38,-51 265.38,-51 265.38,-25.5 169.38,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="190.75" y="-37.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">WorkCenter</text>
-<polygon fill="none" stroke="#000000" points="169.38,0 169.38,-25.5 241.38,-25.5 241.38,0 169.38,0"/>
-<text xml:space="preserve" text-anchor="start" x="175.38" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">WorkCenterID</text>
-<polygon fill="none" stroke="#000000" points="241.38,0 241.38,-25.5 265.38,-25.5 265.38,0 241.38,0"/>
-<text xml:space="preserve" text-anchor="start" x="247.38" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#d9e2ec" stroke="none" points="149.62,-20.75 149.62,-41.5 227.88,-41.5 227.88,-20.75 149.62,-20.75"/>
+<polygon fill="none" stroke="#000000" points="149.62,-20.75 149.62,-41.5 227.88,-41.5 227.88,-20.75 149.62,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="165.12" y="-30.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">WorkCenter</text>
+<polygon fill="none" stroke="#000000" points="149.62,0 149.62,-20.75 209.38,-20.75 209.38,0 149.62,0"/>
+<text xml:space="preserve" text-anchor="start" x="153.62" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">WorkCenterID</text>
+<polygon fill="none" stroke="#000000" points="209.38,0 209.38,-20.75 227.88,-20.75 227.88,0 209.38,0"/>
+<text xml:space="preserve" text-anchor="start" x="213.38" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 <!-- ProductionCompletion&#45;&gt;WorkCenter -->
 <g id="edge2" class="edge">
 <title>ProductionCompletion:e&#45;&gt;WorkCenter:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M131.76,-71.75C145.3,-58.47 140.53,-25.02 157.38,-15.39"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="124.87,-74.32 116.12,-73.74 120.75,-75.85 117.75,-76.97 117.75,-76.97 117.75,-76.97 120.75,-75.85 118.63,-80.48 124.87,-74.32"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="129.8" cy="-72.48" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="166.66,-9.05 168.53,-16.83 166.97,-17.2 165.11,-9.42 166.66,-9.05"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="168.38,-12.75 164.49,-13.68"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="160.79" cy="-14.57" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M112,-60.13C124.15,-48.44 122.72,-21.53 137.69,-13.01"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="105.12,-62.69 96.37,-62.11 101,-64.23 98,-65.34 98,-65.34 98,-65.34 101,-64.23 98.88,-68.86 105.12,-62.69"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="110.05" cy="-60.85" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="146.91,-6.67 148.78,-14.45 147.23,-14.83 145.35,-7.05 146.91,-6.67"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="148.62,-10.38 144.74,-11.31"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="141.04" cy="-12.2" rx="3.2" ry="3.2"/>
 </g>
 </g>
 </svg>

@@ -5,20 +5,20 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- AdventureWorks.dbo.ErrorLog: the table, the tables it references and the tables referencing it -->
-<svg width="95pt" height="65pt"
- viewBox="0.00 0.00 95.00 65.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 58.2)">
+<svg width="80pt" height="56pt"
+ viewBox="0.00 0.00 80.00 56.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 48.7)">
 <title>erd</title>
 <!-- dbo.ErrorLog -->
 <g id="node1" class="node">
 <title>dbo.ErrorLog</title>
-<polygon fill="#1f4e79" stroke="none" points="0,-25.5 0,-51 81,-51 81,-25.5 0,-25.5"/>
-<polygon fill="none" stroke="#000000" points="0,-25.5 0,-51 81,-51 81,-25.5 0,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="10.88" y="-37.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">dbo.ErrorLog</text>
-<polygon fill="none" stroke="#000000" points="0,0 0,-25.5 57,-25.5 57,0 0,0"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">ErrorLogID</text>
-<polygon fill="none" stroke="#000000" points="57,0 57,-25.5 81,-25.5 81,0 57,0"/>
-<text xml:space="preserve" text-anchor="start" x="63" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#1f4e79" stroke="none" points="0,-20.75 0,-41.5 65.5,-41.5 65.5,-20.75 0,-20.75"/>
+<polygon fill="none" stroke="#000000" points="0,-20.75 0,-41.5 65.5,-41.5 65.5,-20.75 0,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="6.5" y="-30.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">dbo.ErrorLog</text>
+<polygon fill="none" stroke="#000000" points="0,0 0,-20.75 47,-20.75 47,0 0,0"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">ErrorLogID</text>
+<polygon fill="none" stroke="#000000" points="47,0 47,-20.75 65.5,-20.75 65.5,0 47,0"/>
+<text xml:space="preserve" text-anchor="start" x="51" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 </g>
 </svg>

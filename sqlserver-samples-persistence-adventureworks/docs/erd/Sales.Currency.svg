@@ -5,87 +5,87 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- AdventureWorks.Sales.Currency: the table, the tables it references and the tables referencing it -->
-<svg width="299pt" height="222pt"
- viewBox="0.00 0.00 299.00 222.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 214.45)">
+<svg width="263pt" height="189pt"
+ viewBox="0.00 0.00 263.00 189.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 181.82)">
 <title>erd</title>
 <!-- Sales.Currency -->
 <g id="node1" class="node">
 <title>Sales.Currency</title>
-<polygon fill="#1f4e79" stroke="none" points="190,-51 190,-76.5 284.5,-76.5 284.5,-51 190,-51"/>
-<polygon fill="none" stroke="#000000" points="190,-51 190,-76.5 284.5,-76.5 284.5,-51 190,-51"/>
-<text xml:space="preserve" text-anchor="start" x="203.88" y="-62.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">Sales.Currency</text>
-<polygon fill="none" stroke="#000000" points="190,-25.5 190,-51 260.5,-51 260.5,-25.5 190,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="196" y="-37.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CurrencyCode</text>
-<polygon fill="none" stroke="#000000" points="260.5,-25.5 260.5,-51 284.5,-51 284.5,-25.5 260.5,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="266.5" y="-34.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#1f4e79" stroke="none" points="168.75,-41.5 168.75,-62.25 248.5,-62.25 248.5,-41.5 168.75,-41.5"/>
+<polygon fill="none" stroke="#000000" points="168.75,-41.5 168.75,-62.25 248.5,-62.25 248.5,-41.5 168.75,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="179.38" y="-51.65" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">Sales.Currency</text>
+<polygon fill="none" stroke="#000000" points="168.75,-20.75 168.75,-41.5 230,-41.5 230,-20.75 168.75,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="172.75" y="-30.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CurrencyCode</text>
+<polygon fill="none" stroke="#000000" points="230,-20.75 230,-41.5 248.5,-41.5 248.5,-20.75 230,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="234" y="-27.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 <!-- Sales.CountryRegionCurrency -->
 <g id="node2" class="node">
 <title>Sales.CountryRegionCurrency</title>
-<polygon fill="#d9e2ec" stroke="none" points="0,-181.75 0,-207.25 147,-207.25 147,-181.75 0,-181.75"/>
-<polygon fill="none" stroke="#000000" points="0,-181.75 0,-207.25 147,-207.25 147,-181.75 0,-181.75"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-193.7" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.CountryRegionCurrency</text>
-<polygon fill="none" stroke="#000000" points="0,-156.25 0,-181.75 102.38,-181.75 102.38,-156.25 0,-156.25"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-168.2" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CountryRegionCode</text>
-<polygon fill="none" stroke="#000000" points="102.38,-156.25 102.38,-181.75 147,-181.75 147,-156.25 102.38,-156.25"/>
-<text xml:space="preserve" text-anchor="start" x="108.38" y="-165.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
-<polygon fill="none" stroke="#000000" points="0,-130.75 0,-156.25 102.38,-156.25 102.38,-130.75 0,-130.75"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-142.7" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CurrencyCode</text>
-<polygon fill="none" stroke="#000000" points="102.38,-130.75 102.38,-156.25 147,-156.25 147,-130.75 102.38,-130.75"/>
-<text xml:space="preserve" text-anchor="start" x="108.38" y="-139.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="0,-153.88 0,-174.62 125.75,-174.62 125.75,-153.88 0,-153.88"/>
+<polygon fill="none" stroke="#000000" points="0,-153.88 0,-174.62 125.75,-174.62 125.75,-153.88 0,-153.88"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-164.03" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.CountryRegionCurrency</text>
+<polygon fill="none" stroke="#000000" points="0,-133.12 0,-153.88 89.5,-153.88 89.5,-133.12 0,-133.12"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-143.28" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CountryRegionCode</text>
+<polygon fill="none" stroke="#000000" points="89.5,-133.12 89.5,-153.88 125.75,-153.88 125.75,-133.12 89.5,-133.12"/>
+<text xml:space="preserve" text-anchor="start" x="93.5" y="-140.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
+<polygon fill="none" stroke="#000000" points="0,-112.38 0,-133.12 89.5,-133.12 89.5,-112.38 0,-112.38"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-122.53" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CurrencyCode</text>
+<polygon fill="none" stroke="#000000" points="89.5,-112.38 89.5,-133.12 125.75,-133.12 125.75,-112.38 89.5,-112.38"/>
+<text xml:space="preserve" text-anchor="start" x="93.5" y="-119.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
 </g>
 <!-- Sales.CountryRegionCurrency&#45;&gt;Sales.Currency -->
 <g id="edge1" class="edge">
 <title>Sales.CountryRegionCurrency:e&#45;&gt;Sales.Currency:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M162.19,-138.14C182.26,-118.11 151.07,-48.42 182.34,-39.25"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="154.92,-140.7 146.18,-139.97 150.77,-142.17 147.76,-143.23 147.76,-143.23 147.76,-143.23 150.77,-142.17 148.58,-146.76 154.92,-140.7"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="159.88" cy="-138.95" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="188.69,-34.39 189.72,-42.32 188.14,-42.53 187.1,-34.59 188.69,-34.39"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="190,-38.25 186.03,-38.77"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="184.72,-34.9 185.76,-42.84 184.17,-43.04 183.14,-35.11 184.72,-34.9"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="186.03,-38.77 182.07,-39.28"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M140.56,-117.02C157.15,-98.53 134.7,-41.13 160.97,-32.28"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="133.58,-119.72 124.82,-119.25 129.48,-121.31 126.5,-122.46 126.5,-122.46 126.5,-122.46 129.48,-121.31 127.42,-125.96 133.58,-119.72"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="138.49" cy="-117.82" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="167.37,-27.29 168.54,-35.2 166.96,-35.43 165.79,-27.52 167.37,-27.29"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="168.75,-31.12 164.79,-31.71"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="163.42,-27.87 164.59,-35.79 163.01,-36.02 161.83,-28.11 163.42,-27.87"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="164.79,-31.71 160.84,-32.3"/>
 </g>
 <!-- Sales.CurrencyRate -->
 <g id="node3" class="node">
 <title>Sales.CurrencyRate</title>
-<polygon fill="#d9e2ec" stroke="none" points="15.75,-76.5 15.75,-102 131.25,-102 131.25,-76.5 15.75,-76.5"/>
-<polygon fill="none" stroke="#000000" points="15.75,-76.5 15.75,-102 131.25,-102 131.25,-76.5 15.75,-76.5"/>
-<text xml:space="preserve" text-anchor="start" x="30" y="-88.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.CurrencyRate</text>
-<polygon fill="none" stroke="#000000" points="15.75,-51 15.75,-76.5 107.25,-76.5 107.25,-51 15.75,-51"/>
-<text xml:space="preserve" text-anchor="start" x="21.75" y="-62.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CurrencyRateID</text>
-<polygon fill="none" stroke="#000000" points="107.25,-51 107.25,-76.5 131.25,-76.5 131.25,-51 107.25,-51"/>
-<text xml:space="preserve" text-anchor="start" x="113.25" y="-60" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="15.75,-25.5 15.75,-51 107.25,-51 107.25,-25.5 15.75,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="21.75" y="-34.5" font-family="Noto Sans KR" font-size="9.00">FromCurrencyCode</text>
-<polygon fill="none" stroke="#000000" points="107.25,-25.5 107.25,-51 131.25,-51 131.25,-25.5 107.25,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="113.25" y="-34.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="15.75,0 15.75,-25.5 107.25,-25.5 107.25,0 15.75,0"/>
-<text xml:space="preserve" text-anchor="start" x="21.75" y="-9" font-family="Noto Sans KR" font-size="9.00">ToCurrencyCode</text>
-<polygon fill="none" stroke="#000000" points="107.25,0 107.25,-25.5 131.25,-25.5 131.25,0 107.25,0"/>
-<text xml:space="preserve" text-anchor="start" x="113.25" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="13.25,-62.25 13.25,-83 112.5,-83 112.5,-62.25 13.25,-62.25"/>
+<polygon fill="none" stroke="#000000" points="13.25,-62.25 13.25,-83 112.5,-83 112.5,-62.25 13.25,-62.25"/>
+<text xml:space="preserve" text-anchor="start" x="25" y="-72.4" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.CurrencyRate</text>
+<polygon fill="none" stroke="#000000" points="13.25,-41.5 13.25,-62.25 94,-62.25 94,-41.5 13.25,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="17.25" y="-51.65" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CurrencyRateID</text>
+<polygon fill="none" stroke="#000000" points="94,-41.5 94,-62.25 112.5,-62.25 112.5,-41.5 94,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="98" y="-48.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="13.25,-20.75 13.25,-41.5 94,-41.5 94,-20.75 13.25,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="17.25" y="-27.75" font-family="Noto Sans KR" font-size="8.00">FromCurrencyCode</text>
+<polygon fill="none" stroke="#000000" points="94,-20.75 94,-41.5 112.5,-41.5 112.5,-20.75 94,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="98" y="-27.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="13.25,0 13.25,-20.75 94,-20.75 94,0 13.25,0"/>
+<text xml:space="preserve" text-anchor="start" x="17.25" y="-7" font-family="Noto Sans KR" font-size="8.00">ToCurrencyCode</text>
+<polygon fill="none" stroke="#000000" points="94,0 94,-20.75 112.5,-20.75 112.5,0 94,0"/>
+<text xml:space="preserve" text-anchor="start" x="98" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.CurrencyRate&#45;&gt;Sales.Currency -->
 <g id="edge2" class="edge">
 <title>Sales.CurrencyRate:e&#45;&gt;Sales.Currency:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M148.06,-38.25C160.06,-38.25 167.93,-38.25 182.01,-38.25"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="140.65,-38.25 132.65,-34.65 136.25,-38.25 133.05,-38.25 133.05,-38.25 133.05,-38.25 136.25,-38.25 132.65,-41.85 140.65,-38.25"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="145.91" cy="-38.25" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="189.2,-34.25 189.2,-42.25 187.6,-42.25 187.6,-34.25 189.2,-34.25"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="190,-38.25 186,-38.25"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="185.2,-34.25 185.2,-42.25 183.6,-42.25 183.6,-34.25 185.2,-34.25"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="186,-38.25 182,-38.25"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M129.45,-31.12C140.41,-31.12 147.88,-31.12 160.89,-31.12"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="121.9,-31.13 113.9,-27.53 117.5,-31.13 114.3,-31.13 114.3,-31.13 114.3,-31.13 117.5,-31.13 113.9,-34.73 121.9,-31.13"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="127.16" cy="-31.13" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="167.95,-27.13 167.95,-35.13 166.35,-35.13 166.35,-27.13 167.95,-27.13"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="168.75,-31.12 164.75,-31.13"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="163.95,-27.13 163.95,-35.13 162.35,-35.13 162.35,-27.13 163.95,-27.13"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="164.75,-31.13 160.75,-31.13"/>
 </g>
 <!-- Sales.CurrencyRate&#45;&gt;Sales.Currency -->
 <g id="edge3" class="edge">
 <title>Sales.CurrencyRate:e&#45;&gt;Sales.Currency:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M147.87,-16.08C160.47,-22.08 166.58,-34.35 182.13,-37.5"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="140.47,-14.5 133.39,-9.31 136.16,-13.59 133.04,-12.92 133.04,-12.92 133.04,-12.92 136.16,-13.59 131.89,-16.35 140.47,-14.5"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="145.61" cy="-15.6" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="189.58,-34.19 188.82,-42.16 187.23,-42 187.99,-34.04 189.58,-34.19"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="190,-38.25 186.02,-37.87"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="185.6,-33.81 184.84,-41.78 183.25,-41.62 184.01,-33.66 185.6,-33.81"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="186.02,-37.87 182.04,-37.49"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M129.1,-13.44C140.58,-18.4 146.93,-27.9 161.11,-30.47"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="121.74,-11.99 114.59,-6.92 117.43,-11.15 114.29,-10.53 114.29,-10.53 114.29,-10.53 117.43,-11.15 113.2,-13.98 121.74,-11.99"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="126.91" cy="-13.01" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="168.3,-27.07 167.61,-35.04 166.02,-34.9 166.7,-26.93 168.3,-27.07"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="168.75,-31.12 164.76,-30.78"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="164.31,-26.73 163.63,-34.7 162.03,-34.56 162.72,-26.59 164.31,-26.73"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="164.76,-30.78 160.78,-30.44"/>
 </g>
 </g>
 </svg>

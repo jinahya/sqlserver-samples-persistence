@@ -5,42 +5,42 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- AdventureWorks, 데이터베이스 관리: dbo.AWBuildVersion, dbo.DatabaseLog, dbo.ErrorLog; the foreign keys among them only -->
-<svg width="379pt" height="65pt"
- viewBox="0.00 0.00 379.00 65.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 58.2)">
+<svg width="326pt" height="56pt"
+ viewBox="0.00 0.00 326.00 56.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 48.7)">
 <title>erd</title>
 <!-- dbo.AWBuildVersion -->
 <g id="node1" class="node">
 <title>dbo.AWBuildVersion</title>
-<polygon fill="#d9e2ec" stroke="none" points="0,-25.5 0,-51 125.25,-51 125.25,-25.5 0,-25.5"/>
-<polygon fill="none" stroke="#000000" points="0,-25.5 0,-51 125.25,-51 125.25,-25.5 0,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="16.5" y="-37.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">dbo.AWBuildVersion</text>
-<polygon fill="none" stroke="#000000" points="0,0 0,-25.5 101.25,-25.5 101.25,0 0,0"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">SystemInformationID</text>
-<polygon fill="none" stroke="#000000" points="101.25,0 101.25,-25.5 125.25,-25.5 125.25,0 101.25,0"/>
-<text xml:space="preserve" text-anchor="start" x="107.25" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#d9e2ec" stroke="none" points="0,-20.75 0,-41.5 106,-41.5 106,-20.75 0,-20.75"/>
+<polygon fill="none" stroke="#000000" points="0,-20.75 0,-41.5 106,-41.5 106,-20.75 0,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="13.25" y="-30.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">dbo.AWBuildVersion</text>
+<polygon fill="none" stroke="#000000" points="0,0 0,-20.75 87.5,-20.75 87.5,0 0,0"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">SystemInformationID</text>
+<polygon fill="none" stroke="#000000" points="87.5,0 87.5,-20.75 106,-20.75 106,0 87.5,0"/>
+<text xml:space="preserve" text-anchor="start" x="91.5" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 <!-- dbo.DatabaseLog -->
 <g id="node2" class="node">
 <title>dbo.DatabaseLog</title>
-<polygon fill="#d9e2ec" stroke="none" points="154.75,-25.5 154.75,-51 254.5,-51 254.5,-25.5 154.75,-25.5"/>
-<polygon fill="none" stroke="#000000" points="154.75,-25.5 154.75,-51 254.5,-51 254.5,-25.5 154.75,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="165.62" y="-37.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">dbo.DatabaseLog</text>
-<polygon fill="none" stroke="#000000" points="154.75,0 154.75,-25.5 230.5,-25.5 230.5,0 154.75,0"/>
-<text xml:space="preserve" text-anchor="start" x="160.75" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">DatabaseLogID</text>
-<polygon fill="none" stroke="#000000" points="230.5,0 230.5,-25.5 254.5,-25.5 254.5,0 230.5,0"/>
-<text xml:space="preserve" text-anchor="start" x="236.5" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#d9e2ec" stroke="none" points="135,-20.75 135,-41.5 217,-41.5 217,-20.75 135,-20.75"/>
+<polygon fill="none" stroke="#000000" points="135,-20.75 135,-41.5 217,-41.5 217,-20.75 135,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="142.25" y="-30.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">dbo.DatabaseLog</text>
+<polygon fill="none" stroke="#000000" points="135,0 135,-20.75 198.5,-20.75 198.5,0 135,0"/>
+<text xml:space="preserve" text-anchor="start" x="139" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">DatabaseLogID</text>
+<polygon fill="none" stroke="#000000" points="198.5,0 198.5,-20.75 217,-20.75 217,0 198.5,0"/>
+<text xml:space="preserve" text-anchor="start" x="202.5" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 <!-- dbo.ErrorLog -->
 <g id="node3" class="node">
 <title>dbo.ErrorLog</title>
-<polygon fill="#d9e2ec" stroke="none" points="283.12,-25.5 283.12,-51 364.12,-51 364.12,-25.5 283.12,-25.5"/>
-<polygon fill="none" stroke="#000000" points="283.12,-25.5 283.12,-51 364.12,-51 364.12,-25.5 283.12,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="294" y="-37.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">dbo.ErrorLog</text>
-<polygon fill="none" stroke="#000000" points="283.12,0 283.12,-25.5 340.12,-25.5 340.12,0 283.12,0"/>
-<text xml:space="preserve" text-anchor="start" x="289.12" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">ErrorLogID</text>
-<polygon fill="none" stroke="#000000" points="340.12,0 340.12,-25.5 364.12,-25.5 364.12,0 340.12,0"/>
-<text xml:space="preserve" text-anchor="start" x="346.12" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#d9e2ec" stroke="none" points="246.25,-20.75 246.25,-41.5 311.75,-41.5 311.75,-20.75 246.25,-20.75"/>
+<polygon fill="none" stroke="#000000" points="246.25,-20.75 246.25,-41.5 311.75,-41.5 311.75,-20.75 246.25,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="252.75" y="-30.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">dbo.ErrorLog</text>
+<polygon fill="none" stroke="#000000" points="246.25,0 246.25,-20.75 293.25,-20.75 293.25,0 246.25,0"/>
+<text xml:space="preserve" text-anchor="start" x="250.25" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">ErrorLogID</text>
+<polygon fill="none" stroke="#000000" points="293.25,0 293.25,-20.75 311.75,-20.75 311.75,0 293.25,0"/>
+<text xml:space="preserve" text-anchor="start" x="297.25" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 </g>
 </svg>

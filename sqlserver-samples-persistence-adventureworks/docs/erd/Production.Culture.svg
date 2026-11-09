@@ -5,50 +5,50 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- AdventureWorks.Production.Culture: the table, the tables it references and the tables referencing it -->
-<svg width="408pt" height="116pt"
- viewBox="0.00 0.00 408.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 109.2)">
+<svg width="353pt" height="97pt"
+ viewBox="0.00 0.00 353.00 97.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 90.2)">
 <title>erd</title>
 <!-- Production.Culture -->
 <g id="node1" class="node">
 <title>Production.Culture</title>
-<polygon fill="#1f4e79" stroke="none" points="294.25,-26 294.25,-51.5 394,-51.5 394,-26 294.25,-26"/>
-<polygon fill="none" stroke="#000000" points="294.25,-26 294.25,-51.5 394,-51.5 394,-26 294.25,-26"/>
-<text xml:space="preserve" text-anchor="start" x="300.25" y="-37.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">Production.Culture</text>
-<polygon fill="none" stroke="#000000" points="294.25,-0.5 294.25,-26 357.62,-26 357.62,-0.5 294.25,-0.5"/>
-<text xml:space="preserve" text-anchor="start" x="300.25" y="-12.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CultureID</text>
-<polygon fill="none" stroke="#000000" points="357.62,-0.5 357.62,-26 394,-26 394,-0.5 357.62,-0.5"/>
-<text xml:space="preserve" text-anchor="start" x="363.62" y="-9.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#1f4e79" stroke="none" points="256.5,-21.5 256.5,-42.25 338.75,-42.25 338.75,-21.5 256.5,-21.5"/>
+<polygon fill="none" stroke="#000000" points="256.5,-21.5 256.5,-42.25 338.75,-42.25 338.75,-21.5 256.5,-21.5"/>
+<text xml:space="preserve" text-anchor="start" x="260.5" y="-31.65" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">Production.Culture</text>
+<polygon fill="none" stroke="#000000" points="256.5,-0.75 256.5,-21.5 309.62,-21.5 309.62,-0.75 256.5,-0.75"/>
+<text xml:space="preserve" text-anchor="start" x="260.5" y="-10.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CultureID</text>
+<polygon fill="none" stroke="#000000" points="309.62,-0.75 309.62,-21.5 338.75,-21.5 338.75,-0.75 309.62,-0.75"/>
+<text xml:space="preserve" text-anchor="start" x="313.62" y="-7.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 <!-- Production.ProductModelProductDescriptionCulture -->
 <g id="node2" class="node">
 <title>Production.ProductModelProductDescriptionCulture</title>
-<polygon fill="#d9e2ec" stroke="none" points="0,-76.5 0,-102 251.25,-102 251.25,-76.5 0,-76.5"/>
-<polygon fill="none" stroke="#000000" points="0,-76.5 0,-102 251.25,-102 251.25,-76.5 0,-76.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-88.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Production.ProductModelProductDescriptionCulture</text>
-<polygon fill="none" stroke="#000000" points="0,-51 0,-76.5 157.88,-76.5 157.88,-51 0,-51"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-62.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">ProductModelID</text>
-<polygon fill="none" stroke="#000000" points="157.88,-51 157.88,-76.5 251.25,-76.5 251.25,-51 157.88,-51"/>
-<text xml:space="preserve" text-anchor="start" x="163.88" y="-60" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
-<polygon fill="none" stroke="#000000" points="0,-25.5 0,-51 157.88,-51 157.88,-25.5 0,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-37.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">ProductDescriptionID</text>
-<polygon fill="none" stroke="#000000" points="157.88,-25.5 157.88,-51 251.25,-51 251.25,-25.5 157.88,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="163.88" y="-34.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
-<polygon fill="none" stroke="#000000" points="0,0 0,-25.5 157.88,-25.5 157.88,0 0,0"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CultureID</text>
-<polygon fill="none" stroke="#000000" points="157.88,0 157.88,-25.5 251.25,-25.5 251.25,0 157.88,0"/>
-<text xml:space="preserve" text-anchor="start" x="163.88" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="0,-62.25 0,-83 213.5,-83 213.5,-62.25 0,-62.25"/>
+<polygon fill="none" stroke="#000000" points="0,-62.25 0,-83 213.5,-83 213.5,-62.25 0,-62.25"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-72.4" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Production.ProductModelProductDescriptionCulture</text>
+<polygon fill="none" stroke="#000000" points="0,-41.5 0,-62.25 134.88,-62.25 134.88,-41.5 0,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-51.65" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">ProductModelID</text>
+<polygon fill="none" stroke="#000000" points="134.88,-41.5 134.88,-62.25 213.5,-62.25 213.5,-41.5 134.88,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="138.88" y="-48.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
+<polygon fill="none" stroke="#000000" points="0,-20.75 0,-41.5 134.88,-41.5 134.88,-20.75 0,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-30.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">ProductDescriptionID</text>
+<polygon fill="none" stroke="#000000" points="134.88,-20.75 134.88,-41.5 213.5,-41.5 213.5,-20.75 134.88,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="138.88" y="-27.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
+<polygon fill="none" stroke="#000000" points="0,0 0,-20.75 134.88,-20.75 134.88,0 0,0"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CultureID</text>
+<polygon fill="none" stroke="#000000" points="134.88,0 134.88,-20.75 213.5,-20.75 213.5,0 134.88,0"/>
+<text xml:space="preserve" text-anchor="start" x="138.88" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
 </g>
 <!-- Production.ProductModelProductDescriptionCulture&#45;&gt;Production.Culture -->
 <g id="edge1" class="edge">
 <title>Production.ProductModelProductDescriptionCulture:e&#45;&gt;Production.Culture:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M267.34,-12.89C273.58,-13.01 278.77,-13.15 286.43,-13.22"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="259.65,-12.82 251.68,-9.15 255.25,-12.79 252.05,-12.76 252.05,-12.76 252.05,-12.76 255.25,-12.79 251.62,-16.35 259.65,-12.82"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="264.91" cy="-12.87" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="293.47,-9.25 293.43,-17.25 291.83,-17.24 291.87,-9.24 293.47,-9.25"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="294.25,-13.25 290.25,-13.23"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="289.47,-9.23 289.43,-17.23 287.83,-17.22 287.87,-9.22 289.47,-9.23"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="290.25,-13.23 286.25,-13.22"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M229.59,-10.59C235.83,-10.76 241.02,-10.98 248.68,-11.08"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="221.9,-10.49 213.95,-6.78 217.5,-10.43 214.3,-10.39 214.3,-10.39 214.3,-10.39 217.5,-10.43 213.85,-13.98 221.9,-10.49"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="227.16" cy="-10.56" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="255.72,-7.12 255.68,-15.12 254.08,-15.11 254.12,-7.11 255.72,-7.12"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="256.5,-11.12 252.5,-11.1"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="251.72,-7.1 251.68,-15.1 250.08,-15.09 250.12,-7.09 251.72,-7.1"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="252.5,-11.1 248.5,-11.08"/>
 </g>
 </g>
 </svg>

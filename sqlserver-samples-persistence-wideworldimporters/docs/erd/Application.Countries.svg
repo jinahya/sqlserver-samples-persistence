@@ -5,80 +5,80 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- WideWorldImporters.Application.Countries: the table, the tables it references and the tables referencing it -->
-<svg width="445pt" height="141pt"
- viewBox="0.00 0.00 445.00 141.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 133.45)">
+<svg width="386pt" height="117pt"
+ viewBox="0.00 0.00 386.00 117.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 109.83)">
 <title>erd</title>
 <!-- Application.Countries -->
 <g id="node1" class="node">
 <title>Application.Countries</title>
-<polygon fill="#1f4e79" stroke="none" points="177.25,-76 177.25,-101.5 289,-101.5 289,-76 177.25,-76"/>
-<polygon fill="none" stroke="#000000" points="177.25,-76 177.25,-101.5 289,-101.5 289,-76 177.25,-76"/>
-<text xml:space="preserve" text-anchor="start" x="183.25" y="-87.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">Application.Countries</text>
-<polygon fill="none" stroke="#000000" points="177.25,-50.5 177.25,-76 254.5,-76 254.5,-50.5 177.25,-50.5"/>
-<text xml:space="preserve" text-anchor="start" x="183.25" y="-62.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CountryID</text>
-<polygon fill="none" stroke="#000000" points="254.5,-50.5 254.5,-76 289,-76 289,-50.5 254.5,-50.5"/>
-<text xml:space="preserve" text-anchor="start" x="260.5" y="-59.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="177.25,-25 177.25,-50.5 254.5,-50.5 254.5,-25 177.25,-25"/>
-<text xml:space="preserve" text-anchor="start" x="183.25" y="-34" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="254.5,-25 254.5,-50.5 289,-50.5 289,-25 254.5,-25"/>
-<text xml:space="preserve" text-anchor="start" x="260.5" y="-34" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#1f4e79" stroke="none" points="154.5,-61.5 154.5,-82.25 247.25,-82.25 247.25,-61.5 154.5,-61.5"/>
+<polygon fill="none" stroke="#000000" points="154.5,-61.5 154.5,-82.25 247.25,-82.25 247.25,-61.5 154.5,-61.5"/>
+<text xml:space="preserve" text-anchor="start" x="158.5" y="-71.65" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">Application.Countries</text>
+<polygon fill="none" stroke="#000000" points="154.5,-40.75 154.5,-61.5 220.75,-61.5 220.75,-40.75 154.5,-40.75"/>
+<text xml:space="preserve" text-anchor="start" x="158.5" y="-50.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CountryID</text>
+<polygon fill="none" stroke="#000000" points="220.75,-40.75 220.75,-61.5 247.25,-61.5 247.25,-40.75 220.75,-40.75"/>
+<text xml:space="preserve" text-anchor="start" x="224.75" y="-47.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="154.5,-20 154.5,-40.75 220.75,-40.75 220.75,-20 154.5,-20"/>
+<text xml:space="preserve" text-anchor="start" x="158.5" y="-27" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="220.75,-20 220.75,-40.75 247.25,-40.75 247.25,-20 220.75,-20"/>
+<text xml:space="preserve" text-anchor="start" x="224.75" y="-27" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Application.People -->
 <g id="node2" class="node">
 <title>Application.People</title>
-<polygon fill="#d9e2ec" stroke="none" points="332,-51 332,-76.5 431,-76.5 431,-51 332,-51"/>
-<polygon fill="none" stroke="#000000" points="332,-51 332,-76.5 431,-76.5 431,-51 332,-51"/>
-<text xml:space="preserve" text-anchor="start" x="338" y="-62.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Application.People</text>
-<polygon fill="none" stroke="#000000" points="332,-25.5 332,-51 402.88,-51 402.88,-25.5 332,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="338" y="-37.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">PersonID</text>
-<polygon fill="none" stroke="#000000" points="402.88,-25.5 402.88,-51 431,-51 431,-25.5 402.88,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="408.88" y="-34.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="332,0 332,-25.5 402.88,-25.5 402.88,0 332,0"/>
-<text xml:space="preserve" text-anchor="start" x="338" y="-9" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="402.88,0 402.88,-25.5 431,-25.5 431,0 402.88,0"/>
-<text xml:space="preserve" text-anchor="start" x="408.88" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="290.25,-41.5 290.25,-62.25 371.75,-62.25 371.75,-41.5 290.25,-41.5"/>
+<polygon fill="none" stroke="#000000" points="290.25,-41.5 290.25,-62.25 371.75,-62.25 371.75,-41.5 290.25,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="294.25" y="-51.65" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Application.People</text>
+<polygon fill="none" stroke="#000000" points="290.25,-20.75 290.25,-41.5 350.88,-41.5 350.88,-20.75 290.25,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="294.25" y="-30.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">PersonID</text>
+<polygon fill="none" stroke="#000000" points="350.88,-20.75 350.88,-41.5 371.75,-41.5 371.75,-20.75 350.88,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="354.88" y="-27.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="290.25,0 290.25,-20.75 350.88,-20.75 350.88,0 290.25,0"/>
+<text xml:space="preserve" text-anchor="start" x="294.25" y="-7" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="350.88,0 350.88,-20.75 371.75,-20.75 371.75,0 350.88,0"/>
+<text xml:space="preserve" text-anchor="start" x="354.88" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Application.Countries&#45;&gt;Application.People -->
 <g id="edge1" class="edge">
 <title>Application.Countries:e&#45;&gt;Application.People:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M305.09,-37.89C311.33,-38.01 316.52,-38.15 324.18,-38.22"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="297.4,-37.82 289.43,-34.15 293,-37.79 289.8,-37.76 289.8,-37.76 289.8,-37.76 293,-37.79 289.37,-41.35 297.4,-37.82"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="302.66" cy="-37.87" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="331.22,-34.25 331.18,-42.25 329.58,-42.24 329.62,-34.24 331.22,-34.25"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="332,-38.25 328,-38.23"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="327.22,-34.23 327.18,-42.23 325.58,-42.22 325.62,-34.22 327.22,-34.23"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="328,-38.23 324,-38.22"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M263.34,-30.59C269.58,-30.76 274.77,-30.98 282.43,-31.08"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="255.65,-30.49 247.7,-26.78 251.25,-30.43 248.05,-30.39 248.05,-30.39 248.05,-30.39 251.25,-30.43 247.6,-33.98 255.65,-30.49"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="260.91" cy="-30.56" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="289.47,-27.12 289.43,-35.12 287.83,-35.11 287.87,-27.11 289.47,-27.12"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="290.25,-31.12 286.25,-31.1"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="285.47,-27.1 285.43,-35.1 283.83,-35.09 283.87,-27.09 285.47,-27.1"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="286.25,-31.1 282.25,-31.08"/>
 </g>
 <!-- Application.StateProvinces -->
 <g id="node3" class="node">
 <title>Application.StateProvinces</title>
-<polygon fill="#d9e2ec" stroke="none" points="0,-100.75 0,-126.25 134.25,-126.25 134.25,-100.75 0,-100.75"/>
-<polygon fill="none" stroke="#000000" points="0,-100.75 0,-126.25 134.25,-126.25 134.25,-100.75 0,-100.75"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-112.7" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Application.StateProvinces</text>
-<polygon fill="none" stroke="#000000" points="0,-75.25 0,-100.75 94.5,-100.75 94.5,-75.25 0,-75.25"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-87.2" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">StateProvinceID</text>
-<polygon fill="none" stroke="#000000" points="94.5,-75.25 94.5,-100.75 134.25,-100.75 134.25,-75.25 94.5,-75.25"/>
-<text xml:space="preserve" text-anchor="start" x="100.5" y="-84.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="0,-49.75 0,-75.25 94.5,-75.25 94.5,-49.75 0,-49.75"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-58.75" font-family="Noto Sans KR" font-size="9.00">CountryID</text>
-<polygon fill="none" stroke="#000000" points="94.5,-49.75 94.5,-75.25 134.25,-75.25 134.25,-49.75 94.5,-49.75"/>
-<text xml:space="preserve" text-anchor="start" x="100.5" y="-58.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-24.25 0,-49.75 94.5,-49.75 94.5,-24.25 0,-24.25"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-33.25" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="94.5,-24.25 94.5,-49.75 134.25,-49.75 134.25,-24.25 94.5,-24.25"/>
-<text xml:space="preserve" text-anchor="start" x="100.5" y="-33.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="0,-81.88 0,-102.62 111.5,-102.62 111.5,-81.88 0,-81.88"/>
+<polygon fill="none" stroke="#000000" points="0,-81.88 0,-102.62 111.5,-102.62 111.5,-81.88 0,-81.88"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-92.03" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Application.StateProvinces</text>
+<polygon fill="none" stroke="#000000" points="0,-61.12 0,-81.88 80.5,-81.88 80.5,-61.12 0,-61.12"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-71.28" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">StateProvinceID</text>
+<polygon fill="none" stroke="#000000" points="80.5,-61.12 80.5,-81.88 111.5,-81.88 111.5,-61.12 80.5,-61.12"/>
+<text xml:space="preserve" text-anchor="start" x="84.5" y="-68.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="0,-40.38 0,-61.12 80.5,-61.12 80.5,-40.38 0,-40.38"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-47.38" font-family="Noto Sans KR" font-size="8.00">CountryID</text>
+<polygon fill="none" stroke="#000000" points="80.5,-40.38 80.5,-61.12 111.5,-61.12 111.5,-40.38 80.5,-40.38"/>
+<text xml:space="preserve" text-anchor="start" x="84.5" y="-47.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-19.62 0,-40.38 80.5,-40.38 80.5,-19.62 0,-19.62"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-26.62" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="80.5,-19.62 80.5,-40.38 111.5,-40.38 111.5,-19.62 80.5,-19.62"/>
+<text xml:space="preserve" text-anchor="start" x="84.5" y="-26.62" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Application.StateProvinces&#45;&gt;Application.Countries -->
 <g id="edge2" class="edge">
 <title>Application.StateProvinces:e&#45;&gt;Application.Countries:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M150.34,-62.71C156.58,-62.88 161.77,-63.11 169.43,-63.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="142.65,-62.61 134.7,-58.91 138.25,-62.55 135.05,-62.51 135.05,-62.51 135.05,-62.51 138.25,-62.55 134.6,-66.1 142.65,-62.61"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="147.91" cy="-62.68" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="176.47,-59.25 176.43,-67.25 174.83,-67.24 174.87,-59.24 176.47,-59.25"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="177.25,-63.25 173.25,-63.23"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="172.47,-59.22 172.43,-67.22 170.83,-67.21 170.87,-59.21 172.47,-59.22"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="173.25,-63.23 169.25,-63.2"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M127.59,-50.86C133.83,-50.94 139.03,-51.05 146.68,-51.1"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="119.9,-50.81 111.93,-47.15 115.5,-50.78 112.3,-50.76 112.3,-50.76 112.3,-50.76 115.5,-50.78 111.88,-54.35 119.9,-50.81"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="125.16" cy="-50.84" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="153.71,-47.12 153.69,-55.12 152.09,-55.12 152.11,-47.12 153.71,-47.12"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="154.5,-51.12 150.5,-51.11"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="149.71,-47.11 149.69,-55.11 148.09,-55.11 148.11,-47.11 149.71,-47.11"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="150.5,-51.11 146.5,-51.1"/>
 </g>
 </g>
 </svg>

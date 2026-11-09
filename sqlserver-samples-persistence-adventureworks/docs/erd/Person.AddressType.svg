@@ -5,50 +5,50 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- AdventureWorks.Person.AddressType: the table, the tables it references and the tables referencing it -->
-<svg width="311pt" height="116pt"
- viewBox="0.00 0.00 311.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 109.2)">
+<svg width="271pt" height="97pt"
+ viewBox="0.00 0.00 271.00 97.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 90.2)">
 <title>erd</title>
 <!-- Person.AddressType -->
 <g id="node1" class="node">
 <title>Person.AddressType</title>
-<polygon fill="#1f4e79" stroke="none" points="192.25,-26 192.25,-51.5 296.5,-51.5 296.5,-26 192.25,-26"/>
-<polygon fill="none" stroke="#000000" points="192.25,-26 192.25,-51.5 296.5,-51.5 296.5,-26 192.25,-26"/>
-<text xml:space="preserve" text-anchor="start" x="198.25" y="-37.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">Person.AddressType</text>
-<polygon fill="none" stroke="#000000" points="192.25,-0.5 192.25,-26 269.12,-26 269.12,-0.5 192.25,-0.5"/>
-<text xml:space="preserve" text-anchor="start" x="198.25" y="-12.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">AddressTypeID</text>
-<polygon fill="none" stroke="#000000" points="269.12,-0.5 269.12,-26 296.5,-26 296.5,-0.5 269.12,-0.5"/>
-<text xml:space="preserve" text-anchor="start" x="275.12" y="-9.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
+<polygon fill="#1f4e79" stroke="none" points="168.75,-21.5 168.75,-42.25 256.25,-42.25 256.25,-21.5 168.75,-21.5"/>
+<polygon fill="none" stroke="#000000" points="168.75,-21.5 168.75,-42.25 256.25,-42.25 256.25,-21.5 168.75,-21.5"/>
+<text xml:space="preserve" text-anchor="start" x="172.75" y="-31.65" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">Person.AddressType</text>
+<polygon fill="none" stroke="#000000" points="168.75,-0.75 168.75,-21.5 235.38,-21.5 235.38,-0.75 168.75,-0.75"/>
+<text xml:space="preserve" text-anchor="start" x="172.75" y="-10.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">AddressTypeID</text>
+<polygon fill="none" stroke="#000000" points="235.38,-0.75 235.38,-21.5 256.25,-21.5 256.25,-0.75 235.38,-0.75"/>
+<text xml:space="preserve" text-anchor="start" x="239.38" y="-7.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
 </g>
 <!-- Person.BusinessEntityAddress -->
 <g id="node2" class="node">
 <title>Person.BusinessEntityAddress</title>
-<polygon fill="#d9e2ec" stroke="none" points="0,-76.5 0,-102 149.25,-102 149.25,-76.5 0,-76.5"/>
-<polygon fill="none" stroke="#000000" points="0,-76.5 0,-102 149.25,-102 149.25,-76.5 0,-76.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-88.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Person.BusinessEntityAddress</text>
-<polygon fill="none" stroke="#000000" points="0,-51 0,-76.5 97.5,-76.5 97.5,-51 0,-51"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-62.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">BusinessEntityID</text>
-<polygon fill="none" stroke="#000000" points="97.5,-51 97.5,-76.5 149.25,-76.5 149.25,-51 97.5,-51"/>
-<text xml:space="preserve" text-anchor="start" x="103.5" y="-60" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
-<polygon fill="none" stroke="#000000" points="0,-25.5 0,-51 97.5,-51 97.5,-25.5 0,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-37.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">AddressID</text>
-<polygon fill="none" stroke="#000000" points="97.5,-25.5 97.5,-51 149.25,-51 149.25,-25.5 97.5,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="103.5" y="-34.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
-<polygon fill="none" stroke="#000000" points="0,0 0,-25.5 97.5,-25.5 97.5,0 0,0"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-11.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">AddressTypeID</text>
-<polygon fill="none" stroke="#000000" points="97.5,0 97.5,-25.5 149.25,-25.5 149.25,0 97.5,0"/>
-<text xml:space="preserve" text-anchor="start" x="103.5" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK,FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="0,-62.25 0,-83 125.75,-83 125.75,-62.25 0,-62.25"/>
+<polygon fill="none" stroke="#000000" points="0,-62.25 0,-83 125.75,-83 125.75,-62.25 0,-62.25"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-72.4" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Person.BusinessEntityAddress</text>
+<polygon fill="none" stroke="#000000" points="0,-41.5 0,-62.25 83.12,-62.25 83.12,-41.5 0,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-51.65" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">BusinessEntityID</text>
+<polygon fill="none" stroke="#000000" points="83.12,-41.5 83.12,-62.25 125.75,-62.25 125.75,-41.5 83.12,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="87.12" y="-48.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
+<polygon fill="none" stroke="#000000" points="0,-20.75 0,-41.5 83.12,-41.5 83.12,-20.75 0,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-30.9" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">AddressID</text>
+<polygon fill="none" stroke="#000000" points="83.12,-20.75 83.12,-41.5 125.75,-41.5 125.75,-20.75 83.12,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="87.12" y="-27.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
+<polygon fill="none" stroke="#000000" points="0,0 0,-20.75 83.12,-20.75 83.12,0 0,0"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-10.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">AddressTypeID</text>
+<polygon fill="none" stroke="#000000" points="83.12,0 83.12,-20.75 125.75,-20.75 125.75,0 83.12,0"/>
+<text xml:space="preserve" text-anchor="start" x="87.12" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK,FK</text>
 </g>
 <!-- Person.BusinessEntityAddress&#45;&gt;Person.AddressType -->
 <g id="edge1" class="edge">
 <title>Person.BusinessEntityAddress:e&#45;&gt;Person.AddressType:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M165.34,-12.89C171.58,-13.01 176.77,-13.15 184.43,-13.22"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="157.65,-12.82 149.68,-9.15 153.25,-12.79 150.05,-12.76 150.05,-12.76 150.05,-12.76 153.25,-12.79 149.62,-16.35 157.65,-12.82"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="162.91" cy="-12.87" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="191.47,-9.25 191.43,-17.25 189.83,-17.24 189.87,-9.24 191.47,-9.25"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="192.25,-13.25 188.25,-13.23"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="187.47,-9.23 187.43,-17.23 185.83,-17.22 185.87,-9.22 187.47,-9.23"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="188.25,-13.23 184.25,-13.22"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M141.84,-10.59C148.08,-10.76 153.27,-10.98 160.93,-11.08"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="134.15,-10.49 126.2,-6.78 129.75,-10.43 126.55,-10.39 126.55,-10.39 126.55,-10.39 129.75,-10.43 126.1,-13.98 134.15,-10.49"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="139.41" cy="-10.56" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="167.97,-7.12 167.93,-15.12 166.33,-15.11 166.37,-7.11 167.97,-7.12"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="168.75,-11.12 164.75,-11.1"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="163.97,-7.1 163.93,-15.1 162.33,-15.09 162.37,-7.09 163.97,-7.1"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="164.75,-11.1 160.75,-11.08"/>
 </g>
 </g>
 </svg>

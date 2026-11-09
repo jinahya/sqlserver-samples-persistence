@@ -5,483 +5,483 @@
  -->
 <!-- Title: erd Pages: 1 -->
 <!-- WideWorldImporters.Sales.Customers: the table, the tables it references and the tables referencing it -->
-<svg width="558pt" height="1227pt"
- viewBox="0.00 0.00 558.00 1227.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 1220.2)">
+<svg width="486pt" height="1022pt"
+ viewBox="0.00 0.00 486.00 1022.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(7.2 1015.2)">
 <title>erd</title>
 <!-- Sales.Customers -->
 <g id="node1" class="node">
 <title>Sales.Customers</title>
-<polygon fill="#1f4e79" stroke="none" points="211,-748.5 211,-774 356.5,-774 356.5,-748.5 211,-748.5"/>
-<polygon fill="none" stroke="#000000" points="211,-748.5 211,-774 356.5,-774 356.5,-748.5 211,-748.5"/>
-<text xml:space="preserve" text-anchor="start" x="246.25" y="-760.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#ffffff">Sales.Customers</text>
-<polygon fill="none" stroke="#000000" points="211,-723 211,-748.5 332.5,-748.5 332.5,-723 211,-723"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-734.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CustomerID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-723 332.5,-748.5 356.5,-748.5 356.5,-723 332.5,-723"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-732" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="211,-697.5 211,-723 332.5,-723 332.5,-697.5 211,-697.5"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-706.5" font-family="Noto Sans KR" font-size="9.00">BillToCustomerID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-697.5 332.5,-723 356.5,-723 356.5,-697.5 332.5,-697.5"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-706.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-672 211,-697.5 332.5,-697.5 332.5,-672 211,-672"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-681" font-family="Noto Sans KR" font-size="9.00">CustomerCategoryID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-672 332.5,-697.5 356.5,-697.5 356.5,-672 332.5,-672"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-681" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-646.5 211,-672 332.5,-672 332.5,-646.5 211,-646.5"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-658.45" font-family="Noto Sans KR" font-style="italic" font-size="9.00">BuyingGroupID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-646.5 332.5,-672 356.5,-672 356.5,-646.5 332.5,-646.5"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-655.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-621 211,-646.5 332.5,-646.5 332.5,-621 211,-621"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-630" font-family="Noto Sans KR" font-size="9.00">PrimaryContactPersonID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-621 332.5,-646.5 356.5,-646.5 356.5,-621 332.5,-621"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-630" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-595.5 211,-621 332.5,-621 332.5,-595.5 211,-595.5"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-607.45" font-family="Noto Sans KR" font-style="italic" font-size="9.00">AlternateContactPersonID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-595.5 332.5,-621 356.5,-621 356.5,-595.5 332.5,-595.5"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-604.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-570 211,-595.5 332.5,-595.5 332.5,-570 211,-570"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-579" font-family="Noto Sans KR" font-size="9.00">DeliveryMethodID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-570 332.5,-595.5 356.5,-595.5 356.5,-570 332.5,-570"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-579" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-544.5 211,-570 332.5,-570 332.5,-544.5 211,-544.5"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-553.5" font-family="Noto Sans KR" font-size="9.00">DeliveryCityID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-544.5 332.5,-570 356.5,-570 356.5,-544.5 332.5,-544.5"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-553.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-519 211,-544.5 332.5,-544.5 332.5,-519 211,-519"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-528" font-family="Noto Sans KR" font-size="9.00">PostalCityID</text>
-<polygon fill="none" stroke="#000000" points="332.5,-519 332.5,-544.5 356.5,-544.5 356.5,-519 332.5,-519"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-528" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="211,-493.5 211,-519 332.5,-519 332.5,-493.5 211,-493.5"/>
-<text xml:space="preserve" text-anchor="start" x="217" y="-502.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="332.5,-493.5 332.5,-519 356.5,-519 356.5,-493.5 332.5,-493.5"/>
-<text xml:space="preserve" text-anchor="start" x="338.5" y="-502.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#1f4e79" stroke="none" points="185.25,-622.75 185.25,-643.5 308.5,-643.5 308.5,-622.75 185.25,-622.75"/>
+<polygon fill="none" stroke="#000000" points="185.25,-622.75 185.25,-643.5 308.5,-643.5 308.5,-622.75 185.25,-622.75"/>
+<text xml:space="preserve" text-anchor="start" x="214.62" y="-632.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#ffffff">Sales.Customers</text>
+<polygon fill="none" stroke="#000000" points="185.25,-602 185.25,-622.75 290,-622.75 290,-602 185.25,-602"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-612.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CustomerID</text>
+<polygon fill="none" stroke="#000000" points="290,-602 290,-622.75 308.5,-622.75 308.5,-602 290,-602"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-609" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-581.25 185.25,-602 290,-602 290,-581.25 185.25,-581.25"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-588.25" font-family="Noto Sans KR" font-size="8.00">BillToCustomerID</text>
+<polygon fill="none" stroke="#000000" points="290,-581.25 290,-602 308.5,-602 308.5,-581.25 290,-581.25"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-588.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-560.5 185.25,-581.25 290,-581.25 290,-560.5 185.25,-560.5"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-567.5" font-family="Noto Sans KR" font-size="8.00">CustomerCategoryID</text>
+<polygon fill="none" stroke="#000000" points="290,-560.5 290,-581.25 308.5,-581.25 308.5,-560.5 290,-560.5"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-567.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-539.75 185.25,-560.5 290,-560.5 290,-539.75 185.25,-539.75"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-549.9" font-family="Noto Sans KR" font-style="italic" font-size="8.00">BuyingGroupID</text>
+<polygon fill="none" stroke="#000000" points="290,-539.75 290,-560.5 308.5,-560.5 308.5,-539.75 290,-539.75"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-546.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-519 185.25,-539.75 290,-539.75 290,-519 185.25,-519"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-526" font-family="Noto Sans KR" font-size="8.00">PrimaryContactPersonID</text>
+<polygon fill="none" stroke="#000000" points="290,-519 290,-539.75 308.5,-539.75 308.5,-519 290,-519"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-526" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-498.25 185.25,-519 290,-519 290,-498.25 185.25,-498.25"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-508.4" font-family="Noto Sans KR" font-style="italic" font-size="8.00">AlternateContactPersonID</text>
+<polygon fill="none" stroke="#000000" points="290,-498.25 290,-519 308.5,-519 308.5,-498.25 290,-498.25"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-505.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-477.5 185.25,-498.25 290,-498.25 290,-477.5 185.25,-477.5"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-484.5" font-family="Noto Sans KR" font-size="8.00">DeliveryMethodID</text>
+<polygon fill="none" stroke="#000000" points="290,-477.5 290,-498.25 308.5,-498.25 308.5,-477.5 290,-477.5"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-484.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-456.75 185.25,-477.5 290,-477.5 290,-456.75 185.25,-456.75"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-463.75" font-family="Noto Sans KR" font-size="8.00">DeliveryCityID</text>
+<polygon fill="none" stroke="#000000" points="290,-456.75 290,-477.5 308.5,-477.5 308.5,-456.75 290,-456.75"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-463.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-436 185.25,-456.75 290,-456.75 290,-436 185.25,-436"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-443" font-family="Noto Sans KR" font-size="8.00">PostalCityID</text>
+<polygon fill="none" stroke="#000000" points="290,-436 290,-456.75 308.5,-456.75 308.5,-436 290,-436"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-443" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="185.25,-415.25 185.25,-436 290,-436 290,-415.25 185.25,-415.25"/>
+<text xml:space="preserve" text-anchor="start" x="189.25" y="-422.25" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="290,-415.25 290,-436 308.5,-436 308.5,-415.25 290,-415.25"/>
+<text xml:space="preserve" text-anchor="start" x="294" y="-422.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Customers&#45;&gt;Sales.Customers -->
 <g id="edge1" class="edge">
 <title>Sales.Customers:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M366.38,-722.79C402.74,-771.99 394.32,-803 283.75,-803 168.97,-803 164.26,-785.22 205.47,-741.5"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="361.7,-716.85 359.58,-708.34 358.98,-713.39 357,-710.88 357,-710.88 357,-710.88 358.98,-713.39 353.92,-712.79 361.7,-716.85"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="364.96" cy="-720.98" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="207.56,-733.55 213.33,-739.1 212.22,-740.25 206.45,-734.71 207.56,-733.55"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 208.23,-738.63"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="204.79,-736.44 210.56,-741.98 209.45,-743.14 203.68,-737.59 204.79,-736.44"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="208.23,-738.63 205.45,-741.52"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M318.57,-604.12C348.89,-645.03 340.48,-672.5 246.88,-672.5 148.85,-672.5 144.26,-654.94 179.73,-617.97"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="313.77,-598.17 311.56,-589.68 311.01,-594.74 309,-592.25 309,-592.25 309,-592.25 311.01,-594.74 305.95,-594.2 313.77,-598.17"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="317.07" cy="-602.26" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="181.84,-610.14 187.54,-615.75 186.41,-616.89 180.72,-611.27 181.84,-610.14"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 182.44,-615.22"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="179.03,-612.98 184.73,-618.6 183.6,-619.74 177.91,-614.12 179.03,-612.98"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="182.44,-615.22 179.63,-618.07"/>
 </g>
 <!-- Sales.CustomerCategories -->
 <g id="node2" class="node">
 <title>Sales.CustomerCategories</title>
-<polygon fill="#d9e2ec" stroke="none" points="406.25,-846.5 406.25,-872 536.75,-872 536.75,-846.5 406.25,-846.5"/>
-<polygon fill="none" stroke="#000000" points="406.25,-846.5 406.25,-872 536.75,-872 536.75,-846.5 406.25,-846.5"/>
-<text xml:space="preserve" text-anchor="start" x="412.25" y="-858.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.CustomerCategories</text>
-<polygon fill="none" stroke="#000000" points="406.25,-821 406.25,-846.5 508.62,-846.5 508.62,-821 406.25,-821"/>
-<text xml:space="preserve" text-anchor="start" x="412.25" y="-832.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CustomerCategoryID</text>
-<polygon fill="none" stroke="#000000" points="508.62,-821 508.62,-846.5 536.75,-846.5 536.75,-821 508.62,-821"/>
-<text xml:space="preserve" text-anchor="start" x="514.62" y="-830" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="406.25,-795.5 406.25,-821 508.62,-821 508.62,-795.5 406.25,-795.5"/>
-<text xml:space="preserve" text-anchor="start" x="412.25" y="-804.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="508.62,-795.5 508.62,-821 536.75,-821 536.75,-795.5 508.62,-795.5"/>
-<text xml:space="preserve" text-anchor="start" x="514.62" y="-804.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="356.75,-711.75 356.75,-732.5 466.75,-732.5 466.75,-711.75 356.75,-711.75"/>
+<polygon fill="none" stroke="#000000" points="356.75,-711.75 356.75,-732.5 466.75,-732.5 466.75,-711.75 356.75,-711.75"/>
+<text xml:space="preserve" text-anchor="start" x="360.75" y="-721.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.CustomerCategories</text>
+<polygon fill="none" stroke="#000000" points="356.75,-691 356.75,-711.75 445.12,-711.75 445.12,-691 356.75,-691"/>
+<text xml:space="preserve" text-anchor="start" x="360.75" y="-701.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CustomerCategoryID</text>
+<polygon fill="none" stroke="#000000" points="445.12,-691 445.12,-711.75 466.75,-711.75 466.75,-691 445.12,-691"/>
+<text xml:space="preserve" text-anchor="start" x="449.12" y="-698" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="356.75,-670.25 356.75,-691 445.12,-691 445.12,-670.25 356.75,-670.25"/>
+<text xml:space="preserve" text-anchor="start" x="360.75" y="-677.25" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="445.12,-670.25 445.12,-691 466.75,-691 466.75,-670.25 445.12,-670.25"/>
+<text xml:space="preserve" text-anchor="start" x="449.12" y="-677.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Customers&#45;&gt;Sales.CustomerCategories -->
 <g id="edge2" class="edge">
 <title>Sales.Customers:e&#45;&gt;Sales.CustomerCategories:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M372.13,-688.43C408.87,-710.35 348.04,-822.96 397.52,-833.03"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.68,-686.68 357.72,-681.34 360.39,-685.67 357.28,-684.93 357.28,-684.93 357.28,-684.93 360.39,-685.67 356.07,-688.35 364.68,-686.68"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="369.8" cy="-687.88" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="404.82,-829.69 404.08,-837.66 402.49,-837.51 403.23,-829.54 404.82,-829.69"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="405.25,-833.75 401.27,-833.38"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="400.84,-829.32 400.1,-837.29 398.51,-837.14 399.25,-829.17 400.84,-829.32"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="401.27,-833.38 397.28,-833.01"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M323.74,-574.92C353.98,-595.79 306.14,-690.59 347.91,-700.53"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.62,-573.03 309.81,-567.5 312.37,-571.9 309.28,-571.08 309.28,-571.08 309.28,-571.08 312.37,-571.9 307.96,-574.46 316.62,-573.03"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="321.71" cy="-574.38" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="355.38,-697.31 354.53,-705.27 352.94,-705.1 353.79,-697.14 355.38,-697.31"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="355.75,-701.38 351.77,-700.95"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="351.41,-696.88 350.55,-704.84 348.96,-704.67 349.81,-696.71 351.41,-696.88"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="351.77,-700.95 347.8,-700.52"/>
 </g>
 <!-- Sales.BuyingGroups -->
 <g id="node3" class="node">
 <title>Sales.BuyingGroups</title>
-<polygon fill="#d9e2ec" stroke="none" points="420.12,-740.5 420.12,-766 522.88,-766 522.88,-740.5 420.12,-740.5"/>
-<polygon fill="none" stroke="#000000" points="420.12,-740.5 420.12,-766 522.88,-766 522.88,-740.5 420.12,-740.5"/>
-<text xml:space="preserve" text-anchor="start" x="426.12" y="-752.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.BuyingGroups</text>
-<polygon fill="none" stroke="#000000" points="420.12,-715 420.12,-740.5 496.62,-740.5 496.62,-715 420.12,-715"/>
-<text xml:space="preserve" text-anchor="start" x="426.12" y="-726.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">BuyingGroupID</text>
-<polygon fill="none" stroke="#000000" points="496.62,-715 496.62,-740.5 522.88,-740.5 522.88,-715 496.62,-715"/>
-<text xml:space="preserve" text-anchor="start" x="502.62" y="-724" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="420.12,-689.5 420.12,-715 496.62,-715 496.62,-689.5 420.12,-689.5"/>
-<text xml:space="preserve" text-anchor="start" x="426.12" y="-698.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="496.62,-689.5 496.62,-715 522.88,-715 522.88,-689.5 496.62,-689.5"/>
-<text xml:space="preserve" text-anchor="start" x="502.62" y="-698.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="368.75,-620.75 368.75,-641.5 454.75,-641.5 454.75,-620.75 368.75,-620.75"/>
+<polygon fill="none" stroke="#000000" points="368.75,-620.75 368.75,-641.5 454.75,-641.5 454.75,-620.75 368.75,-620.75"/>
+<text xml:space="preserve" text-anchor="start" x="372.75" y="-630.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.BuyingGroups</text>
+<polygon fill="none" stroke="#000000" points="368.75,-600 368.75,-620.75 434.62,-620.75 434.62,-600 368.75,-600"/>
+<text xml:space="preserve" text-anchor="start" x="372.75" y="-610.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">BuyingGroupID</text>
+<polygon fill="none" stroke="#000000" points="434.62,-600 434.62,-620.75 454.75,-620.75 454.75,-600 434.62,-600"/>
+<text xml:space="preserve" text-anchor="start" x="438.62" y="-607" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="368.75,-579.25 368.75,-600 434.62,-600 434.62,-579.25 368.75,-579.25"/>
+<text xml:space="preserve" text-anchor="start" x="372.75" y="-586.25" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="434.62,-579.25 434.62,-600 454.75,-600 454.75,-579.25 434.62,-579.25"/>
+<text xml:space="preserve" text-anchor="start" x="438.62" y="-586.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Customers&#45;&gt;Sales.BuyingGroups -->
 <g id="edge3" class="edge">
 <title>Sales.Customers:e&#45;&gt;Sales.BuyingGroups:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M371.83,-663.74C390.38,-677.08 386.03,-716.08 407.97,-725.62"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.56,-661.61 357.9,-655.91 360.34,-660.38 357.27,-659.48 357.27,-659.48 357.27,-659.48 360.34,-660.38 355.87,-662.82 364.56,-661.61"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="369.61" cy="-663.1" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="419.09,-723.67 417.59,-731.53 416.02,-731.23 417.52,-723.37 419.09,-723.67"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="419.12,-727.75 415.2,-727"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="411.46" cy="-726.29" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M323.67,-554.85C339.58,-567.06 337.73,-599.29 356.63,-608.11"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.52,-552.62 309.95,-546.81 312.32,-551.31 309.27,-550.36 309.27,-550.36 309.27,-550.36 312.32,-551.31 307.81,-553.68 316.52,-552.62"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="321.54" cy="-554.19" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="367.76,-606.3 366.17,-614.14 364.6,-613.82 366.2,-605.98 367.76,-606.3"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="367.75,-610.38 363.83,-609.58"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="360.11" cy="-608.82" rx="3.2" ry="3.2"/>
 </g>
 <!-- Application.People -->
 <g id="node4" class="node">
 <title>Application.People</title>
-<polygon fill="#d9e2ec" stroke="none" points="422,-634.5 422,-660 521,-660 521,-634.5 422,-634.5"/>
-<polygon fill="none" stroke="#000000" points="422,-634.5 422,-660 521,-660 521,-634.5 422,-634.5"/>
-<text xml:space="preserve" text-anchor="start" x="428" y="-646.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Application.People</text>
-<polygon fill="none" stroke="#000000" points="422,-609 422,-634.5 492.88,-634.5 492.88,-609 422,-609"/>
-<text xml:space="preserve" text-anchor="start" x="428" y="-620.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">PersonID</text>
-<polygon fill="none" stroke="#000000" points="492.88,-609 492.88,-634.5 521,-634.5 521,-609 492.88,-609"/>
-<text xml:space="preserve" text-anchor="start" x="498.88" y="-618" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="422,-583.5 422,-609 492.88,-609 492.88,-583.5 422,-583.5"/>
-<text xml:space="preserve" text-anchor="start" x="428" y="-592.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="492.88,-583.5 492.88,-609 521,-609 521,-583.5 492.88,-583.5"/>
-<text xml:space="preserve" text-anchor="start" x="498.88" y="-592.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="371,-529.75 371,-550.5 452.5,-550.5 452.5,-529.75 371,-529.75"/>
+<polygon fill="none" stroke="#000000" points="371,-529.75 371,-550.5 452.5,-550.5 452.5,-529.75 371,-529.75"/>
+<text xml:space="preserve" text-anchor="start" x="375" y="-539.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Application.People</text>
+<polygon fill="none" stroke="#000000" points="371,-509 371,-529.75 431.62,-529.75 431.62,-509 371,-509"/>
+<text xml:space="preserve" text-anchor="start" x="375" y="-519.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">PersonID</text>
+<polygon fill="none" stroke="#000000" points="431.62,-509 431.62,-529.75 452.5,-529.75 452.5,-509 431.62,-509"/>
+<text xml:space="preserve" text-anchor="start" x="435.62" y="-516" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="371,-488.25 371,-509 431.62,-509 431.62,-488.25 371,-488.25"/>
+<text xml:space="preserve" text-anchor="start" x="375" y="-495.25" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="431.62,-488.25 431.62,-509 452.5,-509 452.5,-488.25 431.62,-488.25"/>
+<text xml:space="preserve" text-anchor="start" x="435.62" y="-495.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Customers&#45;&gt;Application.People -->
 <g id="edge4" class="edge">
 <title>Sales.Customers:e&#45;&gt;Application.People:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M372.32,-632.37C387.3,-629.59 395.84,-623.44 413.46,-622.04"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.87,-633.02 356.59,-630.13 360.48,-633.4 357.3,-633.68 357.3,-633.68 357.3,-633.68 360.48,-633.4 357.21,-637.3 364.87,-633.02"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="370.11" cy="-632.57" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="420.05,-617.78 420.35,-625.78 418.76,-625.84 418.45,-617.84 420.05,-617.78"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="421,-621.75 417,-621.9"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="416.05,-617.94 416.36,-625.93 414.76,-625.99 414.45,-618 416.05,-617.94"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="417,-621.9 413.01,-622.06"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M324.5,-528.07C338,-525.72 346.2,-520.91 362.1,-519.67"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.87,-528.69 308.61,-525.75 312.49,-529.05 309.3,-529.31 309.3,-529.31 309.3,-529.31 312.49,-529.05 309.19,-532.93 316.87,-528.69"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="322.12" cy="-528.26" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="369.05,-515.41 369.35,-523.4 367.75,-523.46 367.45,-515.47 369.05,-515.41"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="370,-519.38 366,-519.52"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="365.05,-515.56 365.35,-523.55 363.75,-523.61 363.46,-515.62 365.05,-515.56"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="366,-519.52 362.01,-519.67"/>
 </g>
 <!-- Sales.Customers&#45;&gt;Application.People -->
 <g id="edge5" class="edge">
 <title>Sales.Customers:e&#45;&gt;Application.People:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M372.35,-609.8C386.28,-612.71 394.54,-618.89 409.82,-621.01"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.86,-609.07 357.25,-604.71 360.48,-608.64 357.3,-608.33 357.3,-608.33 357.3,-608.33 360.48,-608.64 356.55,-611.87 364.86,-609.07"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="370.1" cy="-609.58" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="420.46,-617.71 419.94,-625.69 418.34,-625.58 418.87,-617.6 420.46,-617.71"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="421,-621.75 417.01,-621.49"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="413.22" cy="-621.24" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M324.52,-510.03C337.04,-512.38 344.97,-517 358.76,-518.71"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.87,-509.36 309.21,-505.07 312.48,-508.97 309.3,-508.7 309.3,-508.7 309.3,-508.7 312.48,-508.97 308.59,-512.25 316.87,-509.36"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="322.11" cy="-509.82" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="369.44,-515.33 368.97,-523.32 367.37,-523.23 367.84,-515.24 369.44,-515.33"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="370,-519.38 366.01,-519.14"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="362.21" cy="-518.92" rx="3.2" ry="3.2"/>
 </g>
 <!-- Sales.Customers&#45;&gt;Application.People -->
 <g id="edge9" class="edge">
 <title>Sales.Customers:e&#45;&gt;Application.People:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M372.07,-510.09C403.22,-529.04 372.41,-611.94 413.18,-620.95"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.66,-508.26 357.75,-502.85 360.38,-507.21 357.28,-506.44 357.28,-506.44 357.28,-506.44 360.38,-507.21 356.03,-509.84 364.66,-508.26"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="369.77" cy="-509.52" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="420.61,-617.69 419.8,-625.65 418.21,-625.49 419.02,-617.53 420.61,-617.69"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="421,-621.75 417.02,-621.35"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="416.63,-617.28 415.82,-625.24 414.23,-625.08 415.04,-617.12 416.63,-617.28"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="417.02,-621.35 413.04,-620.94"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M323.76,-429.9C348.22,-447.02 329.48,-510.16 362.2,-518.47"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.59,-427.89 309.86,-422.27 312.35,-426.7 309.27,-425.84 309.27,-425.84 309.27,-425.84 312.35,-426.7 307.92,-429.2 316.59,-427.89"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="321.66" cy="-429.31" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="369.67,-515.31 368.74,-523.26 367.15,-523.07 368.08,-515.13 369.67,-515.31"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="370,-519.38 366.03,-518.91"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="365.69,-514.85 364.77,-522.8 363.18,-522.61 364.1,-514.66 365.69,-514.85"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="366.03,-518.91 362.05,-518.45"/>
 </g>
 <!-- Application.DeliveryMethods -->
 <g id="node5" class="node">
 <title>Application.DeliveryMethods</title>
-<polygon fill="#d9e2ec" stroke="none" points="399.5,-528.5 399.5,-554 543.5,-554 543.5,-528.5 399.5,-528.5"/>
-<polygon fill="none" stroke="#000000" points="399.5,-528.5 399.5,-554 543.5,-554 543.5,-528.5 399.5,-528.5"/>
-<text xml:space="preserve" text-anchor="start" x="405.5" y="-540.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Application.DeliveryMethods</text>
-<polygon fill="none" stroke="#000000" points="399.5,-503 399.5,-528.5 502.62,-528.5 502.62,-503 399.5,-503"/>
-<text xml:space="preserve" text-anchor="start" x="405.5" y="-514.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">DeliveryMethodID</text>
-<polygon fill="none" stroke="#000000" points="502.62,-503 502.62,-528.5 543.5,-528.5 543.5,-503 502.62,-503"/>
-<text xml:space="preserve" text-anchor="start" x="508.62" y="-512" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="399.5,-477.5 399.5,-503 502.62,-503 502.62,-477.5 399.5,-477.5"/>
-<text xml:space="preserve" text-anchor="start" x="405.5" y="-486.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="502.62,-477.5 502.62,-503 543.5,-503 543.5,-477.5 502.62,-477.5"/>
-<text xml:space="preserve" text-anchor="start" x="508.62" y="-486.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="351.5,-438.75 351.5,-459.5 472,-459.5 472,-438.75 351.5,-438.75"/>
+<polygon fill="none" stroke="#000000" points="351.5,-438.75 351.5,-459.5 472,-459.5 472,-438.75 351.5,-438.75"/>
+<text xml:space="preserve" text-anchor="start" x="355.5" y="-448.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Application.DeliveryMethods</text>
+<polygon fill="none" stroke="#000000" points="351.5,-418 351.5,-438.75 439.5,-438.75 439.5,-418 351.5,-418"/>
+<text xml:space="preserve" text-anchor="start" x="355.5" y="-428.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">DeliveryMethodID</text>
+<polygon fill="none" stroke="#000000" points="439.5,-418 439.5,-438.75 472,-438.75 472,-418 439.5,-418"/>
+<text xml:space="preserve" text-anchor="start" x="443.5" y="-425" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="351.5,-397.25 351.5,-418 439.5,-418 439.5,-397.25 351.5,-397.25"/>
+<text xml:space="preserve" text-anchor="start" x="355.5" y="-404.25" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="439.5,-397.25 439.5,-418 472,-418 472,-397.25 439.5,-397.25"/>
+<text xml:space="preserve" text-anchor="start" x="443.5" y="-404.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Customers&#45;&gt;Application.DeliveryMethods -->
 <g id="edge6" class="edge">
 <title>Sales.Customers:e&#45;&gt;Application.DeliveryMethods:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M370.95,-576.08C382.18,-560.86 373.29,-524.29 392.02,-517.02"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.13,-579.23 355.36,-579.31 360.13,-581.07 357.23,-582.41 357.23,-582.41 357.23,-582.41 360.13,-581.07 358.37,-585.85 364.13,-579.23"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="368.91" cy="-577.02" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="398.04,-511.94 399.38,-519.83 397.8,-520.1 396.46,-512.21 398.04,-511.94"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="399.5,-515.75 395.56,-516.42"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="394.1,-512.61 395.44,-520.5 393.86,-520.76 392.52,-512.88 394.1,-512.61"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="395.56,-516.42 391.61,-517.09"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M322.85,-481.05C332.85,-467.25 327.46,-436.76 343.77,-429.81"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.09,-484.27 307.32,-484.45 312.11,-486.16 309.22,-487.53 309.22,-487.53 309.22,-487.53 312.11,-486.16 310.41,-490.95 316.09,-484.27"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="320.84" cy="-482.01" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="349.98,-424.59 351.44,-432.45 349.87,-432.75 348.41,-424.88 349.98,-424.59"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="351.5,-428.38 347.57,-429.1"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="346.05,-425.32 347.51,-433.18 345.94,-433.47 344.48,-425.61 346.05,-425.32"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="347.57,-429.1 343.63,-429.83"/>
 </g>
 <!-- Application.Cities -->
 <g id="node6" class="node">
 <title>Application.Cities</title>
-<polygon fill="#d9e2ec" stroke="none" points="420.12,-423.25 420.12,-448.75 522.88,-448.75 522.88,-423.25 420.12,-423.25"/>
-<polygon fill="none" stroke="#000000" points="420.12,-423.25 420.12,-448.75 522.88,-448.75 522.88,-423.25 420.12,-423.25"/>
-<text xml:space="preserve" text-anchor="start" x="431" y="-435.2" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Application.Cities</text>
-<polygon fill="none" stroke="#000000" points="420.12,-397.75 420.12,-423.25 498.88,-423.25 498.88,-397.75 420.12,-397.75"/>
-<text xml:space="preserve" text-anchor="start" x="426.12" y="-409.7" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CityID</text>
-<polygon fill="none" stroke="#000000" points="498.88,-397.75 498.88,-423.25 522.88,-423.25 522.88,-397.75 498.88,-397.75"/>
-<text xml:space="preserve" text-anchor="start" x="504.88" y="-406.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="420.12,-372.25 420.12,-397.75 498.88,-397.75 498.88,-372.25 420.12,-372.25"/>
-<text xml:space="preserve" text-anchor="start" x="426.12" y="-381.25" font-family="Noto Sans KR" font-size="9.00">StateProvinceID</text>
-<polygon fill="none" stroke="#000000" points="498.88,-372.25 498.88,-397.75 522.88,-397.75 522.88,-372.25 498.88,-372.25"/>
-<text xml:space="preserve" text-anchor="start" x="504.88" y="-381.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="420.12,-346.75 420.12,-372.25 498.88,-372.25 498.88,-346.75 420.12,-346.75"/>
-<text xml:space="preserve" text-anchor="start" x="426.12" y="-355.75" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="498.88,-346.75 498.88,-372.25 522.88,-372.25 522.88,-346.75 498.88,-346.75"/>
-<text xml:space="preserve" text-anchor="start" x="504.88" y="-355.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="368.5,-347.12 368.5,-367.88 455,-367.88 455,-347.12 368.5,-347.12"/>
+<polygon fill="none" stroke="#000000" points="368.5,-347.12 368.5,-367.88 455,-367.88 455,-347.12 368.5,-347.12"/>
+<text xml:space="preserve" text-anchor="start" x="378" y="-357.27" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Application.Cities</text>
+<polygon fill="none" stroke="#000000" points="368.5,-326.38 368.5,-347.12 436.5,-347.12 436.5,-326.38 368.5,-326.38"/>
+<text xml:space="preserve" text-anchor="start" x="372.5" y="-336.52" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CityID</text>
+<polygon fill="none" stroke="#000000" points="436.5,-326.38 436.5,-347.12 455,-347.12 455,-326.38 436.5,-326.38"/>
+<text xml:space="preserve" text-anchor="start" x="440.5" y="-333.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="368.5,-305.62 368.5,-326.38 436.5,-326.38 436.5,-305.62 368.5,-305.62"/>
+<text xml:space="preserve" text-anchor="start" x="372.5" y="-312.62" font-family="Noto Sans KR" font-size="8.00">StateProvinceID</text>
+<polygon fill="none" stroke="#000000" points="436.5,-305.62 436.5,-326.38 455,-326.38 455,-305.62 436.5,-305.62"/>
+<text xml:space="preserve" text-anchor="start" x="440.5" y="-312.62" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="368.5,-284.88 368.5,-305.62 436.5,-305.62 436.5,-284.88 368.5,-284.88"/>
+<text xml:space="preserve" text-anchor="start" x="372.5" y="-291.88" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="436.5,-284.88 436.5,-305.62 455,-305.62 455,-284.88 436.5,-284.88"/>
+<text xml:space="preserve" text-anchor="start" x="440.5" y="-291.88" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Customers&#45;&gt;Application.Cities -->
 <g id="edge7" class="edge">
 <title>Sales.Customers:e&#45;&gt;Application.Cities:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M372.2,-553.91C412.5,-533.05 359.75,-421.22 411.16,-411.22"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.72,-555.5 356.14,-553.65 360.41,-556.42 357.29,-557.08 357.29,-557.08 357.29,-557.08 360.41,-556.42 357.64,-560.69 364.72,-555.5"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="369.86" cy="-554.41" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="417.97,-406.59 418.69,-414.56 417.09,-414.7 416.38,-406.73 417.97,-406.59"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="419.12,-410.5 415.14,-410.86"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="413.99,-406.95 414.7,-414.91 413.11,-415.06 412.39,-407.09 413.99,-406.95"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="415.14,-410.86 411.16,-411.22"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M324.08,-463.36C357.8,-443.07 315.14,-347.22 359.59,-337.54"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.67,-465.15 308.05,-463.53 312.39,-466.19 309.28,-466.94 309.28,-466.94 309.28,-466.94 312.39,-466.19 309.74,-470.53 316.67,-465.15"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="321.78" cy="-463.92" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="366.31,-332.85 367.1,-340.81 365.51,-340.97 364.71,-333.01 366.31,-332.85"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="367.5,-336.75 363.52,-337.15"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="362.33,-333.25 363.12,-341.21 361.53,-341.37 360.73,-333.41 362.33,-333.25"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="363.52,-337.15 359.54,-337.54"/>
 </g>
 <!-- Sales.Customers&#45;&gt;Application.Cities -->
 <g id="edge8" class="edge">
 <title>Sales.Customers:e&#45;&gt;Application.Cities:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M371.99,-527.99C404.3,-508.6 369.01,-420.52 411.31,-411.28"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="364.66,-529.77 356.04,-528.16 360.39,-530.81 357.28,-531.56 357.28,-531.56 357.28,-531.56 360.39,-530.81 357.74,-535.15 364.66,-529.77"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="369.78" cy="-528.53" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="417.93,-406.6 418.73,-414.56 417.14,-414.72 416.34,-406.76 417.93,-406.6"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="419.12,-410.5 415.14,-410.9"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="413.95,-407 414.75,-414.96 413.16,-415.12 412.36,-407.16 413.95,-407"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="415.14,-410.9 411.16,-411.3"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M323.89,-442.21C351.47,-423.36 322.48,-346.54 359.74,-337.6"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="316.61,-444.18 307.95,-442.8 312.36,-445.33 309.27,-446.17 309.27,-446.17 309.27,-446.17 312.36,-445.33 309.83,-449.75 316.61,-444.18"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="321.69" cy="-442.81" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="366.27,-332.86 367.14,-340.81 365.55,-340.99 364.68,-333.04 366.27,-332.86"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="367.5,-336.75 363.52,-337.19"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="362.29,-333.3 363.16,-341.25 361.57,-341.42 360.7,-333.47 362.29,-333.3"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="363.52,-337.19 359.55,-337.62"/>
 </g>
 <!-- Sales.CustomerTransactions -->
 <g id="node7" class="node">
 <title>Sales.CustomerTransactions</title>
-<polygon fill="#d9e2ec" stroke="none" points="13.88,-1187.5 13.88,-1213 154.12,-1213 154.12,-1187.5 13.88,-1187.5"/>
-<polygon fill="none" stroke="#000000" points="13.88,-1187.5 13.88,-1213 154.12,-1213 154.12,-1187.5 13.88,-1187.5"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1199.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.CustomerTransactions</text>
-<polygon fill="none" stroke="#000000" points="13.88,-1162 13.88,-1187.5 127.12,-1187.5 127.12,-1162 13.88,-1162"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1173.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">CustomerTransactionID</text>
-<polygon fill="none" stroke="#000000" points="127.12,-1162 127.12,-1187.5 154.12,-1187.5 154.12,-1162 127.12,-1162"/>
-<text xml:space="preserve" text-anchor="start" x="133.12" y="-1171" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="13.88,-1136.5 13.88,-1162 127.12,-1162 127.12,-1136.5 13.88,-1136.5"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1145.5" font-family="Noto Sans KR" font-size="9.00">CustomerID</text>
-<polygon fill="none" stroke="#000000" points="127.12,-1136.5 127.12,-1162 154.12,-1162 154.12,-1136.5 127.12,-1136.5"/>
-<text xml:space="preserve" text-anchor="start" x="133.12" y="-1145.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="13.88,-1111 13.88,-1136.5 127.12,-1136.5 127.12,-1111 13.88,-1111"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1120" font-family="Noto Sans KR" font-size="9.00">TransactionTypeID</text>
-<polygon fill="none" stroke="#000000" points="127.12,-1111 127.12,-1136.5 154.12,-1136.5 154.12,-1111 127.12,-1111"/>
-<text xml:space="preserve" text-anchor="start" x="133.12" y="-1120" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="13.88,-1085.5 13.88,-1111 127.12,-1111 127.12,-1085.5 13.88,-1085.5"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1097.45" font-family="Noto Sans KR" font-style="italic" font-size="9.00">InvoiceID</text>
-<polygon fill="none" stroke="#000000" points="127.12,-1085.5 127.12,-1111 154.12,-1111 154.12,-1085.5 127.12,-1085.5"/>
-<text xml:space="preserve" text-anchor="start" x="133.12" y="-1094.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="13.88,-1060 13.88,-1085.5 127.12,-1085.5 127.12,-1060 13.88,-1060"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1071.95" font-family="Noto Sans KR" font-style="italic" font-size="9.00">PaymentMethodID</text>
-<polygon fill="none" stroke="#000000" points="127.12,-1060 127.12,-1085.5 154.12,-1085.5 154.12,-1060 127.12,-1060"/>
-<text xml:space="preserve" text-anchor="start" x="133.12" y="-1069" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="13.88,-1034.5 13.88,-1060 127.12,-1060 127.12,-1034.5 13.88,-1034.5"/>
-<text xml:space="preserve" text-anchor="start" x="19.88" y="-1043.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="127.12,-1034.5 127.12,-1060 154.12,-1060 154.12,-1034.5 127.12,-1034.5"/>
-<text xml:space="preserve" text-anchor="start" x="133.12" y="-1043.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="12.38,-987.25 12.38,-1008 129.88,-1008 129.88,-987.25 12.38,-987.25"/>
+<polygon fill="none" stroke="#000000" points="12.38,-987.25 12.38,-1008 129.88,-1008 129.88,-987.25 12.38,-987.25"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-997.4" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.CustomerTransactions</text>
+<polygon fill="none" stroke="#000000" points="12.38,-966.5 12.38,-987.25 109.75,-987.25 109.75,-966.5 12.38,-966.5"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-976.65" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">CustomerTransactionID</text>
+<polygon fill="none" stroke="#000000" points="109.75,-966.5 109.75,-987.25 129.88,-987.25 129.88,-966.5 109.75,-966.5"/>
+<text xml:space="preserve" text-anchor="start" x="113.75" y="-973.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="12.38,-945.75 12.38,-966.5 109.75,-966.5 109.75,-945.75 12.38,-945.75"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-952.75" font-family="Noto Sans KR" font-size="8.00">CustomerID</text>
+<polygon fill="none" stroke="#000000" points="109.75,-945.75 109.75,-966.5 129.88,-966.5 129.88,-945.75 109.75,-945.75"/>
+<text xml:space="preserve" text-anchor="start" x="113.75" y="-952.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="12.38,-925 12.38,-945.75 109.75,-945.75 109.75,-925 12.38,-925"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-932" font-family="Noto Sans KR" font-size="8.00">TransactionTypeID</text>
+<polygon fill="none" stroke="#000000" points="109.75,-925 109.75,-945.75 129.88,-945.75 129.88,-925 109.75,-925"/>
+<text xml:space="preserve" text-anchor="start" x="113.75" y="-932" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="12.38,-904.25 12.38,-925 109.75,-925 109.75,-904.25 12.38,-904.25"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-914.4" font-family="Noto Sans KR" font-style="italic" font-size="8.00">InvoiceID</text>
+<polygon fill="none" stroke="#000000" points="109.75,-904.25 109.75,-925 129.88,-925 129.88,-904.25 109.75,-904.25"/>
+<text xml:space="preserve" text-anchor="start" x="113.75" y="-911.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="12.38,-883.5 12.38,-904.25 109.75,-904.25 109.75,-883.5 12.38,-883.5"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-893.65" font-family="Noto Sans KR" font-style="italic" font-size="8.00">PaymentMethodID</text>
+<polygon fill="none" stroke="#000000" points="109.75,-883.5 109.75,-904.25 129.88,-904.25 129.88,-883.5 109.75,-883.5"/>
+<text xml:space="preserve" text-anchor="start" x="113.75" y="-890.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="12.38,-862.75 12.38,-883.5 109.75,-883.5 109.75,-862.75 12.38,-862.75"/>
+<text xml:space="preserve" text-anchor="start" x="16.38" y="-869.75" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="109.75,-862.75 109.75,-883.5 129.88,-883.5 129.88,-862.75 109.75,-862.75"/>
+<text xml:space="preserve" text-anchor="start" x="113.75" y="-869.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.CustomerTransactions&#45;&gt;Sales.Customers -->
 <g id="edge10" class="edge">
 <title>Sales.CustomerTransactions:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M170.4,-1144.32C230.14,-1099.12 130.83,-758.06 203.43,-736.79"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="163.12,-1146.67 154.4,-1145.7 158.93,-1148.02 155.89,-1149 155.89,-1149 155.89,-1149 158.93,-1148.02 156.61,-1152.55 163.12,-1146.67"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="168.13" cy="-1145.05" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="209.66,-731.9 210.75,-739.82 209.17,-740.04 208.08,-732.11 209.66,-731.9"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 207.04,-736.29"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="205.7,-732.44 206.79,-740.37 205.2,-740.58 204.12,-732.66 205.7,-732.44"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="207.04,-736.29 203.07,-736.84"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M145.61,-950.45C192.08,-907.5 119.87,-634.92 177.55,-613.69"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="138.71,-953.1 129.95,-952.62 134.61,-954.69 131.62,-955.84 131.62,-955.84 131.62,-955.84 134.61,-954.69 132.54,-959.34 138.71,-953.1"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="143.62" cy="-951.21" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="183.79,-608.57 185.13,-616.45 183.56,-616.72 182.21,-608.83 183.79,-608.57"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 181.31,-613.05"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="179.85,-609.24 181.19,-617.12 179.61,-617.39 178.27,-609.51 179.85,-609.24"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="181.31,-613.05 177.36,-613.72"/>
 </g>
 <!-- Sales.Invoices -->
 <g id="node8" class="node">
 <title>Sales.Invoices</title>
-<polygon fill="#d9e2ec" stroke="none" points="21,-979.5 21,-1005 147,-1005 147,-979.5 21,-979.5"/>
-<polygon fill="none" stroke="#000000" points="21,-979.5 21,-1005 147,-1005 147,-979.5 21,-979.5"/>
-<text xml:space="preserve" text-anchor="start" x="52.12" y="-991.45" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.Invoices</text>
-<polygon fill="none" stroke="#000000" points="21,-954 21,-979.5 123,-979.5 123,-954 21,-954"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-965.95" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">InvoiceID</text>
-<polygon fill="none" stroke="#000000" points="123,-954 123,-979.5 147,-979.5 147,-954 123,-954"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-963" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="21,-928.5 21,-954 123,-954 123,-928.5 21,-928.5"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-937.5" font-family="Noto Sans KR" font-size="9.00">SalespersonPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-928.5 123,-954 147,-954 147,-928.5 123,-928.5"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-937.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-903 21,-928.5 123,-928.5 123,-903 21,-903"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-912" font-family="Noto Sans KR" font-size="9.00">PackedByPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-903 123,-928.5 147,-928.5 147,-903 123,-903"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-912" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-877.5 21,-903 123,-903 123,-877.5 21,-877.5"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-886.5" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="123,-877.5 123,-903 147,-903 147,-877.5 123,-877.5"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-886.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-852 21,-877.5 123,-877.5 123,-852 21,-852"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-861" font-family="Noto Sans KR" font-size="9.00">CustomerID</text>
-<polygon fill="none" stroke="#000000" points="123,-852 123,-877.5 147,-877.5 147,-852 123,-852"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-861" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-826.5 21,-852 123,-852 123,-826.5 21,-826.5"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-835.5" font-family="Noto Sans KR" font-size="9.00">BillToCustomerID</text>
-<polygon fill="none" stroke="#000000" points="123,-826.5 123,-852 147,-852 147,-826.5 123,-826.5"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-835.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-801 21,-826.5 123,-826.5 123,-801 21,-801"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-812.95" font-family="Noto Sans KR" font-style="italic" font-size="9.00">OrderID</text>
-<polygon fill="none" stroke="#000000" points="123,-801 123,-826.5 147,-826.5 147,-801 123,-801"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-810" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-775.5 21,-801 123,-801 123,-775.5 21,-775.5"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-784.5" font-family="Noto Sans KR" font-size="9.00">DeliveryMethodID</text>
-<polygon fill="none" stroke="#000000" points="123,-775.5 123,-801 147,-801 147,-775.5 123,-775.5"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-784.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-750 21,-775.5 123,-775.5 123,-750 21,-750"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-759" font-family="Noto Sans KR" font-size="9.00">ContactPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-750 123,-775.5 147,-775.5 147,-750 123,-750"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-759" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-724.5 21,-750 123,-750 123,-724.5 21,-724.5"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-733.5" font-family="Noto Sans KR" font-size="9.00">AccountsPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-724.5 123,-750 147,-750 147,-724.5 123,-724.5"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-733.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="18.5,-812.75 18.5,-833.5 123.75,-833.5 123.75,-812.75 18.5,-812.75"/>
+<polygon fill="none" stroke="#000000" points="18.5,-812.75 18.5,-833.5 123.75,-833.5 123.75,-812.75 18.5,-812.75"/>
+<text xml:space="preserve" text-anchor="start" x="43.75" y="-822.9" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.Invoices</text>
+<polygon fill="none" stroke="#000000" points="18.5,-792 18.5,-812.75 105.25,-812.75 105.25,-792 18.5,-792"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-802.15" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">InvoiceID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-792 105.25,-812.75 123.75,-812.75 123.75,-792 105.25,-792"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-799" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-771.25 18.5,-792 105.25,-792 105.25,-771.25 18.5,-771.25"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-778.25" font-family="Noto Sans KR" font-size="8.00">SalespersonPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-771.25 105.25,-792 123.75,-792 123.75,-771.25 105.25,-771.25"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-778.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-750.5 18.5,-771.25 105.25,-771.25 105.25,-750.5 18.5,-750.5"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-757.5" font-family="Noto Sans KR" font-size="8.00">PackedByPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-750.5 105.25,-771.25 123.75,-771.25 123.75,-750.5 105.25,-750.5"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-757.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-729.75 18.5,-750.5 105.25,-750.5 105.25,-729.75 18.5,-729.75"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-736.75" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="105.25,-729.75 105.25,-750.5 123.75,-750.5 123.75,-729.75 105.25,-729.75"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-736.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-709 18.5,-729.75 105.25,-729.75 105.25,-709 18.5,-709"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-716" font-family="Noto Sans KR" font-size="8.00">CustomerID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-709 105.25,-729.75 123.75,-729.75 123.75,-709 105.25,-709"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-716" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-688.25 18.5,-709 105.25,-709 105.25,-688.25 18.5,-688.25"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-695.25" font-family="Noto Sans KR" font-size="8.00">BillToCustomerID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-688.25 105.25,-709 123.75,-709 123.75,-688.25 105.25,-688.25"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-695.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-667.5 18.5,-688.25 105.25,-688.25 105.25,-667.5 18.5,-667.5"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-677.65" font-family="Noto Sans KR" font-style="italic" font-size="8.00">OrderID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-667.5 105.25,-688.25 123.75,-688.25 123.75,-667.5 105.25,-667.5"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-674.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-646.75 18.5,-667.5 105.25,-667.5 105.25,-646.75 18.5,-646.75"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-653.75" font-family="Noto Sans KR" font-size="8.00">DeliveryMethodID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-646.75 105.25,-667.5 123.75,-667.5 123.75,-646.75 105.25,-646.75"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-653.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-626 18.5,-646.75 105.25,-646.75 105.25,-626 18.5,-626"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-633" font-family="Noto Sans KR" font-size="8.00">ContactPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-626 105.25,-646.75 123.75,-646.75 123.75,-626 105.25,-626"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-633" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-605.25 18.5,-626 105.25,-626 105.25,-605.25 18.5,-605.25"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-612.25" font-family="Noto Sans KR" font-size="8.00">AccountsPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-605.25 105.25,-626 123.75,-626 123.75,-605.25 105.25,-605.25"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-612.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Invoices&#45;&gt;Sales.Customers -->
 <g id="edge11" class="edge">
 <title>Sales.Invoices:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M163.26,-861.3C198.6,-841.79 157.81,-745.81 203.29,-736.48"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="156.19,-862.9 147.6,-861.15 151.9,-863.87 148.78,-864.57 148.78,-864.57 148.78,-864.57 151.9,-863.87 149.19,-868.17 156.19,-862.9"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="161.33" cy="-861.74" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="209.83,-731.84 210.58,-739.81 208.99,-739.96 208.23,-731.99 209.83,-731.84"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 207.02,-736.13"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="205.84,-732.22 206.6,-740.18 205.01,-740.34 204.25,-732.37 205.84,-732.22"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="207.02,-736.13 203.04,-736.5"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M140.03,-715.31C167.65,-696.91 140.6,-621.93 177.57,-613.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="132.87,-717.22 124.21,-715.79 128.62,-718.35 125.53,-719.17 125.53,-719.17 125.53,-719.17 128.62,-718.35 126.06,-722.75 132.87,-717.22"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="137.95" cy="-715.86" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="184.02,-608.48 184.88,-616.44 183.29,-616.61 182.43,-608.66 184.02,-608.48"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 181.27,-612.8"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="180.05,-608.91 180.91,-616.87 179.32,-617.04 178.46,-609.09 180.05,-608.91"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="181.27,-612.8 177.3,-613.23"/>
 </g>
 <!-- Sales.Invoices&#45;&gt;Sales.Customers -->
 <g id="edge12" class="edge">
 <title>Sales.Invoices:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M163.19,-835.32C191,-817.52 166.69,-744.99 203.41,-736.55"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="156.13,-837.15 147.49,-835.66 151.87,-838.25 148.78,-839.05 148.78,-839.05 148.78,-839.05 151.87,-838.25 149.29,-842.63 156.13,-837.15"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="161.23" cy="-835.83" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="209.78,-731.86 210.62,-739.81 209.03,-739.98 208.19,-732.02 209.78,-731.86"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 207.02,-736.17"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="205.81,-732.28 206.65,-740.23 205.06,-740.4 204.22,-732.44 205.81,-732.28"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="207.02,-736.17 203.04,-736.59"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M139.88,-694.23C162.31,-677.89 147.31,-621.18 177.57,-613.29"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="132.82,-696.28 124.13,-695.06 128.59,-697.51 125.52,-698.4 125.52,-698.4 125.52,-698.4 128.59,-697.51 126.14,-701.97 132.82,-696.28"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="137.87" cy="-694.81" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="183.98,-608.5 184.93,-616.44 183.34,-616.63 182.39,-608.69 183.98,-608.5"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 181.28,-612.85"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="180.01,-608.97 180.96,-616.91 179.37,-617.1 178.42,-609.16 180.01,-608.97"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="181.28,-612.85 177.31,-613.32"/>
 </g>
 <!-- Sales.Orders -->
 <g id="node9" class="node">
 <title>Sales.Orders</title>
-<polygon fill="#d9e2ec" stroke="none" points="21,-670.25 21,-695.75 147,-695.75 147,-670.25 21,-670.25"/>
-<polygon fill="none" stroke="#000000" points="21,-670.25 21,-695.75 147,-695.75 147,-670.25 21,-670.25"/>
-<text xml:space="preserve" text-anchor="start" x="55.88" y="-682.2" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.Orders</text>
-<polygon fill="none" stroke="#000000" points="21,-644.75 21,-670.25 123,-670.25 123,-644.75 21,-644.75"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-656.7" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">OrderID</text>
-<polygon fill="none" stroke="#000000" points="123,-644.75 123,-670.25 147,-670.25 147,-644.75 123,-644.75"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-653.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="21,-619.25 21,-644.75 123,-644.75 123,-619.25 21,-619.25"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-628.25" font-family="Noto Sans KR" font-size="9.00">CustomerID</text>
-<polygon fill="none" stroke="#000000" points="123,-619.25 123,-644.75 147,-644.75 147,-619.25 123,-619.25"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-628.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-593.75 21,-619.25 123,-619.25 123,-593.75 21,-593.75"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-602.75" font-family="Noto Sans KR" font-size="9.00">SalespersonPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-593.75 123,-619.25 147,-619.25 147,-593.75 123,-593.75"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-602.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-568.25 21,-593.75 123,-593.75 123,-568.25 21,-568.25"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-580.2" font-family="Noto Sans KR" font-style="italic" font-size="9.00">PickedByPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-568.25 123,-593.75 147,-593.75 147,-568.25 123,-568.25"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-577.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-542.75 21,-568.25 123,-568.25 123,-542.75 21,-542.75"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-551.75" font-family="Noto Sans KR" font-size="9.00">ContactPersonID</text>
-<polygon fill="none" stroke="#000000" points="123,-542.75 123,-568.25 147,-568.25 147,-542.75 123,-542.75"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-551.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-517.25 21,-542.75 123,-542.75 123,-517.25 21,-517.25"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-529.2" font-family="Noto Sans KR" font-style="italic" font-size="9.00">BackorderOrderID</text>
-<polygon fill="none" stroke="#000000" points="123,-517.25 123,-542.75 147,-542.75 147,-517.25 123,-517.25"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-526.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="21,-491.75 21,-517.25 123,-517.25 123,-491.75 21,-491.75"/>
-<text xml:space="preserve" text-anchor="start" x="27" y="-500.75" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="123,-491.75 123,-517.25 147,-517.25 147,-491.75 123,-491.75"/>
-<text xml:space="preserve" text-anchor="start" x="129" y="-500.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="18.5,-555.62 18.5,-576.38 123.75,-576.38 123.75,-555.62 18.5,-555.62"/>
+<polygon fill="none" stroke="#000000" points="18.5,-555.62 18.5,-576.38 123.75,-576.38 123.75,-555.62 18.5,-555.62"/>
+<text xml:space="preserve" text-anchor="start" x="46.75" y="-565.77" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.Orders</text>
+<polygon fill="none" stroke="#000000" points="18.5,-534.88 18.5,-555.62 105.25,-555.62 105.25,-534.88 18.5,-534.88"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-545.02" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">OrderID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-534.88 105.25,-555.62 123.75,-555.62 123.75,-534.88 105.25,-534.88"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-541.88" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-514.12 18.5,-534.88 105.25,-534.88 105.25,-514.12 18.5,-514.12"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-521.12" font-family="Noto Sans KR" font-size="8.00">CustomerID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-514.12 105.25,-534.88 123.75,-534.88 123.75,-514.12 105.25,-514.12"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-521.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-493.38 18.5,-514.12 105.25,-514.12 105.25,-493.38 18.5,-493.38"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-500.38" font-family="Noto Sans KR" font-size="8.00">SalespersonPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-493.38 105.25,-514.12 123.75,-514.12 123.75,-493.38 105.25,-493.38"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-500.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-472.62 18.5,-493.38 105.25,-493.38 105.25,-472.62 18.5,-472.62"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-482.77" font-family="Noto Sans KR" font-style="italic" font-size="8.00">PickedByPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-472.62 105.25,-493.38 123.75,-493.38 123.75,-472.62 105.25,-472.62"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-479.62" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-451.88 18.5,-472.62 105.25,-472.62 105.25,-451.88 18.5,-451.88"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-458.88" font-family="Noto Sans KR" font-size="8.00">ContactPersonID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-451.88 105.25,-472.62 123.75,-472.62 123.75,-451.88 105.25,-451.88"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-458.88" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-431.12 18.5,-451.88 105.25,-451.88 105.25,-431.12 18.5,-431.12"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-441.27" font-family="Noto Sans KR" font-style="italic" font-size="8.00">BackorderOrderID</text>
+<polygon fill="none" stroke="#000000" points="105.25,-431.12 105.25,-451.88 123.75,-451.88 123.75,-431.12 105.25,-431.12"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-438.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="18.5,-410.38 18.5,-431.12 105.25,-431.12 105.25,-410.38 18.5,-410.38"/>
+<text xml:space="preserve" text-anchor="start" x="22.5" y="-417.38" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="105.25,-410.38 105.25,-431.12 123.75,-431.12 123.75,-410.38 105.25,-410.38"/>
+<text xml:space="preserve" text-anchor="start" x="109.25" y="-417.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.Orders&#45;&gt;Sales.Customers -->
 <g id="edge13" class="edge">
 <title>Sales.Orders:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M163.21,-635.94C191.05,-653.78 166.62,-726.49 203.39,-734.95"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="156.13,-634.11 149.29,-628.62 151.87,-633 148.78,-632.2 148.78,-632.2 148.78,-632.2 151.87,-633 147.49,-635.59 156.13,-634.11"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="161.23" cy="-635.43" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="210.63,-731.69 209.78,-739.64 208.19,-739.48 209.03,-731.52 210.63,-731.69"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 207.02,-735.33"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="206.65,-731.27 205.81,-739.22 204.21,-739.05 205.06,-731.1 206.65,-731.27"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="207.02,-735.33 203.04,-734.91"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M140.03,-528.98C162.6,-545.63 146.91,-603.4 177.48,-611.44"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="132.81,-526.86 126.15,-521.16 128.59,-525.62 125.52,-524.73 125.52,-524.73 125.52,-524.73 128.59,-525.62 124.12,-528.07 132.81,-526.86"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="137.86" cy="-528.34" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="184.93,-608.31 183.98,-616.25 182.39,-616.06 183.34,-608.12 184.93,-608.31"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 181.28,-611.9"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="180.96,-607.83 180.01,-615.77 178.42,-615.58 179.37,-607.64 180.96,-607.83"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="181.28,-611.9 177.31,-611.42"/>
 </g>
 <!-- Sales.SpecialDeals -->
 <g id="node10" class="node">
 <title>Sales.SpecialDeals</title>
-<polygon fill="#d9e2ec" stroke="none" points="22.88,-437.25 22.88,-462.75 145.12,-462.75 145.12,-437.25 22.88,-437.25"/>
-<polygon fill="none" stroke="#000000" points="22.88,-437.25 22.88,-462.75 145.12,-462.75 145.12,-437.25 22.88,-437.25"/>
-<text xml:space="preserve" text-anchor="start" x="42.38" y="-449.2" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Sales.SpecialDeals</text>
-<polygon fill="none" stroke="#000000" points="22.88,-411.75 22.88,-437.25 121.12,-437.25 121.12,-411.75 22.88,-411.75"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-423.7" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">SpecialDealID</text>
-<polygon fill="none" stroke="#000000" points="121.12,-411.75 121.12,-437.25 145.12,-437.25 145.12,-411.75 121.12,-411.75"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-420.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="22.88,-386.25 22.88,-411.75 121.12,-411.75 121.12,-386.25 22.88,-386.25"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-398.2" font-family="Noto Sans KR" font-style="italic" font-size="9.00">StockItemID</text>
-<polygon fill="none" stroke="#000000" points="121.12,-386.25 121.12,-411.75 145.12,-411.75 145.12,-386.25 121.12,-386.25"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-395.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="22.88,-360.75 22.88,-386.25 121.12,-386.25 121.12,-360.75 22.88,-360.75"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-372.7" font-family="Noto Sans KR" font-style="italic" font-size="9.00">CustomerID</text>
-<polygon fill="none" stroke="#000000" points="121.12,-360.75 121.12,-386.25 145.12,-386.25 145.12,-360.75 121.12,-360.75"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-369.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="22.88,-335.25 22.88,-360.75 121.12,-360.75 121.12,-335.25 22.88,-335.25"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-347.2" font-family="Noto Sans KR" font-style="italic" font-size="9.00">BuyingGroupID</text>
-<polygon fill="none" stroke="#000000" points="121.12,-335.25 121.12,-360.75 145.12,-360.75 145.12,-335.25 121.12,-335.25"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-344.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="22.88,-309.75 22.88,-335.25 121.12,-335.25 121.12,-309.75 22.88,-309.75"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-321.7" font-family="Noto Sans KR" font-style="italic" font-size="9.00">CustomerCategoryID</text>
-<polygon fill="none" stroke="#000000" points="121.12,-309.75 121.12,-335.25 145.12,-335.25 145.12,-309.75 121.12,-309.75"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-318.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="22.88,-284.25 22.88,-309.75 121.12,-309.75 121.12,-284.25 22.88,-284.25"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-296.2" font-family="Noto Sans KR" font-style="italic" font-size="9.00">StockGroupID</text>
-<polygon fill="none" stroke="#000000" points="121.12,-284.25 121.12,-309.75 145.12,-309.75 145.12,-284.25 121.12,-284.25"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-293.25" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="22.88,-258.75 22.88,-284.25 121.12,-284.25 121.12,-258.75 22.88,-258.75"/>
-<text xml:space="preserve" text-anchor="start" x="28.88" y="-267.75" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="121.12,-258.75 121.12,-284.25 145.12,-284.25 145.12,-258.75 121.12,-258.75"/>
-<text xml:space="preserve" text-anchor="start" x="127.12" y="-267.75" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="19.25,-360.62 19.25,-381.38 123,-381.38 123,-360.62 19.25,-360.62"/>
+<polygon fill="none" stroke="#000000" points="19.25,-360.62 19.25,-381.38 123,-381.38 123,-360.62 19.25,-360.62"/>
+<text xml:space="preserve" text-anchor="start" x="35.12" y="-370.77" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Sales.SpecialDeals</text>
+<polygon fill="none" stroke="#000000" points="19.25,-339.88 19.25,-360.62 104.5,-360.62 104.5,-339.88 19.25,-339.88"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-350.02" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">SpecialDealID</text>
+<polygon fill="none" stroke="#000000" points="104.5,-339.88 104.5,-360.62 123,-360.62 123,-339.88 104.5,-339.88"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-346.88" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="19.25,-319.12 19.25,-339.88 104.5,-339.88 104.5,-319.12 19.25,-319.12"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-329.27" font-family="Noto Sans KR" font-style="italic" font-size="8.00">StockItemID</text>
+<polygon fill="none" stroke="#000000" points="104.5,-319.12 104.5,-339.88 123,-339.88 123,-319.12 104.5,-319.12"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-326.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="19.25,-298.38 19.25,-319.12 104.5,-319.12 104.5,-298.38 19.25,-298.38"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-308.52" font-family="Noto Sans KR" font-style="italic" font-size="8.00">CustomerID</text>
+<polygon fill="none" stroke="#000000" points="104.5,-298.38 104.5,-319.12 123,-319.12 123,-298.38 104.5,-298.38"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-305.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="19.25,-277.62 19.25,-298.38 104.5,-298.38 104.5,-277.62 19.25,-277.62"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-287.77" font-family="Noto Sans KR" font-style="italic" font-size="8.00">BuyingGroupID</text>
+<polygon fill="none" stroke="#000000" points="104.5,-277.62 104.5,-298.38 123,-298.38 123,-277.62 104.5,-277.62"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-284.62" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="19.25,-256.88 19.25,-277.62 104.5,-277.62 104.5,-256.88 19.25,-256.88"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-267.02" font-family="Noto Sans KR" font-style="italic" font-size="8.00">CustomerCategoryID</text>
+<polygon fill="none" stroke="#000000" points="104.5,-256.88 104.5,-277.62 123,-277.62 123,-256.88 104.5,-256.88"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-263.88" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="19.25,-236.12 19.25,-256.88 104.5,-256.88 104.5,-236.12 19.25,-236.12"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-246.28" font-family="Noto Sans KR" font-style="italic" font-size="8.00">StockGroupID</text>
+<polygon fill="none" stroke="#000000" points="104.5,-236.12 104.5,-256.88 123,-256.88 123,-236.12 104.5,-236.12"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-243.12" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="19.25,-215.38 19.25,-236.12 104.5,-236.12 104.5,-215.38 19.25,-215.38"/>
+<text xml:space="preserve" text-anchor="start" x="23.25" y="-222.38" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="104.5,-215.38 104.5,-236.12 123,-236.12 123,-215.38 104.5,-215.38"/>
+<text xml:space="preserve" text-anchor="start" x="108.5" y="-222.38" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Sales.SpecialDeals&#45;&gt;Sales.Customers -->
 <g id="edge14" class="edge">
 <title>Sales.SpecialDeals:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M161.16,-378.9C211.66,-421.5 143.42,-702.45 199.9,-733.05"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="154.03,-376.34 147.72,-370.25 149.89,-374.85 146.88,-373.77 146.88,-373.77 146.88,-373.77 149.89,-374.85 145.29,-377.02 154.03,-376.34"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="158.98" cy="-378.12" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="211.17,-731.67 209.28,-739.45 207.72,-739.07 209.61,-731.3 211.17,-731.67"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 207.11,-734.8"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="203.42" cy="-733.9" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M138.71,-315.09C177.98,-355.8 129.65,-579.61 174.26,-609.15"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="131.72,-312.08 125.79,-305.6 127.67,-310.33 124.74,-309.07 124.74,-309.07 124.74,-309.07 127.67,-310.33 122.94,-312.21 131.72,-312.08"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="136.55" cy="-314.16" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="185.61,-608.31 183.36,-615.99 181.82,-615.54 184.07,-607.86 185.61,-608.31"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 181.41,-611.25"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="177.76" cy="-610.18" rx="3.2" ry="3.2"/>
 </g>
 <!-- Warehouse.StockItemTransactions -->
 <g id="node11" class="node">
 <title>Warehouse.StockItemTransactions</title>
-<polygon fill="#d9e2ec" stroke="none" points="0,-204 0,-229.5 168,-229.5 168,-204 0,-204"/>
-<polygon fill="none" stroke="#000000" points="0,-204 0,-229.5 168,-229.5 168,-204 0,-204"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-215.95" font-family="Noto Sans KR" font-weight="bold" font-size="9.00" fill="#000000">Warehouse.StockItemTransactions</text>
-<polygon fill="none" stroke="#000000" points="0,-178.5 0,-204 128.62,-204 128.62,-178.5 0,-178.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-190.45" font-family="Noto Sans KR" text-decoration="underline" font-size="9.00">StockItemTransactionID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-178.5 128.62,-204 168,-204 168,-178.5 128.62,-178.5"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-187.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">PK</text>
-<polygon fill="none" stroke="#000000" points="0,-153 0,-178.5 128.62,-178.5 128.62,-153 0,-153"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-162" font-family="Noto Sans KR" font-size="9.00">StockItemID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-153 128.62,-178.5 168,-178.5 168,-153 128.62,-153"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-162" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-127.5 0,-153 128.62,-153 128.62,-127.5 0,-127.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-136.5" font-family="Noto Sans KR" font-size="9.00">TransactionTypeID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-127.5 128.62,-153 168,-153 168,-127.5 128.62,-127.5"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-136.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-102 0,-127.5 128.62,-127.5 128.62,-102 0,-102"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-113.95" font-family="Noto Sans KR" font-style="italic" font-size="9.00">CustomerID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-102 128.62,-127.5 168,-127.5 168,-102 128.62,-102"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-111" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-76.5 0,-102 128.62,-102 128.62,-76.5 0,-76.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-88.45" font-family="Noto Sans KR" font-style="italic" font-size="9.00">InvoiceID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-76.5 128.62,-102 168,-102 168,-76.5 128.62,-76.5"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-85.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-51 0,-76.5 128.62,-76.5 128.62,-51 0,-51"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-62.95" font-family="Noto Sans KR" font-style="italic" font-size="9.00">SupplierID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-51 128.62,-76.5 168,-76.5 168,-51 128.62,-51"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-60" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,-25.5 0,-51 128.62,-51 128.62,-25.5 0,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-37.45" font-family="Noto Sans KR" font-style="italic" font-size="9.00">PurchaseOrderID</text>
-<polygon fill="none" stroke="#000000" points="128.62,-25.5 128.62,-51 168,-51 168,-25.5 128.62,-25.5"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-34.5" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
-<polygon fill="none" stroke="#000000" points="0,0 0,-25.5 128.62,-25.5 128.62,0 0,0"/>
-<text xml:space="preserve" text-anchor="start" x="6" y="-9" font-family="Noto Sans KR" font-size="9.00">LastEditedBy</text>
-<polygon fill="none" stroke="#000000" points="128.62,0 128.62,-25.5 168,-25.5 168,0 128.62,0"/>
-<text xml:space="preserve" text-anchor="start" x="134.62" y="-9" font-family="Noto Sans KR" font-size="9.00" fill="#555555">FK</text>
+<polygon fill="#d9e2ec" stroke="none" points="0,-166 0,-186.75 142.25,-186.75 142.25,-166 0,-166"/>
+<polygon fill="none" stroke="#000000" points="0,-166 0,-186.75 142.25,-186.75 142.25,-166 0,-166"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-176.15" font-family="Noto Sans KR" font-weight="bold" font-size="8.00" fill="#000000">Warehouse.StockItemTransactions</text>
+<polygon fill="none" stroke="#000000" points="0,-145.25 0,-166 110.5,-166 110.5,-145.25 0,-145.25"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-155.4" font-family="Noto Sans KR" text-decoration="underline" font-size="8.00">StockItemTransactionID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-145.25 110.5,-166 142.25,-166 142.25,-145.25 110.5,-145.25"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-152.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">PK</text>
+<polygon fill="none" stroke="#000000" points="0,-124.5 0,-145.25 110.5,-145.25 110.5,-124.5 0,-124.5"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-131.5" font-family="Noto Sans KR" font-size="8.00">StockItemID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-124.5 110.5,-145.25 142.25,-145.25 142.25,-124.5 110.5,-124.5"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-131.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-103.75 0,-124.5 110.5,-124.5 110.5,-103.75 0,-103.75"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-110.75" font-family="Noto Sans KR" font-size="8.00">TransactionTypeID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-103.75 110.5,-124.5 142.25,-124.5 142.25,-103.75 110.5,-103.75"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-110.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-83 0,-103.75 110.5,-103.75 110.5,-83 0,-83"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-93.15" font-family="Noto Sans KR" font-style="italic" font-size="8.00">CustomerID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-83 110.5,-103.75 142.25,-103.75 142.25,-83 110.5,-83"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-90" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-62.25 0,-83 110.5,-83 110.5,-62.25 0,-62.25"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-72.4" font-family="Noto Sans KR" font-style="italic" font-size="8.00">InvoiceID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-62.25 110.5,-83 142.25,-83 142.25,-62.25 110.5,-62.25"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-69.25" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-41.5 0,-62.25 110.5,-62.25 110.5,-41.5 0,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-51.65" font-family="Noto Sans KR" font-style="italic" font-size="8.00">SupplierID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-41.5 110.5,-62.25 142.25,-62.25 142.25,-41.5 110.5,-41.5"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-48.5" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,-20.75 0,-41.5 110.5,-41.5 110.5,-20.75 0,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-30.9" font-family="Noto Sans KR" font-style="italic" font-size="8.00">PurchaseOrderID</text>
+<polygon fill="none" stroke="#000000" points="110.5,-20.75 110.5,-41.5 142.25,-41.5 142.25,-20.75 110.5,-20.75"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-27.75" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
+<polygon fill="none" stroke="#000000" points="0,0 0,-20.75 110.5,-20.75 110.5,0 0,0"/>
+<text xml:space="preserve" text-anchor="start" x="4" y="-7" font-family="Noto Sans KR" font-size="8.00">LastEditedBy</text>
+<polygon fill="none" stroke="#000000" points="110.5,0 110.5,-20.75 142.25,-20.75 142.25,0 110.5,0"/>
+<text xml:space="preserve" text-anchor="start" x="114.5" y="-7" font-family="Noto Sans KR" font-size="8.00" fill="#555555">FK</text>
 </g>
 <!-- Warehouse.StockItemTransactions&#45;&gt;Sales.Customers -->
 <g id="edge15" class="edge">
 <title>Warehouse.StockItemTransactions:e&#45;&gt;Sales.Customers:w</title>
-<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M180.82,-124.5C221.31,-198.73 155.85,-672.96 200.86,-730.12"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="174.69,-119.84 170.5,-112.13 171.18,-117.17 168.64,-115.24 168.64,-115.24 168.64,-115.24 171.18,-117.17 166.14,-117.86 174.69,-119.84"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="178.87" cy="-123.03" rx="3.2" ry="3.2"/>
-<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="212.24,-731.87 208.36,-738.86 206.96,-738.08 210.85,-731.09 212.24,-731.87"/>
-<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="211,-735.75 207.5,-733.81"/>
-<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="204.18" cy="-731.96" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#8a8a8a" stroke-width="1.2" d="M157.86,-97.4C236.18,-143.87 87.63,-577.44 173.87,-610.39"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="150.39,-95.47 143.54,-89.99 146.12,-94.37 143.03,-93.58 143.03,-93.58 143.03,-93.58 146.12,-94.37 141.74,-96.96 150.39,-95.47"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="155.48" cy="-96.79" rx="3.2" ry="3.2"/>
+<polygon fill="#8a8a8a" stroke="#8a8a8a" stroke-width="1.2" points="185.15,-608.3 183.78,-616.18 182.2,-615.9 183.57,-608.02 185.15,-608.3"/>
+<polyline fill="none" stroke="#8a8a8a" stroke-width="1.2" points="185.25,-612.38 181.31,-611.69"/>
+<ellipse fill="none" stroke="#8a8a8a" stroke-width="1.2" cx="177.57" cy="-611.04" rx="3.2" ry="3.2"/>
 </g>
 </g>
 </svg>
