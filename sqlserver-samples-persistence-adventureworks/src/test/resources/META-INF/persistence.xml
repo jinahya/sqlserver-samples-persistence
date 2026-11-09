@@ -31,9 +31,6 @@
     <provider>${persistence-unit.provider}</provider>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo.EventInstanceStringAttributeConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct$ProductClassConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct$ProductLineConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct$ProductStyleConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AdditionalContactInfoView</class>
@@ -152,9 +149,6 @@
     <provider>${persistence-unit.provider}</provider>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.AdditionalContactInfoStringAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo.EventInstanceStringAttributeConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct$ProductClassConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct$ProductLineConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct$ProductStyleConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AdditionalContactInfoView</class>

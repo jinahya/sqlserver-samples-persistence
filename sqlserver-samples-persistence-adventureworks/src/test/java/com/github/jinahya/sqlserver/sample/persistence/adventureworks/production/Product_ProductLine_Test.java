@@ -20,39 +20,52 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.productio
  * #L%
  */
 
-import com.github.jinahya.persistence.more.test.AttributeEnum_Test;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct;
 import com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.production.MappedProduct.ProductLine;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * A class for testing the {@link ProductLine} enum, whose attribute values are the padded values
+ * A class for testing the {@link ProductLine} enum, whose column values are the padded values
  * the {@value MappedProduct#COLUMN_NAME_PRODUCT_LINE} column holds.
  */
-class Product_ProductLine_Test
-        extends AttributeEnum_Test.OfStringTest<ProductLine> {
-
-    Product_ProductLine_Test() {
-        super(ProductLine.class);
-    }
+class Product_ProductLine_Test {
 
     /**
-     * Verifies that the attribute values are the column's values, padded to its length.
+     * Verifies that the column values are the column's values, padded to its length.
      */
     @Test
-    void attributeValues_ColumnValues() {
+    void columnValues_ColumnValues() {
         final var expected = Stream.of(MappedProduct.COLUMN_VALUE_PRODUCT_LINE_ROAD,
                                        MappedProduct.COLUMN_VALUE_PRODUCT_LINE_MOUNTAIN,
                                        MappedProduct.COLUMN_VALUE_PRODUCT_LINE_TOURING,
                                        MappedProduct.COLUMN_VALUE_PRODUCT_LINE_STANDARD)
                 .map(v -> String.format("%-" + MappedProduct.COLUMN_LENGTH_PRODUCT_LINE + "s", v))
                 .toArray(String[]::new);
-        assertThat(Arrays.stream(ProductLine.values()).map(ProductLine::attributeValue))
+        assertThat(Arrays.stream(ProductLine.values()).map(ProductLine::columnValue))
                 .containsExactlyInAnyOrder(expected);
+    }
+
+    @ParameterizedTest
+    @EnumSource(ProductLine.class)
+    void valueOfColumnValue_Same_ColumnValue(final ProductLine constant) {
+        assertThat(ProductLine.valueOfColumnValue(constant.columnValue())).isSameAs(constant);
+    }
+
+    /**
+     * Verifies that an unpadded value, which the column never holds, is rejected.
+     */
+    @ParameterizedTest
+    @EnumSource(ProductLine.class)
+    void valueOfColumnValue_IllegalArgumentException_Unpadded(final ProductLine constant) {
+        assertThatThrownBy(() -> ProductLine.valueOfColumnValue(constant.name()))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

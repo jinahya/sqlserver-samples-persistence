@@ -20,15 +20,14 @@ package com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.pr
  * #L%
  */
 
-import com.github.jinahya.persistence.more.AttributeEnum;
-import com.github.jinahya.persistence.more.converter.AttributeEnumConverter;
 import com.github.jinahya.sqlserver.sample.persistence.common.SqlServerConstants;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDefault;
 import com.github.jinahya.sqlserver.sample.persistence.common.annotation.MsDescription;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Converter;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumeratedValue;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,6 +37,7 @@ import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -474,8 +474,7 @@ public abstract class MappedProduct {
      * ([ProductLine])='S' OR [ProductLine] IS NULL)
      *} The constants are named after the column values, which are stored in upper case.
      */
-    public enum ProductLine
-            implements AttributeEnum.OfString<ProductLine> {
+    public enum ProductLine {
 
         /**
          * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_LINE_ROAD} value, for a
@@ -501,36 +500,48 @@ public abstract class MappedProduct {
          */
         S;
 
+
+        // -----------------------------------------------------------------------------------------
+
+        /**
+         * Returns the constant whose {@link #columnValue() column value} is the specified value.
+         *
+         * @param columnValue the column value to match, padded as the column holds it.
+         * @return the constant whose column value is {@code columnValue}.
+         * @throws IllegalArgumentException if no constant has {@code columnValue} as its column
+         *                                  value.
+         */
+        public static ProductLine valueOfColumnValue(final String columnValue) {
+            for (final var value : values()) {
+                if (value.columnValue().equals(columnValue)) {
+                    return value;
+                }
+            }
+            throw new IllegalArgumentException("no product line for '" + columnValue + "'");
+        }
+
+        // -----------------------------------------------------------------------------------------
+        ProductLine() {
+            columnValue = String.format("%-" + COLUMN_LENGTH_PRODUCT_LINE + "s", name());
+        }
+
+        // -----------------------------------------------------------------------------------------
+
         /**
          * Returns the value the column holds for this constant: its name, padded with spaces to
-         * the {@value MappedProduct#COLUMN_LENGTH_PRODUCT_LINE} characters of the {@code nchar} column,
-         * as SQL Server stores it and reads it back.
+         * the {@value MappedProduct#COLUMN_LENGTH_PRODUCT_LINE} characters of the {@code nchar}
+         * column, as SQL Server stores it and reads it back.
          *
          * @return the padded name of this constant.
          */
-        @Override
-        public String attributeValue() {
-            return String.format("%-" + COLUMN_LENGTH_PRODUCT_LINE + "s", name());
+        public String columnValue() {
+            return columnValue;
         }
-    }
 
-    /**
-     * An attribute converter between the {@link ProductLine} constants and the values of the
-     * {@value #COLUMN_NAME_PRODUCT_LINE} column. The column is an {@code nchar(2)} which holds a
-     * single letter, padded with a space ({@code 'R '}), so
-     * {@link jakarta.persistence.Enumerated @Enumerated} cannot read it; each constant's
-     * {@link AttributeEnum#attributeValue() attribute value} is its letter padded likewise.
-     */
-    @Converter(autoApply = false)
-    public static class ProductLineConverter
-            extends AttributeEnumConverter.OfString<ProductLine> {
-
-        /**
-         * Creates a new instance.
-         */
-        public ProductLineConverter() {
-            super(ProductLine.class);
-        }
+        // -----------------------------------------------------------------------------------------
+        @NotBlank
+        @EnumeratedValue
+        private final String columnValue;
     }
 
     // --------------------------------------------------------------------------------------- Class
@@ -576,8 +587,7 @@ public abstract class MappedProduct {
      * (upper([Class])='H' OR upper([Class])='M' OR upper([Class])='L' OR [Class] IS NULL)
      *} The constants are named after the column values, which are stored in upper case.
      */
-    public enum ProductClass
-            implements AttributeEnum.OfString<ProductClass> {
+    public enum ProductClass {
 
         /**
          * A constant for the {@value MappedProduct#COLUMN_VALUE_PRODUCT_CLASS_HIGH} value, for a
@@ -597,36 +607,48 @@ public abstract class MappedProduct {
          */
         L;
 
+
+        // -----------------------------------------------------------------------------------------
+
+        /**
+         * Returns the constant whose {@link #columnValue() column value} is the specified value.
+         *
+         * @param columnValue the column value to match, padded as the column holds it.
+         * @return the constant whose column value is {@code columnValue}.
+         * @throws IllegalArgumentException if no constant has {@code columnValue} as its column
+         *                                  value.
+         */
+        public static ProductClass valueOfColumnValue(final String columnValue) {
+            for (final var value : values()) {
+                if (value.columnValue().equals(columnValue)) {
+                    return value;
+                }
+            }
+            throw new IllegalArgumentException("no product class for '" + columnValue + "'");
+        }
+
+        // -----------------------------------------------------------------------------------------
+        ProductClass() {
+            columnValue = String.format("%-" + COLUMN_LENGTH_PRODUCT_CLASS + "s", name());
+        }
+
+        // -----------------------------------------------------------------------------------------
+
         /**
          * Returns the value the column holds for this constant: its name, padded with spaces to
-         * the {@value MappedProduct#COLUMN_LENGTH_PRODUCT_CLASS} characters of the {@code nchar} column,
-         * as SQL Server stores it and reads it back.
+         * the {@value MappedProduct#COLUMN_LENGTH_PRODUCT_CLASS} characters of the {@code nchar}
+         * column, as SQL Server stores it and reads it back.
          *
          * @return the padded name of this constant.
          */
-        @Override
-        public String attributeValue() {
-            return String.format("%-" + COLUMN_LENGTH_PRODUCT_CLASS + "s", name());
+        public String columnValue() {
+            return columnValue;
         }
-    }
 
-    /**
-     * An attribute converter between the {@link ProductClass} constants and the values of the
-     * {@value #COLUMN_NAME_PRODUCT_CLASS} column. The column is an {@code nchar(2)} which holds a
-     * single letter, padded with a space ({@code 'H '}), so
-     * {@link jakarta.persistence.Enumerated @Enumerated} cannot read it; each constant's
-     * {@link AttributeEnum#attributeValue() attribute value} is its letter padded likewise.
-     */
-    @Converter(autoApply = false)
-    public static class ProductClassConverter
-            extends AttributeEnumConverter.OfString<ProductClass> {
-
-        /**
-         * Creates a new instance.
-         */
-        public ProductClassConverter() {
-            super(ProductClass.class);
-        }
+        // -----------------------------------------------------------------------------------------
+        @NotBlank
+        @EnumeratedValue
+        private final String columnValue;
     }
 
     // --------------------------------------------------------------------------------------- Style
@@ -672,8 +694,7 @@ public abstract class MappedProduct {
      * (upper([Style])='U' OR upper([Style])='M' OR upper([Style])='W' OR [Style] IS NULL)
      *} The constants are named after the column values, which are stored in upper case.
      */
-    public enum ProductStyle
-            implements AttributeEnum.OfString<ProductStyle> {
+    public enum ProductStyle {
 
         /**
          * A constant for the {@value MappedProduct#COLUMN_VALUE_STYLE_WOMENS} value, for a women's
@@ -693,36 +714,48 @@ public abstract class MappedProduct {
          */
         U;
 
+
+        // -----------------------------------------------------------------------------------------
+
+        /**
+         * Returns the constant whose {@link #columnValue() column value} is the specified value.
+         *
+         * @param columnValue the column value to match, padded as the column holds it.
+         * @return the constant whose column value is {@code columnValue}.
+         * @throws IllegalArgumentException if no constant has {@code columnValue} as its column
+         *                                  value.
+         */
+        public static ProductStyle valueOfColumnValue(final String columnValue) {
+            for (final var value : values()) {
+                if (value.columnValue().equals(columnValue)) {
+                    return value;
+                }
+            }
+            throw new IllegalArgumentException("no product style for '" + columnValue + "'");
+        }
+
+        // -----------------------------------------------------------------------------------------
+        ProductStyle() {
+            columnValue = String.format("%-" + COLUMN_LENGTH_STYLE + "s", name());
+        }
+
+        // -----------------------------------------------------------------------------------------
+
         /**
          * Returns the value the column holds for this constant: its name, padded with spaces to
-         * the {@value MappedProduct#COLUMN_LENGTH_STYLE} characters of the {@code nchar} column,
-         * as SQL Server stores it and reads it back.
+         * the {@value MappedProduct#COLUMN_LENGTH_STYLE} characters of the {@code nchar}
+         * column, as SQL Server stores it and reads it back.
          *
          * @return the padded name of this constant.
          */
-        @Override
-        public String attributeValue() {
-            return String.format("%-" + COLUMN_LENGTH_STYLE + "s", name());
+        public String columnValue() {
+            return columnValue;
         }
-    }
 
-    /**
-     * An attribute converter between the {@link ProductStyle} constants and the values of the
-     * {@value #COLUMN_NAME_STYLE} column. The column is an {@code nchar(2)} which holds a single
-     * letter, padded with a space ({@code 'U '}), so
-     * {@link jakarta.persistence.Enumerated @Enumerated} cannot read it; each constant's
-     * {@link AttributeEnum#attributeValue() attribute value} is its letter padded likewise.
-     */
-    @Converter(autoApply = false)
-    public static class ProductStyleConverter
-            extends AttributeEnumConverter.OfString<ProductStyle> {
-
-        /**
-         * Creates a new instance.
-         */
-        public ProductStyleConverter() {
-            super(ProductStyle.class);
-        }
+        // -----------------------------------------------------------------------------------------
+        @NotBlank
+        @EnumeratedValue
+        private final String columnValue;
     }
 
     // ------------------------------------------------------------------------ ProductSubcategoryID
@@ -1580,7 +1613,11 @@ public abstract class MappedProduct {
     private Integer daysToManufacture;
 
     // ---------------------------------------------------------------------------------------------
-    @Convert(converter = ProductLineConverter.class)
+    // the specification infers STRING from the enum's @EnumeratedValue String field, without
+    // @Enumerated; Hibernate ORM 7 does not, and takes it as ORDINAL
+    // https://jakarta.ee/specifications/persistence/3.2/jakarta-persistence-spec-3.2#a14719
+    // https://hibernate.atlassian.net/browse/HHH-20410
+    @Enumerated(EnumType.STRING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_LINE, nullable = true, insertable = true, updatable = true,
             length = COLUMN_LENGTH_PRODUCT_LINE,
@@ -1588,7 +1625,11 @@ public abstract class MappedProduct {
     private ProductLine productLine;
 
     // ---------------------------------------------------------------------------------------------
-    @Convert(converter = ProductClassConverter.class)
+    // the specification infers STRING from the enum's @EnumeratedValue String field, without
+    // @Enumerated; Hibernate ORM 7 does not, and takes it as ORDINAL
+    // https://jakarta.ee/specifications/persistence/3.2/jakarta-persistence-spec-3.2#a14719
+    // https://hibernate.atlassian.net/browse/HHH-20410
+    @Enumerated(EnumType.STRING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_PRODUCT_CLASS, nullable = true, insertable = true, updatable = true,
             length = COLUMN_LENGTH_PRODUCT_CLASS,
@@ -1596,7 +1637,11 @@ public abstract class MappedProduct {
     private ProductClass productClass;
 
     // ---------------------------------------------------------------------------------------------
-    @Convert(converter = ProductStyleConverter.class)
+    // the specification infers STRING from the enum's @EnumeratedValue String field, without
+    // @Enumerated; Hibernate ORM 7 does not, and takes it as ORDINAL
+    // https://jakarta.ee/specifications/persistence/3.2/jakarta-persistence-spec-3.2#a14719
+    // https://hibernate.atlassian.net/browse/HHH-20410
+    @Enumerated(EnumType.STRING)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_STYLE, nullable = true, insertable = true, updatable = true,
             length = COLUMN_LENGTH_STYLE,

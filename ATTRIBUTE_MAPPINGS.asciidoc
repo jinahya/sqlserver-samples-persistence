@@ -208,23 +208,23 @@ Each of the 239 foreign-key columns has an attribute of its key's type, and no `
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `ProductClass`
-| `@Convert(ProductClassConverter)`
+| `@Enumerated(STRING)`
 | 1
-| A nested converter of `MappedProduct`; see <<enums>>.
+| An enum nested in `MappedProduct`; see <<enums>>.
 | AdventureWorks: `Production.Product.Class`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `ProductLine`
-| `@Convert(ProductLineConverter)`
+| `@Enumerated(STRING)`
 | 1
-| A nested converter of `MappedProduct`; see <<enums>>.
+| An enum nested in `MappedProduct`; see <<enums>>.
 | AdventureWorks: `Production.Product.ProductLine`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
 | `ProductStyle`
-| `@Convert(ProductStyleConverter)`
+| `@Enumerated(STRING)`
 | 1
-| A nested converter of `MappedProduct`; see <<enums>>.
+| An enum nested in `MappedProduct`; see <<enums>>.
 | AdventureWorks: `Production.Product.Style`
 
 | link:https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql[`nchar`]
@@ -399,26 +399,26 @@ entity's own `id_`, map their key columns; their attributes are among the rows a
 
 | `Production.Product.ProductLine`
 | `MappedProduct.ProductLine`
-| `@Convert(converter = ProductLineConverter.class)`
-| `nchar(2)`; `CK_Product_ProductLine` allows `R`, `M`, `T`, `S` and `NULL`. One letter does not fill the column: SQL Server stores and returns it padded (`R `), which `@Enumerated` cannot read. The enum is an `AttributeEnum.OfString` whose attribute value is its name padded to the column's length, and the converter an `AttributeEnumConverter.OfString`, of `jinahya-persistence-more`. On H2, which compares the padding, the check is dropped; see link:H2.asciidoc[H2].
+| `@Enumerated(EnumType.STRING)`
+| `nchar(2)`; `CK_Product_ProductLine` allows `R`, `M`, `T`, `S` and `NULL`. One letter does not fill the column: SQL Server stores and returns it padded (`R `), which a constant's name is not. Each constant carries its name padded to the column's length in an `@EnumeratedValue` `String` field, `columnValue`, with `valueOfColumnValue(String)` for the reverse. The specification infers `STRING` from that field without `@Enumerated`; Hibernate ORM 7 does not (HHH-20410), so `@Enumerated(EnumType.STRING)` is stated. No converter. On H2, which compares the padding, the check is dropped; see link:H2.asciidoc[H2].
 
 | `Production.Product.Class`
 | `MappedProduct.ProductClass`
-| `@Convert(converter = ProductClassConverter.class)`
+| `@Enumerated(EnumType.STRING)`
 | `nchar(2)`; `CK_Product_Class` allows `H`, `M`, `L` and `NULL`. As `ProductLine`.
 
 | `Production.Product.Style`
 | `MappedProduct.ProductStyle`
-| `@Convert(converter = ProductStyleConverter.class)`
+| `@Enumerated(EnumType.STRING)`
 | `nchar(2)`; `CK_Product_Style` allows `W`, `M`, `U` and `NULL`. As `ProductLine`.
 
 |===
 
 Each enum's constants are named after the values the column's check constraint allows, which it compares in
 upper case.
-`Product_ProductLine_Test` and its converter's `Product_ProductLineConverter_Test`, and those of `ProductClass`
-and `ProductStyle`, are `jinahya-persistence-more-test`'s `AttributeEnum_Test.OfStringTest` and
-`AttributeEnumConverter_Test.OfStringTest`, as `oracle-sample-schemas-persistence`'s `ShipmentStatus`'s are.
+`Product_ProductLine_Test`, and those of `ProductClass` and `ProductStyle`, check that the column values are the
+constraint's letters padded to the column's length, that `valueOfColumnValue` finds each constant, and that it
+rejects an unpadded letter.
 
 [[converters]]
 == Converters
