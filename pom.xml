@@ -10,7 +10,7 @@
 
   <groupId>io.github.jinahya</groupId>
   <artifactId>sqlserver-samples-persistence</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.6.11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
