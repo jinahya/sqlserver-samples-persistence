@@ -87,7 +87,7 @@
     <!-- https://central.sonatype.com/artifact/io.github.jinahya/jinahya-object-randomizer/versions -->
     <version.io.github.jinahya.jinahya-object-randomizer>0.0.7</version.io.github.jinahya.jinahya-object-randomizer>
     <!-- https://central.sonatype.com/artifact/io.github.jinahya/jinahya-persistence-more/versions -->
-    <version.io.github.jinahya.jinahya-persistence>0.6.11</version.io.github.jinahya.jinahya-persistence>
+    <version.io.github.jinahya.jinahya-persistence>0.6.12-SNAPSHOT</version.io.github.jinahya.jinahya-persistence>
     <!-- https://central.sonatype.com/artifact/io.github.jinahya/sqlserver-xml-schema-binding/versions -->
     <version.io.github.jinahya.sqlserver-xml-schema-binding>0.0.5</version.io.github.jinahya.sqlserver-xml-schema-binding>
     <!-- https://jakarta.ee/specifications/platform/11/ -->
