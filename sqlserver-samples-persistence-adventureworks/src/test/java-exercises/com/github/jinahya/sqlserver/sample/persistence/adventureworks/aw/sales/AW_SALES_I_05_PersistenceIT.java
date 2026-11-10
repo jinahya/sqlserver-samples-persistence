@@ -60,10 +60,10 @@ class AW_SALES_I_05_PersistenceIT {
                                                       builder.literal("USD"));
             final var orders = builder.count(h);
             final var totalDue = h.get(SalesOrderHeader_.totalDue);
-            query.multiselect(currencyCode, orders, builder.sum(totalDue),
-                              builder.sum(builder.prod(totalDue, builder.coalesce(
-                                      r.get(CurrencyRate_.averageRate),
-                                      builder.literal(BigDecimal.ONE)))));
+            query.select(builder.array(currencyCode, orders, builder.sum(totalDue),
+                                       builder.sum(builder.prod(totalDue, builder.coalesce(
+                                               r.get(CurrencyRate_.averageRate),
+                                               builder.literal(BigDecimal.ONE))))));
             query.groupBy(currencyCode);
             query.orderBy(builder.desc(orders), builder.asc(currencyCode));
             return entityManager.createQuery(query).getResultList();

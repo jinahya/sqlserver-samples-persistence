@@ -59,7 +59,7 @@ class WWI_WAREHOUSE_I_01_PersistenceIT {
             root.on(builder.equal(root.get(StockItemStockGroup_.stockGroup), group));
             final var name = group.get(StockGroup_.stockGroupName);
             final var stockItems = builder.count(root);
-            query.multiselect(name, stockItems);
+            query.select(builder.array(name, stockItems));
             query.groupBy(group.get(StockGroup_.stockGroupId), name);
             query.orderBy(builder.desc(stockItems), builder.asc(name));
             return entityManager.createQuery(query).getResultList()

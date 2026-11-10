@@ -72,7 +72,7 @@ class FUTON_DBO_I_10_PersistenceIT {
             final var scrapPercent = builder.quot(
                     builder.prod(scrappedSum, BigDecimal.valueOf(100)),
                     builder.nullif(builder.sum(builder.sum(completed, scrapped)), BigDecimal.ZERO));
-            query.multiselect(wc, builder.sum(completed), scrappedSum, scrapPercent)
+            query.select(builder.array(wc, builder.sum(completed), scrappedSum, scrapPercent))
                     .groupBy(wc)
                     .orderBy(builder.desc(scrapPercent),
                              builder.asc(wc.get(WorkCenter_.workCenterCode)));

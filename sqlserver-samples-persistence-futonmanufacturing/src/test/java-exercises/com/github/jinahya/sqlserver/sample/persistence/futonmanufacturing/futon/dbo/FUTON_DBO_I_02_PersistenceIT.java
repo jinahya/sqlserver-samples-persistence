@@ -70,7 +70,7 @@ class FUTON_DBO_I_02_PersistenceIT {
                                  builder.sum(builder.quot(b.get(BillOfMaterials_.scrapRate), 100), 1)),
                     c.get(Item_.standardCost)
             ));
-            query.multiselect(p, cost, builder.diff(p.get(Item_.listPrice), cost))
+            query.select(builder.array(p, cost, builder.diff(p.get(Item_.listPrice), cost)))
                     .where(builder.equal(p.get(Item_.itemType).get(ItemType_.typeCode), "FG"),
                            builder.isTrue(b.get(BillOfMaterials_.isActive)))
                     .groupBy(p)

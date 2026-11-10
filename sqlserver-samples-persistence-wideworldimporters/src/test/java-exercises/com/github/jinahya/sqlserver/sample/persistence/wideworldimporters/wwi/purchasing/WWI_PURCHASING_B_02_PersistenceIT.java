@@ -54,8 +54,8 @@ class WWI_PURCHASING_B_02_PersistenceIT {
             final var supplier = root.join(SupplierTransaction_.supplier);
             final var outstanding =
                     builder.sum(root.get(SupplierTransaction_.outstandingBalance));
-            query.multiselect(supplier.get(Supplier_.supplierName), builder.count(root),
-                              outstanding);
+            query.select(builder.array(supplier.get(Supplier_.supplierName), builder.count(root),
+                                       outstanding));
             query.where(builder.isFalse(root.get(SupplierTransaction_.isFinalized)));
             query.groupBy(supplier.get(Supplier_.supplierId),
                           supplier.get(Supplier_.supplierName));

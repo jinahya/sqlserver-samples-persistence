@@ -67,7 +67,7 @@ class AW_HUMANRESOURCES_I_03_PersistenceIT {
                     builder.countDistinct(h.get(EmployeeDepartmentHistory_.departmentId)));
             departments.where(builder.equal(h.get(EmployeeDepartmentHistory_.businessEntityId),
                                             p.get(Person_.businessEntityId)));
-            query.multiselect(p, departments);
+            query.select(builder.array(p, departments));
             query.where(builder.gt(departments, 1L));
             query.orderBy(builder.asc(p.get(Person_.lastName)),
                           builder.asc(p.get(Person_.firstName)),

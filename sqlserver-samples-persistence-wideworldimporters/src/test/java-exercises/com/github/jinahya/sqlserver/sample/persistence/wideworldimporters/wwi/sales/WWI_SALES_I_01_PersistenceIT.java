@@ -65,9 +65,9 @@ class WWI_SALES_I_01_PersistenceIT {
             final var invoice = root.join(InvoiceLine_.invoice);
             final var item = root.join(InvoiceLine_.stockItem);
             final var revenue = builder.sum(root.get(InvoiceLine_.extendedPrice));
-            query.multiselect(item.get(StockItem_.stockItemId),
-                              item.get(StockItem_.stockItemName),
-                              builder.sum(root.get(InvoiceLine_.quantity)), revenue);
+            query.select(builder.array(item.get(StockItem_.stockItemId),
+                                       item.get(StockItem_.stockItemName),
+                                       builder.sum(root.get(InvoiceLine_.quantity)), revenue));
             query.where(
                     builder.greaterThanOrEqualTo(invoice.get(Invoice_.invoiceDate), FROM_2015),
                     builder.lessThan(invoice.get(Invoice_.invoiceDate), TO_2015));

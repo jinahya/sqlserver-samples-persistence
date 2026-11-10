@@ -68,7 +68,8 @@ class AW_HUMANRESOURCES_B_01_PersistenceIT {
             h.on(builder.equal(h.get(EmployeeDepartmentHistory_.department), d),
                  builder.isNull(h.get(EmployeeDepartmentHistory_.endDate)));
             final var employees = builder.count(h);
-            query.multiselect(d.get(Department_.name), d.get(Department_.groupName), employees);
+            query.select(builder.array(d.get(Department_.name), d.get(Department_.groupName),
+                                       employees));
             query.groupBy(d.get(Department_.id_), d.get(Department_.name),
                           d.get(Department_.groupName));
             query.orderBy(builder.desc(employees), builder.asc(d.get(Department_.name)));

@@ -53,8 +53,8 @@ class AW_SALES_I_02_PersistenceIT {
             final var p = d.join(SalesOrderDetail_.specialOfferProduct)
                     .join(SpecialOfferProduct_.product);
             final var lineTotal = builder.sum(d.get(SalesOrderDetail_.lineTotal));
-            query.multiselect(p.get(Product_.productNumber), p.get(Product_.name),
-                              builder.sum(d.get(SalesOrderDetail_.orderQty)), lineTotal);
+            query.select(builder.array(p.get(Product_.productNumber), p.get(Product_.name),
+                                       builder.sum(d.get(SalesOrderDetail_.orderQty)), lineTotal));
             query.groupBy(p.get(Product_.productId), p.get(Product_.productNumber),
                           p.get(Product_.name));
             query.orderBy(builder.desc(lineTotal), builder.asc(p.get(Product_.productId)));

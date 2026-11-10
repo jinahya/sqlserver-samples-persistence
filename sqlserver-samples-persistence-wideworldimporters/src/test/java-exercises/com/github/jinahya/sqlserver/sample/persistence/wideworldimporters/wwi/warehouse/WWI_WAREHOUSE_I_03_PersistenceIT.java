@@ -69,8 +69,8 @@ class WWI_WAREHOUSE_I_03_PersistenceIT {
             final var sit = query.from(StockItemTransaction.class);
             final var tt = sit.join(StockItemTransaction_.transactionType);
             final var occurredWhen = sit.get(StockItemTransaction_.transactionOccurredWhen);
-            query.multiselect(tt, builder.count(sit),
-                              builder.sum(sit.get(StockItemTransaction_.quantity)))
+            query.select(builder.array(tt, builder.count(sit),
+                                       builder.sum(sit.get(StockItemTransaction_.quantity))))
                     .where(builder.equal(sit.get(StockItemTransaction_.stockItemId), STOCK_ITEM_ID),
                            builder.greaterThanOrEqualTo(occurredWhen, FROM),
                            builder.lessThan(occurredWhen, TO))

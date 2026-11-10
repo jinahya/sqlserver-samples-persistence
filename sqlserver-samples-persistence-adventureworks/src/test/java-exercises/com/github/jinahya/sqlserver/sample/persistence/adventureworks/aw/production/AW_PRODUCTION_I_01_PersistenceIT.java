@@ -129,9 +129,9 @@ class AW_PRODUCTION_I_01_PersistenceIT {
             i.on(builder.equal(i.get(ProductInventory_.product), p));
             final var quantity =
                     builder.coalesce(builder.sum(i.get(ProductInventory_.quantity)), 0);
-            query.multiselect(p.get(Product_.productId), p.get(Product_.name),
-                              p.get(Product_.safetyStockLevel),
-                              quantity);
+            query.select(builder.array(p.get(Product_.productId), p.get(Product_.name),
+                                       p.get(Product_.safetyStockLevel),
+                                       quantity));
             query.groupBy(p.get(Product_.productId), p.get(Product_.name),
                           p.get(Product_.safetyStockLevel));
             query.having(

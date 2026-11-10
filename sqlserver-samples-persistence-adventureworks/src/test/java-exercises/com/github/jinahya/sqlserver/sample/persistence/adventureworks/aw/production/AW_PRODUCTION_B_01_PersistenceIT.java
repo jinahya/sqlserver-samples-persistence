@@ -52,9 +52,9 @@ class AW_PRODUCTION_B_01_PersistenceIT {
             final var p = query.from(Product.class);
             final var c = p.join(Product_.productSubcategory)
                     .join(ProductSubcategory_.productCategory);
-            query.multiselect(c.get(ProductCategory_.name), builder.count(p),
-                              builder.min(p.get(Product_.listPrice)),
-                              builder.max(p.get(Product_.listPrice)));
+            query.select(builder.array(c.get(ProductCategory_.name), builder.count(p),
+                                       builder.min(p.get(Product_.listPrice)),
+                                       builder.max(p.get(Product_.listPrice))));
             query.where(builder.isNull(p.get(Product_.sellEndDate)));
             query.groupBy(c.get(ProductCategory_.productCategoryId),
                           c.get(ProductCategory_.name));

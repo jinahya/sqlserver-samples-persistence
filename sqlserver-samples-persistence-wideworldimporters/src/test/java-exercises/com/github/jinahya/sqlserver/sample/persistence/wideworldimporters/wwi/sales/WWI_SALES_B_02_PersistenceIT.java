@@ -51,8 +51,8 @@ class WWI_SALES_B_02_PersistenceIT {
             final var root = query.from(Customer.class);
             final var billTo = root.join(Customer_.billToCustomer);
             final var billed = builder.count(root);
-            query.multiselect(billTo.get(Customer_.customerId),
-                              billTo.get(Customer_.customerName), billed);
+            query.select(builder.array(billTo.get(Customer_.customerId),
+                                       billTo.get(Customer_.customerName), billed));
             query.where(builder.notEqual(billTo, root));
             query.groupBy(billTo.get(Customer_.customerId), billTo.get(Customer_.customerName));
             query.orderBy(builder.desc(billed), builder.asc(billTo.get(Customer_.customerId)));

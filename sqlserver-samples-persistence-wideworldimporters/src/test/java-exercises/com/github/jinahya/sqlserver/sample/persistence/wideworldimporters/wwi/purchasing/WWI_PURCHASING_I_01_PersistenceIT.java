@@ -69,8 +69,8 @@ class WWI_PURCHASING_I_01_PersistenceIT {
                     builder.sum(builder.prod(root.get(PurchaseOrderLine_.orderedOuters),
                                              root.get(
                                                      PurchaseOrderLine_.expectedUnitPricePerOuter)));
-            query.multiselect(supplier.get(Supplier_.supplierName),
-                              builder.countDistinct(order), amount);
+            query.select(builder.array(supplier.get(Supplier_.supplierName),
+                                       builder.countDistinct(order), amount));
             query.where(builder.greaterThanOrEqualTo(order.get(PurchaseOrder_.orderDate),
                                                      FROM_2015),
                         builder.lessThan(order.get(PurchaseOrder_.orderDate), TO_2015));

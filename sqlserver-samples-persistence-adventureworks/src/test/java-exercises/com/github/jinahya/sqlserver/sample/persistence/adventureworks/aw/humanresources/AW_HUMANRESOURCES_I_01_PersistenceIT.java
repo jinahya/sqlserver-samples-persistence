@@ -67,10 +67,10 @@ class AW_HUMANRESOURCES_I_01_PersistenceIT {
             latest.select(builder.greatest(ph2.get(EmployeePayHistory_.rateChangeDate)));
             latest.where(builder.equal(ph2.get(EmployeePayHistory_.businessEntityId),
                                        ph.get(EmployeePayHistory_.businessEntityId)));
-            query.multiselect(p.get(Person_.firstName), p.get(Person_.lastName),
-                              e.get(Employee_.jobTitle),
-                              ph.get(EmployeePayHistory_.rate),
-                              ph.get(EmployeePayHistory_.rateChangeDate));
+            query.select(builder.array(p.get(Person_.firstName), p.get(Person_.lastName),
+                                       e.get(Employee_.jobTitle),
+                                       ph.get(EmployeePayHistory_.rate),
+                                       ph.get(EmployeePayHistory_.rateChangeDate)));
             query.where(builder.equal(ph.get(EmployeePayHistory_.rateChangeDate), latest));
             query.orderBy(builder.desc(ph.get(EmployeePayHistory_.rate)),
                           builder.asc(e.get(Employee_.businessEntityId)));

@@ -48,7 +48,7 @@ class AW_PERSON_B_01_PersistenceIT {
             final var query = builder.createQuery(Object[].class);
             final var p = query.from(Person.class);
             final var persons = builder.count(p);
-            query.multiselect(p.get(Person_.personType), persons);
+            query.select(builder.array(p.get(Person_.personType), persons));
             query.groupBy(p.get(Person_.personType));
             query.orderBy(builder.desc(persons));
             return entityManager.createQuery(query).getResultList();

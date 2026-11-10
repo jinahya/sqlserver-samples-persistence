@@ -64,7 +64,7 @@ class AW_SALES_B_03_PersistenceIT {
             final var orders = builder.count(
                     hr.get(SalesOrderHeaderSalesReason_.id_)
                             .get(SalesOrderHeaderSalesReasonId_.salesOrderId));
-            query.multiselect(r, orders);
+            query.select(builder.array(r, orders));
             query.groupBy(r);
             query.orderBy(builder.desc(orders), builder.asc(r.get(SalesReason_.name)));
             return entityManager.createQuery(query).getResultList();

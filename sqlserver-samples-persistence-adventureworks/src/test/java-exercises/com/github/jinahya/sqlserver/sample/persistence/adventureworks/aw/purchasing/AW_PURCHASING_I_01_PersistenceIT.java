@@ -52,8 +52,8 @@ class AW_PURCHASING_I_01_PersistenceIT {
             final var h = query.from(PurchaseOrderHeader.class);
             final var v = h.join(PurchaseOrderHeader_.vendor);
             final var totalDue = builder.sum(h.get(PurchaseOrderHeader_.totalDue));
-            query.multiselect(v.get(Vendor_.accountNumber), v.get(Vendor_.name),
-                              builder.count(h), totalDue);
+            query.select(builder.array(v.get(Vendor_.accountNumber), v.get(Vendor_.name),
+                                       builder.count(h), totalDue));
             query.where(h.get(PurchaseOrderHeader_.status).in(2, 4));
             query.groupBy(v.get(Vendor_.businessEntityId), v.get(Vendor_.accountNumber),
                           v.get(Vendor_.name));

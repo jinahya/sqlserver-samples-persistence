@@ -48,7 +48,7 @@ class AW_HUMANRESOURCES_B_02_PersistenceIT {
             final var query = builder.createQuery(Object[].class);
             final var e = query.from(Employee.class);
             final var level = e.get(Employee_.organizationLevel);
-            query.multiselect(level, builder.count(e));
+            query.select(builder.array(level, builder.count(e)));
             query.groupBy(level);
             query.orderBy(builder.asc(level));
             return entityManager.createQuery(query).getResultList();

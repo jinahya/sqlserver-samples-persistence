@@ -90,8 +90,8 @@ class WWI_WAREHOUSE_I_04_PersistenceIT {
             final var outgoing = builder.<BigDecimal>selectCase()
                     .when(builder.lt(quantity, BigDecimal.ZERO), builder.neg(quantity))
                     .otherwise(BigDecimal.ZERO);
-            query.multiselect(si, builder.sum(incoming), builder.sum(outgoing),
-                              builder.sum(quantity))
+            query.select(builder.array(si, builder.sum(incoming), builder.sum(outgoing),
+                                       builder.sum(quantity)))
                     .where(builder.greaterThanOrEqualTo(occurredWhen, FROM),
                            builder.lessThan(occurredWhen, TO))
                     .groupBy(si)

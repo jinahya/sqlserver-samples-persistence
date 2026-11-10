@@ -86,7 +86,7 @@ class WWI_SALES_I_07_PersistenceIT {
             final var creditLimit = c.get(Customer_.creditLimit);
             final var percentUsed = builder.quot(builder.prod(outstanding, BigDecimal.valueOf(100)),
                                                  creditLimit);
-            query.multiselect(c, outstanding, percentUsed)
+            query.select(builder.array(c, outstanding, percentUsed))
                     .where(builder.gt(creditLimit, BigDecimal.ZERO))
                     .orderBy(builder.desc(percentUsed, Nulls.LAST),
                              builder.asc(c.get(Customer_.customerId)));

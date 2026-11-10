@@ -52,8 +52,8 @@ class AW_PERSON_I_01_PersistenceIT {
             final var a = query.from(Address.class);
             final var c = a.join(Address_.stateProvince).join(StateProvince_.countryRegion);
             final var addresses = builder.count(a);
-            query.multiselect(c.get(CountryRegion_.countryRegionCode),
-                              c.get(CountryRegion_.name), addresses);
+            query.select(builder.array(c.get(CountryRegion_.countryRegionCode),
+                                       c.get(CountryRegion_.name), addresses));
             query.groupBy(c.get(CountryRegion_.countryRegionCode), c.get(CountryRegion_.name));
             query.orderBy(builder.desc(addresses),
                           builder.asc(c.get(CountryRegion_.countryRegionCode)));

@@ -59,8 +59,8 @@ class AW_PURCHASING_B_02_PersistenceIT {
                     .when(2, "Approved")
                     .when(3, "Rejected")
                     .when(4, "Complete");
-            query.multiselect(status, statusName, builder.count(h),
-                              builder.sum(h.get(PurchaseOrderHeader_.totalDue)));
+            query.select(builder.array(status, statusName, builder.count(h),
+                                       builder.sum(h.get(PurchaseOrderHeader_.totalDue))));
             query.groupBy(status);
             query.orderBy(builder.asc(status));
             return entityManager.createQuery(query).getResultList();

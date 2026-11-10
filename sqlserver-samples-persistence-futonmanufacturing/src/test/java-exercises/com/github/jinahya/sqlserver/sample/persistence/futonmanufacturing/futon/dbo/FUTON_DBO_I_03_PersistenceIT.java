@@ -52,7 +52,7 @@ class FUTON_DBO_I_03_PersistenceIT {
             final var v = query.from(Inventory.class);
             final var i = v.join(Inventory_.item);
             final var ratio = builder.quot(v.get(Inventory_.quantityAvailable), i.get(Item_.reorderPoint));
-            query.multiselect(v, ratio)
+            query.select(builder.array(v, ratio))
                     .where(builder.gt(i.get(Item_.reorderPoint), BigDecimal.ZERO))
                     .orderBy(builder.asc(ratio), builder.asc(i.get(Item_.itemCode)));
             final var list = entityManager.createQuery(query)

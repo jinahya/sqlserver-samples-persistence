@@ -55,9 +55,9 @@ class AW_SALES_I_01_PersistenceIT {
             final var h = query.from(SalesOrderHeader.class);
             final var t = h.join(SalesOrderHeader_.territory);
             final var totalDue = builder.sum(h.get(SalesOrderHeader_.totalDue));
-            query.multiselect(t.get(SalesTerritory_.name), t.get(SalesTerritory_.group),
-                              builder.count(h),
-                              totalDue);
+            query.select(builder.array(t.get(SalesTerritory_.name), t.get(SalesTerritory_.group),
+                                       builder.count(h),
+                                       totalDue));
             query.groupBy(t.get(SalesTerritory_.territoryId), t.get(SalesTerritory_.name),
                           t.get(SalesTerritory_.group));
             query.orderBy(builder.desc(totalDue));

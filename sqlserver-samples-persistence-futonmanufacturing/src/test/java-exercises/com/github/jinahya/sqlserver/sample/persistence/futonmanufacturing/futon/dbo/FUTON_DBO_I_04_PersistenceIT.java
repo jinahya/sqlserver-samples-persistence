@@ -65,7 +65,7 @@ class FUTON_DBO_I_04_PersistenceIT {
             final var inspected = builder.sum(q.get(QualityInspection_.quantityInspected));
             final var rejected = builder.sum(q.get(QualityInspection_.quantityRejected));
             final var percent = builder.quot(builder.prod(rejected, BigDecimal.valueOf(100)), inspected);
-            query.multiselect(s, inspected, rejected, percent)
+            query.select(builder.array(s, inspected, rejected, percent))
                     .groupBy(s)
                     .orderBy(builder.desc(percent), builder.asc(s.get(Supplier_.supplierCode)));
             final var list = entityManager.createQuery(query).getResultList();

@@ -71,10 +71,10 @@ class FUTON_DBO_I_09_PersistenceIT {
             final var rr = r.join(SalesReturn_.returnReason);
             final var i = d.join(SalesReturnDetail_.item);
             final var refundAmount = builder.sum(d.get(SalesReturnDetail_.refundAmount));
-            query.multiselect(rr, i,
-                              builder.countDistinct(d.get(SalesReturnDetail_.soDetailId)),
-                              builder.sum(d.get(SalesReturnDetail_.quantityReturned)),
-                              refundAmount)
+            query.select(builder.array(rr, i,
+                                       builder.countDistinct(d.get(SalesReturnDetail_.soDetailId)),
+                                       builder.sum(d.get(SalesReturnDetail_.quantityReturned)),
+                                       refundAmount))
                     .where(r.get(SalesReturn_.status).in("Received", "Refunded"))
                     .groupBy(rr, i)
                     .orderBy(builder.desc(refundAmount),

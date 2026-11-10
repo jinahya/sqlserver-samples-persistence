@@ -64,7 +64,7 @@ class FUTON_DBO_A_03_PersistenceIT {
             v.on(builder.equal(v.get(Inventory_.item), b.get(BillOfMaterials_.componentItem)));
             final var buildable = builder.min(builder.floor(
                     builder.quot(v.get(Inventory_.quantityAvailable), b.get(BillOfMaterials_.quantity))));
-            query.multiselect(p, buildable)
+            query.select(builder.array(p, buildable))
                     .where(builder.equal(p.get(Item_.itemType).get(ItemType_.typeCode), "FG"),
                            builder.isTrue(b.get(BillOfMaterials_.isActive)),
                            builder.equal(v.get(Inventory_.warehouse).get(Warehouse_.warehouseCode), "WH-MAIN"))

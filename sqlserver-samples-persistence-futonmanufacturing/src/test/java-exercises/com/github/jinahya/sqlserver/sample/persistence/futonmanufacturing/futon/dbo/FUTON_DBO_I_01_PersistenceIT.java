@@ -55,7 +55,7 @@ class FUTON_DBO_I_01_PersistenceIT {
             final var b = query.from(BillOfMaterials.class);
             final var c = b.join(BillOfMaterials_.componentItem);
             final var parents = builder.count(b);
-            query.multiselect(c, parents)
+            query.select(builder.array(c, parents))
                     .where(builder.equal(c.get(Item_.itemType).get(ItemType_.typeCode), "RAW"),
                            builder.isTrue(b.get(BillOfMaterials_.isActive)))
                     .groupBy(c)

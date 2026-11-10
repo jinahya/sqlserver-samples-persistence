@@ -54,7 +54,7 @@ class WWI_SALES_B_01_PersistenceIT {
             final var group = root.join(Customer_.buyingGroup, JoinType.LEFT);
             final var name = group.get(BuyingGroup_.buyingGroupName);
             final var customers = builder.count(root);
-            query.multiselect(name, customers);
+            query.select(builder.array(name, customers));
             query.groupBy(name);
             query.orderBy(builder.desc(customers), builder.asc(name));
             return entityManager.createQuery(query).getResultList()

@@ -52,7 +52,7 @@ class FUTON_DBO_B_07_PersistenceIT {
             final var po = d.join(PurchaseOrderDetail_.purchaseOrder);
             final var quantity = d.get(PurchaseOrderDetail_.quantity);
             final var quantityReceived = d.get(PurchaseOrderDetail_.quantityReceived);
-            query.multiselect(d, builder.diff(quantity, quantityReceived))
+            query.select(builder.array(d, builder.diff(quantity, quantityReceived)))
                     .where(builder.notEqual(po.get(PurchaseOrder_.status), "Cancelled"),
                            builder.or(builder.lessThan(quantityReceived, quantity),
                                       builder.isNull(quantityReceived)))

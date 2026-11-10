@@ -56,7 +56,8 @@ class FUTON_DBO_I_06_PersistenceIT {
             final var d = query.from(SalesOrderDetail.class);
             final var i = d.join(SalesOrderDetail_.item);
             final var quantity = builder.sum(d.get(SalesOrderDetail_.quantity));
-            query.multiselect(i, quantity, builder.sum(d.get(SalesOrderDetail_.netAmount)))
+            query.select(builder.array(i, quantity,
+                                       builder.sum(d.get(SalesOrderDetail_.netAmount))))
                     .groupBy(i)
                     .orderBy(builder.desc(quantity), builder.asc(i.get(Item_.itemCode)));
             final var list = entityManager.createQuery(query)

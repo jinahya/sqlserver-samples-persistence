@@ -55,7 +55,7 @@ class WWI_APPLICATION_I_01_PersistenceIT {
             final var root = query.from(Country.class);
             final var continent = root.get(Country_.continent);
             final var population = builder.sum(root.get(Country_.latestRecordedPopulation));
-            query.multiselect(continent, builder.count(root), population);
+            query.select(builder.array(continent, builder.count(root), population));
             query.groupBy(continent);
             query.orderBy(builder.desc(population));
             return entityManager.createQuery(query).getResultList()
