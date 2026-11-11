@@ -222,9 +222,9 @@ JDBC URL and the credentials from the root `pom.xml`'s `mssql.*` properties.
 
 | runs | script |
 |---|---|
-| unit tests | `_mvn_jakarta_ee_11_test_hibernate_orm.sh` |
-| unit tests and ITs, the database up | `_mvn_jakarta_ee_11_verify_hibernate_orm.sh` |
-| no test, but still compiles them | `_mvn_jakarta_ee_11_verify_notests_hibernate_orm.sh` |
+| unit tests | `_mvn_jakartaee_11_test_hibernate_orm.sh` |
+| unit tests and ITs, the database up | `_mvn_jakartaee_11_verify_hibernate_orm.sh` |
+| no test, but still compiles them | `_mvn_jakartaee_11_verify_notests_hibernate_orm.sh` |
 
 `-Dtests.skipAfterFailureCount=0` runs every test instead of stopping at the first failure. Building needs Java 25.
 

@@ -11,9 +11,9 @@
 # so the two halves are selected separately -- and that is a property of ${version.maven-failsafe};
 # under 3.5.x and earlier -DskipTests reached both:
 #
-#     ./_mvn_jakarta_ee_11_verify_hibernate_orm.sh -DskipTests   # the ITs alone
-#     ./_mvn_jakarta_ee_11_verify_hibernate_orm.sh -DskipITs     # the unit tests alone
-#     ./_mvn_jakarta_ee_11_verify_notests_hibernate_orm.sh       # neither
+#     ./_mvn_jakartaee_11_verify_hibernate_orm.sh -DskipTests   # the ITs alone
+#     ./_mvn_jakartaee_11_verify_hibernate_orm.sh -DskipITs     # the unit tests alone
+#     ./_mvn_jakartaee_11_verify_notests_hibernate_orm.sh       # neither
 #
 # `clean` keeps a run from compiling against the metamodel a previous run generated.
 cd "$(dirname "$0")" || exit 1

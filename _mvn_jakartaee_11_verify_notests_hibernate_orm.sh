@@ -10,7 +10,7 @@
 # Both flags are needed. As of 3.6.0 failsafe no longer binds its own skipTests parameter to the
 # skipTests user property, so -DskipTests reaches surefire alone and the ITs would still run;
 # -DskipITs is what stops them. For either half on its own, see
-# ./_mvn_jakarta_ee_11_verify_hibernate_orm.sh.
+# ./_mvn_jakartaee_11_verify_hibernate_orm.sh.
 #
 # `clean` keeps a run from compiling against the metamodel a previous run generated.
 cd "$(dirname "$0")" || exit 1
