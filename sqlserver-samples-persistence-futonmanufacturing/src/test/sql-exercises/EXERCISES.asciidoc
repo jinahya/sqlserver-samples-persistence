@@ -352,7 +352,7 @@ FG-FUT-002  2      20.0000   RM-FILL-001 used in COMP-MAT-002 > FG-FUT-002
 ====
 
 SQL only: a recursive common table expression. The view `vw_WhereUsed` gives the same rows; the test reads it with the
-native query below and builds a `WhereUsedView`, a keyless class, from each row through its public constructor.
+native query below and builds a `WhereUsed`, a keyless class, from each row through its public constructor.
 
 .The native query of `FUTON_DBO_A_02_PersistenceIT.nativeQuery`
 [source,sql]

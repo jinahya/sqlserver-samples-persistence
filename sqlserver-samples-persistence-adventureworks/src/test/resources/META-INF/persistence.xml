@@ -33,7 +33,7 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo.EventInstanceStringAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AdditionalContactInfoView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AdditionalContactInfo</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Address</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AddressType</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo.AwBuildVersion</class>
@@ -55,7 +55,7 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.EmailAddress</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.Employee</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartmentHistory</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartmentView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartment</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeePayHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeView</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo.ErrorLog</class>
@@ -66,18 +66,18 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Password</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Person</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.PersonCreditCard</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.PersonDemographicsView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.PersonDemographics</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.PersonPhone</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.PhoneNumberType</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Product</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductAndDescriptionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductAndDescription</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductCategory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductCostHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductDescription</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductInventory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductListPriceHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModel</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelCatalogDescriptionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelCatalogDescription</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelIllustration</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelProductDescriptionCulture</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductPhoto</class>
@@ -92,7 +92,7 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesOrderHeaderSalesReason</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPerson</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonQuotaHistory</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonSalesByFiscalYearsView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonSalesByFiscalYears</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonView</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesReason</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesTaxRate</class>
@@ -105,14 +105,14 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SpecialOffer</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SpecialOfferProduct</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvince</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvinceCountryRegionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvinceCountryRegion</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.Store</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.StoreWithDemographicsView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.StoreWithDemographics</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.TransactionHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.TransactionHistoryArchive</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.UnitMeasure</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.Vendor</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.VendorWithAddressesView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.VendorWithAddresses</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.WorkOrder</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.WorkOrderRouting</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
@@ -151,7 +151,7 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.mapped.dbo.EventInstanceStringAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.GeographyAttributeConverter</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.common.HeirarchyidAttributeConverter</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AdditionalContactInfoView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AdditionalContactInfo</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Address</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.AddressType</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo.AwBuildVersion</class>
@@ -173,7 +173,7 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.EmailAddress</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.Employee</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartmentHistory</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartmentView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeDepartment</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeePayHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.humanresources.EmployeeView</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.dbo.ErrorLog</class>
@@ -184,18 +184,18 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Password</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.Person</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.PersonCreditCard</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.PersonDemographicsView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.PersonDemographics</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.PersonPhone</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.PhoneNumberType</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.Product</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductAndDescriptionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductAndDescription</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductCategory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductCostHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductDescription</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductInventory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductListPriceHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModel</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelCatalogDescriptionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelCatalogDescription</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelIllustration</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductModelProductDescriptionCulture</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.ProductPhoto</class>
@@ -210,7 +210,7 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesOrderHeaderSalesReason</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPerson</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonQuotaHistory</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonSalesByFiscalYearsView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonSalesByFiscalYears</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesPersonView</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesReason</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SalesTaxRate</class>
@@ -223,14 +223,14 @@
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SpecialOffer</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.SpecialOfferProduct</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvince</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvinceCountryRegionView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.person.StateProvinceCountryRegion</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.Store</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.StoreWithDemographicsView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.sales.StoreWithDemographics</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.TransactionHistory</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.TransactionHistoryArchive</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.UnitMeasure</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.Vendor</class>
-    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.VendorWithAddressesView</class>
+    <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.purchasing.VendorWithAddresses</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.WorkOrder</class>
     <class>com.github.jinahya.sqlserver.sample.persistence.adventureworks.production.WorkOrderRouting</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
